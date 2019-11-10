@@ -301,6 +301,5 @@
 
 
 /datum/martial_art/hunter/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
-
 	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
 */

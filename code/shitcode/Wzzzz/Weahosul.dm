@@ -140,8 +140,8 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/rack(mob/user = null)
 		update_icon()
 		return
 	drop_bolt(user)
-	
-	
+
+
 /obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope
 	name = "kar98k scope"
 	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
@@ -151,7 +151,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/rack(mob/user = null)
 	zoom_amt = 10
 	zoom_out_amt = 13
 	actions_types = list()
-	
+
 obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/can_shoot()
 	if (bolt_locked)
 		return FALSE
@@ -229,7 +229,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/rack(mob/user = null)
 		update_icon()
 		return
 	drop_bolt(user)
-	
+
 /obj/item/gun/energy/taser/wzzzz/carbine
 	name = "taser carbine"
 	desc = "The NT Mk44 NL is a high capacity gun used for non-lethal takedowns. It can switch between high and low intensity stun shots."
@@ -254,7 +254,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/rack(mob/user = null)
 	stutter = 7
 	jitter = 27
 	range = 10
-	
+
 /obj/item/ammo_box/magazine/wt550m9/wzzzz/mc9mmt
 	name = "top mounted magazine (9mm)"
 	ammo_type = /obj/item/ammo_casing/wzzzz/c9mm
@@ -268,7 +268,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/rack(mob/user = null)
 /obj/projectile/bullet/c9mmt
 	damage = 25
 	armour_penetration = 13.5
-	
+
 /obj/item/gun/ballistic/automatic/wt550/wzzzz/german
 	name = "9mm machine pistol"
 	desc = "The W-T 550 Saber is a cheap self-defense weapon, mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."

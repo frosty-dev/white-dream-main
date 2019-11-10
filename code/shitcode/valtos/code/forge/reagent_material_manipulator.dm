@@ -207,5 +207,4 @@
 							reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
 							to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")
 							return TRUE
-
 	return FALSE

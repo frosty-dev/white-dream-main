@@ -220,3 +220,52 @@
 /datum/keybinding/mob/target_left_leg/down(client/user)
 	user.body_l_leg()
 	return TRUE
+
+/datum/keybinding/client/ooc
+	key = "F2"
+	name = "ooc"
+	full_name = "OOC"
+	description = ""
+
+/datum/keybinding/client/ooc/down(client/user)
+	user.ooc_wrapper()
+	return TRUE
+
+/client/verb/ooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "OOC \"text\"") as null|text
+	ooc(message)
+
+/datum/keybinding/mob/say
+	key = "F3"
+	name = "say"
+	full_name = "Say"
+	description = ""
+
+/datum/keybinding/mob/say/down(client/user)
+	var/mob/M = user.mob
+	M.say_wrapper()
+	return TRUE
+
+/mob/verb/say_wrapper()
+	set name = ".Say"
+	set hidden = TRUE
+	var/message = input("", "Say \"text\"") as null|text
+	say_verb(message)
+
+/datum/keybinding/mob/me
+	key = "F4"
+	name = "me"
+	full_name = "Me"
+	description = ""
+
+/datum/keybinding/mob/me/down(client/user)
+	var/mob/M = user.mob
+	M.me_wrapper()
+	return TRUE
+
+/mob/verb/me_wrapper()
+	set name = ".Me"
+	set hidden = TRUE
+	var/message = input("", "Me \"text\"") as null|text
+	me_verb(message)

@@ -117,7 +117,4 @@
 								/obj/item/book/granter/spell/summonitem = 1,
 								/obj/item/book/granter/martial/cqc = 1,
 								/obj/item/tank/internals/emergency_oxygen/double = 1
-
-
-
 								)

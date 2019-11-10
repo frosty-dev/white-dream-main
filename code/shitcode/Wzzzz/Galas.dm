@@ -27,7 +27,7 @@
 	item_state = "jensenshades"
 	flash_protect = 5
 	tint = 1
-	
+
 /obj/item/clothing/glasses/wzzzz/goggless
 	name = "Dark gogles"
 	desc = "Something familiar, but dark"
@@ -49,7 +49,7 @@
 	item_state = "sec_flash"
 	flash_protect = 1
 	tint = 1
-	
+
 /obj/item/clothing/glasses/welding/wzzzz/r
 	name = "New welding goggles"
 	desc = "Protects the eyes from bright flashes; approved by the mad scientist association."

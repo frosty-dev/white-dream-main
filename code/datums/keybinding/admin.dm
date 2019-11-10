@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/admin/admin_say
-    key = "F3"
+    key = "F5"
     name = "admin_say"
     full_name = "Admin say"
     description = "Talk with other admins."
@@ -14,7 +14,7 @@
     return TRUE
 
 /datum/keybinding/admin/admin_ghost
-    key = "F5"
+    key = "F6"
     name = "admin_ghost"
     full_name = "Aghost"
     description = "Go ghost"
@@ -24,7 +24,7 @@
     return TRUE
 
 /datum/keybinding/admin/player_panel_new
-    key = "F6"
+    key = "F9"
     name = "player_panel_new"
     full_name = "Player Panel New"
     description = "Opens up the new player panel"

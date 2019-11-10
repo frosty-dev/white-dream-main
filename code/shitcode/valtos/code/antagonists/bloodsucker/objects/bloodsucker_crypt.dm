@@ -577,7 +577,4 @@
 	category = CAT_STRUCTURE
 	always_availible = FALSE	// Disabled til learned
 
-
-
-
 //   OTHER THINGS TO USE: HUMAN BLOOD. /obj/effect/decal/cleanable/blood

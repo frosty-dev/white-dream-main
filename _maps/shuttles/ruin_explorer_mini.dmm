@@ -1,0 +1,161 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/explorer_mini)
+"c" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/explorer_mini)
+"d" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/explorer_mini)
+"e" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/cable,
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"f" = (
+/obj/machinery/power/apc/highcap/fifteen_k{
+	dir = 1;
+	name = "Auto-Explorer Mini APC";
+	pixel_x = 0;
+	pixel_y = 23;
+	req_access_txt = "150"
+	},
+/obj/structure/cable,
+/obj/structure/closet/crate,
+/obj/item/pickaxe,
+/obj/item/storage/bag/ore,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/shuttle/explorer_mini)
+"g" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"h" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/explorer_mini,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"i" = (
+/obj/docking_port/mobile{
+	callTime = 50;
+	dir = 4;
+	dwidth = 4;
+	height = 9;
+	id = "explorer_mini";
+	ignitionTime = 25;
+	name = "Auto-Explorer Mini";
+	port_direction = 2;
+	preferred_direction = 4;
+	width = 5
+	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/explorer_mini)
+"j" = (
+/obj/machinery/computer/shuttle/explorer_mini{
+	icon_state = "computer";
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"k" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"l" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"m" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/pickaxe,
+/obj/item/storage/bag/ore,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/shuttle/explorer_mini)
+"n" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"o" = (
+/obj/structure/ore_box,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/shuttle/explorer_mini)
+"p" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+"q" = (
+/obj/structure/table,
+/obj/item/flashlight,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/explorer_mini)
+
+(1,1,1) = {"
+b
+c
+i
+c
+b
+"}
+(2,1,1) = {"
+c
+f
+m
+o
+c
+"}
+(3,1,1) = {"
+d
+l
+n
+n
+d
+"}
+(4,1,1) = {"
+e
+k
+g
+g
+d
+"}
+(5,1,1) = {"
+d
+h
+p
+q
+d
+"}
+(6,1,1) = {"
+c
+c
+j
+c
+c
+"}
+(7,1,1) = {"
+a
+c
+d
+c
+a
+"}

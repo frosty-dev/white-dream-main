@@ -15,7 +15,7 @@
 	can_suppress = FALSE
 	burst_size = 3
 	can_bayonet = FALSE
-	
+
 /obj/item/ammo_box/magazine/wzzzz/stg
 	name = "stg-44 (7.92x33mm) magazine"
 	desc = "A Stg-44 magazine."

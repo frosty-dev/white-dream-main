@@ -13,17 +13,6 @@
     user.get_adminhelp()
     return TRUE
 
-
-/datum/keybinding/client/screenshot
-    key = "F2"
-    name = "screenshot"
-    full_name = "Screenshot"
-    description = "Take a screenshot."
-
-/datum/keybinding/client/screenshot/down(client/user)
-    winset(user, null, "command=.screenshot [!user.keys_held["shift"] ? "auto" : ""]")
-    return TRUE
-
 /datum/keybinding/client/minimal_hud
     key = "F12"
     name = "minimal_hud"

@@ -9,7 +9,7 @@
 	item_state = "swatclava"
 	flags_inv = HIDEHAIR|HIDEEARS
 	visor_flags_inv = HIDEHAIR|HIDEEARS
-	
+
 /obj/item/clothing/shoes/combat/wzzzz/blackger
 	name = "black Boots"
 	desc = "Looks stylish"
@@ -25,7 +25,7 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/shoes.dmi'
 	icon_state = "slippers"
 	item_state = "slippers"
-	
+
 /obj/item/clothing/shoes/wzzzz/digiboots
 	name = "dig boots"
 	desc = "I hope you understand all yourself"
@@ -33,7 +33,7 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/shoes.dmi'
 	icon_state = "digiboots"
 	item_state = "digiboots"
-	
+
 /obj/item/clothing/shoes/wzzzz/flippers
 	name = "flippers"
 	desc = "I think you understand all yourself"
@@ -41,7 +41,7 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/shoes.dmi'
 	icon_state = "flippers"
 	item_state = "flippers"
-	
+
 /obj/item/clothing/mask/gas/wzzzz/full
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."

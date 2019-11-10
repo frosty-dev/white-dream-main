@@ -75,13 +75,13 @@
 	..()
 
 /obj/item/book/manual/wiki/security_space_law/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
-    . = ..()
-    if (istype(target, /obj/item/twohanded/required/paxe))
-        to_chat(user, "<span class='notice'>Вы улучшаете алебарду властью, данною вам законом.</span>")
-        var/obj/item/twohanded/required/paxe/I = target
-        new /obj/item/twohanded/required/paxee(I.loc)
-        qdel(I)
-        for (var/mob/i in GLOB.player_list)
-            if (istype (i, /mob/living/carbon/human/))
-                var/mob/living/carbon/human/H = i
-                to_chat(H, "<span class='warning'>Вы чувствуете высвобождение сил ебонумбы.</span>")
+	. = ..()
+	if (istype(target, /obj/item/twohanded/required/paxe))
+		to_chat(user, "<span class='notice'>Вы улучшаете алебарду властью, данною вам законом.</span>")
+		var/obj/item/twohanded/required/paxe/I = target
+		new /obj/item/twohanded/required/paxee(I.loc)
+		qdel(I)
+		for (var/mob/i in GLOB.player_list)
+			if (istype (i, /mob/living/carbon/human/))
+				var/mob/living/carbon/human/H = i
+				to_chat(H, "<span class='warning'>Вы чувствуете высвобождение сил ебонумбы.</span>")

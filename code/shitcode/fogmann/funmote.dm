@@ -27,7 +27,5 @@
 					playsound(H, 'code/shitcode/fogmann/fart.ogg', 50, 1)
 		user.CanFart = 0; spawn(600) user.CanFart = 1
 
-
-
 /mob
 	var/CanFart = 1

@@ -7,21 +7,21 @@
 	id = "telepadovo"
 	suffix = "wruin1.dmm"
 	name = "Telepadovo"
-	description = "Синдикат в последнее время плохо финансируется, в следствии чего начал заведовать переправкой космобеженцев через телепады."
+	description = "РЎРёРЅРґРёРєР°С‚ РІ РїРѕСЃР»РµРґРЅРµРµ РІСЂРµРјСЏ РїР»РѕС…Рѕ С„РёРЅР°РЅСЃРёСЂСѓРµС‚СЃСЏ, РІ СЃР»РµРґСЃС‚РІРёРё С‡РµРіРѕ РЅР°С‡Р°Р» Р·Р°РІРµРґРѕРІР°С‚СЊ РїРµСЂРµРїСЂР°РІРєРѕР№ РєРѕСЃРјРѕР±РµР¶РµРЅС†РµРІ С‡РµСЂРµР· С‚РµР»РµРїР°РґС‹."
 
 //austation
 
 /obj/effect/mob_spawn/human/austation
-	name = "old cryogenics pod"
-	desc = "Промёрзшая изнутри капсула. Если присмотреться, то внутри находится спящий человек."
-	mob_name = "ассистуха"
+	name = "РїР°С…РЅСѓС‰Р°СЏ СЃСЃР°РЅРёРЅРѕР№ РєР°РїСЃСѓР»Р°"
+	desc = "РџСЂРѕРјС‘СЂР·С€Р°СЏ РёР·РЅСѓС‚СЂРё РєР°РїСЃСѓР»Р°. Р•СЃР»Рё РїСЂРёСЃРјРѕС‚СЂРµС‚СЊСЃСЏ, С‚Рѕ РІРЅСѓС‚СЂРё РЅР°С…РѕРґРёС‚СЃСЏ СЃРїСЏС‰РёР№ С‡РµР»РѕРІРµРє."
+	mob_name = "Р°СЃСЃРёСЃС‚СѓС…Р°"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
-	flavour_text = "<span class='big bold'>Мне повезло проснуться хрен пойми где. Надо бы понять что тут стряслось и выжить.</b>"
+	flavour_text = "<span class='big bold'>РњРЅРµ РїРѕРІРµР·Р»Рѕ РїСЂРѕСЃРЅСѓС‚СЊСЃСЏ С…СЂРµРЅ РїРѕР№РјРё РіРґРµ. РќР°РґРѕ Р±С‹ РїРѕРЅСЏС‚СЊ С‡С‚Рѕ С‚СѓС‚ СЃС‚СЂСЏСЃР»РѕСЃСЊ Рё РІС‹Р¶РёС‚СЊ.</b>"
 	uniform = /datum/outfit/job/assistant
 	shoes = null
 	assignedrole = "Autism Crew"
@@ -37,4 +37,53 @@
 	id = "austation"
 	suffix = "wruin2.dmm"
 	name = "Autism Station"
-	description = "Практически автономная министация посреди космоса. Уцелела благодаря идиотам среди экипажа и полным отсутствием тактической ценности для синдиката."
+	description = "РџСЂР°РєС‚РёС‡РµСЃРєРё Р°РІС‚РѕРЅРѕРјРЅР°СЏ РјРёРЅРёСЃС‚Р°С†РёСЏ РїРѕСЃСЂРµРґРё РєРѕСЃРјРѕСЃР°. РЈС†РµР»РµР»Р° Р±Р»Р°РіРѕРґР°СЂСЏ РёРґРёРѕС‚Р°Рј СЃСЂРµРґРё СЌРєРёРїР°Р¶Р° Рё РїРѕР»РЅС‹Рј РѕС‚СЃСѓС‚СЃС‚РІРёРµРј С‚Р°РєС‚РёС‡РµСЃРєРѕР№ С†РµРЅРЅРѕСЃС‚Рё РґР»СЏ СЃРёРЅРґРёРєР°С‚Р°."
+
+/area/shuttle/explorer_mini
+	requires_power = TRUE
+	name = "Auto-Explorer Mini"
+
+/datum/map_template/shuttle/ruin/explorer_mini
+	suffix = "explorer_mini"
+	name = "Auto-Explorer Mini"
+
+/obj/item/circuitboard/computer/explorer_mini
+	build_path = /obj/machinery/computer/shuttle/explorer_mini
+
+/obj/machinery/computer/shuttle/explorer_mini
+	name = "Auto-Explorer Mini Shuttle Console"
+	desc = "Used to control the Auto-Explorer Mini."
+	circuit = /obj/item/circuitboard/computer/explorer_mini
+	shuttleId = "explorer_mini"
+	possible_destinations = "explorer_mini_custom;explorer_mini_station"
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/explorer_mini
+	name = "Auto-Explorer Mini Navigation Computer"
+	desc = "Used to designate a precise transit location for the Auto-Explorer Mini."
+	shuttleId = "explorer_mini"
+	shuttlePortId = "explorer_mini_custom"
+	jumpto_ports = list("explorer_mini_station" = 1)
+	view_range = 9
+
+//telepadovo
+
+/area/ruin/space/has_grav/powered/partywhite
+	name = "Partywhite"
+	var/music_triggered = FALSE
+
+/area/ruin/space/has_grav/powered/partywhite/Entered(mob/user)
+	. = ..()
+
+	if(!user.ckey)
+		return
+
+	if (!music_triggered)
+		for (var/obj/machinery/jukebox/disco/indestructible/D in /area/ruin/space/has_grav/powered/partywhite)
+			D.activate_music()
+		music_triggered = TRUE
+
+/datum/map_template/ruin/space/partywhite
+	id = "partywhite"
+	suffix = "wruin3.dmm"
+	name = "Partywhite"
+	description = "РЎРёРЅРґРёРєР°С‚ СЂРµС€РёР» СѓСЃС‚СЂРѕРёС‚СЊ С‚СѓСЃСѓ РїРѕСЃСЂРµРґРё РєРѕСЃРјРѕСЃР° Рё РЅРёРєС‚Рѕ РёРј РЅРµ РґРѕР»Р¶РµРЅ РїРѕРјРµС€Р°С‚СЊ. РќРёРєС‚Рѕ."

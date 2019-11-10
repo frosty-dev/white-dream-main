@@ -5289,7 +5289,6 @@
 	pixel_y = 23
 	},
 /obj/item/gun/energy/ionrifle,
-/obj/item/gun/energy/temperature/security,
 /obj/item/clothing/suit/armor/laserproof,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -5301,6 +5300,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/gun/energy/cell/NLAW,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "alh" = (
@@ -13105,10 +13105,6 @@
 /obj/item/cultivator/rake,
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"aEs" = (
-/obj/structure/synthesized_instrument/synthesizer,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "aEz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/secondary/entry";
@@ -78948,7 +78944,7 @@ aem
 aeO
 afG
 acd
-aEs
+agK
 agK
 ail
 aiE

@@ -76,5 +76,4 @@
 
 	if(!istype(C))
 		return
-
 */

@@ -132,11 +132,34 @@ PROCESSING_SUBSYSTEM_DEF(btension)
 /datum/component/battletension/proc/get_sound_list()
 	var/list/result = list()
 	var/list/sounds = list(
-							list("gladiator.ogg"),
-							list("digitalonslaught.ogg", "03 NARC.ogg"),
-							list("80sspark.ogg","badapple.ogg"),
-							list("unstoppable.ogg")
-							)
+							list(
+								"gladiator.ogg",
+								"Battlefield.ogg"
+							),
+							list(
+								"digitalonslaught.ogg",
+								"03 NARC.ogg",
+								"Maciej Niedzielski - Old Military Base.ogg",
+								"Locknar - Industrial Complex.ogg",
+								"Perturbator - Tactical Precision Disarray.ogg",
+								"M O O N - Hydrogen.ogg",
+								"Carpenter Brut - Roller Mobster.ogg",
+								"Acid-Notation - The Yanderes Puppet Show.ogg",
+								"Street Cleaner - Murdercycle.ogg",
+								"Protector 101 - Hardware.ogg",
+								""
+							),
+							list(
+								"80sspark.ogg",
+								"badapple.ogg",
+								"Galaxy Collapse.ogg"
+							),
+							list(
+								"unstoppable.ogg"
+							),
+							list(
+								"German Military Marches - Lore, Lore, Lore.ogg"
+							))
 	if(!owner || !owner.client || !owner.client.prefs)
 		return
 
@@ -171,20 +194,20 @@ PROCESSING_SUBSYSTEM_DEF(btension)
 	else
 		settings = 0
 
-	var/list/options = list("приколов", "синтвейв", "тохо", "мк")
-	var/list/revmenu = list("приколов"=0, "синтвейв"=1, "тохо"=2, "мк"=3)
+	var/list/options = list("приколов", "техноту", "тохо", "мк", "любить вайт")
+	var/list/revmenu = list("приколов"=0, "техноту"=1, "тохо"=2, "мк"=3, "любить вайт"=4)
 
 	var/list/menu = list()
 
 	var/i = 0
 	for(var/item in options)
 		if(settings & 2**i)
-			menu += "Нехочу " + item
+			menu += "Не хочу " + item
 		else
 			menu += "Хочу " + item
 		i++
 
-	var/selected = input("a a a a", "BT Customization") as null|anything in menu
+	var/selected = input("a a a a a", "BT Customization") as null|anything in menu
 	if(!selected)
 		return
 	selected = splittext(selected, " ")[2]

@@ -1,0 +1,717 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/partywhite)
+"ac" = (
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ad" = (
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"ae" = (
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"af" = (
+/obj/machinery/jukebox/disco/indestructible{
+	can_be_unanchored = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"ag" = (
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ah" = (
+/obj/structure/fluff/railing,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"ai" = (
+/obj/structure/fluff/railing,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aj" = (
+/obj/structure/fluff/railing/corner{
+	icon_state = "railing_corner";
+	dir = 8
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ak" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 4
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"al" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 8
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"am" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 4
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"an" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 8
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ao" = (
+/obj/structure/fluff/railing/corner{
+	icon_state = "railing_corner";
+	dir = 4
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ap" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 1
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aq" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 1
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ar" = (
+/obj/structure/fluff/railing/corner{
+	icon_state = "railing_corner";
+	dir = 1
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"as" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/partywhite)
+"at" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"au" = (
+/mob/living/simple_animal/hostile/syndicate/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"av" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aw" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"ax" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"ay" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"az" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aA" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aB" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aC" = (
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aD" = (
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aE" = (
+/obj/item/reagent_containers/food/drinks/bottle/grappa,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aF" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aG" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aH" = (
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aI" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aJ" = (
+/mob/living/simple_animal/hostile/syndicate/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aK" = (
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aL" = (
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aM" = (
+/mob/living/simple_animal/hostile/syndicate/melee/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aN" = (
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aO" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aP" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aQ" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "gibmid3"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aR" = (
+/mob/living/simple_animal/hostile/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aS" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "gibbearhead"
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aT" = (
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aU" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/mob/living/simple_animal/hostile/syndicate/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aV" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"aW" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"aX" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"aY" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"aZ" = (
+/obj/item/wrench/caravan,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"ba" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"bb" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"bc" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/powered/partywhite)
+"bd" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood{
+	icon_state = "gib6"
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"be" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "gibmid2"
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bf" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bg" = (
+/obj/structure/fluff/railing{
+	icon_state = "railing";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bh" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bi" = (
+/mob/living/simple_animal/hostile/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"bj" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bk" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/ruin/space/has_grav/powered/partywhite)
+"bl" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "ltrails_1"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bm" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "gibbl3"
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+"bn" = (
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/ruin/space/has_grav/powered/partywhite)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+as
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+at
+ac
+ad
+ac
+aC
+ac
+ad
+ac
+ad
+ac
+ad
+ac
+ad
+ac
+ad
+ab
+aa
+"}
+(4,1,1) = {"
+aa
+ab
+ac
+ad
+aE
+ad
+ac
+aT
+ac
+aK
+ba
+bf
+ac
+aB
+ac
+av
+ac
+ab
+aa
+"}
+(5,1,1) = {"
+aa
+ab
+au
+ac
+ad
+aJ
+ad
+aU
+ad
+aA
+ad
+ac
+ad
+ac
+ad
+ac
+ad
+ab
+aa
+"}
+(6,1,1) = {"
+aa
+ab
+ac
+ax
+aF
+aK
+ac
+ad
+aF
+ad
+bb
+az
+ac
+ad
+aP
+ad
+ac
+ab
+aa
+"}
+(7,1,1) = {"
+aa
+ab
+ac
+ay
+ac
+ac
+aP
+ac
+ac
+aX
+ac
+ac
+ay
+bi
+ac
+ac
+aF
+ab
+aa
+"}
+(8,1,1) = {"
+aa
+ab
+ad
+ac
+aG
+ac
+aM
+ag
+ak
+am
+ak
+ao
+ad
+ac
+ax
+ac
+ad
+ab
+aa
+"}
+(9,1,1) = {"
+aa
+ab
+ac
+az
+ac
+ad
+aQ
+ah
+aW
+aY
+ae
+bg
+ac
+ad
+bk
+bn
+ac
+ab
+aa
+"}
+(10,1,1) = {"
+aa
+as
+ad
+aA
+ad
+aL
+ad
+ai
+aW
+af
+bc
+aq
+ad
+aJ
+ad
+ac
+ad
+as
+aa
+"}
+(11,1,1) = {"
+aa
+ab
+ac
+aB
+aH
+aM
+ac
+ah
+ae
+aZ
+ae
+ap
+ac
+aB
+ac
+ad
+ac
+ab
+aa
+"}
+(12,1,1) = {"
+aa
+ab
+ad
+ac
+ad
+ac
+aR
+aj
+al
+an
+bd
+ar
+ax
+ac
+bl
+ac
+ad
+ab
+aa
+"}
+(13,1,1) = {"
+aa
+ab
+ac
+aC
+aI
+ad
+aA
+aV
+aF
+ad
+ac
+aT
+ac
+bj
+ac
+ad
+ac
+ab
+aa
+"}
+(14,1,1) = {"
+aa
+ab
+av
+ac
+ad
+aN
+aS
+ac
+ad
+ac
+av
+ac
+bh
+ac
+ad
+aX
+ad
+ab
+aa
+"}
+(15,1,1) = {"
+aa
+ab
+ac
+az
+aJ
+ad
+ac
+aM
+ac
+ad
+ac
+ad
+ac
+aB
+aE
+ad
+ac
+ab
+aa
+"}
+(16,1,1) = {"
+aa
+ab
+ad
+ac
+ad
+aO
+ad
+ac
+ad
+ac
+be
+ac
+ad
+ay
+bm
+ac
+ad
+ab
+aa
+"}
+(17,1,1) = {"
+aa
+ab
+aw
+aD
+ac
+ad
+ac
+aB
+ac
+ad
+ac
+ad
+ac
+ad
+ac
+ad
+ac
+ab
+aa
+"}
+(18,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+as
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

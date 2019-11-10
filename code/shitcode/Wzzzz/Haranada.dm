@@ -30,7 +30,7 @@
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 35, "bio" = 100, "rad" = 0, "fire" = 55, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/asset_protection
 	resistance_flags = NONE|FIRE_PROOF|FREEZE_PROOF
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/eng
 	name = "engineer hardsuit helmet"
 	desc = "For engineers."
@@ -62,7 +62,7 @@
 	armor = list("melee" = 30, "bullet" = 25, "laser" = 30, "energy" = 30, "bomb" = 40, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 75)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/eng
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/breacher_cheap
 	name = "breacher cheap helmet"
 	desc = "Not enough good like usual breacher suit, but too good."
@@ -209,7 +209,7 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 60,"energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/hazard_rig
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/merc_rig
 	name = "advanced blood-red hardsuit helmet"
 	desc = "Advanced Syndicate red hardsuit helmet."
@@ -241,7 +241,7 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 40, "bomb" = 60, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 90)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/merc_rig
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_miningalt
 	name = "advanced miner hardsuit helmet"
 	desc = "For miners, isn't it?"
@@ -276,17 +276,17 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/clothing/hard.dmi'
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_miningalt
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/merc_rig_heavy
 	name = "heavy blood-red hardsuit helmet"
 	desc = "Very heavy, but nice protection."
@@ -303,7 +303,7 @@
 	on = FALSE
 	slowdown = 0.5
 	brightness_on = 1
-	
+
 	resistance_flags = NONE|FREEZE_PROOF|FIRE_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/wzzzz/merc_rig_heavy
@@ -320,12 +320,12 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 90, "bullet" = 85, "laser" = 80,"energy" = 85, "bomb" = 90, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/merc_rig_heavy
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/security_rig
 	name = "security hardsuit helmet"
 	desc = "New model of security hardsuit for station."
@@ -356,12 +356,12 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/clothing/hard.dmi'
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/security_rig
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/medical_rig
 	name = "medical hardsuit helmet"
 	desc = "New model of medical hardsuit for station."
@@ -392,8 +392,8 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/clothing/hard.dmi'
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 30, "bomb" = 40, "bio" = 100, "rad" = 70, "fire" = 60, "acid" = 70)
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/medical_rig	
-	
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/medical_rig
+
 /obj/item/clothing/glasses/hud/wzzzz/hacker_rig
 	name = "hacker googless"
 	desc = "Do you deserve that?"
@@ -423,12 +423,12 @@
 	icon = 'code/shitcode/Wzzzz/icons/clothing/clothing/hard.dmi'
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 60, "bullet" = 50, "laser" = 100,"energy" = 100, "bomb" = 60, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 50)
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_engineer_rig
 	name = "ert engineer hardsuit helmet"
 	desc = "Old style of ert hardsuit."
@@ -461,9 +461,9 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_engineer_rig
-	
-	
-	
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_commander_rig
 	name = "ert commander hardsuit helmet"
 	desc = "Old style of ert hardsuit."
@@ -496,8 +496,8 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_commander_rig
-	
-	
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_security_rig
 	name = "ert security hardsuit helmet"
 	desc = "Old style of ert hardsuit."
@@ -530,10 +530,10 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_security_rig
-	
-	
-	
-	
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_medical_rig
 	name = "ert medical hardsuit helmet"
 	desc = "Old style of ert hardsuit."
@@ -568,9 +568,9 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_medical_rig
-	
-	
-	
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_janitor_rig
 	name = "ert janitor hardsuit helmet"
 	desc = "Old style of ert hardsuit."
@@ -603,9 +603,9 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/ert_janitor_rig
-	
-	
-	
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/skrell_helmet_white
 	name = "screll hardsuit helmet"
 	desc = "For skrells, for space"
@@ -640,15 +640,15 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 45, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/skrell_helmet_white
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/eva_rig
 	name = "eva hardsuit helmet"
 	desc = "New style of EVA hardsuit, more warm and comfortable."
@@ -682,12 +682,12 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30,"energy" = 30, "bomb" = 40, "bio" = 60, "rad" = 0, "fire" = 40, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/eva_rig
 	cold_protection = 750
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_atmosalt
 	name = "atmospherical hardsuit helmet"
 	desc = "New style of atmospherical hardsuit."
@@ -721,11 +721,11 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "rad" = 25, "fire" = 100, "acid" = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_atmosalt
-	
-	
-	
-	
-	
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_secalt
 	name = "security hardsuit helmet"
 	desc = "New style of security hardsuit."
@@ -760,11 +760,11 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 45, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 30, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 85)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_secalt
-	
-	
-	
-	
-	
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_sec
 	name = "blood-red hardsuit helmet"
 	desc = "New style of security hardsuit."
@@ -798,11 +798,11 @@
 	armor = list("melee" = 70, "bullet" = 50, "laser" = 30, "energy" = 20, "bomb" = 60, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 85)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_sec
 	resistance_flags = NONE|FIRE_PROOF|FREEZE_PROOF
-	
-	
-	
-	
-	
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_medicalalt
 	name = "medical hardsuit helmet"
 	desc = "New style of medical hardsuit."
@@ -821,7 +821,7 @@
 	on = FALSE
 	brightness_on = 1
 	resistance_flags = NONE|FIRE_PROOF|FREEZE_PROOF
-	
+
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/wzzzz/rig_medicalalt
 	name = "breacher cheap hardsuit"
@@ -839,11 +839,11 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 20, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_medicalalt
-	
-	
-	
-	
-	
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_salvage
 	name = "salvage hardsuit helmet"
 	desc = "Salvaged hardsuit."
@@ -878,10 +878,10 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20,"energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 20, "fire" = 70, "acid" = 30)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_salvage
-	
-	
-	
-	
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_excavation
 	name = "excavation hardsuit helmet"
 	desc = "Hardsuit for exploring."
@@ -919,11 +919,11 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list(melee = 30, bullet = 20, laser = 35,energy = 20, bomb = 30, bio = 100, rad = 100, fire = 50, acid = 40)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_excavation
-	
-	
-	
-	
-	
+
+
+
+
+
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_engineeringalt
 	name = "engineer hardsuit helmet"
 	desc = "New style of engineer hardsuit."
@@ -959,8 +959,8 @@
 	mob_overlay_icon = 'code/shitcode/Wzzzz/icons/clothing/mob1/hard.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 60, "acid" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/rig_engineeringalt
-	
-	
+
+
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/wzzzz/skrell_helmet_black
 	name = "screll hardsuit helmet"

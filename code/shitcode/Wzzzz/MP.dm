@@ -16,7 +16,7 @@
 	burst_size = 3
 	can_bayonet = FALSE
 	fire_sound = 'code/shitcode/Wzzzz/smg_fire.ogg'
-	
+
 /obj/item/ammo_box/magazine/wzzzz/mp40
 	name = "MP-40 magazine (9mm)"
 	desc = "A mp40 magazine."

@@ -158,5 +158,4 @@ Bonus
 			M.domutcheck()
 
 	return 1
-
 */

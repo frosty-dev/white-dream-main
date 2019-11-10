@@ -38,7 +38,7 @@
 	name = "10mm bullet"
 	damage = 23
 	armour_penetration = 15
-	
+
 /obj/item/ammo_casing/wzzzz/mauser
 	name = "10mm bullet casing."
 	desc = "A 10mm bullet casing."
