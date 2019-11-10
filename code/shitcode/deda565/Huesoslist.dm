@@ -61,5 +61,4 @@ GLOBAL_LIST_INIT(huesoslist, world.file2list("[global.config.directory]/autoeban
 		else
 			user.gib()
 		return UI_CLOSE
-	else
-		.=..()
+	. = ..()
