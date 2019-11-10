@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(huesoslist, world.file2list("[global.config.directory]/autoeban
 			log_admin("[src] has checked huesos")
 
 /obj/machinery/vending/terminal/ui_interact(mob/user)
-	if(user.ckey in GLOB.huesoslist)
+	. = ..() if(user.ckey in GLOB.huesoslist)
 		if(prob(80))
 			var/turf/T = get_step(get_step(user, NORTH), NORTH)
 			T.Beam(user, icon_state="lightning[rand(1,12)]", time = 5)
@@ -61,5 +61,3 @@ GLOBAL_LIST_INIT(huesoslist, world.file2list("[global.config.directory]/autoeban
 		else
 			user.gib()
 		return UI_CLOSE
-	else
-		.=..()
