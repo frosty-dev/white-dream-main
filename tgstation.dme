@@ -2972,6 +2972,7 @@
 #include "code\shitcode\ClickerOfThings\shitspawn_deck\shitspawn_deck.dm"
 #include "code\shitcode\ClickerOfThings\steklotara\punkt_priema.dm"
 #include "code\shitcode\ClickerOfThings\super_kinetic\super_kinetic_accelerator.dm"
+#include "code\shitcode\deda565\Huesoslist.dm"
 #include "code\shitcode\fogmann\donations.dm"
 #include "code\shitcode\fogmann\fogmann.dm"
 #include "code\shitcode\fogmann\funmote.dm"
