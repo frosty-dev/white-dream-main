@@ -74,6 +74,6 @@
 	id = "nlaw"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 14000, /datum/material/plasma = 6000, /datum/material/glass = 10000, /datum/material/gold = 6000 , /datum/material/iron = 25000)
-	build_path = /obj/item/gun/ballistic/energy_smg/nopin
+	build_path = /obj/item/gun/energy/cell/NLAW
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE //убрать флаг РнД если чрезмерно охуеют
