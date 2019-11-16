@@ -88,11 +88,12 @@
 /obj/item/gun/energy/cell/update_icon(force_update)
 	if(QDELETED(src))
 		return
-	..()
+	//..() //не дай бог это всё сломает нахуй
+	var/ratio
 	if(!automatic_charge_overlays)
 		return
 	if(cell) //prevents nullpointer exceptions
-		var/ratio = CEILING(CLAMP(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
+		ratio = CEILING(CLAMP(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
 	else
 		ratio = 0
 	if(ratio == old_ratio && !force_update)
