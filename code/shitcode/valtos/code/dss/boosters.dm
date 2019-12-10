@@ -13,11 +13,6 @@
 
 /datum/reagent/viagra/on_mob_add(mob/living/L)
 	if(ishuman(L))
-		var/mob/living/carbon/human/N = L
-		N.bstats[MOB_STR] = N.dstats[MOB_STR]
-		N.bstats[MOB_STM] = N.dstats[MOB_STM]
-		N.bstats[MOB_INT] = N.dstats[MOB_INT]
-		N.bstats[MOB_DEX] = N.dstats[MOB_DEX]
 		to_chat(L, "<span class='notice'>ЧУВСТВУЮ СИЛУ И БЕЗЗАБОТСТВО!</span>")
 
 /datum/reagent/viagra/on_mob_life(mob/living/L)
@@ -58,11 +53,6 @@
 
 /datum/reagent/askorbinka/on_mob_add(mob/living/L)
 	if(ishuman(L))
-		var/mob/living/carbon/human/N = L
-		N.bstats[MOB_STR] = N.dstats[MOB_STR]
-		N.bstats[MOB_STM] = N.dstats[MOB_STM]
-		N.bstats[MOB_INT] = N.dstats[MOB_INT]
-		N.bstats[MOB_DEX] = N.dstats[MOB_DEX]
 		to_chat(L, "<span class='notice'>Ням!</span>")
 
 /datum/reagent/askorbinka/on_mob_life(mob/living/L)

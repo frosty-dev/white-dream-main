@@ -294,7 +294,14 @@
 	bstats[MOB_STM] = stm
 	bstats[MOB_INT] = int
 	bstats[MOB_DEX] = dex
+
+	dstats[MOB_STR] = str
+	dstats[MOB_STM] = stm
+	dstats[MOB_INT] = int
+	dstats[MOB_DEX] = dex
+
 	recalculate_stats()
+
 	return
 
 /mob/living/carbon/human/Stat()
