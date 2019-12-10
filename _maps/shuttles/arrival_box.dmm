@@ -6,10 +6,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "c" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Arrivals Shuttle Airlock"
-	},
-/turf/open/floor/plating,
+/obj/machinery/status_display/ai,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "d" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -64,7 +62,20 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/blue,
+/obj/structure/rack,
+/obj/item/radio{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/radio{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/radio{
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
 "m" = (
 /obj/structure/shuttle/engine/heater{
@@ -82,7 +93,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "o" = (
-/obj/machinery/computer/shuttle{
+/obj/machinery/computer/crew{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -133,7 +144,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "v" = (
-/obj/machinery/computer/crew{
+/obj/machinery/computer/shuttle{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -181,8 +192,12 @@
 /area/shuttle/arrival)
 "C" = (
 /obj/machinery/light_switch{
-	pixel_x = 6
+	step_x = 6
 	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"D" = (
+/obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
 "S" = (
@@ -201,19 +216,19 @@ a
 (2,1,1) = {"
 a
 b
-v
 o
+v
 w
 b
 a
 "}
 (3,1,1) = {"
 a
-b
+D
 p
 S
 y
-b
+c
 a
 "}
 (4,1,1) = {"
@@ -226,22 +241,22 @@ b
 b
 "}
 (5,1,1) = {"
-b
+D
 e
 S
 S
 S
 x
-b
+c
 "}
 (6,1,1) = {"
-c
+t
 f
 r
 r
 r
 f
-c
+t
 "}
 (7,1,1) = {"
 b
@@ -298,13 +313,13 @@ z
 b
 "}
 (13,1,1) = {"
-c
+t
 f
 S
 S
 S
 f
-c
+t
 "}
 (14,1,1) = {"
 b
