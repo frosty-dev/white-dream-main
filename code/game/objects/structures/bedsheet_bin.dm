@@ -105,7 +105,7 @@ LINEN BINS
 
 /obj/item/bedsheet/mime
 	name = "mime's blanket"
-	desc = "A very soothing striped blanket.  All the noise just seems to fade out when you're under the covers in this."
+	desc = "A very soothing полосатый blanket.  All the noise just seems to fade out when you're under the covers in this."
 	icon_state = "sheetmime"
 	item_state = "sheetmime"
 	dream_messages = list("silence", "gestures", "a pale face", "a gaping mouth", "the mime")

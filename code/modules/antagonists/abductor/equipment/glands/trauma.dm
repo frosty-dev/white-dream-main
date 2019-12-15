@@ -1,5 +1,5 @@
 /obj/item/organ/heart/gland/trauma
-	true_name = "white matter randomiser"
+	true_name = "белый matter randomiser"
 	cooldown_low = 800
 	cooldown_high = 1200
 	uses = 5

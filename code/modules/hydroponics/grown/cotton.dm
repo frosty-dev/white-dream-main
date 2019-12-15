@@ -66,7 +66,7 @@
 
 /obj/item/grown/cotton/durathread
 	seed = /obj/item/seeds/cotton/durathread
-	name = "durathread bundle"
+	name = "дюратканевый bundle"
 	desc = "A tough bundle of durathread, good luck unraveling this."
 	icon_state = "durathread"
 	force = 5

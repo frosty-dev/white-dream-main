@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
-	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "шлем"
+	desc = "Стандартное снаряжение безопасности. Защищает голову от ударов."
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -27,11 +27,11 @@
 /obj/item/clothing/head/helmet/examine(mob/user)
 	. = ..()
 	if(attached_light)
-		. += "It has \a [attached_light] [can_flashlight ? "" : "permanently "]mounted on it."
+		. += "Имеет [attached_light] [can_flashlight ? "" : "намертво "] прикрученый к нему."
 		if(can_flashlight)
-			. += "<span class='info'>[attached_light] looks like it can be <b>unscrewed</b> from [src].</span>"
+			. += "<span class='info'>Похоже, что [attached_light] может быть <b>откручен</b> от [src].</span>"
 	else if(can_flashlight)
-		. += "It has a mounting point for a <b>seclite</b>."
+		. += "Имеет точку для монтирования <b>фонарика</b>."
 
 /obj/item/clothing/head/helmet/Destroy()
 	QDEL_NULL(attached_light)
@@ -52,21 +52,21 @@
 	if(issignaler(I))
 		var/obj/item/assembly/signaler/S = I
 		if(attached_light) //Has a flashlight. Player must remove it, else it will be lost forever.
-			to_chat(user, "<span class='warning'>The mounted flashlight is in the way, remove it first!</span>")
+			to_chat(user, "<span class='warning'>Установленный фонарик мешает, сначала снять бы его!</span>")
 			return
 
 		if(S.secured)
 			qdel(S)
 			var/obj/item/bot_assembly/secbot/A = new
 			user.put_in_hands(A)
-			to_chat(user, "<span class='notice'>You add the signaler to the helmet.</span>")
+			to_chat(user, "<span class='notice'>Добавляю сигналлер к шлему.</span>")
 			qdel(src)
 			return
 	return ..()
 
 /obj/item/clothing/head/helmet/alt
-	name = "bulletproof helmet"
-	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "пуленепробиваемый шлем"
+	desc = "Боевой пуленепробиваемый шлем, который в незначительной степени защищает владельца от традиционного стрелкового оружия и взрывчатых веществ."
 	icon_state = "helmetalt"
 	item_state = "helmetalt"
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -74,24 +74,24 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/old
-	name = "degrading helmet"
-	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
+	name = "изношенный шлем"
+	desc = "Стандартный защитный шлем. Из-за изношенности козырек шлема препятствует обзору на большие расстояния."
 	tint = 2
 
 /obj/item/clothing/head/helmet/blueshirt
-	name = "blue helmet"
-	desc = "A reliable, blue tinted helmet reminding you that you <i>still</i> owe that engineer a beer."
+	name = "синий шлем"
+	desc = "Надежный шлем синего цвета, напоминающий вам, что вы все еще должны инженеру пиво."
 	icon_state = "blueshift"
 	item_state = "blueshift"
 	custom_premium_price = 450
 
 /obj/item/clothing/head/helmet/riot
-	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	name = "анти-мятежный шлем"
+	desc = "Это шлем, специально разработанный для защиты от атак с близкого расстояния."
 	icon_state = "riot"
 	item_state = "helmet"
-	toggle_message = "You pull the visor down on"
-	alt_toggle_message = "You push the visor up on"
+	toggle_message = "Опускаю козырёк вниз"
+	alt_toggle_message = "Поднимаю козырёк вверх"
 	can_toggle = 1
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 	flags_inv = HIDEEARS|HIDEFACE
@@ -112,7 +112,7 @@
 			flags_inv ^= visor_flags_inv
 			flags_cover ^= visor_flags_cover
 			icon_state = "[initial(icon_state)][up ? "up" : ""]"
-			to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
+			to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] [src].</span>")
 
 			user.update_inv_head()
 			if(iscarbon(user))
@@ -125,11 +125,11 @@
 					sleep(15)
 
 /obj/item/clothing/head/helmet/justice
-	name = "helmet of justice"
+	name = "шлем правосудия"
 	desc = "WEEEEOOO. WEEEEEOOO. WEEEEOOOO."
 	icon_state = "justice"
-	toggle_message = "You turn off the lights on"
-	alt_toggle_message = "You turn on the lights on"
+	toggle_message = "Выключаю свет"
+	alt_toggle_message = "Включаю свет"
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	can_toggle = 1
 	toggle_cooldown = 20
@@ -137,15 +137,15 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/justice/escape
-	name = "alarm helmet"
+	name = "тревожный шлем"
 	desc = "WEEEEOOO. WEEEEEOOO. STOP THAT MONKEY. WEEEOOOO."
 	icon_state = "justice2"
 	toggle_message = "You turn off the light on"
 	alt_toggle_message = "You turn on the light on"
 
 /obj/item/clothing/head/helmet/swat
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
+	name = "шлем спецназа"
+	desc = "Чрезвычайно прочный, компактный шлем в мерзкой красной и черной полосе."
 	icon_state = "swatsyndie"
 	item_state = "swatsyndie"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 40, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50)
@@ -158,19 +158,19 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/police
-	name = "police officer's hat"
-	desc = "A police officer's Hat. This hat emphasizes that you are THE LAW."
+	name = "полицейская шляпа"
+	desc = "Шляпа офицера полиции. Эта шляпа подчеркивает, что ты - ЗАКОН."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/helmet/swat/nanotrasen
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet with the Nanotrasen logo emblazoned on the top."
+	name = "шлем спецназа"
+	desc = "Чрезвычайно прочный, космический шлем с логотипом Нанотрейзен, украшенный сверху."
 	icon_state = "swat"
 	item_state = "swat"
 
 /obj/item/clothing/head/helmet/thunderdome
-	name = "\improper Thunderdome helmet"
+	name = "Thunderdome шлем"
 	desc = "<i>'Let the battle commence!'</i>"
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "thunderdome"
@@ -184,8 +184,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/roman
-	name = "\improper Roman helmet"
-	desc = "An ancient helmet made of bronze and leather."
+	name = "римский шлем"
+	desc = "Древний шлем из бронзы и кожи."
 	flags_inv = HIDEEARS|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	armor = list("melee" = 25, "bullet" = 0, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
@@ -196,21 +196,21 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/roman/fake
-	desc = "An ancient helmet made of plastic and leather."
+	desc = "Древний шлем из пластика и кожи."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/head/helmet/roman/legionnaire
-	name = "\improper Roman legionnaire helmet"
-	desc = "An ancient helmet made of bronze and leather. Has a red crest on top of it."
+	name = "шлем римского легионера"
+	desc = "Древний шлем из бронзы и кожи. На нем красный гребень."
 	icon_state = "roman_c"
 	item_state = "roman_c"
 
 /obj/item/clothing/head/helmet/roman/legionnaire/fake
-	desc = "An ancient helmet made of plastic and leather. Has a red crest on top of it."
+	desc = "Древний шлем из бронзы и кожи. На нем красный гребень."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/head/helmet/gladiator
-	name = "gladiator helmet"
+	name = "шлем гладиатора"
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
@@ -219,8 +219,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/redtaghelm
-	name = "red laser tag helmet"
-	desc = "They have chosen their own end."
+	name = "красный шлем лазер-тэга"
+	desc = "Они выбрали свою цель."
 	icon_state = "redtaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "redtaghelm"
@@ -229,8 +229,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/bluetaghelm
-	name = "blue laser tag helmet"
-	desc = "They'll need more men."
+	name = "синий шлем лазер-тэга"
+	desc = "Им понадобится больше людей."
 	icon_state = "bluetaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "bluetaghelm"
@@ -239,8 +239,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/knight
-	name = "medieval helmet"
-	desc = "A classic metal helmet."
+	name = "средневековый шлем"
+	desc = "Классический металлический шлем."
 	icon_state = "knight_green"
 	item_state = "knight_green"
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
@@ -268,16 +268,16 @@
 	item_state = "knight_red"
 
 /obj/item/clothing/head/helmet/knight/greyscale
-	name = "knight helmet"
-	desc = "A classic medieval helmet, if you hold it upside down you could see that it's actually a bucket."
+	name = "рыцарский шлем"
+	desc = "Классический средневековый шлем, если держать его вверх ногами, то можно увидеть, что на самом деле это ведро."
 	icon_state = "knight_greyscale"
 	item_state = "knight_greyscale"
 	armor = list("melee" = 35, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR//Can change color and add prefix
 
 /obj/item/clothing/head/helmet/skull
-	name = "skull helmet"
-	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
+	name = "черепной шлем"
+	desc = "Страшный племенной шлем, он выглядит не очень удобно."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	flags_cover = HEADCOVERSEYES
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
@@ -286,8 +286,8 @@
 	strip_delay = 100
 
 /obj/item/clothing/head/helmet/durathread
-	name = "durathread helmet"
-	desc = "A helmet made from durathread and leather."
+	name = "дюратканевый шлем"
+	desc = "Шлем из черного хлеба и кожи."
 	icon_state = "durathread"
 	item_state = "durathread"
 	resistance_flags = FLAMMABLE
@@ -295,16 +295,16 @@
 	strip_delay = 60
 
 /obj/item/clothing/head/helmet/rus_helmet
-	name = "russian helmet"
-	desc = "It can hold a bottle of vodka."
+	name = "русский шлем"
+	desc = "Он может вместить бутылку водки."
 	icon_state = "rus_helmet"
 	item_state = "rus_helmet"
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50)
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/helmet
 
 /obj/item/clothing/head/helmet/rus_ushanka
-	name = "battle ushanka"
-	desc = "100% bear."
+	name = "боевая ушанка"
+	desc = "100% медвежья."
 	icon_state = "rus_ushanka"
 	item_state = "rus_ushanka"
 	body_parts_covered = HEAD
@@ -340,7 +340,7 @@
 		if(can_flashlight && !attached_light)
 			if(!user.transferItemToLoc(S, src))
 				return
-			to_chat(user, "<span class='notice'>You click [S] into place on [src].</span>")
+			to_chat(user, "<span class='notice'>Прикрепляю [S] к [src].</span>")
 			if(S.on)
 				set_light(0)
 			attached_light = S
@@ -356,7 +356,7 @@
 	. = ..()
 	if(can_flashlight && attached_light) //if it has a light but can_flashlight is false, the light is permanently attached.
 		I.play_tool_sound(src)
-		to_chat(user, "<span class='notice'>You unscrew [attached_light] from [src].</span>")
+		to_chat(user, "<span class='notice'>Откручиваю [attached_light] от [src].</span>")
 		attached_light.forceMove(drop_location())
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(attached_light)
@@ -382,7 +382,7 @@
 	if(user.incapacitated())
 		return
 	attached_light.on = !attached_light.on
-	to_chat(user, "<span class='notice'>You toggle the helmet-light [attached_light.on ? "on":"off"].</span>")
+	to_chat(user, "<span class='notice'>Я [attached_light.on ? "включаю":"выключаю"] фонарик на шлеме.</span>")
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_helmlight()

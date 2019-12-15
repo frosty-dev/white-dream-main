@@ -5,19 +5,19 @@
 	alpha = 110
 
 /obj/effect/turf_decal/tile/blue
-	name = "blue corner"
+	name = "синий corner"
 	color = "#52B4E9"
 
 /obj/effect/turf_decal/tile/green
-	name = "green corner"
+	name = "зелёный corner"
 	color = "#9FED58"
 
 /obj/effect/turf_decal/tile/yellow
-	name = "yellow corner"
+	name = "жёлтый corner"
 	color = "#EFB341"
 
 /obj/effect/turf_decal/tile/red
-	name = "red corner"
+	name = "красный corner"
 	color = "#DE3A3A"
 
 /obj/effect/turf_decal/tile/bar
@@ -26,7 +26,7 @@
 	alpha = 130
 
 /obj/effect/turf_decal/tile/purple
-	name = "purple corner"
+	name = "фиолетовый corner"
 	color = "#D381C9"
 
 /obj/effect/turf_decal/tile/brown

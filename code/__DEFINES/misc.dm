@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(ghost_accs_options, list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST
 #define GHOST_OTHERS_DEFAULT_SPRITE		50
 #define GHOST_OTHERS_THEIR_SETTING 		100
 
-#define GHOST_OTHERS_SIMPLE_NAME 			"white ghost"
+#define GHOST_OTHERS_SIMPLE_NAME 			"белый ghost"
 #define GHOST_OTHERS_DEFAULT_SPRITE_NAME 	"default sprites"
 #define GHOST_OTHERS_THEIR_SETTING_NAME 	"their setting"
 

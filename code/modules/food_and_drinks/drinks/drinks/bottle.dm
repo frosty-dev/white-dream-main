@@ -327,7 +327,7 @@
 //////////////////////////JUICES AND STUFF ///////////////////////
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice
-	name = "orange juice"
+	name = "оранжевый  juice"
 	desc = "Full of vitamins and deliciousness!"
 	custom_price = 10
 	icon_state = "orangejuice"

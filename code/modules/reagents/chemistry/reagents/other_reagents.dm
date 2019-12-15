@@ -1458,7 +1458,7 @@
 	name = "Orange Carpet"
 	description = "For those that prefer a healthy carpet to go along with their healthy diet."
 	color = "#E78108"
-	taste_description = "orange juice"
+	taste_description = "оранжевый  juice"
 	carpet_type = /turf/open/floor/carpet/orange
 
 /datum/reagent/carpet/purple
@@ -1834,13 +1834,13 @@
 	glitter_type = /obj/effect/decal/cleanable/glitter/pink
 
 /datum/reagent/glitter/white
-	name = "white glitter"
-	description = "white sparkles that get everywhere"
+	name = "белый glitter"
+	description = "белый sparkles that get everywhere"
 	glitter_type = /obj/effect/decal/cleanable/glitter/white
 
 /datum/reagent/glitter/blue
-	name = "blue glitter"
-	description = "blue sparkles that get everywhere"
+	name = "синий glitter"
+	description = "синий sparkles that get everywhere"
 	color = "#4040FF" //A blueish color
 	glitter_type = /obj/effect/decal/cleanable/glitter/blue
 

@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = "туфли"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing

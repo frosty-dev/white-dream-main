@@ -290,7 +290,7 @@
 
 /obj/item/clothing/under/chameleon
 //starts off as black
-	name = "black jumpsuit"
+	name = "чёрный jumpsuit"
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "black"
 	item_state = "bl_suit"
@@ -510,7 +510,7 @@
 	to_chat(user, "<span class='notice'>[src] does not have a voice changer.</span>")
 
 /obj/item/clothing/shoes/chameleon
-	name = "black shoes"
+	name = "чёрный shoes"
 	icon_state = "black"
 	desc = "A pair of black shoes."
 	permeability_coefficient = 0.05
@@ -535,7 +535,7 @@
 	chameleon_action.emp_randomise()
 
 /obj/item/clothing/shoes/chameleon/noslip
-	name = "black shoes"
+	name = "чёрный shoes"
 	icon_state = "black"
 	desc = "A pair of black shoes."
 	clothing_flags = NOSLIP
@@ -652,7 +652,7 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/neck/chameleon
-	name = "black tie"
+	name = "чёрный tie"
 	desc = "A neosilk clip-on tie."
 	icon_state = "blacktie"
 	resistance_flags = NONE

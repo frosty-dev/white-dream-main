@@ -217,7 +217,7 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/spidereggsham
-	name = "green eggs and ham"
+	name = "зелёный eggs and ham"
 	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
 	icon_state = "spidereggsham"
 	trash = /obj/item/trash/plate

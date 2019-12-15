@@ -17,7 +17,7 @@ Contains:
 
 	//Death squad armored space suits, not hardsuits!
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad
-	name = "MK.III SWAT Helmet"
+	name = "MK.III шлем спецназа"
 	desc = "An advanced tactical space helmet."
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
@@ -301,7 +301,7 @@ Contains:
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
 /obj/item/clothing/suit/space/hardsuit/carp
-	name = "carp space suit"
+	name = "carp скафандр"
 	desc = "A slimming piece of dubious space carp technology, you suspect it won't stand up to hand-to-hand blows."
 	icon_state = "carp_suit"
 	item_state = "space_suit_syndicate"
@@ -374,7 +374,7 @@ Contains:
 	hardsuit_type = "berserker"
 
 /obj/item/clothing/head/helmet/space/fragile
-	name = "emergency space helmet"
+	name = "emergency космошлем"
 	desc = "A bulky, air-tight helmet meant to protect the user during emergency situations. It doesn't look very durable."
 	icon_state = "syndicate-helm-orange"
 	item_state = "syndicate-helm-orange"
@@ -382,7 +382,7 @@ Contains:
 	strip_delay = 65
 
 /obj/item/clothing/suit/space/fragile
-	name = "emergency space suit"
+	name = "emergency скафандр"
 	desc = "A bulky, air-tight suit meant to protect the user during emergency situations. It doesn't look very durable."
 	var/torn = FALSE
 	icon_state = "syndicate-orange"

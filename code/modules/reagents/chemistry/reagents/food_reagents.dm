@@ -492,7 +492,7 @@
 	name = "Blue Cherry Jelly"
 	description = "Blue and tastier kind of cherry jelly."
 	color = "#00F0FF"
-	taste_description = "blue cherry"
+	taste_description = "синий cherry"
 
 /datum/reagent/consumable/rice
 	name = "Rice"

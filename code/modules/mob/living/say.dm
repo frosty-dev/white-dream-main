@@ -179,7 +179,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length(message)
+			#if DM_VERSION >= 513 && DM_BUILD >= 1493
 			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
+			#endif
 			message = Ellipsis(message, 10, 1)
 			last_words = message
 			message_mode = MODE_WHISPER_CRIT
@@ -328,12 +330,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return lowertext(copytext(message, 2, 3))
 
 /mob/living/proc/get_message_language(message)
+#if DM_VERSION >= 513 && DM_BUILD >= 1493
 	if(copytext_char(message, 1, 2) == ",")
 		var/key = copytext_char(message, 2, 3)
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
 			if(initial(LD.key) == key)
 				return LD
+#endif
 	return null
 
 /mob/living/proc/treat_message(message)

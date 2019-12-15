@@ -12,13 +12,13 @@
 	item_state = "sundress"
 
 /obj/item/clothing/under/dress/blacktango
-	name = "black tango dress"
+	name = "чёрный tango dress"
 	desc = "Filled with Latin fire."
 	icon_state = "black_tango"
 	item_state = "wcoat"
 
 /obj/item/clothing/under/dress/striped
-	name = "striped dress"
+	name = "полосатый dress"
 	desc = "Fashion in space."
 	icon_state = "striped_dress"
 	item_state = "striped_dress"
@@ -31,39 +31,39 @@
 	item_state = "sailor_dress"
 
 /obj/item/clothing/under/dress/redeveninggown
-	name = "red evening gown"
+	name = "красный evening gown"
 	desc = "Fancy dress for space bar singers."
 	icon_state = "red_evening_gown"
 	item_state = "red_evening_gown"
 
 /obj/item/clothing/under/dress/skirt
-	name = "black skirt"
+	name = "чёрный skirt"
 	desc = "A black skirt, very fancy!"
 	icon_state = "blackskirt"
 
 /obj/item/clothing/under/dress/skirt/blue
-	name = "blue skirt"
+	name = "синий skirt"
 	desc = "A blue, casual skirt."
 	icon_state = "blueskirt"
 	item_state = "b_suit"
 	custom_price = 25
 
 /obj/item/clothing/under/dress/skirt/red
-	name = "red skirt"
+	name = "красный skirt"
 	desc = "A red, casual skirt."
 	icon_state = "redskirt"
 	item_state = "r_suit"
 	custom_price = 25
 
 /obj/item/clothing/under/dress/skirt/purple
-	name = "purple skirt"
+	name = "фиолетовый skirt"
 	desc = "A purple, casual skirt."
 	icon_state = "purpleskirt"
 	item_state = "p_suit"
 	custom_price = 25
 
 /obj/item/clothing/under/dress/skirt/plaid
-	name = "red plaid skirt"
+	name = "красный plaid skirt"
 	desc = "A preppy red skirt with a white blouse."
 	icon_state = "plaid_red"
 	item_state = "plaid_red"
@@ -72,19 +72,19 @@
 	custom_price = 25
 
 /obj/item/clothing/under/dress/skirt/plaid/blue
-	name = "blue plaid skirt"
+	name = "синий plaid skirt"
 	desc = "A preppy blue skirt with a white blouse."
 	icon_state = "plaid_blue"
 	item_state = "plaid_blue"
 
 /obj/item/clothing/under/dress/skirt/plaid/purple
-	name = "purple plaid skirt"
+	name = "фиолетовый plaid skirt"
 	desc = "A preppy purple skirt with a white blouse."
 	icon_state = "plaid_purple"
 	item_state = "plaid_purple"
 
 /obj/item/clothing/under/dress/skirt/plaid/green
-	name = "green plaid skirt"
+	name = "зелёный plaid skirt"
 	desc = "A preppy green skirt with a white blouse."
 	icon_state = "plaid_green"
 	item_state = "plaid_green"

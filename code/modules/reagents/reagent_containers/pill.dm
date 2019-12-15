@@ -184,7 +184,7 @@
 
 ///////////////////////////////////////// this pill is used only in a legion mob drop
 /obj/item/reagent_containers/pill/shadowtoxin
-	name = "black pill"
+	name = "чёрный pill"
 	desc = "I wouldn't eat this if I were you."
 	icon_state = "pill9"
 	color = "#454545"
@@ -192,7 +192,7 @@
 
 //////////////////////////////////////// drugs
 /obj/item/reagent_containers/pill/zoom
-	name = "yellow pill"
+	name = "жёлтый pill"
 	desc = "A poorly made canary-yellow pill; it is slightly crumbly."
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/drug/nicotine = 10, /datum/reagent/drug/methamphetamine = 1)
 	icon_state = "pill7"

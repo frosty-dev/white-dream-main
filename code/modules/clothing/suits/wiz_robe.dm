@@ -12,19 +12,19 @@
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
 
 /obj/item/clothing/head/wizard/red
-	name = "red wizard hat"
+	name = "красный wizard hat"
 	desc = "Strange-looking red hat-wear that most certainly belongs to a real magic user."
 	icon_state = "redwizard"
 	dog_fashion = /datum/dog_fashion/head/red_wizard
 
 /obj/item/clothing/head/wizard/yellow
-	name = "yellow wizard hat"
+	name = "жёлтый wizard hat"
 	desc = "Strange-looking yellow hat-wear that most certainly belongs to a powerful magic user."
 	icon_state = "yellowwizard"
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/black
-	name = "black wizard hat"
+	name = "чёрный wizard hat"
 	desc = "Strange-looking black hat-wear that most certainly belongs to a real skeleton. Spooky."
 	icon_state = "blackwizard"
 	dog_fashion = null
@@ -75,19 +75,19 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/wizrobe/red
-	name = "red wizard robe"
+	name = "красный wizard robe"
 	desc = "A magnificent red gem-lined robe that seems to radiate power."
 	icon_state = "redwizard"
 	item_state = "redwizrobe"
 
 /obj/item/clothing/suit/wizrobe/yellow
-	name = "yellow wizard robe"
+	name = "жёлтый wizard robe"
 	desc = "A magnificent yellow gem-lined robe that seems to radiate power."
 	icon_state = "yellowwizard"
 	item_state = "yellowwizrobe"
 
 /obj/item/clothing/suit/wizrobe/black
-	name = "black wizard robe"
+	name = "чёрный wizard robe"
 	desc = "An unnerving black gem-lined robe that reeks of death and decay."
 	icon_state = "blackwizard"
 	item_state = "blackwizrobe"

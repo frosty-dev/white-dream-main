@@ -7,8 +7,8 @@
 #define MODE_SHUTTLE "shuttle"
 
 /obj/item/clothing/glasses/meson/engine
-	name = "engineering scanner goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, the T-ray Scanner mode lets you see underfloor objects such as cables and pipes, and the Radiation Scanner mode lets you see objects contaminated by radiation."
+	name = "очки инженерного сканера"
+	desc = "Очки, используемые инженерами. Режим Meson Scanner позволяет просматривать основные структурные и рельефные ландшафты сквозь стены, режим T-ray Scanner позволяет видеть объекты под полом, такие как кабели и трубы, а режим Radiation Scanner позволяет видеть объекты, загрязненные излучением."
 	icon_state = "trayson-meson"
 	item_state = "trayson-meson"
 	actions_types = list(/datum/action/item_action/toggle_mode)
@@ -32,7 +32,7 @@
 
 /obj/item/clothing/glasses/meson/engine/proc/toggle_mode(mob/user, voluntary)
 	mode = modes[mode]
-	to_chat(user, "<span class='[voluntary ? "notice":"warning"]'>[voluntary ? "You turn the goggles":"The goggles turn"] [mode ? "to [mode] mode":"off"][voluntary ? ".":"!"]</span>")
+	to_chat(user, "<span class='[voluntary ? "notice":"warning"]'>[voluntary ? "Я переключаю очки":"Очки переключаются"] [mode ? "в режим [mode]":"в режим ВЫКЛ."][voluntary ? ".":"!"]</span>")
 
 	switch(mode)
 		if(MODE_MESON)
@@ -129,10 +129,10 @@
 			user.update_inv_hands()
 
 /obj/item/clothing/glasses/meson/engine/tray //atmos techs have lived far too long without tray goggles while those damned engineers get their dual-purpose gogles all to themselves
-	name = "optical t-ray scanner"
+	name = "оптический сканер рентгеновских лучей"
 	icon_state = "trayson-t-ray"
 	item_state = "trayson-t-ray"
-	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
+	desc = "Используется инженерным персоналом для наблюдения за объектами под полом, такими как кабели и трубы."
 	range = 2
 
 	modes = list(MODE_NONE = MODE_TRAY, MODE_TRAY = MODE_NONE)

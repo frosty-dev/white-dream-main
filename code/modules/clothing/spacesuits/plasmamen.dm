@@ -228,7 +228,7 @@
 	item_state = "chap_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/white
-	name = "white plasma envirosuit helmet"
+	name = "белый plasma envirosuit helmet"
 	desc = "A generic white envirohelm."
 	icon_state = "white_envirohelm"
 	item_state = "white_envirohelm"

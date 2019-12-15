@@ -678,7 +678,7 @@
 	nutriment_factor = 4 * REAGENTS_METABOLISM
 	taste_description = "creamy blue cherry"
 	glass_icon_state = "bluecherryshake"
-	glass_name = "blue cherry shake"
+	glass_name = "синий cherry shake"
 	glass_desc = "An exotic blue milkshake."
 
 /datum/reagent/consumable/pumpkin_latte

@@ -84,7 +84,7 @@
 
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
-	name = "blue suit jacket"
+	name = "синий suit jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue"
 	item_state = "suitjacket_blue"
@@ -93,13 +93,13 @@
 	togglename = "buttons"
 
 /obj/item/clothing/suit/toggle/lawyer/purple
-	name = "purple suit jacket"
+	name = "фиолетовый suit jacket"
 	desc = "A foppish dress jacket."
 	icon_state = "suitjacket_purp"
 	item_state = "suitjacket_purp"
 
 /obj/item/clothing/suit/toggle/lawyer/black
-	name = "black suit jacket"
+	name = "чёрный suit jacket"
 	desc = "A professional suit jacket."
 	icon_state = "suitjacket_black"
 	item_state = "ro_suit"

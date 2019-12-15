@@ -94,7 +94,7 @@
 	desc = "Goes great with a shot of cinnamon schnapps."
 	icon_state = "donut_green"
 	bonus_reagents = list(/datum/reagent/consumable/applejuice = 3, /datum/reagent/consumable/sprinkles = 1)
-	tastes = list("donut" = 3, "green apples" = 1)
+	tastes = list("donut" = 3, "зелёный apples" = 1)
 	is_decorated = TRUE
 	filling_color = "#6ABE30"
 
@@ -184,7 +184,7 @@
 	desc = "Goes great with a shot of cinnamon schnapps."
 	icon_state = "jelly_green"
 	bonus_reagents = list(/datum/reagent/consumable/applejuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("jelly" = 1, "donut" = 3, "green apples" = 1)
+	tastes = list("jelly" = 1, "donut" = 3, "зелёный apples" = 1)
 	is_decorated = TRUE
 	filling_color = "#6ABE30"
 
@@ -265,7 +265,7 @@
 	desc = "Goes great with a shot of cinnamon schnapps."
 	icon_state = "jelly_green"
 	bonus_reagents = list(/datum/reagent/consumable/applejuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("jelly" = 1, "donut" = 3, "green apples" = 1)
+	tastes = list("jelly" = 1, "donut" = 3, "зелёный apples" = 1)
 	is_decorated = TRUE
 	filling_color = "#6ABE30"
 
@@ -575,13 +575,13 @@
 	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/bluecherrycupcake
-	name = "blue cherry cupcake"
+	name = "синий cherry cupcake"
 	desc = "Blue cherries inside a delicious cupcake."
 	icon_state = "bluecherrycupcake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#F0E68C"
-	tastes = list("cake" = 3, "blue cherry" = 1)
+	tastes = list("cake" = 3, "синий cherry" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/honeybun

@@ -178,8 +178,8 @@
 			return 200
 
 /obj/item/slime_extract/purple
-	name = "purple slime extract"
-	icon_state = "purple slime extract"
+	name = "фиолетовый slime extract"
+	icon_state = "фиолетовый slime extract"
 	effectmod = "regenerative"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma)
 
@@ -220,8 +220,8 @@
 			return 900
 
 /obj/item/slime_extract/orange
-	name = "orange slime extract"
-	icon_state = "orange slime extract"
+	name = "оранжевый  slime extract"
+	icon_state = "оранжевый  slime extract"
 	effectmod = "burning"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,/datum/reagent/water)
 
@@ -240,8 +240,8 @@
 			return 450
 
 /obj/item/slime_extract/yellow
-	name = "yellow slime extract"
-	icon_state = "yellow slime extract"
+	name = "жёлтый slime extract"
+	icon_state = "жёлтый slime extract"
 	effectmod = "charged"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,/datum/reagent/water)
 
@@ -263,8 +263,8 @@
 				return 600
 
 /obj/item/slime_extract/red
-	name = "red slime extract"
-	icon_state = "red slime extract"
+	name = "красный slime extract"
+	icon_state = "красный slime extract"
 	effectmod = "sanguine"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,/datum/reagent/water)
 
@@ -283,8 +283,8 @@
 			return 600
 
 /obj/item/slime_extract/blue
-	name = "blue slime extract"
-	icon_state = "blue slime extract"
+	name = "синий slime extract"
+	icon_state = "синий slime extract"
 	effectmod = "stabilized"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,/datum/reagent/water)
 
@@ -303,8 +303,8 @@
 			return 600
 
 /obj/item/slime_extract/darkblue
-	name = "dark blue slime extract"
-	icon_state = "dark blue slime extract"
+	name = "тёмно-синий slime extract"
+	icon_state = "тёмно-синий slime extract"
 	effectmod = "chilling"
 	activate_reagents = list(/datum/reagent/toxin/plasma,/datum/reagent/water)
 
@@ -354,8 +354,8 @@
 			return 600
 
 /obj/item/slime_extract/green
-	name = "green slime extract"
-	icon_state = "green slime extract"
+	name = "зелёный slime extract"
+	icon_state = "зелёный slime extract"
 	effectmod = "mutative"
 	activate_reagents = list(/datum/reagent/blood,/datum/reagent/toxin/plasma,/datum/reagent/uranium/radium)
 
@@ -402,8 +402,8 @@
 			return 450
 
 /obj/item/slime_extract/black
-	name = "black slime extract"
-	icon_state = "black slime extract"
+	name = "чёрный slime extract"
+	icon_state = "чёрный slime extract"
 	effectmod = "transformative"
 	activate_reagents = list(/datum/reagent/toxin/plasma)
 

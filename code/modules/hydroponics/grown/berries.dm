@@ -153,14 +153,14 @@
 
 /obj/item/reagent_containers/food/snacks/grown/bluecherries
 	seed = /obj/item/seeds/cherry/blue
-	name = "blue cherries"
+	name = "синий cherries"
 	desc = "They're cherries that are blue."
 	icon_state = "bluecherry"
 	filling_color = "#6495ED"
 	bitesize_mod = 2
 	foodtype = FRUIT
 	grind_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
-	tastes = list("blue cherry" = 1)
+	tastes = list("синий cherry" = 1)
 	wine_power = 50
 
 //Cherry Bulbs
@@ -237,5 +237,5 @@
 	name = "bunch of green grapes"
 	icon_state = "greengrapes"
 	filling_color = "#7FFF00"
-	tastes = list("green grape" = 1)
+	tastes = list("зелёный grape" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/cognac

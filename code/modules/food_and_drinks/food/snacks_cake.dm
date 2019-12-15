@@ -93,7 +93,7 @@
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/store/cake/orange
-	name = "orange cake"
+	name = "оранжевый  cake"
 	desc = "A cake with added orange."
 	icon_state = "orangecake"
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/orange
@@ -103,7 +103,7 @@
 	foodtype = GRAIN | DAIRY | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/cakeslice/orange
-	name = "orange cake slice"
+	name = "оранжевый  cake slice"
 	desc = "Just a slice of cake, it is enough for everyone."
 	icon_state = "orangecake_slice"
 	filling_color = "#FFA500"

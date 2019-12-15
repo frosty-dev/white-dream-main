@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/magboots
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
-	name = "magboots"
+	desc = "Магнитные ботинки, часто используемые во время экстравагантных действий, чтобы гарантировать, что пользователь остается надежно прикрепленным к транспортному средству."
+	name = "магнитки"
 	icon_state = "magboots0"
 	var/magboot_state = "magboots"
 	var/magpulse = 0
@@ -29,7 +29,7 @@
 		slowdown = slowdown_active
 	magpulse = !magpulse
 	icon_state = "[magboot_state][magpulse]"
-	to_chat(user, "<span class='notice'>You [magpulse ? "enable" : "disable"] the mag-pulse traction system.</span>")
+	to_chat(user, "<span class='notice'>Переключаю магниты в состояние [magpulse ? "вкл" : "выкл"].</span>")
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_gravity(user.has_gravity())
 	for(var/X in actions)
@@ -41,19 +41,19 @@
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
-	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
+	. += "Они [magpulse ? "включены" : "выключены"]."
 
 
 /obj/item/clothing/shoes/magboots/advance
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
-	name = "advanced magboots"
+	desc = "Усовершенствованные магнитные ботинки, которые имеют более легкое магнитное притяжение, уменьшая нагрузку на пользователя."
+	name = "продвинутые магнитки"
 	icon_state = "advmag0"
 	magboot_state = "advmag"
 	slowdown_active = SHOES_SLOWDOWN
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/magboots/syndie
-	desc = "Reverse-engineered magnetic boots that have a heavy magnetic pull. Property of Gorlex Marauders."
-	name = "blood-red magboots"
+	desc = "Магнитные сапоги с обратной конструкцией, которые имеют сильное магнитное притяжение. Собственность Горлекс Мародеров."
+	name = "кроваво-красные магнитки"
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"

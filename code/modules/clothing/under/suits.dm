@@ -3,14 +3,14 @@
 	mob_overlay_icon = 'icons/mob/clothing/under/suits.dmi'
 
 /obj/item/clothing/under/suit/white_on_white
-	name = "white suit"
+	name = "белый suit"
 	desc = "A white suit, suitable for an excellent host."
 	icon_state = "scratch"
 	item_state = "scratch"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/white/skirt
-	name = "white suitskirt"
+	name = "белый suitskirt"
 	desc = "A white suitskirt, suitable for an excellent host."
 	icon_state = "white_suit_skirt"
 	item_state = "scratch"
@@ -32,21 +32,21 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/blacktwopiece
-	name = "black two piece suit"
+	name = "чёрный two piece suit"
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
 	item_state = "bl_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/black
-	name = "black suit"
+	name = "чёрный suit"
 	desc = "A professional looking black suit. Ready for some serious law."
 	icon_state = "blacksuit"
 	item_state = "blacksuit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/black/skirt
-	name = "black suitskirt"
+	name = "чёрный suitskirt"
 	desc = "A professional black suit. Nanotrasen Investigation Bureau approved!"
 	icon_state = "blacksuit_skirt"
 	item_state = "bar_suit"
@@ -76,7 +76,7 @@
 	item_state = "black_suit_fem"
 
 /obj/item/clothing/under/suit/green
-	name = "green suit"
+	name = "зелёный suit"
 	desc = "A green suit and yellow necktie. Baller."
 	icon = 'icons/obj/clothing/under/captain.dmi'
 	icon_state = "green_suit"
@@ -85,7 +85,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/red
-	name = "red suit"
+	name = "красный suit"
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
 	item_state = "r_suit"
@@ -121,7 +121,7 @@
 	item_state = "tan_suit"
 
 /obj/item/clothing/under/suit/white
-	name = "white suit"
+	name = "белый suit"
 	desc = "A white suit and jacket with a blue shirt. You wanna play rough? OKAY!"
 	icon_state = "white_suit"
 	item_state = "white_suit"

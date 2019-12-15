@@ -266,7 +266,7 @@ Difficulty: Very Hard
 //Black Box
 
 /obj/machinery/smartfridge/black_box
-	name = "black box"
+	name = "чёрный box"
 	desc = "A completely indestructible chunk of crystal, rumoured to predate the start of this universe. It looks like you could store things inside it."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "blackbox"

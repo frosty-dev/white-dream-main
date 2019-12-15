@@ -2059,7 +2059,7 @@
 	group = "Costumes & Toys"
 
 /datum/supply_pack/costumes_toys/randomised
-	name = "Collectable Hats Crate"
+	name = "коллекционный Hats Crate"
 	desc = "Flaunt your status with three unique, highly-collectable hats!"
 	cost = 20000
 	var/num_contained = 3 //number of items picked to be contained in a randomised crate
@@ -2084,7 +2084,7 @@
 					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/xenom,
 					/obj/item/clothing/head/collectable/petehat)
-	crate_name = "collectable hats crate"
+	crate_name = "коллекционный hats crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/randomised/contraband

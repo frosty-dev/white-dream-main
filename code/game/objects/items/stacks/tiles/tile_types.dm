@@ -118,49 +118,49 @@
 	tableVariant = /obj/structure/table/wood/fancy
 
 /obj/item/stack/tile/carpet/black
-	name = "black carpet"
+	name = "чёрный carpet"
 	icon_state = "tile-carpet-black"
 	item_state = "tile-carpet-black"
 	turf_type = /turf/open/floor/carpet/black
 	tableVariant = /obj/structure/table/wood/fancy/black
 
 /obj/item/stack/tile/carpet/blue
-	name = "blue carpet"
+	name = "синий carpet"
 	icon_state = "tile-carpet-blue"
 	item_state = "tile-carpet-blue"
 	turf_type = /turf/open/floor/carpet/blue
 	tableVariant = /obj/structure/table/wood/fancy/blue
 
 /obj/item/stack/tile/carpet/cyan
-	name = "cyan carpet"
+	name = "голубой carpet"
 	icon_state = "tile-carpet-cyan"
 	item_state = "tile-carpet-cyan"
 	turf_type = /turf/open/floor/carpet/cyan
 	tableVariant = /obj/structure/table/wood/fancy/cyan
 
 /obj/item/stack/tile/carpet/green
-	name = "green carpet"
+	name = "зелёный carpet"
 	icon_state = "tile-carpet-green"
 	item_state = "tile-carpet-green"
 	turf_type = /turf/open/floor/carpet/green
 	tableVariant = /obj/structure/table/wood/fancy/green
 
 /obj/item/stack/tile/carpet/orange
-	name = "orange carpet"
+	name = "оранжевый  carpet"
 	icon_state = "tile-carpet-orange"
 	item_state = "tile-carpet-orange"
 	turf_type = /turf/open/floor/carpet/orange
 	tableVariant = /obj/structure/table/wood/fancy/orange
 
 /obj/item/stack/tile/carpet/purple
-	name = "purple carpet"
+	name = "фиолетовый carpet"
 	icon_state = "tile-carpet-purple"
 	item_state = "tile-carpet-purple"
 	turf_type = /turf/open/floor/carpet/purple
 	tableVariant = /obj/structure/table/wood/fancy/purple
 
 /obj/item/stack/tile/carpet/red
-	name = "red carpet"
+	name = "красный carpet"
 	icon_state = "tile-carpet-red"
 	item_state = "tile-carpet-red"
 	turf_type = /turf/open/floor/carpet/red
@@ -253,16 +253,16 @@
 
 //Circuit
 /obj/item/stack/tile/circuit
-	name = "blue circuit tile"
-	singular_name = "blue circuit tile"
+	name = "синий circuit tile"
+	singular_name = "синий circuit tile"
 	desc = "A blue circuit tile."
 	icon_state = "tile_bcircuit"
 	item_state = "tile-bcircuit"
 	turf_type = /turf/open/floor/circuit
 
 /obj/item/stack/tile/circuit/green
-	name = "green circuit tile"
-	singular_name = "green circuit tile"
+	name = "зелёный circuit tile"
+	singular_name = "зелёный circuit tile"
 	desc = "A green circuit tile."
 	icon_state = "tile_gcircuit"
 	item_state = "tile-gcircuit"
@@ -272,8 +272,8 @@
 	turf_type = /turf/open/floor/circuit/green/anim
 
 /obj/item/stack/tile/circuit/red
-	name = "red circuit tile"
-	singular_name = "red circuit tile"
+	name = "красный circuit tile"
+	singular_name = "красный circuit tile"
 	desc = "A red circuit tile."
 	icon_state = "tile_rcircuit"
 	item_state = "tile-rcircuit"

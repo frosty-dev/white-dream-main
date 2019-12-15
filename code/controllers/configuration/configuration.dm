@@ -34,6 +34,10 @@
 /datum/controller/configuration/proc/Load(_directory)
 	if(IsAdminAdvancedProcCall())		//If admin proccall is detected down the line it will horribly break everything.
 		return
+	// "I don't care about your configs. I have my own dir." (c) TRAVIS
+	#ifdef TRAVISBUILDING
+	directory = "config"
+	#endif
 	if(_directory)
 		directory = _directory
 	if(entries)

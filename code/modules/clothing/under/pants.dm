@@ -19,7 +19,7 @@
 	custom_price = 75
 
 /obj/item/clothing/under/pants/blackjeans
-	name = "black jeans"
+	name = "чёрный jeans"
 	desc = "Only for those who can pull it off."
 	icon_state = "jeansblack"
 
@@ -29,17 +29,17 @@
 	icon_state = "jeansyoungfolks"
 
 /obj/item/clothing/under/pants/white
-	name = "white pants"
+	name = "белый pants"
 	desc = "Plain white pants. Boring."
 	icon_state = "whitepants"
 
 /obj/item/clothing/under/pants/red
-	name = "red pants"
+	name = "красный pants"
 	desc = "Bright red pants. Overflowing with personality."
 	icon_state = "redpants"
 
 /obj/item/clothing/under/pants/black
-	name = "black pants"
+	name = "чёрный pants"
 	desc = "These pants are dark, like your soul."
 	icon_state = "blackpants"
 

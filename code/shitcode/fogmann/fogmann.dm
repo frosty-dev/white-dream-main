@@ -34,7 +34,7 @@ obj/item/banner/engineering/atmos/mundane
 	floor_tile = /obj/item/stack/tile/carpet/peaks
 
 /obj/structure/curtain/red
-	name = "red curtain"
+	name = "красный curtain"
 	desc = "Contains less than 1% mercury."
 	icon = 'code/shitcode/pieceofcrap.dmi'
 	icon_state = "closed"

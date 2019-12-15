@@ -30,7 +30,7 @@
 	item_state = "clown"
 
 /obj/item/clothing/under/rank/civilian/clown/blue
-	name = "blue clown suit"
+	name = "синий clown suit"
 	desc = "<i>'BLUE HONK!'</i>"
 	icon_state = "blueclown"
 	item_state = "blueclown"
@@ -38,7 +38,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/green
-	name = "green clown suit"
+	name = "зелёный clown suit"
 	desc = "<i>'GREEN HONK!'</i>"
 	icon_state = "greenclown"
 	item_state = "greenclown"
@@ -46,7 +46,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/yellow
-	name = "yellow clown suit"
+	name = "жёлтый clown suit"
 	desc = "<i>'YELLOW HONK!'</i>"
 	icon_state = "yellowclown"
 	item_state = "yellowclown"
@@ -54,7 +54,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/purple
-	name = "purple clown suit"
+	name = "фиолетовый clown suit"
 	desc = "<i>'PURPLE HONK!'</i>"
 	icon_state = "purpleclown"
 	item_state = "purpleclown"
@@ -62,7 +62,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/orange
-	name = "orange clown suit"
+	name = "оранжевый  clown suit"
 	desc = "<i>'ORANGE HONK!'</i>"
 	icon_state = "orangeclown"
 	item_state = "orangeclown"

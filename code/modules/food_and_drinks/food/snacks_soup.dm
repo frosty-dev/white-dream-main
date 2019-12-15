@@ -220,7 +220,7 @@
 	foodtype = VEGETABLES | SUGAR
 
 /obj/item/reagent_containers/food/snacks/soup/beet/red
-	name = "red beet soup"
+	name = "красный beet soup"
 	desc = "Quite a delicacy."
 	icon_state = "redbeetsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 6)

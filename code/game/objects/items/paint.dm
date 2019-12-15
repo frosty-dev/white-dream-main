@@ -15,22 +15,22 @@
 	var/paintleft = 10
 
 /obj/item/paint/red
-	name = "red paint"
+	name = "красный paint"
 	paint_color = "C73232" //"FF0000"
 	icon_state = "paint_red"
 
 /obj/item/paint/green
-	name = "green paint"
+	name = "зелёный paint"
 	paint_color = "2A9C3B" //"00FF00"
 	icon_state = "paint_green"
 
 /obj/item/paint/blue
-	name = "blue paint"
+	name = "синий paint"
 	paint_color = "5998FF" //"0000FF"
 	icon_state = "paint_blue"
 
 /obj/item/paint/yellow
-	name = "yellow paint"
+	name = "жёлтый paint"
 	paint_color = "CFB52B" //"FFFF00"
 	icon_state = "paint_yellow"
 
@@ -40,12 +40,12 @@
 	icon_state = "paint_violet"
 
 /obj/item/paint/black
-	name = "black paint"
+	name = "чёрный paint"
 	paint_color = "333333"
 	icon_state = "paint_black"
 
 /obj/item/paint/white
-	name = "white paint"
+	name = "белый paint"
 	paint_color = "FFFFFF"
 	icon_state = "paint_white"
 

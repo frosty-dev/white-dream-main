@@ -551,10 +551,10 @@
 
 	//SWAT MKII
 /obj/item/clothing/head/helmet/space/hardsuit/swat
-	name = "\improper MK.II SWAT Helmet"
+	name = "\improper MK.II шлем спецназа"
 	icon_state = "swat2helm"
 	item_state = "swat2helm"
-	desc = "A tactical SWAT helmet MK.II."
+	desc = "A tactical шлем спецназа MK.II."
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR //we want to see the mask //this makes the hardsuit not fireproof you genius
@@ -581,10 +581,10 @@
 
 	//Captain
 /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
-	name = "captain's SWAT helmet"
+	name = "captain's шлем спецназа"
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
-	desc = "A tactical MK.II SWAT helmet boasting better protection and a reasonable fashion sense."
+	desc = "A tactical MK.II шлем спецназа boasting better protection and a reasonable fashion sense."
 
 /obj/item/clothing/suit/space/hardsuit/swat/captain
 	name = "captain's SWAT suit"
@@ -741,7 +741,7 @@
 ///////////////Capture the Flag////////////////////
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf
-	name = "white shielded hardsuit"
+	name = "белый shielded hardsuit"
 	desc = "Standard issue hardsuit for playing capture the flag."
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
@@ -753,7 +753,7 @@
 	max_charges = 5
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/red
-	name = "red shielded hardsuit"
+	name = "красный shielded hardsuit"
 	icon_state = "ert_security"
 	item_state = "ert_security"
 	hardsuit_type = "ert_security"
@@ -762,7 +762,7 @@
 	shield_on = "shield-red"
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/blue
-	name = "blue shielded hardsuit"
+	name = "синий shielded hardsuit"
 	desc = "Standard issue hardsuit for playing capture the flag."
 	icon_state = "ert_command"
 	item_state = "ert_command"

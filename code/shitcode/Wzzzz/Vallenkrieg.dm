@@ -137,7 +137,7 @@
 	desc = "Officer's cap. It is obviously used by the officers of the Kaiser Army."
 
 /obj/item/clothing/head/cap/wzzzz/elite
-	name = "black officer hat"
+	name = "чёрный officer hat"
 	desc = "Officer's cap is of dark color. In addition, the cockade depicts a symbol of the secret police."
 	mob_overlay_icon = 'code/shitcode/Wzzzz/Valya/clothing/mob/hat.dmi'
 	icon = 'code/shitcode/Wzzzz/Valya/clothing/hats.dmi'
@@ -152,7 +152,7 @@
 	armor = list(melee = 35, bullet = 20, laser = 20, energy = 35, bomb = 15, bio = 2, rad = 0)
 
 /obj/item/clothing/head/helmet/wzzzz/elite
-	name = "black stahlhelm"
+	name = "чёрный stahlhelm"
 	desc = "A typical germany steel helmet. Black color and it seems instead of steel here used a strong alloy"
 	icon_state = "m35_elite_helmet"
 	mob_overlay_icon = 'code/shitcode/Wzzzz/Valya/clothing/mob/hat.dmi'

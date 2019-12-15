@@ -324,7 +324,7 @@
 
 //Red/Blue Cubes
 /obj/item/warp_cube
-	name = "blue cube"
+	name = "синий cube"
 	desc = "A mysterious blue cube."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "blue_cube"
@@ -366,7 +366,7 @@
 	qdel(link_holder)
 
 /obj/item/warp_cube/red
-	name = "red cube"
+	name = "красный cube"
 	desc = "A mysterious red cube."
 	icon_state = "red_cube"
 	teleport_color = "#FD3F48"

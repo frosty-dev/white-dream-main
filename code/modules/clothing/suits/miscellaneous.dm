@@ -9,7 +9,7 @@
  * Lasertag
  */
 /obj/item/clothing/suit/bluetag
-	name = "blue laser tag armor"
+	name = "синий laser tag armor"
 	desc = "A piece of plastic armor. It has sensors that react to red light." //Lasers are concentrated light
 	icon_state = "bluetag"
 	item_state = "bluetag"
@@ -19,7 +19,7 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/suit/redtag
-	name = "red laser tag armor"
+	name = "красный laser tag armor"
 	desc = "A piece of plastic armor. It has sensors that react to blue light."
 	icon_state = "redtag"
 	item_state = "redtag"
@@ -96,14 +96,14 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/suit/apron/purple_bartender
-	name = "purple bartender apron"
+	name = "фиолетовый bartender apron"
 	desc = "A fancy purple apron for a stylish person."
 	icon_state = "purplebartenderapron"
 	item_state = "purplebartenderapron"
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/suit/syndicatefake
-	name = "black and red space suit replica"
+	name = "чёрный and red space suit replica"
 	icon_state = "syndicate-black-red"
 	item_state = "syndicate-black-red"
 	desc = "A plastic replica of the Syndicate space suit. You'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
@@ -211,13 +211,13 @@
 	item_state = "classicponcho"
 
 /obj/item/clothing/suit/poncho/green
-	name = "green poncho"
+	name = "зелёный poncho"
 	desc = "Your classic, non-racist poncho. This one is green."
 	icon_state = "greenponcho"
 	item_state = "greenponcho"
 
 /obj/item/clothing/suit/poncho/red
-	name = "red poncho"
+	name = "красный poncho"
 	desc = "Your classic, non-racist poncho. This one is red."
 	icon_state = "redponcho"
 	item_state = "redponcho"
@@ -233,7 +233,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, SHAMEBRERO_TRAIT)
 
 /obj/item/clothing/suit/whitedress
-	name = "white dress"
+	name = "белый dress"
 	desc = "A fancy white dress."
 	icon_state = "white_dress"
 	item_state = "w_suit"
@@ -377,7 +377,7 @@
 	item_state = "vapeshirt"
 
 /obj/item/clothing/suit/striped_sweater
-	name = "striped sweater"
+	name = "полосатый sweater"
 	desc = "Reminds you of someone, but you just can't put your finger on it..."
 	icon_state = "waldo_shirt"
 	item_state = "waldo_shirt"
@@ -438,7 +438,7 @@
 	item_state = "letterman"
 
 /obj/item/clothing/suit/jacket/letterman_red
-	name = "red letterman jacket"
+	name = "красный letterman jacket"
 	desc = "A letterman jacket in a sick red color. Radical."
 	icon_state = "letterman_red"
 	item_state = "letterman_red"
@@ -450,7 +450,7 @@
 	item_state = "letterman_s"
 
 /obj/item/clothing/suit/jacket/letterman_nanotrasen
-	name = "blue letterman jacket"
+	name = "синий letterman jacket"
 	desc = "A blue letterman jacket with a proud Nanotrasen N on the back. The tag says that it was made in Space China."
 	icon_state = "letterman_n"
 	item_state = "letterman_n"
@@ -705,7 +705,7 @@
 	alternate_worn_layer = UNDER_HEAD_LAYER
 
 /obj/item/clothing/suit/toggle/suspenders/blue
-	name = "blue suspenders"
+	name = "синий suspenders"
 	desc = "The symbol of hard labor and dirty jobs."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders_blue"

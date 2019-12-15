@@ -298,19 +298,19 @@ Consuming extracts:
 	var/tastemessage = "paint remover"
 	switch(rand(1,7))
 		if(1)
-			tastemessage = "red dye"
+			tastemessage = "красный dye"
 			colour = "#FF0000"
 		if(2)
-			tastemessage = "orange dye"
+			tastemessage = "оранжевый  dye"
 			colour = "#FFA500"
 		if(3)
-			tastemessage = "yellow dye"
+			tastemessage = "жёлтый dye"
 			colour = "#FFFF00"
 		if(4)
-			tastemessage = "green dye"
+			tastemessage = "зелёный dye"
 			colour = "#00FF00"
 		if(5)
-			tastemessage = "blue dye"
+			tastemessage = "синий dye"
 			colour = "#0000FF"
 		if(6)
 			tastemessage = "indigo dye"
@@ -332,7 +332,7 @@ Consuming extracts:
 	name = "blood cookie"
 	desc = "A red cookie, oozing a thick red fluid. Vampires might enjoy it."
 	icon_state = "red"
-	taste = "red velvet and iron"
+	taste = "красный velvet and iron"
 
 /obj/item/slime_cookie/red/do_effect(mob/living/M, mob/user)
 	new /obj/effect/decal/cleanable/blood(get_turf(M))

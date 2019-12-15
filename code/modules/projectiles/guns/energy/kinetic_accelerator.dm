@@ -134,7 +134,7 @@
 		carried = 1
 
 	deltimer(recharge_timerid)
-	
+
 	var/skill_modifier = 1
 	if(ishuman(holder))
 		var/mob/living/carbon/human/H = holder
@@ -577,7 +577,7 @@
 	chassis_name = "hyper-kinetic accelerator"
 
 /obj/item/borg/upgrade/modkit/tracer
-	name = "white tracer bolts"
+	name = "белый tracer bolts"
 	desc = "Causes kinetic accelerator bolts to have a white tracer trail and explosion."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/tracer

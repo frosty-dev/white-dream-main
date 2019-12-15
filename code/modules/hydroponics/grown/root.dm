@@ -102,7 +102,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/redbeet
 	seed = /obj/item/seeds/redbeet
-	name = "red beet"
+	name = "красный beet"
 	desc = "You can't beat red beet."
 	icon_state = "redbeet"
 	bitesize_mod = 2

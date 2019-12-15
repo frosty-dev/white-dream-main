@@ -20,12 +20,12 @@
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence."
 
 /obj/item/documents/syndicate/red
-	name = "red secret documents"
+	name = "красный secret documents"
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a red wax seal."
 	icon_state = "docs_red"
 
 /obj/item/documents/syndicate/blue
-	name = "blue secret documents"
+	name = "синий secret documents"
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a blue wax seal."
 	icon_state = "docs_blue"
 

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/hardhat
-	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	name = "каска"
+	desc = "Кусок головного убора, используемый в опасных рабочих условиях для защиты головы. Поставляется со встроенным фонариком."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	var/brightness_on = 4 //luminosity when on
@@ -83,8 +83,8 @@
 	item_state = "hardhat0_atmos"
 	hat_type = "atmos"
 	dog_fashion = null
-	name = "atmospheric technician's firefighting helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation."
+	name = "противопожарный шлем атмостеха"
+	desc = "Шлем пожарного, способный держать пользователя в прохладном состоянии в любой ситуации."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	heat_protection = HEAD
@@ -93,8 +93,8 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/head/hardhat/weldhat
-	name = "welding hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield! The bulb seems a little smaller though."
+	name = "сварочный шлем"
+	desc = "Кусок головного убора, используемый в опасных рабочих условиях для защиты головы. Поставляется со встроенным фонариком И сварочным щитом! Но лампочка кажется немного меньше."
 	brightness_on = 3 //Needs a little bit of tradeoff
 	dog_fashion = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
@@ -141,7 +141,7 @@
 	hat_type = "orange"
 
 /obj/item/clothing/head/hardhat/weldhat/white
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield!" //This bulb is not smaller
+	desc = "Кусок головного убора, используемый в опасных рабочих условиях для защиты головы. Поставляется со встроенным фонариком И сварочным щитом!" //This bulb is not smaller
 	icon_state = "hardhat0_white"
 	item_state = "hardhat0_white"
 	brightness_on = 4 //Boss always takes the best stuff

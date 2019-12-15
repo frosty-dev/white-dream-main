@@ -20,7 +20,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/bluecherryjelly = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
 	filling_color = "#87CEFA"
-	tastes = list("blue cherries" = 2, "ice cream" = 2)
+	tastes = list("синий cherries" = 2, "ice cream" = 2)
 	foodtype = FRUIT | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/sundae
@@ -92,7 +92,7 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/snowcones/orange
-	name = "orange snowcone"
+	name = "оранжевый  snowcone"
 	desc = "Orange syrup drizzled over a snowball in a paper cup."
 	icon_state = "orange_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/orangejuice = 5)

@@ -54,7 +54,7 @@
 
 
 /obj/structure/closet/crate/coffin/blackcoffin // closet.dmi, closets.dm, and job_closets.dm
-	name = "black coffin"
+	name = "чёрный coffin"
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
 	icon = 'code/shitcode/valtos/icons/bloodsucker/fulpobjects.dmi'

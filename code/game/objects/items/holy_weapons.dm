@@ -265,7 +265,7 @@
 	item_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	name = "red holy staff"
+	name = "красный holy staff"
 	desc = "It has a mysterious, protective aura."
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
@@ -279,7 +279,7 @@
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
 /obj/item/nullrod/staff/blue
-	name = "blue holy staff"
+	name = "синий holy staff"
 	icon_state = "godstaff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"

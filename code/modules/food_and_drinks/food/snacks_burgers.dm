@@ -183,7 +183,7 @@
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/burger/red
-	name = "red burger"
+	name = "красный burger"
 	desc = "Perfect for hiding the fact it's burnt to a crisp."
 	icon_state = "cburger"
 	color = "#DA0000FF"
@@ -191,7 +191,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/orange
-	name = "orange burger"
+	name = "оранжевый  burger"
 	desc = "Contains 0% juice."
 	icon_state = "cburger"
 	color = "#FF9300FF"
@@ -199,7 +199,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/yellow
-	name = "yellow burger"
+	name = "жёлтый burger"
 	desc = "Bright to the last bite."
 	icon_state = "cburger"
 	color = "#FFF200FF"
@@ -207,7 +207,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/green
-	name = "green burger"
+	name = "зелёный burger"
 	desc = "It's not tainted meat, it's painted meat!"
 	icon_state = "cburger"
 	color = "#A8E61DFF"
@@ -215,7 +215,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/blue
-	name = "blue burger"
+	name = "синий burger"
 	desc = "Is this blue rare?"
 	icon_state = "cburger"
 	color = "#00B7EFFF"
@@ -223,7 +223,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/purple
-	name = "purple burger"
+	name = "фиолетовый burger"
 	desc = "Regal and low class at the same time."
 	icon_state = "cburger"
 	color = "#DA00FFFF"
@@ -231,7 +231,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/black
-	name = "black burger"
+	name = "чёрный burger"
 	desc = "This is overcooked."
 	icon_state = "cburger"
 	color = "#1C1C1C"
@@ -239,7 +239,7 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/burger/white
-	name = "white burger"
+	name = "белый burger"
 	desc = "Delicous Titanium!"
 	icon_state = "cburger"
 	color = "#FFFFFF"

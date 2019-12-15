@@ -197,11 +197,11 @@
 	icon_state = "plasma"
 
 /obj/effect/decal/cleanable/glitter/white
-	name = "white glitter"
+	name = "белый glitter"
 	icon_state = "nitrous_oxide"
 
 /obj/effect/decal/cleanable/glitter/blue
-	name = "blue glitter"
+	name = "синий glitter"
 	icon_state = "freon"
 
 /obj/effect/decal/cleanable/plasma

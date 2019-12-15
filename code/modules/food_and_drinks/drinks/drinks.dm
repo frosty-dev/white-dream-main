@@ -452,7 +452,7 @@
 		switch(reagents.get_master_reagent_id())
 			if(/datum/reagent/consumable/orangejuice)
 				icon_state = "orangebox"
-				name = "orange juice box"
+				name = "оранжевый  juice box"
 				desc = "A great source of vitamins. Stay healthy!"
 				foodtype = FRUIT | BREAKFAST
 			if(/datum/reagent/consumable/milk)
@@ -636,7 +636,7 @@
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime
-	name = "orange soda"
+	name = "оранжевый  soda"
 	desc = "You wanted ORANGE. It gave you Lemon Lime."
 	icon_state = "lemon-lime"
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)

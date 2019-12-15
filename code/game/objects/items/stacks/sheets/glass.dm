@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	return ..()
 
 /obj/item/shard/plasma
-	name = "purple shard"
+	name = "фиолетовый shard"
 	desc = "A nasty looking shard of plasma glass."
 	force = 6
 	throwforce = 11

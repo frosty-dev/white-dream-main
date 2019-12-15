@@ -10,19 +10,19 @@
 	mob_overlay_icon = 'icons/mob/clothing/under/shorts_pants.dmi'
 
 /obj/item/clothing/under/shorts/red
-	name = "red athletic shorts"
+	name = "красный athletic shorts"
 	icon_state = "redshorts"
 
 /obj/item/clothing/under/shorts/green
-	name = "green athletic shorts"
+	name = "зелёный athletic shorts"
 	icon_state = "greenshorts"
 
 /obj/item/clothing/under/shorts/blue
-	name = "blue athletic shorts"
+	name = "синий athletic shorts"
 	icon_state = "blueshorts"
 
 /obj/item/clothing/under/shorts/black
-	name = "black athletic shorts"
+	name = "чёрный athletic shorts"
 	icon_state = "blackshorts"
 
 /obj/item/clothing/under/shorts/grey
@@ -30,5 +30,5 @@
 	icon_state = "greyshorts"
 
 /obj/item/clothing/under/shorts/purple
-	name = "purple athletic shorts"
+	name = "фиолетовый athletic shorts"
 	icon_state = "purpleshorts"

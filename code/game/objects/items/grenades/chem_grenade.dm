@@ -499,12 +499,12 @@
 	glitter_type = /datum/reagent/glitter/pink
 
 /obj/item/grenade/chem_grenade/glitter/blue
-	name = "blue glitter bomb"
+	name = "синий glitter bomb"
 	desc = "For that COOL glittery look."
 	glitter_type = /datum/reagent/glitter/blue
 
 /obj/item/grenade/chem_grenade/glitter/white
-	name = "white glitter bomb"
+	name = "белый glitter bomb"
 	desc = "For that somnolent glittery look."
 	glitter_type = /datum/reagent/glitter/white
 

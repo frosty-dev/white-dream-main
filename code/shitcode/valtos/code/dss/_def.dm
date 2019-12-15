@@ -254,6 +254,9 @@
 		setOrganLoss(ORGAN_SLOT_BRAIN, 200)
 		return
 
+	if(!dna || !dna.species)
+		return
+
 	maxHealth 					   = FLOOR((bmods["maxHealth"]           * (bstats[MOB_STR] + bstats[MOB_STM]										  ))  / 20, 1)
 	dna.species.armor 			   = FLOOR((bmods["armor"]         	  	 * (bstats[MOB_STR] + bstats[MOB_STM]									 	  ))  / 20, 1)
 	dna.species.punchdamagelow 	   = FLOOR((bmods["punchdamagelow"]    	 * (bstats[MOB_STR] + bstats[MOB_STM] + ((bstats[MOB_INT] + bstats[MOB_DEX])/2))) / 30, 1)

@@ -73,7 +73,7 @@ Contents:
 	//Cell Init
 	cell = new/obj/item/stock_parts/cell/high
 	cell.charge = 9000
-	cell.name = "black power cell"
+	cell.name = "чёрный power cell"
 	cell.icon_state = "bscell"
 
 //Simply deletes all the attachments and self, killing all related procs.

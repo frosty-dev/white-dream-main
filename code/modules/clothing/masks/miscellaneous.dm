@@ -263,17 +263,17 @@
 			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!</span>")
 
 /obj/item/clothing/mask/bandana/red
-	name = "red bandana"
+	name = "красный bandana"
 	desc = "A fine red bandana with nanotech lining."
 	icon_state = "bandred"
 
 /obj/item/clothing/mask/bandana/blue
-	name = "blue bandana"
+	name = "синий bandana"
 	desc = "A fine blue bandana with nanotech lining."
 	icon_state = "bandblue"
 
 /obj/item/clothing/mask/bandana/green
-	name = "green bandana"
+	name = "зелёный bandana"
 	desc = "A fine green bandana with nanotech lining."
 	icon_state = "bandgreen"
 
@@ -283,7 +283,7 @@
 	icon_state = "bandgold"
 
 /obj/item/clothing/mask/bandana/black
-	name = "black bandana"
+	name = "чёрный bandana"
 	desc = "A fine black bandana with nanotech lining."
 	icon_state = "bandblack"
 
@@ -293,7 +293,7 @@
 	icon_state = "bandskull"
 
 /obj/item/clothing/mask/bandana/durathread
-	name = "durathread bandana"
+	name = "дюратканевый bandana"
 	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
 	icon_state = "banddurathread"
 

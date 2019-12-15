@@ -38,7 +38,7 @@
 
 
 /obj/structure/closet/lasertag/red
-	name = "red laser tag equipment"
+	name = "красный laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_door = "red"
 
@@ -52,7 +52,7 @@
 
 
 /obj/structure/closet/lasertag/blue
-	name = "blue laser tag equipment"
+	name = "синий laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_door = "blue"
 

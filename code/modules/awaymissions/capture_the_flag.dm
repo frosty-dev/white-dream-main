@@ -90,7 +90,7 @@
 
 
 /obj/item/twohanded/ctf/red
-	name = "red flag"
+	name = "красный flag"
 	icon_state = "banner-red"
 	item_state = "banner-red"
 	desc = "A red banner used to play capture the flag."
@@ -99,7 +99,7 @@
 
 
 /obj/item/twohanded/ctf/blue
-	name = "blue flag"
+	name = "синий flag"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
 	desc = "A blue banner used to play capture the flag."
@@ -114,13 +114,13 @@
 	layer = LOW_ITEM_LAYER
 
 /obj/effect/ctf/flag_reset/red
-	name = "red flag landmark"
+	name = "красный flag landmark"
 	icon_state = "banner-red"
 	desc = "This is where a red banner used to play capture the flag \
 		would go."
 
 /obj/effect/ctf/flag_reset/blue
-	name = "blue flag landmark"
+	name = "синий flag landmark"
 	icon_state = "banner-blue"
 	desc = "This is where a blue banner used to play capture the flag \
 		would go."

@@ -1,6 +1,6 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "red lipstick"
+	name = "красный lipstick"
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "lipstick"
@@ -9,7 +9,7 @@
 	var/open = FALSE
 
 /obj/item/lipstick/purple
-	name = "purple lipstick"
+	name = "фиолетовый lipstick"
 	colour = "purple"
 
 /obj/item/lipstick/jade
@@ -18,7 +18,7 @@
 	colour = "lime"
 
 /obj/item/lipstick/black
-	name = "black lipstick"
+	name = "чёрный lipstick"
 	colour = "black"
 
 /obj/item/lipstick/random

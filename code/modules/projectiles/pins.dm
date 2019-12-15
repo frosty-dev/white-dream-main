@@ -308,13 +308,13 @@
 	return FALSE
 
 /obj/item/firing_pin/tag/red
-	name = "red laser tag firing pin"
+	name = "красный laser tag firing pin"
 	icon_state = "firing_pin_red"
 	suit_requirement = /obj/item/clothing/suit/redtag
 	tagcolor = "red"
 
 /obj/item/firing_pin/tag/blue
-	name = "blue laser tag firing pin"
+	name = "синий laser tag firing pin"
 	icon_state = "firing_pin_blue"
 	suit_requirement = /obj/item/clothing/suit/bluetag
 	tagcolor = "blue"

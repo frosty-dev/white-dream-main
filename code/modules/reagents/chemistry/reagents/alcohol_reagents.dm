@@ -100,7 +100,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Green Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety is dyed a festive green."
 	color = "#A8E61D"
-	taste_description = "green piss water"
+	taste_description = "зелёный piss water"
 	glass_icon_state = "greenbeerglass"
 	glass_name = "glass of green beer"
 	glass_desc = "A freezing pint of green beer. Festive."
@@ -2037,7 +2037,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#50e5cf"
 	boozepwr = 25
 	quality = DRINK_NICE
-	taste_description = "green apples and blue raspberries"
+	taste_description = "зелёный apples and blue raspberries"
 	glass_icon_state = "duplex"
 	glass_name = "Duplex"
 	glass_desc = "To imbibe one component separately from the other is consider a great faux pas."

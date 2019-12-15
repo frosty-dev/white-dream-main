@@ -495,23 +495,23 @@
 	return (FIRELOSS)
 
 /obj/item/flashlight/glowstick/red
-	name = "red glowstick"
+	name = "красный glowstick"
 	color = LIGHT_COLOR_RED
 
 /obj/item/flashlight/glowstick/blue
-	name = "blue glowstick"
+	name = "синий glowstick"
 	color = LIGHT_COLOR_BLUE
 
 /obj/item/flashlight/glowstick/cyan
-	name = "cyan glowstick"
+	name = "голубой glowstick"
 	color = LIGHT_COLOR_CYAN
 
 /obj/item/flashlight/glowstick/orange
-	name = "orange glowstick"
+	name = "оранжевый  glowstick"
 	color = LIGHT_COLOR_ORANGE
 
 /obj/item/flashlight/glowstick/yellow
-	name = "yellow glowstick"
+	name = "жёлтый glowstick"
 	color = LIGHT_COLOR_YELLOW
 
 /obj/item/flashlight/glowstick/pink

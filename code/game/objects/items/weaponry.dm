@@ -340,7 +340,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return (BRUTELOSS)
 
 /obj/item/phone
-	name = "red phone"
+	name = "красный phone"
 	desc = "Should anything ever go wrong..."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "red_phone"

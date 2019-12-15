@@ -31,7 +31,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/schoolgirl
-	name = "blue schoolgirl uniform"
+	name = "синий schoolgirl uniform"
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirl"
 	item_state = "schoolgirl"
@@ -40,17 +40,17 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/schoolgirl/red
-	name = "red schoolgirl uniform"
+	name = "красный schoolgirl uniform"
 	icon_state = "schoolgirlred"
 	item_state = "schoolgirlred"
 
 /obj/item/clothing/under/costume/schoolgirl/green
-	name = "green schoolgirl uniform"
+	name = "зелёный schoolgirl uniform"
 	icon_state = "schoolgirlgreen"
 	item_state = "schoolgirlgreen"
 
 /obj/item/clothing/under/costume/schoolgirl/orange
-	name = "orange schoolgirl uniform"
+	name = "оранжевый  schoolgirl uniform"
 	icon_state = "schoolgirlorange"
 	item_state = "schoolgirlorange"
 
@@ -146,13 +146,13 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer/yellow
-	name = "yellow performer's outfit"
+	name = "жёлтый performer's outfit"
 	icon_state = "ysing"
 	item_state = "ysing"
 	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/costume/singer/blue
-	name = "blue performer's outfit"
+	name = "синий performer's outfit"
 	icon_state = "bsing"
 	item_state = "bsing"
 	fitted = FEMALE_UNIFORM_TOP
@@ -219,7 +219,7 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/under/costume/mech_suit
-	name = "red mech pilot's suit"
+	name = "красный mech pilot's suit"
 	desc = "A red mech pilot's suit. Might make your butt look big."
 	icon_state = "red_mech_suit"
 	item_state = "red_mech_suit"
@@ -230,13 +230,13 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/mech_suit/white
-	name = "white mech pilot's suit"
+	name = "белый mech pilot's suit"
 	desc = "A white mech pilot's suit. Very fetching."
 	icon_state = "white_mech_suit"
 	item_state = "white_mech_suit"
 
 /obj/item/clothing/under/costume/mech_suit/blue
-	name = "blue mech pilot's suit"
+	name = "синий mech pilot's suit"
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"

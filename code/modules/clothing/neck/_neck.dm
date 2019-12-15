@@ -1,5 +1,5 @@
 /obj/item/clothing/neck
-	name = "necklace"
+	name = "ожерелье"
 	icon = 'icons/obj/clothing/neck.dmi'
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
@@ -16,8 +16,8 @@
 				. += mutable_appearance('icons/effects/blood.dmi', "maskblood")
 
 /obj/item/clothing/neck/tie
-	name = "tie"
-	desc = "A neosilk clip-on tie."
+	name = "галстук"
+	desc = "Привязной галстук из неоткани."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
@@ -25,30 +25,30 @@
 	custom_price = 15
 
 /obj/item/clothing/neck/tie/blue
-	name = "blue tie"
+	name = "синий галстук"
 	icon_state = "bluetie"
 
 /obj/item/clothing/neck/tie/red
-	name = "red tie"
+	name = "красный галстук"
 	icon_state = "redtie"
 
 /obj/item/clothing/neck/tie/black
-	name = "black tie"
+	name = "чёрный галстук"
 	icon_state = "blacktie"
 
 /obj/item/clothing/neck/tie/horrible
-	name = "horrible tie"
-	desc = "A neosilk clip-on tie. This one is disgusting."
+	name = "ужасный галстук"
+	desc = "Привязной галстук из неоткани. Этот выглядит отвратительно."
 	icon_state = "horribletie"
 
 /obj/item/clothing/neck/tie/detective
-	name = "loose tie"
-	desc = "A loosely tied necktie, a perfect accessory for the over-worked detective."
+	name = "провисший галстук"
+	desc = "Свободно связанный галстук, идеальный аксессуар для переутомленного детектива."
 	icon_state = "detective"
 
 /obj/item/clothing/neck/stethoscope
-	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "стетоскоп"
+	desc = "Устаревший медицинский аппарат для прослушивания звуков человеческого тела. Это также заставляет вас выглядеть так, как будто вы знаете, что делаете."
 	icon_state = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
@@ -60,27 +60,27 @@
 		if(user.a_intent == INTENT_HELP)
 			var/body_part = parse_zone(user.zone_selected)
 
-			var/heart_strength = "<span class='danger'>no</span>"
-			var/lung_strength = "<span class='danger'>no</span>"
+			var/heart_strength = "<span class='danger'>отсутствие</span>"
+			var/lung_strength = "<span class='danger'>отсутствие</span>"
 
 			var/obj/item/organ/heart/heart = M.getorganslot(ORGAN_SLOT_HEART)
 			var/obj/item/organ/lungs/lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
 
 			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH))))
 				if(heart && istype(heart))
-					heart_strength = "<span class='danger'>an unstable</span>"
+					heart_strength = "<span class='danger'>нестабильность</span>"
 					if(heart.beating)
-						heart_strength = "a healthy"
+						heart_strength = "здоровый звук"
 				if(lungs && istype(lungs))
-					lung_strength = "<span class='danger'>strained</span>"
+					lung_strength = "<span class='danger'>напряженно</span>"
 					if(!(M.failed_last_breath || M.losebreath))
-						lung_strength = "healthy"
+						lung_strength = "здоровый звук"
 
 			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT * 10)
-				heart_strength = "<span class='boldannounce'>a faint, fluttery</span>"
+				heart_strength = "<span class='boldannounce'>слабый и трепетный</span>"
 
-			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "You hear [heart_strength] pulse and [lung_strength] respiration." : "You faintly hear [heart_strength] pulse.")
-			user.visible_message("<span class='notice'>[user] places [src] against [M]'s [body_part] and listens attentively.</span>", "<span class='notice'>You place [src] against [M]'s [body_part]. [diagnosis]</span>")
+			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "Слышу [heart_strength] пульса и [lung_strength] дыхания." : "Я еле слышу [heart_strength] пульс.")
+			user.visible_message("<span class='notice'>[user] пристраивает [src] в [ru_exam_parse_zone(body_part)] [M] и слушает внимательно.</span>", "<span class='notice'>Прикладываю [src] к [ru_exam_parse_zone(body_part)] [M]. [diagnosis]</span>")
 			return
 	return ..(M,user)
 
@@ -89,54 +89,54 @@
 ///////////
 
 /obj/item/clothing/neck/scarf //Default white color, same functionality as beanies.
-	name = "white scarf"
+	name = "белый шарф"
 	icon_state = "scarf"
-	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+	desc = "Стильный шарф. Идеальный зимний аксессуар для тех, у кого острое чувство моды, и для тех, кто просто не может справиться с холодным бризом на шеях."
 	dog_fashion = /datum/dog_fashion/head
 	custom_price = 10
 
 /obj/item/clothing/neck/scarf/black
-	name = "black scarf"
+	name = "чёрный шарф"
 	icon_state = "scarf"
 	color = "#4A4A4B" //Grey but it looks black
 
 /obj/item/clothing/neck/scarf/pink
-	name = "pink scarf"
+	name = "розовый шарф"
 	icon_state = "scarf"
 	color = "#F699CD" //Pink
 
 /obj/item/clothing/neck/scarf/red
-	name = "red scarf"
+	name = "красный шарф"
 	icon_state = "scarf"
 	color = "#D91414" //Red
 
 /obj/item/clothing/neck/scarf/green
-	name = "green scarf"
+	name = "зелёный шарф"
 	icon_state = "scarf"
 	color = "#5C9E54" //Green
 
 /obj/item/clothing/neck/scarf/darkblue
-	name = "dark blue scarf"
+	name = "тёмно-синий шарф"
 	icon_state = "scarf"
 	color = "#1E85BC" //Blue
 
 /obj/item/clothing/neck/scarf/purple
-	name = "purple scarf"
+	name = "фиолетовый шарф"
 	icon_state = "scarf"
 	color = "#9557C5" //Purple
 
 /obj/item/clothing/neck/scarf/yellow
-	name = "yellow scarf"
+	name = "жёлтый шарф"
 	icon_state = "scarf"
 	color = "#E0C14F" //Yellow
 
 /obj/item/clothing/neck/scarf/orange
-	name = "orange scarf"
+	name = "оранжевый  шарф"
 	icon_state = "scarf"
 	color = "#C67A4B" //Orange
 
 /obj/item/clothing/neck/scarf/cyan
-	name = "cyan scarf"
+	name = "голубой шарф"
 	icon_state = "scarf"
 	color = "#54A3CE" //Cyan
 
@@ -144,34 +144,34 @@
 //Striped scarves get their own icons
 
 /obj/item/clothing/neck/scarf/zebra
-	name = "zebra scarf"
+	name = "зебровый шарф"
 	icon_state = "zebrascarf"
 
 /obj/item/clothing/neck/scarf/christmas
-	name = "christmas scarf"
+	name = "рождественский шарф"
 	icon_state = "christmasscarf"
 
 //The three following scarves don't have the scarf subtype
 //This is because Ian can equip anything from that subtype
 //However, these 3 don't have corgi versions of their sprites
 /obj/item/clothing/neck/stripedredscarf
-	name = "striped red scarf"
+	name = "полосатый красный шарф"
 	icon_state = "stripedredscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedgreenscarf
-	name = "striped green scarf"
+	name = "полосатый зелёный шарф"
 	icon_state = "stripedgreenscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedbluescarf
-	name = "striped blue scarf"
+	name = "полосатый синий шарф"
 	icon_state = "stripedbluescarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/petcollar
-	name = "pet collar"
-	desc = "It's for pets."
+	name = "ошейник"
+	desc = "Это для домашних животных."
 	icon_state = "petcollar"
 	var/tagname = null
 /*
@@ -181,7 +181,7 @@
 	return ..()
 */
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = copytext(sanitize(input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot") as null|text),1,MAX_NAME_LEN)
+	tagname = copytext(sanitize(input(user, "Хотите изменить имя на теге?", "Назовите своего нового питомца", "Шепард") as null|text),1,MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
 //////////////
@@ -189,8 +189,8 @@
 //////////////
 
 /obj/item/clothing/neck/necklace/dope
-	name = "gold necklace"
-	desc = "Damn, it feels good to be a gangster."
+	name = "золотая цепочка"
+	desc = "Как же заебись быть гангстером."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
 
@@ -211,7 +211,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.get_item_by_slot(ITEM_SLOT_NECK) == src)
-			to_chat(user, "<span class='warning'>You can't untie [src] while wearing it!</span>")
+			to_chat(user, "<span class='warning'>Не могу развязать [src] пока оно на мне!</span>")
 			return
 		if(user.is_holding(src))
 			var/obj/item/clothing/mask/bandana/newBand = new sourceBandanaType(user)
@@ -219,6 +219,6 @@
 			var/oldName = src.name
 			qdel(src)
 			user.put_in_hand(newBand, currentHandIndex)
-			user.visible_message("<span class='notice'>You untie [oldName] back into a [newBand.name].</span>", "<span class='notice'>[user] unties [oldName] back into a [newBand.name].</span>")
+			user.visible_message("<span class='notice'>Развязываю [oldName] обратно к [newBand.name].</span>", "<span class='notice'>[user] развязывает [oldName] обратно к [newBand.name].</span>")
 		else
-			to_chat(user, "<span class='warning'>You must be holding [src] in order to untie it!</span>")
+			to_chat(user, "<span class='warning'>Надо бы держать в руках [src], чтобы развязать!</span>")

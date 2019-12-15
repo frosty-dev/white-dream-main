@@ -40,7 +40,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/onion/red
 	seed = /obj/item/seeds/onion/red
-	name = "red onion"
+	name = "красный onion"
 	desc = "Purple despite the name."
 	icon_state = "onion_red"
 	filling_color = "#C29ACF"
@@ -67,7 +67,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/onionrings
 
 /obj/item/reagent_containers/food/snacks/onion_slice/red
-	name = "red onion slices"
+	name = "красный onion slices"
 	desc = "They shine like exceptionally low quality amethyst."
 	icon_state = "onionslice_red"
 	filling_color = "#C29ACF"

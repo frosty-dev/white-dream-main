@@ -215,13 +215,13 @@
 	category = CAT_MISC
 
 /obj/item/banner/red
-	name = "red banner"
+	name = "красный banner"
 	icon_state = "banner-red"
 	item_state = "banner-red"
 	desc = "A banner with the logo of the red deity."
 
 /obj/item/banner/blue
-	name = "blue banner"
+	name = "синий banner"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
 	desc = "A banner with the logo of the blue deity."
@@ -237,12 +237,12 @@
 	STR.max_combined_w_class = 27 //6 more then normal, for the tradeoff of declaring yourself an antag at all times.
 
 /obj/item/storage/backpack/bannerpack/red
-	name = "red banner backpack"
+	name = "красный banner backpack"
 	desc = "It's a backpack with lots of extra room.  A red banner is attached, that can't be removed."
 	icon_state = "bannerpack-red"
 
 /obj/item/storage/backpack/bannerpack/blue
-	name = "blue banner backpack"
+	name = "синий banner backpack"
 	desc = "It's a backpack with lots of extra room.  A blue banner is attached, that can't be removed."
 	icon_state = "bannerpack-blue"
 
