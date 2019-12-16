@@ -147,13 +147,12 @@
 /obj/machinery/computer/shuttle{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "w" = (
-/obj/machinery/computer/monitor{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
 "x" = (
 /obj/structure/closet/emcloset,
@@ -200,6 +199,31 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"E" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
+"F" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
+"G" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"I" = (
+/obj/machinery/computer/monitor{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
 "S" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
@@ -218,7 +242,7 @@ a
 b
 o
 v
-w
+I
 b
 a
 "}
@@ -226,7 +250,7 @@ a
 a
 D
 p
-S
+w
 y
 c
 a
@@ -235,7 +259,7 @@ a
 b
 b
 b
-t
+E
 C
 b
 b
@@ -244,7 +268,7 @@ b
 D
 e
 S
-S
+w
 S
 x
 c
@@ -253,10 +277,10 @@ c
 t
 f
 r
-r
-r
-f
-t
+F
+F
+G
+E
 "}
 (7,1,1) = {"
 b
