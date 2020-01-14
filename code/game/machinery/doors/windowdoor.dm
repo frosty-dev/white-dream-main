@@ -305,7 +305,7 @@
 			flick("[base_state]deny", src)
 
 /obj/machinery/door/window/check_access_ntnet(datum/netdata/data)
-	return !requiresID() || ..()
+	return !requiresID() || ..(data)
 
 /obj/machinery/door/window/ntnet_receive(datum/netdata/data)
 	// Check if the airlock is powered.
