@@ -5,34 +5,34 @@
 	set name = "Say"
 	set category = "IC"
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='danger'>Не могу говорить.</span>")
 		return
 	if(message)
 		say(message)
 		if(TTS && GLOB.tts)
 			TTS.generate_tts(message)
 
-	
+
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='danger'>Не могу шептать.</span>")
 		return
 	whisper(message)
 
 ///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
-	
+
 ///The me emote verb
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='danger'>Не могу изображать.</span>")
 		return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -47,7 +47,7 @@
 	var/alt_name = ""
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='danger'>Не могу говорить</span>")
 		return
 
 	var/jb = is_banned_from(ckey, "Deadchat")
@@ -55,14 +55,14 @@
 		return
 
 	if(jb)
-		to_chat(src, "<span class='danger'>You have been banned from deadchat.</span>")
+		to_chat(src, "<span class='danger'>Мне нельзя говорить.</span>")
 		return
 
 
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "<span class='danger'>You cannot talk in deadchat (muted).</span>")
+			to_chat(src, "<span class='danger'>Не хочу говорить.</span>")
 			return
 
 		if(src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
@@ -80,7 +80,7 @@
 			alt_name = " (died as [real_name])"
 
 	var/spanned = say_quote(message)
-	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
+	var/source = "<span class='game'><span class='prefix'>ПРИЗРАК:</span> <span class='name'>[name]</span>[alt_name]"
 	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
 	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)

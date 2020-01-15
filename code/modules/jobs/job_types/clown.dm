@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the head of personnel"
+	supervisors = "главе персонала"
 	selection_color = "#dddddd"
 
 	outfit = /datum/outfit/job/clown

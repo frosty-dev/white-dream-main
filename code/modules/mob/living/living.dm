@@ -444,7 +444,7 @@
 /mob/proc/get_contents()
 
 /mob/living/proc/lay_down()
-	set name = "Rest"
+	set name = "Лечь/Встать"
 	set category = "IC"
 
 	if(!resting)

@@ -10,8 +10,8 @@
 
 /obj/screen/tooltip
 	name = ""
-	screen_loc = "SOUTH+1,CENTER-3"
-	maptext_width = 228
+	screen_loc = "SOUTH+1,CENTER-4:16"
+	maptext_width = 256
 	maptext_y = 16
 
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, toggle_tooltip_up)()
@@ -37,10 +37,10 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, toggle_tooltip_pos)()
 	usr.client.prefs.save_preferences()
 	if(usr.client.prefs.toggles & TOOLTIP_USER_POS)
 		to_chat(usr, "Теперь панель будет снизу.")
-		usr.hud_used.tooltip.screen_loc = "SOUTH+1,CENTER-3"
+		usr.hud_used.tooltip.screen_loc = "SOUTH+1,CENTER-4:16"
 	else
 		to_chat(usr, "Теперь панель будет сверху.")
-		usr.hud_used.tooltip.screen_loc = "NORTH,CENTER-3"
+		usr.hud_used.tooltip.screen_loc = "NORTH,CENTER-4:16"
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Tooltip Pos", "[usr.client.prefs.toggles & TOOLTIP_USER_POS ? "Верх" : "Низ"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/verbs/menu/Settings/toggle_tooltip_pos/Get_checked(client/C)

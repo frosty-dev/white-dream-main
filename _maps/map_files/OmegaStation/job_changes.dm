@@ -3,7 +3,7 @@
 /datum/job/New()
 	..()
 	MAP_JOB_CHECK
-	supervisors = "the captain and the head of personnel"
+	supervisors = "капитану и главе персонала"
 
 /datum/outfit/job/New()
 	..()

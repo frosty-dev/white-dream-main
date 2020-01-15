@@ -126,7 +126,7 @@
 
 /obj/structure/window/attack_tk(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='notice'>Что-то стучит по [src.name].</span>")
+	user.visible_message("<span class='notice'>Что-то стучит по [sklonenie(src.name, VINITELNI, src.gender)].</span>")
 	add_fingerprint(user)
 	playsound(src, 'sound/effects/Glassknock.ogg', 50, TRUE)
 
@@ -142,8 +142,8 @@
 	if(!can_be_reached(user))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='notice'>[user] стучит по [src.name].</span>", \
-		"<span class='notice'>Стучу по [src.name].</span>")
+	user.visible_message("<span class='notice'>[user] стучит по [sklonenie(src.name, VINITELNI, src.gender)].</span>", \
+		"<span class='notice'>Стучу по [sklonenie(src.name, VINITELNI, src.gender)].</span>")
 	add_fingerprint(user)
 	playsound(src, 'sound/effects/Glassknock.ogg', 50, TRUE)
 
@@ -172,7 +172,7 @@
 				update_nearby_icons()
 				to_chat(user, "<span class='notice'>Чиню [src.name].</span>")
 		else
-			to_chat(user, "<span class='warning'>[src.name] не требуется починка!</span>")
+			to_chat(user, "<span class='warning'>[capitalize(sklonenie(src.name, VINITELNI, src.gender))] не требуется починка!</span>")
 		return
 
 	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
@@ -267,13 +267,13 @@
 
 /obj/structure/window/proc/can_be_rotated(mob/user,rotation_type)
 	if(anchored)
-		to_chat(user, "<span class='warning'>[src.name] не может быть повёрнуто. Оно прикручено к полу!</span>")
+		to_chat(user, "<span class='warning'>[capitalize(src.name)] не может быть повёрнуто. Оно прикручено к полу!</span>")
 		return FALSE
 
 	var/target_dir = turn(dir, rotation_type == ROTATION_CLOCKWISE ? -90 : 90)
 
 	if(!valid_window_location(loc, target_dir))
-		to_chat(user, "<span class='warning'>[src.name] не может быть повёрнуто в этом направлении!</span>")
+		to_chat(user, "<span class='warning'>[capitalize(src.name)] не может быть повёрнуто в этом направлении!</span>")
 		return FALSE
 	return TRUE
 
@@ -376,8 +376,8 @@
 	switch(state)
 		if(RWINDOW_SECURE)
 			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
-				user.visible_message("<span class='notice'>[user] направил [I.name] на защищённые винтики [src.name]...</span>",
-										"<span class='notice'>Начинаю нагревать винтики [src.name]...</span>")
+				user.visible_message("<span class='notice'>[user] направляет [sklonenie(I.name, VINITELNI, I.gender)] на защищённые винтики [sklonenie(src.name, VINITELNI, src.gender)]...</span>",
+										"<span class='notice'>Начинаю нагревать винтики [sklonenie(src.name, VINITELNI, src.gender)]...</span>")
 				if(I.use_tool(src, user, 180, volume = 100))
 					to_chat(user, "<span class='notice'>Винтики раскалены до бела, похоже можно открутить их прямо сейчас..</span>")
 					state = RWINDOW_BOLTS_HEATED
@@ -393,23 +393,23 @@
 				return
 		if(RWINDOW_BOLTS_OUT)
 			if(I.tool_behaviour == TOOL_CROWBAR)
-				user.visible_message("<span class='notice'>[user] вставляет [I.name] в щель и начинает подпирать окно...</span>",
-										"<span class='notice'>Вставляю [I.name] в щель и начинаю подпирать окно...</span>")
+				user.visible_message("<span class='notice'>[user] вставляет [sklonenie(I.name, VINITELNI, I.gender)] в щель и начинает подпирать окно...</span>",
+										"<span class='notice'>Вставляю [sklonenie(I.name, VINITELNI, I.gender)] в щель и начинаю подпирать окно...</span>")
 				if(I.use_tool(src, user, 50, volume = 50))
 					state = RWINDOW_POPPED
 					to_chat(user, "<span class='notice'>Основная плита вышла из рамки и стали видны прутья, которые можно откусить.</span>")
 				return
 		if(RWINDOW_POPPED)
 			if(I.tool_behaviour == TOOL_WIRECUTTER)
-				user.visible_message("<span class='notice'>[user] начинает откусывать доступные прутья [src.name]...</span>",
-										"<span class='notice'>Начинаю откусывать доступные прутья [src.name]...</span>")
+				user.visible_message("<span class='notice'>[user] начинает откусывать доступные прутья [sklonenie(src.name, VINITELNI, src.gender)]...</span>",
+										"<span class='notice'>Начинаю откусывать доступные прутья [sklonenie(src.name, VINITELNI, src.gender)]...</span>")
 				if(I.use_tool(src, user, 30, volume = 50))
 					state = RWINDOW_BARS_CUT
 					to_chat(user, "<span class='notice'>Основная плита отделена от рамки и теперь её удерживает только несколько болтов.</span>")
 				return
 		if(RWINDOW_BARS_CUT)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				user.visible_message("<span class='notice'>[user] начинает откручивать [src.name] от рамки...</span>",
+				user.visible_message("<span class='notice'>[user] начинает откручивать [sklonenie(src.name, VINITELNI, src.gender)] от рамки...</span>",
 					"<span class='notice'>Начинаю откручивать болты...</span>")
 				if(I.use_tool(src, user, 50, volume = 50))
 					to_chat(user, "<span class='notice'>Снимаю окно с болтов и теперь оно может быть свободно перемещено.</span>")
@@ -421,7 +421,7 @@
 /obj/structure/window/proc/cool_bolts()
 	if(state == RWINDOW_BOLTS_HEATED)
 		state = RWINDOW_SECURE
-		visible_message("<span class='notice'>Винтики в [src.name] выглядят остывшими...</span>")
+		visible_message("<span class='notice'>Винтики в [sklonenie(src.name, DATELNI, src.gender)] выглядят остывшими...</span>")
 
 /obj/structure/window/reinforced/examine(mob/user)
 	. = ..()

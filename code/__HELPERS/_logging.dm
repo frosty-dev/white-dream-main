@@ -1,10 +1,15 @@
 //wrapper macros for easier grepping
 #define DIRECT_OUTPUT(A, B) A << B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
-#define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
+#define SEND_SOUND(target, sound) send_sound_preprocessor(target, sound)
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
+
+/proc/send_sound_preprocessor(target, var/sound/sound)
+	if(sound.environment == -1)
+		sound.environment = 10
+	DIRECT_OUTPUT(target, sound)
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
@@ -193,8 +198,8 @@
 /proc/log_mapping(text)
 	WRITE_LOG(GLOB.world_map_error_log, text)
 
-/* ui logging */ 
- 
+/* ui logging */
+
 /proc/log_tgui(text)
 	WRITE_LOG(GLOB.tgui_log, text)
 

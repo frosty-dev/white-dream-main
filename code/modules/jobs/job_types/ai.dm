@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = "#ccffcc"
-	supervisors = "your laws"
+	supervisors = "своим законам"
 	req_admin_notify = TRUE
 	minimal_player_age = 10
 	exp_requirements = 180

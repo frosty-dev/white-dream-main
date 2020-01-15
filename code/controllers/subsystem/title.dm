@@ -41,6 +41,8 @@ SUBSYSTEM_DEF(title)
 	if(splash_turf)
 		splash_turf.icon = 'icons/protocol_c.dmi'
 		splash_turf.icon_state = "init1"
+		if (prob(30))
+			splash_turf.color = pick("#ff00ff", "#ff0000", "#0000ff", "#00ff00", "#00ffff")
 		spawn(20)
 			splash_turf.icon_state = "loop1"
 

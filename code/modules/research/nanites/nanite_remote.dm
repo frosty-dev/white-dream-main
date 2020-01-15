@@ -1,8 +1,8 @@
-#define REMOTE_MODE_OFF "Off"
-#define REMOTE_MODE_SELF "Local"
-#define REMOTE_MODE_TARGET "Targeted"
-#define REMOTE_MODE_AOE "Area"
-#define REMOTE_MODE_RELAY "Relay"
+#define REMOTE_MODE_OFF "Выкл"
+#define REMOTE_MODE_SELF "Локально"
+#define REMOTE_MODE_TARGET "Целевое"
+#define REMOTE_MODE_AOE "Зона"
+#define REMOTE_MODE_RELAY "Реле"
 
 /obj/item/nanite_remote
 	name = "nanite remote control"
