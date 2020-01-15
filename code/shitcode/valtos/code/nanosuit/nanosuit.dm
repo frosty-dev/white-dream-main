@@ -859,8 +859,8 @@
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
 			D.Paralyze(15)
-			D.visible_message("<span class='warning'>[A] ложит [D] к хуям на пол!", \
-							"<span class='userdanger'>[A] ложит меня к хуям на пол!</span>")
+			D.visible_message("<span class='warning'>[A] кладет [D] к хуям на пол!", \
+							"<span class='userdanger'>[A] кладет меня к хуям на пол!</span>")
 			if(prob(75))
 				step_away(D,A,15)
 		else if(A.grab_state > GRAB_AGGRESSIVE)

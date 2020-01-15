@@ -1327,8 +1327,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(target.IsKnockdown() && !target.IsParalyzed())
 			target.Paralyze(SHOVE_CHAIN_PARALYZE)
-			target.visible_message("<span class='danger'>[user.name] ложит [target.name] на лопатки!</span>",
-				"<span class='danger'>[user.name] ложит меня на лопатки!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
+			target.visible_message("<span class='danger'>[user.name] кладет [target.name] на лопатки!</span>",
+				"<span class='danger'>[user.name] кладет меня на лопатки!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
 			to_chat(user, "<span class='danger'>Укладываю [target.name] на лопатки!</span>")
 			addtimer(CALLBACK(target, /mob/living/proc/SetKnockdown, 0), SHOVE_CHAIN_PARALYZE)
 			log_combat(user, target, "kicks", "onto their side (paralyzing)")
