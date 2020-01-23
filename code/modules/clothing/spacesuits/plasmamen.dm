@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/suit/space/eva/plasmaman
-	name = "EVA plasma envirosuit"
-	desc = "A special plasma containment suit designed to be space-worthy, as well as worn over other clothing. Like its smaller counterpart, it can automatically extinguish the wearer in a crisis, and holds twice as many charges."
+	name = "ЕВА плазменный скафандр"
+	desc = "Специальный скафандр, разработаный для плазмаменов для безопасного пребывания на станции. Оснащен внутренней системой пожаротушения. Число срабатываний ограничено."
 	allowed = list(/obj/item/gun, /obj/item/ammo_casing, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword, /obj/item/restraints/handcuffs, /obj/item/tank)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75)
 	resistance_flags = FIRE_PROOF
@@ -29,7 +29,7 @@
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
-			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes [H.p_them()]!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+			H.visible_message("<span class='warning'>[H]'s костюм автоматически тушит [H.p_them()]!</span>","<span class='warning'>В костюме сработала система пожаротушения.</span>")
 			H.ExtinguishMob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 
@@ -144,101 +144,101 @@
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
-	name = "security plasma envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for security officers, protecting them from being flashed and burning alive, alongside other undesirables."
+	name = "плазмаменский шлем охраны"
+	desc = "Этот шлем разработан для охраны, защищает от флешки и огня."
 	icon_state = "security_envirohelm"
 	item_state = "security_envirohelm"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/warden
-	name = "warden's plasma envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for the warden, a pair of white stripes being added to differeciate them from other members of security."
+	name = "плазмаменский шлем вардена"
+	desc = "Этот шлем разработан для охраны, для тех, кто привык держать стул тёплым."
 	icon_state = "warden_envirohelm"
 	item_state = "warden_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/medical
-	name = "medical doctor's plasma envirosuit helmet"
-	desc = "An envirohelmet designed for plasmaman medical doctors, having two stripes down its length to denote as much."
+	name = "плазмаменский шлем доктора"
+	desc = "Сделало для горящих докторов."
 	icon_state = "doctor_envirohelm"
 	item_state = "doctor_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/paramedic
-	name = "paramedic plasma envirosuit helmet"
-	desc = "An envirohelmet designed for plasmaman paramedics, with darker blue stripes compared to the medical model."
+	name = "плазмаменский шлем парамедика"
+	desc = "Сделано с душой для парапедиков. Синие полоски идеально подойдут под костюм."
 	icon_state = "paramedic_envirohelm"
 	item_state = "paramedic_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/genetics
-	name = "geneticist's plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for geneticists."
+	name = "плазмаменский шлем генетика"
+	desc = "Шлем для хромосомных исследователей."
 	icon_state = "geneticist_envirohelm"
 	item_state = "geneticist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/viro
-	name = "virology plasma envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	name = "плазмаменский шлем вирусолога"
+	desc = "Шлем вирусолога защищает от всего того, что вы создадите в лаборатории."
 	icon_state = "virologist_envirohelm"
 	item_state = "virologist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/chemist
-	name = "chemistry plasma envirosuit helmet"
-	desc = "A plasmaman envirosuit designed for chemists, two orange stripes going down it's face."
+	name = "плазмаменский шлем химика"
+	desc = "Разработан для химиков, две оранжевые полосы идут к лицу."
 	icon_state = "chemist_envirohelm"
 	item_state = "chemist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/science
-	name = "science plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for scientists."
+	name = "плазмаменский шлем ученого"
+	desc = "Разработан для учёных."
 	icon_state = "scientist_envirohelm"
 	item_state = "scientist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/robotics
-	name = "robotics plasma envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for roboticists."
+	name = "плазмаменский шлем робототехника"
+	desc = "Шлем, разработанный для робототехников."
 	icon_state = "roboticist_envirohelm"
 	item_state = "roboticist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering
-	name = "engineering plasma envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
+	name = "плазмаменский инженерный шлем"
+	desc = "Космический шлем, разработаный специально для инженеров. Розовые полоски заменены оранжевым."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75)
 
 /obj/item/clothing/head/helmet/space/plasmaman/atmospherics
-	name = "atmospherics plasma envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
+	name = "плазмаменский шлем атмостехника"
+	desc = "Космический шлем, разработаный специально для атмосферных техников. Розовые полоски заменены синим."
 	icon_state = "atmos_envirohelm"
 	item_state = "atmos_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/cargo
-	name = "cargo plasma envirosuit helmet"
-	desc = "An plasmaman envirohelmet designed for cargo techs and quartermasters."
+	name = "плазмаменский шлем карготехника"
+	desc = "Разработан специально для отдела доставки."
 	icon_state = "cargo_envirohelm"
 	item_state = "cargo_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mining
-	name = "mining plasma envirosuit helmet"
-	desc = "A khaki helmet given to plasmamen miners operating on lavaland."
+	name = "плазмаменский шлем шахтёра"
+	desc = "Такой шлем с камуфляжной расцветкой позволяет проводить операции на Лаваленде."
 	icon_state = "explorer_envirohelm"
 	item_state = "explorer_envirohelm"
 	visor_icon = "explorer_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/chaplain
-	name = "chaplain's plasma envirosuit helmet"
-	desc = "An envirohelmet specially designed for only the most pious of plasmamen."
+	name = "плазмаменский шлем каплана"
+	desc = "Сделано с любовью для особо верующих плазмаменов."
 	icon_state = "chap_envirohelm"
 	item_state = "chap_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/white
-	name = "белый plasma envirosuit helmet"
-	desc = "A generic white envirohelm."
+	name = "белый шлем плазмамена"
+	desc = "Начальный белый шлем."
 	icon_state = "white_envirohelm"
 	item_state = "white_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
-	name = "curator's plasma envirosuit helmet"
-	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
+	name = "плазмаменский шлем куратора"
+	desc = "Сделано под старину специально для кураторов."
 	icon_state = "prototype_envirohelm"
 	item_state = "prototype_envirohelm"
 	actions_types = list(/datum/action/item_action/toggle_welding_screen/plasmaman)
@@ -246,27 +246,27 @@
 	visor_icon = "prototype_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/botany
-	name = "botany plasma envirosuit helmet"
-	desc = "A green and blue envirohelmet designating it's wearer as a botanist. While not specially designed for it, it would protect against minor planet-related injuries."
+	name = "плазмаменский шлем ботаников"
+	desc = "Зеленые и синие полоски означают, что это одежка для ботаников. Может защитить от мелких царапин."
 	icon_state = "botany_envirohelm"
 	item_state = "botany_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/janitor
-	name = "janitor's plasma envirosuit helmet"
-	desc = "A grey helmet bearing a pair of purple stripes, designating the wearer as a janitor."
+	name = "плазмаменский шлем уборщика"
+	desc = "Шлем для тех, кто любит поджигать туалеты, вместо того, чтобы их мыть."
 	icon_state = "janitor_envirohelm"
 	item_state = "janitor_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mime
-	name = "mime envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	name = "плазмаменский шлем мима"
+	desc = "*молчание*."
 	icon_state = "mime_envirohelm"
 	item_state = "mime_envirohelm"
 	visor_icon = "mime_envisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/clown
-	name = "clown envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	name = "плазмаменский шлем клоуна"
+	desc = "Цветной, разноцветный, для горящих клованов. <i>'HONK!'</i>"
 	icon_state = "clown_envirohelm"
 	item_state = "clown_envirohelm"
 	visor_icon = "clown_envisor"
