@@ -7,8 +7,11 @@
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
 
 /proc/send_sound_preprocessor(target, var/sound/sound)
+	if(sound == null)
+		DIRECT_OUTPUT(target, sound)
+		return
 	if(sound.environment == -1)
-		sound.environment = 10
+		sound.environment = 12
 	DIRECT_OUTPUT(target, sound)
 
 //print a warning message to world.log

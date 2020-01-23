@@ -128,7 +128,7 @@
 	visible_message("<span class='notice'>\The [src] finishes processing.</span>")
 
 /obj/machinery/processor/verb/eject()
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Eject Contents"
 	set src in oview(1)
 	if(usr.stat || usr.restrained())

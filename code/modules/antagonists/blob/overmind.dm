@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/proc/blob_talk(message)
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	if (!message)
 		return
@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(blob_core)
 			stat(null, "Core Health: [blob_core.obj_integrity]")
 			stat(null, "Power Stored: [blob_points]/[max_blob_points]")

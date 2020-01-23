@@ -133,7 +133,7 @@
 
 /mob/living/simple_animal/revenant/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		stat(null, "Current essence: [essence]/[essence_regen_cap]E")
 		stat(null, "Stolen essence: [essence_accumulated]E")
 		stat(null, "Unused stolen essence: [essence_excess]E")

@@ -51,32 +51,26 @@
 /**
   * Convert random parts of a passed in message to stars
   *
-  * * n - the string to convert
-  * * pr - probability any character gets changed
+  * * phrase - the string to convert
+  * * probability - probability any character gets changed
   *
   * This proc is dangerously laggy, avoid it or die
   */
-/proc/stars(n, pr)
-	n = html_encode(n)
-	if (pr == null)
-		pr = 25
-	if (pr <= 0)
-		return null
-	else
-		if (pr >= 100)
-			return n
-	var/te = n
-	var/t = ""
-	n = length(n)
-
-	for(var/p = 1 to min(n,MAX_BROADCAST_LEN))
-		if ((copytext(te, p, p + 1) == " " || prob(pr)))
-			t = text("[][]", t, copytext(te, p, p + 1))
+/proc/stars(phrase, probability = 25)
+	if(probability <= 0)
+		return phrase
+	phrase = html_decode(phrase)
+	var/leng = length(phrase)
+	. = ""
+	var/char = ""
+	for(var/i = 1, i <= leng, i += length(char))
+		char = phrase[i]
+		if(char == " " || !prob(probability))
+			. += char
 		else
-			t = text("[]*", t)
-	if(n > MAX_BROADCAST_LEN)
-		t += "..." //signals missing text
-	return sanitize(t)
+			. += "*"
+	return sanitize(.)
+
 /**
   * Makes you speak like you're drunk
   */
@@ -169,15 +163,20 @@
   * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
   */
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
+	text = html_decode(text)
 	. = ""
-	for(var/i in 1 to length(text))
-		var/letter = ascii2text(text2ascii(text, i))
+	var/rawchar = ""
+	var/letter = ""
+	var/lentext = length(text)
+	for(var/i = 1, i <= lentext, i += length(rawchar))
+		rawchar = letter = text[i]
 		if(prob(chance))
 			if(replace_characters)
 				letter = ""
 			for(var/j in 1 to rand(0, 2))
-				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+				letter += pick("#", "@", "*", "&", "%", "$", "/", "<", ">", ";", "*", "*", "*", "*", "*", "*", "*")
 		. += letter
+	return sanitize(.)
 
 
 /**
@@ -376,7 +375,7 @@
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(!notify_suiciders && (O in GLOB.suicided_mob_list))
 			continue
-		if (ignore_key && O.ckey in GLOB.poll_ignore[ignore_key])
+		if (ignore_key && (O.ckey in GLOB.poll_ignore[ignore_key]))
 			continue
 		var/orbit_link
 		if (source && action == NOTIFY_ORBIT)

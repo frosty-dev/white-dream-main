@@ -56,7 +56,7 @@
 /mob/living/carbon/human/Stat()
 	..()
 
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		//stat(null, "Взаимодействие: [a_intent]")
 		//stat(null, "Режим перемещения: [m_intent]")
 		if (internal)
@@ -224,6 +224,7 @@
 			L.embedded_objects -= I
 			L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
 			I.forceMove(get_turf(src))
+			I.unembedded()
 			usr.put_in_hands(I)
 			usr.emote("scream")
 			usr.visible_message("<span class='notice'>[usr] успешно вырывает [I] из [L.name]!</span>", "<span class='notice'>Успешно вырываю [I] из [L.name].</span>")
@@ -239,7 +240,7 @@
 			return
 
 	if(href_list["pockets"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY)) //TODO: Make it match (or intergrate it into) strippanel so you get 'item cannot fit here' warnings if mob_can_equip fails
-		var/pocket_side = href_list["pockets"]
+		var/pocket_side = href_list["pockets"] != "right" ? "left" : "right"
 		var/pocket_id = (pocket_side == "right" ? ITEM_SLOT_RPOCKET : ITEM_SLOT_LPOCKET)
 		var/obj/item/pocket_item = (pocket_id == ITEM_SLOT_RPOCKET ? r_store : l_store)
 		var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
@@ -810,7 +811,7 @@
 		override = dna.species.override_float
 	..()
 
-/mob/living/carbon/human/vomit(lost_nutrition = 10, blood = 0, stun = 1, distance = 0, message = 1, toxic = 0)
+/mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE, harm = TRUE, force = FALSE, purge = FALSE)
 	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message("<span class='warning'>[src] рыгает!</span>", \
@@ -838,6 +839,8 @@
 	if(href_list[VV_HK_COPY_OUTFIT])
 		if(!check_rights(R_SPAWN))
 			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+			return
 		copy_outfit()
 	if(href_list[VV_HK_MOD_MUTATIONS])
 		if(!check_rights(R_SPAWN))
@@ -862,7 +865,8 @@
 	if(href_list[VV_HK_MOD_QUIRKS])
 		if(!check_rights(R_SPAWN))
 			return
-
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+			return
 		var/list/options = list("Clear"="Clear")
 		for(var/x in subtypesof(/datum/quirk))
 			var/datum/quirk/T = x
@@ -883,11 +887,15 @@
 	if(href_list[VV_HK_MAKE_MONKEY])
 		if(!check_rights(R_SPAWN))
 			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+			return
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
 			return
 		usr.client.holder.Topic("vv_override", list("monkeyone"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_CYBORG])
 		if(!check_rights(R_SPAWN))
+			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 			return
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
 			return
@@ -895,17 +903,23 @@
 	if(href_list[VV_HK_MAKE_ALIEN])
 		if(!check_rights(R_SPAWN))
 			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+			return
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
 			return
 		usr.client.holder.Topic("vv_override", list("makealien"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_SLIME])
 		if(!check_rights(R_SPAWN))
 			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+			return
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
 			return
 		usr.client.holder.Topic("vv_override", list("makeslime"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
+			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 			return
 		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
 		if(result)
@@ -914,6 +928,8 @@
 			set_species(newtype)
 	if(href_list[VV_HK_PURRBATION])
 		if(!check_rights(R_SPAWN))
+			return
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 			return
 		if(!ishumanbasic(src))
 			to_chat(usr, "This can only be done to the basic human species at the moment.")

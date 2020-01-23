@@ -19,7 +19,7 @@
 
 /mob/living/simple_animal/hostile/guardian/bomb/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(bomb_cooldown >= world.time)
 			stat(null, "Bomb Cooldown Remaining: [DisplayTimeText(bomb_cooldown - world.time)]")
 

@@ -370,7 +370,7 @@
 				setTimer(SSshuttle.emergencyEscapeTime * engine_coeff)
 				priority_announce("Эвакуационный шаттл покинул станцию. Осталось [timeLeft(600)] минуты до прибытия в доки Центрального Коммандования.", null, null, "Priority")
 				webhook_send_roundstatus("shuttle left")
-				SSmapping.mapvote() //If no map vote has been run yet, start one.
+				//SSmapping.mapvote() //If no map vote has been run yet, start one.
 
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
@@ -458,9 +458,10 @@
 	light_color = LIGHT_COLOR_BLUE
 	density = FALSE
 
-/obj/machinery/computer/shuttle/pod/update_icon()
-	return
-
+/obj/machinery/computer/shuttle/pod/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_blocker)
+	
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return

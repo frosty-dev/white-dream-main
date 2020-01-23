@@ -231,7 +231,7 @@
 
 /mob/living/silicon/ai/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(!stat)
 			stat(null, text("System integrity: [(health+100)/2]%"))
 			if(isturf(loc)) //only show if we're "in" a core

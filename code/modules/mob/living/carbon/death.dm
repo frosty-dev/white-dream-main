@@ -2,6 +2,8 @@
 	if(stat == DEAD)
 		return
 
+	DIRECT_OUTPUT(src, sound(null))
+
 	silent = FALSE
 	losebreath = 0
 

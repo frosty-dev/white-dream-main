@@ -14,7 +14,7 @@ PROCESSING_SUBSYSTEM_DEF(btension)
 /client/verb/toggle_battletension()
 	set name = "Toggle Battle Tension"
 	set desc = "Toggles battle music."
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 
 	prefs.battlemusic = !prefs.battlemusic
 	prefs.save_preferences()

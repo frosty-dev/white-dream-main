@@ -101,7 +101,7 @@
 	create_reagents(100)
 	set_colour(new_colour)
 	. = ..()
-	set_nutrition(700)
+	set_nutrition(400)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_SLIME, 7.5)
 
 /mob/living/simple_animal/slime/Destroy()

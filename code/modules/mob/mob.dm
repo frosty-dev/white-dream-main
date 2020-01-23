@@ -108,7 +108,7 @@
   * Some kind of debug verb that gives atmosphere environment details
   */
 /mob/proc/Cell()
-	set category = "Admin"
+	set category = "АДМИН"
 	set hidden = 1
 
 	if(!loc)
@@ -138,7 +138,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type & MSG_VISUAL && eye_blind )//Vision related
@@ -436,7 +436,7 @@
   */
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Показать на..."
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 
 	if(!src || !isturf(src.loc) || !(A in view(client.view, src)))
 		return FALSE
@@ -490,7 +490,7 @@
   */
 /mob/verb/mode()
 	set name = "Использовать предмет в руке"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src = usr
 
 	if(ismecha(loc))
@@ -528,7 +528,7 @@
 		if (world.time < memory_throttle_time)
 			return
 		memory_throttle_time = world.time + 5 SECONDS
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+		msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 		msg = sanitize(msg)
 
 		mind.store_memory(msg)
@@ -605,36 +605,34 @@
   * * handles the strip panel equip and unequip as well if "item" sent
   */
 /mob/Topic(href, href_list)
+	var/mob/user = usr
+
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["refresh"])
-		if(machine && in_range(src, usr))
-			show_inv(machine)
+	if(user != src)
+		if(href_list["item"] && user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
+			var/slot = text2num(href_list["item"])
+			var/hand_index = text2num(href_list["hand_index"])
+			var/obj/item/what
+			if(hand_index)
+				what = get_item_for_held_index(hand_index)
+				slot = list(slot,hand_index)
+			else
+				what = get_item_by_slot(slot)
+			if(what)
+				if(!(what.item_flags & ABSTRACT))
+					user.stripPanelUnequip(what,src,slot)
+			else
+				user.stripPanelEquip(what,src,slot)
 
-
-	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
-		var/slot = text2num(href_list["item"])
-		var/hand_index = text2num(href_list["hand_index"])
-		var/obj/item/what
-		if(hand_index)
-			what = get_item_for_held_index(hand_index)
-			slot = list(slot,hand_index)
-		else
-			what = get_item_by_slot(slot)
-		if(what)
-			if(!(what.item_flags & ABSTRACT))
-				usr.stripPanelUnequip(what,src,slot)
-		else
-			usr.stripPanelEquip(what,src,slot)
-
-	if(usr.machine == src)
-		if(Adjacent(usr))
-			show_inv(usr)
-		else
-			usr << browse(null,"window=mob[REF(src)]")
+		if(user.machine == src)
+			if(Adjacent(user))
+				show_inv(user)
+			else
+				user << browse(null,"window=mob[REF(src)]")
 
 // The src mob is trying to strip an item from someone
 // Defined in living.dm
@@ -688,13 +686,13 @@
 /mob/Stat()
 	..()
 
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(SSshuttle.emergency)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				stat("[ETA]", "[SSshuttle.emergency.getTimerStr()]")
 
-	if(statpanel("Status"))
+	if(statpanel("СС"))
 		if (client)
 			stat("Пинг:", "[round(client.lastping, 1)]мс (Средний: [round(client.avgping, 1)]мс)")
 		stat("Карта:", "[SSmapping.config?.map_name || "Загрузка..."]")
@@ -733,7 +731,7 @@
 				for(var/datum/controller/subsystem/SS in Master.subsystems)
 					SS.stat_entry()
 			GLOB.cameranet.stat_entry()
-		if(statpanel("Tickets"))
+		if(statpanel("ТИКЕТЫ"))
 			GLOB.ahelp_tickets.stat_entry()
 		if(length(GLOB.sdql2_queries))
 			if(statpanel("SDQL2"))
@@ -1252,3 +1250,10 @@
 	for(var/obj/item/I in held_items)
 		if(I.item_flags & SLOWS_WHILE_IN_HAND)
 			. += I.slowdown
+
+/mob/proc/set_stat(new_stat)
+	if(new_stat == stat)
+		return
+	SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, new_stat)
+	. = stat
+	stat = new_stat

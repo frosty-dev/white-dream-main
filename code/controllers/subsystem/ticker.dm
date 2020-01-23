@@ -291,8 +291,8 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	SSdbcore.SetRoundStart()
 
-	to_chat(world, "<span class='notice'><B>Приветствуем вас на [station_name()], приятного пребывания!</B></span>")
-	SEND_SOUND(world, sound('sound/ai/welcome.ogg'))
+	to_chat(world, "<span class='notice'>Приветствуем вас на <B>[station_name()]</B>, приятного пребывания!</span>")
+	SEND_SOUND(world, sound('sound/ai/sheptun.ogg'))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -649,17 +649,7 @@ SUBSYSTEM_DEF(ticker)
 	save_admin_data()
 	update_everything_flag_in_db()
 	if(!round_end_sound)
-		round_end_sound = pick(\
-		'sound/roundend/chashapunk.ogg',
-		'sound/roundend/chisti.ogg',
-		'sound/roundend/djeban.ogg',
-		'sound/roundend/hello.ogg',
-		'sound/roundend/karutonik.ogg',
-		'sound/roundend/onyx.ogg',
-		'sound/roundend/pidoras.ogg',
-		'sound/roundend/mocha.wav',
-		'sound/roundend/gachicombat.ogg'\
-		)
+		round_end_sound = 'sound/roundend/logoff.ogg'
 
 	SEND_SOUND(world, sound(round_end_sound))
 	text2file(login_music, "data/last_round_lobby_music.txt")

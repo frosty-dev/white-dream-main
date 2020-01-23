@@ -3,7 +3,7 @@
 		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
 
 /datum/admins/proc/togglelooc()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="can you even see verb descriptions anywhere?"
 	set name=" 🔄 Toggle LOOC"
 	toggle_looc()
@@ -12,7 +12,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, "Toggle LOOC|[GLOB.looc_allowed]")
 
 /datum/admins/proc/toggleloocdead()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc = "seriously, why do we even bother"
 	set name = " 🔄 Toggle Dead LOOC"
 	GLOB.dlooc_allowed = !(GLOB.dlooc_allowed)
@@ -20,16 +20,16 @@
 	message_admins("[key_name_admin(usr)] toggled Dead LOOC.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, "Toggle Dead LOOC|[GLOB.dlooc_allowed]")
 
-TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Chat, listen_looc)()
 	set name = " 🔄 LOOC"
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 	set desc = "Show LOOC Chat"
 	usr.client.prefs.chat_toggles ^= CHAT_LOOC
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC) ? "no longer" : "now"] see messages on the LOOC channel.")
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel.")
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, "Toggle Seeing LOOC|[usr.client.prefs.chat_toggles & CHAT_LOOC]") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/verbs/menu/Settings/listen_looc/Get_checked(client/C)
+/datum/verbs/menu/Settings/Chat/listen_looc/Get_checked(client/C)
 	return C.prefs.chat_toggles & CHAT_LOOC
 
 /client/verb/looc(msg as text)
@@ -75,7 +75,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
 			qdel(src)
 			return
 
-	if(prefs.chat_toggles & CHAT_LOOC)
+	if(!prefs.chat_toggles & CHAT_LOOC)
 		to_chat(src, "<span class='danger'>Не хочу писать в LOOC.</span>")
 		return
 
@@ -93,10 +93,10 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
 	for(var/mob/M in stuff_that_hears)
 		if((((M.client_mobs_in_contents) && (M.client_mobs_in_contents.len <= 0)) || !M.client_mobs_in_contents))
 			continue
-		if(M.client && !(M.client.prefs.chat_toggles & CHAT_LOOC))
+		if(M.client && (M.client.prefs.chat_toggles & CHAT_LOOC))
 			clients_to_hear += M.client
 		for(var/mob/mob in M.client_mobs_in_contents)
-			if(mob.client && mob.client.prefs && !(mob.client.prefs.chat_toggles & CHAT_LOOC))
+			if(mob.client && mob.client.prefs && (mob.client.prefs.chat_toggles & CHAT_LOOC))
 				clients_to_hear += mob.client
 
 	var/message_admin = "<span class='looc'>LOOC: [ADMIN_LOOKUPFLW(mob)]: [msg]</span>"
@@ -130,4 +130,4 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)()
 
 /proc/toggle_looc(toggle = null)
 	GLOB.looc_allowed = (toggle || !GLOB.looc_allowed)
-	message_admins("<span class='bold'>LOOC [GLOB.looc_allowed ? "выключен" : "включен"].</span>") 
+	message_admins("<span class='bold'>LOOC [GLOB.looc_allowed ? "выключен" : "включен"].</span>")

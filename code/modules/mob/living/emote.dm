@@ -411,17 +411,11 @@
 	. = ..() && intentional
 
 /datum/emote/living/custom/proc/check_invalid(mob/user, input)
-	. = TRUE
-	if(copytext(input,1,8) == "говорит")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,11) == "восклицает")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,7) == "кричит")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else if(copytext(input,1,11) == "спрашивает")
-		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else
-		. = FALSE
+	var/static/regex/stop_bad_mime = regex(@"говорит|восклицает|кричит|спрашивает")
+	if(stop_bad_mime.Find(input, 1, 1))
+		to_chat(user, "<span class='danger'>Не знаю что делать!</span>")
+		return TRUE
+	return FALSE
 
 /datum/emote/living/custom/run_emote(mob/user, params, type_override = null, intentional = FALSE)
 	if(!can_run_emote(user, TRUE, intentional))

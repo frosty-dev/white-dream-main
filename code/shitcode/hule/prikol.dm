@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(frabbers)
 	if(!GLOB.prikol_mode || owner.mind.antag_datums || force_enable) //пиздец уебищно выглядит лень придумывать другое
 		var/count = FALSE
 		for(var/datum/antagonist/A in owner.mind.antag_datums)
-			if(istype(A, /datum/antagonist/traitor) && /datum/objective/hijack in A.objectives)
+			if(istype(A, /datum/antagonist/traitor) && (/datum/objective/hijack in A.objectives))
 				count = TRUE
 			else if(istype(A, /datum/antagonist/nukeop))
 				count = TRUE
@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(frabbers)
 			playsound(T,'code/shitcode/hule/SFX/csSFX/holyshit.wav', 150, 5, pressure_affected = FALSE)
 
 /client/proc/toggle_prikol()
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Toggle P.R.I.K.O.L"
 
 /*

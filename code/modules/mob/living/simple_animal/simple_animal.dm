@@ -208,7 +208,7 @@
 		if(health <= 0)
 			death()
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 	med_hud_set_status()
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
@@ -393,7 +393,7 @@
 
 /mob/living/simple_animal/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 		return 1
 

@@ -55,9 +55,9 @@ GLOBAL_PROTECT(VVpixelmovement)
 		//	the type with the base type removed from the begaining
 		var/fancytype = types[D.type]
 		if (findtext(fancytype, types[type]))
-			fancytype = copytext(fancytype, length(types[type])+1)
-		var/shorttype = copytext("[D.type]", length("[type]")+1)
-		if (length(shorttype) > length(fancytype))
+			fancytype = copytext(fancytype, length(types[type]) + 1)
+		var/shorttype = copytext("[D.type]", length("[type]") + 1)
+		if (length_char(shorttype) > length_char(fancytype))
 			shorttype = fancytype
 		if (!length(shorttype))
 			shorttype = "/"
@@ -281,6 +281,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 			return FALSE
 	if(param_var_name in GLOB.VVckey_edit)
 		if(!check_rights(R_SPAWN|R_DEBUG))
+			return FALSE
+		if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 			return FALSE
 	if(param_var_name in GLOB.VVicon_edit_lock)
 		if(!check_rights(R_FUN|R_DEBUG))

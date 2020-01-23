@@ -47,6 +47,8 @@
 					set_suicide(FALSE)
 					return
 
+				client.inc_metabalance(METACOIN_SUICIDE_REWARD, reason="За всё нужно платить.")
+
 				suicide_log()
 
 				var/damage_mod = 0

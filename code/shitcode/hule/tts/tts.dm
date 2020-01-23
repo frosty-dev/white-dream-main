@@ -108,7 +108,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			owner.tts(msg, freq = frequency)
 
 /client/proc/anime_voiceover()
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "ANIME VO"
 
 

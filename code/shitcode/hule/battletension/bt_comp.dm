@@ -3,7 +3,6 @@
 #define TOUHOU "touhou"
 #define MORTAL "mortal"
 #define NAZIST "nazist"
-#define LOBBYS "lobbys"
 
 PROCESSING_SUBSYSTEM_DEF(btension)
 	name = "Battle Tension"
@@ -129,6 +128,7 @@ PROCESSING_SUBSYSTEM_DEF(btension)
 	S.wait = 0
 	S.volume = 0
 	S.status = 0
+	S.environment = 0
 
 	bm = S
 	SEND_SOUND(owner, bm)
@@ -138,20 +138,35 @@ PROCESSING_SUBSYSTEM_DEF(btension)
 		return
 
 	var/list/result = list()
-
 	var/list/genres = owner.client.prefs.btprefsnew
 
+	var/list/bm_prikol = list('cfg/battle_music/prikol/Battlefield.ogg', 'cfg/battle_music/prikol/gladiator.ogg')
+	var/list/bm_techno = list('cfg/battle_music/techno/03 NARC.ogg', 'cfg/battle_music/techno/Acid-Notation - The Yanderes Puppet Show.ogg', 'cfg/battle_music/techno/Carpenter Brut - Roller Mobster.ogg', 'cfg/battle_music/techno/M O O N - Hydrogen.ogg', 'cfg/battle_music/techno/Protector 101 - Hardware.ogg', 'cfg/battle_music/techno/Street Cleaner - Murdercycle.ogg')
+	var/list/bm_touhou = list('cfg/battle_music/touhou/80sspark.ogg', 'cfg/battle_music/touhou/badapple.ogg', 'cfg/battle_music/touhou/Galaxy Collapse.ogg')
+	var/list/bm_mortal = list('cfg/battle_music/mortal/unstoppable.ogg')
+	var/list/bm_nazist = list('cfg/battle_music/nazist/German Military Marches - Lore, Lore, Lore.ogg')
+
 	for(var/genre in genres)
-		for(var/music in flist("[global.config.directory]/battle_music/[genre]/"))
-			result += "[global.config.directory]/battle_music/[genre]/[music]"
+		switch (genre)
+			if (PRIKOL)
+				result += bm_prikol
+			if (TECHNO)
+				result += bm_techno
+			if (TOUHOU)
+				result += bm_touhou
+			if (MORTAL)
+				result += bm_mortal
+			if (NAZIST)
+				result += bm_nazist
+
 	return result
 
 /client/verb/customize_battletension()
 	set name = " #️⃣ Настроить Battle Tension"
 	set desc = "Allows for advanced prikol immersion."
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 
-	var/list/genres = list(PRIKOL, TECHNO, TOUHOU, MORTAL, NAZIST, LOBBYS)
+	var/list/genres = list(PRIKOL, TECHNO, TOUHOU, MORTAL, NAZIST)
 	var/settings
 
 	if(prefs.btprefsnew == null)

@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(events)
 // REEEEEEEEE
 /client/proc/forceEvent()
 	set name = "Trigger Event"
-	set category = "Fun"
+	set category = "ФАН"
 
 	if(!holder ||!check_rights(R_FUN))
 		return

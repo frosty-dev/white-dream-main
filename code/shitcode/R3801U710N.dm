@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(petushiniy_list, list("ambrosiafumari"))
 	var/zashkvareno = 0
 
 /proc/zashkvar_check(var/mob/M, var/atom/A) //nasral na other_mobs.dm
-	if(M && M.ckey && !A.zashkvareno && M.ckey in GLOB.petushiniy_list)
+	if(M && M.ckey && !A.zashkvareno && (M.ckey in GLOB.petushiniy_list))
 		A.zashkvareno = 1
 		A.visible_message("<span class='danger'>[A.name] зашкваривается от петушиного касания!</span>")
 		if(prob(50))

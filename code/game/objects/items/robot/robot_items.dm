@@ -773,7 +773,7 @@
 
 ///A right-click verb, for those not using hotkey mode.
 /obj/item/borg/apparatus/verb/verb_dropHeld()
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Drop"
 
 	if(usr != loc || !stored)
@@ -877,7 +877,7 @@
 /obj/item/borg/apparatus/beaker/extra
 	name = "secondary beaker storage apparatus"
 	desc = "A supplementary beaker storage apparatus."
-	
+
 /obj/item/borg/apparatus/beaker/service
 	name = "beverage storage apparatus"
 	desc = "A special apparatus for carrying drinks without spilling the contents. Alt-Z or right-click to drop the beaker."

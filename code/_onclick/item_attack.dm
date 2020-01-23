@@ -149,7 +149,7 @@
 		attack_message = "<b>[user]</b> [message_verb] <b>[sklonenie(src.name, VINITELNI, gender)]</b> в [message_hit_area] [sklonenie(I.name, TVORITELNI, I.gender)]!"
 		attack_message_local = "<b>[user]</b> [message_verb] <b>меня</b> в [message_hit_area] [sklonenie(I.name, TVORITELNI, I.gender)]!"
 	if(user == src)
-		attack_message_local = "Я [sklonenie_item_tvor(message_verb)] себя в [message_hit_area] [sklonenie(I.name, TVORITELNI, I.gender)]"
+		attack_message_local = "Моё великолепие [sklonenie_item_tvor(message_verb)] себя в [message_hit_area] [sklonenie(I.name, TVORITELNI, I.gender)]"
 	visible_message("<span class='danger'>[attack_message]</span>",\
 		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
 	return 1

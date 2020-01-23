@@ -184,7 +184,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Adjust Suit Sensors"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src in usr
 	var/mob/M = usr
 	if (istype(M, /mob/dead/))

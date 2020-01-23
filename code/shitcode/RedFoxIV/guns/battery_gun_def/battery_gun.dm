@@ -96,9 +96,6 @@
 		ratio = CEILING(CLAMP(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
 	else
 		ratio = 0
-	if(ratio == old_ratio && !force_update)
-		return
-	old_ratio = ratio
 	cut_overlays()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	var/iconState = "[icon_state]_charge"

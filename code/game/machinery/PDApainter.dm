@@ -131,7 +131,7 @@
 
 /obj/machinery/pdapainter/verb/ejectpda()
 	set name = "Eject PDA"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src in oview(1)
 
 	if(usr.stat || usr.restrained())

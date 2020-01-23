@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(huesoslist, world.file2list("[global.config.directory]/autoeban/huesos.fackuobema"))
 
 /client/proc/huesoslist()
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Huesos List"
 
 	if(!check_rights(R_FUN))

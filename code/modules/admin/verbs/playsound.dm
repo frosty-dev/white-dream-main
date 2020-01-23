@@ -1,5 +1,5 @@
 /client/proc/play_sound(S as sound)
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -42,7 +42,7 @@
 
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -53,7 +53,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_direct_mob_sound(S as sound, mob/M)
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Play Direct Mob Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -68,7 +68,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Direct Mob Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_web_sound()
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -150,7 +150,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -162,7 +162,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/stop_sounds()
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set name = "Stop All Playing Sounds"
 	if(!src.holder)
 		return
@@ -170,7 +170,7 @@
 	log_admin("[key_name(src)] stopped all currently playing sounds.")
 	message_admins("[key_name_admin(src)] stopped all currently playing sounds.")
 	for(var/mob/M in GLOB.player_list)
-		SEND_SOUND(M, sound(null))
+		DIRECT_OUTPUT(M, sound(null))
 		var/client/C = M.client
 		if(C && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 			C.chatOutput.stopMusic()

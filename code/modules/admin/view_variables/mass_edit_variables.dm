@@ -1,5 +1,5 @@
 /client/proc/cmd_mass_modify_object_variables(atom/A, var_name)
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
 

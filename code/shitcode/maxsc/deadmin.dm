@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(de_admined)
 
 /client/proc/de_admin()
 	set name = "De_admin"
-	set category = "Admin"
+	set category = "АДМИН"
 	set desc = "Deadmin an administrator for a round."
 
 	if(!check_rights())

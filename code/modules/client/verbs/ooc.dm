@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(QDELETED(src))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -33,8 +33,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+	if((msg[1] in list(".",";",":","#")) || findtext_char(msg, "say", 1, 5))
+		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "Yes", "No") != "Yes")
 			return
 
 	if(!holder)
@@ -112,18 +112,18 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/set_ooc(newColor as color)
 	set name = " #️⃣ Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Fun"
+	set category = "ФАН"
 	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = " ❌ Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Fun"
+	set category = "ФАН"
 	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
 	set name = " #️⃣ Свой цвет OOC"
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!check_donations(ckey))
@@ -140,7 +140,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/resetcolorooc()
 	set name = " ❌ Сбросить свой цвет OOC"
 	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!check_donations(ckey))
@@ -153,7 +153,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 //Checks admin notice
 /client/verb/admin_notice()
 	set name = " 📝 Заметки раунда"
-	set category = "Admin"
+	set category = "АДМИН"
 	set desc ="Check the admin notice if it has been set"
 	set hidden = TRUE
 
@@ -164,7 +164,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/fix_chat()
 	set name = " ❗ ПОЧИНИТЬ ЧАТ"
-	set category = "OOC"
+	set category = "ОСОБЕННОЕ"
 	if (!chatOutput || !istype(chatOutput))
 		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Wot?", "Recreate Chat Output data", "Cancel")
 		if (action != "Recreate Chat Output data")
@@ -329,7 +329,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/fit_viewport()
 	set name = " ❗ Подстроить экран"
-	set category = "OOC"
+	set category = "ОСОБЕННОЕ"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -375,7 +375,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/bot_token(token as text)
 	set name = " ❗ Discord Bot token"
-	set category = "Special Verbs"
+	set category = "ОСОБЕННОЕ"
 	set desc = "Sends specific token to bot through webhook"
 
 	webhook_send_token(key, token)

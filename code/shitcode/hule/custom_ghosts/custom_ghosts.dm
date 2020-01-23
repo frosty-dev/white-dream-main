@@ -52,7 +52,7 @@
 
 /mob/dead/observer/verb/custom_ghost_form()
 	set name = " #️⃣ Кастомный Спрайт Призрака"
-	set category = "Preferences"
+	set category = "НАСТРОЙКИ"
 	set desc = "Customize your ghastly appearance."
 
 	if(fexists("code/shitcode/hule/custom_ghosts/[ckey].dmi"))

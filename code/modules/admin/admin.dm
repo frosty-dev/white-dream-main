@@ -33,7 +33,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "АДМИН"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
@@ -74,6 +74,8 @@
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=subtract;mob=[REF(M)]'>\[decrease\]</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=set;mob=[REF(M)]'>\[set\]</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=zero;mob=[REF(M)]'>\[zero\]</a>"
+		var/metabalance = M.client.get_metabalance()
+		body += "<br><b>ХРЫВНИ</b>: [metabalance] "
 		var/full_version = "Unknown"
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
@@ -216,7 +218,7 @@
 
 
 /datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun"
+	set category = "ФАН"
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
@@ -470,7 +472,7 @@
 
 
 /datum/admins/proc/restart()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set name = "Reboot World"
 	set desc="Restarts the world immediately"
 	if (!usr.client.holder)
@@ -514,7 +516,7 @@
 				world.TgsEndProcess()
 
 /datum/admins/proc/end_round()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set name = "End Round"
 	set desc = "Attempts to produce a round end report and then restart the server organically."
 
@@ -529,7 +531,7 @@
 
 
 /datum/admins/proc/announce()
-	set category = "Special Verbs"
+	set category = "ОСОБЕННОЕ"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))
@@ -544,7 +546,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/set_admin_notice()
-	set category = "Special Verbs"
+	set category = "ОСОБЕННОЕ"
 	set name = "Set Admin Notice"
 	set desc ="Set an announcement that appears to everyone who joins the server. Only lasts this round"
 	if(!check_rights(0))
@@ -567,7 +569,7 @@
 	return
 
 /datum/admins/proc/toggleooc()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Toggle dis bitch"
 	set name="Toggle OOC"
 	toggle_ooc()
@@ -576,7 +578,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle OOC", "[GLOB.ooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleoocdead()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Toggle dis bitch"
 	set name="Toggle Dead OOC"
 	toggle_dooc()
@@ -586,7 +588,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead OOC", "[GLOB.dooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state == GAME_STATE_PREGAME || SSticker.current_state == GAME_STATE_STARTUP)
@@ -607,7 +609,7 @@
 		SSticker.start_immediately = FALSE
 		SSticker.SetTimeLeft(1800)
 		to_chat(world, "<b>The game will start in 180 seconds.</b>")
-		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+		SEND_SOUND(world, sound('sound/ai/cumttention.ogg'))
 		message_admins("<font color='blue'>[usr.key] has cancelled immediate game start. Game will start in 180 seconds.</font>")
 		log_admin("[usr.key] has cancelled immediate game start.")
 	else
@@ -615,7 +617,7 @@
 	return FALSE
 
 /datum/admins/proc/toggleenter()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="People can't enter"
 	set name="Toggle Entering"
 	GLOB.enter_allowed = !( GLOB.enter_allowed )
@@ -629,7 +631,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Entering", "[GLOB.enter_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleAI()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="People can't be AI"
 	set name="Toggle AI"
 	var/alai = CONFIG_GET(flag/allow_ai)
@@ -643,7 +645,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle AI", "[!alai ? "Disabled" : "Enabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleaban()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
 	var/new_nores = !CONFIG_GET(flag/norespawn)
@@ -658,7 +660,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Respawn", "[!new_nores ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Delay the game start"
 	set name="Delay pre-game"
 
@@ -674,12 +676,12 @@
 			log_admin("[key_name(usr)] delayed the round start.")
 		else
 			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>")
-			SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+			SEND_SOUND(world, sound('sound/ai/cumttention.ogg'))
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/unprison(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "АДМИН"
 	set name = "Unprison"
 	if (is_centcom_level(M.z))
 		SSjob.SendToLateJoin(M)
@@ -692,11 +694,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /datum/admins/proc/spawn_atom(object as text)
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
 	if(!check_rights(R_SPAWN) || !object)
+		return
+
+	if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 		return
 
 	var/list/preparsed = splittext(object,":")
@@ -721,11 +726,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/podspawn_atom(object as text)
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set desc = "(atom path) Spawn an atom via supply drop"
 	set name = "Podspawn"
 
 	if(!check_rights(R_SPAWN))
+		return
+
+	if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 		return
 
 	var/chosen = pick_closest_path(object)
@@ -745,11 +753,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Podspawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/spawn_cargo(object as text)
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set desc = "(atom path) Spawn a cargo crate"
 	set name = "Spawn Cargo"
 
 	if(!check_rights(R_SPAWN))
+		return
+
+	if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 		return
 
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/datum/supply_pack)))
@@ -764,7 +775,7 @@
 
 
 /datum/admins/proc/show_traitor_panel(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "АДМИН"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
@@ -780,7 +791,7 @@
 
 
 /datum/admins/proc/toggletintedweldhelmets()
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmes"
 	GLOB.tinted_weldhelh = !( GLOB.tinted_weldhelh )
@@ -793,7 +804,7 @@
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Tinted Welding Helmets", "[GLOB.tinted_weldhelh ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
-	set category = "Server"
+	set category = "СЕРВЕР"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
 	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
@@ -921,7 +932,7 @@
 	user << browse(dat, "window=dyn_mode_options;size=900x650")
 
 /datum/admins/proc/create_or_modify_area()
-	set category = "Debug"
+	set category = "ДЕБАГ"
 	set name = "Create or modify area"
 	create_area(usr)
 
@@ -956,6 +967,9 @@
 
 	//this is the exact two check rights checks required to edit a ckey with vv.
 	if (!check_rights(R_VAREDIT,0) || !check_rights(R_SPAWN|R_DEBUG,0))
+		return FALSE
+
+	if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
 		return FALSE
 
 	if (!frommob.ckey)

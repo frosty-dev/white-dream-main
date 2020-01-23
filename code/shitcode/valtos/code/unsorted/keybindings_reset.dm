@@ -1,6 +1,6 @@
 /client/verb/reset_hotkeys_please()
 	set name = " ❗ Починить управление"
-	set category = "Special Verbs"
+	set category = "ОСОБЕННОЕ"
 	set desc = "Даёт возможность выбрать какое управление ты больше предпочитаешь. Также чинит \"нерабочие\" хоткеи."
 
 	var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")

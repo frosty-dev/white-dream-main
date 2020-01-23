@@ -199,6 +199,7 @@
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "пивные очки"
+	icon_state = "sunhudbeer"
 	desc = "Пара солнцезащитных очков оснащена аппаратом для сканирования реагентов, а также обеспечивает врожденное понимание вязкости жидкости во время движения."
 	clothing_flags = SCAN_REAGENTS
 
@@ -210,6 +211,12 @@
 /obj/item/clothing/glasses/sunglasses/reagent/dropped(mob/user)
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
+
+/obj/item/clothing/glasses/sunglasses/chemical
+	name = "science glasses"
+	icon_state = "sunhudsci"
+	desc = "A pair of tacky purple sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	clothing_flags = SCAN_REAGENTS
 
 /obj/item/clothing/glasses/sunglasses/garb
 	name = "чёрные GAR очки"

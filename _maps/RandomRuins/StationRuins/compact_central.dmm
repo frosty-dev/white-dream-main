@@ -659,8 +659,9 @@
 /area/space)
 "bN" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall,
-/area/hallway/primary/central)
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hop)
 "bO" = (
 /obj/machinery/computer/teleporter{
 	dir = 1
@@ -2085,6 +2086,7 @@
 "fb" = (
 /obj/item/book/manual/wiki/security_space_law,
 /obj/structure/table/wood,
+/obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "fc" = (
@@ -2990,6 +2992,7 @@
 "hc" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
+/obj/item/disk/nuclear,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "hd" = (
@@ -3372,9 +3375,6 @@
 /obj/machinery/vending/cola/random,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"ia" = (
-/turf/closed/wall,
-/area/bridge/meeting_room)
 "ib" = (
 /obj/machinery/computer/bounty{
 	dir = 1
@@ -3383,6 +3383,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "ic" = (
@@ -4443,9 +4444,9 @@ eo
 eG
 eR
 fl
-ia
+fw
 fQ
-ia
+fw
 as
 fU
 gt
@@ -4522,7 +4523,7 @@ fn
 fx
 gc
 ib
-ey
+bN
 fj
 gt
 jY
@@ -4762,13 +4763,13 @@ aE
 aE
 aA
 aK
-bK
-bK
-bK
-bK
-bK
-bK
-bK
+dP
+dP
+dP
+dP
+dP
+dP
+dP
 ga
 aj
 gt
@@ -4800,13 +4801,13 @@ aj
 aj
 aj
 ar
-bK
+dP
 dV
 ha
 hj
 hj
 dV
-bK
+dP
 gu
 eq
 gt
@@ -4843,7 +4844,7 @@ eh
 im
 hF
 hb
-es
+eW
 es
 gW
 es
@@ -4873,10 +4874,10 @@ ab
 (24,1,1) = {"
 ab
 bM
-bN
+aE
 aj
 ar
-bK
+dP
 gY
 im
 bD
@@ -4911,15 +4912,15 @@ ab
 (25,1,1) = {"
 ab
 bM
-bN
+aE
 aj
 ar
 dP
-dP
-dP
+bK
+bK
 eU
-dP
-es
+bK
+eW
 gM
 is
 ht
@@ -4965,7 +4966,7 @@ es
 az
 aj
 ca
-ep
+aE
 yh
 af
 af
@@ -5117,7 +5118,7 @@ es
 az
 aj
 ca
-ep
+aE
 yh
 af
 af
@@ -5234,11 +5235,11 @@ aj
 dh
 ep
 ep
+aE
 ep
 ep
 ep
-ep
-ep
+aE
 ep
 dC
 dS

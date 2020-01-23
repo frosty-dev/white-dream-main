@@ -74,7 +74,7 @@
 // Eject ID card from computer, if it has ID slot with card inside.
 /obj/machinery/modular_computer/proc/eject_id()
 	set name = "Eject ID"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 
 	if(cpu)
 		cpu.eject_id()
@@ -82,14 +82,14 @@
 // Eject ID card from computer, if it has ID slot with card inside.
 /obj/machinery/modular_computer/proc/eject_disk()
 	set name = "Eject Data Disk"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 
 	if(cpu)
 		cpu.eject_disk()
 
 /obj/machinery/modular_computer/proc/eject_card()
 	set name = "Eject Intellicard"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src in view(1)
 
 	if(cpu)

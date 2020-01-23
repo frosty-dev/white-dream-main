@@ -46,6 +46,11 @@
 	update_icon()
 	PopulateContents()
 
+	RegisterSignal(src, COMSIG_ATOM_CANREACH, .proc/canreach_react)
+
+/obj/structure/closet/proc/canreach_react(datum/source, list/next)
+	return COMPONENT_BLOCK_REACH //closed block, open have nothing inside.
+
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
 	return
@@ -352,7 +357,7 @@
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in view(1)
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Toggle Open"
 
 	if(!usr.canUseTopic(src, BE_CLOSE) || !isturf(loc))

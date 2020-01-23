@@ -1,12 +1,12 @@
 // Verb to manipulate IDs and ckeys
 /client/proc/discord_id_manipulation()
 	set name = "Discord Manipulation"
-	set category = "Admin"
+	set category = "АДМИН"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	holder.discord_manipulation() 
+	holder.discord_manipulation()
 
 
 /datum/admins/proc/discord_manipulation()
@@ -33,4 +33,4 @@
 			var/returned_id = SSdiscord.lookup_id(lookup_ckey)
 			if(returned_id)
 				to_chat(usr, "<span class='notice'>Ckey <b>[lookup_ckey]</b> is assigned to Discord ID <b>[returned_id]</b></span>")
-				to_chat(usr, "<span class='notice'>Discord mention format: <b>&lt;@[returned_id]&gt;</b></span>") // &lt; and &gt; print < > in HTML without using them as tags	
+				to_chat(usr, "<span class='notice'>Discord mention format: <b>&lt;@[returned_id]&gt;</b></span>") // &lt; and &gt; print < > in HTML without using them as tags

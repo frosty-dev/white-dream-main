@@ -181,7 +181,7 @@
 	return ..()
 */
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = copytext(sanitize(input(user, "Хотите изменить имя на теге?", "Назовите своего нового питомца", "Шепард") as null|text),1,MAX_NAME_LEN)
+	tagname = stripped_input(user, "Хотите изменить имя на теге?", "Назовите своего нового питомца", "Шепард", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
 //////////////

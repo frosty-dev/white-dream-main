@@ -32,7 +32,7 @@
 //This needs to be fixed
 /mob/living/carbon/alien/larva/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)

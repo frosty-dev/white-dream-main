@@ -85,7 +85,7 @@ the new instance inside the host to be updated to the template's stats.
 
 /mob/camera/disease/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(freemove)
 			stat("Host Selection Time: [round((freemove_end - world.time)/10)]s")
 		else

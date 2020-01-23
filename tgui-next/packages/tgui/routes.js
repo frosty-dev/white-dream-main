@@ -15,6 +15,7 @@ import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canister } from './interfaces/Canister';
+import { Canvas } from './interfaces/Canvas';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
@@ -98,6 +99,7 @@ import { SuitStorageUnit } from './interfaces/SuitStorageUnit';
 import { Tank } from './interfaces/Tank';
 import { TankDispenser } from './interfaces/TankDispenser';
 import { Trader } from './interfaces/Trader';
+import { Teleporter } from './interfaces/Teleporter';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { TurbineComputer } from './interfaces/TurbineComputer';
 import { Uplink } from './interfaces/Uplink';
@@ -174,6 +176,10 @@ const ROUTES = {
   },
   canister: {
     component: () => Canister,
+    scrollable: false,
+  },
+  canvas: {
+    component: () => Canvas,
     scrollable: false,
   },
   cargo: {
@@ -548,6 +554,10 @@ const ROUTES = {
   trader: {
     component: () => Trader,
     scrollable: true,
+  },
+  teleporter: {
+    component: () => Teleporter,
+    scrollable: false,
   },
   thermomachine: {
     component: () => ThermoMachine,

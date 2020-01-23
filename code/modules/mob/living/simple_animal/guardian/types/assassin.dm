@@ -29,7 +29,7 @@
 
 /mob/living/simple_animal/hostile/guardian/assassin/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("ИГРА"))
 		if(stealthcooldown >= world.time)
 			stat(null, "Stealth Cooldown Remaining: [DisplayTimeText(stealthcooldown - world.time)]")
 

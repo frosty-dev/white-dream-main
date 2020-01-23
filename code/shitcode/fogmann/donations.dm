@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(donations_list, list(
 
 /client/verb/new_donates_panel()
 	set name = " #️⃣ Панель благотворца"
-	set category = "Special Verbs"
+	set category = "ОСОБЕННОЕ"
 
 
 	if(!SSticker || SSticker.current_state < GAME_STATE_PLAYING)

@@ -95,7 +95,7 @@
 		qdel(SC)
 	update_icon()
 
-/obj/item/toy/cards/deck/cas/update_icon()
+/obj/item/toy/cards/deck/cas/update_icon_state()
 	if(cards.len < 26)
 		icon_state = "deck_[deckstyle]_low"
 
@@ -120,7 +120,7 @@
 
 /obj/item/toy/cards/singlecard/cas/Flip()
 	set name = "Flip Card"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src in range(1)
 	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
 		return
@@ -136,7 +136,7 @@
 		return
 	Flip()
 
-/obj/item/toy/cards/singlecard/cas/update_icon()
+/obj/item/toy/cards/singlecard/cas/update_icon_state()
 	if(flipped)
 		icon_state = "[card_face]_flipped"
 	else

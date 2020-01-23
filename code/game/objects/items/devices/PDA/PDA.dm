@@ -533,13 +533,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Clear")//Clears messages
 				tnote = null
 			if("Ringtone")
-				var/t = input(U, "Please enter new ringtone", name, ttone) as text|null
+				var/t = stripped_input(U, "Please enter new ringtone", name, ttone, 20)
 				if(in_range(src, U) && loc == U && t)
 					if(SEND_SIGNAL(src, COMSIG_PDA_CHANGE_RINGTONE, U, t) & COMPONENT_STOP_RINGTONE_CHANGE)
 						U << browse(null, "window=pda")
 						return
 					else
-						ttone = copytext(sanitize(t), 1, 20)
+						ttone = t
 				else
 					U << browse(null, "window=pda")
 					return
@@ -765,13 +765,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/verb/verb_toggle_light()
 	set name = "Toggle light"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set src in oview(1)
 
 	toggle_light(usr)
 
 /obj/item/pda/verb/verb_remove_id()
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Eject ID"
 	set src in usr
 
@@ -781,14 +781,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 		to_chat(usr, "<span class='warning'>This PDA does not have an ID in it!</span>")
 
 /obj/item/pda/verb/verb_remove_pen()
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Remove Pen"
 	set src in usr
 
 	remove_pen(usr)
 
 /obj/item/pda/verb/verb_eject_cart()
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set name = "Eject Cartridge"
 	set src in usr
 

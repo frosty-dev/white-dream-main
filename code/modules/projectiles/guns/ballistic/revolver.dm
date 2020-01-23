@@ -32,7 +32,7 @@
 
 /obj/item/gun/ballistic/revolver/verb/spin()
 	set name = "Spin Chamber"
-	set category = "Object"
+	set category = "ОБЪЕКТ"
 	set desc = "Click to spin your revolver's chamber."
 
 	var/mob/M = usr
