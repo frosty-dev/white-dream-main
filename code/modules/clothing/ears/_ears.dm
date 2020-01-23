@@ -1,15 +1,15 @@
 
 //Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears
-	name = "ears"
+	name = "уши"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	slot_flags = ITEM_SLOT_EARS
 	resistance_flags = NONE
 
 /obj/item/clothing/ears/earmuffs
-	name = "earmuffs"
-	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	name = "защитные наушники"
+	desc = "Защищают владельца от нытья из внешнего мира."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	strip_delay = 15
@@ -32,8 +32,8 @@
 	REMOVE_TRAIT(user, TRAIT_DEAF, CLOTHING_TRAIT)
 
 /obj/item/clothing/ears/earmuffs/spacepods
-	name = "nanotrasen space pods"
-	desc = "Flex your money, AND ignore what everone else says, all at once!"
+	name = "Спейсподы"
+	desc = "И пусть весь мир подождет..."
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "spacepods"
 	item_state = "spacepods"
@@ -41,7 +41,7 @@
 	custom_premium_price = 1800
 
 /obj/item/clothing/ears/headphones
-	name = "headphones"
+	name = "наушники"
 	desc = "Unce unce unce unce. Boop!"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "headphones"
@@ -71,4 +71,4 @@
 		H.update_inv_ears()
 		H.update_inv_neck()
 		H.update_inv_head()
-	to_chat(owner, "<span class='notice'>You turn the music [headphones_on? "on. Untz Untz Untz!" : "off."]</span>")
+	to_chat(owner, "<span class='notice'>Вы [headphones_on? "включили музыку в наушниках. Untz Untz Untz!" : "отключили музыку в наушниках."]</span>")
