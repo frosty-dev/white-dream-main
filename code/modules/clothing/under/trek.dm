@@ -9,22 +9,22 @@
 
 //TOS
 /obj/item/clothing/under/trek/command
-	name = "command uniform"
-	desc = "The uniform worn by command officers."
+	name = "командирская форма"
+	desc = "Это значит, что ты тут командир!"
 	icon_state = "trek_command"
 	item_state = "y_suit"
 
 /obj/item/clothing/under/trek/engsec
-	name = "engsec uniform"
-	desc = "The uniform worn by engineering/security officers."
+	name = "костюм engsec"
+	desc = "Предназначена для спеца, шарящего в инженерии и охране."
 	icon_state = "trek_engsec"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //more sec than eng, but w/e.
 	strip_delay = 50
 
 /obj/item/clothing/under/trek/medsci
-	name = "medsci uniform"
-	desc = "The uniform worn by medical/science officers."
+	name = "костюм медскай"
+	desc = "Предназначена для спеца, понимающего в медицине и науке."
 	icon_state = "trek_medsci"
 	item_state = "b_suit"
 
@@ -58,7 +58,7 @@
 
 //Q
 /obj/item/clothing/under/trek/Q
-	name = "french marshall's uniform"
-	desc = "Something about it feels off..."
+	name = "униформа французского маршалла"
+	desc = "Мне в этом неловко..."
 	icon_state = "trek_Q"
 	item_state = "r_suit"
