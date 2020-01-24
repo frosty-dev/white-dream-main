@@ -12,8 +12,8 @@ Contents:
 
 
 /obj/item/clothing/suit/space/space_ninja
-	name = "ninja suit"
-	desc = "A unique, vacuum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
+	name = "костюм ниндзя"
+	desc = "Уникальный костюм с нановставками брони разработан специально для ассасинов клана Паука."
 	icon_state = "s-ninja"
 	item_state = "s-ninja_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/stock_parts/cell)
@@ -102,13 +102,13 @@ Contents:
 		H.gib()
 		return FALSE
 	if(!istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 100113 UNABLE TO LOCATE HEAD GEAR\nABORTING...")
+		to_chat(H, "<span class='userdanger'>ERROR</span>: 100113 ОТСУТСТВУЕТ ШЛЕМ\nОТКАЗ...")
 		return FALSE
 	if(!istype(H.shoes, /obj/item/clothing/shoes/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 122011 UNABLE TO LOCATE FOOT GEAR\nABORTING...")
+		to_chat(H, "<span class='userdanger'>ERROR</span>: 122011 ОТСУТСВУЮТ СПЕЦБОТИНКИ\nОТКАЗ...")
 		return FALSE
 	if(!istype(H.gloves, /obj/item/clothing/gloves/space_ninja))
-		to_chat(H, "<span class='userdanger'>ERROR</span>: 110223 UNABLE TO LOCATE HAND GEAR\nABORTING...")
+		to_chat(H, "<span class='userdanger'>ERROR</span>: 110223 ОТСУТСТВУЮТ СПЕЦПЕРЧАТКИ\nОТКАЗ...")
 		return FALSE
 	affecting = H
 	ADD_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
@@ -151,17 +151,17 @@ Contents:
 	. = ..()
 	if(s_initialized)
 		if(user == affecting)
-			. += "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.\n"+\
-			"The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.\n"+\
-			"There are <B>[s_bombs]</B> smoke bomb\s remaining.\n"+\
-			"There are <B>[a_boost]</B> adrenaline booster\s remaining."
+			. += "Все системы работоспособны. Текущая энергоёмкость: <B>[DisplayEnergy(cell.charge)]</B>.\n"+\
+			"СТЕЛС система <B>[stealth?"включена":"выключена"]</B>.\n"+\
+			"Дымовых шашек в запасе: <B>[s_bombs]</B> \s.\n"+\
+			"Адреналиновых стимуляторов в запасе: <B>[a_boost]</B>\s."
 
 /obj/item/clothing/suit/space/space_ninja/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/initialize_ninja_suit))
 		toggle_on_off()
 		return TRUE
 	if(!s_initialized)
-		to_chat(user, "<span class='warning'><b>ERROR</b>: suit offline. Please activate suit.</span>")
+		to_chat(user, "<span class='warning'><b>ERROR</b>: костюм отключен. Пожалуйста, активируйте костюм снова.</span>")
 		return FALSE
 	if(istype(action, /datum/action/item_action/ninjasmoke))
 		ninjasmoke()
