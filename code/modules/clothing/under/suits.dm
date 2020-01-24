@@ -43,7 +43,7 @@
 
 /obj/item/clothing/under/suit/black/skirt
 	name = "чёрный костюмчик"
-	desc = "Профессиональный черный костм!"
+	desc = "Профессиональный черный костюм!"
 	icon_state = "blacksuit_skirt"
 	item_state = "bar_suit"
 	alt_covers_chest = TRUE
