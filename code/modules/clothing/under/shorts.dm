@@ -1,6 +1,6 @@
 /obj/item/clothing/under/shorts
-	name = "athletic shorts"
-	desc = "95% Polyester, 5% Spandex!"
+	name = "атлетические шорты"
+	desc = "95% полиэстра, 5% спандекс!"
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
@@ -10,25 +10,25 @@
 	mob_overlay_icon = 'icons/mob/clothing/under/shorts_pants.dmi'
 
 /obj/item/clothing/under/shorts/red
-	name = "красный athletic shorts"
+	name = "красные атлетические шорты"
 	icon_state = "redshorts"
 
 /obj/item/clothing/under/shorts/green
-	name = "зелёный athletic shorts"
+	name = "зелёные атлетические шорты"
 	icon_state = "greenshorts"
 
 /obj/item/clothing/under/shorts/blue
-	name = "синий athletic shorts"
+	name = "синие атлетические шорты"
 	icon_state = "blueshorts"
 
 /obj/item/clothing/under/shorts/black
-	name = "чёрный athletic shorts"
+	name = "чёрные атлетические шорты"
 	icon_state = "blackshorts"
 
 /obj/item/clothing/under/shorts/grey
-	name = "grey athletic shorts"
+	name = "серые атлетические шорты"
 	icon_state = "greyshorts"
 
 /obj/item/clothing/under/shorts/purple
-	name = "фиолетовый athletic shorts"
+	name = "фиолетовые атлетические шорты"
 	icon_state = "purpleshorts"
