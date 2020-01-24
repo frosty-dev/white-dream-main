@@ -4,117 +4,117 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit/white_on_white
-	name = "белый suit"
-	desc = "A white suit, suitable for an excellent host."
+	name = "белый костюм"
+	desc = "Белый костюм, который вам к лицу."
 	icon_state = "scratch"
 	item_state = "scratch"
 
 /obj/item/clothing/under/suit/white/skirt
-	name = "белый suitskirt"
-	desc = "A white suitskirt, suitable for an excellent host."
+	name = "белый костюмчик"
+	desc = "Вариант костюма с юбкой."
 	icon_state = "white_suit_skirt"
 	item_state = "scratch"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/suit/sl
-	desc = "It's a very amish looking suit."
-	name = "amish suit"
+	desc = "Белый верх, черный низ. С жакетом будет смотреться."
+	name = "представительный костюм"
 	icon_state = "sl_suit"
 
 /obj/item/clothing/under/suit/waiter
-	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	name = "юниформа официанта"
+	desc = "Это продуманая форма с маленьким кармашком внутри."
 	icon_state = "waiter"
 	item_state = "waiter"
 
 /obj/item/clothing/under/suit/blacktwopiece
-	name = "чёрный two piece suit"
-	desc = "A black suit and red tie. Very formal."
+	name = "чёрный костюм"
+	desc = "Черный костюм с красным галстуком."
 	icon_state = "black_suit"
 	item_state = "black_suit"
 
 /obj/item/clothing/under/suit/black
-	name = "чёрный suit"
-	desc = "A professional looking black suit. Ready for some serious law."
+	name = "чёрный костюм"
+	desc = "Профессионально смотрящийся черный костюм. Специально для тёмных делишек."
 	icon_state = "blacksuit"
 	item_state = "blacksuit"
 	can_adjust = TRUE
 
 /obj/item/clothing/under/suit/black/skirt
-	name = "чёрный suitskirt"
-	desc = "A professional black suit. Nanotrasen Investigation Bureau approved!"
+	name = "чёрный костюмчик"
+	desc = "Профессиональный черный костм!"
 	icon_state = "blacksuit_skirt"
 	item_state = "bar_suit"
 	alt_covers_chest = TRUE
 	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/suit/black_really
-	name = "executive suit"
-	desc = "A formal black suit and red tie, intended for the station's finest."
+	name = "деловой костюм"
+	desc = "Парадный чёрный костюм с красным галстуком."
 	icon_state = "really_black_suit"
 	item_state = "really_black_suit"
 
 /obj/item/clothing/under/suit/black_really/skirt
-	name = "executive suitskirt"
-	desc = "A formal black suitskirt and red tie, intended for the station's finest."
+	name = "деловой костюмчик"
+	desc = "Парадный чёрный костюм с красным галстуком. Женский вариант."
 	icon_state = "really_black_suit_skirt"
 	item_state = "really_black_suit_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/suit/black/female
-	name = "executive suit"
-	desc = "A formal trouser suit for women, intended for the station's finest."
+	name = "деловой костюм"
+	desc = "Этот костюм для женщин, предпочитающих брюки."
 	icon_state = "black_suit_fem"
 	item_state = "black_suit_fem"
 
 /obj/item/clothing/under/suit/green
-	name = "зелёный suit"
-	desc = "A green suit and yellow necktie. Baller."
+	name = "зелёный костюм"
+	desc = "Зеленый костюм с желтым галстуком. Для подкатов."
 	icon = 'icons/obj/clothing/under/captain.dmi'
 	icon_state = "green_suit"
 	item_state = "dg_suit"
 	mob_overlay_icon = 'icons/mob/clothing/under/captain.dmi'
 
 /obj/item/clothing/under/suit/red
-	name = "красный suit"
-	desc = "A red suit and blue tie. Somewhat formal."
+	name = "красный костюм"
+	desc = "Красный костюм с синим галстуком. Очень деловито."
 	icon_state = "red_suit"
 	item_state = "r_suit"
 
 /obj/item/clothing/under/suit/charcoal
-	name = "charcoal suit"
-	desc = "A charcoal suit and red tie. Very professional."
+	name = "деловой костюм"
+	desc = "Антрацитного цвета костюм с красным галстуком. Профессионально."
 	icon_state = "charcoal_suit"
 	item_state = "charcoal_suit"
 
 /obj/item/clothing/under/suit/navy
-	name = "navy suit"
-	desc = "A navy suit and red tie, intended for the station's finest."
+	name = "темно-синий костюм"
+	desc = "С красный галстуком выглядит неплохо."
 	icon_state = "navy_suit"
 	item_state = "navy_suit"
 
 /obj/item/clothing/under/suit/burgundy
-	name = "burgundy suit"
-	desc = "A burgundy suit and black tie. Somewhat formal."
+	name = "бордовый костюм"
+	desc = "С чёрным галстуком. Немного формально."
 	icon_state = "burgundy_suit"
 	item_state = "burgundy_suit"
 
 /obj/item/clothing/under/suit/checkered
-	name = "checkered suit"
-	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
+	name = "клетчатый костюм"
+	desc = "Это крутой костюм. Что может с ним случиться?"
 	icon_state = "checkered_suit"
 	item_state = "checkered_suit"
 
 /obj/item/clothing/under/suit/tan
-	name = "tan suit"
-	desc = "A tan suit with a yellow tie. Smart, but casual."
+	name = "деловой костюм"
+	desc = "С желтым галстуком. Умно, но повседневно."
 	icon_state = "tan_suit"
 	item_state = "tan_suit"
 
 /obj/item/clothing/under/suit/white
-	name = "белый suit"
-	desc = "A white suit and jacket with a blue shirt. You wanna play rough? OKAY!"
+	name = "белый костюм"
+	desc = "Белый костюм и жакет с синей рубашкой. Хочешь играть грубо? ЛАДНО!"
 	icon_state = "white_suit"
 	item_state = "white_suit"
