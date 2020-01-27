@@ -1,8 +1,8 @@
 ///Subtype for any kind of ballistic gun
 ///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
-	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
-	name = "projectile gun"
+	desc = "По какой-то причине вошел в описание как ПУШКА. Использует 10-мм патроны."
+	name = "реактивный пистолет"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -475,13 +475,13 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 
 /obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
+	name = "глушитель"
+	desc = "Маленький глушитель для большого шпионажа."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/suppressor/specialoffer
-	name = "cheap suppressor"
-	desc = "A foreign knock-off suppressor, it feels flimsy, cheap, and brittle. Still fits most weapons."
+	name = "дешевый глушитель"
+	desc = "Ощущается китайской подделкой, но может накручиваться на различные виды оружия."
