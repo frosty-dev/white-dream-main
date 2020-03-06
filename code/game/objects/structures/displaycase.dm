@@ -24,7 +24,7 @@
 	. = ..()
 	if(start_showpieces.len && !start_showpiece_type)
 		var/list/showpiece_entry = pick(start_showpieces)
-		if (showpiece_entry["type"])
+		if (showpiece_entry && showpiece_entry["type"])
 			start_showpiece_type = showpiece_entry["type"]
 			if (showpiece_entry["trophy_message"])
 				trophy_message = showpiece_entry["trophy_message"]
