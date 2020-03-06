@@ -52,10 +52,10 @@
 
 /obj/projectile/acoustic_wave/on_hit(hitobject)
 	.=..()
-	var/targethit = hitobject
-	var/throwdir = angle2dir(Angle)
-	var/throwtarget = get_edge_target_turf(targethit, throwdir)
-	if(istype(targethit, mob/living/targethit) && targethit.anchored == FALSE)
+	var/atom/movable/targethit = hitobject
+	var/atom/movable/throwdir = angle2dir(Angle)
+	var/atom/movable/throwtarget = get_edge_target_turf(targethit, throwdir)
+	if(istype(targethit, /mob/living) && targethit.anchored == FALSE)
 		targethit.throw_at(throwtarget, knock_dist+1, 4, src.firer, 1, 0, null, move_force)
 		return
 	if(istype(targethit,/obj/item) && targethit.anchored == FALSE)
@@ -75,7 +75,7 @@
 /obj/projectile/acoustic_wave/overcharged
 	damage = 75
 	range = 6
-	knock_distance = 6
+	knock_dist = 6
 	move_force = MOVE_FORCE_VERY_STRONG
 
 
