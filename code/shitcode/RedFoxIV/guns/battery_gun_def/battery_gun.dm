@@ -2,17 +2,15 @@
 #define SPAWN_WITH_DEAD_CELL 1
 #define SPAWN_WITH_NO_CELL 0
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	   Поскольку e_cost у большинства ammo_casing'ов исчисляется в сотнях, а заряд обычной батарейки	  //
-//	из РнД - рекомендуется использовать в качестве дефолтной батарейки /obj/item/stock_parts/cell/high,	  //
-//		а e_cost увеличивать на десять, чтобы не получить еган на 1000 выстрелов без перезарядки.		  //
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ АХТУНГ//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/gun/energy/cell
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		   Поскольку e_cost у большинства ammo_casing'ов исчисляется в сотнях, а заряд обычной батарейки		  //
+//	из РнД - в 1000, рекомендуется использовать в качестве дефолтной батарейки /obj/item/stock_parts/cell/high,	  //
+//		а e_cost увеличивать на десять, чтобы не получить еган на 1000 выстрелов без перезарядки.				  //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/obj/item/gun/energy/cellgun
 	selfcharge = FALSE												//set to true to see the world burn
 	ammo_type = list(/obj/item/ammo_casing/energy{e_cost = 1000 })	//при наличии более одного ammo_type вытащить батарею, нажав Z (use-item verb) не получится.
 	cell_type = /obj/item/stock_parts/cell/high						//будет использована эта батарейка при SPAWN_WITH_FULL_CELL или SPAWN_WITH_DEAD_CELL.
@@ -25,9 +23,9 @@
 	var/load_sound_vary = TRUE
 	var/tac_reloads = TRUE											//можно ли заменить батарею, кликнув по оружию другой батареей
 	var/show_charge_meter = TRUE									//показывать ли заряд вставленной батареи при экзамайне оружия
+	var/can_eject = TRUE											//:thinking:
 
-
-/obj/item/gun/energy/cell/Initialize()
+/obj/item/gun/energy/cellgun/Initialize()
 	. = ..()
 	if(spawn_with_cell)
 		cell = new cell_type(src)
@@ -42,7 +40,7 @@
 		START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/gun/energy/cell/examine()
+/obj/item/gun/energy/cellgun/examine()
 	. = ..()
 	if(show_charge_meter)
 		if(cell)
@@ -50,7 +48,7 @@
 		else
 			.+= "Батарея отсутствует."
 
-/obj/item/gun/energy/cell/proc/insert_cell(mob/user, display_message = TRUE, obj/item/stock_parts/cell/BAT)
+/obj/item/gun/energy/cellgun/proc/insert_cell(mob/user, display_message = TRUE, obj/item/stock_parts/cell/BAT)
 	/*if(!istype(BAT, obj/item/stock_parts/cell))
 		to_chat(user, "<span class='warning'>[BAT.name] не батарея!</span>")
 		return FALSE
@@ -70,7 +68,7 @@
 		return FALSE
 
 
-/obj/item/gun/energy/cell/proc/eject_cell(mob/user, display_message = TRUE, obj/item/stock_parts/cell/tac_load = null)
+/obj/item/gun/energy/cellgun/proc/eject_cell(mob/user, display_message = TRUE, obj/item/stock_parts/cell/tac_load = null)
 	playsound(src, load_sound, load_sound_volume, load_sound_vary)
 	var/obj/item/stock_parts/cell/old_cell = cell //чтобы было что положить в руки после TaCtIcAl ReLoAdS
 	old_cell.forceMove(drop_location())
@@ -85,7 +83,7 @@
 		to_chat(user, "<span class='notice'>Вытаскиваю [old_cell] из <b>[src]</b>.</span>")
 	update_icon()
 
-/obj/item/gun/energy/cell/update_icon(force_update)
+/obj/item/gun/energy/cellgun/update_icon(force_update)
 	if(QDELETED(src))
 		return
 	//..() //не дай бог это всё сломает нахуй
@@ -123,7 +121,7 @@
 		item_state = itemState
 
 
-/obj/item/gun/energy/cell/attackby(obj/item/A, mob/user, params)
+/obj/item/gun/energy/cellgun/attackby(obj/item/A, mob/user, params)
 	. = ..()
 	if (.)
 		return
@@ -163,7 +161,7 @@
 	*/
 	return FALSE
 
-/obj/item/gun/energy/cell/attack_self(mob/living/user)
+/obj/item/gun/energy/cellgun/attack_self(mob/living/user)
 	if(ammo_type.len > 1)
 		select_fire(user)
 		update_icon()
@@ -173,15 +171,15 @@
 		eject_cell(user)
 		return
 
-/obj/item/gun/energy/cell/attack_hand(mob/user)
+/obj/item/gun/energy/cellgun/attack_hand(mob/user)
 	if( loc == user && user.is_holding(src) && cell)
 		eject_cell(user)
 		return
 	return ..()
 
 
-/obj/item/gun/energy/cell/dead
+/obj/item/gun/energy/cellgun/dead
 	spawn_with_cell = SPAWN_WITH_DEAD_CELL
 
-/obj/item/gun/energy/cell/nocell
+/obj/item/gun/energy/cellgun/nocell
 	spawn_with_cell = SPAWN_WITH_NO_CELL

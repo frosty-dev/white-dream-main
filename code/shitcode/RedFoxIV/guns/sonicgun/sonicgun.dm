@@ -1,23 +1,29 @@
-/obj/item/gun/energy/cell/NLAW
+/obj/item/gun/energy/cellgun/nlaw
 	name = "N-LAW"
-	desc = "A prototype energy weapon which was nicknamed the \"Sonic Blaster\" for looking like a giant fucking subwoofer with a trigger and a handle. Uses standard power cells which can be found all around the station."
+	desc = "Basically, a big subwoofer on steroids with a trigger. Can incapacitate people by throwing into walls, windows, other people, open airlocks, supermatter, disposals, banana peels, AIDS-infected monkeys, lavaland megafauna, lavaland lava, permabrig and, if you're not careful enough, yourself."
 	icon = 'code/shitcode/RedFoxIV/guns/sonicgun/sonicgun.dmi'
 	icon_state = "sonic_gun"
 	item_state = "sonic_gun"
 	lefthand_file = 'code/shitcode/RedFoxIV/guns/guns_lefthand.dmi'
 	righthand_file = 'code/shitcode/RedFoxIV/guns/guns_righthand.dmi'
-	cell_type = /obj/item/stock_parts/cell/high/nlaw
+	cell_type = /obj/item/stock_parts/cell/high
 	charge_sections = 5 
 	shaded_charge = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/acoustic, /obj/item/ammo_casing/energy/acoustic/overcharge)
 	modifystate = TRUE
 
+/obj/item/gun/energy/cellgun/nlaw/garbage
+	can_eject = FALSE
+	desc = "A prototype energy weapon. Most people throw it in the trash bin and bug R&D for a better one. Does not support cell changing, overcharged mode, sustained fire, windows 10."
+	name = "LAW"
+	cell_type = /obj/item/stock_parts/cell/nlaw
+	ammo_type = list(/obj/item/ammo_casing/energy/acoustic)
 
 
-/obj/item/stock_parts/cell/high/nlaw
-	name = "NLAW battery"
-	desc = "A special battery designed for the NLAW. Overall identical to a high-capacity power cell. So identical it can be used as a regular battery."
-
+/obj/item/stock_parts/cell/nlaw
+	name = "LAW battery"
+	desc = "Good job jackass, now try to put it back in without admemes."
+	charge = 4000
 
 /obj/item/ammo_casing/energy/acoustic
 	projectile_type = /obj/projectile/acoustic_wave
