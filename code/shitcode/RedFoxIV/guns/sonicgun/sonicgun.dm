@@ -50,6 +50,7 @@
 	return 1
 
 
+//туду: починить косой бросок при стрельбе поинт-бланk
 /obj/projectile/acoustic_wave/on_hit(hitobject)
 	.=..()
 	var/atom/movable/targethit = hitobject
