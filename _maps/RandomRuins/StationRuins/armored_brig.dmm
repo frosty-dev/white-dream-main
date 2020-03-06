@@ -1113,7 +1113,7 @@
 /obj/structure/table/wood,
 /obj/item/folder/red,
 /obj/item/stamp/hos,
-/obj/item/gun/energy/cell/NLAW,
+/obj/item/gun/energy/cellgun/NLAW,
 /turf/open/floor/engine,
 /area/crew_quarters/heads/hos)
 "cv" = (
