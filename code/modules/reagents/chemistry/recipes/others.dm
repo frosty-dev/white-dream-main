@@ -568,3 +568,6 @@
 	results = list(/datum/reagent/consumable/gravy = 3)
 	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/flour = 1)
 
+/datum/chemical_reaction/metalgen_other
+	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/medicine/C2/helbital = 1, /datum/reagent/cryostylane = 1, /datum/reagent/baldium = 1, /datum/reagent/blood = 1, /datum/reagent/stable_plasma = 1, /datum/reagent/impedrezene = 1, /datum/reagent/cellulose = 1, /datum/reagent/pyrosium = 1)
+	results = list(/datum/reagent/metalgen = 10)
