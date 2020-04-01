@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/assembly/timer = 1,
 		/obj/item/assembly/igniter = 1,
 		/obj/item/assembly/health = 1,
-
+		/obj/item/book/granter/crafting_recipe/cookbook = 1, 
 		/obj/item/stack/packageWrap = 1,
 		) = 1,
 
