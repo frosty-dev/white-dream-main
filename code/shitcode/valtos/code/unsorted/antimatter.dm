@@ -26,8 +26,7 @@
 					/obj/item/am_shielding_container,
 					/obj/item/am_shielding_container,
 					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container) //10 shields: 3x3 containment and a core
+					/obj/item/am_shielding_container,) //9 shields: 3x3 containment and a core
 	crate_name = "antimatter shielding crate"
 
 /datum/export/large/am_control_unit
