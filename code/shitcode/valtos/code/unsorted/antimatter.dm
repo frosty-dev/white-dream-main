@@ -52,8 +52,8 @@
 	throw_speed = 1
 	throw_range = 2
 
-	var/fuel = 10000
-	var/fuel_max = 10000//Lets try this for now
+	var/fuel = 100000
+	var/fuel_max = 100000//Lets try this for now
 	var/stability = 100//TODO: add all the stability things to this so its not very safe if you keep hitting in on things
 
 
