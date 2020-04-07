@@ -3171,6 +3171,7 @@
 #include "code\shitcode\hule\traits\semiviolent.dm"
 #include "code\shitcode\hule\tts\tts.dm"
 #include "code\shitcode\hule\tts\tts_items.dm"
+#include "code\shitcode\HumanNugget\recipes.dm"
 #include "code\shitcode\maxsc\axe.dm"
 #include "code\shitcode\maxsc\deadmin.dm"
 #include "code\shitcode\other\give.dm"
