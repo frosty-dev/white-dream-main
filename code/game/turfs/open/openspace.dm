@@ -53,7 +53,8 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
 	. = ..()
 	var/turf/T = below()
-	if(!T || istype(T, /turf/closed/wall))
+	var/area/TA = get_area(T)
+	if(!T || istype(T, /turf/closed/wall) || !istype(TA, /area/boxplanet))
 		vis_contents.len = 0
 		ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 		return FALSE
@@ -165,6 +166,3 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	name = "открытое пространство"
 	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-
-/turf/open/openspace/icemoon/can_zFall(atom/movable/A, levels = 1, turf/target)
-	return TRUE

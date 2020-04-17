@@ -11,7 +11,7 @@
 /datum/blackmarket_item/clothing/xeno
 	name = "Коллекционный шлем Ксеноморфа"
 	desc = "Hiss hiss hiss!"
-	item = /obj/item/clothing/head/collectable/xenom
+  item = /obj/item/clothing/head/collectable/xenom
 
 	price_min = 100
 	price_max = 500

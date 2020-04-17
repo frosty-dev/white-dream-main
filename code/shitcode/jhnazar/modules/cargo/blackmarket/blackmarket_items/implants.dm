@@ -16,10 +16,10 @@
 	name = "Имплант Х-рей глаз"
 	desc = "Автохирург с имплантом Х-рей глаз"
 	item = /obj/item/autosurgeon/syndicate/xray_eyes
-	stock_min = 1
+  stock_min = 1
 	stock_max = 5
-
-	price_min = 5000
+	
+  price_min = 5000
 	price_max = 10000
 	availability_prob = 50
 
