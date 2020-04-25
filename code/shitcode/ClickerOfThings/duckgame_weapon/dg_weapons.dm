@@ -1,3 +1,4 @@
+#define DUALWIELD_PENALTY_EXTRA_MULTIPLIER 1.
 /obj/item/ammo_box/magazine/m10mm/i_dont_know_how_the_fuck_i_can_do_that_in_another_way // just ignore this, for god's sake
 	max_ammo = 4000 //this too
 // you would ask me - "what the fuck is this shit". it's just a fix for a bug with non-existing bullet after shot
@@ -45,7 +46,7 @@
 	var/rand_spr = rand()
 	if(spread)
 		randomized_gun_spread =	rand(0,spread)
-	if(user.has_trait(TRAIT_POOR_AIM)) //nice shootin' tex
+	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
 		bonus_spread += 25
 	var/randomized_bonus_spread = rand(0, bonus_spread)
 	if(burst_size > 1)
@@ -54,7 +55,7 @@
 			addtimer(CALLBACK(src, .proc/process_burst, user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)
-			if(user.has_trait(TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
+			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 				if(chambered.harmful) // Is the bullet chambered harmful?
 					to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
 					return
@@ -107,3 +108,6 @@
 	icon = 'code/shitcode/ClickerOfThings/duckgame_weapon/dg_weapons_icons.dmi'
 	icon_state = "duel"
 	item_state = "duel"
+
+
+#undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER

@@ -44,7 +44,9 @@ GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/mutationtoxin)
 ))
 
-GLOBAL_LIST_INIT(solidchange_reagent_blacklist, typecacheof(list())) //for future use
+GLOBAL_LIST_INIT(solidchange_reagent_blacklist, typecacheof(list(
+	/datum/reagent/colorful_reagent/powder/black
+)))
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(
 	/turf/open/space,

@@ -9731,6 +9731,7 @@
 /area/syndicate_mothership/control)
 "vv" = (
 /obj/structure/table/wood,
+/obj/item/nuclear_challenge/lowpop,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
 "vw" = (

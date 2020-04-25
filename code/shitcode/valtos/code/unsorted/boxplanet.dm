@@ -147,13 +147,10 @@
 	if(cooldown < world.time - 120)
 		cooldown = world.time
 		if(prob(100 - (planted_things * 10)))
-			var/list/possible_turfs
+			var/list/possible_turfs = list()
 			for(var/turf/T in RANGE_TURFS(7, src))
 				if(istype(T, /turf/open/floor/plating/asteroid/boxplanet/caves))
-					for(var/obj/O in T.contents.len)
-						if(istype(O, /obj/structure/flora/tree/boxplanet))
-							return
-						possible_turfs += T
+					possible_turfs += T
 			new generating_type(pick(possible_turfs))
 			planted_things++
 			return

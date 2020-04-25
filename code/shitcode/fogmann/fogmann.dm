@@ -1,11 +1,11 @@
 
 /obj/item/banner/engineering/atmos
 	name = "Kazakhstan banner"
-	desc = "Áàííåð ïðîñëàâëÿþùèé âåëèêóþ ìîùü Åëáàñû."
+	desc = "Сшит из плазмы с вкраплениями слез девственниц."
 	icon = 'code/shitcode/pieceofcrap.dmi'
 	icon_state = "banner_atmos"
 	job_loyalties = list("Scientist", "Atmospheric Technician")
-	warcry = "<b>ÊÀÇÀÕÑÒÀÍ ÓÃÐÎÆÀÅÒ ÂÀÌ ÁÎÌÁÀÐÄÈÐÎÂÊÎÉ!!</b>"
+	warcry = "<b>КАЗАХСТАН УГРОЖАЕТ ВАМ БОМБАРДИРОВКОЙ!!</b>"
 
 
 obj/item/banner/engineering/atmos/mundane
@@ -272,6 +272,7 @@ obj/item/banner/engineering/atmos/mundane
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
 	force = 17
+	block_chance = 70
 	hitsound = 'code/shitcode/fogmann/yebal.ogg'
 	dat = {"<html><body>
 	<img src=https://pp.userapi.com/c638421/v638421709/50c5d/RbBWfRq8b8Q.jpg>
@@ -280,7 +281,7 @@ obj/item/banner/engineering/atmos/mundane
 
 
 /obj/item/book/ruchinese/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] ������ ���� �� ������ ������, ������ �� ������� ��� ���!</span>")
+	user.visible_message("<span class='suicide'>[user] бьет себя словарем по голове, кажется он чувствует себя хуево!</span>")
 	var/delay_offset = 0
 	for(var/mob/M in viewers(src, 7))
 		var/mob/living/carbon/human/C = M
@@ -291,7 +292,7 @@ obj/item/banner/engineering/atmos/mundane
 
 /datum/uplink_item/role_restricted/ruchinese
 	name = "Russian-chinese dictionary"
-	desc = "������ �����, ������� ����������� ��� � ���������. �� ��� �� ��� ��� ����� �� �������� ������������."
+	desc = "Русско-китайский словарь, особо эффективен против моли и мух."
 	item = /obj/item/book/ruchinese
 	cost = 18
 	restricted_roles = list("Chaplain", "Curator", "Assistant")
