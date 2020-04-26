@@ -4,8 +4,8 @@
 //  -Cyberboss
 
 GLOBAL_LIST_INIT(mining_maps, list("lavaland" = 1, "icemoon" = 1, "nothing" = 1, "random" = 0))
-GLOBAL_VAR_INIT(current_mining_map, "nothing")
-GLOBAL_VAR_INIT(next_mining_map, "nothing")
+GLOBAL_VAR_INIT(current_mining_map, "lavaland")
+GLOBAL_VAR_INIT(next_mining_map, "lavaland")
 
 /datum/map_config
 	// Metadata
@@ -26,7 +26,7 @@ GLOBAL_VAR_INIT(next_mining_map, "nothing")
 	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 
-	var/minetype = "random"
+	var/minetype = "lavaland"
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
