@@ -3074,6 +3074,7 @@
 #include "code\shitcode\R3801U710N.dm"
 #include "code\shitcode\webhook.dm"
 #include "code\shitcode\adept\cerebullum_altering_pill.dm"
+#include "code\shitcode\baldenysh\govnokod\clothing\masks\cheap_breathmask.dm"
 #include "code\shitcode\ClickerOfThings\duckgame_weapon\dg_weapons.dm"
 #include "code\shitcode\ClickerOfThings\integrated_circuits_snitch\all_nodes.dm"
 #include "code\shitcode\ClickerOfThings\integrated_circuits_snitch\electronics_designs.dm"
