@@ -30,21 +30,21 @@
 		if ("small")
 			new /obj/item/tank/internals/emergency_oxygen(src)
 			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("aid")
 			new /obj/item/tank/internals/emergency_oxygen(src)
 			new /obj/item/storage/firstaid/o2(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("tank")
 			new /obj/item/tank/internals/oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("both")
 			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("nothing")
 			// doot
@@ -65,7 +65,7 @@
 	..()
 
 	new /obj/item/clothing/suit/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/cheap(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
@@ -73,7 +73,7 @@
 
 /obj/structure/closet/firecloset/full/PopulateContents()
 	new /obj/item/clothing/suit/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/cheap(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)

@@ -93,11 +93,11 @@
 					/obj/item/tank/internals/emergency_oxygen,
 					/obj/item/tank/internals/emergency_oxygen,
 					/obj/item/tank/internals/emergency_oxygen,
-					/obj/item/clothing/mask/breath,
-					/obj/item/clothing/mask/breath,
-					/obj/item/clothing/mask/breath,
-					/obj/item/clothing/mask/breath,
-					/obj/item/clothing/mask/breath)
+					/obj/item/clothing/mask/breath/cheap,
+					/obj/item/clothing/mask/breath/cheap,
+					/obj/item/clothing/mask/breath/cheap,
+					/obj/item/clothing/mask/breath/cheap,
+					/obj/item/clothing/mask/breath/cheap)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
 

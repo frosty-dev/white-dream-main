@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 
 		/obj/item/airlock_painter = 1,
 		/obj/item/rack_parts = 1,
-		/obj/item/clothing/mask/breath = 1,
+		/obj/item/clothing/mask/breath/cheap = 1,
 		/obj/item/shard = 1,
 
 		/obj/item/reagent_containers/pill/floorpill = 1,
@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		) = 1,
 
 	list(//equipment
-		/obj/item/clothing/mask/gas = 1,
+		/obj/item/clothing/mask/gas/cheap = 1,
 		/obj/item/radio/headset = 1,
 		/obj/item/storage/backpack = 1,
 		/obj/item/clothing/shoes/sneakers/black = 1,
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/assembly/timer = 1,
 		/obj/item/assembly/igniter = 1,
 		/obj/item/assembly/health = 1,
-		/obj/item/book/granter/crafting_recipe/cookbook = 1, 
+		/obj/item/book/granter/crafting_recipe/cookbook = 1,
 		/obj/item/stack/packageWrap = 1,
 		) = 1,
 

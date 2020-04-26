@@ -115,7 +115,7 @@
 
 // Ordinary survival box
 /obj/item/storage/box/survival
-	var/mask_type = /obj/item/clothing/mask/breath
+	var/mask_type = /obj/item/clothing/mask/breath/cheap
 	var/internal_type = /obj/item/tank/internals/emergency_oxygen
 	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
 
@@ -825,7 +825,7 @@
 
 // Clown survival box
 /obj/item/storage/box/hug/survival/PopulateContents()
-	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/clothing/mask/breath/cheap(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 	if(!isplasmaman(loc))
