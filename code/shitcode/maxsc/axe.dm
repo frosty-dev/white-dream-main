@@ -9,8 +9,9 @@
 	righthand_file = 'code/shitcode/maxsc/icons/righthand.dmi'
 	block_chance = 10
 	slot_flags = ITEM_SLOT_BACK
-	force = 5
+	force = 9
 	throwforce = 20
+	armour_penetration = 0
 	attack_verb = list("ударяет", "рубит", "протыкает", "режет")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
@@ -25,7 +26,7 @@
 /obj/item/paxe/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110)
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
+	AddComponent(/datum/component/two_handed, force_wielded=19, require_twohands=TRUE)
 
 /obj/item/paxe/proc/on_wield(obj/item/source, mob/user)
 	wielded = TRUE
@@ -38,10 +39,11 @@
 	item_state = "paxe1"
 	lefthand_file = 'code/shitcode/maxsc/icons/lefthand.dmi'
 	righthand_file = 'code/shitcode/maxsc/icons/righthand.dmi'
-	block_chance = 0
+	block_chance = 15
 	slot_flags = ITEM_SLOT_BACK
-	force = 5
+	force = 9
 	throwforce = 24
+	armour_penetration = 10
 	attack_verb = list("ударяет", "приносит справедливость", "рубит", "протыкает")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
@@ -58,24 +60,27 @@
 /obj/item/paxee/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110)
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
+	AddComponent(/datum/component/two_handed,  force_wielded=20, require_twohands=TRUE)
 
 /obj/item/paxee/proc/on_wield(obj/item/source, mob/user)
 	wielded = TRUE
 
 /obj/item/paxee/attack_self(mob/user)
 	if (charged)
-		to_chat(user, "<span class='notice'>Я готов нести справедливость.</span>")
+		to_chat(user, "<span class='notice'>Время нести справедливость! Меня ничто не остановит!</span>")
 		charged = FALSE
 		block_chance = 100
+		armour_penetration = 100
 		sleep(30)
-		to_chat(user, "<span class='notice'>Сейчас я не готов нести справедливость.</span>")
-		block_chance = 0
+		to_chat(user, "<span class='warning'>Я выдохся.</span>")
+		block_chance = 15
+		armour_penetration = 10
 		addtimer(CALLBACK(src, .proc/Recharge), recharge_time)
 
 /obj/item/paxee/proc/Recharge()
 	if(!charged)
 		charged = TRUE
+		to_chat(loc, "<span class='warning'>Вы готовы нести справедливость!</span>")
 
 /obj/item/paxee/examine(mob/living/user)
 	..()
