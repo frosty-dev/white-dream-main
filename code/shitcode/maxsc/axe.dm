@@ -22,6 +22,7 @@
 /obj/item/paxe/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/paxe/ComponentInitialize()
 	. = ..()
@@ -56,6 +57,7 @@
 /obj/item/paxee/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/paxee/ComponentInitialize()
 	. = ..()
