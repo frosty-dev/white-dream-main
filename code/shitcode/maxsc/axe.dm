@@ -8,7 +8,7 @@
 	lefthand_file = 'code/shitcode/maxsc/icons/lefthand.dmi'
 	righthand_file = 'code/shitcode/maxsc/icons/righthand.dmi'
 	block_chance = 10
-	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
 	force = 9
 	throwforce = 20
 	armour_penetration = 0
@@ -22,7 +22,6 @@
 /obj/item/paxe/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/paxe/ComponentInitialize()
 	. = ..()
@@ -41,7 +40,7 @@
 	lefthand_file = 'code/shitcode/maxsc/icons/lefthand.dmi'
 	righthand_file = 'code/shitcode/maxsc/icons/righthand.dmi'
 	block_chance = 15
-	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
 	force = 9
 	throwforce = 24
 	armour_penetration = 10
@@ -57,7 +56,6 @@
 /obj/item/paxee/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 
 /obj/item/paxee/ComponentInitialize()
 	. = ..()
