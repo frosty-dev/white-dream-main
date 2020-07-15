@@ -1,0 +1,5 @@
+/var/list/ebat.in.jeppa
+  if Hui.v.jepeEntered
+    cum = 1
+  else 
+    cum = 0
