@@ -126,15 +126,17 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	var/pick // instead of creating it a bunch let's go ahead and toss it here, we know we're going to use it for dynamics and subtypes!
 
 	/********************************Subtype Gens********************************/
-	var/list/easy_add_list_subtypes = list(/datum/bounty/item/assistant = 2,
-											/datum/bounty/item/mech = 1,
-											/datum/bounty/item/chef = 2,
-											/datum/bounty/item/security = 1,
-											/datum/bounty/virus = 1,
-											/datum/bounty/item/engineering = 1,
-											/datum/bounty/item/mining = 2,
-											/datum/bounty/item/medical = 2,
-											/datum/bounty/item/botany = 2)
+	var/list/easy_add_list_subtypes = list(/datum/bounty/item/assistant = 20,
+											/datum/bounty/item/mech = 5,
+											/datum/bounty/item/chef = 10,
+											/datum/bounty/item/security = 5,
+											/datum/bounty/virus = 10,
+											/datum/bounty/item/engineering = 10,
+											/datum/bounty/item/mining = 10,
+											/datum/bounty/item/medical = 10,
+											/datum/bounty/item/botany = 10,
+											/datum/bounty/item/science = 10,
+											/datum/bounty/item/slime = 10)
 
 	for(var/the_type in easy_add_list_subtypes)
 		for(var/i in 1 to easy_add_list_subtypes[the_type])

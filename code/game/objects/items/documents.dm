@@ -3,7 +3,7 @@
 	desc = "\"Top Secret\" documents."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "docs_generic"
-	item_state = "paper"
+	inhand_icon_state = "paper"
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
@@ -20,12 +20,12 @@
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence."
 
 /obj/item/documents/syndicate/red
-	name = "red secret documents"
+	name = "красный secret documents"
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a red wax seal."
 	icon_state = "docs_red"
 
 /obj/item/documents/syndicate/blue
-	name = "blue secret documents"
+	name = "синий secret documents"
 	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a blue wax seal."
 	icon_state = "docs_blue"
 

@@ -1,5 +1,5 @@
 /obj/projectile/beam
-	name = "laser"
+	name = "луч"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
@@ -14,14 +14,29 @@
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
+	wound_bonus = -20
+	bare_wound_bonus = 10
 
 /obj/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
+	wound_bonus = -30
+	bare_wound_bonus = 40
+
+//overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
+/obj/projectile/beam/laser/hellfire
+	name = "hellfire laser"
+	wound_bonus = 0
+	damage = 25
+	speed = 0.6 // higher power = faster, that's how light works right
+
+/obj/projectile/beam/laser/hellfire/Initialize()
+	. = ..()
+	transform *= 2
 
 /obj/projectile/beam/laser/heavylaser
-	name = "heavy laser"
+	name = "тяжелый луч"
 	icon_state = "heavylaser"
 	damage = 40
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
@@ -43,23 +58,23 @@
 	armour_penetration = 50
 
 /obj/projectile/beam/practice
-	name = "practice laser"
+	name = "безвредный луч"
 	damage = 0
 	nodamage = TRUE
 
 /obj/projectile/beam/scatter
-	name = "laser pellet"
+	name = "лучевой осколок"
 	icon_state = "scatterlaser"
 	damage = 5
 
 /obj/projectile/beam/xray
-	name = "\improper X-ray beam"
+	name = "\improper X-ray луч"
 	icon_state = "xray"
 	flag = "rad"
 	damage = 15
 	irradiate = 300
 	range = 15
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE
 
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
@@ -68,9 +83,9 @@
 	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/projectile/beam/disabler
-	name = "disabler beam"
+	name = "останавливающий луч"
 	icon_state = "omnilaser"
-	damage = 40
+	damage = 20
 	damage_type = STAMINA
 	flag = "energy"
 	hitsound = 'sound/weapons/tap.ogg'
@@ -82,7 +97,7 @@
 	impact_type = /obj/effect/projectile/impact/disabler
 
 /obj/projectile/beam/pulse
-	name = "pulse"
+	name = "импульсный луч"
 	icon_state = "u_laser"
 	damage = 50
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -90,17 +105,21 @@
 	tracer_type = /obj/effect/projectile/tracer/pulse
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
 	impact_type = /obj/effect/projectile/impact/pulse
+	wound_bonus = 10
 
 /obj/projectile/beam/pulse/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
-		target.ex_act(EXPLODE_HEAVY)
+		if(isobj(target))
+			SSexplosions.medobj += target
+		else
+			SSexplosions.medturf += target
 
 /obj/projectile/beam/pulse/shotgun
 	damage = 40
 
 /obj/projectile/beam/pulse/heavy
-	name = "heavy pulse laser"
+	name = "тяжелый импульсный луч"
 	icon_state = "pulse1_bl"
 	var/life = 20
 
@@ -111,17 +130,19 @@
 	..()
 
 /obj/projectile/beam/emitter
-	name = "emitter beam"
+	name = "луч излучателя"
 	icon_state = "emitter"
 	damage = 30
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
+	wound_bonus = -40
+	bare_wound_bonus = 70
 
 /obj/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
 
 /obj/projectile/beam/lasertag
-	name = "laser tag beam"
+	name = "луч тэга"
 	icon_state = "omnilaser"
 	hitsound = null
 	damage = 0
@@ -162,7 +183,7 @@
 	hitscan = TRUE
 
 /obj/projectile/beam/instakill
-	name = "instagib laser"
+	name = "взрыватор"
 	icon_state = "purple_laser"
 	damage = 200
 	damage_type = BURN
@@ -188,7 +209,7 @@
 
 //a shrink ray that shrinks stuff, which grows back after a short while.
 /obj/projectile/beam/shrink
-	name = "shrink ray"
+	name = "уменьшающий луч"
 	icon_state = "blue_laser"
 	hitsound = 'sound/weapons/shrink_hit.ogg'
 	damage = 0
@@ -200,6 +221,6 @@
 
 /obj/projectile/beam/shrink/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(isopenturf(target) || istype(target, /turf/closed/indestructible))//shrunk floors wouldnt do anything except look weird, i-walls shouldnt be bypassable
+	if(isopenturf(target) || istype(target, /turf/closed/indestructible))//shrunk floors wouldnt do anything except look weird, i-walls shouldn't be bypassable
 		return
 	target.AddComponent(/datum/component/shrink, shrink_time)

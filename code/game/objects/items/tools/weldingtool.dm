@@ -4,7 +4,8 @@
 	desc = "Сварка стандартного исполнения, предоставленная компанией Нанотрейзен."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
-	item_state = "welder"
+	inhand_icon_state = "welder"
+	worn_icon_state = "welder"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -30,7 +31,6 @@
 	var/change_icons = 1
 	var/can_off_process = 0
 	var/light_intensity = 2 //how powerful the emitted light is when used.
-	var/progress_flash_divisor = 10
 	var/burned_fuel_for = 0	//when fuel was last removed
 	heat = 3800
 	tool_behaviour = TOOL_WELDER
@@ -43,23 +43,26 @@
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
 	update_icon()
 
+/obj/item/weldingtool/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	AddElement(/datum/element/tool_flash, light_intensity)
 
-/obj/item/weldingtool/proc/update_torch()
+/obj/item/weldingtool/update_icon_state()
 	if(welding)
-		add_overlay("[initial(icon_state)]-on")
-		item_state = "[initial(item_state)]1"
+		inhand_icon_state = "[initial(inhand_icon_state)]1"
 	else
-		item_state = "[initial(item_state)]"
+		inhand_icon_state = "[initial(inhand_icon_state)]"
 
 
-/obj/item/weldingtool/update_icon()
-	cut_overlays()
+/obj/item/weldingtool/update_overlays()
+	. = ..()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel
 		ratio = CEILING(ratio*4, 1) * 25
-		add_overlay("[initial(icon_state)][ratio]")
-	update_torch()
-	return
+		. += "[initial(icon_state)][ratio]"
+	if(welding)
+		. += "[initial(icon_state)]-on"
 
 
 /obj/item/weldingtool/process()
@@ -196,11 +199,6 @@
 		set_light(0)
 		switched_on(user)
 		update_icon()
-		//mob icon update
-		if(ismob(loc))
-			var/mob/M = loc
-			M.update_inv_hands(0)
-
 		return 0
 	return 1
 
@@ -249,22 +247,6 @@
 /obj/item/weldingtool/proc/isOn()
 	return welding
 
-// When welding is about to start, run a normal tool_use_check, then flash a mob if it succeeds.
-/obj/item/weldingtool/tool_start_check(mob/living/user, amount=0)
-	. = tool_use_check(user, amount)
-	if(. && user && get_dist(get_turf(src), get_turf(user)) <= 1)
-		user.flash_act(light_intensity)
-
-// Flash the user during welding progress
-/obj/item/weldingtool/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
-	. = ..()
-	if(. && user && get_dist(get_turf(src), get_turf(user)) <= 1)
-		if (progress_flash_divisor == 0)
-			user.flash_act(min(light_intensity,1))
-			progress_flash_divisor = initial(progress_flash_divisor)
-		else
-			progress_flash_divisor--
-
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
@@ -285,10 +267,10 @@
 	status = !status
 	if(status)
 		to_chat(user, "<span class='notice'>Собираю обратно [sklonenie(src.name, VINITELNI, src.gender)].</span>")
-		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		reagents.flags &= ~(OPENCONTAINER)
 	else
 		to_chat(user, "<span class='notice'>Теперь я могу модифицировать [sklonenie(src.name, VINITELNI, src.gender)].</span>")
-		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		reagents.flags |= OPENCONTAINER
 	add_fingerprint(user)
 
 /obj/item/weldingtool/proc/flamethrower_rods(obj/item/I, mob/user)
@@ -364,7 +346,7 @@
 	name = "модернизированный сварочный инструмент"
 	desc = "Модернизированная сварка на базе промышленного сварщика."
 	icon_state = "upindwelder"
-	item_state = "upindwelder"
+	inhand_icon_state = "upindwelder"
 	max_fuel = 80
 	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 
@@ -372,7 +354,7 @@
 	name = "экспериментальный сварочный инструмент"
 	desc = "Экспериментальный сварочный аппарат, способный генерировать самотопливо и менее вредный для глаз."
 	icon_state = "exwelder"
-	item_state = "exwelder"
+	inhand_icon_state = "exwelder"
 	max_fuel = 40
 	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 	var/last_gen = 0

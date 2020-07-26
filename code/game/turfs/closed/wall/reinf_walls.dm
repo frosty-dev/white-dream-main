@@ -1,7 +1,7 @@
 /turf/closed/wall/r_wall
 	name = "армированная стена"
 	desc = "Здоровенный укреплённый кусок металла, который служит для разделения помещений."
-	icon = 'icons/turf/walls/reinforced_wall.dmi'
+	icon = 'icons/turf/walls/rbaywall.dmi'
 	icon_state = "r_wall"
 	opacity = 1
 	density = TRUE
@@ -46,6 +46,9 @@
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
 		to_chat(M, "<span class='warning'>Эта стена слишком крепка для меня.</span>")
+
+/turf/closed/wall/r_wall/hulk_recoil(obj/item/bodypart/arm)
+	arm.receive_damage(brute=41, wound_bonus = CANT_WOUND)
 
 /turf/closed/wall/r_wall/try_decon(obj/item/W, mob/user, turf/T)
 	//DECONSTRUCTION
@@ -220,6 +223,11 @@
 	if(the_rcd.canRturf)
 		return ..()
 
+/turf/closed/wall/r_wall/rust_heretic_act()
+	if(prob(50))
+		return
+	ChangeTurf(/turf/closed/wall/r_wall/rust)
+
 /turf/closed/wall/r_wall/syndicate
 	name = "обшивка"
 	desc = "Бронированный корпус зловещего корабля."
@@ -245,3 +253,5 @@
 /turf/closed/wall/r_wall/syndicate/overspace
 	icon_state = "map-overspace"
 	fixed_underlay = list("space"=1)
+
+

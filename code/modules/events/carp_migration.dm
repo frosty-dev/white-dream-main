@@ -15,7 +15,7 @@
 	startWhen = rand(40, 60)
 
 /datum/round_event/carp_migration/announce(fake)
-	priority_announce("Неизвестные биологические организмы были обнаружены вблизи [station_name()], пожалуйста, приготовьтесь.", "Вторжение на борт")
+	priority_announce("Неизвестные биологические организмы были обнаружены вблизи [station_name()], пожалуйста, приготовьтесь.", "Вторжение на борт", 'sound/ai/announcer/assault.ogg')
 
 
 /datum/round_event/carp_migration/start()
@@ -28,7 +28,7 @@
 			fishannounce(fish) //Prefer to announce the megacarps over the regular fishies
 	fishannounce(fish)
 
-/datum/round_event/carp_migration/proc/fishannounce(atom/fish)	
+/datum/round_event/carp_migration/proc/fishannounce(atom/fish)
 	if (!hasAnnounced)
 		announce_to_ghosts(fish) //Only anounce the first fish
 		hasAnnounced = TRUE

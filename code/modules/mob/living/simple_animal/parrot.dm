@@ -28,7 +28,7 @@
 
 /mob/living/simple_animal/parrot
 	name = "попугай"
-	desc = "The parrot squaks, \"It's a Parrot! BAWWK!\"" //'
+	desc = "The parrot squawks, \"It's a Parrot! BAWWK!\"" //'
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "parrot_fly"
 	icon_living = "parrot_fly"
@@ -74,7 +74,7 @@
 
 	var/parrot_speed = 5 //"Delay in world ticks between movement." according to byond. Yeah, that's BS but it does directly affect movement. Higher number = slower.
 	var/parrot_lastmove = null //Updates/Stores position of the parrot while it's moving
-	var/parrot_stuck = 0	//If parrot_lastmove hasnt changed, this will increment until it reaches parrot_stuck_threshold
+	var/parrot_stuck = 0	//If parrot_lastmove hasn't changed, this will increment until it reaches parrot_stuck_threshold
 	var/parrot_stuck_threshold = 10 //if this == parrot_stuck, it'll force the parrot back to wandering
 
 	var/list/speech_buffer = list()
@@ -93,11 +93,10 @@
 	var/obj/parrot_perch = null
 	var/obj/desired_perches = list(/obj/structure/frame/computer, 		/obj/structure/displaycase, \
 									/obj/structure/filingcabinet,		/obj/machinery/teleport, \
-									/obj/machinery/computer,			/obj/machinery/clonepod, \
 									/obj/machinery/dna_scannernew,		/obj/machinery/telecomms, \
 									/obj/machinery/nuclearbomb,			/obj/machinery/particle_accelerator, \
 									/obj/machinery/recharge_station,	/obj/machinery/smartfridge, \
-									/obj/machinery/suit_storage_unit)
+									/obj/machinery/computer,			/obj/machinery/suit_storage_unit)
 
 	//Parrots are kleptomaniacs. This variable ... stores the item a parrot is holding.
 	var/obj/item/held_item = null
@@ -144,7 +143,7 @@
 
 /mob/living/simple_animal/parrot/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("Игра"))
 		stat("Held Item", held_item)
 		stat("Mode",a_intent)
 
@@ -213,8 +212,8 @@
 				ears.forceMove(drop_location())
 				ears = null
 				for(var/possible_phrase in speak)
-					if(copytext(possible_phrase,1,3) in GLOB.department_radio_keys)
-						possible_phrase = copytext(possible_phrase,3)
+					if(copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys)
+						possible_phrase = copytext_char(possible_phrase, 3)
 
 	//Adding things to inventory
 	else if(href_list["add_inv"])
@@ -243,7 +242,7 @@
 					ears = headset_to_add
 					to_chat(usr, "<span class='notice'>You fit the headset onto [src].</span>")
 
-					clearlist(available_channels)
+					available_channels.Cut()
 					for(var/ch in headset_to_add.channels)
 						switch(ch)
 							if(RADIO_CHANNEL_ENGINEERING)
@@ -393,7 +392,7 @@
 
 //-----SLEEPING
 	if(parrot_state == PARROT_PERCH)
-		if(parrot_perch && parrot_perch.loc != src.loc) //Make sure someone hasnt moved our perch on us
+		if(parrot_perch && parrot_perch.loc != src.loc) //Make sure someone hasn't moved our perch on us
 			if(parrot_perch in view(src))
 				parrot_state = PARROT_SWOOP | PARROT_RETURN
 				icon_state = icon_living
@@ -422,8 +421,8 @@
 						if(prob(50))
 							useradio = 1
 
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = "[useradio?pick(available_channels):""][copytext(possible_phrase,3)]" //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = "[useradio?pick(available_channels):""][copytext_char(possible_phrase, 3)]" //crop out the channel prefix
 						else
 							possible_phrase = "[useradio?pick(available_channels):""][possible_phrase]"
 
@@ -431,8 +430,8 @@
 
 				else //If we have no headset or channels to use, dont try to use any!
 					for(var/possible_phrase in speak)
-						if((copytext(possible_phrase,1,2) in GLOB.department_radio_prefixes) && (copytext(possible_phrase,2,3) in GLOB.department_radio_keys))
-							possible_phrase = copytext(possible_phrase,3) //crop out the channel prefix
+						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
+							possible_phrase = copytext_char(possible_phrase, 3) //crop out the channel prefix
 						newspeak.Add(possible_phrase)
 				speak = newspeak
 
@@ -470,11 +469,11 @@
 					return
 			return
 
-		if(parrot_interest && parrot_interest in view(src))
+		if(parrot_interest && (parrot_interest in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_STEAL
 			return
 
-		if(parrot_perch && parrot_perch in view(src))
+		if(parrot_perch && (parrot_perch in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_RETURN
 			return
 
@@ -518,7 +517,7 @@
 //-----RETURNING TO PERCH
 	else if(parrot_state == (PARROT_SWOOP | PARROT_RETURN))
 		walk(src, 0)
-		if(!parrot_perch || !isturf(parrot_perch.loc)) //Make sure the perch exists and somehow isnt inside of something else.
+		if(!parrot_perch || !isturf(parrot_perch.loc)) //Make sure the perch exists and somehow isn't inside of something else.
 			parrot_perch = null
 			parrot_state = PARROT_WANDER
 			return
@@ -752,7 +751,7 @@
 		return -1
 
 	if(!held_item)
-		if(src == usr) //So that other mobs wont make this message appear when they're bludgeoning you.
+		if(src == usr) //So that other mobs won't make this message appear when they're bludgeoning you.
 			to_chat(src, "<span class='warning'>You have nothing to drop!</span>")
 		return 0
 
@@ -868,7 +867,7 @@
 /*
  * Sub-types
  */
-/mob/living/simple_animal/parrot/Poly
+/mob/living/simple_animal/parrot/poly
 	name = "Поли"
 	desc = "Попугайчик по имени Поли. An expert on quantum cracker theory."
 	speak = list("Poly wanna cracker!", ":e Check the crystal, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE")
@@ -879,7 +878,7 @@
 	var/longest_survival = 0
 	var/longest_deathstreak = 0
 
-/mob/living/simple_animal/parrot/Poly/Initialize()
+/mob/living/simple_animal/parrot/poly/Initialize()
 	ears = new /obj/item/radio/headset/headset_eng(src)
 	available_channels = list(":e")
 	Read_Memory()
@@ -900,24 +899,24 @@
 
 	. = ..()
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/poly/Life()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
 	..()
 
-/mob/living/simple_animal/parrot/Poly/death(gibbed)
+/mob/living/simple_animal/parrot/poly/death(gibbed)
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	if(rounds_survived == longest_survival || rounds_survived == longest_deathstreak || prob(0.666))
-		var/mob/living/simple_animal/parrot/Poly/ghost/G = new(loc)
+		var/mob/living/simple_animal/parrot/poly/ghost/G = new(loc)
 		if(mind)
 			mind.transfer_to(G)
 		else
 			G.key = key
 	..(gibbed)
 
-/mob/living/simple_animal/parrot/Poly/proc/Read_Memory()
+/mob/living/simple_animal/parrot/poly/proc/Read_Memory()
 	if(fexists("data/npc_saves/Poly.sav")) //legacy compatability to convert old format to new
 		var/savefile/S = new /savefile("data/npc_saves/Poly.sav")
 		S["phrases"] 			>> speech_buffer
@@ -937,7 +936,7 @@
 	if(!islist(speech_buffer))
 		speech_buffer = list()
 
-/mob/living/simple_animal/parrot/Poly/proc/Write_Memory(dead)
+/mob/living/simple_animal/parrot/poly/proc/Write_Memory(dead)
 	var/json_file = file("data/npc_saves/Poly.json")
 	var/list/file_data = list()
 	if(islist(speech_buffer))
@@ -959,7 +958,7 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/mob/living/simple_animal/parrot/Poly/ghost
+/mob/living/simple_animal/parrot/poly/ghost
 	name = "Призрак Поли"
 	desc = "Doomed to squawk the Earth."
 	color = "#FFFFFF77"
@@ -968,16 +967,16 @@
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
 	butcher_results = list(/obj/item/ectoplasm = 1)
 
-/mob/living/simple_animal/parrot/Poly/ghost/Initialize()
+/mob/living/simple_animal/parrot/poly/ghost/Initialize()
 	memory_saved = TRUE //At this point nothing is saved
 	. = ..()
 
-/mob/living/simple_animal/parrot/Poly/ghost/handle_automated_speech()
+/mob/living/simple_animal/parrot/poly/ghost/handle_automated_speech()
 	if(ismob(loc))
 		return
 	..()
 
-/mob/living/simple_animal/parrot/Poly/ghost/handle_automated_movement()
+/mob/living/simple_animal/parrot/poly/ghost/handle_automated_movement()
 	if(isliving(parrot_interest))
 		if(!ishuman(parrot_interest))
 			parrot_interest = null
@@ -986,12 +985,12 @@
 			Possess(parrot_interest)
 	..()
 
-/mob/living/simple_animal/parrot/Poly/ghost/proc/Possess(mob/living/carbon/human/H)
+/mob/living/simple_animal/parrot/poly/ghost/proc/Possess(mob/living/carbon/human/H)
 	if(!ishuman(H))
 		return
 	var/datum/disease/parrot_possession/P = new
 	P.parrot = src
 	forceMove(H)
-	H.ForceContractDisease(P)
+	H.ForceContractDisease(P, FALSE)
 	parrot_interest = null
 	H.visible_message("<span class='danger'>[src] dive bombs into [H]'s chest and vanishes!</span>", "<span class='userdanger'>[src] dive bombs into your chest, vanishing! This can't be good!</span>")

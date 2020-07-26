@@ -6,6 +6,11 @@
 	var/list/minimal_access = list()		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
 	var/list/access = list()				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a skeleton crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/skills
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/minimal_skills
+
 	//Determines who can demote this position
 	var/department_head = list()
 
@@ -60,9 +65,7 @@
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
-
-	///Levels unlocked at roundstart in physiology
-	var/list/roundstart_experience
+	var/tmp/list/gear_leftovers = list()
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
@@ -71,11 +74,92 @@
 	if(mind_traits)
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
-	if(roundstart_experience && ishuman(H))
+
+	var/list/roundstart_experience
+
+	if(!ishuman(H))
+		return
+
+	if(!config)	//Needed for robots.
+		roundstart_experience = minimal_skills
+
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
+		roundstart_experience = minimal_skills
+	else
+		roundstart_experience = skills
+
+	if(roundstart_experience)
 		var/mob/living/carbon/human/experiencer = H
 		for(var/i in roundstart_experience)
 			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
+	if(!ishuman(H))
+		return
+	var/mob/living/carbon/human/human = H
+	if(M.client && (M.client.prefs.equipped_gear && M.client.prefs.equipped_gear.len))
+		for(var/gear in M.client.prefs.equipped_gear)
+			var/datum/gear/G = GLOB.gear_datums[gear]
+			if(G)
+				var/permitted = FALSE
+
+				if(G.allowed_roles && H.mind && (H.mind.assigned_role in G.allowed_roles))
+					permitted = TRUE
+				else if(!G.allowed_roles)
+					permitted = TRUE
+				else
+					permitted = FALSE
+
+				if(G.species_blacklist && (human.dna.species.id in G.species_blacklist))
+					permitted = FALSE
+
+				if(G.species_whitelist && !(human.dna.species.id in G.species_whitelist))
+					permitted = FALSE
+
+				if(!permitted)
+					to_chat(M, "<span class='warning'>Your current species or role does not permit you to spawn with [gear]!</span>")
+					continue
+
+				if(G.slot)
+					if(H.equip_to_slot_or_del(G.spawn_item(H), G.slot))
+						to_chat(M, "<span class='notice'>Equipping you with [gear]!</span>")
+					else
+						gear_leftovers += G
+				else
+					gear_leftovers += G
+			else
+				M.client.prefs.equipped_gear -= gear
+
+	if(gear_leftovers)
+		if(gear_leftovers.len)
+			for(var/datum/gear/G in gear_leftovers)
+				var/metadata = M.client.prefs.equipped_gear[G.display_name]
+				var/item = G.spawn_item(null, metadata)
+				var/atom/placed_in = human.equip_or_collect(item)
+
+				if(istype(placed_in))
+					if(isturf(placed_in))
+						to_chat(M, "<span class='notice'>Placing [G.display_name] on [placed_in]!</span>")
+					else
+						to_chat(M, "<span class='noticed'>Placing [G.display_name] in [placed_in.name]]")
+					continue
+
+				if(H.equip_to_appropriate_slot(item))
+					to_chat(M, "<span class='notice'>Placing [G.display_name] in your inventory!</span>")
+					continue
+				if(H.put_in_hands(item))
+					to_chat(M, "<span class='notice'>Placing [G.display_name] in your hands!</span>")
+					continue
+
+				var/obj/item/storage/B = (locate() in H)
+				if(B)
+					G.spawn_item(B, metadata)
+					to_chat(M, "<span class='notice'>Placing [G.display_name] in [B.name]!</span>")
+					continue
+
+				to_chat(M, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no hands free and no backpack or this is a bug.</span>")
+				qdel(item)
+
+			qdel(gear_leftovers)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -102,7 +186,7 @@
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
 	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src)
+		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
@@ -162,7 +246,7 @@
 	return TRUE
 
 /datum/job/proc/radio_help_message(mob/M)
-	to_chat(M, "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>")
+	to_chat(M, "<b>Добавь :h перед сообщением, чтобы говорить в канал моего отдела. Дабы увидеть другие каналы, стоит посмотреть на наушник.</b>")
 
 /datum/outfit/job
 	name = "Standard Gear"
@@ -224,6 +308,8 @@
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		C.assignment = J.title
+		if(H.age)
+			C.registered_age = H.age
 		C.update_label()
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A
@@ -239,6 +325,12 @@
 		PDA.ownjob = J.title
 		PDA.update_label()
 
+/datum/outfit/proc/special_equip(mob/living/carbon/human/H)
+	//SS13 WHITE
+	head = /obj/item/clothing/head/helmet/izanhelm
+	uniform = /obj/item/clothing/under/m35jacket
+	shoes = /obj/item/clothing/shoes/jackboots
+
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
 	types -= /obj/item/storage/backpack //otherwise this will override the actual backpacks
@@ -252,4 +344,3 @@
 	if(CONFIG_GET(flag/security_has_maint_access))
 		return list(ACCESS_MAINT_TUNNELS)
 	return list()
-

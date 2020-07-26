@@ -1,22 +1,34 @@
 /obj/projectile/bullet/shotgun_slug
-	name = "12g shotgun slug"
+	name = "12g пуля"
 	damage = 60
 
+/obj/projectile/bullet/shotgun_slug/executioner
+	name = "executioner slug" // admin only, can dismember limbs
+	sharpness = TRUE
+	wound_bonus = 0
+
+/obj/projectile/bullet/shotgun_slug/pulverizer
+	name = "pulverizer slug" // admin only, can crush bones
+	sharpness = FALSE
+	wound_bonus = 0
+
 /obj/projectile/bullet/shotgun_beanbag
-	name = "beanbag slug"
-	damage = 5
+	name = "резиновая пуля"
+	damage = 10
 	stamina = 55
+	wound_bonus = 20
+	sharpness = FALSE
 
 /obj/projectile/bullet/incendiary/shotgun
-	name = "incendiary slug"
+	name = "поджигающая пуля"
 	damage = 20
 
 /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
-	name = "dragonsbreath pellet"
+	name = "гранула драконьего дыхания"
 	damage = 5
 
 /obj/projectile/bullet/shotgun_stunslug
-	name = "stunslug"
+	name = "электропуля"
 	damage = 5
 	paralyze = 100
 	stutter = 5
@@ -26,7 +38,7 @@
 	color = "#FFFF00"
 
 /obj/projectile/bullet/shotgun_meteorslug
-	name = "meteorslug"
+	name = "метеоропуля"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 30
@@ -36,7 +48,7 @@
 
 /obj/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 3, 2)
@@ -46,7 +58,7 @@
 	SpinAnimation()
 
 /obj/projectile/bullet/shotgun_frag12
-	name ="frag12 slug"
+	name ="frag12 пуля"
 	damage = 25
 	paralyze = 50
 
@@ -60,16 +72,17 @@
 	var/tile_dropoff_s = 0.5
 
 /obj/projectile/bullet/pellet/shotgun_buckshot
-	name = "buckshot pellet"
+	name = "дробинки картечи"
 	damage = 12.5
+	wound_bonus = -10
 
 /obj/projectile/bullet/pellet/shotgun_rubbershot
-	name = "rubbershot pellet"
+	name = "резиновые дробинки"
 	damage = 3
 	stamina = 11
 
 /obj/projectile/bullet/pellet/shotgun_incapacitate
-	name = "incapacitating pellet"
+	name = "обезвреживающие дробинки"
 	damage = 1
 	stamina = 6
 

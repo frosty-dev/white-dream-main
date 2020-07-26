@@ -17,7 +17,7 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
-	if(ismovableatom(parent))
+	if(ismovable(parent))
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), .proc/play_squeak)
 		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, .proc/play_squeak_crossed)
 		RegisterSignal(parent, COMSIG_ITEM_WEARERCROSSED, .proc/play_squeak_crossed)
@@ -27,7 +27,7 @@
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/use_squeak)
 			RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
-			if(istype(parent, /obj/item/clothing/shoes))
+			if(istype(parent, /obj/item/clothing))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
 
 	override_squeak_sounds = custom_sounds

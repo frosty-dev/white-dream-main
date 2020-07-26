@@ -63,7 +63,7 @@
 
 /datum/objective_item/steal/hypo
 	name = "the hypospray."
-	targetitem = /obj/item/reagent_containers/hypospray/CMO
+	targetitem = /obj/item/reagent_containers/hypospray/cmo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer")
 
@@ -124,7 +124,7 @@
 /datum/objective_item/steal/plasma/check_special_completion(obj/item/tank/T)
 	var/target_amount = text2num(name)
 	var/found_amount = 0
-	found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
+	found_amount += T.air_contents.get_moles(/datum/gas/plasma)
 	return found_amount>=target_amount
 
 
@@ -165,6 +165,12 @@
 	if(E.Uses > 0)
 		return 1
 	return 0
+
+/datum/objective_item/steal/blackbox
+	name = "The Blackbox."
+	targetitem = /obj/item/blackbox
+	difficulty = 10
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

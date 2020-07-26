@@ -50,8 +50,9 @@
 	toggle_reel_spin(0)
 
 	for(cointype in typesof(/obj/item/coin))
-		var/obj/item/coin/C = cointype
-		coinvalues["[cointype]"] = initial(C.value)
+		var/obj/item/coin/C = new cointype
+		coinvalues["[cointype]"] = C.get_item_credit_value()
+		qdel(C) //Sigh
 
 /obj/machinery/computer/slot_machine/Destroy()
 	if(balance)
@@ -66,10 +67,10 @@
 	money++ //SPESSH MAJICKS
 
 /obj/machinery/computer/slot_machine/update_icon_state()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "slots0"
 
-	else if(stat & BROKEN)
+	else if(machine_stat & BROKEN)
 		icon_state = "slotsb"
 
 	else if(working)
@@ -110,14 +111,14 @@
 			to_chat(user, "<span class='warning'>This machine is only accepting coins!</span>")
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(balance > 0)
-			visible_message("<b>[src]</b> says, 'ERROR! Please empty the machine balance before altering paymode'") //Prevents converting coins into holocredits and vice versa
+			visible_message("<b>[capitalize(src)]</b> says, 'ERROR! Please empty the machine balance before altering paymode'") //Prevents converting coins into holocredits and vice versa
 		else
 			if(paymode == HOLOCHIP)
 				paymode = COIN
-				visible_message("<b>[src]</b> says, 'This machine now works with COINS!'")
+				visible_message("<b>[capitalize(src)]</b> says, 'This machine now works with COINS!'")
 			else
 				paymode = HOLOCHIP
-				visible_message("<b>[src]</b> says, 'This machine now works with HOLOCHIPS!'")
+				visible_message("<b>[capitalize(src)]</b> says, 'This machine now works with HOLOCHIPS!'")
 	else
 		return ..()
 
@@ -177,7 +178,7 @@
 
 /obj/machinery/computer/slot_machine/emp_act(severity)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_SELF)
+	if(machine_stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_SELF)
 		return
 	if(prob(15 * severity))
 		return
@@ -227,9 +228,9 @@
 	updateDialog()
 
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, "<span class='warning'>The slot machine has no power!</span>")
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, "<span class='warning'>The slot machine is broken!</span>")
 	if(working)
 		to_chat(user, "<span class='warning'>You need to wait until the machine stops spinning before you can play again!</span>")
@@ -256,7 +257,7 @@
 	var/linelength = get_lines()
 
 	if(reels[1][2] + reels[2][2] + reels[3][2] + reels[4][2] + reels[5][2] == "[SEVEN][SEVEN][SEVEN][SEVEN][SEVEN]")
-		visible_message("<b>[src]</b> says, 'JACKPOT! You win [money] credits!'")
+		visible_message("<b>[capitalize(src)]</b> says, 'JACKPOT! You win [money] credits!'")
 		priority_announce("Congratulations to [user ? user.real_name : usrname] for winning the jackpot at the slot machine in [get_area(src)]!")
 		jackpots += 1
 		balance += money - give_payout(JACKPOT)
@@ -270,11 +271,11 @@
 				random_step(C, 2, 50)
 
 	else if(linelength == 5)
-		visible_message("<b>[src]</b> says, 'Big Winner! You win a thousand credits!'")
+		visible_message("<b>[capitalize(src)]</b> says, 'Big Winner! You win a thousand credits!'")
 		give_money(BIG_PRIZE)
 
 	else if(linelength == 4)
-		visible_message("<b>[src]</b> says, 'Winner! You win four hundred credits!'")
+		visible_message("<b>[capitalize(src)]</b> says, 'Winner! You win four hundred credits!'")
 		give_money(SMALL_PRIZE)
 
 	else if(linelength == 3)
@@ -334,7 +335,8 @@
 			H.throw_at(target, 3, 10)
 	else
 		var/value = coinvalues["[cointype]"]
-
+		if(value <= 0)
+			CRASH("Coin value of zero, refusing to payout in dispenser")
 		while(amount >= value)
 			var/obj/item/coin/C = new cointype(loc) //DOUBLE THE PAIN
 			amount -= value

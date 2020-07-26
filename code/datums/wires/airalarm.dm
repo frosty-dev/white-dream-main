@@ -19,9 +19,9 @@
 /datum/wires/airalarm/get_status()
 	var/obj/machinery/airalarm/A = holder
 	var/list/status = list()
-	status += "The interface light is [A.locked ? "red" : "green"]."
-	status += "The short indicator is [A.shorted ? "lit" : "off"]."
-	status += "The AI connection light is [!A.aidisabled ? "on" : "off"]."
+	status += "Индикатор блокировки [A.locked ? "красный" : "зелёный"]."
+	status += "Индикатор питания [A.shorted ? "горит" : "не горит"]."
+	status += "Индикатор соединения с ИИ [!A.aidisabled ? "горит" : "не горит"]."
 	return status
 
 /datum/wires/airalarm/on_pulse(wire)

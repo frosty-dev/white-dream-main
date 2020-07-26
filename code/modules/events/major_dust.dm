@@ -1,7 +1,7 @@
 /datum/round_event_control/meteor_wave/major_dust
 	name = "Major Space Dust"
 	typepath = /datum/round_event/meteor_wave/major_dust
-	weight = 8
+	weight = 90
 
 /datum/round_event/meteor_wave/major_dust
 	wave_name = "space dust"
@@ -13,4 +13,4 @@
 		[pick("пушки","артиллерии","боярки","крейсерной обшивки","\[REDACTED\]")], \
 		ожидается небольшой мусор.",
 		"Соседняя станция бросает в вас камни. (Возможно, они устали от ваших сообщений.)")
-	priority_announce(pick(reason), "Опасность столкновения")
+	priority_announce(pick(reason), "Опасность столкновения", 'sound/ai/announcer/meteors.ogg')

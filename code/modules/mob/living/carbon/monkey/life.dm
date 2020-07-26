@@ -34,10 +34,10 @@
 			if(!IsParalyzed())
 				emote("collapse")
 			Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
-			to_chat(src, "<span class='danger'>You feel weak.</span>")
+			to_chat(src, "<span class='danger'>Чувствую слабость.</span>")
 		if(radiation > RAD_MOB_MUTATE)
 			if(prob(1))
-				to_chat(src, "<span class='danger'>You mutate!</span>")
+				to_chat(src, "<span class='danger'>МУТИРУЮ!</span>")
 				easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 				emote("gasp")
 				domutcheck()
@@ -50,8 +50,8 @@
 	return ..()
 
 /mob/living/carbon/monkey/handle_breath_temperature(datum/gas_mixture/breath)
-	if(abs(BODYTEMP_NORMAL - breath.temperature) > 50)
-		switch(breath.temperature)
+	if(abs(get_body_temp_normal() - breath.return_temperature()) > 50)
+		switch(breath.return_temperature())
 			if(-INFINITY to 120)
 				adjustFireLoss(3)
 			if(120 to 200)
@@ -65,21 +65,12 @@
 			if(1000 to INFINITY)
 				adjustFireLoss(8)
 
+	. = ..() // interact with body heat after dealing with the hot air
+
 /mob/living/carbon/monkey/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		return
-
-	var/loc_temp = get_temperature(environment)
-
-	if(stat != DEAD)
-		adjust_bodytemperature(natural_bodytemperature_stabilization())
-
-	if(!on_fire) //If you're on fire, you do not heat up or cool down based on surrounding gases
-		if(loc_temp < bodytemperature)
-			adjust_bodytemperature(max((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
-		else
-			adjust_bodytemperature(min((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
-
+	// Run base mob body temperature proc before taking damage
+	// this balances body temp to the environment and natural stabilization
+	. = ..()
 
 	if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
 		switch(bodytemperature)

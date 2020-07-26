@@ -3,16 +3,17 @@
 INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	move_resist = INFINITY
 	throwforce = 0
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 
 /mob/dead/Initialize()
+	SHOULD_CALL_PARENT(FALSE)
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 	tag = "mob_[next_mob_id++]"
-	GLOB.mob_list += src
+	add_to_mob_list()
 
 	prepare_huds()
 
@@ -45,24 +46,23 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 /mob/dead/Stat()
 	..()
 
-	if(!statpanel("Game"))
+	if(!statpanel("Игра"))
 		return
-	stat(null, "Game Mode: [SSticker.hide_mode ? "Secret" : "[GLOB.master_mode]"]")
+	stat("Режим:", "[SSticker.hide_mode ? "Secret" : "[GLOB.master_mode]"]")
 
 	if(SSticker.HasRoundStarted())
 		return
 
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		stat(null, "Time To Start: [round(time_remaining/10)]s")
+		stat("Таймер:", "[round(time_remaining/10)]с")
 	else if(time_remaining == -10)
-		stat(null, "Time To Start: DELAYED")
+		stat("Таймер:", "ОТЛОЖЕНО")
 	else
-		stat(null, "Time To Start: SOON")
+		stat("Таймер:", "СКОРО")
 
-	stat(null, "Players: [SSticker.totalPlayers]")
-	if(client.holder)
-		stat(null, "Players Ready: [SSticker.totalPlayersReady]")
+	stat("Игроки:", "[SSticker.totalPlayers]")
+	stat("Готовы:", "[SSticker.totalPlayersReady]")
 
 /mob/dead/proc/server_hop()
 	set category = "OOC"
@@ -70,7 +70,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	set desc= "Jump to the other server"
 	if(notransform)
 		return
-	var/list/csa = CONFIG_GET(keyed_list/cross_server)
+	var/list/our_id = CONFIG_GET(string/cross_comms_name)
+	var/list/csa = CONFIG_GET(keyed_list/cross_server) - our_id
 	var/pick
 	switch(csa.len)
 		if(0)
@@ -102,7 +103,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	winset(src, null, "command=.options") //other wise the user never knows if byond is downloading resources
 
-	C << link("[addr]?server_hop=[key]")
+	C << link("[addr]")
 
 /mob/dead/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
@@ -117,6 +118,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead/Login()
 	. = ..()
+	if(!. || !client)
+		return FALSE
 	var/turf/T = get_turf(src)
 	if (isturf(T))
 		update_z(T.z)

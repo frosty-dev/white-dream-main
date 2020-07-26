@@ -1,10 +1,16 @@
 /datum/admins/proc/spawn_objasmob(object as text)
-	set category = "Debug"
+	set category = "Дбг"
 	set desc = "(obj path) Spawn object-mob"
 	set name = "Spawn object-mob"
 
+	if(!object)
+		object = input("", "Spawn object-mob") as null|text
+
 	if(!check_rights(R_SPAWN))
 		return
+
+	//if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+	//	return
 
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/obj)))
 
@@ -38,7 +44,7 @@
 
 		basemob = text2path(mainsettings["mobtype"]["value"])
 		if (!ispath(basemob, /mob/living/simple_animal/hostile/mimic/copy) || !ispath(chosen_obj, /obj))
-			to_chat(usr, "Mob or object path invalid", confidential=TRUE)
+			to_chat(usr, "Mob or object path invalid", confidential = TRUE)
 
 		basemob = new basemob(get_turf(usr), new chosen_obj(get_turf(usr)), usr, mainsettings["dropitem"]["value"] == "Yes" ? FALSE : TRUE, (mainsettings["googlyeyes"]["value"] == "Yes" ? FALSE : TRUE))
 

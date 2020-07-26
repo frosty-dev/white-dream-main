@@ -12,6 +12,7 @@
 	production = 1
 	yield = 2
 	potency = 50
+	instability = 15
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing.dmi'
 	icon_dead = "cotton-dead"
@@ -66,7 +67,7 @@
 
 /obj/item/grown/cotton/durathread
 	seed = /obj/item/seeds/cotton/durathread
-	name = "durathread bundle"
+	name = "дюратканевый bundle"
 	desc = "A tough bundle of durathread, good luck unraveling this."
 	icon_state = "durathread"
 	force = 5

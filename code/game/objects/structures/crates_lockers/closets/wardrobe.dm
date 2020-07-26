@@ -27,7 +27,7 @@
 	return
 
 /obj/structure/closet/wardrobe/black
-	name = "black wardrobe"
+	name = "чёрный wardrobe"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/black/PopulateContents()
@@ -53,7 +53,7 @@
 
 
 /obj/structure/closet/wardrobe/green
-	name = "green wardrobe"
+	name = "зелёный wardrobe"
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/green/PopulateContents()
@@ -84,7 +84,7 @@
 
 
 /obj/structure/closet/wardrobe/yellow
-	name = "yellow wardrobe"
+	name = "жёлтый wardrobe"
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/PopulateContents()
@@ -100,7 +100,7 @@
 
 
 /obj/structure/closet/wardrobe/white
-	name = "white wardrobe"
+	name = "белый wardrobe"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/white/PopulateContents()

@@ -11,12 +11,13 @@
 	equip_cooldown = 150
 	energy_drain = 1000
 	range = MECHA_RANGED
+	var/teleport_range = 7
 
 /obj/item/mecha_parts/mecha_equipment/teleporter/action(atom/target)
 	if(!action_checks(target) || is_centcom_level(loc.z))
 		return
 	var/turf/T = get_turf(target)
-	if(T)
+	if(T && (loc.z == T.z) && (get_dist(loc, T) <= teleport_range))
 		do_teleport(chassis, T, 4, channel = TELEPORT_CHANNEL_BLUESPACE)
 		return 1
 
@@ -279,7 +280,7 @@
 	energy_drain = 0
 	range = 0
 	var/coeff = 100
-	var/list/use_channels = list(EQUIP,ENVIRON,LIGHT)
+	var/list/use_channels = list(AREA_USAGE_EQUIP,AREA_USAGE_ENVIRON,AREA_USAGE_LIGHT)
 	selectable = 0
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Destroy()
@@ -336,13 +337,13 @@
 	if(isnull(cur_charge) || !chassis.cell)
 		STOP_PROCESSING(SSobj, src)
 		set_ready_state(1)
-		occupant_message("<span class='notice'>No powercell detected.</span>")
+		occupant_message("<span class='notice'>No power cell detected.</span>")
 		return
 	if(cur_charge < chassis.cell.maxcharge)
 		var/area/A = get_area(chassis)
 		if(A)
 			var/pow_chan
-			for(var/c in list(EQUIP,ENVIRON,LIGHT))
+			for(var/c in use_channels)
 				if(A.powered(c))
 					pow_chan = c
 					break
@@ -399,7 +400,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount*fuel.mats_per_stack,0.1)] cm<sup>3</sup>\] - <a href='?src=[REF(src)];toggle=1'>[equip_ready?"A":"Dea"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.amount*MINERAL_MATERIAL_AMOUNT,0.1)] cm<sup>3</sup>\] - <a href='?src=[REF(src)];toggle=1'>[equip_ready?"A":"Dea"]ctivate</a>"
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)
 	if(chassis)
@@ -409,9 +410,9 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount > 0)
-		var/to_load = max(max_fuel - fuel.amount*fuel.mats_per_stack,0)
+		var/to_load = max(max_fuel - fuel.amount*MINERAL_MATERIAL_AMOUNT,0)
 		if(to_load)
-			var/units = min(max(round(to_load / P.mats_per_stack),1),P.amount)
+			var/units = min(max(round(to_load / MINERAL_MATERIAL_AMOUNT),1),P.amount)
 			fuel.amount += units
 			P.use(units)
 			occupant_message("<span class='notice'>[units] unit\s of [fuel] successfully loaded.</span>")
@@ -439,7 +440,7 @@
 	var/cur_charge = chassis.get_charge()
 	if(isnull(cur_charge))
 		set_ready_state(1)
-		occupant_message("<span class='notice'>No powercell detected.</span>")
+		occupant_message("<span class='notice'>No power cell detected.</span>")
 		log_message("Deactivated.", LOG_MECHA)
 		STOP_PROCESSING(SSobj, src)
 		return
@@ -447,7 +448,7 @@
 	if(cur_charge < chassis.cell.maxcharge)
 		use_fuel = fuel_per_cycle_active
 		chassis.give_power(power_per_cycle)
-	fuel.amount -= min(use_fuel/fuel.mats_per_stack,fuel.amount)
+	fuel.amount -= min(use_fuel/MINERAL_MATERIAL_AMOUNT,fuel.amount)
 	update_equip_info()
 	return 1
 
@@ -543,7 +544,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/gas
 	name = "RCS thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity enviroments, by expelling gas from the internal life support tank."
+	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments, by expelling gas from the internal life support tank."
 	effect_type = /obj/effect/particle_effect/smoke
 	var/move_cost = 20 //moles per step
 
@@ -568,7 +569,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/ion //for mechs with built-in thrusters, should never really exist un-attached to a mech
 	name = "Ion thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity enviroments."
+	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments."
 	detachable = FALSE
 	salvageable = FALSE
 	effect_type = /obj/effect/particle_effect/ion_trails

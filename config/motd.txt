@@ -1,1 +1,2 @@
-<hr style="border: 0; box-shadow: inset 0 -12px 12px -12px rgba(0, 0, 0, 0.5); height: 12px;"><div style="padding: 5px 5px 20px 5px; box-shadow: #000 0px 1px 2px inset; background: #eee;"> <center> <h1 style="text-shadow: #222 1px 1px 1px; color: #ecec5c; font-family: sans-serif; text-decoration: none;">Yellow /tg/Station: Reloaded</h1> <p style="font-family: sans-serif; color: white; text-shadow: black 1px 1px 1px;">Relax server</p><a style="color: red" href="https://discord.gg/5aXdgXv">Discord</a> </center></div><hr style="border: 0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5); height: 12px;">
+<center>Основано на /tg/station. White Dream (TRIAL VERSION)</center>
+<center><a style="color: red" href="https://discord.gg/JqUtyxS"><big>Discord</big></a></center>

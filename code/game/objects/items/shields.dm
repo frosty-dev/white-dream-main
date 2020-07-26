@@ -1,16 +1,16 @@
 /obj/item/shield
-	name = "shield"
+	name = "щит"
 	icon = 'icons/obj/shields.dmi'
 	block_chance = 50
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	var/transparent = FALSE	// makes beam projectiles pass through the shield
 
-/obj/item/shield/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", damage = 0, attack_type = MELEE_ATTACK)
 	return TRUE
 
 /obj/item/shield/riot
-	name = "riot shield"
-	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
+	name = "защитный щит"
+	desc = "Щит умеет блокировать тупые предметы от соединения с туловищем владельца щита."
 	icon_state = "riot"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -27,7 +27,7 @@
 	max_integrity = 75
 	material_flags = MATERIAL_NO_EFFECTS
 
-/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
 		return FALSE
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
@@ -41,17 +41,17 @@
 /obj/item/shield/riot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message("<span class='warning'><b>[user]</b> хуярит <b>[src.name]</b> используя [W]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, TRUE)
 			cooldown = world.time
 	else if(istype(W, /obj/item/stack/sheet/mineral/titanium))
 		if (obj_integrity >= max_integrity)
-			to_chat(user, "<span class='warning'>[src] is already in perfect condition.</span>")
+			to_chat(user, "<span class='warning'><b>[src.name]</b> уже в превосходном состоянии.</span>")
 		else
 			var/obj/item/stack/sheet/mineral/titanium/T = W
 			T.use(1)
 			obj_integrity = max_integrity
-			to_chat(user, "<span class='notice'>You repair [src] with [T].</span>")
+			to_chat(user, "<span class='notice'>Чиню <b>[src.name]</b> используя <b>[T]</b>.</span>")
 	else
 		return ..()
 
@@ -70,10 +70,10 @@
 	playsound(owner, 'sound/effects/glassbr3.ogg', 100)
 	new /obj/item/shard((get_turf(src)))
 
-/obj/item/shield/riot/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", damage = 0, attack_type = MELEE_ATTACK)
 	if (obj_integrity <= damage)
 		var/turf/T = get_turf(owner)
-		T.visible_message("<span class='warning'>[hitby] destroys [src]!</span>")
+		T.visible_message("<span class='warning'><b>[capitalize(hitby.name)]</b> уничтожает <b>[src.name]</b>!</span>")
 		shatter(owner)
 		qdel(src)
 		return FALSE
@@ -81,10 +81,10 @@
 	return ..()
 
 /obj/item/shield/riot/roman
-	name = "\improper Roman shield"
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>."
+	name = "Римский щит"
+	desc = "На внутренней стороне надпись: <i>\"Romanes venio domus\"</i>."
 	icon_state = "roman_shield"
-	item_state = "roman_shield"
+	inhand_icon_state = "roman_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	transparent = FALSE
@@ -92,7 +92,7 @@
 	max_integrity = 65
 
 /obj/item/shield/riot/roman/fake
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
+	desc = "На внутренней стороне надпись: <i>\"Romanes venio domus\"</i>. Это кажется немного хрупким."
 	block_chance = 0
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	max_integrity = 30
@@ -102,13 +102,13 @@
 	new /obj/item/stack/sheet/metal(get_turf(src))
 
 /obj/item/shield/riot/buckler
-	name = "wooden buckler"
-	desc = "A medieval wooden buckler."
+	name = "деревянный баклер"
+	desc = "Средневековый деревянный баклер."
 	icon_state = "buckler"
-	item_state = "buckler"
+	inhand_icon_state = "buckler"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	custom_materials = null
+	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 10)
 	resistance_flags = FLAMMABLE
 	block_chance = 30
 	transparent = FALSE
@@ -120,15 +120,19 @@
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
 
 /obj/item/shield/riot/flash
-	name = "strobe shield"
-	desc = "A shield with a built in, high intensity light capable of blinding and disorienting suspects. Takes regular handheld flashes as bulbs."
+	name = "ослепляющий щит"
+	desc = "Щит со встроенным высокоинтенсивным светом, способным ослеплять и дезориентировать подозреваемых. Принимает обычные ручные флэшки в виде лампочек."
 	icon_state = "flashshield"
-	item_state = "flashshield"
+	inhand_icon_state = "flashshield"
 	var/obj/item/assembly/flash/handheld/embedded_flash
 
 /obj/item/shield/riot/flash/Initialize()
 	. = ..()
 	embedded_flash = new(src)
+
+/obj/item/shield/riot/flash/ComponentInitialize()
+	. = .. ()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/shield/riot/flash/attack(mob/living/M, mob/user)
 	. =  embedded_flash.attack(M, user)
@@ -138,7 +142,7 @@
 	. = embedded_flash.attack_self(user)
 	update_icon()
 
-/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if (. && !embedded_flash.burnt_out)
 		embedded_flash.activate()
@@ -149,10 +153,10 @@
 	if(istype(W, /obj/item/assembly/flash/handheld))
 		var/obj/item/assembly/flash/handheld/flash = W
 		if(flash.burnt_out)
-			to_chat(user, "<span class='warning'>No sense replacing it with a broken bulb!</span>")
+			to_chat(user, "<span class='warning'>Нет смысла заменять её сломанной лампочкой!</span>")
 			return
 		else
-			to_chat(user, "<span class='notice'>You begin to replace the bulb...</span>")
+			to_chat(user, "<span class='notice'>Начинаю заменять лампочку...</span>")
 			if(do_after(user, 20, target = user))
 				if(flash.burnt_out || !flash || QDELETED(flash))
 					return
@@ -169,22 +173,22 @@
 	embedded_flash.emp_act(severity)
 	update_icon()
 
-/obj/item/shield/riot/flash/update_icon()
+/obj/item/shield/riot/flash/update_icon_state()
 	if(!embedded_flash || embedded_flash.burnt_out)
 		icon_state = "riot"
-		item_state = "riot"
+		inhand_icon_state = "riot"
 	else
 		icon_state = "flashshield"
-		item_state = "flashshield"
+		inhand_icon_state = "flashshield"
 
 /obj/item/shield/riot/flash/examine(mob/user)
 	. = ..()
 	if (embedded_flash?.burnt_out)
-		. += "<span class='info'>The mounted bulb has burnt out. You can try replacing it with a new one.</span>"
+		. += "<span class='info'>Установленная лампа перегорела. Стоит попробовать заменить её на новую.</span>"
 
 /obj/item/shield/energy
-	name = "energy combat shield"
-	desc = "A shield that reflects almost all energy projectiles, but is useless against physical attacks. It can be retracted, expanded, and stored anywhere."
+	name = "энергетический боевой щит"
+	desc = "Щит, который отражает почти все энергетические снаряды, но бесполезен против физических атак. Его можно убирать, расширять и хранить где угодно."
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -204,7 +208,7 @@
 	. = ..()
 	icon_state = "[base_icon_state]0"
 
-/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
 /obj/item/shield/energy/IsReflect()
@@ -212,7 +216,7 @@
 
 /obj/item/shield/energy/attack_self(mob/living/carbon/human/user)
 	if(clumsy_check && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
-		to_chat(user, "<span class='userdanger'>You beat yourself in the head with [src]!</span>")
+		to_chat(user, "<span class='userdanger'>Бью себя в голову используя <b>[src.name]</b>!</span>")
 		user.take_bodypart_damage(5)
 	active = !active
 	icon_state = "[base_icon_state][active]"
@@ -223,19 +227,19 @@
 		throw_speed = on_throw_speed
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+		to_chat(user, "<span class='notice'><b>[src.name]</b> теперь активен.</span>")
 	else
 		force = initial(force)
 		throwforce = initial(throwforce)
 		throw_speed = initial(throw_speed)
 		w_class = WEIGHT_CLASS_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 35, TRUE)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, "<span class='notice'><b>[src.name]</b> теперь может быть спрятан.</span>")
 	add_fingerprint(user)
 
 /obj/item/shield/riot/tele
-	name = "telescopic shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	name = "телескопический щит"
+	desc = "Усовершенствованный защитный экран от легких материалов, который разрушается для удобства хранения."
 	icon_state = "teleriot0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -248,7 +252,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/active = 0
 
-/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "атаку", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		return ..()
 	return 0
@@ -264,12 +268,12 @@
 		throw_speed = 2
 		w_class = WEIGHT_CLASS_BULKY
 		slot_flags = ITEM_SLOT_BACK
-		to_chat(user, "<span class='notice'>You extend \the [src].</span>")
+		to_chat(user, "<span class='notice'>Раскрываю <b>[src.name]</b>.</span>")
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
 		w_class = WEIGHT_CLASS_NORMAL
 		slot_flags = null
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, "<span class='notice'>Сворачиваю <b>[src.name]</b>.</span>")
 	add_fingerprint(user)

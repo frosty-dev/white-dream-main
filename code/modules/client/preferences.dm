@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//doohickeys for savefiles
 	var/path
 	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
-	var/max_save_slots = 3
+	var/max_slots = 3
 
 	//non-preference stuff
 	var/muted = 0
@@ -28,6 +28,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = TRUE
+	var/chat_on_map = FALSE
+	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+	var/see_chat_non_mob = FALSE
 
 	// Custom Keybindings
 	var/list/key_bindings = list()
@@ -36,6 +39,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tgui_lock = TRUE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
+	var/w_toggles = W_TOGGLES_DEFAULT
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
@@ -71,7 +75,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_markings" = "None")
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_JUMPSUIT_STYLE = TRUE, RANDOM_HAIRSTYLE = TRUE, RANDOM_HAIR_COLOR = TRUE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
-	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 	var/phobia = "spiders"
 
 	var/list/custom_names = list()
@@ -103,14 +106,45 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/fullscreen = FALSE
 	var/widescreenpref = FALSE
 
+	///What size should pixels be displayed as? 0 is strech to fit
+	var/pixel_size = 0
+	///What scaling method should we use? Distort means nearest neighbor
+	var/scaling_method = SCALING_METHOD_NORMAL
 	var/uplink_spawn_loc = UPLINK_PDA
+	///The playtime_reward_cloak variable can be set to TRUE from the prefs menu only once the user has gained over 5K playtime hours. If true, it allows the user to get a cool looking roundstart cloak.
+	var/playtime_reward_cloak = FALSE
 
 	var/list/exp = list()
 	var/list/menuoptions
 
 	var/action_buttons_screen_locs = list()
 
-	var/btprefs = 0
+	var/list/btprefsnew = list()
+	var/btvolume_max = null
+	var/en_names = FALSE
+
+	//Loadout stuff
+	var/list/gear = list()
+	var/list/purchased_gear = list()
+	var/list/equipped_gear = list()
+	var/gear_tab = "Основное"
+	///This var stores the amount of points the owner will get for making it out alive.
+	var/hardcore_survival_score = 0
+
+	var/interface_hue = 0
+	///Someone thought we were nice! We get a little heart in OOC until we join the server past the below time (we can keep it until the end of the round otherwise)
+	var/hearted
+	///If we have a hearted commendations, we honor it every time the player loads preferences until this time has been passed
+	var/hearted_until
+	/// Agendered spessmen can choose whether to have a male or female bodytype
+	var/body_type
+
+	/// If we have persistent scars enabled
+	var/persistent_scars = TRUE
+	/// We have 5 slots for persistent scars, if enabled we pick a random one to load (empty by default) and scars at the end of the shift if we survived as our original person
+	var/list/scars_list = list("1" = "", "2" = "", "3" = "", "4" = "", "5" = "")
+	/// Which of the 5 persistent scar slots we randomly roll to load for this round, if enabled. Actually rolled in [/datum/preferences/proc/load_character(slot)]
+	var/scars_index = 1
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -122,18 +156,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
-			unlock_content = C.IsByondMember()
-			if(unlock_content)
-				max_save_slots = 8
 	var/loaded_preferences_successfully = load_preferences()
+
+	if(!key_bindings["T"])
+		key_bindings["T"] = list("say")
+	if(!key_bindings["M"])
+		key_bindings["M"] = list("me")
+	if(!key_bindings["O"])
+		key_bindings["O"] = list("ooc")
+
 	if(loaded_preferences_successfully)
 		if(load_character())
 			return
 	//we couldn't load character data so just randomize the character appearance + name
 	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
-	C?.update_movement_keys()
-	real_name = pref_species.random_name(gender,1)
+	C?.update_movement_keys(src)
+	real_name = pref_species.random_name(gender,1, en_lang = en_names)
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
@@ -152,13 +191,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
-	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Custom Keybindings</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Персонаж</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Разгрузка</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Игра</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>OOC</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Хоткеи</a>"
 
 	if(!path)
-		dat += "<div class='notice'>Please create an account to save your preferences</div>"
+		dat += "<div class='notice'>Создайте своего первого персонажа.</div>"
 
 	dat += "</center>"
 
@@ -171,54 +211,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(S)
 					dat += "<center>"
 					var/name
-					var/unspaced_slots = 0
-					for(var/i=1, i<=max_save_slots, i++)
-						unspaced_slots++
-						if(unspaced_slots > 4)
-							dat += "<br>"
-							unspaced_slots = 0
+					for(var/i=1, i<=max_slots, i++)
 						S.cd = "/character[i]"
 						S["real_name"] >> name
 						if(!name)
-							name = "Character[i]"
+							name = "Персонаж [i]"
 						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</center>"
-
-			dat += "<center><h2>Occupation Choices</h2>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br></center>"
+			dat += "<table width='100%'><tr>"
+			dat += "<td><center><h2>Предпочтительные должности</h2>"
+			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Выбрать</a><br></center></td>"
 			if(CONFIG_GET(flag/roundstart_traits))
-				dat += "<center><h2>Quirk Setup</h2>"
-				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
-				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
-			dat += "<h2>Identity</h2>"
-			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
+				dat += "<td><center><h2>Особенности</h2>"
+				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Настроить особенности</a><br></center></td>"
+				dat += "</tr></table>"
+				dat += "<center><b>Текущие особенности:</b> [all_quirks.len ? all_quirks.Join(", ") : "Нет"]</center>"
+			else
+				dat += "</table>"
+			dat += "<table width='100%'>"
 			if(is_banned_from(user.ckey, "Appearance"))
-				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
-			dat += "<a href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>Always Random Name: [(randomise[RANDOM_NAME]) ? "Yes" : "No"]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>When Antagonist: [(randomise[RANDOM_NAME_ANTAG]) ? "Yes" : "No"]</a>"
-			dat += "<br><b>Name:</b> "
-			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
+				dat += "<b>Тебе нельзя. Ты всё ещё можешь настраивать персонажей, но в любом случае получишь случайную внешность и имя.</b><br>"
+			dat += "<td align='right' width='360px' valign='top'>"
+			dat += "<h3 class='statusDisplay'>Имя</h3>"
+			dat += "<table width='360px' class='block'>"
+			dat += "<tr><td><b>Основное:</b></td><td align='right'><a href='?_src_=prefs;preference=name;task=input'>[real_name]</a> <a href='?_src_=prefs;preference=name;task=random'>Случайное</a></td></tr>"
 
-			if(!(AGENDER in pref_species.species_traits))
-				var/dispGender
-				if(gender == MALE)
-					dispGender = "Male"
-				else if(gender == FEMALE)
-					dispGender = "Female"
-				else
-					dispGender = "Other"
-				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a>"
-				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>Always Random Gender: [(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A>"
-					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>When Antagonist: [(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A>"
-
-			dat += "<br><b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a>"
-			if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE]'>Always Random Age: [(randomise[RANDOM_AGE]) ? "Yes" : "No"]</A>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>When Antagonist: [(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A>"
-
-			dat += "<br><br><b>Special Names:</b><BR>"
 			var/old_group
 			for(var/custom_name_id in GLOB.preferences_custom_names)
 				var/namedata = GLOB.preferences_custom_names[custom_name_id]
@@ -226,315 +243,302 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					old_group = namedata["group"]
 				else if(old_group != namedata["group"])
 					old_group = namedata["group"]
-					dat += "<br>"
-				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
-			dat += "<br><br>"
+				dat += "<tr><td><b>[namedata["pref_name"]]:</b></td><td align='right'><a href ='?_src_=prefs;preference=[custom_name_id];task=input'>[custom_names[custom_name_id]]</a></td></tr>"
 
-			dat += "<b>Custom Job Preferences:</b><BR>"
-			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
-			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
+			dat += "<tr><td><b>Всегда случайное:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>[(randomise[RANDOM_NAME]) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "<tr><td><b>Язык генератора:</b></td><td align='right'><a href='?_src_=prefs;preference=name_lang'>[(en_names) ? "EN" : "RU"]</a></td></tr>"
+			dat += "<tr><td><b>Когда антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>[(randomise[RANDOM_NAME_ANTAG]) ? "Да" : "Нет"]</a></td></tr>"
 
-			dat += "</tr></table>"
+			dat += "</table></td><td width='360px' valign='top'>"
+			dat += "<h3 class='statusDisplay'>Персонаж</h3>"
+			dat += "<table width='360px' class='block'>"
 
-			dat += "<h2>Body</h2>"
-			dat += "<a href='?_src_=prefs;preference=all;task=random'>Random Body</A> "
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Always Random Body: [(randomise[RANDOM_BODY]) ? "Yes" : "No"]</A>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY_ANTAG]'>When Antagonist: [(randomise[RANDOM_BODY_ANTAG]) ? "Yes" : "No"]</A><br>"
+			if(!(AGENDER in pref_species.species_traits))
+				var/dispGender
+				if(gender == MALE)
+					dispGender = "Мужской"
+				else if(gender == FEMALE)
+					dispGender = "Женский"
+				else
+					dispGender = "Другой"
+				dat += "<tr><td><b>Пол:</b></td><td align='right'><a href='?_src_=prefs;preference=gender'>[dispGender]</a></td></tr>"
+				if(gender == PLURAL || gender == NEUTER)
+					dat += "<tr><td><b>Тип тела:</b></td><td align='right'><a href='?_src_=prefs;preference=body_type'>[body_type == MALE ? "Male" : "Female"]</a></td></tr>"
+				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
+					dat += "<tr><td><b>Всегда случайный пол:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>[(randomise[RANDOM_GENDER]) ? "Да" : "Нет"]</A></td></tr>"
+					dat += "<tr><td><b>Когда антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>[(randomise[RANDOM_GENDER_ANTAG]) ? "Да" : "Нет"]</A></td></tr>"
 
-			dat += "<table width='100%'><tr><td width='24%' valign='top'>"
+			dat += "<tr><td><b>Возраст:</b></td><td align='right'><a href='?_src_=prefs;preference=age;task=input'>[age]</a></td></tr>"
+			if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
+				dat += "<tr><td><b>Всегда случайный возраст:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE]'>[(randomise[RANDOM_AGE]) ? "Да" : "Нет"]</A></td></tr>"
+				dat += "<tr><td><b>Когда антагонист:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>[(randomise[RANDOM_AGE_ANTAG]) ? "Да" : "Нет"]</A></td></tr>"
 
-			dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
-			dat += "<a href='?_src_=prefs;preference=species;task=random'>Random Species</A> "
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>Always Random Species: [(randomise[RANDOM_SPECIES]) ? "Yes" : "No"]</A><br>"
+			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
+				dat += "<tr><td><b>Режим хардкора:</b></td><td align='right'><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>[(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a></td></tr>"
 
-			dat += "<b>Underwear:</b><BR><a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR]'>[(randomise[RANDOM_UNDERWEAR]) ? "Lock" : "Unlock"]</A>"
+			dat += "</table>"
+			dat += "<h3 class='statusDisplay'>Особенности должности</h3>"
+			dat += "<table width='360px' class='block'>"
 
-			dat += "<br><b>Underwear Color:</b><BR><span style='border: 1px solid #161616; background-color: #[underwear_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=underwear_color;task=input'>Change</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR_COLOR]'>[(randomise[RANDOM_UNDERWEAR_COLOR]) ? "Lock" : "Unlock"]</A>"
+			dat += "<tr><td><b>Дисплей ИИ:</b></td><td align='right'><a href='?_src_=prefs;preference=ai_core_icon;task=input'>[preferred_ai_core_display]</a></td></tr>"
+			dat += "<tr><td><b>Отдел офицера:</b></td><td align='right'><a href='?_src_=prefs;preference=sec_dept;task=input'>[prefered_security_department]</a></td></tr>"
 
-			dat += "<BR><b>Undershirt:</b><BR><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT]'>[(randomise[RANDOM_UNDERSHIRT]) ? "Lock" : "Unlock"]</A>"
+			dat += "</table></td></table>"
 
+			dat += "<table width='100%'><td width='400px' align='right' valign='top'><h3 class='statusDisplay'>Тело</h3>"
+			dat += "<a href='?_src_=prefs;preference=all;task=random'>Случайное</A>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY]'>Случайное всегда: [(randomise[RANDOM_BODY]) ? "Да" : "Нет"]</A>"
+			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BODY_ANTAG]'>Когда антагонист: [(randomise[RANDOM_BODY_ANTAG]) ? "Да" : "Нет"]</A>"
 
-			dat += "<br><b>Socks:</b><BR><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SOCKS]'>[(randomise[RANDOM_SOCKS]) ? "Lock" : "Unlock"]</A>"
+			dat += "<table width='400px' class='block'>"
 
+			dat += "<tr><td><b>Вид:</b></td><td align='right'><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>"
+			dat += "<a href='?_src_=prefs;preference=species;task=random'>Случайно</A></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>[(randomise[RANDOM_SPECIES]) ? "Да" : "Нет"]</A></td></tr>"
 
-			dat += "<br><b>Backpack:</b><BR><a href ='?_src_=prefs;preference=bag;task=input'>[backpack]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BACKPACK]'>[(randomise[RANDOM_BACKPACK]) ? "Lock" : "Unlock"]</A>"
+			dat += "<tr><td><b>Бельё:</b></td><td align='right'><a href='?_src_=prefs;preference=underwear;task=input'>[underwear]</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR]'>[(randomise[RANDOM_UNDERWEAR]) ? "🔓" : "🔒"]</A></td></tr>"
 
+			dat += "<tr><td><b>Цвет белья:</b></td><td align='right'><span style='border: 1px solid #161616; background-color: #[underwear_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=underwear_color;task=input'>Изменить</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR_COLOR]'>[(randomise[RANDOM_UNDERWEAR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
-			dat += "<br><b>Jumpsuit Style:</b><BR><a href ='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a>"
-			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_JUMPSUIT_STYLE]'>[(randomise[RANDOM_JUMPSUIT_STYLE]) ? "Lock" : "Unlock"]</A>"
+			dat += "<tr><td><b>Рубаха:</b></td><td align='right'><a href='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT]'>[(randomise[RANDOM_UNDERSHIRT]) ? "🔓" : "🔒"]</A></td></tr>"
 
+			dat += "<tr><td><b>Носки:</b></td><td  align='right'><a href='?_src_=prefs;preference=socks;task=input'>[socks]</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SOCKS]'>[(randomise[RANDOM_SOCKS]) ? "🔓" : "🔒"]</A></td></tr>"
 
-			dat += "<br><b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
+			dat += "<tr><td><b>Рюкзак:</b></td><td align='right'><a href='?_src_=prefs;preference=bag;task=input'>[backpack]</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BACKPACK]'>[(randomise[RANDOM_BACKPACK]) ? "🔓" : "🔒"]</A></td></tr>"
+
+			dat += "<tr><td><b>Комбез:</b></td><td align='right'><a href='?_src_=prefs;preference=suit;task=input'>[jumpsuit_style]</a></td>"
+			dat += "<td><a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_JUMPSUIT_STYLE]'>[(randomise[RANDOM_JUMPSUIT_STYLE]) ? "🔓" : "🔒"]</A></td></tr>"
+
+			dat += "<tr><td><b>Аплинк:</b></td><td align='right'><a href='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a></td></tr>"
+
+			//Adds a thing to select which phobia because I can't be assed to put that in the quirks window
+			if("Phobia" in all_quirks)
+				dat += "<tr><td><b>Фобия:</b></td><td align='right'>"
+				dat += "<a href='?_src_=prefs;preference=phobia;task=input'>[phobia]</a></td></tr>"
+
+			dat += "</table></td><td width='400px' valign='top'><h3 class='statusDisplay'>Подробности</h3><table width='400px' class='block'>"
+
+			if(CAN_SCAR in pref_species.species_traits)
+				dat += "<tr><td><b>Получение шрамов:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Включено" : "Отключено"]</A>"
+				dat += "<a href='?_src_=prefs;preference=clear_scars'>Очистить шрамы</A></td></tr>"
 
 			var/use_skintones = pref_species.use_skintones
 			if(use_skintones)
 
-				dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<tr><td><b>Цвет кожи:</b></td><td align='right'><a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SKIN_TONE]'>[(randomise[RANDOM_SKIN_TONE]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<h3>Skin Tone</h3>"
-
-				dat += "<a href='?_src_=prefs;preference=s_tone;task=input'>[skin_tone]</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SKIN_TONE]'>[(randomise[RANDOM_SKIN_TONE]) ? "Lock" : "Unlock"]</A>"
-				dat += "<br>"
-
-			var/mutant_colors
 			if((MUTCOLORS in pref_species.species_traits) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
 
-				if(!use_skintones)
-					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<tr><td><b>Мутацвет:</b></td><td align='right'>"
 
-				dat += "<h3>Mutant Color</h3>"
-
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
-
-				mutant_colors = TRUE
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Изменить</a></td></tr>"
 
 			if(istype(pref_species, /datum/species/ethereal)) //not the best thing to do tbf but I dont know whats better.
 
-				if(!use_skintones)
-					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<tr><td><b>Цвет эфира:</b></td><td align='right'>"
 
-				dat += "<h3>Ethereal Color</h3>"
-
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Изменить</a></td></tr>"
 
 
 			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
 
-				if(!use_skintones && !mutant_colors)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Eye Color</h3>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_EYE_COLOR]'>[(randomise[RANDOM_EYE_COLOR]) ? "Lock" : "Unlock"]</A>"
-
-				dat += "<br></td>"
-			else if(use_skintones || mutant_colors)
-				dat += "</td>"
+				dat += "<tr><td><b>Цвет глаз:</b></td><td align='right'>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Изменить</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_EYE_COLOR]'>[(randomise[RANDOM_EYE_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
 			if(HAIR in pref_species.species_traits)
 
-				dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Hairstyle</h3>"
+				dat += "<tr><td><b>Причёска:</b></td><td align='right'>"
 
 				dat += "<a href='?_src_=prefs;preference=hairstyle;task=input'>[hairstyle]</a>"
-				dat += "<a href='?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
+				dat += "<a href='?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<br><span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "Lock" : "Unlock"]</A>"
+				dat += "<tr><td><b>Цвет причёски:</b></td><td align='right'>"
 
-				dat += "<BR><h3>Facial Hairstyle</h3>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Изменить</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
+
+				dat += "<tr><td><b>Борода:</b></td><td align='right'>"
 
 				dat += "<a href='?_src_=prefs;preference=facial_hairstyle;task=input'>[facial_hairstyle]</a>"
-				dat += "<a href='?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
+				dat += "<a href='?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a><a href='?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "🔓" : "🔒"]</A></td></tr>"
 
-				dat += "<br><span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIR_COLOR]'>[(randomise[RANDOM_FACIAL_HAIR_COLOR]) ? "Lock" : "Unlock"]</A>"
-				dat += "<br></td>"
+				dat += "<tr><td><b>Цвет бороды:</b></td><td align='right'>"
+
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Изменить</a>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIR_COLOR]'>[(randomise[RANDOM_FACIAL_HAIR_COLOR]) ? "🔓" : "🔒"]</A></td></tr>"
 
 			//Mutant stuff
-			var/mutant_category = 0
 
 			if("tail_lizard" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Tail</h3>"
+				dat += "<tr><td><b>Хвост:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_lizard;task=input'>[features["tail_lizard"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=tail_lizard;task=input'>[features["tail_lizard"]]</a></td></tr>"
 
 			if("snout" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Snout</h3>"
+				dat += "<tr><td><b>Нос:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=snout;task=input'>[features["snout"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=snout;task=input'>[features["snout"]]</a></td></tr>"
 
 			if("horns" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Horns</h3>"
+				dat += "<tr><td><b>Рожки:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=horns;task=input'>[features["horns"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=horns;task=input'>[features["horns"]]</a></td></tr>"
 
 			if("frills" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Frills</h3>"
+				dat += "<tr><td><b>Украшения:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=frills;task=input'>[features["frills"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=frills;task=input'>[features["frills"]]</a></td></tr>"
 
 			if("spines" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Spines</h3>"
+				dat += "<tr><td><b>Шипы:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=spines;task=input'>[features["spines"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=spines;task=input'>[features["spines"]]</a></td></tr>"
 
 			if("body_markings" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Body Markings</h3>"
+				dat += "<tr><td><b>Маркировки:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a></td></tr>"
 
 			if("legs" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Legs</h3>"
+				dat += "<tr><td><b>Ноги:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a></td></tr>"
 
 			if("moth_wings" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Moth wings</h3>"
+				dat += "<tr><td><b>Крылья:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a></td></tr>"
 
 			if("moth_markings" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Moth markings</h3>"
+				dat += "<tr><td><b>Маркировки:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=moth_markings;task=input'>[features["moth_markings"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=moth_markings;task=input'>[features["moth_markings"]]</a></td></tr>"
 
 			if("tail_human" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Tail</h3>"
+				dat += "<tr><td><b>Хвост:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
+				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a></td></tr>"
 
 			if("ears" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Ears</h3>"
+				dat += "<tr><td><b>Уши:</b></td><td align='right'>"
 
-				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			//Adds a thing to select which phobia because I can't be assed to put that in the quirks window
-			if("Phobia" in all_quirks)
-				dat += "<h3>Phobia</h3>"
-
-				dat += "<a href='?_src_=prefs;preference=phobia;task=input'>[phobia]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a></td></tr>"
 
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
 
-					dat += "<h3>Wings</h3>"
+					dat += "<tr><td><b>Крылья:</b></td><td align='right'>"
 
-					dat += "<a href='?_src_=prefs;preference=wings;task=input'>[features["wings"]]</a><BR>"
+					dat += "<a href='?_src_=prefs;preference=wings;task=input'>[features["wings"]]</a></td></tr>"
 
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
+			dat += "</table></td></table>"
 
-			if(mutant_category)
-				dat += "</td>"
-				mutant_category = 0
-			dat += "</tr></table>"
+		if(1) //Loadout
+			var/list/type_blacklist = list()
+			if(equipped_gear && equipped_gear.len)
+				for(var/i = 1, i <= equipped_gear.len, i++)
+					var/datum/gear/G = GLOB.gear_datums[equipped_gear[i]]
+					if(G)
+						if(G.subtype_path in type_blacklist)
+							continue
+						type_blacklist += G.subtype_path
+					else
+						equipped_gear.Cut(i,i+1)
 
+			var/fcolor =  "#3366CC"
+			var/metabalance = user.client.get_metabalance()
+			dat += "<table align='center' width='100%'>"
+			dat += "<tr><td colspan=4><center><b>Баланс: <font color='[fcolor]'>[metabalance]</font> метакэша.</b> \[<a href='?_src_=prefs;preference=gear;clear_loadout=1'>Снять надетое</a>\]</center></td></tr>"
+			dat += "<tr><td colspan=4><center><b>"
 
-		if (1) // Game Preferences
+			var/firstcat = 1
+			for(var/category in GLOB.loadout_categories)
+				if(firstcat)
+					firstcat = 0
+				else
+					dat += " |"
+				if(category == gear_tab)
+					dat += " <span class='linkOff'>[category]</span> "
+				else
+					dat += " <a href='?_src_=prefs;preference=gear;select_category=[category]'>[category]</a> "
+			dat += "</b></center></td></tr>"
+
+			var/datum/loadout_category/LC = GLOB.loadout_categories[gear_tab]
+			dat += "<tr><td colspan=4><hr></td></tr>"
+			dat += "<tr><td colspan=4><b><center>[LC.category]</center></b></td></tr>"
+			dat += "<tr><td colspan=4><hr></td></tr>"
+
+			dat += "<tr><td colspan=4><hr></td></tr>"
+			dat += "<tr><td><b>Название</b></td>"
+			dat += "<td><b>Цена</b></td>"
+			dat += "<td><b>Только для</b></td>"
+			dat += "<td><b>Описание</b></td></tr>"
+			dat += "<tr><td colspan=4><hr></td></tr>"
+			for(var/gear_name in LC.gear)
+				var/datum/gear/G = LC.gear[gear_name]
+				var/ticked = (G.display_name in equipped_gear)
+
+				dat += "<tr style='vertical-align:top;'><td width=30%>[G.display_name]\n"
+				if(G.display_name in purchased_gear)
+					if(G.sort_category == "OOC")
+						dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.display_name]'>Купить ещё</a></td>"
+					else
+						dat += "<a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[ticked ? "Экипировано" : "Экипировать"]</a></td>"
+				else
+					dat += "<a style='white-space:normal;' href='?_src_=prefs;preference=gear;purchase_gear=[G.display_name]'>Купить</a></td>"
+				dat += "<td width = 5% style='vertical-align:top'>[G.cost]</td><td>"
+				if(G.allowed_roles)
+					dat += "<font size=2>"
+					for(var/role in G.allowed_roles)
+						dat += role + " "
+					dat += "</font>"
+				dat += "</td><td><font size=2><i>[G.description]</i></font></td></tr>"
+			dat += "</table>"
+
+		if (2) // Game Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-			dat += "<h2>General Settings</h2>"
-			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
-			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
-			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
-			dat += "<br>"
-			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
-			dat += "<br>"
-			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
-			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
-			dat += "<br>"
-			dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
-			dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost Whispers:</b> <a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "All Speech" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost PDA:</b> <a href='?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "All Messages" : "Nearest Creatures"]</a><br>"
-
-			if(unlock_content)
-				dat += "<b>Ghost Form:</b> <a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a><br>"
-				dat += "<B>Ghost Orbit: </B> <a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a><br>"
+			dat += "<h2>Основные настройки</h2>"
+			dat += "<table>"
+			dat += "<tr><td><h3>Интерфейс</h3></td></tr>"
+			dat += "<tr><td><b>Стиль:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a></td></tr>"
+			dat += "<tr><td><b>Окна в TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Основные" : "Все"]</a></td></tr>"
+			dat += "<tr><td><b>Стиль TGUI:</b></td><td align='right'><a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Красивый" : "Строгие рамки"]</a></td></tr>"
+			dat += "<tr><td><h3>Управление</h3></td></tr>"
+			dat += "<tr><td><b>Кнопки действий:</b></td><td align='right'><a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Не двигаются" : "Свободные"]</a></td></tr>"
+			dat += "<tr><td><b>Режим хоткеев:</b></td><td align='right'><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Хоткеи" : "Ретро"]</a></td></tr>"
+			dat += "<tr><td><h3>ПДА:</h3></td></tr>"
+			dat += "<tr><td><b>Цвет меню:</b></td><td align='right'><span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Сменить</a></td></tr>"
+			dat += "<tr><td><b>Стиль:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a></td></tr>"
+			dat += "<tr><td><h3>Призрак:</h3></td></tr>"
+			dat += "<tr><td><b>Разговоры:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "Все" : "Ближайшие"]</a></td></tr>"
+			dat += "<tr><td><b>Радиопереговоры:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "Все":"Не слушать"]</a></td></tr>"
+			dat += "<tr><td><b>Эмоуты:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "Все" : "Ближайшие"]</a></td></tr>"
+			dat += "<tr><td><b>Шёпот:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "Все" : "Ближайшие"]</a></td></tr>"
+			dat += "<tr><td><b>ПДА:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "Все" : "Ближайшие"]</a></td></tr>"
+			dat += "<tr><td><b>Законы ИИ:</b></td><td align='right'><a href='?_src_=prefs;preference=ghost_laws'>[(chat_toggles & CHAT_GHOSTLAWS) ? "Все изменения" : "Не слушать"]</a></td></tr>"
+			dat += "<tr><td><b>Форма:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a></td></tr>"
+			dat += "<tr><td><B>Орбита:</B></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a></td></tr>"
 
 			var/button_name = "If you see this something went wrong."
 			switch(ghost_accs)
@@ -545,7 +549,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_ACCS_NONE)
 					button_name = GHOST_ACCS_NONE_NAME
 
-			dat += "<b>Ghost Accessories:</b> <a href='?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a><br>"
+			dat += "<tr><td><b>Вид призраков:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a></td></tr>"
 
 			switch(ghost_others)
 				if(GHOST_OTHERS_THEIR_SETTING)
@@ -555,15 +559,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(GHOST_OTHERS_SIMPLE)
 					button_name = GHOST_OTHERS_SIMPLE_NAME
 
-			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
-			dat += "<br>"
-
-			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
-			dat += "<br>"
-
-			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
-
-			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
+			dat += "<tr><td><b>Призраки других:</b></td><td align='right'><a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a></td></tr>"
+			dat += "<tr><td><h3>Внутриигровое:</h3></td></tr>"
+			dat += "<tr><td><b>Сообщения ID-карты:</b></td><td align='right'><a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>FPS:</b></td><td align='right'><a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a></td></tr>"
+			dat += "<tr><td><b>Оттенок интерфейса:</b></td><td align='right'><a href='?_src_=prefs;preference=interface_hue;task=input'>[interface_hue]</a></td></tr>"
+			dat += "<tr><td><b>Параллакс:</b></td><td align='right'><a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
 				if (PARALLAX_LOW)
 					dat += "Low"
@@ -575,13 +576,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "Disabled"
 				else
 					dat += "High"
-			dat += "</a><br>"
+			dat += "</a></td></tr>"
 
-			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
-			dat += "<b>Fullscreen:</b> <a href='?_src_=prefs;preference=fullscreen'>[fullscreen ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<tr><td><b>Тени:</b></td><td align='right'><a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Подстройка экрана:</b></td><td align='right'><a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Авто" : "Вручную"]</a></td></tr>"
+			dat += "<tr><td><b>Полный экран:</b></td><td align='right'><a href='?_src_=prefs;preference=fullscreen'>[fullscreen ? "Вкл" : "Выкл"]</a></td></tr>"
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
+				dat += "<tr><td><b>Широкий экран:</b></td><td align='right'><a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Вкл ([CONFIG_GET(string/default_view)])" : "Выкл ([CONFIG_GET(string/default_view_square)])"]</a></td></tr>"
+
+			dat += "<tr><td><b>Названия предметов:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_user'>[(w_toggles & TOOLTIP_USER_UP) ? "Вкл" : "Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Позиция на экране:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_pos'>[(w_toggles & TOOLTIP_USER_POS) ? "Низ" : "Верх"]</a></td></tr>"
+			dat += "<tr><td><b>Ретро-статусбар:</b></td><td align='right'><a href='?_src_=prefs;preference=tooltip_pos'>[(w_toggles & TOOLTIP_USER_RETRO) ? "Вкл" : "Выкл"]</a></td></tr>"
+			button_name = pixel_size
+			dat += "<tr><td><b>Pixel Scaling:</b></td><td align='right'><a href='?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a></td></tr>"
+
+			switch(scaling_method)
+				if(SCALING_METHOD_DISTORT)
+					button_name = "Nearest Neighbor"
+				if(SCALING_METHOD_NORMAL)
+					button_name = "Point Sampling"
+				if(SCALING_METHOD_BLUR)
+					button_name = "Bilinear"
+			dat += "<tr><td><b>Scaling Method:</b></td><td align='right'><a href='?_src_=prefs;preference=scaling_method'>[button_name]</a></td></tr>"
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -599,20 +615,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/preference_map_voting))
-					dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
+					dat += "<tr><td><b>Любимая карта:</b></td><td align='right'><a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a></td></tr>"
 
-			dat += "</td><td width='300px' height='300px' valign='top'>"
+			dat += "</table></td><td width='300px' height='300px' valign='top'>"
 
-			dat += "<h2>Special Role Settings</h2>"
+			dat += "<h2>Спецроли</h2>"
+
+			dat += "<table>"
 
 			if(is_banned_from(user.ckey, ROLE_SYNDICATE))
-				dat += "<font color=red><b>You are banned from antagonist roles.</b></font><br>"
+				dat += "<font color=red><b>Тебе нельзя быть антагами.</b></font><br>"
 				src.be_special = list()
 
 
 			for (var/i in GLOB.special_roles)
 				if(is_banned_from(user.ckey, i))
-					dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;bancheck=[i]'>BANNED</a><br>"
+					dat += "<tr><td><b>[capitalize(i)]:</b></td><td><a href='?_src_=prefs;bancheck=[i]'>БАНЕЦ</a></td></tr>"
 				else
 					var/days_remaining = null
 					if(ispath(GLOB.special_roles[i]) && CONFIG_GET(flag/use_age_restriction_for_jobs)) //If it's a game mode antag, check if the player meets the minimum age
@@ -621,81 +639,83 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						days_remaining = temp_mode.get_remaining_days(user.client)
 
 					if(days_remaining)
-						dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
+						dat += "<tr><td><b>[capitalize(i)]:</b></td><td><font color=red> \[Через [days_remaining] дней]</font></td></tr>"
 					else
-						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<br>"
-			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
-			dat += "</td></tr></table>"
-		if(2) //OOC Preferences
-			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-			dat += "<h2>OOC Settings</h2>"
-			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<br>"
-			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<br>"
-
+						dat += "<tr><td><b>[capitalize(i)]:</b></td><td><a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "<tr><td><b>Посреди раунда:</b></td><td><a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Да" : "Нет"]</a></td></tr>"
+			dat += "</table></td></tr></table>"
+		if(3) //OOC Preferences
+			dat += "<table><tr><td width='340px' height='300px' valign='top'><table>"
+			dat += "<tr><td><h2>Настройки OOC</h2></td></tr>"
+			dat += "<tr><td><b>Мигание окна:</b></td><td><a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Вкл":"Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Слышать Admin MIDIs:</b></td><td><a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Вкл":"Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Слышать Lobby Music:</b></td><td><a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Вкл":"Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Проигрывать звук окончания раунда:</b></td><td><a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "Вкл":"Выкл"]</a></td></tr>"
+			dat += "<tr><td><b>Видеть PR:</b></td><td><a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Вкл":"Выкл"]</a></td></tr>"
 
 			if(user.client)
 				if(unlock_content)
-					dat += "<b>BYOND Membership Publicity:</b> <a href='?_src_=prefs;preference=publicity'>[(toggles & MEMBER_PUBLIC) ? "Public" : "Hidden"]</a><br>"
+					dat += "<tr><td><b>BYOND Membership Publicity:</b></td><td><a href='?_src_=prefs;preference=publicity'>[(toggles & MEMBER_PUBLIC) ? "Public" : "Hidden"]</a></td></tr>"
 
 				if(unlock_content || check_rights_for(user.client, R_ADMIN) || check_donations(user.client.ckey))
-					dat += "<b>OOC Color:</b> <span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a><br>"
+					dat += "<tr><td><b>Цвет OOC:</b></td><td><span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a></td></tr>"
 
-			dat += "</td>"
+			dat += "</table></td>"
 
 			if(user.client.holder)
 				dat +="<td width='300px' height='300px' valign='top'>"
 
 				dat += "<h2>Admin Settings</h2>"
 
-				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"Enabled":"Disabled"]</a><br>"
-				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"Enabled":"Disabled"]</a><br>"
-				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Enabled":"Disabled"]</a><br>"
+				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"Вкл":"Выкл"]</a><br>"
+				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"Вкл":"Выкл"]</a><br>"
+				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Вкл":"Выкл"]</a><br>"
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "<br>"
 				dat += "<b>Hide Dead Chat:</b> <a href = '?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DEAD)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Radio Messages:</b> <a href = '?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Prayers:</b> <a href = '?_src_=prefs;preference=toggle_prayers'>[(chat_toggles & CHAT_PRAYER)?"Shown":"Hidden"]</a><br>"
+				dat += "<b>Ignore Being Summoned as Cult Ghost:</b> <a href = '?_src_=prefs;preference=toggle_ignore_cult_ghost'>[(toggles & ADMIN_IGNORE_CULT_GHOST)?"Don't Allow Being Summoned":"Allow Being Summoned"]</a><br>"
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += "<br>"
 					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
 
 				//deadmin
 				dat += "<h2>Deadmin While Playing</h2>"
-				if(CONFIG_GET(flag/auto_deadmin_players))
+				var/timegate = CONFIG_GET(number/auto_deadmin_timegate)
+				if(timegate)
+					dat += "<b>Noted roles will automatically deadmin during the first [FLOOR(timegate / 600, 1)] minutes of the round, and will defer to individual preferences after.</b><br>"
+
+				if(CONFIG_GET(flag/auto_deadmin_players) && !timegate)
 					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
 				else
-					dat += "<b>Always Deadmin:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Enabled":"Disabled"]</a><br>"
+					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Вкл":"Выкл"]</a><br>"
 					if(!(toggles & DEADMIN_ALWAYS))
 						dat += "<br>"
-						if(!CONFIG_GET(flag/auto_deadmin_antagonists))
-							dat += "<b>As Antag:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_antag'>[(toggles & DEADMIN_ANTAGONIST)?"Deadmin":"Keep Admin"]</a><br>"
+						if(!CONFIG_GET(flag/auto_deadmin_antagonists) || (CONFIG_GET(flag/auto_deadmin_antagonists) && !timegate))
+							dat += "<b>As Antag:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_antag'>[(toggles & DEADMIN_ANTAGONIST)?"Deadmin":"Keep Admin"]</a><br>"
 						else
 							dat += "<b>As Antag:</b> FORCED<br>"
 
-						if(!CONFIG_GET(flag/auto_deadmin_heads))
-							dat += "<b>As Command:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_head'>[(toggles & DEADMIN_POSITION_HEAD)?"Deadmin":"Keep Admin"]</a><br>"
+						if(!CONFIG_GET(flag/auto_deadmin_heads) || (CONFIG_GET(flag/auto_deadmin_heads) && !timegate))
+							dat += "<b>As Command:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_head'>[(toggles & DEADMIN_POSITION_HEAD)?"Deadmin":"Keep Admin"]</a><br>"
 						else
 							dat += "<b>As Command:</b> FORCED<br>"
 
-						if(!CONFIG_GET(flag/auto_deadmin_security))
-							dat += "<b>As Security:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_security'>[(toggles & DEADMIN_POSITION_SECURITY)?"Deadmin":"Keep Admin"]</a><br>"
+						if(!CONFIG_GET(flag/auto_deadmin_security) || (CONFIG_GET(flag/auto_deadmin_security) && !timegate))
+							dat += "<b>As Security:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_security'>[(toggles & DEADMIN_POSITION_SECURITY)?"Deadmin":"Keep Admin"]</a><br>"
 						else
 							dat += "<b>As Security:</b> FORCED<br>"
 
-						if(!CONFIG_GET(flag/auto_deadmin_silicons))
-							dat += "<b>As Silicon:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_silicon'>[(toggles & DEADMIN_POSITION_SILICON)?"Deadmin":"Keep Admin"]</a><br>"
+						if(!CONFIG_GET(flag/auto_deadmin_silicons) || (CONFIG_GET(flag/auto_deadmin_silicons) && !timegate))
+							dat += "<b>As Silicon:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_silicon'>[(toggles & DEADMIN_POSITION_SILICON)?"Deadmin":"Keep Admin"]</a><br>"
 						else
 							dat += "<b>As Silicon:</b> FORCED<br>"
 
 				dat += "</td>"
 			dat += "</tr></table>"
-		if(3) // Custom keybindings
+		if(4) // Custom keybindings
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
 			for (var/key in key_bindings)
@@ -708,45 +728,44 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
 				kb_categories[kb.category] += list(kb)
 
-			dat += "<style>label { display: inline-block; width: 200px; }</style><body>"
+			dat += "<body><table>"
 
 			for (var/category in kb_categories)
-				dat += "<h3>[category]</h3>"
+				dat += "<tr><td><h3>[category]</h3></td></tr>"
 				for (var/i in kb_categories[category])
 					var/datum/keybinding/kb = i
 					if(!length(user_binds[kb.name]))
-						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
+						dat += "<tr><td>[kb.full_name]</td><td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>НЕТ</a></td>"
 						var/list/default_keys = hotkeys ? kb.hotkey_keys : kb.classic_keys
 						if(LAZYLEN(default_keys))
-							dat += "| Default: [default_keys.Join(", ")]"
-						dat += "<br>"
+							dat += "<td>Стандартно: [default_keys.Join(", ")]</td>"
+						dat += "</tr>"
 					else
 						var/bound_key = user_binds[kb.name][1]
-						dat += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+						dat += "<tr><td>[kb.full_name]</td><td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a></td>"
 						for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 							bound_key = user_binds[kb.name][bound_key_index]
-							dat += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a></td>"
 						if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
-							dat += "| <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Add Secondary</a>"
+							dat += "<td><a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Альт</a></td>"
 						var/list/default_keys = hotkeys ? kb.classic_keys : kb.hotkey_keys
 						if(LAZYLEN(default_keys))
-							dat += "| Default: [default_keys.Join(", ")]"
-						dat += "<br>"
+							dat += "<td>Стандартно: [default_keys.Join(", ")]</td>"
+						dat += "</tr>"
 
-			dat += "<br><br>"
-			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
-			dat += "</body>"
+			dat += "<tr><td><a href ='?_src_=prefs;preference=keybindings_reset'>\[Сбросить до стандартных\]</a></td></tr>"
+			dat += "</table></body>"
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
-		dat += "<a href='?_src_=prefs;preference=load'>Undo</a> "
-		dat += "<a href='?_src_=prefs;preference=save'>Save Setup</a> "
+		dat += "<a href='?_src_=prefs;preference=load'>Отмена</a> "
+		dat += "<a href='?_src_=prefs;preference=save'>Сохранить</a> "
 
-	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset Setup</a>"
+	dat += "<a href='?_src_=prefs;preference=reset_all'>Сбросить</a>"
 	dat += "</center>"
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 640, 770)
+	var/datum/browser/popup = new(user, "preferences_browser_new", "<div align='center'>Настройки</div>", 1200, 770)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
@@ -792,13 +811,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/HTML = "<center>"
 	if(SSjob.occupations.len <= 0)
-		HTML += "The job SSticker is not yet finished creating jobs, please try again later"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
+		HTML += "Список работ ещё не инициализирован до конца. Подождите немного."
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Готово</a></center><br>" // Easier to press up here.
 
 	else
-		HTML += "<b>Choose occupation chances</b><br>"
-		HTML += "<div align='center'>Left-click to raise an occupation preference, right-click to lower it.<br></div>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Done</a></center><br>" // Easier to press up here.
+		HTML += "<b>Выбери шанс получить желаемую должность</b><br>"
+		HTML += "<div align='center'>ЛКМ, чтобы поднять вес, ПКМ чтобы понизить.<br></div>"
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>Готово</a></center><br>" // Easier to press up here.
 		HTML += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?_src_=prefs;preference=job;task=setJobLevel;level=' + level + ';text=' + encodeURIComponent(rank); return false; }</script>"
 		HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
 		HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -824,7 +843,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
-				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
+				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> БЛОК</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
@@ -844,29 +863,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			HTML += "</td><td width='40%'>"
 
-			var/prefLevelLabel = "ERROR"
+			var/prefLevelLabel = "ОШИБКА"
 			var/prefLevelColor = "pink"
 			var/prefUpperLevel = -1 // level to assign on left click
 			var/prefLowerLevel = -1 // level to assign on right click
 
 			switch(job_preferences[job.title])
 				if(JP_HIGH)
-					prefLevelLabel = "High"
+					prefLevelLabel = "Высокий"
 					prefLevelColor = "slateblue"
 					prefUpperLevel = 4
 					prefLowerLevel = 2
 				if(JP_MEDIUM)
-					prefLevelLabel = "Medium"
+					prefLevelLabel = "Средний"
 					prefLevelColor = "green"
 					prefUpperLevel = 1
 					prefLowerLevel = 3
 				if(JP_LOW)
-					prefLevelLabel = "Low"
+					prefLevelLabel = "Низкий"
 					prefLevelColor = "orange"
 					prefUpperLevel = 2
 					prefLowerLevel = 4
 				else
-					prefLevelLabel = "NEVER"
+					prefLevelLabel = "НИКОГДА"
 					prefLevelColor = "red"
 					prefUpperLevel = 3
 					prefLowerLevel = 1
@@ -875,9 +894,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(rank == SSjob.overflow_role)//Overflow is special
 				if(job_preferences[SSjob.overflow_role] == JP_LOW)
-					HTML += "<font color=green>Yes</font>"
+					HTML += "<font color=green>Да</font>"
 				else
-					HTML += "<font color=red>No</font>"
+					HTML += "<font color=red>Нет</font>"
 				HTML += "</a></td></tr>"
 				continue
 
@@ -890,15 +909,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		HTML += "</td'></tr></table>"
 		HTML += "</center></table>"
 
-		var/message = "Be an [SSjob.overflow_role] if preferences unavailable"
+		var/message = "Быть [SSjob.overflow_role], если не получилось"
 		if(joblessrole == BERANDOMJOB)
-			message = "Get random job if preferences unavailable"
+			message = "Получить случайную должность, если не получилось"
 		else if(joblessrole == RETURNTOLOBBY)
-			message = "Return to lobby if preferences unavailable"
+			message = "Вернуться в лобби, если не получилось"
 		HTML += "<center><br><a href='?_src_=prefs;preference=job;task=random'>[message]</a></center>"
-		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Reset Preferences</a></center>"
+		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Сбросить настройки</a></center>"
 
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Preferences</div>", width, height)
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Выбор должностей</div>", width, height)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
@@ -963,29 +982,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/dat = list()
 	if(!SSquirks.quirks.len)
-		dat += "The quirk subsystem hasn't finished initializing, please hold..."
-		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center><br>"
+		dat += "Система особенностей ещё не инициализирована. Надо подождать..."
+		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Готово</a></center><br>"
 	else
-		dat += "<center><b>Choose quirk setup</b></center><br>"
-		dat += "<div align='center'>Left-click to add or remove quirks. You need negative quirks to have positive ones.<br>\
-		Quirks are applied at roundstart and cannot normally be removed.</div>"
-		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center>"
+		dat += "<center><b>Выбери возможные особенности персонажа</b></center><br>"
+		dat += "<div align='center'>ЛКМ, чтобы добавить или удалить особенность. Тебе нужны будут негативные особенности, чтобы иметь позитивные.<br>\
+		Особенности применяются каждый раунд и не могут быть убраны обычным путём.</div>"
+		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Готово</a></center>"
 		dat += "<hr>"
-		dat += "<center><b>Current quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
-		dat += "<center>[GetPositiveQuirkCount()] / [MAX_QUIRKS] max positive quirks<br>\
-		<b>Quirk balance remaining:</b> [GetQuirkBalance()]</center><br>"
+		dat += "<center><b>Текущие особенности:</b> [all_quirks.len ? all_quirks.Join(", ") : "Нету!"]</center>"
+		dat += "<center>[GetPositiveQuirkCount()] / [MAX_QUIRKS] максимальных позитивных качеств<br>\
+		<b>Баланс особенностей:</b> [GetQuirkBalance()]</center><br>"
 		for(var/V in SSquirks.quirks)
 			var/datum/quirk/T = SSquirks.quirks[V]
 			var/quirk_name = initial(T.name)
 			var/has_quirk
 			var/quirk_cost = initial(T.value) * -1
-			var/lock_reason = "This trait is unavailable."
+			var/lock_reason = "Эта особенность недоступна."
 			var/quirk_conflict = FALSE
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
 			if(initial(T.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
-				lock_reason = "Mood is disabled."
+				lock_reason = "Настроение не настроено."
 				quirk_conflict = TRUE
 			if(has_quirk)
 				if(quirk_conflict)
@@ -1000,17 +1019,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
 			if(quirk_conflict)
 				dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
-				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"
+				<font color='red'><b>ЗАБЛОКИРОВАНО: [lock_reason]</b></font><br>"
 			else
 				if(has_quirk)
-					dat += "<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Remove" : "Take"] ([quirk_cost] pts.)</a> \
+					dat += "<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Убрать" : "Взять"] ([quirk_cost] о.)</a> \
 					<b><font color='[font_color]'>[quirk_name]</font></b> - [initial(T.desc)]<br>"
 				else
-					dat += "<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Remove" : "Take"] ([quirk_cost] pts.)</a> \
+					dat += "<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Убрать" : "Взять"] ([quirk_cost] о.)</a> \
 					<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)]<br>"
-		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Reset Quirks</a></center>"
+		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Сбросить особенности</a></center>"
 
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Quirk Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Настройка особенностей</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
 	popup.set_window_options("can_close=0")
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
@@ -1089,8 +1108,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					return
 				for(var/V in SSquirks.quirk_blacklist) //V is a list
 					var/list/L = V
+					if(!(quirk in L))
+						continue
 					for(var/Q in all_quirks)
-						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
+						if((Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
 							to_chat(user, "<span class='danger'>[quirk] is incompatible with [Q].</span>")
 							return
 				var/value = SSquirks.quirk_points[quirk]
@@ -1101,7 +1122,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						return
 					all_quirks -= quirk
 				else
-					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
+					var/is_positive_quirk = SSquirks.quirk_points[quirk] > 0
+					if(is_positive_quirk && GetPositiveQuirkCount() >= MAX_QUIRKS)
 						to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
 						return
 					if(balance - value < 0)
@@ -1116,11 +1138,51 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				SetQuirks(user)
 		return TRUE
 
+	if(href_list["preference"] == "gear")
+		if(href_list["purchase_gear"])
+			var/datum/gear/TG = GLOB.gear_datums[href_list["purchase_gear"]]
+			if(TG.cost < user.client.get_metabalance())
+				purchased_gear += TG.display_name
+				TG.purchase(user.client)
+				inc_metabalance(user, (TG.cost * -1), TRUE, "Покупаю [TG.display_name].")
+				save_preferences()
+			else
+				to_chat(user, "<span class='warning'>У меня не хватает метакэша для покупки [TG.display_name]!</span>")
+		if(href_list["toggle_gear"])
+			var/datum/gear/TG = GLOB.gear_datums[href_list["toggle_gear"]]
+			if(TG.display_name in equipped_gear)
+				equipped_gear -= TG.display_name
+			else
+				var/list/type_blacklist = list()
+				var/list/slot_blacklist = list()
+				for(var/gear_name in equipped_gear)
+					var/datum/gear/G = GLOB.gear_datums[gear_name]
+					if(istype(G))
+						if(!(G.subtype_path in type_blacklist))
+							type_blacklist += G.subtype_path
+						if(!(G.slot in slot_blacklist))
+							slot_blacklist += G.slot
+				if((TG.display_name in purchased_gear))
+					if(!(TG.subtype_path in type_blacklist) || !(TG.slot in slot_blacklist))
+						equipped_gear += TG.display_name
+					else
+						to_chat(user, "<span class='warning'>Некуда надевать [TG.display_name]. Что-то уже надето на этот слот.</span>")
+			save_preferences()
+
+		else if(href_list["select_category"])
+			gear_tab = href_list["select_category"]
+		else if(href_list["clear_loadout"])
+			equipped_gear.Cut()
+			save_preferences()
+
+		ShowChoices(user)
+		return
+
 	switch(href_list["task"])
 		if("random")
 			switch(href_list["preference"])
 				if("name")
-					real_name = pref_species.random_name(gender,1)
+					real_name = pref_species.random_name(gender,1, en_lang = en_names)
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair")
@@ -1301,14 +1363,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_socks)
 						socks = new_socks
 
-				if(BODY_ZONE_PRECISE_EYES)
+				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
 						eye_color = sanitize_hexcolor(new_eyes)
 
 				if("species")
 
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races
+					var/list/custom_races = list()
+
+					if(user.key == "WoofWoof322")
+						custom_races += "athena_s"
+
+					if(user.key == "Arsenay")
+						custom_races += "aandroid"
+
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races + custom_races
 
 					if(result)
 						var/newtype = GLOB.species_list[result]
@@ -1318,7 +1388,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
 						if(randomise[RANDOM_NAME])
-							real_name = pref_species.random_name(gender)
+							real_name = pref_species.random_name(gender, en_lang = en_names)
 
 				if("mutant_color")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
@@ -1440,6 +1510,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_loc)
 						uplink_spawn_loc = new_loc
 
+				if("playtime_reward_cloak")
+					if (user.client.get_exp_living(TRUE) >= PLAYTIME_VETERAN)
+						playtime_reward_cloak = !playtime_reward_cloak
+
 				if("ai_core_icon")
 					var/ai_core_icon = input(user, "Choose your preferred AI core display screen:", "AI Core Display Screen Selection") as null|anything in GLOB.ai_core_display_screens
 					if(ai_core_icon)
@@ -1469,10 +1543,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						preferred_map = maplist[pickedmap]
 
 				if ("clientfps")
-					var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tickrate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
+					var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 					if (!isnull(desiredfps))
 						clientfps = desiredfps
 						parent.fps = desiredfps
+				if ("interface_hue")
+					var/desiredhue = input(user, "Введите значение сдвига. (0 = вернёт обычное значение, максимум 360)", "Character Preference", interface_hue)  as null|num
+					if (!isnull(desiredhue))
+						parent.unforce_custom_theme()
+						interface_hue = desiredhue
+						parent.force_custom_theme()
 				if("ui")
 					var/pickedui = input(user, "Choose your UI style.", "Character Preference", UI_style)  as null|anything in sortList(GLOB.available_ui_styles)
 					if(pickedui)
@@ -1493,12 +1573,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(phobiaType)
 						phobia = phobiaType
 
+				if ("max_chat_length")
+					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+					if (!isnull(desiredlength))
+						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+
 		else
 			switch(href_list["preference"])
 				if("publicity")
 					if(unlock_content)
 						toggles ^= MEMBER_PUBLIC
 				if("gender")
+					var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 					var/pickedGender = input(user, "Choose your gender.", "Character Preference", gender) as null|anything in friendlyGenders
 					if(pickedGender && friendlyGenders[pickedGender] != gender)
 						gender = friendlyGenders[pickedGender]
@@ -1507,7 +1593,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						socks = random_socks()
 						facial_hairstyle = random_facial_hairstyle(gender)
 						hairstyle = random_hairstyle(gender)
-
+				if("body_type")
+					if(body_type == MALE)
+						body_type = FEMALE
+					else
+						body_type = MALE
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
@@ -1580,6 +1670,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 					user.client.update_movement_keys()
 
+				if("chat_on_map")
+					chat_on_map = !chat_on_map
+				if("see_chat_non_mob")
+					see_chat_non_mob = !see_chat_non_mob
+
 				if("action_buttons")
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")
@@ -1614,6 +1709,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					toggles ^= DEADMIN_POSITION_SECURITY
 				if("toggle_deadmin_silicon")
 					toggles ^= DEADMIN_POSITION_SILICON
+				if("toggle_ignore_cult_ghost")
+					toggles ^= ADMIN_IGNORE_CULT_GHOST
 
 
 				if("be_special")
@@ -1630,6 +1727,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						randomise[random_type] = TRUE
 
+				if("persistent_scars")
+					persistent_scars = !persistent_scars
+
+				if("clear_scars")
+					to_chat(user, "<span class='notice'>All scar slots cleared. Please save character to confirm.</span>")
+					scars_list["1"] = ""
+					scars_list["2"] = ""
+					scars_list["3"] = ""
+					scars_list["4"] = ""
+					scars_list["5"] = ""
+
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
 
@@ -1639,6 +1747,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						user.client.playtitlemusic()
 					else
 						user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+
+				if("endofround_sounds")
+					toggles ^= SOUND_ENDOFROUND
 
 				if("ghost_ears")
 					chat_toggles ^= CHAT_GHOSTEARS
@@ -1654,6 +1765,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
+
+				if("ghost_laws")
+					chat_toggles ^= CHAT_GHOSTLAWS
 
 				if("income_pings")
 					chat_toggles ^= CHAT_BANKCARD
@@ -1689,9 +1803,42 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					fullscreen = !fullscreen
 					parent.ToggleFullscreen()
 
+				if("tooltip_user")
+					w_toggles ^= TOOLTIP_USER_UP
+
+				if("tooltip_pos")
+					w_toggles ^= TOOLTIP_USER_POS
+
+				if("tooltip_retro")
+					w_toggles ^= TOOLTIP_USER_RETRO
+
 				if("widescreenpref")
 					widescreenpref = !widescreenpref
-					user.client.change_view(CONFIG_GET(string/default_view))
+					user.client.view_size.setDefault(getScreenSize(widescreenpref))
+
+				if("pixel_size")
+					switch(pixel_size)
+						if(PIXEL_SCALING_AUTO)
+							pixel_size = PIXEL_SCALING_1X
+						if(PIXEL_SCALING_1X)
+							pixel_size = PIXEL_SCALING_1_2X
+						if(PIXEL_SCALING_1_2X)
+							pixel_size = PIXEL_SCALING_2X
+						if(PIXEL_SCALING_2X)
+							pixel_size = PIXEL_SCALING_3X
+						if(PIXEL_SCALING_3X)
+							pixel_size = PIXEL_SCALING_AUTO
+					user.client.view_size.apply() //Let's winset() it so it actually works
+
+				if("scaling_method")
+					switch(scaling_method)
+						if(SCALING_METHOD_NORMAL)
+							scaling_method = SCALING_METHOD_DISTORT
+						if(SCALING_METHOD_DISTORT)
+							scaling_method = SCALING_METHOD_BLUR
+						if(SCALING_METHOD_BLUR)
+							scaling_method = SCALING_METHOD_NORMAL
+					user.client.view_size.setZoomMode()
 
 				if("save")
 					save_preferences()
@@ -1707,25 +1854,41 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						real_name = random_unique_name(gender)
 						save_character()
 
+				if("name_lang")
+					en_names = !en_names
+
 				if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
 
+				if("clear_heart")
+					hearted = FALSE
+					hearted_until = null
+					to_chat(user, "<span class='notice'>OOC Commendation Heart disabled</span>")
+					save_preferences()
+
 	ShowChoices(user)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE, is_latejoiner = TRUE)
 
-	if(randomise[RANDOM_SPECIES] && !character_setup)
+	hardcore_survival_score = 0 //Set to 0 to prevent you getting points from last another time.
+
+	if((randomise[RANDOM_SPECIES] || randomise[RANDOM_HARDCORE]) && !character_setup)
+
 		random_species()
 
-	if((randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG] && antagonist) && !character_setup)
+	if((randomise[RANDOM_BODY] || (randomise[RANDOM_BODY_ANTAG] && antagonist) || randomise[RANDOM_HARDCORE]) && !character_setup)
 		slot_randomized = TRUE
 		random_character(gender, antagonist)
 
-	if((randomise[RANDOM_NAME] || randomise[RANDOM_NAME_ANTAG] && antagonist) && !character_setup)
+	if((randomise[RANDOM_NAME] || (randomise[RANDOM_NAME_ANTAG] && antagonist) || randomise[RANDOM_HARDCORE]) && !character_setup)
 		slot_randomized = TRUE
-		real_name = pref_species.random_name(gender)
+		real_name = pref_species.random_name(gender, en_lang = en_names)
+
+	if(randomise[RANDOM_HARDCORE] && parent.mob.mind && !character_setup)
+		if(can_be_random_hardcore())
+			hardcore_random_setup(character, antagonist, is_latejoiner)
 
 	if(roundstart_checks)
 		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == "human"))
@@ -1741,6 +1904,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	character.gender = gender
 	character.age = age
+	if(gender == MALE || gender == FEMALE)
+		character.body_type = gender
+	else
+		character.body_type = body_type
 
 	character.eye_color = eye_color
 	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
@@ -1782,6 +1949,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.update_hair()
 		character.update_body_parts()
 
+/datum/preferences/proc/can_be_random_hardcore()
+	if(parent.mob.mind.assigned_role in GLOB.command_positions) //No command staff
+		return FALSE
+	for(var/A in parent.mob.mind.antag_datums)
+		var/datum/antagonist/antag
+		if(antag.get_team()) //No team antags
+			return FALSE
+	return TRUE
+
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)
 		if("human")
@@ -1818,3 +1994,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 		else
 			custom_names[name_id] = sanitized_name
+
+//Used in savefile update 32, can be removed once that is no longer relevant.
+/datum/preferences/proc/force_reset_keybindings()
+	var/choice = tgalert(parent.mob, "Your basic keybindings need to be reset, emotes will remain as before. Would you prefer 'hotkey' or 'classic' mode?", "Reset keybindings", "Hotkey", "Classic")
+	hotkeys = (choice != "Classic")
+	var/list/oldkeys = key_bindings
+	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+
+	for(var/key in oldkeys)
+		if(!key_bindings[key])
+			key_bindings[key] = oldkeys[key]
+	parent.update_movement_keys()

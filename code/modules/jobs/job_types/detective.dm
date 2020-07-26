@@ -7,7 +7,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security"
+	supervisors = "начальнику охраны"
 	selection_color = "#ffeeee"
 	minimal_player_age = 7
 	exp_requirements = 300
@@ -38,6 +38,7 @@
 	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
 	backpack_contents = list(/obj/item/storage/box/evidence=1,\
+		/obj/item/modular_computer/tablet/preset/cheap=1,\
 		/obj/item/detective_scanner=1,\
 		/obj/item/melee/classic_baton=1)
 	mask = /obj/item/clothing/mask/cigarette

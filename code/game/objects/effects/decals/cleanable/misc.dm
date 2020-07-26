@@ -197,11 +197,11 @@
 	icon_state = "plasma"
 
 /obj/effect/decal/cleanable/glitter/white
-	name = "white glitter"
+	name = "белый glitter"
 	icon_state = "nitrous_oxide"
 
 /obj/effect/decal/cleanable/glitter/blue
-	name = "blue glitter"
+	name = "синий glitter"
 	icon_state = "freon"
 
 /obj/effect/decal/cleanable/plasma
@@ -224,3 +224,16 @@
 	icon = 'icons/effects/confetti_and_decor.dmi'
 	icon_state = "confetti"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //the confetti itself might be annoying enough
+
+/obj/effect/decal/cleanable/plastic
+	name = "plastic shreds"
+	desc = "Bits of torn, broken, worthless plastic."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "shards"
+	color = "#c6f4ff"
+
+/obj/effect/decal/cleanable/wrapping
+	name = "wrapping shreds"
+	desc = "Torn pieces of cardboard and paper, left over from a package."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "paper_shreds"

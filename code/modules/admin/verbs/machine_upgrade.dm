@@ -1,6 +1,6 @@
 /proc/machine_upgrade(obj/machinery/M in world)
 	set name = "Tweak Component Ratings"
-	set category = "Debug"
+	set category = "Дбг"
 	if (!istype(M))
 		return
 

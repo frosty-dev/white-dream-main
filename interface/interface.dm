@@ -76,7 +76,7 @@
 	return
 
 /client/verb/changelog()
-	set name = " ℹ️ Последние изменения"
+	set name = "📘 Последние изменения"
 	set category = "OOC"
 	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
 	changelog.send(src)

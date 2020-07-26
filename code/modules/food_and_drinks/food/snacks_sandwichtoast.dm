@@ -7,8 +7,9 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
 	cooked_type = /obj/item/reagent_containers/food/snacks/toastedsandwich
-	tastes = list("meat" = 2, "cheese" = 1, "bread" = 2, "lettuce" = 1)
+	tastes = list("мясо" = 2, "сыр" = 1, "хлеб" = 2, "салат" = 1)
 	foodtype = GRAIN | VEGETABLES
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/toastedsandwich
 	name = "toasted sandwich"
@@ -18,8 +19,9 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/carbon = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/carbon = 2)
-	tastes = list("toast" = 1)
+	tastes = list("тост" = 1)
 	foodtype = GRAIN
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/grilledcheese
 	name = "cheese sandwich"
@@ -29,7 +31,7 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("toast" = 1, "cheese" = 1)
+	tastes = list("тост" = 1, "сыр" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/jellysandwich
@@ -39,8 +41,9 @@
 	icon_state = "jellysandwich"
 	trash = /obj/item/trash/plate
 	bitesize = 3
-	tastes = list("bread" = 1, "jelly" = 1)
+	tastes = list("хлеб" = 1, "желе" =1)
 	foodtype = GRAIN
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime
 	bonus_reagents = list(/datum/reagent/toxin/slimejelly = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -60,8 +63,9 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("nothing suspicious" = 1)
+	tastes = list("ничего подозрительного" = 1)
 	foodtype = GRAIN | GROSS
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/jelliedtoast
 	name = "jellied toast"
@@ -70,8 +74,9 @@
 	icon_state = "jellytoast"
 	trash = /obj/item/trash/plate
 	bitesize = 3
-	tastes = list("toast" = 1, "jelly" = 1)
+	tastes = list("тост" = 1, "желе" =1)
 	foodtype = GRAIN | BREAKFAST
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
 	bonus_reagents = list(/datum/reagent/consumable/cherryjelly = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -92,8 +97,9 @@
 	filling_color = "#FFA500"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("butter" = 1, "toast" = 1)
+	tastes = list("масло" = 1, "тост" = 1)
 	foodtype = GRAIN | BREAKFAST
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/twobread
 	name = "two bread"
@@ -102,5 +108,6 @@
 	icon_state = "twobread"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("bread" = 2)
+	tastes = list("хлеб" = 2)
 	foodtype = GRAIN
+	value = FOOD_JUNK

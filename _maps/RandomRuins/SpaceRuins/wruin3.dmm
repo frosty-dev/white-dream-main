@@ -22,75 +22,75 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/powered/partywhite)
 "ag" = (
-/obj/structure/fluff/railing/corner,
+/obj/structure/railing/corner,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "ah" = (
-/obj/structure/fluff/railing,
+/obj/structure/railing,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/space/has_grav/powered/partywhite)
 "ai" = (
-/obj/structure/fluff/railing,
+/obj/structure/railing,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "aj" = (
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 8
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "ak" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 4
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/space/has_grav/powered/partywhite)
 "al" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/space/has_grav/powered/partywhite)
 "am" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 4
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "an" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "ao" = (
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 4
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "ap" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 1
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/space/has_grav/powered/partywhite)
 "aq" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 1
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/ruin/space/has_grav/powered/partywhite)
 "ar" = (
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 1
 	},
@@ -254,7 +254,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/powered/partywhite)
 "bd" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
@@ -274,7 +274,7 @@
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/space/has_grav/powered/partywhite)
 "bg" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 1
 	},

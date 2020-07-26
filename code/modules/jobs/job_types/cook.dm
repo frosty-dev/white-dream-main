@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "главе персонала"
 	selection_color = "#bbe291"
 	var/cooks = 0 //Counts cooks amount
 
@@ -29,7 +29,7 @@
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian
-	backpack_contents = list(/obj/item/sharpener = 1)
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/cheap=1, /obj/item/sharpener = 1)
 
 /datum/outfit/job/cook/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

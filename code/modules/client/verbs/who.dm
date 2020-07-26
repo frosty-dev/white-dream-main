@@ -64,7 +64,7 @@
 	to_chat(src, msg)
 
 /client/proc/adminwho()
-	set category = "Admin"
+	set category = "Адм"
 	set name = "Adminwho"
 
 	if(!check_rights())

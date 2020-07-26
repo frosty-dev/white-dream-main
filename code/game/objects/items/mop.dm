@@ -1,6 +1,6 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
-	name = "mop"
+	desc = "Мир \"janitalia\" не был бы полным без швабры."
+	name = "швабра"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -16,7 +16,7 @@
 	var/mopcount = 0
 	var/mopcap = 15
 	var/mopspeed = 15
-	force_string = "robust... against germs"
+	force_string = "крепкая... против микробов"
 	var/insertable = TRUE
 
 /obj/item/mop/Initialize()
@@ -24,14 +24,19 @@
 	create_reagents(mopcap)
 
 
-/obj/item/mop/proc/clean(turf/A)
+/obj/item/mop/proc/clean(turf/A, mob/living/cleaner)
 	if(reagents.has_reagent(/datum/reagent/water, 1) || reagents.has_reagent(/datum/reagent/water/holywater, 1) || reagents.has_reagent(/datum/reagent/consumable/ethanol/vodka, 1) || reagents.has_reagent(/datum/reagent/space_cleaner, 1))
 		SEND_SIGNAL(A, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_MEDIUM)
 		for(var/obj/effect/O in A)
 			if(is_cleanable(O))
+				var/obj/effect/decal/cleanable/C = O
+				cleaner?.mind.adjust_experience(/datum/skill/cleaning, max(round(C.beauty/CLEAN_SKILL_BEAUTY_ADJUSTMENT,1),0)) //it is intentional that the mop rounds xp but soap does not, USE THE SACRED TOOL
 				qdel(O)
-	reagents.reaction(A, TOUCH, 10)	//Needed for proper floor wetting.
-	reagents.remove_any(1)			//reaction() doesn't use up the reagents
+	reagents.expose(A, TOUCH, 10)	//Needed for proper floor wetting.
+	var/val2remove = 1
+	if(cleaner?.mind)
+		val2remove = round(cleaner.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER),0.1)
+	reagents.remove_any(val2remove)			//reaction() doesn't use up the reagents
 
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
@@ -39,8 +44,8 @@
 	if(!proximity)
 		return
 
-	if(reagents.total_volume < 1)
-		to_chat(user, "<span class='warning'>Your mop is dry!</span>")
+	if(reagents.total_volume < 0.1)
+		to_chat(user, "<span class='warning'>Швабра сухая!</span>")
 		return
 
 	var/turf/T = get_turf(A)
@@ -49,11 +54,11 @@
 		return
 
 	if(T)
-		user.visible_message("<span class='notice'>[user] begins to clean \the [T] with [src].</span>", "<span class='notice'>You begin to clean \the [T] with [src]...</span>")
-
-		if(do_after(user, src.mopspeed, target = T))
-			to_chat(user, "<span class='notice'>You finish mopping.</span>")
-			clean(T)
+		user.visible_message("<span class='notice'>[user] начинает мыть [T] используя [src.name].</span>", "<span class='notice'>Начинаю мыть [T] используя [src.name]...</span>")
+		var/clean_speedies = user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)
+		if(do_after(user, mopspeed*clean_speedies, target = T))
+			to_chat(user, "<span class='notice'>Заканчиваю мыть пол.</span>")
+			clean(T, user)
 
 
 /obj/effect/attackby(obj/item/I, mob/user, params)
@@ -69,18 +74,18 @@
 		J.mymop=src
 		J.update_icon()
 	else
-		to_chat(user, "<span class='warning'>You are unable to fit your [name] into the [J.name].</span>")
+		to_chat(user, "<span class='warning'>Эта штука не помещается у меня в [J.name].</span>")
 		return
 
 /obj/item/mop/cyborg
 	insertable = FALSE
 
 /obj/item/mop/advanced
-	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this!"
-	name = "advanced mop"
+	desc = "Самый передовой инструмент в арсенале хранителя, в комплекте с конденсатором для смачивания! Просто подумайте обо всех внутренностях, которые вы очистите с этим!"
+	name = "продвинутая швабра"
 	mopcap = 10
 	icon_state = "advmop"
-	item_state = "mop"
+	inhand_icon_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	force = 12
@@ -101,7 +106,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj,src)
-	to_chat(user, "<span class='notice'>You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position.</span>")
+	to_chat(user, "<span class='notice'>Устанавливаю переключатель конденсатора в положение '[refill_enabled ? "ВКЛ" : "ВЫКЛ"]'.</span>")
 	playsound(user, 'sound/machines/click.ogg', 30, TRUE)
 
 /obj/item/mop/advanced/process()
@@ -111,7 +116,7 @@
 
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.</span>"
+	. += "<span class='notice'>Переключатель конденсатора сейчас в положении <b>[refill_enabled ? "ВКЛ" : "ВЫКЛ"]</b>.</span>"
 
 /obj/item/mop/advanced/Destroy()
 	if(refill_enabled)

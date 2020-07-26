@@ -4,9 +4,9 @@
 
 
 /datum/action/changeling/pheromone_receptors
-	name = "Pheromone Receptors"
-	desc = "We attune our senses to track other changelings by scent.  The closer they are, the easier we can find them."
-	helptext = "We will know the general direction of nearby changelings, with closer scents being stronger.  Our chemical generation is slowed while this is active."
+	name = "Феромонные рецепторы"
+	desc = "Мы настраиваем наши чувства, чтобы отслеживать других генокрадов по запаху. Чем ближе они, тем легче их найти."
+	helptext = "Мы узнаем общее направление ближайших генокрадов, причем более близкие ароматы будут сильнее. Наша регенерация химикатов замедляется, пока оно активно."
 	chemical_cost = 0 //Reduces regain rate while active.
 	dna_cost = 2
 	var/receptors_active = FALSE
@@ -15,11 +15,11 @@
 	..()
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!receptors_active)
-		to_chat(user, "<span class='warning'>We search for the scent of any nearby changelings.</span>")
+		to_chat(user, "<span class='warning'>Мы ищем запах любых близлежащих генокрадов.</span>")
 		changeling.chem_recharge_slowdown += 0.5
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
-		to_chat(user, "<span class='notice'>We stop searching for now.</span>")
+		to_chat(user, "<span class='notice'>Мы прекратим поиск сейчас.</span>")
 		changeling.chem_recharge_slowdown -= 0.5
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 
@@ -54,5 +54,5 @@
 
 
 /obj/screen/alert/status_effect/agent_pinpointer/changeling
-	name = "Pheromone Scent"
-	desc = "The nose always knows."
+	name = "Феромонный аромат"
+	desc = "Нос всегда знает."

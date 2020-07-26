@@ -9,6 +9,7 @@
 
 	maxHealth = 25
 	health = 25
+	hardcrit_threshold = HEALTH_THRESHOLD_CRIT
 
 	var/amount_grown = 0
 	var/max_grown = 100
@@ -32,8 +33,14 @@
 //This needs to be fixed
 /mob/living/carbon/alien/larva/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("Игра"))
 		stat(null, "Progress: [amount_grown]/[max_grown]")
+
+/mob/living/carbon/alien/larva/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<b>You are an alien larva. Hide from danger until you can evolve.<br>Use say :a to communicate with the hivemind.</b>")
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)
 	if(stat != DEAD && amount > 0)

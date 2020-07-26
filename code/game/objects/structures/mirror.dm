@@ -41,6 +41,8 @@
 		var/new_style = input(user, "Select a hairstyle", "Grooming")  as null|anything in GLOB.hairstyles_list
 		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return	//no tele-grooming
+		if(HAS_TRAIT(H, TRAIT_BALD))
+			to_chat(H, "<span class='notice'>If only growing back hair were that easy for you...</span>")
 		if(new_style)
 			H.hairstyle = new_style
 
@@ -129,6 +131,11 @@
 
 	var/mob/living/carbon/human/H = user
 
+	if(H.dna.species.id == "dwarf")
+		to_chat(H, "<span class='warning'>Смотрю в зеркало и...</span>")
+		obj_break()
+		return
+
 	var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "race", "gender", "hair", "eyes")
 
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -136,8 +143,7 @@
 
 	switch(choice)
 		if("name")
-			var/newname = copytext(sanitize_name(input(H, "Who are we again?", "Name change", H.name) as null|text),1,MAX_NAME_LEN)
-
+			var/newname = sanitize_name(stripped_input(H, "Who are we again?", "Name change", H.name, MAX_NAME_LEN), allow_numbers = TRUE) //It's magic so whatever.
 			if(!newname)
 				return
 			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -194,7 +200,8 @@
 				if(alert(H, "Become a Witch?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
-					H.gender = "female"
+					H.gender = FEMALE
+					H.body_type = FEMALE
 					to_chat(H, "<span class='notice'>Man, you feel like a woman!</span>")
 				else
 					return
@@ -203,7 +210,8 @@
 				if(alert(H, "Become a Warlock?", "Confirmation", "Yes", "No") == "Yes")
 					if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 						return
-					H.gender = "male"
+					H.gender = MALE
+					H.body_type = MALE
 					to_chat(H, "<span class='notice'>Whoa man, you feel like a man!</span>")
 				else
 					return

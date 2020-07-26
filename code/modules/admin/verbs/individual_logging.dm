@@ -5,7 +5,7 @@
 	var/ntype = text2num(type)
 
 	//Add client links
-	var/dat = "<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /></head><title>Cocksucker</title>"
+	var/dat = "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><title>Cocksucker</title>"
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"

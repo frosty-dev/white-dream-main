@@ -1,8 +1,8 @@
 //HIVEMIND COMMUNICATION (:g)
 /datum/action/changeling/hivemind_comms
-	name = "Hivemind Communication"
-	desc = "We tune our senses to the airwaves to allow us to discreetly communicate and exchange DNA with other changelings."
-	helptext = "We will be able to talk with other changelings with :g. Exchanged DNA do not count towards absorb objectives."
+	name = "Общение роя"
+	desc = "Мы настраиваем наши чувства на радиоволны, чтобы позволить нам осторожно общаться и обмениваться ДНК с другими генокрадами."
+	helptext = "Мы сможем поговорить с другими генокрадами с помощью :g. Обмен ДНК не учитывается при поглощении целей."
 	needs_button = FALSE
 	dna_cost = 0
 	chemical_cost = -1
@@ -11,7 +11,7 @@
 	..()
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.changeling_speak = 1
-	to_chat(user, "<i><font color=#800080>Use say \"[MODE_TOKEN_CHANGELING] message\" to communicate with the other changelings.</font></i>")
+	to_chat(user, "<i><font color=#800080> > Используй \"[MODE_TOKEN_CHANGELING] сообщение\" для связи с другими генокрадами.</font></i>")
 	var/datum/action/changeling/hivemind_upload/S1 = new
 	if(!changeling.has_sting(S1))
 		S1.Grant(user)
@@ -37,15 +37,15 @@
 GLOBAL_LIST_EMPTY(hivemind_bank)
 
 /datum/action/changeling/hivemind_upload
-	name = "Hive Channel DNA"
-	desc = "Allows us to channel DNA in the airwaves to allow other changelings to absorb it. Costs 10 chemicals."
+	name = "Обмен ДНК с роем"
+	desc = "Позволяет нам направлять ДНК в эфир, чтобы позволить другим генокрадам поглотить ее. Стоит 10 химикатов."
 	button_icon_state = "hivemind_channel"
 	chemical_cost = 10
 	dna_cost = -1
 
 /datum/action/changeling/hivemind_upload/sting_action(var/mob/living/user)
 	if (HAS_TRAIT(user, CHANGELING_HIVEMIND_MUTE))
-		to_chat(user, "<span class='warning'>The poison in the air hinders our ability to interact with the hivemind.</span>")
+		to_chat(user, "<span class='warning'>Яд в воздухе препятствует нашей способности взаимодействовать с роем.</span>")
 		return
 	..()
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
@@ -55,10 +55,10 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 			names += prof.name
 
 	if(names.len <= 0)
-		to_chat(user, "<span class='warning'>The airwaves already have all of our DNA!</span>")
+		to_chat(user, "<span class='warning'>В эфире уже есть наш ДНК!</span>")
 		return
 
-	var/chosen_name = input("Select a DNA to channel: ", "Channel DNA", null) as null|anything in sortList(names)
+	var/chosen_name = input("Выбрать бы ДНК для отправки: ", "Обмен ДНК с роем", null) as null|anything in sortList(names)
 	if(!chosen_name)
 		return
 
@@ -69,12 +69,12 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 	var/datum/changelingprofile/uploaded_dna = new chosen_dna.type
 	chosen_dna.copy_profile(uploaded_dna)
 	GLOB.hivemind_bank += uploaded_dna
-	to_chat(user, "<span class='notice'>We channel the DNA of [chosen_name] to the air.</span>")
+	to_chat(user, "<span class='notice'>Мы рассеиваем ДНК <b>[chosen_name]</b> по воздуху.</span>")
 	return TRUE
 
 /datum/action/changeling/hivemind_download
-	name = "Hive Absorb DNA"
-	desc = "Allows us to absorb DNA that has been channeled to the airwaves. Does not count towards absorb objectives. Costs 10 chemicals."
+	name = "Поглощение ДНК из роя"
+	desc = "Позволяет нам поглощать ДНК, которая была направлена в эфир. Не учитывает поглощение целей. Стоит 10 химикатов."
 	button_icon_state = "hive_absorb"
 	chemical_cost = 10
 	dna_cost = -1
@@ -83,12 +83,12 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 	if(!..())
 		return
 	if (HAS_TRAIT(user, CHANGELING_HIVEMIND_MUTE))
-		to_chat(user, "<span class='warning'>The poison in the air hinders our ability to interact with the hivemind.</span>")
+		to_chat(user, "<span class='warning'>Яд в воздухе препятствует нашей способности взаимодействовать с роем.</span>")
 		return
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	var/datum/changelingprofile/first_prof = changeling.stored_profiles[1]
 	if(first_prof.name == user.real_name)//If our current DNA is the stalest, we gotta ditch it.
-		to_chat(user, "<span class='warning'>We have reached our capacity to store genetic information! We must transform before absorbing more.</span>")
+		to_chat(user, "<span class='warning'>Мы достигли максимума хранения ДНК! Нам нужно трансформироваться перед поглощением новых.</span>")
 		return
 	return 1
 
@@ -100,10 +100,10 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 			names[prof.name] = prof
 
 	if(names.len <= 0)
-		to_chat(user, "<span class='warning'>There's no new DNA to absorb from the air!</span>")
+		to_chat(user, "<span class='warning'>Похоже ещё никто не делился ДНК!</span>")
 		return
 
-	var/S = input("Select a DNA absorb from the air: ", "Absorb DNA", null) as null|anything in sortList(names)
+	var/S = input("Какое ДНК мы поглотим сегодня: ", "Поглощение ДНК", null) as null|anything in sortList(names)
 	if(!S)
 		return
 	var/datum/changelingprofile/chosen_prof = names[S]
@@ -113,5 +113,5 @@ GLOBAL_LIST_EMPTY(hivemind_bank)
 	var/datum/changelingprofile/downloaded_prof = new chosen_prof.type
 	chosen_prof.copy_profile(downloaded_prof)
 	changeling.add_profile(downloaded_prof)
-	to_chat(user, "<span class='notice'>We absorb the DNA of [S] from the air.</span>")
+	to_chat(user, "<span class='notice'>Мы поглощаем днк <b>[S]</b> из воздуха.</span>")
 	return TRUE

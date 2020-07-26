@@ -44,6 +44,7 @@ Difficulty: Hard
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	icon_state = "hierophant"
 	icon_living = "hierophant"
+	health_doll_icon = "hierophant"
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	icon = 'icons/mob/lavaland/hierophant_new.dmi'
@@ -401,14 +402,14 @@ Difficulty: Hard
 	if(health > 0 || stat == DEAD)
 		return
 	else
-		stat = DEAD
+		set_stat(DEAD)
 		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
 		visible_message("<span class='hierophant'>\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\"</span>")
 		visible_message("<span class='hierophant_warning'>[src] shrinks, releasing a massive burst of energy!</span>")
 		for(var/mob/living/L in view(7,src))
 			stored_nearby += L // store the people to grant the achievements to once we die
 		hierophant_burst(null, get_turf(src), 10)
-		stat = CONSCIOUS // deathgasp wont run if dead, stupid
+		set_stat(CONSCIOUS) // deathgasp won't run if dead, stupid
 		..(force_grant = stored_nearby)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/Destroy()
@@ -455,6 +456,7 @@ Difficulty: Hard
 				else
 					burst_range = 3
 					INVOKE_ASYNC(src, .proc/burst, get_turf(src), 0.25) //melee attacks on living mobs cause it to release a fast burst if on cooldown
+				OpenFire()
 			else
 				devour(L)
 		else
@@ -484,7 +486,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/calculate_rage() //how angry we are overall
 	did_reset = FALSE //oh hey we're doing SOMETHING, clearly we might need to heal if we recall
-	anger_modifier = CLAMP(((maxHealth - health) / 42),0,50)
+	anger_modifier = clamp(((maxHealth - health) / 42),0,50)
 	burst_range = initial(burst_range) + round(anger_modifier * 0.08)
 	beam_range = initial(beam_range) + round(anger_modifier * 0.12)
 
@@ -528,18 +530,18 @@ Difficulty: Hard
 	queue_smooth_neighbors(src)
 	return ..()
 
-/obj/effect/temp_visual/hierophant/wall/CanPass(atom/movable/mover, turf/target)
+/obj/effect/temp_visual/hierophant/wall/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(QDELETED(caster))
 		return FALSE
 	if(mover == caster.pulledby)
-		return TRUE
+		return
 	if(istype(mover, /obj/projectile))
 		var/obj/projectile/P = mover
 		if(P.firer == caster)
-			return TRUE
-	if(mover == caster)
-		return TRUE
-	return FALSE
+			return
+	if(mover != caster)
+		return FALSE
 
 /obj/effect/temp_visual/hierophant/chaser //a hierophant's chaser. follows target around, moving and producing a blast every speed deciseconds.
 	duration = 98
@@ -627,7 +629,7 @@ Difficulty: Hard
 
 /obj/effect/temp_visual/hierophant/blast
 	icon_state = "hierophant_blast"
-	name = "vortex blast"
+	name = "вихревой взрыв"
 	light_range = 2
 	light_power = 2
 	desc = "Get out of the way!"
@@ -674,10 +676,10 @@ Difficulty: Hard
 		if(L.client)
 			flash_color(L.client, "#660099", 1)
 		playsound(L,'sound/weapons/sear.ogg', 50, TRUE, -4)
-		to_chat(L, "<span class='userdanger'>You're struck by a [name]!</span>")
+		to_chat(L, "<span class='userdanger'>Моя ударяет <b>[name]</b>!</span>")
 		var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-		var/armor = L.run_armor_check(limb_to_hit, "melee", "Your armor absorbs [src]!", "Your armor blocks part of [src]!", 50, "Your armor was penetrated by [src]!")
-		L.apply_damage(damage, BURN, limb_to_hit, armor)
+		var/armor = L.run_armor_check(limb_to_hit, "melee", "Моя броня поглощает <b>[src]</b>!", "Моя броня блокирует часть <b>[src]</b>!", FALSE, 50, "Моя броня пробита <b>[src]</b>!")
+		L.apply_damage(damage, BURN, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L //mobs find and damage you...
 			if(H.stat == CONSCIOUS && !H.target && H.AIStatus != AI_OFF && !H.client)
@@ -695,7 +697,7 @@ Difficulty: Hard
 		if(M.occupant)
 			if(friendly_fire_check && caster && caster.faction_check_mob(M.occupant))
 				continue
-			to_chat(M.occupant, "<span class='userdanger'>Your [M.name] is struck by a [name]!</span>")
+			to_chat(M.occupant, "<span class='userdanger'>Мой [M.name] был подвержен [name]!</span>")
 		playsound(M,'sound/weapons/sear.ogg', 50, TRUE, -4)
 		M.take_damage(damage, BURN, 0, 0)
 

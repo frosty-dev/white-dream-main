@@ -11,7 +11,8 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_MED = ACCOUNT_MED_NAME,
 										ACCOUNT_SRV = ACCOUNT_SRV_NAME,
 										ACCOUNT_CAR = ACCOUNT_CAR_NAME,
-										ACCOUNT_SEC = ACCOUNT_SEC_NAME)
+										ACCOUNT_SEC = ACCOUNT_SEC_NAME,
+										ACCOUNT_TRA = ACCOUNT_TRA_NAME)
 	var/list/generated_accounts = list()
 	var/full_ancap = TRUE // Enables extra money charges for things that normally would be free, such as sleepers/cryo/cloning.
 							//Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.
@@ -52,7 +53,6 @@ SUBSYSTEM_DEF(economy)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)
 		new /datum/bank_account/department(A, budget_to_hand_out)
-	toplayers = "Славим АнКап"
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(economy)
 						D.adjust_money(medical_cash)
 		if(ishostile(m))
 			var/mob/living/simple_animal/hostile/H = m
-			if(H.stat == DEAD && H.z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+			if(H.stat == DEAD && (H.z in SSmapping.levels_by_trait(ZTRAIT_STATION)))
 				dead_monsters++
 		CHECK_TICK
 	var/living_ratio = alive_crew / crew

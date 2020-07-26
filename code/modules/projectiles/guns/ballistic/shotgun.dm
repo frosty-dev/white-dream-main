@@ -1,27 +1,27 @@
 /obj/item/gun/ballistic/shotgun
-	name = "shotgun"
-	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
+	name = "дробовик"
+	desc = "Традиционный дробовик с деревянным прикладом."
 	icon_state = "shotgun"
+	worn_icon_state = null
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
-	item_state = "shotgun"
+	inhand_icon_state = "shotgun"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
-	rack_sound = "sound/weapons/gun/shotgun/rack.ogg"
-	load_sound = "sound/weapons/gun/shotgun/insert_shell.ogg"
+	rack_sound = 'sound/weapons/gun/shotgun/rack.ogg'
+	load_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 =  CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
-	weapon_weight = WEAPON_MEDIUM
 	semi_auto = FALSE
 	internal_magazine = TRUE
 	casing_ejector = FALSE
-	bolt_wording = "pump"
+	bolt_wording = "помповый механизм"
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -40,43 +40,38 @@
 // RIOT SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/riot //for spawn in the armory
-	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
+	name = "дробовик охраны"
+	desc = "Прочный дробовик с более длинным магазином и фиксированным тактическим запасом, предназначенным для несмертельного контроля над беспорядками."
 	icon_state = "riotshotgun"
-	item_state = "shotgun"
+	inhand_icon_state = "shotgun"
 	fire_delay = 7
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
-	sawn_desc = "Come with me if you want to live."
+	sawn_desc = "Пошли со мной, если хочешь жить."
 	can_be_sawn_off  = TRUE
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user as mob|obj)
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
 	..()
-	src.rack()
+	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
-	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	name = "боевой дробовик"
+	desc = "Полуавтоматический дробовик с тактической фурниторой и шестиместным магазином."
 	icon_state = "cshotgun"
-	item_state = "shotgun_combat"
+	inhand_icon_state = "shotgun_combat"
 	fire_delay = 5
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
 
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact
-	name = "compact combat shotgun"
-	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
-	icon_state = "cshotgunc"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
-	w_class = WEIGHT_CLASS_BULKY
-
 //Dual Feed Shotgun
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube
-	name = "cycler shotgun"
-	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
+	name = "колёсный дробовик"
+	desc = "Улучшенный дробовик с двумя раздельными трубами, что позволяет быстро выбирать между двумя различными калибрами."
 	icon_state = "cycler"
+	inhand_icon_state = "bulldog"
+	worn_icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
@@ -85,7 +80,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to pump it.</span>"
+	. += "<span class='notice'>Alt-click чтоб изменить это.</span>"
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
 	. = ..()
@@ -105,9 +100,9 @@
 	alternate_magazine = current_mag
 	toggled = !toggled
 	if(toggled)
-		to_chat(user, "<span class='notice'>You switch to tube B.</span>")
+		to_chat(user, "<span class='notice'>Вы выбрали трубу 'B'.</span>")
 	else
-		to_chat(user, "<span class='notice'>You switch to tube A.</span>")
+		to_chat(user, "<span class='notice'>Вы выбрали трубу 'А'.</span>")
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
@@ -117,10 +112,11 @@
 // Bulldog shotgun //
 
 /obj/item/gun/ballistic/shotgun/bulldog
-	name = "\improper Bulldog Shotgun"
-	desc = "A semi-auto, mag-fed shotgun for combat in narrow corridors, nicknamed 'Bulldog' by boarding parties. Compatible only with specialized 8-round drum magazines."
+	name = "\improper дробовик''Bulldog'' "
+	desc = "Полуавтоматический дробовик с магнитной подачей для боя в узких коридорах по прозвищу «Бульдог». Совместим только со специализированными 8-круглыми барабанными магазинами."
 	icon_state = "bulldog"
-	item_state = "bulldog"
+	inhand_icon_state = "bulldog"
+	worn_icon_state = "cshotgun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	inhand_x_dimension = 32
@@ -150,17 +146,17 @@
 /////////////////////////////
 
 /obj/item/gun/ballistic/shotgun/doublebarrel
-	name = "double-barreled shotgun"
-	desc = "A true classic."
+	name = "двухстволка"
+	desc = "Истинная классика."
 	icon_state = "dshotgun"
-	item_state = "shotgun_db"
+	inhand_icon_state = "shotgun_db"
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	force = 10
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
-	sawn_desc = "Omar's coming!"
+	sawn_desc = "Приход Омара!"
 	obj_flags = UNIQUE_RENAME
 	rack_sound_volume = 0
 	unique_reskin = list("Default" = "dshotgun",
@@ -188,10 +184,10 @@
 // IMPROVISED SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
-	name = "improvised shotgun"
-	desc = "Essentially a tube that aims shotgun shells."
+	name = "кустарный дробовик"
+	desc = "Труба, сделанная под дробовик."
 	icon_state = "ishotgun"
-	item_state = "ishotgun"
+	inhand_icon_state = "ishotgun"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	slot_flags = null
@@ -206,17 +202,25 @@
 		var/obj/item/stack/cable_coil/C = A
 		if(C.use(10))
 			slot_flags = ITEM_SLOT_BACK
-			to_chat(user, "<span class='notice'>You tie the lengths of cable to the shotgun, making a sling.</span>")
+			to_chat(user, "<span class='notice'>Привязываю кабель к дробовику, теперь можно носить дробовик на спине.</span>")
 			slung = TRUE
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>You need at least ten lengths of cable if you want to make a sling!</span>")
+			to_chat(user, "<span class='warning'>Требуется минимум десять длин кабеля, если мне нужно сделать стропу!</span>")
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon()
-	..()
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
+	. = ..()
 	if(slung)
-		add_overlay("ishotgunsling")
-		item_state = "ishotgunsling"
+		inhand_icon_state = "ishotgunsling"
+	if(sawn_off)
+		inhand_icon_state = "ishotgun_sawn"
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_overlays()
+	. = ..()
+	if(slung)
+		. += "ishotgunsling"
+	if(sawn_off)
+		. += "ishotgun_sawn"
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawoff(mob/user)
 	. = ..()
@@ -224,22 +228,26 @@
 		new /obj/item/stack/cable_coil(get_turf(src), 10)
 		slung = 0
 		update_icon()
+		lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+		righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
-	name = "sawn-off improvised shotgun"
-	desc = "A single-shot shotgun. Better not miss."
+	name = "импровизированный обрез"
+	desc = "Делает одиночный выстрел. Не промахнись."
 	icon_state = "ishotgun_sawn"
-	item_state = "ishotgun_sawn"
+	inhand_icon_state = "ishotgun_sawn"
+	worn_icon_state = "gun"
+	worn_icon = null
 	w_class = WEIGHT_CLASS_NORMAL
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/hook
-	name = "hook modified sawn-off shotgun"
-	desc = "Range isn't an issue when you can bring your victim to you."
+	name = "модифицированный крюком обрез"
+	desc = "Дальность не проблема, когда вы можете притянуть жертву к себе."
 	icon_state = "hookshotgun"
-	item_state = "shotgun"
-	load_sound = "sound/weapons/shotguninsert.ogg"
+	inhand_icon_state = "shotgun"
+	load_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/bounty
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
@@ -259,19 +267,19 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(toggled)
-		to_chat(user,"<span class='notice'>You switch to the shotgun.</span>")
+		to_chat(user,"<span class='notice'>Вы собрались стрелять.</span>")
 		fire_sound = initial(fire_sound)
 	else
-		to_chat(user,"<span class='notice'>You switch to the hook.</span>")
+		to_chat(user,"<span class='notice'>Вы будете использовать крюк.</span>")
 		fire_sound = 'sound/weapons/batonextend.ogg'
 	toggled = !toggled
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/hook/examine(mob/user)
 	. = ..()
 	if(toggled)
-		. += "<span class='notice'>Alt-click to switch to the shotgun.</span>"
+		. += "<span class='notice'>Alt-click чтобы приготовиться стрелять.</span>"
 	else
-		. += "<span class='notice'>Alt-click to switch to the hook.</span>"
+		. += "<span class='notice'>Alt-click чтобы начать использовать крюк.</span>"
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/hook/afterattack(atom/target, mob/living/user, flag, params)
 	if(toggled)

@@ -1,0 +1,404 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/porta_turret/syndicate/shuttle{
+	dir = 5
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/custom)
+"b" = (
+/obj/machinery/power/emitter/energycannon{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"c" = (
+/obj/machinery/power/emitter/energycannon,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"e" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"h" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"i" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"l" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"m" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"o" = (
+/obj/machinery/power/emitter/energycannon{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"p" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/custom)
+"q" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"r" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"u" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"A" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"G" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/adv/diy{
+	name = "Nevmerloshuttle console";
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"H" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"I" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"M" = (
+/obj/machinery/power/emitter/energycannon{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"N" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"R" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"S" = (
+/obj/machinery/computer/shuttle/diy{
+	name = "Nevmerloshuttle console"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"U" = (
+/obj/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/custom)
+"X" = (
+/obj/machinery/turntable,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+"Y" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/custom)
+
+(1,1,1) = {"
+a
+p
+p
+p
+p
+p
+p
+p
+p
+D
+D
+a
+U
+U
+a
+"}
+(2,1,1) = {"
+U
+o
+A
+A
+A
+h
+A
+G
+p
+D
+D
+p
+M
+M
+p
+"}
+(3,1,1) = {"
+U
+o
+I
+A
+A
+h
+A
+A
+p
+D
+D
+p
+l
+A
+p
+"}
+(4,1,1) = {"
+a
+p
+p
+p
+p
+p
+u
+A
+p
+D
+D
+p
+A
+A
+p
+"}
+(5,1,1) = {"
+D
+D
+D
+D
+D
+R
+u
+A
+p
+D
+D
+p
+A
+A
+p
+"}
+(6,1,1) = {"
+D
+D
+D
+D
+D
+R
+u
+A
+a
+R
+R
+p
+h
+h
+p
+"}
+(7,1,1) = {"
+p
+p
+p
+p
+p
+a
+r
+A
+H
+m
+m
+m
+A
+A
+p
+"}
+(8,1,1) = {"
+p
+A
+A
+A
+A
+A
+A
+X
+A
+A
+A
+A
+A
+A
+p
+"}
+(9,1,1) = {"
+p
+A
+A
+N
+N
+N
+Y
+A
+e
+a
+p
+p
+p
+p
+p
+"}
+(10,1,1) = {"
+p
+h
+h
+p
+R
+R
+a
+A
+i
+R
+D
+D
+D
+D
+D
+"}
+(11,1,1) = {"
+p
+A
+A
+p
+D
+D
+p
+A
+i
+R
+D
+D
+D
+D
+D
+"}
+(12,1,1) = {"
+p
+A
+A
+p
+D
+D
+p
+A
+i
+p
+p
+p
+p
+p
+a
+"}
+(13,1,1) = {"
+p
+A
+q
+p
+D
+D
+p
+A
+A
+h
+A
+A
+E
+c
+U
+"}
+(14,1,1) = {"
+p
+b
+b
+p
+D
+D
+p
+S
+A
+h
+A
+A
+A
+c
+U
+"}
+(15,1,1) = {"
+a
+U
+U
+a
+D
+D
+p
+p
+p
+p
+p
+p
+p
+p
+a
+"}

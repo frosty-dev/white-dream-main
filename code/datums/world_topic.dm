@@ -32,8 +32,15 @@
 		if(!key_cvalid) //хочу спать
 			return "Bad Key"
 	input -= "key"
-	. = Run(input)
-	if(islist(.))
+	if(require_comms_key && !key_valid)
+		. = "Bad Key"
+		if (input["format"] == "json")
+			. = list("error" = .)
+	else
+		. = Run(input)
+	if (input["format"] == "json")
+		. = json_encode(.)
+	else if(islist(.))
 		. = list2params(.)
 
 /datum/world_topic/proc/Run(list/input)
@@ -99,16 +106,6 @@
 /datum/world_topic/news_report/Run(list/input)
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")
 
-/datum/world_topic/server_hop
-	keyword = "server_hop"
-
-/datum/world_topic/server_hop/Run(list/input)
-	var/expected_key = input[keyword]
-	for(var/mob/dead/observer/O in GLOB.player_list)
-		if(O.key == expected_key)
-			new /obj/screen/splash(O.client, TRUE)
-			break
-
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"
 	require_comms_key = TRUE
@@ -140,6 +137,9 @@
 
 /datum/world_topic/status/Run(list/input)
 	. = list()
+	var/wl = 1
+	if(GLOB.whitelist)
+		wl = GLOB.whitelist.len
 	.["version"] = GLOB.game_version
 	.["mode"] = GLOB.master_mode
 	.["respawn"] = config ? !CONFIG_GET(flag/norespawn) : FALSE
@@ -148,9 +148,11 @@
 	.["ai"] = CONFIG_GET(flag/allow_ai)
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
-	.["players"] = CONFIG_GET(number/spp) + GLOB.clients.len
+	.["players"] = wl + GLOB.clients.len
 	.["revision"] = GLOB.revdata.commit
 	.["revision_date"] = GLOB.revdata.date
+	.["hub"] = GLOB.hub_visibility
+
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -181,7 +183,7 @@
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
-
+	.["bunkered"] = CONFIG_GET(flag/panic_bunker) || FALSE
 	if(SSshuttle && SSshuttle.emergency)
 		.["shuttle_mode"] = SSshuttle.emergency.mode
 		// Shuttle status, see /__DEFINES/stat.dm
@@ -193,7 +195,7 @@
 	log = FALSE
 
 /datum/world_topic/players/Run(list/input)
-	return CONFIG_GET(number/spp) + GLOB.player_list.len
+	return GLOB.whitelist.len + GLOB.player_list.len
 
 /datum/world_topic/adminwho
 	keyword = "adminwho"
@@ -213,7 +215,7 @@
 	log = FALSE
 
 /datum/world_topic/who/Run(list/input)
-	var/msg = "Current Players:\n"
+	var/msg = "Текущие игроки:\n"
 	var/n = 0
 	for(var/client/C in GLOB.clients)
 		n++
@@ -221,7 +223,10 @@
 			msg += "\t[C.holder.fakekey]\n"
 		else
 			msg += "\t[C.key]\n"
-	msg += "Total Players: [n]"
+	for(var/cc in GLOB.whitelist)
+		n++
+		msg += "\t[cc]\n"
+	msg += "Всего: [n]"
 	return msg
 
 /datum/world_topic/asay
@@ -229,19 +234,23 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	var/msg = "<span class='adminobserver'><span class='prefix'>DISCORD ADMIN:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>"
+	var/msg = "<font color='[GLOB.OOC_COLOR]'><span class='adminobserver'><span class='prefix'> > Discord -> ASAY</span> <EM>[input["admin"]]</EM>: <span class='message linkify'>[copytext_char(input["asay"], 23, -7)]</span></span></font>"
 	to_chat(GLOB.admins, msg)
 
 /datum/world_topic/ooc
 	keyword = "ooc"
+	require_comms_key = TRUE
 
 /datum/world_topic/ooc/Run(list/input)
 	if(!GLOB.ooc_allowed&&!input["isadmin"])
 		return "globally muted"
 
+	if(is_banned_from(ckey(input["ckey"]), "OOC"))
+		return "you are retard"
+
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.chat_toggles & CHAT_OOC) // ooc ignore
-			to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>DOOC:</span> <EM>[input["ckey"]]:</EM> <span class='message'>[cp1252_to_utf8(input["ooc"])]</span></span></font>")
+			to_chat(C, "<font color='[GLOB.OOC_COLOR]'><span class='ooc'><span class='prefix'> > Discord -> OOC:</span> <EM>[input["ckey"]]:</EM> <span class='message linkify'>[cp1252_to_utf8(input["ooc"])]</span></span></font>")
 
 /datum/world_topic/ahelp
 	keyword = "adminhelp"

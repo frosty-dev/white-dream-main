@@ -578,7 +578,7 @@
 		R.fields["mrace"] = rando_race.type
 
 	R.fields["name"] = mob_occupant.real_name
-	R.fields["id"] = copytext(md5(mob_occupant.real_name), 2, 6)
+	R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 2, 6)
 	R.fields["UE"] = dna.unique_enzymes
 	R.fields["UI"] = dna.uni_identity
 	R.fields["SE"] = dna.mutation_index
@@ -598,7 +598,7 @@
 
 	R.fields["bank_account"] = has_bank_account
 	R.fields["mindref"] = "[REF(mob_occupant.mind)]"
-	R.fields["last_death"] = mob_occupant.stat == DEAD ? mob_occupant.mind.last_death : -1
+	R.fields["last_death"] = mob_occupant.stat == DEAD && mob_occupant.mind ? mob_occupant.mind.last_death : -1
 	R.fields["body_only"] = body_only
 
 	if(!body_only)

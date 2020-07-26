@@ -185,7 +185,7 @@
 		to_chat(usr, "<span class='notice'>You tighten the valve to slowly drip-feed the contents of [src].</span>")
 
 /obj/machinery/iv_drip/verb/eject_beaker()
-	set category = "Object"
+	set category = "Объект"
 	set name = "Remove IV Container"
 	set src in view(1)
 
@@ -201,7 +201,7 @@
 		update_icon()
 
 /obj/machinery/iv_drip/verb/toggle_mode()
-	set category = "Object"
+	set category = "Объект"
 	set name = "Toggle Mode"
 	set src in view(1)
 
@@ -240,14 +240,16 @@
 	density = TRUE
 
 /obj/machinery/iv_drip/saline/Initialize(mapload)
-    . = ..()
-    beaker = new /obj/item/reagent_containers/glass/saline(src)
+	. = ..()
+	beaker = new /obj/item/reagent_containers/glass/saline(src)
 
-/obj/machinery/iv_drip/saline/update_icon()
-    return
+/obj/machinery/iv_drip/saline/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_blocker)
 
 /obj/machinery/iv_drip/saline/eject_beaker()
-    return
+	return
+
 /obj/machinery/iv_drip/saline/toggle_mode()
 	return
 #undef IV_TAKING

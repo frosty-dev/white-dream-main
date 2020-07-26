@@ -96,12 +96,18 @@
 		else
 			return pick(GLOB.facial_hairstyles_list)
 
-/proc/random_unique_name(gender, attempts_to_find_unique_name=10)
+/proc/random_unique_name(gender, attempts_to_find_unique_name=10, en_lang = FALSE)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		if(gender==FEMALE)
-			. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+			if (en_lang)
+				. = capitalize(pick(GLOB.first_names_male_en)) + " " + capitalize(pick(GLOB.last_names_en))
+			else
+				. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names)) + "а"
 		else
-			. = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+			if (en_lang)
+				. = capitalize(pick(GLOB.first_names_male_en)) + " " + capitalize(pick(GLOB.last_names_en))
+			else
+				. = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 		if(!findname(.))
 			break
@@ -177,50 +183,67 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
+///Timed action involving two mobs, the user and the target.
+/proc/do_mob(mob/user , mob/target, time = 3 SECONDS, uninterruptible = FALSE, progress = TRUE, datum/callback/extra_checks = null)
 	if(!user || !target)
-		return 0
+		return FALSE
 
-	if(ishuman(user))
+	/*
+	if(ishuman(user) && time != 0)
 		var/mob/living/carbon/human/H = user
-		time = FLOOR((time/(H.dstats[MOB_INT] + H.dstats[MOB_DEX])) * 20, 1)
+		switch(roll_stat_dice(H.current_fate[MOB_INT] + H.current_fate[MOB_DEX] + H.fate_luck))
+			if(-4)
+				time = time * 2
+			if(-3 to 3)
+				time = time
+			if(4)
+				time = time / 2
+	*/
 
 	var/user_loc = user.loc
 
-	var/drifting = 0
+	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+		drifting = TRUE
 
 	var/target_loc = target.loc
 
+	LAZYADD(user.do_afters, target)
+	LAZYADD(target.targeted_by, user)
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
+	if(target.pixel_x != 0) //shifts the progress bar if target has an offset sprite
+		progbar.bar.pixel_x -= target.pixel_x
 
 	var/endtime = world.time+time
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
+		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 		if(QDELETED(user) || QDELETED(target))
-			. = 0
+			. = FALSE
 			break
 		if(uninterruptible)
 			continue
-
+		if(!(target in user.do_afters))
+			. = FALSE
+			break
 		if(drifting && !user.inertia_dir)
-			drifting = 0
+			drifting = FALSE
 			user_loc = user.loc
 
 		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-			. = 0
+			. = FALSE
 			break
-	if (progress)
-		qdel(progbar)
-
+	if(!QDELETED(progbar))
+		progbar.end_progress()
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks)
@@ -236,74 +259,95 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+///Timed action involving one mob user. Target is optional.
+/proc/do_after(mob/user, var/delay, needhand = TRUE, atom/target = null, progress = TRUE, datum/callback/extra_checks = null)
 	if(!user)
-		return 0
+		return FALSE
 	var/atom/Tloc = null
 	if(target && !isturf(target))
 		Tloc = target.loc
 
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
+
 	var/atom/Uloc = user.loc
 
-	var/drifting = 0
+	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
 
-	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
+	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
 	if(holding)
-		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
 
 	delay *= user.do_after_coefficent()
 
-	if(ishuman(user))
+	/*
+	if(ishuman(user) && delay != 0)
 		var/mob/living/carbon/human/H = user
-		delay = FLOOR((delay/(H.dstats[MOB_INT] + H.dstats[MOB_DEX])) * 20, 1)
+		switch(roll_stat_dice(H.current_fate[MOB_INT] + H.current_fate[MOB_DEX] + H.fate_luck))
+			if(-4)
+				delay = delay * 2
+			if(-3 to 3)
+				delay = delay
+			if(4)
+				delay = delay / 2
+	*/
 
 	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, delay, target)
+	if(progress)
+		progbar = new(user, delay, target || user)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
+		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
 		if(drifting && !user.inertia_dir)
-			drifting = 0
+			drifting = FALSE
 			Uloc = user.loc
 
 		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
-			. = 0
+			. = FALSE
 			break
 
 		if(isliving(user))
 			var/mob/living/L = user
 			if(L.IsStun() || L.IsParalyzed())
-				. = 0
+				. = FALSE
 				break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
 			if((Uloc != Tloc || Tloc != user) && !drifting)
-				. = 0
+				. = FALSE
 				break
+
+		if(target && !(target in user.do_afters))
+			. = FALSE
+			break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
 			//i.e the hand is used to pull some item/tool out of the construction
 			if(!holdingnull)
 				if(!holding)
-					. = 0
+					. = FALSE
 					break
 			if(user.get_active_held_item() != holding)
-				. = 0
+				. = FALSE
 				break
-	if (progress)
-		qdel(progbar)
+	if(!QDELETED(progbar))
+		progbar.end_progress()
+
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
 	. = 1
@@ -311,21 +355,35 @@ GLOBAL_LIST_EMPTY(species_list)
 
 /proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks, required_mobility_flags = MOBILITY_STAND)
 	if(!user || !targets)
-		return 0
+		return FALSE
+
+	/*
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		time = FLOOR((time/(H.dstats[MOB_INT] + H.dstats[MOB_DEX])) * 20, 1)
+		switch(roll_stat_dice(H.current_fate[MOB_INT] + H.current_fate[MOB_DEX] + H.fate_luck))
+			if(-4)
+				time = time * 2
+			if(-3 to 3)
+				time = time
+			if(4)
+				time = time / 2
+	*/
+
 	if(!islist(targets))
 		targets = list(targets)
+	if(!length(targets))
+		return FALSE
 	var/user_loc = user.loc
 
-	var/drifting = 0
+	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+		drifting = TRUE
 
 	var/list/originalloc = list()
 	for(var/atom/target in targets)
 		originalloc[target] = target.loc
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
@@ -337,32 +395,38 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/mob/living/L
 	if(isliving(user))
 		L = user
-	. = 1
+	. = TRUE
 	mainloop:
 		while(world.time < endtime)
 			stoplag(1)
-			if(progress)
+			if(!QDELETED(progbar))
 				progbar.update(world.time - starttime)
 			if(QDELETED(user) || !targets)
-				. = 0
+				. = FALSE
 				break
 			if(uninterruptible)
 				continue
 
 			if(drifting && !user.inertia_dir)
-				drifting = 0
+				drifting = FALSE
 				user_loc = user.loc
 
-			if(L && !CHECK_MULTIPLE_BITFIELDS(L.mobility_flags, required_mobility_flags))
-				. = 0
+			if(L && !((L.mobility_flags & required_mobility_flags) == required_mobility_flags))
+				. = FALSE
 				break
 
 			for(var/atom/target in targets)
 				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-					. = 0
+					. = FALSE
 					break mainloop
-	if(progbar)
-		qdel(progbar)
+	if(!QDELETED(progbar))
+		progbar.end_progress()
+
+	for(var/thing in targets)
+		var/atom/target = thing
+		if(!QDELETED(target))
+			LAZYREMOVE(user.do_afters, target)
+			LAZYREMOVE(target.targeted_by, user)
 
 /proc/is_species(A, species_datum)
 	. = FALSE
@@ -437,13 +501,15 @@ GLOBAL_LIST_EMPTY(species_list)
 		var/override = FALSE
 		if(M.client.holder && (chat_toggles & CHAT_DEAD))
 			override = TRUE
-		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
+		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
+			override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
 			override = TRUE
 		if(isnewplayer(M) && !override)
 			continue
 		if(M.stat != DEAD && !override)
 			continue
-		if(speaker_key && speaker_key in ignoring)
+		if(speaker_key && (speaker_key in ignoring))
 			continue
 
 		switch(message_type)
@@ -452,6 +518,9 @@ GLOBAL_LIST_EMPTY(species_list)
 					continue
 			if(DEADCHAT_ARRIVALRATTLE)
 				if(toggles & DISABLE_ARRIVALRATTLE)
+					continue
+			if(DEADCHAT_LAWCHANGE)
+				if(!(chat_toggles & CHAT_GHOSTLAWS))
 					continue
 
 		if(isobserver(M))
@@ -518,3 +587,63 @@ GLOBAL_LIST_EMPTY(species_list)
 		sleep(1)
 	if(set_original_dir)
 		AM.setDir(originaldir)
+
+///////////////////////
+///Silicon Mob Procs///
+///////////////////////
+
+//Returns a list of unslaved cyborgs
+/proc/active_free_borgs()
+	. = list()
+	for(var/mob/living/silicon/robot/R in GLOB.alive_mob_list)
+		if(R.connected_ai || R.shell)
+			continue
+		if(R.stat == DEAD)
+			continue
+		if(R.emagged || R.scrambledcodes)
+			continue
+		. += R
+
+//Returns a list of AI's
+/proc/active_ais(check_mind=FALSE, var/z = null)
+	. = list()
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
+		if(A.stat == DEAD)
+			continue
+		if(A.control_disabled)
+			continue
+		if(check_mind)
+			if(!A.mind)
+				continue
+		if(z && !(z == A.z) && (!is_station_level(z) || !is_station_level(A.z))) //if a Z level was specified, AND the AI is not on the same level, AND either is off the station...
+			continue
+		. += A
+	return .
+
+//Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
+/proc/select_active_ai_with_fewest_borgs(var/z)
+	var/mob/living/silicon/ai/selected
+	var/list/active = active_ais(FALSE, z)
+	for(var/mob/living/silicon/ai/A in active)
+		if(!selected || (selected.connected_robots.len > A.connected_robots.len))
+			selected = A
+
+	return selected
+
+/proc/select_active_free_borg(mob/user)
+	var/list/borgs = active_free_borgs()
+	if(borgs.len)
+		if(user)
+			. = input(user,"Unshackled cyborg signals detected:", "Cyborg Selection", borgs[1]) in sortList(borgs)
+		else
+			. = pick(borgs)
+	return .
+
+/proc/select_active_ai(mob/user, var/z = null)
+	var/list/ais = active_ais(FALSE, z)
+	if(ais.len)
+		if(user)
+			. = input(user,"AI signals detected:", "AI Selection", ais[1]) in sortList(ais)
+		else
+			. = pick(ais)
+	return .

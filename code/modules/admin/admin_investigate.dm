@@ -6,7 +6,7 @@
 
 /client/proc/investigate_show()
 	set name = "Investigate"
-	set category = "Admin"
+	set category = "Адм"
 	if(!holder)
 		return
 
@@ -37,6 +37,7 @@
 
 	var/F = file("[GLOB.log_directory]/[selected].html")
 	if(!fexists(F))
-		to_chat(src, "<span class='danger'>No [selected] logfile was found.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>No [selected] logfile was found.</span>", confidential = TRUE)
 		return
 	src << browse(F,"window=investigate[selected];size=800x300")
+	src << browse("<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>","window=investigate[selected];size=800x300")

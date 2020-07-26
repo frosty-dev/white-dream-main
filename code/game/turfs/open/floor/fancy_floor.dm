@@ -112,6 +112,7 @@
 	icon = 'icons/turf/snow.dmi'
 	desc = "Выглядит холодным."
 	icon_state = "snow"
+	broken_states = list("snow_dug")
 	ore_type = /obj/item/stack/sheet/mineral/snow
 	planetary_atmos = TRUE
 	floor_tile = null

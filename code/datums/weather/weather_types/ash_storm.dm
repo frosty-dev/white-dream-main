@@ -1,23 +1,24 @@
 //Ash storms happen frequently on lavaland. They heavily obscure vision, and cause high fire damage to anyone caught outside.
 /datum/weather/ash_storm
 	name = "ash storm"
-	desc = "An intense atmospheric storm lifts ash off of the planet's surface and billows it down across the area, dealing intense fire damage to the unprotected."
+	desc = "Интенсивная атмосферная буря поднимает пепел с поверхности планеты и вздымает его по всей области, нанося интенсивный урон от огня незащищенным."
 
-	telegraph_message = "<span class='boldwarning'>An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.</span>"
+	telegraph_message = "<span class='boldwarning'>Жуткий стон ветра слышен. Куски горящего пепла чернят горизонт. Пора искать убежище.</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "light_ash"
 
-	weather_message = "<span class='userdanger'><i>Smoldering clouds of scorching ash billow down around you! Get inside!</i></span>"
+	weather_message = "<span class='userdanger'><i>Тлеющие тучи палящего пепла вокруг меня! В УБЕЖИЩЕ!</i></span>"
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "ash_storm"
 
-	end_message = "<span class='boldannounce'>The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.</span>"
+	end_message = "<span class='boldannounce'>Визжащий ветер смахивает остатки пепла и возвращает его обычный шум. Теперь должно быть безопасно выйти наружу.</span>"
 	end_duration = 300
 	end_overlay = "light_ash"
 
-	area_type = /area/lavaland/surface/outdoors
-	target_trait = ZTRAIT_MINING
+	area_type = /area
+	protect_indoors = TRUE
+	target_trait = ZTRAIT_ASHSTORM
 
 	immunity_type = "ash"
 
@@ -99,12 +100,12 @@
 //Emberfalls are the result of an ash storm passing by close to the playable area of lavaland. They have a 10% chance to trigger in place of an ash storm.
 /datum/weather/ash_storm/emberfall
 	name = "emberfall"
-	desc = "A passing ash storm blankets the area in harmless embers."
+	desc = "Проходящий пепельный шторм покрывает область в безобидных углях."
 
-	weather_message = "<span class='notice'>Gentle embers waft down around you like grotesque snow. The storm seems to have passed you by...</span>"
+	weather_message = "<span class='notice'>Нежные тлеющие угольки летят вокруг меня, как гротескный снег. Шторм, кажется, прошел мимо меня...</span>"
 	weather_overlay = "light_ash"
 
-	end_message = "<span class='notice'>The emberfall slows, stops. Another layer of hardened soot to the basalt beneath your feet.</span>"
+	end_message = "<span class='notice'>Пепельный шторм сначала замедляется, потом останавливается. Еще один слой отвердевшей сажи на базальте под ногами.</span>"
 	end_sound = null
 
 	aesthetic = TRUE

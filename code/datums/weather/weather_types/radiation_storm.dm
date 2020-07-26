@@ -1,12 +1,12 @@
 //Radiation storms occur when the station passes through an irradiated area, and irradiate anyone not standing in protected areas (maintenance, emergency storage, etc.)
 /datum/weather/rad_storm
 	name = "radiation storm"
-	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
+	desc = "Облако интенсивного излучения проходит через область, нанося вред тем, кто не защищен."
 
 	telegraph_duration = 400
-	telegraph_message = "<span class='danger'>The air begins to grow warm.</span>"
+	telegraph_message = "<span class='danger'>Воздух начинает прогреваться.</span>"
 
-	weather_message = "<span class='userdanger'><i>You feel waves of heat wash over you! Find shelter!</i></span>"
+	weather_message = "<span class='userdanger'><i>Чувствую, как волны тепла охватывают меня! В ТЕХИ СРОЧНО!</i></span>"
 	weather_overlay = "ash_storm"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
@@ -14,11 +14,11 @@
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
 	end_duration = 100
-	end_message = "<span class='notice'>The air seems to be cooling off again.</span>"
+	end_message = "<span class='notice'>Кажется, воздух снова остывает.</span>"
 
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
-	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle)
+	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle, /area/security/prison/safe, /area/security/prison/toilet)
 	target_trait = ZTRAIT_STATION
 
 	immunity_type = "rad"
@@ -33,7 +33,7 @@
 	if(prob(40))
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			if(H.dna && !HAS_TRAIT(H, TRAIT_RADIMMUNE))
+			if(H.dna && !HAS_TRAIT(H, TRAIT_GENELESS))
 				if(prob(max(0,100-resist)))
 					H.randmuti()
 					if(prob(50))
@@ -47,7 +47,7 @@
 /datum/weather/rad_storm/end()
 	if(..())
 		return
-	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
+	priority_announce("Радиационная угроза прошла. Пожалуйста, вернитесь на свои рабочие места.", "Аномальная тревога", 'sound/ai/announcer/anomaly.ogg')
 	status_alarm(FALSE)
 
 /datum/weather/rad_storm/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.

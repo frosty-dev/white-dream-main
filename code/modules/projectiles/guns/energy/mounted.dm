@@ -1,9 +1,9 @@
 /obj/item/gun/energy/e_gun/advtaser/mounted
-	name = "mounted taser"
-	desc = "An arm mounted dual-mode weapon that fires electrodes and disabler shots."
+	name = "монтированный тазер"
+	desc = "Двухрежимное оружие на руку, которое запускает электроды и останавливающие выстрелы."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "taser"
-	item_state = "armcannonstun4"
+	inhand_icon_state = "armcannonstun4"
 	force = 5
 	selfcharge = 1
 	can_flashlight = FALSE
@@ -13,11 +13,11 @@
 	..()
 
 /obj/item/gun/energy/laser/mounted
-	name = "mounted laser"
-	desc = "An arm mounted cannon that fires lethal lasers."
+	name = "монтированный тазер"
+	desc = "Орудие, установленное на руку, которое запускает смертельные лазеры."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "laser"
-	item_state = "armcannonlase"
+	inhand_icon_state = "armcannonlase"
 	force = 5
 	selfcharge = 1
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL

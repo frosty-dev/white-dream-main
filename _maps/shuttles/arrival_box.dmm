@@ -9,6 +9,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "d" = (
@@ -181,7 +182,7 @@
 /area/shuttle/arrival)
 "C" = (
 /obj/machinery/light_switch{
-	step_x = 6
+	pixel_x = 6
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)

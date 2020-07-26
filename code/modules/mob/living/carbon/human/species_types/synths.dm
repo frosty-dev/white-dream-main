@@ -1,7 +1,7 @@
 /datum/species/synth
 	name = "Synth" //inherited from the real species, for health scanners and things
 	id = "synth"
-	say_mod = "beep boops" //inherited from a user's real species
+	say_mod = "бип-бупает" //inherited from a user's real species
 	sexes = 0
 	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
@@ -14,6 +14,7 @@
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
+	species_language_holder = /datum/language_holder/synthetic
 
 /datum/species/synth/New()
 	initial_species_traits = species_traits.Copy()
@@ -40,8 +41,8 @@
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/medicine/C2/instabitaluri)
-		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
+	if(chem.type == /datum/reagent/medicine/c2/instabitaluri)
+		chem.expose_mob(H, TOUCH, 2 ,0) //heal a little
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 	else

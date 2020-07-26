@@ -8,8 +8,8 @@
  * Beds
  */
 /obj/structure/bed
-	name = "bed"
-	desc = "This is used to lie in, sleep in or strap on."
+	name = "кровать"
+	desc = "На ней можно лежать. Или стоять."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
 	anchored = TRUE
@@ -25,7 +25,7 @@
 /obj/structure/bed/examine(mob/user)
 	. = ..()
 	if(bolts)
-		. += "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
+		. += "<span class='notice'>Скручено несколькими <b>болтами</b>.</span>"
 
 /obj/structure/bed/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -47,7 +47,7 @@
  * Roller beds
  */
 /obj/structure/bed/roller
-	name = "roller bed"
+	name = "каталка"
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = FALSE
@@ -58,19 +58,19 @@
 	if(istype(W, /obj/item/roller/robo))
 		var/obj/item/roller/robo/R = W
 		if(R.loaded)
-			to_chat(user, "<span class='warning'>You already have a roller bed docked!</span>")
+			to_chat(user, "<span class='warning'>У меня уже есть пассажир!</span>")
 			return
 
 		if(has_buckled_mobs())
 			if(buckled_mobs.len > 1)
 				unbuckle_all_mobs()
-				user.visible_message("<span class='notice'>[user] unbuckles all creatures from [src].</span>")
+				user.visible_message("<span class='notice'>[user] поднимает всех с [src].</span>")
 			else
 				user_unbuckle_mob(buckled_mobs[1],user)
 		else
 			R.loaded = src
 			forceMove(R)
-			user.visible_message("<span class='notice'>[user] collects [src].</span>", "<span class='notice'>You collect [src].</span>")
+			user.visible_message("<span class='notice'>[user] собирает [src].</span>", "<span class='notice'>Собираю [src].</span>")
 		return 1
 	else
 		return ..()
@@ -82,7 +82,7 @@
 			return 0
 		if(has_buckled_mobs())
 			return 0
-		usr.visible_message("<span class='notice'>[usr] collapses \the [src.name].</span>", "<span class='notice'>You collapse \the [src.name].</span>")
+		usr.visible_message("<span class='notice'>[usr] складывает [src.name].</span>", "<span class='notice'>Складываю [src.name].</span>")
 		var/obj/structure/bed/roller/B = new foldabletype(get_turf(src))
 		usr.put_in_hands(B)
 		qdel(src)
@@ -100,12 +100,12 @@
 /obj/structure/bed/roller/post_unbuckle_mob(mob/living/M)
 	density = FALSE
 	icon_state = "down"
-	M.pixel_x = M.get_standard_pixel_x_offset(M.lying)
-	M.pixel_y = M.get_standard_pixel_y_offset(M.lying)
+	M.pixel_x = M.get_standard_pixel_x_offset(!(M.mobility_flags & MOBILITY_STAND))
+	M.pixel_y = M.get_standard_pixel_y_offset(!(M.mobility_flags & MOBILITY_STAND))
 
 /obj/item/roller
-	name = "roller bed"
-	desc = "A collapsed roller bed that can be carried around."
+	name = "каталка"
+	desc = "Сборная кровать для транспортировки людей."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
 	w_class = WEIGHT_CLASS_NORMAL // No more excuses, stop getting blood everywhere
@@ -114,9 +114,9 @@
 	if(istype(I, /obj/item/roller/robo))
 		var/obj/item/roller/robo/R = I
 		if(R.loaded)
-			to_chat(user, "<span class='warning'>[R] already has a roller bed loaded!</span>")
+			to_chat(user, "<span class='warning'>[capitalize(R.name)] уже имеет в запасе каталку!</span>")
 			return
-		user.visible_message("<span class='notice'>[user] loads [src].</span>", "<span class='notice'>You load [src] into [R].</span>")
+		user.visible_message("<span class='notice'>[user] забирает [src].</span>", "<span class='notice'>Загружаю [src] в [R].</span>")
 		R.loaded = new/obj/structure/bed/roller(R)
 		qdel(src) //"Load"
 		return
@@ -139,8 +139,8 @@
 	qdel(src)
 
 /obj/item/roller/robo //ROLLER ROBO DA!
-	name = "roller bed dock"
-	desc = "A collapsed roller bed that can be ejected for emergency use. Must be collected or replaced after use."
+	name = "каталкодок"
+	desc = "Сборная кровать для транспортировки людей. Держите при её при себе всегда."
 	var/obj/structure/bed/roller/loaded = null
 
 /obj/item/roller/robo/Initialize()
@@ -149,57 +149,57 @@
 
 /obj/item/roller/robo/examine(mob/user)
 	. = ..()
-	. += "The dock is [loaded ? "loaded" : "empty"]."
+	. += "Док [loaded ? "загружен" : "пуст"]."
 
 /obj/item/roller/robo/deploy_roller(mob/user, atom/location)
 	if(loaded)
 		loaded.forceMove(location)
-		user.visible_message("<span class='notice'>[user] deploys [loaded].</span>", "<span class='notice'>You deploy [loaded].</span>")
+		user.visible_message("<span class='notice'>[user] выдавливает [loaded].</span>", "<span class='notice'>Выдавливаю [loaded].</span>")
 		loaded = null
 	else
-		to_chat(user, "<span class='warning'>The dock is empty!</span>")
+		to_chat(user, "<span class='warning'>Док пустой!</span>")
 
 //Dog bed
 
 /obj/structure/bed/dogbed
-	name = "dog bed"
+	name = "собачья кровать"
 	icon_state = "dogbed"
-	desc = "A comfy-looking dog bed. You can even strap your pet in, in case the gravity turns off."
+	desc = "Удобная на вид кровать для собаки. Вы можете даже пристегнуть своего питомца на случай, если гравитация отключится."
 	anchored = FALSE
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 10
 	var/mob/living/owner = null
 
 /obj/structure/bed/dogbed/ian
-	desc = "Ian's bed! Looks comfy."
-	name = "Ian's bed"
+	desc = "Выглядит удобной!"
+	name = "кроватка Яна"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/cayenne
-	desc = "Seems kind of... fishy."
-	name = "Cayenne's bed"
+	desc = "Кажется, немного... подозрительной."
+	name = "кровать Кайенны"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/renault
-	desc = "Renault's bed! Looks comfy. A foxy person needs a foxy pet."
-	name = "Renault's bed"
+	desc = "Выглядит удобно, Лисий человек нуждается в лисичке."
+	name = "кровать Рено"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/runtime
-	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off."
-	name = "Runtime's bed"
+	desc = "Удобная кошачья кровать. Вы можете даже пристегнуть своего питомца на случай, если гравитация отключится."
+	name = "Кровать Рантайма"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/proc/update_owner(mob/living/M)
 	owner = M
-	name = "[M]'s bed"
-	desc = "[M]'s bed! Looks comfy."
+	name = "кровать [M]"
+	desc = "Выглядит комфортно."
 
 /obj/structure/bed/dogbed/buckle_mob(mob/living/M, force, check_loc)
 	. = ..()
 	update_owner(M)
 
 /obj/structure/bed/alien
-	name = "resting contraption"
-	desc = "This looks similar to contraptions from Earth. Could aliens be stealing our technology?"
+	name = "отдыхалка"
+	desc = "Это похоже на штуки с Земли. Могут ли инопланетяне красть наши технологии?"
 	icon_state = "abed"

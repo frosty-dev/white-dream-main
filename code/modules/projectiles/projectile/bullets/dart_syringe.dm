@@ -1,5 +1,5 @@
 /obj/projectile/bullet/dart
-	name = "dart"
+	name = "дротик"
 	icon_state = "cbbolt"
 	damage = 6
 	var/piercing = FALSE
@@ -15,16 +15,16 @@
 		if(blocked != 100) // not completely blocked
 			if(M.can_inject(null, FALSE, def_zone, piercing)) // Pass the hit zone to see if it can inject by whether it hit the head or the body.
 				..()
-				reagents.reaction(M, INJECT)
+				reagents.expose(M, INJECT)
 				reagents.trans_to(M, reagents.total_volume)
 				return BULLET_ACT_HIT
 			else
 				blocked = 100
-				target.visible_message("<span class='danger'>\The [src] was deflected!</span>", \
-									   "<span class='userdanger'>You were protected against \the [src]!</span>")
+				target.visible_message("<span class='danger'>[capitalize(src)] был отражен!</span>", \
+									   "<span class='userdanger'>Мне похуй на [src]!</span>")
 
 	..(target, blocked)
-	DISABLE_BITFIELD(reagents.flags, NO_REACT)
+	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	return BULLET_ACT_HIT
 
@@ -35,5 +35,5 @@
 	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
 
 /obj/projectile/bullet/dart/syringe
-	name = "syringe"
+	name = "шприц"
 	icon_state = "syringeproj"

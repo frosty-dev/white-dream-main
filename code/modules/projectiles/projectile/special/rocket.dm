@@ -1,5 +1,5 @@
 /obj/projectile/bullet/gyro
-	name ="explosive bolt"
+	name ="взрывной заряд"
 	icon_state= "bolter"
 	damage = 50
 
@@ -9,7 +9,7 @@
 	return BULLET_ACT_HIT
 
 /obj/projectile/bullet/a84mm
-	name ="\improper HEDP rocket"
+	name ="\improper HEDP ракета"
 	desc = "USE A WEEL GUN"
 	icon_state= "84mm-hedp"
 	damage = 80
@@ -30,7 +30,7 @@
 	return BULLET_ACT_HIT
 
 /obj/projectile/bullet/a84mm_he
-	name ="\improper HE missile"
+	name ="\improper HE ракета"
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
@@ -45,7 +45,7 @@
 	return BULLET_ACT_HIT
 
 /obj/projectile/bullet/a84mm_br
-	name ="\improper HE missile"
+	name ="\improper HE ракета"
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
@@ -58,7 +58,7 @@
 	)
 
 /obj/item/broken_missile
-	name = "\improper broken missile"
+	name = "\improper сломанная ракета"
 	desc = "A missile that did not detonate. The tail has snapped and it is in no way fit to be used again."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "missile_broken"

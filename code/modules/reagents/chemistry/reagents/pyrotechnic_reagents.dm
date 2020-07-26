@@ -4,9 +4,9 @@
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	reagent_state = SOLID
 	color = "#550000"
-	taste_description = "sweet tasting metal"
+	taste_description = "сладкий вкус металла"
 
-/datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
+/datum/reagent/thermite/expose_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
 		T.AddComponent(/datum/component/thermite, reac_volume)
 
@@ -19,14 +19,20 @@
 	name = "Nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	color = "#808080" // rgb: 128, 128, 128
-	taste_description = "oil"
+	taste_description = "масло"
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
 	description = "Keeps unstable chemicals stable. This does not work on everything."
 	reagent_state = LIQUID
 	color = "#FFFF00"
-	taste_description = "metal"
+	taste_description = "металл"
+
+	//It has stable IN THE NAME. IT WAS MADE FOR THIS MOMENT.
+/datum/reagent/stabilizing_agent/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	if(myseed && chems.has_reagent(type, 1))
+		myseed.adjust_instability(-1)
 
 /datum/reagent/clf3
 	name = "Chlorine Trifluoride"
@@ -34,7 +40,7 @@
 	reagent_state = LIQUID
 	color = "#FFC8C8"
 	metabolization_rate = 4
-	taste_description = "burning"
+	taste_description = "горение"
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -43,7 +49,7 @@
 	..()
 	return TRUE
 
-/datum/reagent/clf3/reaction_turf(turf/T, reac_volume)
+/datum/reagent/clf3/expose_turf(turf/T, reac_volume)
 	if(isplatingturf(T))
 		var/turf/open/floor/plating/F = T
 		if(prob(10 + F.burnt + 5*F.broken)) //broken or burnt plating is more susceptible to being destroyed
@@ -63,7 +69,7 @@
 		if(prob(reac_volume))
 			W.ScrapeAway()
 
-/datum/reagent/clf3/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/clf3/expose_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(istype(M))
 		if(method != INGEST && method != INJECT)
 			M.adjust_fire_stacks(min(reac_volume/5, 10))
@@ -76,14 +82,14 @@
 	description = "Sends everything flying from the detonation point."
 	reagent_state = LIQUID
 	color = "#5A64C8"
-	taste_description = "air and bitterness"
+	taste_description = "воздух и горечь"
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
 	description = "Sucks everything into the detonation point."
 	reagent_state = LIQUID
 	color = "#210021"
-	taste_description = "compressed bitterness"
+	taste_description = "сжатая горечь"
 
 /datum/reagent/gunpowder
 	name = "Gunpowder"
@@ -91,7 +97,7 @@
 	reagent_state = LIQUID
 	color = "#000000"
 	metabolization_rate = 0.05
-	taste_description = "salt"
+	taste_description = "соль"
 
 /datum/reagent/gunpowder/on_mob_life(mob/living/carbon/M)
 	. = TRUE
@@ -114,45 +120,45 @@
 	description = "Military grade explosive"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	taste_description = "salt"
+	taste_description = "соль"
 
 /datum/reagent/tatp
 	name = "TaTP"
 	description = "Suicide grade explosive"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	taste_description = "death"
+	taste_description = "смерть"
 
 /datum/reagent/flash_powder
 	name = "Flash Powder"
 	description = "Makes a very bright flash."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "salt"
+	taste_description = "соль"
 
 /datum/reagent/smoke_powder
 	name = "Smoke Powder"
 	description = "Makes a large cloud of smoke that can carry reagents."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "smoke"
+	taste_description = "дым"
 
 /datum/reagent/sonic_powder
 	name = "Sonic Powder"
 	description = "Makes a deafening noise."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
-	taste_description = "loud noises"
+	taste_description = "громкие звуки"
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
 	description = "Catches you on fire and makes you ignite."
 	reagent_state = LIQUID
 	color = "#FA00AF"
-	taste_description = "burning"
+	taste_description = "горение"
 	self_consuming = TRUE
 
-/datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/phlogiston/expose_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
@@ -171,14 +177,23 @@
 	description = "Very flammable."
 	reagent_state = LIQUID
 	color = "#FA00AF"
-	taste_description = "burning"
+	taste_description = "горение"
 	self_consuming = TRUE
+
+	// why, just why
+/datum/reagent/napalm/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	if(chems.has_reagent(type, 1))
+		if(!(myseed.resistance_flags & FIRE_PROOF))
+			mytray.adjustHealth(-round(chems.get_reagent_amount(type) * 6))
+			mytray.adjustToxic(round(chems.get_reagent_amount(type) * 7))
+		mytray.adjustWeeds(-rand(5,9)) //At least give them a small reward if they bother.
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
 	..()
 
-/datum/reagent/napalm/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/napalm/expose_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(istype(M))
 		if(method != INGEST && method != INJECT)
 			M.adjust_fire_stacks(min(reac_volume/4, 20))
@@ -188,7 +203,7 @@
 	description = "Comes into existence at 20K. As long as there is sufficient oxygen for it to react with, Cryostylane slowly cools all other reagents in the container 0K."
 	color = "#0000DC"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "bitterness"
+	taste_description = "горечь"
 	self_consuming = TRUE
 
 
@@ -198,7 +213,7 @@
 		M.adjust_bodytemperature(-15)
 	..()
 
-/datum/reagent/cryostylane/reaction_turf(turf/T, reac_volume)
+/datum/reagent/cryostylane/expose_turf(turf/T, reac_volume)
 	if(reac_volume >= 5)
 		for(var/mob/living/simple_animal/slime/M in T)
 			M.adjustToxLoss(rand(15,30))
@@ -208,7 +223,7 @@
 	description = "Comes into existence at 20K. As long as there is sufficient oxygen for it to react with, Pyrosium slowly heats all other reagents in the container."
 	color = "#64FAC8"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "bitterness"
+	taste_description = "горечь"
 	self_consuming = TRUE
 
 /datum/reagent/pyrosium/on_mob_life(mob/living/carbon/M)
@@ -223,7 +238,7 @@
 	reagent_state = LIQUID
 	color = "#20324D" //RGB: 32, 50, 77
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	taste_description = "charged metal"
+	taste_description = "заряженный металл"
 	self_consuming = TRUE
 	var/shock_timer = 0
 
@@ -252,7 +267,7 @@
 	description = "Electrically-charged jelly. Boosts jellypeople's nervous system, but only shocks other lifeforms."
 	reagent_state = LIQUID
 	color = "#CAFF43"
-	taste_description = "jelly"
+	taste_description = "желе"
 
 /datum/reagent/teslium/energized_jelly/on_mob_life(mob/living/carbon/M)
 	if(isjellyperson(M))
@@ -270,9 +285,9 @@
 	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on NT vessels."
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
-	taste_description = "the inside of a fire extinguisher"
+	taste_description = "внутренняя часть огнетушителя"
 
-/datum/reagent/firefighting_foam/reaction_turf(turf/open/T, reac_volume)
+/datum/reagent/firefighting_foam/expose_turf(turf/open/T, reac_volume)
 	if (!istype(T))
 		return
 
@@ -287,15 +302,15 @@
 	if(hotspot && !isspaceturf(T))
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
-			if(G.temperature > T20C)
-				G.temperature = max(G.temperature/2,T20C)
+			if(G.return_temperature() > T20C)
+				G.set_temperature(max(G.return_temperature()/2,T20C))
 			G.react(src)
 			qdel(hotspot)
 
-/datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
+/datum/reagent/firefighting_foam/expose_obj(obj/O, reac_volume)
 	O.extinguish()
 
-/datum/reagent/firefighting_foam/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/firefighting_foam/expose_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method in list(VAPOR, TOUCH))
 		M.adjust_fire_stacks(-reac_volume)
 		M.ExtinguishMob()

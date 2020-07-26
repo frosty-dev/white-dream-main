@@ -23,6 +23,8 @@
 	assemblytype = /obj/structure/firelock_frame
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 70)
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
+	air_tight = TRUE
+	var/emergency_close_timer = 0
 	var/nextstate = null
 	var/boltslocked = TRUE
 	var/list/affecting_areas
@@ -83,6 +85,15 @@
 	. = ..()
 	if(.)
 		return
+
+	if(!welded && !operating && !(machine_stat & NOPOWER) && (!density || allow_hand_open(user)))
+		add_fingerprint(user)
+		if(density)
+			emergency_close_timer = world.time + 30 // prevent it from instaclosing again if in space
+			open()
+		else
+			close()
+		return TRUE
 	if(operating || !density)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -109,7 +120,9 @@
 			playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 			user.visible_message("<span class='notice'>[user] unfastens [src]'s bolts.</span>", \
 								 "<span class='notice'>You undo [src]'s floor bolts.</span>")
-			deconstruct(TRUE)
+			var/turf/T = get_turf(src)
+			new /obj/item/shard(T, 1)
+			qdel(src)
 			return
 		if(C.tool_behaviour == TOOL_SCREWDRIVER)
 			user.visible_message("<span class='notice'>[user] [boltslocked ? "unlocks" : "locks"] [src]'s bolts.</span>", \
@@ -137,13 +150,78 @@
 		return
 
 	if(density)
+		if(is_holding_pressure())
+			// tell the user that this is a bad idea, and have a do_after as well
+			to_chat(user, "<span class='warning'>As you begin crowbarring \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
+			if(!do_after(user, 15, TRUE, src)) // give them a few seconds to reconsider their decision.
+				return
+			log_game("[key_name_admin(user)] has opened a firelock with a pressure difference at [AREACOORD(loc)]") // there bibby I made it logged just for you. Enjoy.
+			// since we have high-pressure-ness, close all other firedoors on the tile
+			whack_a_mole()
+		if(welded || operating || !density)
+			return // in case things changed during our do_after
+		emergency_close_timer = world.time + 60 // prevent it from instaclosing again if in space
 		open()
 	else
 		close()
 
+/obj/machinery/door/firedoor/proc/whack_a_mole(reconsider_immediately = FALSE)
+	set waitfor = 0
+	for(var/cdir in GLOB.cardinals)
+		if((flags_1 & ON_BORDER_1) && cdir != dir)
+			continue
+		whack_a_mole_part(get_step(src, cdir), reconsider_immediately)
+	if(flags_1 & ON_BORDER_1)
+		whack_a_mole_part(get_turf(src), reconsider_immediately)
+
+/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point, reconsider_immediately)
+	set waitfor = 0
+	var/list/doors_to_close = list()
+	var/list/turfs = list()
+	turfs[start_point] = 1
+	for(var/i = 1; (i <= turfs.len && i <= 11); i++) // check up to 11 turfs.
+		var/turf/open/T = turfs[i]
+		if(istype(T, /turf/open/space))
+			return -1
+		for(var/T2 in T.atmos_adjacent_turfs)
+			if(turfs[T2])
+				continue
+			var/is_cut_by_unopen_door = FALSE
+			for(var/obj/machinery/door/firedoor/FD in T2)
+				if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, T) != FD.dir)
+					continue
+				if(FD.operating || FD == src || FD.welded || FD.density)
+					continue
+				doors_to_close += FD
+				is_cut_by_unopen_door = TRUE
+
+			for(var/obj/machinery/door/firedoor/FD in T)
+				if((FD.flags_1 & ON_BORDER_1) && get_dir(T, T2) != FD.dir)
+					continue
+				if(FD.operating || FD == src || FD.welded || FD.density)
+					continue
+				doors_to_close += FD
+				is_cut_by_unopen_door= TRUE
+			if(!is_cut_by_unopen_door)
+				turfs[T2] = 1
+	if(turfs.len > 10)
+		return // too big, don't bother
+	for(var/obj/machinery/door/firedoor/FD in doors_to_close)
+		FD.emergency_pressure_stop(FALSE)
+		if(reconsider_immediately)
+			var/turf/open/T = FD.loc
+			if(istype(T))
+				T.ImmediateCalculateAdjacentTurfs()
+
+/obj/machinery/door/firedoor/proc/allow_hand_open(mob/user)
+	var/area/A = get_area(src)
+	if(A && A.fire)
+		return FALSE
+	return !is_holding_pressure()
+
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(welded || operating || stat & NOPOWER)
+	if(welded || operating || machine_stat & NOPOWER)
 		return TRUE
 	if(density)
 		open()
@@ -191,6 +269,13 @@
 	. = ..()
 	latetoggle()
 
+/obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
+	set waitfor = 0
+	if(density || operating || welded)
+		return
+	if(world.time >= emergency_close_timer || !consider_timer)
+		close()
+
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/structure/firelock_frame/F = new assemblytype(get_turf(src))
@@ -204,7 +289,7 @@
 
 
 /obj/machinery/door/firedoor/proc/latetoggle()
-	if(operating || stat & NOPOWER || !nextstate)
+	if(operating || machine_stat & NOPOWER || !nextstate)
 		return
 	switch(nextstate)
 		if(FIREDOOR_OPEN)
@@ -216,6 +301,7 @@
 
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	can_crush = FALSE
 	flags_1 = ON_BORDER_1
 	CanAtmosPass = ATMOS_PASS_PROC
 
@@ -224,12 +310,11 @@
 	opacity = TRUE
 	density = TRUE
 
-/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
 		return TRUE
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
@@ -254,10 +339,27 @@
 	assemblytype = /obj/structure/firelock_frame/heavy
 	max_integrity = 550
 
+/obj/machinery/door/firedoor/window
+	name = "запасное окно"
+	icon = 'white/valtos/icons/doorfirewindow.dmi'
+	desc = "Автоматически закрывается при повреждении основного окна. Гениальная разработка наших инженеров."
+	glass = TRUE
+	explosion_block = 0
+	max_integrity = 50
+	resistance_flags = 0 // not fireproof
+	heat_proof = FALSE
+	assemblytype = /obj/item/shard // yeah
+
+/obj/machinery/door/firedoor/window/allow_hand_open()
+	return TRUE
+
+/obj/machinery/door/firedoor/window/deconstruct(disassembled = TRUE)
+	new assemblytype(get_turf(src))
+	qdel(src)
 
 /obj/item/electronics/firelock
 	name = "firelock circuitry"
-	custom_price = 5
+	custom_price = 50
 	desc = "A circuit board used in construction of firelocks."
 	icon_state = "mainboard"
 
@@ -452,7 +554,9 @@
 	return ..()
 
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
+	if(the_rcd.mode == RCD_DECONSTRUCT)
+		return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 16)
+	else if((constructionStep == CONSTRUCTION_NOCIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
 		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 20, "cost" = 1)
 	return FALSE
 
@@ -463,6 +567,10 @@
 			"<span class='notice'>You adapt a firelock circuit and slot it into the assembly.</span>")
 			constructionStep = CONSTRUCTION_GUTTED
 			update_icon()
+			return TRUE
+		if(RCD_DECONSTRUCT)
+			to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
+			qdel(src)
 			return TRUE
 	return FALSE
 

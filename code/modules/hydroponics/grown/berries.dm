@@ -10,6 +10,7 @@
 	maturation = 5
 	production = 5
 	yield = 2
+	instability = 30
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "berry-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "berry-dead" // Same for the dead icon
@@ -27,7 +28,7 @@
 	bitesize_mod = 2
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/berryjuice = 0)
-	tastes = list("berry" = 1)
+	tastes = list("ягода" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/gin
 
 // Poison Berries
@@ -93,6 +94,7 @@
 	genes = list(/datum/plant_gene/trait/glow/white, /datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/uranium = 0.25, /datum/reagent/iodine = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
+	graft_gene = /datum/plant_gene/trait/glow/white
 
 /obj/item/reagent_containers/food/snacks/grown/berries/glow
 	seed = /obj/item/seeds/berry/glow
@@ -118,6 +120,7 @@
 	maturation = 5
 	production = 5
 	growthstages = 5
+	instability = 15
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "cherry-grow"
 	icon_dead = "cherry-dead"
@@ -153,14 +156,14 @@
 
 /obj/item/reagent_containers/food/snacks/grown/bluecherries
 	seed = /obj/item/seeds/cherry/blue
-	name = "blue cherries"
+	name = "синий cherries"
 	desc = "They're cherries that are blue."
 	icon_state = "bluecherry"
 	filling_color = "#6495ED"
 	bitesize_mod = 2
 	foodtype = FRUIT
 	grind_results = list(/datum/reagent/consumable/bluecherryjelly = 0)
-	tastes = list("blue cherry" = 1)
+	tastes = list("синий cherry" = 1)
 	wine_power = 50
 
 //Cherry Bulbs
@@ -175,6 +178,7 @@
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07)
 	rarity = 10
+	graft_gene = /datum/plant_gene/trait/glow/pink
 
 /obj/item/reagent_containers/food/snacks/grown/cherrybulbs
 	seed = /obj/item/seeds/cherry/bulb
@@ -219,7 +223,7 @@
 	bitesize_mod = 2
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/grapejuice = 0)
-	tastes = list("grape" = 1)
+	tastes = list("виноград" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/wine
 
 // Green Grapes
@@ -230,12 +234,12 @@
 	species = "greengrape"
 	plantname = "Green-Grape Vine"
 	product = /obj/item/reagent_containers/food/snacks/grown/grapes/green
-	reagents_add = list( /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/medicine/C2/aiuri = 0.2)
+	reagents_add = list( /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/medicine/c2/aiuri = 0.2)
 
 /obj/item/reagent_containers/food/snacks/grown/grapes/green
 	seed = /obj/item/seeds/grape/green
 	name = "bunch of green grapes"
 	icon_state = "greengrapes"
 	filling_color = "#7FFF00"
-	tastes = list("green grape" = 1)
+	tastes = list("зелёный grape" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/cognac

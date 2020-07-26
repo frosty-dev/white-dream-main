@@ -26,25 +26,25 @@
 	if (prob(40))
 		new /obj/item/storage/toolbox/emergency(src)
 
-	switch (pickweight(list("small" = 40, "aid" = 25, "tank" = 20, "both" = 10, "nothing" = 4, "delete" = 1)))
+	switch (pickweight(list("small" = 35, "aid" = 30, "tank" = 20, "both" = 10, "nothing" = 4, "delete" = 1)))
 		if ("small")
 			new /obj/item/tank/internals/emergency_oxygen(src)
 			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("aid")
 			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/storage/firstaid/o2(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/storage/firstaid/emergency(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("tank")
 			new /obj/item/tank/internals/oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("both")
 			new /obj/item/tank/internals/emergency_oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
+			new /obj/item/clothing/mask/breath/cheap(src)
 
 		if ("nothing")
 			// doot
@@ -65,14 +65,15 @@
 	..()
 
 	new /obj/item/clothing/suit/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/cheap(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
+	new /obj/item/crowbar/red(src)
 
 /obj/structure/closet/firecloset/full/PopulateContents()
 	new /obj/item/clothing/suit/fire/firefighter(src)
-	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/mask/gas/cheap(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/internals/oxygen/red(src)
 	new /obj/item/extinguisher(src)

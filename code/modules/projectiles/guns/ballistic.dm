@@ -1,10 +1,12 @@
 ///Subtype for any kind of ballistic gun
 ///This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy
 /obj/item/gun/ballistic
-	desc = "Now comes in flavors like GUN. Uses 10mm ammo, for some reason."
-	name = "projectile gun"
+	desc = "По какой-то причине вошел в описание как ПУШКА. Использует 10-мм патроны."
+	name = "реактивный пистолет"
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_NORMAL
+
+	recoil = 0.75
 
 	///sound when inserting magazine
 	var/load_sound = 'sound/weapons/gun/general/magazine_insert_full.ogg'
@@ -85,6 +87,7 @@
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
 	///Whether the gun can be sawn off by sawing tools
 	var/can_be_sawn_off  = FALSE
+	var/flip_cooldown = 0
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -94,47 +97,46 @@
 		return
 	if (!magazine)
 		magazine = new mag_type(src)
-	chamber_round()
+	chamber_round(TRUE)
 	update_icon()
 
-/obj/item/gun/ballistic/update_icon()
-	if (QDELETED(src))
-		return
-	..()
+/obj/item/gun/ballistic/update_icon_state()
 	if(current_skin)
 		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
 	else
 		icon_state = "[initial(icon_state)][sawn_off ? "_sawn" : ""]"
-	cut_overlays()
+
+/obj/item/gun/ballistic/update_overlays()
+	. = ..()
 	if (bolt_type == BOLT_TYPE_LOCKING)
-		add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+		. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
 	if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
-		add_overlay("[icon_state]_bolt")
+		. += "[icon_state]_bolt"
 	if (suppressed)
-		add_overlay("[icon_state]_suppressor")
+		. += "[icon_state]_suppressor"
 	if(!chambered && empty_indicator)
-		add_overlay("[icon_state]_empty")
+		. += "[icon_state]_empty"
 	if (magazine)
 		if (special_mags)
-			add_overlay("[icon_state]_mag_[initial(magazine.icon_state)]")
+			. += "[icon_state]_mag_[initial(magazine.icon_state)]"
 			if (!magazine.ammo_count())
-				add_overlay("[icon_state]_mag_empty")
+				. += "[icon_state]_mag_empty"
 		else
-			add_overlay("[icon_state]_mag")
-			var/capacity_number = 0
+			. += "[icon_state]_mag"
+			var/capacity_number
 			switch(get_ammo() / magazine.max_ammo)
-				if(0.2 to 0.39)
-					capacity_number = 20
-				if(0.4 to 0.59)
-					capacity_number = 40
-				if(0.6 to 0.79)
-					capacity_number = 60
-				if(0.8 to 0.99)
-					capacity_number = 80
-				if(1.0)
+				if(1 to INFINITY) //cause we can have one in the chamber.
 					capacity_number = 100
+				if(0.8 to 1)
+					capacity_number = 80
+				if(0.6 to 0.8)
+					capacity_number = 60
+				if(0.4 to 0.6)
+					capacity_number = 40
+				if(0.2 to 0.4)
+					capacity_number = 20
 			if (capacity_number)
-				add_overlay("[icon_state]_mag_[capacity_number]")
+				. += "[icon_state]_mag_[capacity_number]"
 
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
@@ -253,7 +255,7 @@
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())
 				chambered = null
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
+			var/num_loaded = magazine?.attackby(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, "<span class='notice'>Загружаю [num_loaded] [cartridge_wording] в <b>[src.name]</b>.</span>")
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)
@@ -340,6 +342,18 @@
 	return ..()
 
 /obj/item/gun/ballistic/attack_self(mob/living/user)
+	if(HAS_TRAIT(user, TRAIT_GUNFLIP))
+		if(flip_cooldown <= world.time)
+			if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(40))
+				to_chat(user, "<span class='userdanger'>While trying to flip the [src] you pull the trigger and accidently shoot yourself!</span>")
+				var/flip_mistake = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_CHEST)
+				process_fire(user, user, FALSE, flip_mistake)
+				user.dropItemToGround(src, TRUE)
+				return
+			flip_cooldown = (world.time + 30)
+			user.visible_message("<span class='notice'>[user] spins the [src] around their finger by the trigger. That’s pretty badass.</span>")
+			playsound(src, 'sound/items/handling/ammobox_pickup.ogg', 20, FALSE)
+			return
 	if(!internal_magazine && magazine)
 		if(!magazine.ammo_count())
 			eject_magazine(user)
@@ -355,7 +369,7 @@
 			if(T && is_station_level(T.z))
 				SSblackbox.record_feedback("tally", "station_mess_created", 1, CB.name)
 		if (num_unloaded)
-			to_chat(user, "<span class='notice'Ты выгружаешь [num_unloaded] [cartridge_wording] из <b>[src.name]</b>.</span>")
+			to_chat(user, "<span class='notice'>Выгружаю [num_unloaded] [cartridge_wording] из <b>[src.name]</b>.</span>")
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
 			update_icon()
 		else
@@ -378,7 +392,7 @@
 	if (!chambered)
 		. += "Патронник пуст."
 	if (bolt_locked)
-		. += "[bolt_wording] не передёрнут."
+		. += "[capitalize(bolt_wording)] не передёрнут."
 	if (suppressed)
 		. += "Похоже отсюда можно снять глушитель через <b>alt+клик</b>."
 
@@ -398,7 +412,8 @@
 		rounds.Add(chambered)
 		if(drop_all)
 			chambered = null
-	rounds.Add(magazine.ammo_list(drop_all))
+	if(magazine)
+		rounds.Add(magazine.ammo_list(drop_all))
 	return rounds
 
 #define BRAINS_BLOWN_THROW_RANGE 3
@@ -458,7 +473,8 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		name = "sawn-off [src.name]"
 		desc = sawn_desc
 		w_class = WEIGHT_CLASS_NORMAL
-		item_state = "gun"
+		inhand_icon_state = "gun"
+		worn_icon_state = "gun"
 		slot_flags &= ~ITEM_SLOT_BACK	//you can't sling it on your back
 		slot_flags |= ITEM_SLOT_BELT		//but you can wear it on your belt (poorly concealed under a trenchcoat, ideally)
 		recoil = SAWN_OFF_RECOIL
@@ -476,13 +492,13 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 
 
 /obj/item/suppressor
-	name = "suppressor"
-	desc = "A syndicate small-arms suppressor for maximum espionage."
+	name = "глушитель"
+	desc = "Маленький глушитель для большого шпионажа."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/suppressor/specialoffer
-	name = "cheap suppressor"
-	desc = "A foreign knock-off suppressor, it feels flimsy, cheap, and brittle. Still fits most weapons."
+	name = "дешевый глушитель"
+	desc = "Ощущается китайской подделкой, но может накручиваться на различные виды оружия."

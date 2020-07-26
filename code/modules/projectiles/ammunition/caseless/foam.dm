@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/caseless/foam_dart
-	name = "foam dart"
-	desc = "It's nerf or nothing! Ages 8 and up."
+	name = "пенчик"
+	desc = "It's nerf or nothing! Детям от восьми лет и выше."
 	projectile_type = /obj/projectile/bullet/reusable/foam_dart
 	caliber = "foam_force"
 	icon = 'icons/obj/guns/toy.dmi'
@@ -13,12 +13,12 @@
 	..()
 	if (modified)
 		icon_state = "foamdart_empty"
-		desc = "It's nerf or nothing! ... Although, this one doesn't look too safe."
+		desc = "It's nerf or nothing... Хотя, этот не выглядит слишком безопасным."
 		if(BB)
 			BB.icon_state = "foamdart_empty"
 	else
 		icon_state = initial(icon_state)
-		desc = "It's nerf or nothing! Ages 8 and up."
+		desc = "It's nerf or nothing! Детям от восьми лет и выше."
 		if(BB)
 			BB.icon_state = initial(BB.icon_state)
 
@@ -29,7 +29,7 @@
 		modified = TRUE
 		FD.modified = TRUE
 		FD.damage_type = BRUTE
-		to_chat(user, "<span class='notice'>You pop the safety cap off [src].</span>")
+		to_chat(user, "<span class='notice'>Снимаю защитный колпачок с <b>[src.name]</b>.</span>")
 		update_icon()
 	else if (istype(A, /obj/item/pen))
 		if(modified)
@@ -40,11 +40,11 @@
 				FD.pen = A
 				FD.damage = 5
 				FD.nodamage = FALSE
-				to_chat(user, "<span class='notice'>You insert [A] into [src].</span>")
+				to_chat(user, "<span class='notice'>Вставляю <b>[A.name]</b> в <b>[src.name]</b>.</span>")
 			else
-				to_chat(user, "<span class='warning'>There's already something in [src].</span>")
+				to_chat(user, "<span class='warning'>Здесь уже что-то есть в <b>[src.name]</b>.</span>")
 		else
-			to_chat(user, "<span class='warning'>The safety cap prevents you from inserting [A] into [src].</span>")
+			to_chat(user, "<span class='warning'>Защитная крышка не позволяет вставить <b>[A.name]</b> в <b>[src.name]</b>.</span>")
 	else
 		return ..()
 
@@ -54,12 +54,12 @@
 		FD.damage = initial(FD.damage)
 		FD.nodamage = initial(FD.nodamage)
 		user.put_in_hands(FD.pen)
-		to_chat(user, "<span class='notice'>You remove [FD.pen] from [src].</span>")
+		to_chat(user, "<span class='notice'>Вытаскиваю <b>[FD.pen]</b> из <b>[src.name]</b>.</span>")
 		FD.pen = null
 
 /obj/item/ammo_casing/caseless/foam_dart/riot
-	name = "riot foam dart"
-	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	name = "резиновый пенчик"
+	desc = "Чья это была умная идея использовать игрушки для контроля толпы? Для детей от восемнадцати и старше."
 	projectile_type = /obj/projectile/bullet/reusable/foam_dart/riot
 	icon_state = "foamdart_riot"
 	custom_materials = list(/datum/material/iron = 1125)

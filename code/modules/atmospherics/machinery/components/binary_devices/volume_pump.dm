@@ -32,14 +32,16 @@
 	ui_y = 115
 
 /obj/machinery/atmospherics/components/binary/volume_pump/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(can_interact(user))
 		on = !on
+		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(can_interact(user))
 		transfer_rate = MAX_TRANSFER_RATE
+		investigate_log("was set to [transfer_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
 		update_icon()
 	return ..()
 
@@ -70,7 +72,7 @@
 		return
 
 
-	var/transfer_ratio = transfer_rate/air1.volume
+	var/transfer_ratio = transfer_rate/air1.return_volume()
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
@@ -113,7 +115,7 @@
 																		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_pump", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosPump", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/binary/volume_pump/ui_data()
@@ -141,15 +143,11 @@
 			if(rate == "max")
 				rate = MAX_TRANSFER_RATE
 				. = TRUE
-			else if(rate == "input")
-				rate = input("New transfer rate (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
-				if(!isnull(rate) && !..())
-					. = TRUE
 			else if(text2num(rate) != null)
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
+				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
@@ -167,7 +165,7 @@
 
 	if("set_transfer_rate" in signal.data)
 		var/datum/gas_mixture/air1 = airs[1]
-		transfer_rate = CLAMP(text2num(signal.data["set_transfer_rate"]),0,air1.volume)
+		transfer_rate = clamp(text2num(signal.data["set_transfer_rate"]),0,air1.return_volume())
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)

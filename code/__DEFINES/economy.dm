@@ -1,11 +1,11 @@
 #define STARTING_PAYCHECKS 5
 
-#define PAYCHECK_ASSISTANT 5
-#define PAYCHECK_MINIMAL 5
-#define PAYCHECK_EASY 20
-#define PAYCHECK_MEDIUM 30
-#define PAYCHECK_HARD 40
-#define PAYCHECK_COMMAND 100
+#define PAYCHECK_ASSISTANT 25
+#define PAYCHECK_MINIMAL 75
+#define PAYCHECK_EASY 125
+#define PAYCHECK_MEDIUM 175
+#define PAYCHECK_HARD 200
+#define PAYCHECK_COMMAND 250
 
 #define MAX_GRANT_CIV 2500
 #define MAX_GRANT_ENG 3000
@@ -26,5 +26,7 @@
 #define ACCOUNT_CAR_NAME "Cargo Budget"
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
+#define ACCOUNT_TRA "TRA"
+#define ACCOUNT_TRA_NAME "Trader Budget"
 
 #define NO_FREEBIES "commies go home"

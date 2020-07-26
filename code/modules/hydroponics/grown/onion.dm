@@ -10,6 +10,7 @@
 	production = 4
 	yield = 6
 	endurance = 25
+	instability = 10
 	growthstages = 3
 	weed_chance = 3
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
@@ -23,7 +24,7 @@
 	icon_state = "onion"
 	filling_color = "#C0C9A0"
 	bitesize_mod = 2
-	tastes = list("onions" = 1)
+	tastes = list("лук" = 1)
 	slice_path = /obj/item/reagent_containers/food/snacks/onion_slice
 	slices_num = 2
 	wine_power = 30
@@ -40,7 +41,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/onion/red
 	seed = /obj/item/seeds/onion/red
-	name = "red onion"
+	name = "красный onion"
 	desc = "Purple despite the name."
 	icon_state = "onion_red"
 	filling_color = "#C29ACF"
@@ -67,7 +68,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/onionrings
 
 /obj/item/reagent_containers/food/snacks/onion_slice/red
-	name = "red onion slices"
+	name = "красный onion slices"
 	desc = "They shine like exceptionally low quality amethyst."
 	icon_state = "onionslice_red"
 	filling_color = "#C29ACF"

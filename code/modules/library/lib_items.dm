@@ -23,6 +23,12 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
 	var/state = 0
 	var/list/allowed_books = list(/obj/item/book, /obj/item/spellbook, /obj/item/storage/book) //Things allowed in the bookcase
+	/// When enabled, books_to_load number of random books will be generated for this bookcase when first interacted with.
+	var/load_random_books = FALSE
+	/// The category of books to pick from when populating random books.
+	var/random_category = null
+	/// How many random books to generate.
+	var/books_to_load = 0
 
 /obj/structure/bookcase/examine(mob/user)
 	. = ..()
@@ -119,6 +125,9 @@
 		return
 	if(!istype(user))
 		return
+	if(load_random_books)
+		create_random_books(books_to_load, src, FALSE, random_category)
+		load_random_books = FALSE
 	if(contents.len)
 		var/obj/item/book/choice = input(user, "Which book would you like to remove from the shelf?") as null|obj in sortNames(contents.Copy())
 		if(choice)
@@ -139,20 +148,11 @@
 	qdel(src)
 
 
-/obj/structure/bookcase/update_icon()
-	if(contents.len < 5)
-		icon_state = "book-[contents.len]"
-	else
-		icon_state = "book-5"
-
-
-/obj/structure/bookcase/manuals/medical
-	name = "medical manuals bookcase"
-
-/obj/structure/bookcase/manuals/medical/Initialize()
-	. = ..()
-	new /obj/item/book/manual/wiki/medical_cloning(src)
-	update_icon()
+/obj/structure/bookcase/update_icon_state()
+	var/amount = contents.len
+	if(load_random_books)
+		amount += books_to_load
+	icon_state = "book-[amount < 5 ? amount : 5]"
 
 
 /obj/structure/bookcase/manuals/engineering
@@ -204,7 +204,7 @@
 	if(!user.can_read(src))
 		return
 	if(dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+		user << browse("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
 		user.visible_message("<span class='notice'>[user] opens a book titled \"[title]\" and begins reading intently.</span>")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "book_nerd", /datum/mood_event/book_nerd)
 		onclose(user, "book")
@@ -214,7 +214,7 @@
 
 /obj/item/book/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/pen))
-		if(is_blind(user))
+		if(user.is_blind())
 			to_chat(user, "<span class='warning'>As you are trying to write on the book, you suddenly feel very stupid!</span>")
 			return
 		if(unique)
@@ -324,7 +324,7 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	var/obj/machinery/computer/libraryconsole/bookmanagement/computer	//Associated computer - Modes 1 to 3 use this
+	var/obj/machinery/computer/bookmanagement/computer	//Associated computer - Modes 1 to 3 use this
 	var/obj/item/book/book			//Currently scanned book
 	var/mode = 0							//0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 

@@ -1,6 +1,6 @@
 /obj/projectile/bullet/reusable/foam_dart
-	name = "foam dart"
-	desc = "I hope you're wearing eye protection."
+	name = "дротик из пены"
+	desc = "Я надеюсь ты надел очки."
 	damage = 0 // It's a damn toy.
 	damage_type = OXY
 	nodamage = TRUE
@@ -35,7 +35,7 @@
 	return ..()
 
 /obj/projectile/bullet/reusable/foam_dart/riot
-	name = "riot foam dart"
+	name = "утяжелённый дротик из пены"
 	icon_state = "foamdart_riot_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 	nodamage = FALSE

@@ -13,7 +13,7 @@
 
 /obj/item/areaeditor/attack_self(mob/user)
 	add_fingerprint(user)
-	. = "<BODY><HTML><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>[src]</title></head> \
+	. = "<BODY><HTML><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /><title>[src]</title></head> \
 				<h2>[station_name()] [src.name]</h2> \
 				<small>[fluffnotice]</small><hr>"
 	switch(get_area_type())
@@ -32,6 +32,10 @@
 		return TRUE
 	if(href_list["create_area"])
 		if(in_use)
+			return
+		var/area/A = get_area(usr)
+		if(A.noteleport)
+			to_chat(usr, "<span class='warning'>You cannot edit restricted areas.</span>")
 			return
 		in_use = TRUE
 		create_area(usr)

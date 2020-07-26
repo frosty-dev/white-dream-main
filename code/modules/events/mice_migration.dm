@@ -19,9 +19,7 @@
 	var/location = pick("технические тоннели", "технические зоны",
 		"\[REDACTED\]", "места, где находятся вкусные провода")
 
-	priority_announce("По причине [cause], [plural] [name] [movement] \
-		в [location].", "Миграционная тревога",
-		'sound/effects/mousesqueek.ogg')
+	priority_announce("По причине [cause], [plural] [name] [movement] в [location].", "Миграционная тревога", 'sound/ai/announcer/migration.ogg')
 
 /datum/round_event/mice_migration/start()
 	SSminor_mapping.trigger_migration(rand(minimum_mice, maximum_mice))

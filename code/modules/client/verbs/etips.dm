@@ -1,16 +1,16 @@
 /client/verb/toggle_tips()
 	set name = " 🔄 Подсказки возле курсора"
 	set desc = "Toggles examine hover-over tooltips"
-	set category = "Preferences"
+	set category = "Настройки"
 
 	prefs.enable_tips = !prefs.enable_tips
 	prefs.save_preferences()
 	to_chat(usr, "<span class='danger'>Examine tooltips [prefs.enable_tips ? "en" : "dis"]abled.</span>")
 
 /client/verb/change_tip_delay()
-	set name = " #️⃣ Установить задержку подсказок"
+	set name = "#️⃣ Установить задержку подсказок"
 	set desc = "Sets the delay in milliseconds before examine tooltips appear"
-	set category = "Preferences"
+	set category = "Настройки"
 
 	var/indelay = stripped_input(usr, "Enter the tooltip delay in milliseconds (default: 500)", "Enter tooltip delay", "", 10)
 	indelay = text2num(indelay)

@@ -10,7 +10,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/store/bread/plain
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("dough" = 1)
+	tastes = list("тесто" = 1)
 	foodtype = GRAIN
 
 
@@ -38,7 +38,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/pizzabread
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("dough" = 1)
+	tastes = list("тесто" = 1)
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/pizzabread
@@ -49,7 +49,7 @@
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/pizza
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("bread" = 1)
+	tastes = list("хлеб" = 1)
 	foodtype = GRAIN
 
 
@@ -60,7 +60,7 @@
 	icon_state = "doughslice"
 	cooked_type = /obj/item/reagent_containers/food/snacks/bun
 	filling_color = "#CD853F"
-	tastes = list("dough" = 1)
+	tastes = list("тесто" = 1)
 	foodtype = GRAIN
 
 
@@ -72,7 +72,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/burger
 	filling_color = "#CD853F"
-	tastes = list("bun" = 1) // the bun tastes of bun.
+	tastes = list("булка" = 1) // the bun tastes of bun.
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/cakebatter
@@ -83,7 +83,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/store/cake/plain
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("batter" = 1)
+	tastes = list("кляр" = 1)
 	foodtype = GRAIN | DAIRY
 
 // Cake batter + rolling pin = pie dough
@@ -108,7 +108,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/pie/plain
 	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("dough" = 1)
+	tastes = list("тесто" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/rawpastrybase
@@ -119,7 +119,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/pastrybase
 	filling_color = "#CD853F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	tastes = list("raw pastry" = 1)
+	tastes = list("сырое тесто" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pastrybase
@@ -129,5 +129,5 @@
 	icon_state = "pastrybase"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	filling_color = "#CD853F"
-	tastes = list("pastry" = 1)
+	tastes = list("тесто" = 1)
 	foodtype = GRAIN | DAIRY

@@ -1,9 +1,9 @@
 /obj/item/flamethrower
-	name = "flamethrower"
+	name = "огнемёт"
 	desc = "You are a firestarter!"
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
-	item_state = "flamethrower_0"
+	inhand_icon_state = "flamethrower_0"
 	lefthand_file = 'icons/mob/inhands/weapons/flamethrower_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/flamethrower_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -29,6 +29,10 @@
 	var/igniter_type = /obj/item/assembly/igniter
 	trigger_guard = TRIGGER_GUARD_NORMAL
 
+/obj/item/flamethrower/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
 /obj/item/flamethrower/Destroy()
 	if(weldtool)
 		qdel(weldtool)
@@ -51,21 +55,17 @@
 		igniter.flamethrower_process(location)
 
 
-/obj/item/flamethrower/update_icon()
-	cut_overlays()
+/obj/item/flamethrower/update_icon_state()
+	inhand_icon_state = "flamethrower_[lit]"
+
+/obj/item/flamethrower/update_overlays()
+	. = ..()
 	if(igniter)
-		add_overlay("+igniter[status]")
+		. += "+igniter[status]"
 	if(ptank)
-		add_overlay("+ptank")
+		. += "+ptank"
 	if(lit)
-		add_overlay("+lit")
-		item_state = "flamethrower_1"
-	else
-		item_state = "flamethrower_0"
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_hands()
-	return
+		. += "+lit"
 
 /obj/item/flamethrower/afterattack(atom/target, mob/user, flag)
 	. = ..()
@@ -99,7 +99,7 @@
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && igniter && !lit)
 		status = !status
-		to_chat(user, "<span class='notice'>[igniter] is now [status ? "secured" : "unsecured"]!</span>")
+		to_chat(user, "<span class='notice'><b>[igniter]</b> теперь [status ? "закреплён" : "откручен"]!</span>")
 		update_icon()
 		return
 
@@ -120,7 +120,7 @@
 			if(user.transferItemToLoc(W,src))
 				ptank.forceMove(get_turf(src))
 				ptank = W
-				to_chat(user, "<span class='notice'>You swap the plasma tank in [src]!</span>")
+				to_chat(user, "<span class='notice'>Меняю бак с плазмой в <b>[src.name]</b>!</span>")
 			return
 		if(!user.transferItemToLoc(W, src))
 			return
@@ -144,22 +144,22 @@
 	if(ptank && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		user.put_in_hands(ptank)
 		ptank = null
-		to_chat(user, "<span class='notice'>You remove the plasma tank from [src]!</span>")
+		to_chat(user, "<span class='notice'>Вынимаю бак с плазмой из <b>[src]</b>!</span>")
 		update_icon()
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
 	if(ptank)
-		. += "<span class='notice'>\The [src] has \a [ptank] attached. Alt-click to remove it.</span>"
+		. += "<span class='notice'>К <b>[src.name]</b> подсоединён <b>[ptank]</b>. Alt-клик для изъятия.</span>"
 
 /obj/item/flamethrower/proc/toggle_igniter(mob/user)
 	if(!ptank)
-		to_chat(user, "<span class='notice'>Attach a plasma tank first!</span>")
+		to_chat(user, "<span class='notice'>Присоединить бы бак сначала!</span>")
 		return
 	if(!status)
-		to_chat(user, "<span class='notice'>Secure the igniter first!</span>")
+		to_chat(user, "<span class='notice'>Закрепить бы воспламенитель сначала!</span>")
 		return
-	to_chat(user, "<span class='notice'>You [lit ? "extinguish" : "ignite"] [src]!</span>")
+	to_chat(user, "<span class='notice'>[lit ? "Тушу" : "Разжигаю"] <b>[src.name]</b>!</span>")
 	lit = !lit
 	if(lit)
 		set_light(1)
@@ -211,11 +211,10 @@
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
-	if(air_transfer.gases[/datum/gas/plasma])
-		air_transfer.gases[/datum/gas/plasma][MOLES] *= 5
+	air_transfer.set_moles(/datum/gas/plasma, air_transfer.get_moles(/datum/gas/plasma) * 5)
 	target.assume_air(air_transfer)
 	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.temperature*2) + 380,500)
+	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380, 500)
 	//location.hotspot_expose(1000,500,1)
 	SSair.add_to_active(target, 0)
 
@@ -240,10 +239,10 @@
 /obj/item/flamethrower/full/tank
 	create_with_tank = TRUE
 
-/obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "удар", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/projectile/P = hitby
 	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(15))
-		owner.visible_message("<span class='danger'>\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!</span>")
+		owner.visible_message("<span class='danger'>[capitalize(attack_text)] попадает в бак <b>огнемёта [owner.name]</b>, разрывая его! Вот это выстрел!</span>")
 		var/turf/target_turf = get_turf(owner)
 		log_game("A projectile ([hitby]) detonated a flamethrower tank held by [key_name(owner)] at [COORD(target_turf)]")
 		igniter.ignite_turf(src,target_turf, release_amount = 100)
@@ -252,7 +251,7 @@
 
 
 /obj/item/assembly/igniter/proc/flamethrower_process(turf/open/location)
-	location.hotspot_expose(700,2)
+	location.hotspot_expose(heat,2)
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
 	F.default_ignite(location,release_amount)

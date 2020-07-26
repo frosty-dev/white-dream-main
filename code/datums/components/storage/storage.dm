@@ -173,7 +173,7 @@
 	var/datum/component/storage/concrete/master = master()
 	if(!master)
 		return
-	. = COMPONENT_BLOCK_REACH
+	. = COMPONENT_ALLOW_REACH
 	next += master.parent
 	for(var/i in master.slaves)
 		var/datum/component/storage/slave = i
@@ -217,7 +217,7 @@
 	var/list/rejections = list()
 	while(do_after(M, 10, TRUE, parent, FALSE, CALLBACK(src, .proc/handle_mass_pickup, things, I.loc, rejections, progress)))
 		stoplag(1)
-	qdel(progress)
+	progress.end_progress()
 	to_chat(M, "<span class='notice'>Собираю всё что могу [insert_preposition] [parent].</span>")
 
 /datum/component/storage/proc/handle_mass_item_insertion(list/things, datum/component/storage/src_object, mob/user, datum/progressbar/progress)
@@ -275,7 +275,7 @@
 	var/datum/progressbar/progress = new(M, length(things), T)
 	while (do_after(M, 10, TRUE, T, FALSE, CALLBACK(src, .proc/mass_remove_from_storage, T, things, progress)))
 		stoplag(1)
-	qdel(progress)
+	progress.end_progress()
 
 /datum/component/storage/proc/mass_remove_from_storage(atom/target, list/things, datum/progressbar/progress, trigger_on_found = TRUE)
 	var/atom/real_location = real_location()
@@ -335,8 +335,8 @@
 		numbered_contents = _process_numerical_display()
 		adjusted_contents = numbered_contents.len
 
-	var/columns = CLAMP(max_items, 1, screen_max_columns)
-	var/rows = CLAMP(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
+	var/columns = clamp(max_items, 1, screen_max_columns)
+	var/rows = clamp(CEILING(adjusted_contents / columns, 1), 1, screen_max_rows)
 	standard_orient_objs(rows, columns, numbered_contents)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
@@ -595,47 +595,47 @@
 	if(locked)
 		if(M && !stop_messages)
 			host.add_fingerprint(M)
-			to_chat(M, "<span class='warning'>[host] заблокирован!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(host.name)] заблокирован!</span>")
 		return FALSE
 	if(real_location.contents.len >= max_items)
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[host] переполнен!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(host.name)] переполнен!</span>")
 		return FALSE //Storage item is full
 	if(length(can_hold))
 		if(!is_type_in_typecache(I, can_hold))
 			if(!stop_messages)
-				to_chat(M, "<span class='warning'>[host] не может хранить [I.name]!</span>")
+				to_chat(M, "<span class='warning'>[capitalize(host.name)] не может хранить [I.name]!</span>")
 			return FALSE
-	if(is_type_in_typecache(I, cant_hold)) //Check for specific items which this container can't hold.
+	if(is_type_in_typecache(I, cant_hold) || HAS_TRAIT(I, TRAIT_NO_STORAGE_INSERT)) //Items which this container can't hold.
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[host] не может хранить [I.name]!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(host.name)] не может хранить [I.name]!</span>")
 		return FALSE
 	if(I.w_class > max_w_class && !is_type_in_typecache(I, exception_hold))
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[I.name] слишком большой для [host]!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(I.name)] не помещается в [host]!</span>")
 		return FALSE
 	var/datum/component/storage/biggerfish = real_location.loc.GetComponent(/datum/component/storage)
 	if(biggerfish && biggerfish.max_w_class < max_w_class)//return false if we are inside of another container, and that container has a smaller max_w_class than us (like if we're a bag in a box)
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[I] can't fit in [host] while [real_location.loc] is in the way!</span>")
+			to_chat(M, "<span class='warning'>[I] не может хранить [host] пока мешает [real_location.loc]!</span>")
 		return FALSE
 	var/sum_w_class = I.w_class
 	for(var/obj/item/_I in real_location)
 		sum_w_class += _I.w_class //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 	if(sum_w_class > max_combined_w_class)
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[I.name] не помещается в [host]!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(I.name)] не помещается в [host]!</span>")
 		return FALSE
 	if(isitem(host))
 		var/obj/item/IP = host
 		var/datum/component/storage/STR_I = I.GetComponent(/datum/component/storage)
 		if((I.w_class >= IP.w_class) && STR_I && !allow_big_nesting)
 			if(!stop_messages)
-				to_chat(M, "<span class='warning'>[IP.name] не может хранить [I.name], так как они одинакового размера!</span>")
+				to_chat(M, "<span class='warning'>[capitalize(IP.name)] не может хранить [I.name], так как они одинакового размера!</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
-			to_chat(M, "<span class='warning'>[I.name] застрял в твоей руке, ты не можешь положить его в [host]!</span>")
+			to_chat(M, "<span class='warning'>[capitalize(I.name)] застрял в моей руке, ты не можешь положить его в [host]!</span>")
 		return FALSE
 	var/datum/component/storage/concrete/master = master()
 	if(!istype(master))
@@ -666,11 +666,11 @@
 		playsound(parent, "rustle", 50, TRUE, -5)
 	for(var/mob/viewing in viewers(user, null))
 		if(M == viewing)
-			to_chat(usr, "<span class='notice'>Ложу [I.name] [insert_preposition] [parent].</span>")
+			to_chat(usr, "<span class='notice'>Кладу [I.name] [insert_preposition] [parent].</span>")
 		else if(in_range(M, viewing)) //If someone is standing close enough, they can tell what it is...
-			viewing.show_message("<span class='notice'>[M] ложит [I.name] [insert_preposition] [parent].</span>", MSG_VISUAL)
+			viewing.show_message("<span class='notice'><b>[M]</b> кладёт <b>[I.name]</b> [insert_preposition] <b>[parent]</b>.</span>", MSG_VISUAL)
 		else if(I && I.w_class >= 3) //Otherwise they can only see large or normal items from a distance...
-			viewing.show_message("<span class='notice'>[M] ложит [I.name] [insert_preposition] [parent].</span>", MSG_VISUAL)
+			viewing.show_message("<span class='notice'><b>[M]</b> кладёт <b>[I.name]</b> [insert_preposition] <b>[parent]</b>.</span>", MSG_VISUAL)
 
 /datum/component/storage/proc/update_icon()
 	if(isobj(parent))
@@ -764,11 +764,9 @@
 			show_to(user)
 
 /datum/component/storage/proc/signal_on_pickup(datum/source, mob/user)
-	var/atom/A = parent
 	update_actions()
-	for(var/mob/M in range(1, A))
-		if(M.active_storage == src)
-			close(M)
+	for(var/mob/M in can_see_contents() - user)
+		close(M)
 
 /datum/component/storage/proc/signal_take_obj(datum/source, atom/movable/AM, new_loc, force = FALSE)
 	if(!(AM in real_location()))
@@ -782,7 +780,7 @@
 	return hide_from(target)
 
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
-	if(!isliving(user) || !user.CanReach(parent))
+	if(!isliving(user) || !user.CanReach(parent) || user.incapacitated())
 		return
 	if(locked)
 		to_chat(user, "<span class='warning'>[parent] заблокирован!</span>")
@@ -795,17 +793,15 @@
 		playsound(A, "rustle", 50, TRUE, -5)
 		return
 
-	if(!user.incapacitated())
-		var/obj/item/I = locate() in real_location()
-		if(!I)
-			return
-		A.add_fingerprint(user)
-		remove_from_storage(I, get_turf(user))
-		if(!user.put_in_hands(I))
-			to_chat(user, "<span class='notice'>Пытаюсь вытащить [I.name] роняя его на пол.</span>")
-			return
-		user.visible_message("<span class='warning'>[user] достаёт [I.name] из [parent]!</span>", "<span class='notice'>Вытаскиваю [I.name] из [parent].</span>")
+	var/obj/item/I = locate() in real_location()
+	if(!I)
 		return
+	A.add_fingerprint(user)
+	remove_from_storage(I, get_turf(user))
+	if(!user.put_in_hands(I))
+		to_chat(user, "<span class='notice'>Пытаюсь вытащить [I.name] роняя его на пол.</span>")
+		return
+	user.visible_message("<span class='warning'>[user] достаёт [I.name] из [parent]!</span>", "<span class='notice'>Вытаскиваю [I.name] из [parent].</span>")
 
 /datum/component/storage/proc/action_trigger(datum/signal_source, datum/action/source)
 	gather_mode_switch(source.owner)

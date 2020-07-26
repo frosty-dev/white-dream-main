@@ -13,10 +13,10 @@
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
 	var/mob/living/carbon/C = new_owner.current
 	if(!istype(C))
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "[roundend_category] должен быть живым!")
 		return
 	if(!C.getorgan(/obj/item/organ/brain)) // If only I had a brain
-		to_chat(admin, "[roundend_category] come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "[roundend_category] НУЖЕН СУКА МОЗГ.")
 		return
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
@@ -25,11 +25,11 @@
 
 /datum/antagonist/obsessed/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 100, FALSE, pressure_affected = FALSE)
-	to_chat(owner, "<span class='userdanger'>You are the Obsessed!</span>")
-	to_chat(owner, "<B>The Voices have reached out to you, and are using you to complete their evil deeds.</B>")
-	to_chat(owner, "<B>You don't know their connection, but The Voices compel you to stalk [trauma.obsession], forcing them into a state of constant paranoia.</B>")
-	to_chat(owner, "<B>The Voices will retaliate if you fail to complete your tasks or spend too long away from your target.</B>")
-	to_chat(owner, "<span class='boldannounce'>This role does NOT enable you to otherwise surpass what's deemed creepy behavior per the rules.</span>")//ironic if you know the history of the antag
+	to_chat(owner, "<span class='userdanger'>Я одержим!</span>")
+	to_chat(owner, "<B>Голоса обратились ко мне и используют меня для совершения своих злых дел.</B>")
+	to_chat(owner, "<B>Я не знаю их связи, но Голоса заставляют меня преследовать [trauma.obsession], приводя меня в состояние постоянной паранойи.</B>")
+	to_chat(owner, "<B>Голоса ответят мне, если я не справлюсь со своими задачами или проведу слишком много времени вдали от цели.</B>")
+	to_chat(owner, "<span class='boldannounce'> > Эта роль НЕ позволяет тебе превзойти то, что считается жутким поведением по правилам.</span>")//ironic if you know the history of the antag
 	owner.announce_objectives()
 
 /datum/antagonist/obsessed/Destroy()
@@ -60,7 +60,7 @@
 		objectives_left += "heirloom"
 
 	if(obsessionmind.assigned_role && obsessionmind.assigned_role != "Captain")
-		objectives_left += "jealous"//if they have no coworkers, jealousy will pick someone else on the station. this will never be a free objective, nice.
+		objectives_left += "jealous"//if they have no coworkers, jealousy will pick someone else on the station. this will never be a Развлекаться, nice.
 
 	for(var/i in 1 to 3)
 		var/chosen_objective = pick(objectives_left)
@@ -98,7 +98,7 @@
 		O.update_explanation_text()
 
 /datum/antagonist/obsessed/roundend_report_header()
-	return 	"<span class='header'>Someone became obsessed!</span><br>"
+	return 	"<span class='header'>Кто-то стал одержимым!</span><br>"
 
 /datum/antagonist/obsessed/roundend_report()
 	var/list/report = list()
@@ -117,16 +117,16 @@
 				break
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
-			report += "<span class='greentext'>The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!</span>"
+			report += "<span class='greentext'>Одержимый потратил [DisplayTimeText(trauma.total_time_creeping)] возле [trauma.obsession]!</span>"
 		else
-			report += "<span class='redtext'>The [name] did not go near their obsession the entire round! That's extremely impressive!</span>"
+			report += "<span class='redtext'>Одержимый не ходил рядом с их одержимостью весь раунд! Это очень впечатляет!</span>"
 	else
-		report += "<span class='redtext'>The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!</span>"
+		report += "<span class='redtext'>У одержимого не было никакой травмы, приложенной к их путям антагониста! Либо он товарищ администратор неправильно дал эту роль и она сломалась!</span>"
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>The [name] was successful!</span>"
+		report += "<span class='greentext big'>Одержимый успешен!</span>"
 	else
-		report += "<span class='redtext big'>The [name] has failed!</span>"
+		report += "<span class='redtext big'>Одержимый провален!</span>"
 
 	return report.Join("<br>")
 
@@ -139,10 +139,10 @@
 /datum/objective/assassinate/obsessed/update_explanation_text()
 	..()
 	if(target && target.current)
-		explanation_text = "Murder [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Убить [target.name], на должности [!target_role_type ? target.assigned_role : target.special_role]."
 	else
 		message_admins("WARNING! [ADMIN_LOOKUPFLW(owner)] obsessed objectives forged without an obsession!")
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"
 
 /datum/objective/assassinate/jealous //assassinate, but it changes the target to someone else in the previous target's department. cool, right?
 	var/datum/mind/old //the target the coworker was picked from.
@@ -151,11 +151,11 @@
 	..()
 	old = find_coworker(target)
 	if(target && target.current && old)
-		explanation_text = "Murder [target.name], [old]'s coworker."
+		explanation_text = "Убить старого коллегу моей цели - [old]."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"
 
-/datum/objective/assassinate/jealous/proc/find_coworker(datum/mind/oldmind)//returning null = free objective
+/datum/objective/assassinate/jealous/proc/find_coworker(datum/mind/oldmind)//returning null = Развлекаться
 	if(!oldmind.assigned_role)
 		return
 	var/list/viable_coworkers = list()
@@ -173,8 +173,8 @@
 		chosen_department = "science"
 	if(oldmind.assigned_role in GLOB.supply_positions)
 		chosen_department = "supply"
-	if(oldmind.assigned_role in GLOB.civilian_positions)
-		chosen_department = "civilian"
+	if(oldmind.assigned_role in GLOB.service_positions)
+		chosen_department = "service"
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(!H.mind)
 			continue
@@ -192,8 +192,8 @@
 			their_chosen_department = "science"
 		if(H.mind.assigned_role in GLOB.supply_positions)
 			their_chosen_department = "supply"
-		if(H.mind.assigned_role in GLOB.civilian_positions)
-			their_chosen_department = "civilian"
+		if(H.mind.assigned_role in GLOB.service_positions)
+			their_chosen_department = "service"
 		if(their_chosen_department != chosen_department)
 			continue
 		viable_coworkers += H.mind
@@ -214,12 +214,12 @@
 	var/datum/antagonist/obsessed/creeper = owner.has_antag_datum(/datum/antagonist/obsessed)
 	if(target && target.current && creeper)
 		creeper.trauma.attachedobsessedobj = src
-		explanation_text = "Spend [DisplayTimeText(timer)] around [target.name] while they're alive."
+		explanation_text = "Находиться возле [target.name] [DisplayTimeText(timer)]ы пока цель жива."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"
 
 /datum/objective/spendtime/check_completion()
-	return timer <= 0 || explanation_text == "Free Objective"
+	return timer <= 0 || explanation_text == "Развлекаться"
 
 
 /datum/objective/hug//this objective isn't perfect. hugging the correct amount of times, then switching bodies, might fail the objective anyway. maybe i'll come back and fix this sometime.
@@ -232,14 +232,14 @@
 		hugs_needed = rand(4,6)
 	var/datum/antagonist/obsessed/creeper = owner.has_antag_datum(/datum/antagonist/obsessed)
 	if(target && target.current && creeper)
-		explanation_text = "Hug [target.name] [hugs_needed] times while they're alive."
+		explanation_text = "Обнять [target.name] [hugs_needed] раз пока цель жива."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"
 
 /datum/objective/hug/check_completion()
 	var/datum/antagonist/obsessed/creeper = owner.has_antag_datum(/datum/antagonist/obsessed)
 	if(!creeper || !creeper.trauma || !hugs_needed)
-		return TRUE//free objective
+		return TRUE//Развлекаться
 	return creeper.trauma.obsession_hug_count >= hugs_needed
 
 /datum/objective/polaroid //take a picture of the target with you in it.
@@ -248,9 +248,9 @@
 /datum/objective/polaroid/update_explanation_text()
 	..()
 	if(target && target.current)
-		explanation_text = "Take a photo with [target.name] while they're alive."
+		explanation_text = "Сделать фото с [target.name] пока цель жива."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"
 
 /datum/objective/polaroid/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -261,7 +261,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.mobs_seen.Find(owner) && P.picture.mobs_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
+				if(P.picture && (target.current in P.picture.mobs_seen) && !(target.current in P.picture.dead_seen)) //Does the picture exist and is the target in it and is the target not dead
 					return TRUE
 	return FALSE
 
@@ -272,6 +272,6 @@
 /datum/objective/steal/heirloom_thief/update_explanation_text()
 	..()
 	if(steal_target)
-		explanation_text = "Steal [target.name]'s family heirloom, [steal_target] they cherish."
+		explanation_text = "Украсть семейную реликвию [steal_target] у [target.name]."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Развлекаться"

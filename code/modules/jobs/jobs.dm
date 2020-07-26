@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(engineering_positions, list(
 GLOBAL_LIST_INIT(medical_positions, list(
 	"Chief Medical Officer",
 	"Medical Doctor",
-	"Geneticist",
+	"Paramedic",
 	"Virologist",
 	"Chemist"))
 
@@ -24,26 +24,31 @@ GLOBAL_LIST_INIT(medical_positions, list(
 GLOBAL_LIST_INIT(science_positions, list(
 	"Research Director",
 	"Scientist",
-	"Roboticist"))
+	"Geneticist",
+	"Roboticist",
+	"Hacker"))
 
 
 GLOBAL_LIST_INIT(supply_positions, list(
-	"Head of Personnel",
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner"))
 
 
-GLOBAL_LIST_INIT(civilian_positions, list(
+GLOBAL_LIST_INIT(service_positions, list(
+	"Trader",
+	"Head of Personnel",
 	"Bartender",
 	"Botanist",
 	"Cook",
 	"Janitor",
 	"Curator",
+	"Psychologist",
 	"Lawyer",
 	"Chaplain",
 	"Clown",
 	"Mime",
+	"Prisoner",
 	"Assistant"))
 
 
@@ -53,16 +58,27 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Detective",
 	"International Officer",
 	"Russian Officer",
-	"Kazakhstan Officer"))
-
+	"Veteran"))
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
 	"AI",
 	"Cyborg",
 	ROLE_PAI))
 
+// job categories for rendering the late join menu
+GLOBAL_LIST_INIT(position_categories, list(
+	EXP_TYPE_COMMAND = list("jobs" = command_positions, "color" = "#ccccff"),
+	EXP_TYPE_ENGINEERING = list("jobs" = engineering_positions, "color" = "#ffeeaa"),
+	EXP_TYPE_SUPPLY = list("jobs" = supply_positions, "color" = "#ddddff"),
+	EXP_TYPE_SILICON = list("jobs" = nonhuman_positions - "pAI", "color" = "#ccffcc"),
+	EXP_TYPE_SERVICE = list("jobs" = service_positions, "color" = "#bbe291"),
+	EXP_TYPE_MEDICAL = list("jobs" = medical_positions, "color" = "#ffddf0"),
+	EXP_TYPE_SCIENCE = list("jobs" = science_positions, "color" = "#ffddff"),
+	EXP_TYPE_SECURITY = list("jobs" = security_positions, "color" = "#ffdddd")
+))
+
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | civilian_positions | list("AI","Cyborg")), // crew positions
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | list("AI","Cyborg")), // crew positions
 	EXP_TYPE_COMMAND = list("titles" = command_positions),
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),
@@ -70,7 +86,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),
 	EXP_TYPE_SECURITY = list("titles" = security_positions),
 	EXP_TYPE_SILICON = list("titles" = list("AI","Cyborg")),
-	EXP_TYPE_SERVICE = list("titles" = civilian_positions),
+	EXP_TYPE_SERVICE = list("titles" = service_positions)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -81,11 +97,6 @@ GLOBAL_LIST_INIT(exp_specialmap, list(
 ))
 GLOBAL_PROTECT(exp_jobsmap)
 GLOBAL_PROTECT(exp_specialmap)
-
-/proc/guest_jobbans(job)
-	return ((job in GLOB.command_positions) || (job in GLOB.nonhuman_positions) || (job in GLOB.security_positions))
-
-
 
 //this is necessary because antags happen before job datums are handed out, but NOT before they come into existence
 //so I can't simply use job datum.department_head straight from the mind datum, laaaaame.
@@ -107,7 +118,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/static/regex/qm_expand = new("qm")
 	var/static/regex/int_expand = new("(?<!international )officer")
 	var/static/regex/rus_expand = new("(?<!russian )officer")
-	var/static/regex/kaz_expand = new("(?<!kazakhstan )officer")
+	var/static/regex/vet_expand = new("veteran")
 	var/static/regex/engi_expand = new("(?<!station )engineer")
 	var/static/regex/atmos_expand = new("atmos tech")
 	var/static/regex/doc_expand = new("(?<!medical )doctor|medic(?!al)")
@@ -125,7 +136,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = qm_expand.Replace(job, "quartermaster")
 	job = int_expand.Replace(job, "international officer")
 	job = rus_expand.Replace(job, "russian officer")
-	job = kaz_expand.Replace(job, "kazakhstan officer")
+	job = vet_expand.Replace(job, "veteran")
 	job = engi_expand.Replace(job, "station engineer")
 	job = atmos_expand.Replace(job, "atmospheric technician")
 	job = doc_expand.Replace(job, "medical doctor")

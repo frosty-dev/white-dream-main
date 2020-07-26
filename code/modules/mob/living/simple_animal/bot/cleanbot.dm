@@ -50,6 +50,8 @@
 	var/list/prefixes
 	var/list/suffixes
 
+	var/ascended = FALSE // if we have all the top titles, grant achievements to living mobs that gaze upon our cleanbot god
+
 
 /mob/living/simple_animal/bot/cleanbot/proc/deputize(obj/item/W, mob/user)
 	if(in_range(src, user))
@@ -59,10 +61,12 @@
 		weapon_orig_force = weapon.force
 		if(!emagged)
 			weapon.force = weapon.force / 2
-		add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.item_state))
+		add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.inhand_icon_state))
 
 /mob/living/simple_animal/bot/cleanbot/proc/update_titles()
 	var/working_title = ""
+
+	ascended = TRUE
 
 	for(var/pref in prefixes)
 		for(var/title in pref)
@@ -71,6 +75,8 @@
 				if(title in officers)
 					commissioned = TRUE
 				break
+			else
+				ascended = FALSE // we didn't have the first entry in the list if we got here, so we're not achievement worthy yet
 
 	working_title += chosen_name
 
@@ -79,6 +85,8 @@
 			if(title in stolen_valor)
 				working_title += " " + suf[title]
 				break
+			else
+				ascended = FALSE
 
 	name = working_title
 
@@ -86,6 +94,9 @@
 	. = ..()
 	if(weapon)
 		. += " <span class='warning'>Is that \a [weapon] taped to it...?</span>"
+
+		if(ascended && user.stat == CONSCIOUS && user.client)
+			user.client.give_award(/datum/award/achievement/misc/cleanboss, user)
 
 /mob/living/simple_animal/bot/cleanbot/Initialize()
 	. = ..()
@@ -288,7 +299,7 @@
 		target_types += /obj/effect/decal/cleanable/trail_holder
 
 	if(pests)
-		target_types += /mob/living/simple_animal/cockroach
+		target_types += /mob/living/simple_animal/hostile/cockroach
 		target_types += /mob/living/simple_animal/mouse
 
 	if(drawn)
@@ -322,7 +333,7 @@
 		playsound(src, 'sound/effects/spray2.ogg', 50, TRUE, -6)
 		A.acid_act(75, 10)
 		target = null
-	else if(istype(A, /mob/living/simple_animal/cockroach) || istype(A, /mob/living/simple_animal/mouse))
+	else if(istype(A, /mob/living/simple_animal/hostile/cockroach) || istype(A, /mob/living/simple_animal/mouse))
 		var/mob/living/simple_animal/M = target
 		if(!M.stat)
 			visible_message("<span class='danger'>[src] smashes [target] with its mop!</span>")
@@ -370,6 +381,11 @@
 	do_sparks(3, TRUE, src)
 	..()
 
+/mob/living/simple_animal/bot/cleanbot/medbay
+	name = "Scrubs, MD"
+	bot_core_type = /obj/machinery/bot_core/cleanbot/medbay
+	on = FALSE
+
 /obj/machinery/bot_core/cleanbot
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
 
@@ -404,3 +420,6 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 				drawn = !drawn
 		get_targets()
 		update_controls()
+
+/obj/machinery/bot_core/cleanbot/medbay
+	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)

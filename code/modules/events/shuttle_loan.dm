@@ -17,10 +17,11 @@
 /datum/round_event/shuttle_loan
 	announceWhen = 1
 	endWhen = 500
-	var/dispatched = 0
+	var/dispatched = FALSE
 	var/dispatch_type = 0
 	var/bonus_points = 10000
 	var/thanks_msg = "Грузовой шаттл должен вернуться через пять минут. Мы начислили вам немного очков за беспокойство."
+	var/loan_type //for logging
 
 /datum/round_event/shuttle_loan/setup()
 	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, ANTIDOTE_NEEDED, PIZZA_DELIVERY, ITS_HIP_TO, MY_GOD_JC)
@@ -53,9 +54,9 @@
 			bonus_points = 45000 //If you mess up, people die and the shuttle gets turned into swiss cheese
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
-	priority_announce(thanks_msg, "Грузовой Шаттл Центрального Командования")
+	priority_announce(thanks_msg, "Грузовой Шаттл Центрального Командования", 'sound/ai/announcer/shuttle.ogg')
 
-	dispatched = 1
+	dispatched = TRUE
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(bonus_points)
@@ -68,20 +69,30 @@
 	switch(dispatch_type)
 		if(HIJACK_SYNDIE)
 			SSshuttle.centcom_message += "Прибытие группы захвата синдиката."
+			loan_type = "Syndicate boarding party"
 		if(RUSKY_PARTY)
 			SSshuttle.centcom_message += "Прибывающие русские веселятся."
+			loan_type = "Russian party squad"
 		if(SPIDER_GIFT)
 			SSshuttle.centcom_message += "Приходящий подарок от клана Пауков."
+			loan_type = "Shuttle full of spiders"
 		if(DEPARTMENT_RESUPPLY)
 			SSshuttle.centcom_message += "Департамент пополнения запасов приближается."
+			loan_type = "Resupply packages"
 		if(ANTIDOTE_NEEDED)
 			SSshuttle.centcom_message += "Входящие образцы вирусов."
+			loan_type = "Virus shuttle"
 		if(PIZZA_DELIVERY)
 			SSshuttle.centcom_message += "Доставка пиццы для [station_name()]"
+			loan_type = "Pizza delivery"
 		if(ITS_HIP_TO)
 			SSshuttle.centcom_message += "Входящая очистка от биологических угроз."
+			loan_type = "Shuttle full of bees"
 		if(MY_GOD_JC)
 			SSshuttle.centcom_message += "Боевые заряды взрывчатки направлены. Будьте предельно осторожны."
+			loan_type = "Shuttle with a ticking bomb"
+
+	log_game("Shuttle loan event firing with type '[loan_type]'.")
 
 /datum/round_event/shuttle_loan/tick()
 	if(dispatched)

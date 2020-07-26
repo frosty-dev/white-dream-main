@@ -79,7 +79,6 @@
 	if (isturf(loc))
 		myarea = get_area(src)
 		LAZYADD(myarea.cameras, src)
-	proximity_monitor = new(src, 1)
 
 	if(mapload && is_station_level(z) && prob(3) && !start_active)
 		toggle_cam()
@@ -90,6 +89,14 @@
 	for(var/i in network)
 		network -= i
 		network += "[idnum][i]"
+
+/obj/machinery/proc/create_prox_monitor()
+	if(!proximity_monitor)
+		proximity_monitor = new(src, 1)
+
+/obj/machinery/camera/proc/set_area_motion(area/A)
+	area_motion = A
+	create_prox_monitor()
 
 /obj/machinery/camera/Destroy()
 	if(can_use())
@@ -140,7 +147,7 @@
 			update_icon()
 			network = list()
 			GLOB.cameranet.removeCamera(src)
-			stat |= EMPED
+			machine_stat |= EMPED
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
 			update_icon()
@@ -159,7 +166,7 @@
 	if(emped != thisemp) //Only fix it if the camera hasn't been EMP'd again
 		return
 	network = previous_network
-	stat &= ~EMPED
+	machine_stat &= ~EMPED
 	update_icon()
 	if(can_use())
 		GLOB.cameranet.addCamera(src)
@@ -230,7 +237,7 @@
 		return
 	toggle_cam(user, 1)
 	obj_integrity = max_integrity //this is a pretty simplistic way to heal the camera, but there's no reason for this to be complex.
-	stat &= ~BROKEN
+	machine_stat &= ~BROKEN
 	I.play_tool_sound(src)
 	return TRUE
 
@@ -315,15 +322,15 @@
 			if(isAI(O))
 				var/mob/living/silicon/ai/AI = O
 				if(AI.control_disabled || (AI.stat == DEAD))
-					return
+					continue
 				if(U.name == "Unknown")
 					to_chat(AI, "<span class='name'>[U]</span> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
-				AI.last_paper_seen = "<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
+				AI.last_paper_seen = "<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if (O.client.eye == src)
 				to_chat(O, "<span class='name'>[U]</span> holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				O << browse(text("<HTML><HEAD><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
 	else if(istype(I, /obj/item/camera_bug))
@@ -349,7 +356,7 @@
 
 
 /obj/machinery/camera/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return damage_amount
 	. = ..()
 
@@ -382,7 +389,7 @@
 		xray_module = "xray"
 	if(!status)
 		icon_state = "[xray_module][default_camera_icon]_off"
-	else if (stat & EMPED)
+	else if (machine_stat & EMPED)
 		icon_state = "[xray_module][default_camera_icon]_emp"
 	else
 		icon_state = "[xray_module][default_camera_icon][in_use_lights ? "_in_use" : ""]"
@@ -406,7 +413,8 @@
 	if(status)
 		change_msg = "reactivates"
 		triggerCameraAlarm()
-		addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
+		if(!QDELETED(src)) //We'll be doing it anyway in destroy
+			addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 	if(displaymessage)
 		if(user)
 			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
@@ -439,7 +447,7 @@
 /obj/machinery/camera/proc/can_use()
 	if(!status)
 		return FALSE
-	if(stat & EMPED)
+	if(machine_stat & EMPED)
 		return FALSE
 	return TRUE
 
@@ -451,30 +459,6 @@
 	else
 		see = get_hear(view_range, pos)
 	return see
-
-/atom/proc/auto_turn()
-	//Automatically turns based on nearby walls.
-	var/turf/closed/wall/T = null
-	for(var/i in GLOB.cardinals)
-		T = get_ranged_target_turf(src, i, 1)
-		if(istype(T))
-			setDir(turn(i, 180))
-			break
-
-//Return a working camera that can see a given mob
-//or null if none
-/proc/seen_by_camera(var/mob/M)
-	for(var/obj/machinery/camera/C in oview(4, M))
-		if(C.can_use())	// check if camera disabled
-			return C
-	return null
-
-/proc/near_range_camera(var/mob/M)
-	for(var/obj/machinery/camera/C in range(4, M))
-		if(C.can_use())	// check if camera disabled
-			return C
-
-	return null
 
 /obj/machinery/camera/proc/Togglelight(on=0)
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)

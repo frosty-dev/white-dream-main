@@ -6,6 +6,7 @@
 	desc = "Protected by FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
+	w_class = WEIGHT_CLASS_SMALL
 	var/locked = FALSE
 	var/installed = 0
 	var/require_module = 0
@@ -37,7 +38,7 @@
 	one_use = TRUE
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
-	heldname = sanitize_name(stripped_input(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN))
+	heldname = sanitize_name(stripped_input(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
 
 /obj/item/borg/upgrade/rename/action(mob/living/silicon/robot/R)
 	. = ..()
@@ -272,7 +273,6 @@
 	require_module = 1
 	var/repair_amount = -1
 	var/repair_tick = 1
-	var/msg_cooldown = 0
 	var/on = FALSE
 	var/powercost = 10
 	var/datum/action/toggle_action
@@ -305,12 +305,9 @@
 		activate_sr()
 
 
-/obj/item/borg/upgrade/selfrepair/update_icon()
+/obj/item/borg/upgrade/selfrepair/update_icon_state()
 	if(toggle_action)
 		icon_state = "selfrepair_[on ? "on" : "off"]"
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.UpdateButtonIcon()
 	else
 		icon_state = "cyborg_upgrade5"
 
@@ -357,14 +354,14 @@
 			cyborg.cell.use(5)
 		repair_tick = 0
 
-		if((world.time - 2000) > msg_cooldown )
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BORG_SELF_REPAIR))
+			TIMER_COOLDOWN_START(src, COOLDOWN_BORG_SELF_REPAIR, 200 SECONDS)
 			var/msgmode = "standby"
 			if(cyborg.health < 0)
 				msgmode = "critical"
 			else if(cyborg.health < cyborg.maxHealth)
 				msgmode = "normal"
 			to_chat(cyborg, "<span class='notice'>Self-repair is active in <span class='boldnotice'>[msgmode]</span> mode.</span>")
-			msg_cooldown = world.time
 	else
 		deactivate_sr()
 
@@ -431,19 +428,31 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/medical)
+	var/backpack = FALSE //True if we get the defib from a physical backpack unit rather than an upgrade card, so that we can return that upon deactivate()
+
+/obj/item/borg/upgrade/defib/backpack
+	backpack = TRUE
 
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = new(R.module)
+		var/obj/item/borg/upgrade/defib/backpack/BP = locate() in R //If a full defib unit was used to upgrade prior, we can just pop it out now and replace
+		if(BP)
+			BP.deactivate(R, user)
+			to_chat(user, "<span class='notice'>You remove the defibrillator unit to make room for the compact upgrade.</span>")
+		var/obj/item/shockpaddles/cyborg/S = new(R.module)
 		R.module.basic_modules += S
 		R.module.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module
+		var/obj/item/shockpaddles/cyborg/S = locate() in R.module
 		R.module.remove_module(S, TRUE)
+		if(backpack)
+			new /obj/item/defibrillator(get_turf(R))
+			qdel(src)
+
 
 /obj/item/borg/upgrade/processor
 	name = "medical cyborg surgical processor"
@@ -489,7 +498,7 @@
 	if (.)
 		if(R.shell)
 			R.undeploy()
-			R.notify_ai(AI_SHELL)
+			R.notify_ai(DISCONNECT)
 
 /obj/item/borg/upgrade/expand
 	name = "borg expander"
@@ -669,3 +678,30 @@
 		var/obj/item/borg/apparatus/beaker/extra/E = locate() in R.module.modules
 		if (E)
 			R.module.remove_module(E, TRUE)
+
+/obj/item/borg/upgrade/broomer
+	name = "experimental push broom"
+	desc = "An experimental push broom used for efficiently pushing refuse."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = list(/obj/item/robot_module/janitor)
+
+/obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return
+	var/obj/item/pushbroom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		to_chat(user, "<span class='warning'>This janiborg is already equipped with an experimental broom!</span>")
+		return FALSE
+	BR = new(R.module)
+	R.module.basic_modules += BR
+	R.module.add_module(BR, FALSE, TRUE)
+
+/obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return
+	var/obj/item/pushbroom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		R.module.remove_module(BR, TRUE)

@@ -1,16 +1,16 @@
 /obj/item/extinguisher
-	name = "fire extinguisher"
-	desc = "A traditional red fire extinguisher."
+	name = "огнетушитель"
+	desc = "Классический красный огнетушитель. Может оказаться в жопе при неправильном обращении."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "fire_extinguisher0"
-	item_state = "fire_extinguisher"
+	inhand_icon_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_1 = CONDUCT_1
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 7
-	force = 10
+	force = 18
 	custom_materials = list(/datum/material/iron = 90)
 	attack_verb = list("хуярит", "ебошит", "устраивает развал", "баллонит", "грейтайдит", "петушит", "учит летать")
 	dog_fashion = /datum/dog_fashion/back
@@ -25,12 +25,13 @@
 	var/power = 5 //Maximum distance launched water will travel
 	var/precision = FALSE //By default, turfs picked from a spray are random, set to 1 to make it always have at least one water effect per row
 	var/cooling_power = 2 //Sets the cooling_temperature of the water reagent datum inside of the extinguisher when it is refilled
+	var/broken = FALSE
 
 /obj/item/extinguisher/mini
-	name = "pocket fire extinguisher"
-	desc = "A light and compact fibreglass-framed model fire extinguisher."
+	name = "карманный огнетушитель"
+	desc = "Лёгкий и компактный, рамка из оптоволокна, что ещё нужно?"
 	icon_state = "miniFE0"
-	item_state = "miniFE"
+	inhand_icon_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	flags_1 = null //doesn't CONDUCT_1
 	throwforce = 2
@@ -50,10 +51,10 @@
 	refill()
 
 /obj/item/extinguisher/advanced
-	name = "advanced fire extinguisher"
-	desc = "Used to stop thermonuclear fires from spreading inside your engine."
+	name = "продвинутый огнетушитель"
+	desc = "Используется для остановки распространения термоядерных пожаров внутри двигателя."
 	icon_state = "foam_extinguisher0"
-	//item_state = "foam_extinguisher" needs sprite
+	//inhand_icon_state = "foam_extinguisher" needs sprite
 	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
 	tanktype = /obj/structure/reagent_dispensers/foamtank
@@ -73,48 +74,115 @@
 		return SHAME
 
 /obj/item/extinguisher/attack_self(mob/user)
+	if(broken)
+		to_chat(user, "<span class='warning'>Не хочет переключаться!</span>")
+		return
 	safety = !safety
 	src.icon_state = "[sprite_name][!safety]"
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	to_chat(user, "Предохранитель [safety ? "включен" : "отключен"].")
 	return
 
 /obj/item/extinguisher/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HELP && !safety) //If we're on help intent and going to spray people, don't bash them.
 		return FALSE
 	else
+		if(prob(5) && !broken)
+			to_chat(user, "<span class='userdanger'>Щас ебанёт кажись...</span>")
+			playsound(get_turf(src), 'white/valtos/sounds/pshsh.ogg', 80, TRUE, 5)
+			spawn(rand(10, 50))
+				babah(user)
+			broken = TRUE
+			return FALSE
 		return ..()
+
+/obj/item/extinguisher/proc/babah(mob/living/H)
+	var/turf/bang_turf = get_turf(src)
+	if(!bang_turf)
+		return
+
+	for(var/turf/T in bang_turf.reachableAdjacentTurfs())
+		if(isopenturf(T))
+			var/turf/open/theturf = T
+			theturf.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
+
+	if(prob(75))
+		force = 8 // как вы вообще этим бить собрались
+		icon = 'white/valtos/icons/balon.dmi'
+		icon_state = inhand_icon_state
+		reagents.clear_reagents()
+		max_water = 0
+		for(var/mob/living/M in get_hearers_in_view(5, bang_turf))
+			to_chat(M, "<span class='warning'>Похоже пронесло...</span>")
+		return
+
+	playsound(bang_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
+
+	new /obj/effect/dummy/lighting_obj (bang_turf, LIGHT_COLOR_WHITE, (5), 4, 2)
+
+	AddComponent(/datum/component/pellet_cloud, projectile_type=/obj/projectile/bullet/pellet/shotgun_rubbershot, magnitude=5)
+	// в петушителях находятся шарики для тактического вспенивания содержимого внутри (а также для использования в качестве ручной гранаты при окопных войнах)
+	SEND_SIGNAL(src, COMSIG_EXTINGUISHER_BOOM)
+
+	explosion(bang_turf, 0, 0, 2, 0)
+
+	for(var/mob/living/M in get_hearers_in_view(5, bang_turf))
+		if(M.stat == DEAD)
+			return
+		M.show_message("<big>БАХ!</big>", MSG_AUDIBLE)
+		var/distance = max(0,get_dist(get_turf(src),get_turf(M)))
+		if(M.flash_act(affect_silicon = 1))
+			M.Paralyze(max(20/max(1,distance), 5))
+			M.Knockdown(max(200/max(1,distance), 60))
+		if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
+			M.Paralyze(20)
+			M.Knockdown(200)
+			M.soundbang_act(1, 200, 10, 15)
+		else
+			if(distance <= 1) // Adds more stun as to not prime n' pull (#45381)
+				M.Paralyze(5)
+				M.Knockdown(30)
+			M.soundbang_act(1, max(200/max(1,distance), 60), rand(0, 5))
+	qdel(src)
 
 /obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
 	if(AttemptRefill(O, user))
 		refilling = TRUE
 		return FALSE
 	else
+		if(prob(10) && !broken)
+			to_chat(user, "<span class='userdanger'>Щас ебанёт кажись...</span>")
+			playsound(get_turf(src), 'white/valtos/sounds/pshsh.ogg', 80, TRUE, 5)
+			new /obj/effect/particle_effect/smoke(get_turf(src))
+			spawn(rand(10, 50))
+				babah(user)
+			broken = TRUE
+			return FALSE
 		return ..()
 
 /obj/item/extinguisher/examine(mob/user)
 	. = ..()
-	. += "The safety is [safety ? "on" : "off"]."
+	. += "Предохранитель [safety ? "включен" : "отключен"]."
 
 	if(reagents.total_volume)
-		. += "<span class='notice'>Alt-click to empty it.</span>"
+		. += "<span class='notice'>Alt-клик, чтобы опустошить его.</span>"
 
 /obj/item/extinguisher/proc/AttemptRefill(atom/target, mob/user)
 	if(istype(target, tanktype) && target.Adjacent(user))
 		var/safety_save = safety
 		safety = TRUE
 		if(reagents.total_volume == reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>\The [src] is already full!</span>")
+			to_chat(user, "<span class='warning'>[capitalize(src.name)] уже полон!</span>")
 			safety = safety_save
 			return 1
 		var/obj/structure/reagent_dispensers/W = target //will it work?
 		var/transferred = W.reagents.trans_to(src, max_water, transfered_by = user)
 		if(transferred > 0)
-			to_chat(user, "<span class='notice'>\The [src] has been refilled by [transferred] units.</span>")
+			to_chat(user, "<span class='notice'>[capitalize(src.name)] пополнен [transferred] единицами.</span>")
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 			for(var/datum/reagent/water/R in reagents.reagent_list)
 				R.cooling_temperature = cooling_power
 		else
-			to_chat(user, "<span class='warning'>\The [W] is empty!</span>")
+			to_chat(user, "<span class='warning'>[capitalize(W.name)] совсем пустой!</span>")
 		safety = safety_save
 		return 1
 	else
@@ -134,7 +202,7 @@
 
 
 		if (src.reagents.total_volume < 1)
-			to_chat(usr, "<span class='warning'>\The [src] is empty!</span>")
+			to_chat(usr, "<span class='warning'>[capitalize(src.name)] совсем пустой!</span>")
 			return
 
 		if (world.time < src.last_use + 12)
@@ -192,9 +260,9 @@
 		step_towards(W,my_target)
 		if(!W.reagents)
 			continue
-		W.reagents.reaction(get_turf(W))
+		W.reagents.expose(get_turf(W))
 		for(var/A in get_turf(W))
-			W.reagents.reaction(A)
+			W.reagents.expose(A)
 		if(W.loc == my_target)
 			particles -= W
 	if(repetition < power)
@@ -223,7 +291,7 @@
 	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(!user.is_holding(src))
-		to_chat(user, "<span class='notice'>You must be holding the [src] in your hands do this!</span>")
+		to_chat(user, "<span class='notice'>Надо бы держать в руках [src]!</span>")
 		return
 	EmptyExtinguisher(user)
 
@@ -236,12 +304,12 @@
 			var/turf/open/theturf = T
 			theturf.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
 
-		user.visible_message("<span class='notice'>[user] empties out \the [src] onto the floor using the release valve.</span>", "<span class='info'>You quietly empty out \the [src] using its release valve.</span>")
+		user.visible_message("<span class='notice'>[user] опустошает [src] используя опустошительный краник.</span>", "<span class='info'>Быстренько опустошаю [src] используя опустошительный краник.</span>")
 
 //firebot assembly
 /obj/item/extinguisher/attackby(obj/O, mob/user, params)
 	if(istype(O, /obj/item/bodypart/l_arm/robot) || istype(O, /obj/item/bodypart/r_arm/robot))
-		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
+		to_chat(user, "<span class='notice'>Добавляю [O] к [src].</span>")
 		qdel(O)
 		qdel(src)
 		user.put_in_hands(new /obj/item/bot_assembly/firebot)

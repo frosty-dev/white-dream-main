@@ -1,8 +1,8 @@
 
 
 /obj/machinery/field/containment
-	name = "containment field"
-	desc = "An energy field."
+	name = "силовое поле"
+	desc = "Энергетическое поле. Круто."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
 	density = FALSE
@@ -58,18 +58,19 @@
 		qdel(src)
 		return
 	if(ismegafauna(M))
-		M.visible_message("<span class='warning'>[M] glows fiercely as the containment field flickers out!</span>")
+		M.visible_message("<span class='warning'><b>[M]</b> свирепо светится, когда вспыхивает поле сдерживания!</span>")
 		FG1.calc_power(INFINITY) //rip that 'containment' field
 		M.adjustHealth(-M.obj_damage)
 	else
-		..()
+		return ..()
 
-/obj/machinery/field/containment/Crossed(mob/mover)
-	if(isliving(mover))
-		shock(mover)
+/obj/machinery/field/containment/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM))
+		shock(AM)
 
-	if(ismachinery(mover) || isstructure(mover) || ismecha(mover))
-		bump_field(mover)
+	if(ismachinery(AM) || isstructure(AM) || ismecha(AM))
+		bump_field(AM)
 
 /obj/machinery/field/containment/proc/set_master(master1,master2)
 	if(!master1 || !master2)
@@ -106,10 +107,10 @@
 		return
 
 
-/obj/machinery/field/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/field/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(hasShocked || isliving(mover) || ismachinery(mover) || isstructure(mover) || ismecha(mover))
 		return FALSE
-	return ..()
 
 /obj/machinery/field/proc/shock(mob/living/user)
 	var/shock_damage = min(rand(30,40),rand(30,40))
@@ -122,9 +123,9 @@
 		if(prob(20))
 			user.Stun(40)
 		user.take_overall_damage(0, shock_damage)
-		user.visible_message("<span class='danger'>[user.name] was shocked by the [src.name]!</span>", \
-		"<span class='userdanger'>Energy pulse detected, system damaged!</span>", \
-		"<span class='hear'>You hear an electrical crack.</span>")
+		user.visible_message("<span class='danger'><b>[user.name]</b> ударило током <b>[src.name]</b>!</span>", \
+		"<span class='userdanger'>Обнаружен импульс энергии, повреждение систем!</span>", \
+		"<span class='hear'>Слышу электрический треск.</span>")
 
 	user.updatehealth()
 	bump_field(user)

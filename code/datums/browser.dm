@@ -74,9 +74,9 @@
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 		[head_content]
 	</head>
 	<body scroll=auto>
@@ -108,9 +108,9 @@
 	if (width && height)
 		window_size = "size=[width]x[height];"
 	if (stylesheets.len)
-		send_asset_list(user, stylesheets, verify=FALSE)
+		send_asset_list(user, stylesheets)
 	if (scripts.len)
-		send_asset_list(user, scripts, verify=FALSE)
+		send_asset_list(user, scripts)
 	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if (use_onclose)
 		setup_onclose()
@@ -379,11 +379,11 @@
 				if (isnull(settings["mainsettings"][setting]["value"]))
 					settings["mainsettings"][setting]["value"] = oldval
 			if ("string")
-				settings["mainsettings"][setting]["value"] = stripped_input(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])
+				settings["mainsettings"][setting]["value"] = stripped_input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])
 			if ("number")
-				settings["mainsettings"][setting]["value"] = input(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]") as num
+				settings["mainsettings"][setting]["value"] = input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]") as num
 			if ("color")
-				settings["mainsettings"][setting]["value"] = input(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
+				settings["mainsettings"][setting]["value"] = input(user, "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", "Введите новое значение для [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"]) as color
 			if ("boolean")
 				settings["mainsettings"][setting]["value"] = input(user, "[settings["mainsettings"][setting]["desc"]]?") in list("Yes","No")
 			if ("ckey")

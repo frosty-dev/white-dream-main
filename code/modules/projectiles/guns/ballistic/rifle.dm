@@ -2,9 +2,10 @@
 	name = "Bolt Rifle"
 	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
 	icon_state = "moistnugget"
-	item_state = "moistnugget"
+	inhand_icon_state = "moistnugget"
+	worn_icon_state = null
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
-	bolt_wording = "bolt"
+	bolt_wording = "болт винтовки"
 	bolt_type = BOLT_TYPE_STANDARD
 	semi_auto = FALSE
 	internal_magazine = TRUE
@@ -15,9 +16,9 @@
 	bolt_drop_sound = 'sound/weapons/gun/rifle/bolt_in.ogg'
 	tac_reloads = FALSE
 
-obj/item/gun/ballistic/rifle/update_icon()
-	..()
-	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+obj/item/gun/ballistic/rifle/update_overlays()
+	. = ..()
+	. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
 
 obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
@@ -55,7 +56,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 	icon_state = "moistnugget"
-	item_state = "moistnugget"
+	inhand_icon_state = "moistnugget"
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
 	can_bayonet = TRUE
@@ -68,6 +69,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	if(.)
 		spread = 36
 		can_bayonet = FALSE
+		update_icon()
 
 /obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
 	. = 0
@@ -88,7 +90,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	fire_sound = 'sound/weapons/emitter.ogg'
 	pin = /obj/item/firing_pin/magic
 	icon_state = "arcane_barrage"
-	item_state = "arcane_barrage"
+	inhand_icon_state = "arcane_barrage"
 	slot_flags = null
 	can_bayonet = FALSE
 	item_flags = NEEDS_PERMIT | DROPDEL | ABSTRACT | NOBLUDGEON

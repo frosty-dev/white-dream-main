@@ -7,6 +7,7 @@
 	icon_state_powered = "laptop"
 	icon_state_unpowered = "laptop-off"
 	icon_state_menu = "menu"
+	display_overlays = FALSE
 
 	hardware_flag = PROGRAM_LAPTOP
 	max_hardware_size = 2
@@ -32,9 +33,15 @@
 	if(start_open && !screen_on)
 		toggle_open()
 
-/obj/item/modular_computer/laptop/update_icon()
+/obj/item/modular_computer/laptop/update_icon_state()
+	if(!screen_on)
+		icon_state = icon_state_closed
+	else
+		. = ..()
+
+/obj/item/modular_computer/laptop/update_overlays()
 	if(screen_on)
-		..()
+		return ..()
 	else
 		cut_overlays()
 		icon_state = icon_state_closed
@@ -47,7 +54,7 @@
 
 /obj/item/modular_computer/laptop/verb/open_computer()
 	set name = "Toggle Open"
-	set category = "Object"
+	set category = "Объект"
 	set src in view(1)
 
 	try_toggle_open(usr)
@@ -100,6 +107,7 @@
 		w_class = w_class_open
 
 	screen_on = !screen_on
+	display_overlays = screen_on
 	update_icon()
 
 

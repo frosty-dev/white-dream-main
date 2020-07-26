@@ -92,14 +92,14 @@
 			reagents.total_volume *= rand(5,10) * 0.1 //Not all of it makes contact with the target
 		var/mob/M = target
 		var/R
-		target.visible_message("<span class='danger'>[M] has been splashed with something!</span>", \
-						"<span class='userdanger'>[M] has been splashed with something!</span>")
+		target.visible_message("<span class='danger'>[M] is splashed with something!</span>", \
+						"<span class='userdanger'>[M] is splashed with something!</span>")
 		for(var/datum/reagent/A in reagents.reagent_list)
 			R += "[A.type]  ([num2text(A.volume)]),"
 
 		if(thrownby)
 			log_combat(thrownby, M, "splashed", R)
-		reagents.reaction(target, TOUCH)
+		reagents.expose(target, TOUCH)
 
 	else if(bartender_check(target) && thrown)
 		visible_message("<span class='notice'>[src] lands onto the [target.name] without spilling a single drop.</span>")
@@ -111,7 +111,7 @@
 			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
 			message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
-		reagents.reaction(target, TOUCH)
+		reagents.expose(target, TOUCH)
 		if(QDELETED(src))
 			return
 
@@ -127,12 +127,10 @@
 /obj/item/reagent_containers/on_reagent_change(changetype)
 	update_icon()
 
-/obj/item/reagent_containers/update_icon(dont_fill=FALSE)
-	if(!fill_icon_thresholds || dont_fill)
-		return ..()
-
-	cut_overlays()
-
+/obj/item/reagent_containers/update_overlays()
+	. = ..()
+	if(!fill_icon_thresholds)
+		return
 	if(reagents.total_volume)
 		var/fill_name = fill_icon_state? fill_icon_state : icon_state
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_icon_thresholds[1]]")
@@ -145,5 +143,4 @@
 				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
-	. = ..()
+		. += filling

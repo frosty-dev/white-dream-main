@@ -6,7 +6,7 @@
 	var/relic_hat	//Note: these two are paths
 	var/relic_mask
 	var/memory_saved = FALSE
-	var/list/pet_monkey_names = list("Pun Pun", "Bubbles", "Mojo", "George", "Darwin", "Aldo", "Caeser", "Kanzi", "Kong", "Terk", "Grodd", "Mala", "Bojangles", "Coco", "Able", "Baker", "Scatter", "Norbit", "Travis")
+	var/list/pet_monkey_names = list("Пун Пун", "Пузырчик", "Моджо", "Джордж", "Дарвин", "Альдо", "Цезарь", "Канзи", "Конг", "Терк", "Гродд", "Мала", "Bojangles", "Coco", "Able", "Baker", "Scatter", "Norbit", "Travis")
 	var/list/rare_pet_monkey_names = list("Professor Bobo", "Deempisi's Revenge", "Furious George", "King Louie", "Dr. Zaius", "Jimmy Rustles", "Dinner", "Lanky")
 
 /mob/living/carbon/monkey/punpun/Initialize()
@@ -26,6 +26,8 @@
 	//These have to be after the parent new to ensure that the monkey
 	//bodyparts are actually created before we try to equip things to
 	//those slots
+	if(ancestor_chain > 1)
+		generate_fake_scars(rand(ancestor_chain, ancestor_chain * 4))
 	if(relic_hat)
 		equip_to_slot_or_del(new relic_hat, ITEM_SLOT_HEAD)
 	if(relic_mask)

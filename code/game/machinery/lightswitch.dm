@@ -1,10 +1,10 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
-	name = "light switch"
-	icon = 'icons/obj/power.dmi'
+	name = "переключатель света"
+	icon = 'white/valtos/icons/power.dmi'
 	icon_state = "light1"
-	desc = "Make dark."
-	power_channel = LIGHT
+	desc = "Делает тьму или свет."
+	power_channel = AREA_USAGE_LIGHT
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
 	var/area/area = null
@@ -19,14 +19,18 @@
 		area = get_area(src)
 
 	if(!name)
-		name = "light switch ([area.name])"
+		name = "переключатель света ([area.name])"
 
 	update_icon()
 
 /obj/machinery/light_switch/update_icon_state()
-	if(stat & NOPOWER)
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	luminosity = 0
+	if(machine_stat & NOPOWER)
 		icon_state = "light-p"
 	else
+		luminosity = 1
+		SSvis_overlays.add_vis_overlay(src, icon, "light-glow", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
 		if(area.lightswitch)
 			icon_state = "light1"
 		else
@@ -34,7 +38,7 @@
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += "It is [area.lightswitch ? "on" : "off"]."
+	. += "Он [area.lightswitch ? "включен" : "выключен"]."
 
 /obj/machinery/light_switch/interact(mob/user)
 	. = ..()
@@ -56,5 +60,5 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		power_change()

@@ -61,12 +61,12 @@
 
 datum/quirk/fan_clown
 	name = "Clown Fan"
-	desc = "You enjoy the clown's antics and get a mood boost when you see them."
+	desc = "You enjoy clown antics and get a mood boost from wearing your clown pin."
 	value = 1
 	mob_trait = TRAIT_FAN_CLOWN
-	gain_text = "<span class='notice'>You are a big fan of the Clown.</span>"
+	gain_text = "<span class='notice'>You are a big fan of clowns.</span>"
 	lose_text = "<span class='danger'>The clown doesn't seem so great.</span>"
-	medical_record_text = "Patient reports being a big fan of the Clown."
+	medical_record_text = "Patient reports being a big fan of clowns."
 
 /datum/quirk/fan_clown/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -76,15 +76,17 @@ datum/quirk/fan_clown
 		"hands" = ITEM_SLOT_HANDS,
 	)
 	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
+	var/datum/atom_hud/fan = GLOB.huds[DATA_HUD_FAN]
+	fan.add_hud_to(H)
 
 datum/quirk/fan_mime
 	name = "Mime Fan"
-	desc = "You enjoy the Mime's antics and get a mood boost when you see them."
+	desc = "You enjoy mime antics and get a mood boost from wearing your mime pin."
 	value = 1
 	mob_trait = TRAIT_FAN_MIME
 	gain_text = "<span class='notice'>You are a big fan of the Mime.</span>"
 	lose_text = "<span class='danger'>The mime doesn't seem so great.</span>"
-	medical_record_text = "Patient reports being a big fan of the Mime."
+	medical_record_text = "Patient reports being a big fan of mimes."
 
 /datum/quirk/fan_mime/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -94,6 +96,8 @@ datum/quirk/fan_mime
 		"hands" = ITEM_SLOT_HANDS,
 	)
 	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
+	var/datum/atom_hud/fan = GLOB.huds[DATA_HUD_FAN]
+	fan.add_hud_to(H)
 
 /datum/quirk/freerunning
 	name = "Паркурист"
@@ -134,6 +138,12 @@ datum/quirk/fan_mime
 	gain_text = "<span class='notice'>Я хожу с немного большей гибкостью.</span>"
 	lose_text = "<span class='danger'>Я начинаю делать такие шаги, словно варвар.</span>"
 	medical_record_text = "Ловкость пациента противоречит сильной возможности к скрытности."
+
+/datum/quirk/light_step/on_spawn()
+	var/datum/component/footstep/C = quirk_holder.GetComponent(/datum/component/footstep)
+	if(C)
+		C.volume *= 0.6
+		C.e_range -= 2
 
 /datum/quirk/musician
 	name = "Музыкант"

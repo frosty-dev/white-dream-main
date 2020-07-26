@@ -15,6 +15,21 @@
 	appearance_flags = APPEARANCE_UI
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
+	/**
+	 * Map name assigned to this object.
+	 * Automatically set by /client/proc/add_obj_to_map.
+	 */
+	var/assigned_map
+	/**
+	 * Mark this object as garbage-collectible after you clean the map
+	 * it was registered on.
+	 *
+	 * This could probably be changed to be a proc, for conditional removal.
+	 * But for now, this works.
+	 */
+	var/del_on_map_removal = TRUE
+
+	var/last_word
 
 /obj/screen/take_damage()
 	return
@@ -59,7 +74,7 @@
 		var/mob/M = usr
 		M.swap_hand()
 	return 1
-	
+
 /obj/screen/skills
 	name = "skills"
 	icon = 'icons/mob/screen_midnight.dmi'
@@ -342,6 +357,11 @@
 			return
 	C.update_action_buttons_icon()
 
+/obj/screen/spacesuit
+	name = "Space suit cell status"
+	icon_state = "spacesuit_0"
+	screen_loc = ui_spacesuit
+
 /obj/screen/mov_intent
 	name = "run/walk toggle"
 	icon = 'icons/mob/screen_midnight.dmi'
@@ -406,7 +426,6 @@
 	var/mob/living/user = hud?.mymob
 	if(!istype(user))
 		return
-	
 	if(!user.resting)
 		icon_state = "act_rest"
 	else
@@ -549,7 +568,7 @@
 	if(choice != hud.mymob.zone_selected)
 		hud.mymob.zone_selected = choice
 		update_icon()
-	
+
 	return TRUE
 
 /obj/screen/zone_sel/update_overlays()
@@ -588,10 +607,6 @@
 	icon_state = "health0"
 	screen_loc = ui_health
 
-/obj/screen/healths/living
-	screen_loc = ui_living_health
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
 	screen_loc = ui_alien_health
@@ -613,21 +628,19 @@
 
 /obj/screen/healths/blob/naut/core
 	name = "overmind health"
-	screen_loc = ui_health
 	icon_state = "corehealth"
+	screen_loc = ui_health
 
 /obj/screen/healths/guardian
 	name = "summoner health"
 	icon = 'icons/mob/guardian.dmi'
 	icon_state = "base"
-	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healths/revenant
 	name = "essence"
 	icon = 'icons/mob/actions/backgrounds.dmi'
 	icon_state = "bg_revenant"
-	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healths/construct
@@ -636,26 +649,19 @@
 	screen_loc = ui_construct_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/healths/slime
-	icon = 'icons/mob/screen_slime.dmi'
-	icon_state = "slime_health0"
-	screen_loc = ui_slime_health
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	
-/obj/screen/healths/lavaland_elite
-	icon = 'icons/mob/screen_elite.dmi'
-	icon_state = "elite_health0"
-	screen_loc = ui_living_health
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
 /obj/screen/healthdoll
 	name = "health doll"
 	screen_loc = ui_healthdoll
 
 /obj/screen/healthdoll/Click()
-	if (ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		H.check_self_for_injuries()
+	if (iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		C.check_self_for_injuries()
+
+/obj/screen/healthdoll/living
+	icon_state = "fullhealth0"
+	screen_loc = ui_living_healthdoll
+	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
 /obj/screen/mood
 	name = "mood"

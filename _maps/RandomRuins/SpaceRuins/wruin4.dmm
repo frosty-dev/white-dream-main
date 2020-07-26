@@ -1,10 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
 "ab" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/indestructible/syndicate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
 "ac" = (
 /turf/closed/indestructible/syndicate,
@@ -13,25 +12,141 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
 "ae" = (
+/obj/structure/curtain,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"af" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"ah" = (
+/obj/structure/fluff/divine/conduit,
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-9"
+	},
+/area/ruin/space/has_grav/terrorship)
+"ai" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aj" = (
 /obj/machinery/porta_turret/syndicate/energy/heavy,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"af" = (
+"ak" = (
+/mob/living/simple_animal/hostile/space_dragon{
+	faction = list("Syndicate");
+	health = 550;
+	name = "Ванечка"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"al" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ag" = (
+"an" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ah" = (
+"ao" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"ap" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"as" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"au" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aw" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"ax" = (
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/hostile/syndicate/melee/sword,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"ay" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/partyhard/steel{
+	icon_state = "mm-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"az" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/structure/filingcabinet/medical,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"aA" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"aB" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ai" = (
+"aD" = (
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aE" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aF" = (
+/turf/closed/wall/mineral/plastitanium/interior,
+/area/ruin/space/has_grav/terrorship)
+"aG" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmisc,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aH" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/window/reinforced{
@@ -43,7 +158,7 @@
 /obj/item/ammo_box/magazine/ak47mag,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aj" = (
+"aI" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/window/reinforced{
@@ -58,7 +173,11 @@
 /obj/item/pickaxe,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ak" = (
+"aK" = (
+/obj/machinery/dna_scannernew,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/window/reinforced{
@@ -70,28 +189,41 @@
 /obj/item/katana,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"al" = (
+"aM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"am" = (
+"aN" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"aP" = (
+/obj/item/mecha_ammo/lmg,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"aQ" = (
 /obj/effect/turf_decal/stripes/line{
 	icon_state = "warningline";
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"an" = (
+"aT" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -105,56 +237,32 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ao" = (
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
+"aU" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ap" = (
-/obj/structure/fluff/divine/conduit,
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-9"
-	},
-/area/ruin/space/has_grav/terrorship)
-"aq" = (
+"aV" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "cx-9"
 	},
 /area/ruin/space/has_grav/terrorship)
-"ar" = (
-/obj/structure/fluff/divine/nexus,
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-9"
-	},
-/area/ruin/space/has_grav/terrorship)
-"as" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"at" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"au" = (
+"aX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/syndicate/civilian,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"av" = (
+"aY" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aw" = (
+"aZ" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -168,7 +276,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ax" = (
+"ba" = (
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"bb" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -183,75 +294,112 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ay" = (
+"bc" = (
 /obj/structure/fluff/artillery{
 	pixel_y = -64
 	},
 /turf/closed/indestructible/syndicate,
 /area/ruin/space/has_grav/terrorship)
-"az" = (
+"be" = (
+/obj/structure/fluff/big_chain,
+/obj/item/mecha_ammo/lmg,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"bf" = (
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-8"
+	},
+/area/ruin/space/has_grav/terrorship)
+"bg" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "cx-7"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aA" = (
+"bh" = (
 /obj/structure/fluff/divine/powerpylon,
 /turf/open/floor/partyhard/steel{
 	icon_state = "st-9"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aB" = (
+"bi" = (
+/obj/machinery/computer/monitor/secret{
+	icon_state = "computer";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"bk" = (
 /turf/open/floor/partyhard/steel{
-	icon_state = "cx-2"
+	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aC" = (
+"bl" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "cx-8"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aD" = (
+"bm" = (
+/obj/item/mecha_ammo/flashbang,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"bn" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bo" = (
 /obj/structure/table,
 /obj/item/suppressor,
 /obj/item/pda/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aE" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"bp" = (
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aF" = (
-/turf/closed/wall/mineral/plastitanium/interior,
+"bq" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/terrorship)
-"aG" = (
-/obj/structure/fluff/divine/defensepylon,
+"br" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper,
 /turf/open/floor/partyhard/steel{
-	icon_state = "st-9"
+	icon_state = "cx-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aH" = (
+"bt" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aI" = (
+"bu" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aJ" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"aK" = (
+"bv" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aL" = (
+"bw" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -265,35 +413,87 @@
 /mob/living/simple_animal/hostile/syndicate/melee/sword/space,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aM" = (
-/obj/machinery/iv_drip,
-/mob/living/simple_animal/bot/medbot/mysterious,
+"by" = (
+/obj/item/kirbyplants/random,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/terrorship)
-"aN" = (
+"bz" = (
 /obj/machinery/power/rtg/abductor,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/partyhard/steel{
 	icon_state = "mm-3"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aO" = (
+"bA" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bB" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bC" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bD" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"bE" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bF" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bG" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"bI" = (
 /obj/structure/table,
 /obj/item/valentine,
 /obj/item/storage/part_replacer/bluespace/tier4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aP" = (
+"bL" = (
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/space/has_grav/terrorship)
+"bM" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/space/has_grav/terrorship)
+"bN" = (
 /turf/open/floor/partyhard/steel{
-	icon_state = "mm-2"
+	icon_state = "st-5"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aQ" = (
+"bO" = (
+/obj/item/shard,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bP" = (
 /obj/effect/turf_decal/stripes/line,
 /mob/living/simple_animal/hostile/syndicate/civilian,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aR" = (
+"bQ" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -308,21 +508,50 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aS" = (
+"bR" = (
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-8"
+	},
+/area/ruin/space/has_grav/terrorship)
+"bS" = (
 /obj/machinery/suit_storage_unit/syndicate,
 /obj/effect/turf_decal/stripes/full,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aT" = (
+"bT" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bU" = (
+/obj/machinery/stasis,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"bW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/porta_turret/syndicate/energy,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/terrorship)
+"bY" = (
+/mob/living/simple_animal/hostile/syndicate/melee/spacebattle,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"bZ" = (
 /obj/effect/turf_decal/stripes/line{
 	icon_state = "warningline";
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aU" = (
+"ca" = (
 /obj/structure/tank_dispenser/plasma,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -336,132 +565,144 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aV" = (
+"cb" = (
 /turf/open/floor/partyhard/steel{
-	icon_state = "cx-10"
+	icon_state = "mm-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"aW" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"aX" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
+"cc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
+/mob/living/simple_animal/hostile/syndicate/melee/sword,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"aY" = (
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/dark,
+"cd" = (
+/turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/terrorship)
-"aZ" = (
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"ba" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"bb" = (
-/obj/machinery/computer/cloning{
+"ce" = (
+/obj/machinery/light{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"cf" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"cg" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-5"
+	},
+/area/ruin/space/has_grav/terrorship)
+"ch" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-8"
+	},
+/area/ruin/space/has_grav/terrorship)
+"ci" = (
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"cj" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bc" = (
+"ck" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-3"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bd" = (
+"co" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-9"
 	},
 /area/ruin/space/has_grav/terrorship)
-"be" = (
+"cp" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-4"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bf" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/terrorship)
-"bg" = (
-/obj/item/shard{
-	icon_state = "medium"
-	},
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"bh" = (
-/obj/machinery/dna_scannernew,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"bi" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-7"
-	},
-/area/ruin/space/has_grav/terrorship)
-"bj" = (
+"cq" = (
 /obj/item/mecha_ammo/missiles_br,
 /obj/structure/table,
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bk" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
-/area/ruin/space/has_grav/terrorship)
-"bl" = (
+"cr" = (
 /obj/item/mecha_ammo/missiles_he,
 /obj/structure/table,
+/obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bm" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-8"
-	},
+"cs" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bn" = (
+"cu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/porta_turret/syndicate/energy,
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/terrorship)
-"bo" = (
-/obj/item/shard{
-	icon_state = "small"
+"cv" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
 	},
-/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bp" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"cw" = (
+/obj/item/scythe,
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bq" = (
+"cz" = (
 /obj/machinery/shower{
 	dir = 8
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/terrorship)
-"br" = (
+"cA" = (
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/terrorship)
+"cE" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/machinery/porta_turret/syndicate/energy,
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/terrorship)
-"bs" = (
+"cF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"cG" = (
 /obj/structure/fluff/big_chain,
 /obj/item/mecha_ammo/missiles_br,
 /obj/structure/table,
@@ -469,77 +710,57 @@
 	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bt" = (
-/obj/structure/fluff/big_chain,
-/obj/item/mecha_ammo/missiles_he,
-/obj/structure/table,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
+"cH" = (
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bu" = (
+"cI" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/structure/filingcabinet/security,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bv" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/structure/filingcabinet/medical,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bw" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/structure/filingcabinet/filingcabinet,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bx" = (
+"cJ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/structure/filingcabinet/employment,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"by" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"cK" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bz" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"cL" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/item/storage/pill_bottle/lsd,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bA" = (
-/obj/effect/turf_decal/tile/blue{
+"cO" = (
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"bB" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"cQ" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/terrorship)
+"cR" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bC" = (
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bD" = (
+"cT" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle,
 /obj/effect/turf_decal/tile/blue{
@@ -547,58 +768,90 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bE" = (
-/obj/effect/turf_decal/tile/blue{
+"cU" = (
+/obj/structure/table/reinforced,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"cV" = (
+/obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bF" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bG" = (
-/obj/item/mecha_ammo/incendiary,
-/obj/structure/table,
 /turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
+	icon_state = "dd-7"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bH" = (
-/obj/item/mecha_ammo/lmg,
-/obj/structure/table,
+"cW" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
+	icon_state = "dd-8"
 	},
 /area/ruin/space/has_grav/terrorship)
-"bI" = (
+"cX" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"cY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bJ" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper,
-/turf/open/floor/partyhard/steel{
-	icon_state = "cx-2"
+"cZ" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"da" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced/partyhard,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"bK" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bL" = (
-/obj/item/shard{
-	icon_state = "small"
+"db" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 4
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"bM" = (
+"dc" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bN" = (
+"df" = (
+/obj/effect/spawner/structure/window/reinforced/partyhard,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dg" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber,
+/turf/open/floor/engine/airless,
+/area/ruin/space/has_grav/terrorship)
+"dh" = (
+/obj/item/mecha_ammo/clusterbang,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"di" = (
+/obj/machinery/gibber,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"dj" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/electrical,
+/obj/item/stack/cable_coil,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dk" = (
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dl" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -607,46 +860,65 @@
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bO" = (
-/obj/structure/curtain,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bP" = (
+"dm" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/table/reinforced,
 /obj/item/defibrillator/loaded,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bQ" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/carpet/red,
+"dn" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/stack/cable_coil,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"bR" = (
+"dp" = (
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"dq" = (
 /mob/living/simple_animal/hostile/syndicate/civilian,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/terrorship)
-"bS" = (
+"dw" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dy" = (
+/obj/machinery/atmospherics/pipe/manifold4w/dark,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dz" = (
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dA" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/indestructible/syndicate,
+/area/ruin/space/has_grav/terrorship)
+"dH" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/modular_computer/laptop/preset/civillian,
+/obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bT" = (
+"dI" = (
+/obj/structure/shuttle/engine/heater,
+/obj/machinery/atmospherics/pipe/simple/dark,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"dJ" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bU" = (
-/obj/item/shard,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"bV" = (
+"dL" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/harvester,
 /obj/effect/turf_decal/bot_red,
@@ -655,7 +927,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"bW" = (
+"dO" = (
 /obj/machinery/sleeper/syndie{
 	icon_state = "sleeper_s";
 	dir = 4
@@ -665,21 +937,28 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/terrorship)
-"bX" = (
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"bY" = (
+"dP" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/terrorship)
-"bZ" = (
-/obj/machinery/clonepod,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+"dT" = (
+/obj/machinery/light{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/syndicate/ranged/smg,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"ca" = (
+"dV" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	icon_state = "inje_map-2";
+	dir = 1
+	},
+/turf/closed/indestructible/syndicate,
+/area/ruin/space/has_grav/terrorship)
+"dW" = (
 /obj/structure/fluff/big_chain,
 /obj/item/mecha_ammo/incendiary,
 /obj/structure/table,
@@ -687,15 +966,11 @@
 	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cb" = (
-/obj/structure/fluff/big_chain,
-/obj/item/mecha_ammo/lmg,
-/obj/structure/table,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
+"eg" = (
+/obj/structure/shuttle/engine/large,
+/turf/closed/indestructible/syndicate,
 /area/ruin/space/has_grav/terrorship)
-"cc" = (
+"eh" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -706,77 +981,152 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cd" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"ce" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"ei" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cf" = (
-/obj/structure/curtain,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cg" = (
+"ek" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/item/storage/backpack/duffelbag/syndie/surgery,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"ch" = (
+"el" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/item/melee/baseball_bat/ablative,
-/obj/item/book/random/triple,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/terrorship)
-"ci" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"em" = (
+/obj/structure/shuttle/engine/huge,
+/turf/closed/indestructible/syndicate,
+/area/ruin/space/has_grav/terrorship)
+"eW" = (
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"eY" = (
+/turf/open/floor/partyhard/steel{
+	icon_state = "cx-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"eZ" = (
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"fa" = (
+/obj/structure/fluff/divine/nexus,
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-9"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fb" = (
+/obj/structure/curtain,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"fc" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cj" = (
-/obj/item/twohanded/required/kirbyplants/random,
+"fd" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"fe" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"ff" = (
+/obj/structure/fluff/divine/defensepylon,
+/turf/open/floor/partyhard/steel{
+	icon_state = "st-9"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fg" = (
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"ck" = (
+"fh" = (
 /obj/item/mecha_ammo/clusterbang,
 /obj/structure/table,
+/obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-2"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cl" = (
-/obj/item/mecha_ammo/flashbang,
-/obj/structure/table,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
+"fi" = (
+/obj/machinery/light{
+	dir = 4
 	},
-/area/ruin/space/has_grav/terrorship)
-"cm" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/carpet/royalblue,
-/area/ruin/space/has_grav/terrorship)
-"cn" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"co" = (
+"fj" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-6"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cp" = (
+"fk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fl" = (
+/obj/item/mecha_ammo/lmg,
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fm" = (
+/obj/item/mecha_ammo/missiles_he,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fn" = (
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-7"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fo" = (
+/obj/structure/fluff/big_chain,
+/obj/item/mecha_ammo/missiles_he,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fp" = (
+/obj/item/mecha_ammo/incendiary,
+/obj/structure/table,
+/turf/open/floor/partyhard/steel{
+	icon_state = "dd-2"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fq" = (
 /obj/structure/fluff/big_chain,
 /obj/item/mecha_ammo/clusterbang,
 /obj/structure/table,
@@ -784,12 +1134,28 @@
 	icon_state = "dd-10"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cq" = (
+"fr" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-10"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cr" = (
+"fs" = (
+/obj/structure/closet/crate/eva,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"ft" = (
+/obj/item/shard,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"fu" = (
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fv" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"fw" = (
 /obj/structure/fluff/big_chain,
 /obj/item/mecha_ammo/flashbang,
 /obj/structure/table,
@@ -797,29 +1163,166 @@
 	icon_state = "dd-10"
 	},
 /area/ruin/space/has_grav/terrorship)
-"cs" = (
+"fx" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fy" = (
+/obj/machinery/atmospherics/pipe/simple/dark,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fz" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"fA" = (
+/mob/living/simple_animal/hostile/syndicate/melee/sword,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"fB" = (
 /turf/open/floor/partyhard/steel{
 	icon_state = "dd-5"
 	},
 /area/ruin/space/has_grav/terrorship)
-"ct" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cu" = (
+"fC" = (
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cv" = (
+"fD" = (
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cw" = (
+"fE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fF" = (
+/obj/machinery/atmospherics/pipe/manifold4w/dark,
+/obj/item/beacon,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"fG" = (
+/turf/open/floor/partyhard/steel{
+	icon_state = "cx-10"
+	},
+/area/ruin/space/has_grav/terrorship)
+"fH" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"fI" = (
+/obj/machinery/vending/syndichem,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"fJ" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/terrorship)
+"fK" = (
+/mob/living/simple_animal/hostile/syndicate/melee/sword/space,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/terrorship)
+"hb" = (
+/obj/item/wirecutters,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"hY" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"ih" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"it" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"iv" = (
+/obj/machinery/atmospherics/pipe/simple/dark,
+/obj/effect/spawner/structure/window/reinforced/partyhard,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"iK" = (
+/obj/structure/closet/cabinet,
+/obj/item/banhammer,
+/obj/item/cane,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"jF" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/bot,
+/obj/item/stack/cable_coil,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"jY" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"kc" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"kp" = (
+/obj/machinery/implantchair/genepurge,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"kP" = (
+/obj/machinery/atmospherics/pipe/manifold/dark{
+	icon_state = "manifold-2";
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"kQ" = (
+/obj/structure/closet/crate/eva,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"lt" = (
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"mB" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"mM" = (
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"nc" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"nn" = (
+/obj/machinery/iv_drip,
+/mob/living/simple_animal/bot/medbot/mysterious,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/terrorship)
-"cx" = (
+"nE" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/pizzabox/infinite,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"nN" = (
+/turf/open/floor/engine/airless,
+/area/ruin/space/has_grav/terrorship)
+"oL" = (
 /obj/item/bedsheet/blue,
 /obj/structure/bed,
 /obj/machinery/light{
@@ -828,81 +1331,38 @@
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/terrorship)
-"cy" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cz" = (
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cA" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/melee/beesword,
-/obj/item/storage/backpack/duffelbag/syndie/c4,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"cB" = (
-/obj/machinery/stasis,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cC" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/carpet/royalblue,
-/area/ruin/space/has_grav/terrorship)
-"cD" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/carpet/royalblue,
-/area/ruin/space/has_grav/terrorship)
-"cE" = (
-/obj/machinery/computer/cloning{
-	icon_state = "computer";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cF" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cG" = (
-/obj/machinery/computer/monitor/secret{
-	icon_state = "computer";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
+"oW" = (
+/obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"cH" = (
-/obj/structure/chair/office{
-	dir = 8
+"pr" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"cI" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
+"qb" = (
+/obj/structure/sign/poster/contraband/missing_gloves,
+/turf/closed/wall/mineral/plastitanium/interior,
 /area/ruin/space/has_grav/terrorship)
-"cJ" = (
+"qj" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"qk" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/electrical,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"qK" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -915,108 +1375,39 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/terrorship)
-"cK" = (
-/obj/item/shard{
-	icon_state = "medium"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cL" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cM" = (
-/mob/living/simple_animal/hostile/syndicate/melee/spacebattle,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"cN" = (
-/obj/machinery/computer/communications{
-	icon_state = "computer";
-	dir = 4
-	},
+"ri" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"cO" = (
-/obj/machinery/clonepod/experimental,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
+"rL" = (
+/obj/structure/chair/office{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cP" = (
-/obj/machinery/computer/card{
-	icon_state = "computer";
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"cQ" = (
-/obj/structure/fluff/oldturret,
-/turf/open/floor/plasteel/dark,
+"rN" = (
+/obj/structure/closet/crate/solarpanel_small,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"cR" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/melee/chainofcommand/tailwhip/kitty,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"cS" = (
-/obj/machinery/computer/camera_advanced/syndie{
-	icon_state = "computer";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"cT" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cU" = (
-/obj/item/shard,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"cV" = (
+"sQ" = (
 /obj/structure/chair/office{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"cW" = (
-/obj/machinery/implantchair/genepurge,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"cX" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/porta_turret/syndicate/energy,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/terrorship)
-"cY" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/porta_turret/syndicate/energy,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/terrorship)
-"cZ" = (
+"ux" = (
+/obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"da" = (
+"vu" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -26;
@@ -1024,46 +1415,332 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"db" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+"wf" = (
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"xe" = (
+/obj/structure/closet/crate/engineering,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"xs" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	icon_state = "scrub_map-2";
+	dir = 8
+	},
+/turf/open/floor/engine/airless,
+/area/ruin/space/has_grav/terrorship)
+"xD" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"xG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"xV" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"xZ" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"yL" = (
+/obj/machinery/shower{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"dc" = (
+"zs" = (
 /obj/item/scooter_frame,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"dd" = (
-/obj/item/restraints/handcuffs/cable,
-/turf/open/floor/plasteel/dark,
+"zx" = (
+/obj/machinery/smartfridge/black_box,
+/obj/effect/turf_decal/bot_red,
+/turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/terrorship)
-"de" = (
-/obj/machinery/vending/snack/random,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"df" = (
-/obj/structure/table/reinforced,
-/obj/item/melee/sabre/wzzzz/german,
+"zL" = (
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"dg" = (
+"An" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"AC" = (
+/obj/machinery/atmospherics/pipe/simple/dark,
+/mob/living/simple_animal/hostile/syndicate/melee/sword,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"AG" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"BB" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"CP" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"CW" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"DF" = (
+/obj/machinery/porta_turret/syndicate,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"DY" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"Ei" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"EA" = (
+/obj/item/stack/cable_coil,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"ET" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"EY" = (
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"Fg" = (
+/obj/structure/fluff/oldturret,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Fh" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	icon_state = "scrub_map-2";
+	dir = 4
+	},
+/turf/open/floor/engine/airless,
+/area/ruin/space/has_grav/terrorship)
+"Ft" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"Gd" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/melee/beesword,
+/obj/item/storage/backpack/duffelbag/syndie/c4,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"Gs" = (
+/obj/machinery/atmospherics/pipe/simple/dark,
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"HI" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"HU" = (
+/obj/machinery/atmospherics/pipe/simple/dark{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"HW" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"Ir" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"IN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/engineering,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"Jv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"JO" = (
+/obj/structure/table/reinforced,
+/obj/item/areaeditor/blueprints,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Ku" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"KD" = (
 /obj/structure/table/reinforced,
 /obj/item/melee/baton/loaded/german,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"dh" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
+"Lp" = (
+/obj/structure/closet/toolcloset,
+/obj/effect/turf_decal/bot,
+/obj/item/storage/belt/security/webbing,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"di" = (
+"LV" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Mo" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Nh" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/terrorship)
+"NR" = (
+/obj/item/wrench,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"OF" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"Pv" = (
+/obj/machinery/computer/card{
+	icon_state = "computer";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"PO" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"dj" = (
+"Qz" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"RM" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/syndicate/melee,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"SC" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/melee/chainofcommand/tailwhip/kitty,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"SD" = (
+/obj/machinery/light,
+/mob/living/simple_animal/hostile/syndicate/civilian,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/terrorship)
+"SH" = (
+/obj/machinery/grill,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/terrorship)
+"SM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/secure/loot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Ti" = (
+/obj/structure/closet/crate/engineering/electrical,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"Tk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"TM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/terrorship)
+"VG" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
 	},
@@ -1072,1578 +1749,1106 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"dk" = (
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dl" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"dm" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"dn" = (
-/obj/effect/spawner/structure/window/reinforced/partyhard,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"do" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dp" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/syndicate/melee,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"dq" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dr" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	icon_state = "inje_map-2";
-	dir = 1
-	},
-/turf/closed/indestructible/syndicate,
-/area/ruin/space/has_grav/terrorship)
-"ds" = (
-/obj/structure/table/reinforced,
-/obj/item/poster/random_contraband,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dt" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"du" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dv" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/electrical,
-/obj/item/stack/cable_coil,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dw" = (
+"VT" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"dx" = (
+"Wn" = (
+/obj/machinery/computer/camera_advanced/syndie{
+	icon_state = "computer";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"Ww" = (
+/obj/machinery/computer/communications{
+	icon_state = "computer";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/terrorship)
+"WT" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"dy" = (
-/obj/structure/closet/radiation,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
+"Xy" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/terrorship)
-"dz" = (
-/obj/structure/closet/toolcloset,
-/obj/effect/turf_decal/bot,
-/obj/item/storage/belt/security/webbing,
-/turf/open/floor/engine,
+"XE" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/terrorship)
-"dA" = (
+"XV" = (
 /obj/structure/closet/crate/bin,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dB" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dC" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dD" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/electrical,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dE" = (
-/obj/structure/closet/crate/engineering/electrical,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dF" = (
-/obj/structure/closet/crate,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dG" = (
-/obj/structure/closet/crate,
-/obj/effect/turf_decal/bot,
-/obj/item/stack/cable_coil,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dH" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dI" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dJ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dK" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dL" = (
-/obj/machinery/shower{
-	dir = 8
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"dM" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dN" = (
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dO" = (
-/obj/structure/closet/crate/eva,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dP" = (
-/obj/structure/closet/crate/engineering,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dQ" = (
-/obj/structure/closet/crate/solarpanel_small,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dR" = (
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dS" = (
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"dT" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"dU" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dV" = (
-/obj/item/stack/cable_coil,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"dW" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/closet/secure/loot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"dX" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dY" = (
-/obj/machinery/grill,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"dZ" = (
+"Ya" = (
 /obj/structure/table/reinforced,
-/obj/machinery/microwave,
-/turf/open/floor/plasteel/cafeteria,
+/obj/item/melee/sabre/wzzzz/german,
+/turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"ea" = (
+"YC" = (
 /obj/structure/table/reinforced,
 /obj/item/kitchen/knife/butcher,
 /obj/item/sharpener,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/terrorship)
-"eb" = (
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"ec" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/vending/engineering,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"ed" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"ee" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"ef" = (
-/obj/machinery/atmospherics/pipe/manifold/dark{
-	icon_state = "manifold-2";
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eg" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eh" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 4
-	},
-/obj/effect/spawner/structure/window/reinforced/partyhard,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"ei" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	icon_state = "scrub_map-2";
-	dir = 8
-	},
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"ej" = (
-/obj/machinery/smartfridge/black_box,
-/obj/effect/turf_decal/bot_red,
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"ek" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	icon_state = "scrub_map-2";
-	dir = 4
-	},
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"el" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"em" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 10
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"en" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"eo" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"ep" = (
-/obj/machinery/atmospherics/pipe/simple/dark,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eq" = (
-/obj/item/wrench,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"er" = (
-/obj/machinery/atmospherics/pipe/simple/dark,
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"es" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber,
-/turf/open/floor/engine/airless,
-/area/ruin/space/has_grav/terrorship)
-"et" = (
-/obj/structure/table/reinforced,
-/obj/item/areaeditor/blueprints,
+"Zk" = (
+/obj/item/restraints/handcuffs/cable,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/terrorship)
-"eu" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"ev" = (
-/obj/structure/closet/crate/eva,
-/obj/item/stack/cable_coil,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"ew" = (
-/obj/structure/kitchenspike,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"ex" = (
-/obj/machinery/vending/syndichem,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"ey" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/pizzabox/infinite,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"ez" = (
-/obj/machinery/gibber,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/terrorship)
-"eA" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/dark,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eC" = (
-/obj/structure/sign/poster/contraband/missing_gloves,
-/turf/closed/wall/mineral/plastitanium/interior,
-/area/ruin/space/has_grav/terrorship)
-"eD" = (
-/obj/machinery/atmospherics/pipe/simple/dark,
-/obj/effect/spawner/structure/window/reinforced/partyhard,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eE" = (
-/obj/item/wirecutters,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eF" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 6
-	},
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eG" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/stack/cable_coil,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eH" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eJ" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eK" = (
-/obj/machinery/atmospherics/pipe/manifold4w/dark,
-/obj/item/beacon,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eL" = (
-/obj/machinery/atmospherics/pipe/simple/dark{
-	icon_state = "pipe11-2";
-	dir = 10
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eM" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eN" = (
-/obj/machinery/suit_storage_unit/syndicate,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"eO" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"eP" = (
-/obj/structure/shuttle/engine/heater,
-/obj/machinery/atmospherics/pipe/simple/dark,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eQ" = (
-/obj/machinery/light,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"eR" = (
-/obj/structure/closet/cabinet,
-/obj/item/autosurgeon/anti_stun,
-/obj/item/banhammer,
-/obj/item/book/random/triple,
-/obj/item/cane,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"eS" = (
-/obj/machinery/light,
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"eT" = (
-/obj/structure/bed,
-/obj/item/bedsheet/syndie,
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/terrorship)
-"eU" = (
-/obj/structure/shuttle/engine/huge,
-/turf/closed/indestructible/syndicate,
-/area/ruin/space/has_grav/terrorship)
-"eV" = (
-/obj/structure/shuttle/engine/large,
-/turf/closed/indestructible/syndicate,
-/area/ruin/space/has_grav/terrorship)
-"eW" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/terrorship)
-"eX" = (
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon{
-	faction = list("Syndicate");
-	health = 550;
-	name = "Ванечка"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"eY" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"eZ" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fa" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fb" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonmisc,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fc" = (
-/obj/item/mecha_ammo/missiles_he,
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fd" = (
-/obj/item/mecha_ammo/lmg,
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fe" = (
-/obj/item/mecha_ammo/clusterbang,
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-2"
-	},
-/area/ruin/space/has_grav/terrorship)
-"ff" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
-/obj/effect/turf_decal/bot,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fg" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
-/obj/effect/turf_decal/bot,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fh" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
-/obj/effect/turf_decal/bot,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fi" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-7"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fj" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/partyhard/steel{
-	icon_state = "dd-8"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fk" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fl" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/partyhard/steel{
-	icon_state = "mm-2"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fm" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-5"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fn" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-5"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fo" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-8"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fp" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-8"
-	},
-/area/ruin/space/has_grav/terrorship)
-"fq" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fr" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fs" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"ft" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fu" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fv" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fw" = (
-/obj/machinery/porta_turret/syndicate,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fx" = (
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fy" = (
-/obj/item/scythe,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fz" = (
-/obj/machinery/porta_turret/syndicate,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/syndicate/ranged/smg,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fB" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fC" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/syndicate/civilian,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fD" = (
-/obj/structure/chair/stool/bar,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fE" = (
+"ZB" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"fF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/syndicate/ranged/spacebattle,
+"ZX" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/terrorship)
-"fG" = (
-/obj/effect/turf_decal/stripes/line,
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fH" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fI" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/terrorship)
-"fJ" = (
-/obj/machinery/atmospherics/pipe/simple/dark,
-/mob/living/simple_animal/hostile/syndicate/melee/sword,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/terrorship)
-"fK" = (
-/mob/living/simple_animal/hostile/syndicate/melee/sword/space,
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (2,1,1) = {"
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 fK
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (3,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-fK
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (4,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 fK
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (5,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (6,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-fK
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ab
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (7,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+dA
 ac
 ac
-fr
-ad
-ad
-fw
-aF
-dv
-dD
-dD
-ec
-eo
-eA
-eG
-eA
 ac
-aa
-aa
-aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+dA
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (8,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
+ac
+XV
+ad
+ad
+ri
+aF
 dj
-ac
-cZ
-ad
-ad
+qk
+qk
+IN
+xD
 fx
 dn
-dk
-dk
-dk
-dk
-dk
-dk
-dk
-dk
+fx
 ac
-ac
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (9,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-cS
-dl
+VG
 ac
-cZ
+fd
 ad
 ad
-fx
-dn
+dp
+df
 dk
 dk
 dk
 dk
 dk
-ed
-ep
-eP
-dr
+dk
+dk
+dk
 ac
-eU
-aa
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (10,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-cP
-dp
-fk
+Wn
+sQ
 ac
-cZ
+fd
 ad
-fI
-fx
-dn
+ad
+dp
+df
 dk
-dE
-dH
-ed
-ep
-eB
-ep
-eP
-dr
+dk
+dk
+dk
+dk
+xZ
+fy
+dI
+dV
 ac
-ac
-aa
+em
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (11,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-cN
+Pv
+RM
+fe
+ac
+fd
+ad
+fA
 dp
-ad
-fk
-ac
-cZ
-ad
-ba
-fx
-dn
+df
 dk
-dF
-dO
-ee
-dK
-em
-ep
-eP
-dr
+Ti
+zL
+xZ
+fy
+dy
+fy
+dI
+dV
 ac
 ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (12,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
+Ww
+RM
+ad
+fe
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-cG
+fd
+ad
 cH
-ad
-ad
-fk
-ac
+dp
+df
+dk
+ZX
 fs
-ad
-ad
-fx
-dn
-dk
-dG
-dP
-ee
-eq
-dk
-dk
-eQ
+db
+fu
+dw
+fy
+dI
+dV
 ac
 ac
-ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (13,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ay
-ad
-ad
-bc
-bi
-bi
-bi
-bi
-fi
-bi
-bi
-bi
-bi
-bi
-co
-aF
-cV
-ad
-ad
-ad
-fk
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+dA
 ac
-cZ
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+bi
+rL
 ad
 ad
-fx
-dn
+fe
+ac
+Tk
+ad
+ad
+dp
+df
 dk
-dH
-dF
-ee
+jF
+xe
+db
+NR
 dk
 dk
-dk
-ed
-eP
-dr
-eV
-aa
+dz
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (14,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ay
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
 ad
 ad
-fn
-bd
-bj
-bj
-bs
-bk
-bG
-bG
-ca
-bk
 ck
-fe
-cp
+fn
+fn
+fn
+fn
+cV
+fn
+fn
+fn
+fn
+fn
+fj
 aF
-cZ
+bG
 ad
 ad
 ad
-fq
+fe
 ac
-cZ
-ba
+fd
 ad
-fx
-dn
+ad
+dp
+df
 dk
-dF
-dQ
-ef
-ep
-ep
-ep
-eB
-eP
-dr
-ac
-aa
+zL
+ZX
+db
+dk
+dk
+dk
+xZ
+dI
+dV
+eg
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (15,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ay
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
 ad
 ad
-fm
+cg
+co
+cq
+cq
+cG
+bk
 fp
-bd
+fp
+dW
 bk
 dh
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-bk
-cq
-aW
-cZ
+fh
+fq
+aF
+fd
 ad
 ad
 ad
-fk
+ux
 ac
-cZ
+fd
+cH
 ad
-ad
-fx
-dn
+dp
+df
 dk
-dk
-dk
-ef
-er
+ZX
+rN
+kP
+fy
+fy
+fy
+dy
+dI
+dV
+ac
 fJ
-ep
-eB
-eP
-dr
-eV
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (16,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ay
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
 ad
 ad
-fm
-fo
-fl
-bd
+bN
+ch
+co
 bk
-dh
-bk
+cv
 bk
 bk
 bk
@@ -2651,1797 +2856,2315 @@ bk
 bk
 bk
 bk
-cq
-aW
-cZ
+bk
+fr
+fz
+fd
 ad
 ad
 ad
-fk
+fe
 ac
-cZ
+fd
 ad
 ad
-fx
-aF
+dp
+df
 dk
+dk
+dk
+kP
+Gs
+AC
+fy
+dy
 dI
-dR
+dV
 eg
-dR
-dR
-eH
-em
-eP
-dr
-ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (17,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
+ad
+ad
+bN
+bR
 ay
-ad
-ad
-fm
-fo
-aP
-fl
-bd
-fc
-bl
-bt
+co
 bk
-bH
+cv
+bk
+bk
+bk
+bk
+bk
+bk
+bk
+bk
+fr
+fz
 fd
-cb
-bk
-cl
-cl
-cr
-aF
-cZ
 ad
 ad
 ad
-fk
+fe
 ac
-cZ
+fd
+ad
+ad
+dp
 aF
-aF
-bf
-aF
+dk
+TM
+lt
+pr
+lt
+lt
+HI
 dw
-aF
-dn
-eh
-dn
-eC
-eI
-eQ
+dI
+dV
 ac
-ac
-ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (18,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
+ad
+ad
+bN
+bR
+cb
 ay
-ad
-ad
+co
+cr
 fm
 fo
-aP
+bk
 aP
 fl
 be
+bk
 bm
 bm
-bm
-bm
-fj
-bm
-bm
-bm
-bm
-bm
-cs
+fw
 aF
-cZ
+fd
 ad
-cQ
+ad
+ad
+fe
 ac
-bf
-ac
-bf
-ac
-df
-dk
-fE
-dk
+fd
 aF
-dS
-ei
-dS
-dn
-eJ
-eP
-dr
+aF
+cQ
+aF
+VT
+aF
+df
+da
+df
+qb
+fE
+dz
 ac
-eU
-aa
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (19,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+bc
+ad
+ad
+bN
+bR
+cb
+cb
+ay
+cp
 bf
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-bn
-bn
-bn
-ac
+bf
+bf
+bf
+cW
+bf
+bf
+bf
+bf
+bf
+fB
 aF
-aF
-aF
-aF
-aF
-dT
-ej
-es
-eD
-eK
-eP
-dr
+fd
+ad
+Fg
 ac
+cQ
 ac
-aa
+cQ
+ac
+Ya
+dk
+ZB
+dk
+aF
+nN
+xs
+nN
+df
+HU
+dI
+dV
+ac
+em
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (20,1,1) = {"
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-ad
-ad
-ad
-ad
-ad
-aH
-ad
-ad
-ad
-ad
-ad
-bf
-bn
-bq
-bn
 ac
-bI
-bS
-cc
-bB
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+cQ
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+cA
+cA
+cA
+ac
 aF
-bB
-ct
-ct
-cI
-ct
-ct
-ac
-bn
-cY
+aF
+aF
+aF
+aF
 bq
-ac
+zx
 dg
-dk
+iv
 fF
-dk
-aF
-dS
-ek
-dS
-dn
-eL
-eP
-dr
+dI
+dV
 ac
 ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (21,1,1) = {"
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-ae
 ad
 ad
 ad
 ad
 ad
+bt
 ad
 ad
 ad
 ad
 ad
-ad
+cQ
+cA
+cz
+cA
 ac
-ac
-ac
-ac
-bB
-bC
-bT
-bC
-bC
-aF
-bC
-cu
-eW
-bC
-bF
-bC
-ce
-ac
-ac
-ac
-aF
-aF
-bf
-aF
-dw
-aF
-dn
+cY
+dH
 eh
-dn
+cR
 aF
-eI
-eQ
+cR
+bB
+bB
+bT
+bB
+bB
+ac
+cA
+cu
+cz
+ac
+KD
+dk
+ce
+dk
+aF
+nN
+Fh
+nN
+df
+BB
+dI
+dV
 ac
 ac
-ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (22,1,1) = {"
-ab
-eY
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-fb
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-bu
+aj
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ac
+ac
+ac
+ac
+cR
+bC
+dJ
 bC
 bC
+aF
+bC
+fC
+cf
 bC
 eW
 bC
-bM
-bC
-cv
-bC
-bC
-bC
-bC
-bC
-bE
+ei
 ac
-ft
-da
-ad
-fk
+ac
+ac
 aF
-dk
-dJ
-dU
-el
-dU
-dU
-eM
-ed
-eP
-dr
-eV
-aa
+aF
+cQ
+aF
+VT
+aF
+df
+da
+df
+aF
+fE
+dz
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (23,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+dA
+aN
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aG
 ac
-eY
-ad
-ad
-af
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-aX
-ad
-ad
-eY
+cI
+bC
+bC
+bC
+cf
+bC
+dc
+bC
+fD
+bC
+bC
+bC
+bC
+bC
+bn
 ac
-bv
-bC
-eW
-bF
-bC
-bC
+cO
+vu
+ad
+fe
 aF
-cd
-bC
-cB
-cB
-cB
-bC
-cT
-bC
-aW
-ft
-ad
-ad
+dk
+Jv
 fk
-dn
-dk
-dk
-dk
-ef
-ep
-ep
-ep
-eB
-eP
-dr
-ac
-aa
+An
+fk
+fk
+CW
+xZ
+dI
+dV
+eg
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (24,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
+aN
+ad
+ad
+al
 eZ
-ad
-ad
-ag
-ap
-az
-az
-ar
-az
-az
-ap
-at
-ad
-ad
 eZ
+eZ
+eZ
+eZ
+eZ
+eZ
+ap
+ad
+ad
+aN
 ac
+az
+bC
+cf
+eW
+bC
+bC
+aF
 bw
 bC
-bK
+bU
+bU
 bU
 bC
+nc
 bC
-aF
-aF
-bM
-aF
-aF
-aF
-bM
-aF
-aF
-ac
-ft
-ba
+fz
+cO
 ad
+ad
+fe
+df
+dk
+dk
+dk
+kP
 fy
-dn
-dx
-dk
-dk
-ef
-ep
-er
-ep
-eB
-eP
-dr
-eV
-aa
+fy
+fy
+dy
+dI
+dV
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (25,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
+aB
+ad
+ad
+an
+ah
+bg
+bg
 fa
+bg
+bg
+ah
+as
 ad
 ad
-ag
-aq
-aA
 aB
-aB
-aB
-aA
-aV
-at
-ad
-ad
-fb
 ac
-bx
+aA
+bC
+bF
+bO
 bC
 bC
-bC
-bC
-cd
-ac
-cm
-cw
-cC
 aF
-cw
-cw
-cm
+aF
+dc
+aF
+aF
+aF
+dc
+aF
+aF
 ac
-ac
-ft
+cO
+cH
 ad
-ad
-fk
-dn
+cw
+df
+WT
+dk
+dk
+kP
+fy
+Gs
+fy
 dy
-dk
-dK
-ee
-dk
-dk
-dk
-em
-eP
-dr
-ac
-aa
+dI
+dV
+eg
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (26,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-eY
+af
 ad
 ad
-ag
-aq
-aB
-bJ
-aG
-bJ
-aB
+an
 aV
-at
-ad
-ad
+bh
 eY
+eY
+eY
+bh
+fG
+as
+ad
+ad
+aG
+ac
+cJ
+bC
+bC
+bC
+bC
+bw
 ac
 by
-bC
-bL
-bC
 cd
-ac
-ac
-ac
-cx
-cD
+bL
 aF
-aM
-cx
+cd
+cd
+by
 ac
 ac
-ac
+cO
+ad
+ad
+fe
+df
+Qz
+dk
 fu
-ad
-ad
-fk
-dn
-dx
+db
 dk
+dk
+dk
+dw
+dI
 dV
-ee
-dk
-eE
-dk
-eQ
 ac
-ac
-ac
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (27,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-ff
+aN
 ad
-eX
+ad
+an
+aV
+eY
+br
+ff
+br
+eY
 fG
-ar
+as
+ad
+ad
+aN
+ac
+cK
+bC
+fH
+bC
+bw
+ac
+ac
+ac
+oL
+bM
+aF
+nn
+oL
+ac
+ac
+ac
+cF
+ad
+ad
+fe
+df
+WT
+dk
+EA
+db
+dk
+hb
+dk
+dz
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(28,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+ai
+ad
+ak
+ax
+fa
+eY
+ff
+bz
+ff
+eY
+fa
+cc
+ad
+ad
+cs
+dA
+aF
+aF
+dc
+aF
+ac
+ac
+ac
+ac
+ac
+aF
+aF
+aF
+ac
+ac
+ac
+ac
+cO
+ad
+ad
+fe
+df
+Lp
+dk
+dk
+db
+dk
+Ei
+fy
+dI
+dV
+ac
+em
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(29,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+af
+ad
+ad
+an
+aV
+eY
+br
+ff
+br
+eY
+fG
+as
+ad
+ad
+aG
+ac
+cL
+aF
+bA
+bn
+ei
+ac
+ac
+ac
+ci
+Nh
+qK
+Nh
+ci
+ac
+ac
+ac
+cO
+LV
+ad
+fe
+aF
+dk
+fu
+dk
+dw
+fy
+dy
+fy
+dI
+dV
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(30,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+aB
+ad
+ad
+an
+aV
+bh
+eY
+eY
+eY
+bh
+fG
+as
+ad
+ad
+aG
+ac
+bA
+aF
+cK
+bC
+eW
+fc
+ac
+bA
+bC
+bC
+bC
+bC
+bC
+bC
+ac
+ac
+cO
+ad
+ad
+fe
+df
+dk
+xG
+dk
+dk
+dk
+dw
+fy
+dI
+dV
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(31,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+af
+ad
+ad
+an
+ah
+bl
+bl
+fa
+bl
+bl
+ah
+as
+ad
+ad
+aB
+ac
+bA
+cT
+aF
+cK
+bC
+bn
+aF
+bA
+bC
+bC
+xV
+bC
+eW
+bC
+bw
+ac
+cF
+ad
+ad
+fe
+aF
+df
+aF
+fz
+aF
+df
+aF
+aF
+aF
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(32,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+aN
+ad
+ad
+aC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aY
+ad
+ad
+aG
+ac
+bA
+bn
+dl
+aF
+bA
+bC
+dc
+bA
+bF
+bE
+bC
+cf
+bC
+bC
+bC
+ac
+cO
+zs
+ad
+fe
+df
+ad
+ad
+ad
+ad
+JO
+aF
+Ft
+iK
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(33,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+dA
+af
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aG
+ac
+bA
+eW
+bn
+aF
+ae
+aF
+aF
+bA
+bC
+bO
+bC
+bC
+bC
+bC
+kp
+ac
+Mo
+ad
+cH
+fe
+df
+ad
+ad
+cH
+ad
+it
+aF
+ba
+ba
+ac
+ac
+dA
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(34,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+aj
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aj
+ac
+ac
+ac
+cK
+fb
+bn
+bC
+bn
+aF
+bA
+bC
+bC
+eW
+bC
+bC
+ac
+ac
+ac
+ac
+ad
+ad
+fe
+df
+cH
+ad
+cH
+fA
+ad
+fz
+hY
+SD
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+"}
+(35,1,1) = {"
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+aG
+aG
 aB
 aG
+aB
+bD
 aN
 aG
 aB
-ar
-fH
-ad
-ad
-fh
-ab
-aF
-aF
-bM
-aF
-ac
-ac
-ac
-ac
-ac
-aF
-aF
-aF
-ac
-ac
-ac
-ac
-ft
-ad
-ad
-fk
-dn
-dz
-dk
-dk
-ee
-dk
-eF
-ep
-eP
-dr
-ac
-eU
-aa
-"}
-(28,1,1) = {"
-ac
-fa
-ad
-ad
-ag
-aq
-aB
-bJ
 aG
-bJ
-aB
-aV
-at
-ad
-ad
-fb
+aG
 ac
-bz
-aF
-bA
-bE
-ce
-ac
-ac
-ac
-cy
+cA
 cE
-cJ
-cO
-cy
+cA
 ac
-ac
-ac
-ft
-db
-ad
-fk
-aF
-dk
-dK
-dk
-em
-ep
-eB
-ep
-eP
-dr
-ac
-ac
-aa
-"}
-(29,1,1) = {"
-ac
-eZ
-ad
-ad
-ag
-aq
-aA
-aB
-aB
-aB
-aA
-aV
-at
-ad
-ad
-fb
-ac
-bA
-aF
-by
-bC
-bF
-ci
-ac
-bA
-bC
-bC
-bC
-bC
-bC
-bC
-ac
-ac
-ft
-ad
-ad
-fk
-dn
-dk
-do
-dk
-dk
-dk
-em
-ep
-eP
-dr
-ac
-ac
-aa
-"}
-(30,1,1) = {"
-ac
-fa
-ad
-ad
-ag
-ap
-aC
-aC
-ar
-aC
-aC
-ap
-at
-ad
-ad
-eZ
-ac
-bA
-bD
-aF
-by
-bC
-bE
-aF
-bA
-bC
-bC
-cK
-bC
-bF
-bC
-cd
-ac
-fu
-ad
-ad
-fk
-aF
-dn
-aF
-aW
-aF
-dn
-aF
-aF
-aF
-ac
-ac
-ac
-aa
-"}
-(31,1,1) = {"
-ac
-eY
-ad
-ad
-ah
-as
-as
-as
-as
-as
-as
-as
-av
-ad
-ad
-fb
-ac
-bA
-bE
-bN
-aF
-bA
-bC
-bM
-bA
-bK
-cF
-bC
-eW
-bC
-bC
-bC
-ac
-ft
-dc
-ad
-fk
-dn
-ad
-ad
-ad
-ad
-et
-aF
-eN
-eR
-ac
-ac
-ac
-aa
-"}
-(32,1,1) = {"
-ab
-fa
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-fb
-ac
-bA
-bF
-bE
-aF
-cf
-aF
-aF
-bA
-bC
-bU
-bC
-bC
-bC
-bC
-cW
-ac
-fv
-ad
-ba
-fk
-dn
-ad
-ad
-ba
-ad
-eu
-aF
-bX
-bX
-ac
-ac
-ab
-aa
-"}
-(33,1,1) = {"
-aa
-ac
-ae
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ae
-ac
-ac
-ac
-by
-bO
-bE
-bC
-bE
-aF
-bA
-bC
-bC
-bF
-bC
-bC
-ac
-ac
-ac
-ac
-ad
-ad
-fk
-dn
-ba
-ad
-ba
-fI
-ad
-aW
-eO
-eS
-ac
-ac
-aa
-aa
-"}
-(34,1,1) = {"
-aa
-aa
-ac
-fb
-fb
-eZ
-fb
-eZ
-fg
-eY
-fb
-eZ
-fb
-fb
-ac
-bn
-br
-bn
-ac
-bP
-bV
-cg
-cj
-aF
-by
-cz
-cz
-cL
-cz
-bC
-bf
-bn
-bn
-ac
-ad
-ad
-fz
-aF
-aJ
+dm
 dL
-dW
-ad
-ev
+ek
+fg
 aF
-bX
-eT
+cK
+wf
+wf
+DY
+wf
+bC
+cQ
+cA
+cA
 ac
-aa
-aa
-aa
-"}
-(35,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-bn
-bq
-bn
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ad
+DF
+aF
 cX
-bn
+yL
+SM
+ad
+kQ
+aF
+ba
+Xy
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ab
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (36,1,1) = {"
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-ai
-at
-ad
-aH
-ad
-ag
-aS
-aF
-aY
-aZ
 ac
-bf
 ac
-bf
 ac
-bQ
-bW
-ch
-aF
-bQ
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+cA
+cz
+cA
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 bW
 cA
-aF
-bQ
-bW
-cR
 ac
-bq
-bn
-bf
-fk
-fC
-fD
-dq
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 dA
-dM
-dX
-dB
-ew
-ac
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (37,1,1) = {"
-aa
-fK
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-aj
+aH
+as
+ad
+bt
+ad
+an
+bS
+aF
 au
 aD
-aI
-aO
-aQ
-aS
+ac
+cQ
+ac
+cQ
+ac
+cZ
+dO
+el
 aF
 cZ
-ad
-ad
-bo
-ac
-ad
+dO
+Gd
 aF
-bR
-bX
-bX
-aF
-bR
-bX
-bX
-aF
-cM
-bX
-bX
-aF
+cZ
+dO
+SC
 ac
+cz
+cA
+cQ
+fe
+ET
+CP
+Ir
+HW
+qj
+XE
+fv
+kc
 ac
-ac
-ad
-ad
-dm
-dt
-dB
-dB
-dY
-dB
-ew
-ac
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (38,1,1) = {"
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
 ac
-ak
-at
-aE
-aJ
-aE
-ag
-aS
+aI
+aX
+bo
+bu
+bI
+bP
+bS
 aF
-cZ
-ba
+fd
 ad
-fk
+ad
+aE
 ac
 ad
 aF
-aF
-bY
-aF
-aF
-aF
-bY
-aF
-aF
-aF
-bY
-aF
-aF
-aJ
-ac
-ft
-dd
+dq
 ba
-dm
-ds
-dB
-dB
-dZ
-dN
-ex
+ba
+aF
+dq
+ba
+ba
+aF
+bY
+ba
+ba
+aF
 ac
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
+ad
+ad
+oW
+mB
+fv
+fv
+SH
+fv
+kc
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (39,1,1) = {"
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-al
-av
-ad
-ad
-ad
-ah
+aL
 as
-aW
+bp
+cX
+bp
+an
+bS
+aF
+fd
+cH
 ad
-ad
-bg
-fk
+fe
 ac
 ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+aF
+aF
+dP
+aF
+aF
+aF
+dP
+aF
+aF
+aF
+dP
+aF
+aF
+cX
+ac
+cO
+Zk
+cH
+oW
 cU
-ad
-aW
-ft
-ba
+fv
+fv
+ih
+mM
 fI
-dm
-dt
-dB
-dB
-ea
-dB
-ey
 ac
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (40,1,1) = {"
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-am
+aM
+aY
+ad
+ad
+ad
+aC
+ab
+fz
+ad
+ad
 ao
-ao
-ao
-ao
-ao
-aT
-aF
-bp
-bb
-bh
-bZ
+fe
 ac
-cn
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
 ft
-ft
+ad
+fz
+cO
+cH
 fA
-ft
-cn
-ft
-fB
-ft
-cn
-ft
-fA
-ft
-ft
-cn
+oW
+mB
+fv
+fv
+YC
+fv
+nE
 ac
-ft
-ad
-ad
-ad
-du
-dB
-dN
-dB
-dB
-ez
-ac
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (41,1,1) = {"
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-an
-aw
+aQ
+eZ
+eZ
+eZ
+eZ
+eZ
+bZ
 aF
+aw
+cj
 aK
-aF
-aw
+fe
+ac
+aU
+cO
+cO
+dT
+cO
+aU
+cO
+fi
+cO
+aU
+cO
+dT
+cO
+cO
 aU
 ac
-ac
-ac
-ac
-ac
-ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+cO
+ad
+ad
+ad
+AG
 fv
-de
+mM
+fv
+fv
 di
-aY
-aF
-dC
-dB
-eb
-en
 ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (42,1,1) = {"
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-ax
+aT
+aZ
 aF
-aL
+bv
 aF
-aR
-ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aZ
+ca
 ac
 ac
 ac
 ac
-ab
+ac
+dA
 ac
 ac
 ac
 ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+Mo
+jY
+PO
+au
+aF
+Ku
+fv
+EY
+OF
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (43,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 ac
-aK
+bb
+aF
+bx
+aF
+bQ
 ac
-ab
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-fK
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+ac
+ac
+ac
+ac
+dA
+ac
+ac
+ac
+ac
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (44,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+dA
+ac
+bv
+ac
+dA
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (45,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (46,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-fK
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (47,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fK
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (48,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (49,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}
 (50,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
+fJ
 "}

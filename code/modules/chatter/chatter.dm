@@ -10,9 +10,9 @@
 	var/list/punctuation = list(",",":",";",".","?","!","\'","-")
 	var/regex/R = regex("(\[\\l\\d]*)(\[^\\l\\d\\s])?", "g")
 	var/list/letter_count = list()
-	while(R.Find(message) != 0)
+	while(R.Find_char(message) != 0)
 		if(R.group[1])
-			letter_count += length(R.group[1])
+			letter_count += length_char(R.group[1])
 		if(R.group[2])
 			letter_count += R.group[2]
 
@@ -35,7 +35,7 @@
 				chatter_speak_word(A.loc, phomeme, length)
 
 /proc/chatter_speak_word(loc, phomeme, length)
-	var/path = "sound/chatter/[phomeme]_[length].ogg"
+	var/path = "sound/runtime/chatter/[phomeme]_[length].ogg"
 
 	playsound(loc, path,
 		vol = 40, vary = 0, extrarange = 3, falloff = FALSE)

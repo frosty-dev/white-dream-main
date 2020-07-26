@@ -1,5 +1,5 @@
 /obj/projectile/bullet/dnainjector
-	name = "\improper DNA injector"
+	name = "инъектор ДНК"
 	icon_state = "syringeproj"
 	var/obj/item/dnainjector/injector
 	damage = 5
@@ -16,8 +16,8 @@
 					return BULLET_ACT_HIT
 			else
 				blocked = 100
-				target.visible_message("<span class='danger'>\The [src] was deflected!</span>", \
-									   "<span class='userdanger'>You were protected against \the [src]!</span>")
+				target.visible_message("<span class='danger'>[capitalize(src)] был отражен!</span>", \
+									   "<span class='userdanger'>Мне похуй на [src]!</span>")
 	return ..()
 
 /obj/projectile/bullet/dnainjector/Destroy()

@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
-	supervisors = "the quartermaster and the head of personnel"
+	supervisors = "завхозу и главе персонала"
 	selection_color = "#dcba97"
 
 	outfit = /datum/outfit/job/cargo_tech
@@ -26,4 +26,4 @@
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	l_hand = /obj/item/export_scanner
-
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/cargo=1)

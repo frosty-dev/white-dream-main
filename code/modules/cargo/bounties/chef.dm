@@ -1,130 +1,137 @@
 /datum/bounty/item/chef/birthday_cake
-	name = "Birthday Cake"
-	description = "Nanotrasen's birthday is coming up! Ship them a birthday cake to celebrate!"
+	name = "Праздничный торт"
+	description = "Скоро День рождения НТ! Отправьте им праздничный торт на день рождения!"
 	reward = 4000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cake/birthday, /obj/item/reagent_containers/food/snacks/cakeslice/birthday)
 
 /datum/bounty/item/chef/soup
-	name = "Soup"
-	description = "To quell the homeless uprising, Nanotrasen will be serving soup to all underpaid workers. Ship any type of soup."
+	name = "Суп"
+	description = "Чтобы подавить восстание бездомных, НТ будет разносить суп всем работникам с недостаточной оплатой. Отправьте им любой вид супа."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/soup)
 
 /datum/bounty/item/chef/popcorn
-	name = "Popcorn Bags"
-	description = "Upper management wants to host a movie night. Ship bags of popcorn for the occasion."
+	name = "Попкорн"
+	description = "Высшее руководство хочет провести вечер в кино. Отправьте им мешки с попкорном по этому случаю."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/popcorn)
 
 /datum/bounty/item/chef/onionrings
-	name = "Onion Rings"
-	description = "Nanotrasen is remembering Saturn day. Ship onion rings to show the station's support."
+	name = "Луковые кольца"
+	description = "НТ вспоминает день Сатурна. Отправьте кольца лука, чтобы показать поддержку станции."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/onionrings)
 
 /datum/bounty/item/chef/icecreamsandwich
-	name = "Ice Cream Sandwiches"
-	description = "Upper management has been screaming non-stop for ice cream. Please send some."
+	name = "Бутерброды с мороженным" // бутерброд это кринж полнейший
+	description = "Высшее руководство безостановочно нуждается в мороженном. Пожалуйста, пришлите им немного."
 	reward = 4000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/icecreamsandwich)
 
+/datum/bounty/item/chef/strawberryicecreamsandwich
+	name = "Бутерброд с клубничным мороженным"
+	description = "Высшее руководство безостановочно кричит о более ароматном мороженом. Пожалуйста, пришлите немного."
+	reward = 5000
+	required_count = 3
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/strawberryicecreamsandwich)
+
 /datum/bounty/item/chef/bread
-	name = "Bread"
-	description = "Problems with central planning have led to bread prices skyrocketing. Ship some bread to ease tensions."
+	name = "Хлебушек"
+	description = "Проблемы с центральным планированием привели к резкому росту цен на хлеб. Отправьте немного хлеба, чтобы ослабить напряженность."
 	reward = 1000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/bread, /obj/item/reagent_containers/food/snacks/breadslice, /obj/item/reagent_containers/food/snacks/bun, /obj/item/reagent_containers/food/snacks/pizzabread, /obj/item/reagent_containers/food/snacks/rawpastrybase)
 
 /datum/bounty/item/chef/pie
-	name = "Pie"
-	description = "3.14159? No! CentCom management wants edible pie! Ship a whole one."
+	name = "Пирог"
+	description = "3,14159? Нет! Руководство ЦК хочет съесть пирог! Отправьте им целый пирог."
 	reward = 3142
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/pie)
 
 /datum/bounty/item/chef/salad
-	name = "Salad or Rice Bowls"
-	description = "CentCom management is going on a health binge. Your order is to ship salad or rice bowls."
+	name = "Салад или рисовые миски"
+	description = "ЦК переживает негодование. Ваш заказ состоит в том, чтобы отправить салат или рисовые миски."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/salad)
 
 /datum/bounty/item/chef/carrotfries
-	name = "Carrot Fries"
-	description = "Night sight can mean life or death! A shipment of carrot fries is the order."
+	name = "Морковка-Фри" // картошка-фри? Блять... как же сложно быть украинцем когда ты в душе хз как это звучит на русском...
+	description = "Ночное зрение может означать жизнь или смерть! Поставка морковки-фри является заказом."
 	reward = 3500
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/carrotfries)
 
 /datum/bounty/item/chef/superbite
-	name = "Super Bite Burger"
-	description = "Commander Tubbs thinks he can set a competitive eating world record. All he needs is a super bite burger shipped to him."
+	name = "Супер кусок бургера"
+	description = "Командующий Таббс считает, что он может установить конкурентоспособный мировой рекорд в еде. Все, что ему нужно, это супер кусочек бургера, отправленный ему."
 	reward = 12000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/burger/superbite)
 
 /datum/bounty/item/chef/poppypretzel
-	name = "Poppy Pretzel"
-	description = "Central Command needs a reason to fire their HR head. Send over a poppy pretzel to force a failed drug test."
+	name = "Крендель с маком"
+	description = "ЦК нужна причина, чтобы уволить их HR-руководителя. Отправьте крендель с маком, чтобы устроить проваленный тест на наркотики."
 	reward = 3000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/poppypretzel)
 
 /datum/bounty/item/chef/cubancarp
-	name = "Cuban Carp"
-	description = "To celebrate the birth of Castro XXVII, ship one cuban carp to CentCom."
+	name = "Кубинский карп "
+	description = "Чтобы отпраздновать рождение Кастро XXVII, отправьте одного кубинского карпа на ЦК."
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/cubancarp)
 
 /datum/bounty/item/chef/hotdog
-	name = "Hot Dog"
-	description = "Nanotrasen is conducting taste tests to determine the best hot dog recipe. Ship your station's version to participate."
+	name = "Хот-Дог"
+	description = "НТ проводит вкусовые тесты, чтобы определить лучший рецепт хот-дога. Отправьте версию своего хот-дога станции для участия."
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/hotdog)
 
 /datum/bounty/item/chef/eggplantparm
-	name = "Eggplant Parmigianas"
-	description = "A famous singer will be arriving at CentCom, and their contract demands that they only be served Eggplant Parmigiana. Ship some, please!"
+	name = "Пармиджано"
+	description = "Знаменитая певица скоро прибудет на ЦК, и их контракт требует, чтобы их обслуживали только баклажанами пермиджано. Отправьте их на ЦК!"
 	reward = 3500
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/eggplantparm)
 
 /datum/bounty/item/chef/muffin
-	name = "Muffins"
-	description = "The Muffin Man is visiting CentCom, but he's forgotten his muffins! Your order is to rectify this."
+	name = "Кексы"
+	description = "Человек Кекс посещает ЦК, но он забыл свои кексы! Ваш заказ должен исправить это!"
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/muffin)
 
 /datum/bounty/item/chef/chawanmushi
-	name = "Chawanmushi"
-	description = "Nanotrasen wants to improve relations with its sister company, Japanotrasen. Ship Chawanmushi immediately."
+	name = "Тяван-муси"
+	description = "НТ хочет улучшить отношения со своей дочерней компанией Japan'o'Trasen. Отправьте тяван-муси немедленно."
 	reward = 8000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/chawanmushi)
 
 /datum/bounty/item/chef/kebab
-	name = "Kebabs"
-	description = "Remove all kebab from station you are best food. Ship to CentCom to remove from the premises."
+	name = "Кебаб"
+	description = "Уберите весь кебаб со станции, вы - лучшая еда. Отправьте на ЦК для утилизации."
 	reward = 3500
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/kebab)
 
 /datum/bounty/item/chef/soylentgreen
-	name = "Soylent Green"
-	description = "CentCom has heard wonderful things about the product 'Soylent Green', and would love to try some. If you endulge them, expect a pleasant bonus."
+	name = "Зелёный сойлент"
+	description = "ЦК слышали замечательные вещи о продукте «Зелёный сойлент» и хотели бы попробовать его. Если вы их отправили, ожидайте приятного бонуса."
 	reward = 5000
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/soylentgreen)
 
 /datum/bounty/item/chef/pancakes
-	name = "Pancakes"
-	description = "Here at Nanotrasen we consider employees to be family. And you know what families love? Pancakes. Ship a baker's dozen."
+	name = "Блины"
+	description = "Здесь, в НТ, мы считаем сотрудников семьей. А вы знаете, что любят семьи? Блины. Отправь дюжину блинов."
 	reward = 5000
 	required_count = 13
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/pancakes)
 
 /datum/bounty/item/chef/nuggies
-	name = "Chicken Nuggets"
-	description = "The vice president's son won't shut up about chicken nuggies. Would you mind shipping some?"
+	name = "Куриные наггетсы"
+	description = "Сын вице-президента не перестаёт говорить про куриные наггетсы. Не могли бы вы отправить ему немного?"
 	reward = 4000
 	required_count = 6
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/nugget)

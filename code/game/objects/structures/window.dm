@@ -6,14 +6,13 @@
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = TRUE //initially is 0 for tile smoothing
-	flags_1 = ON_BORDER_1
+	flags_1 = ON_BORDER_1 | RAD_PROTECT_CONTENTS_1
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	CanAtmosPass = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
-	rad_flags = RAD_PROTECT_CONTENTS
 	var/ini_dir = null
 	var/state = WINDOW_OUT_OF_FRAME
 	var/reinf = FALSE
@@ -27,6 +26,8 @@
 	var/real_explosion_block	//ignore this, just use explosion_block
 	var/breaksound = "shatter"
 	var/hitsound = 'sound/effects/Glasshit.ogg'
+	flags_ricochet = RICOCHET_HARD
+	ricochet_chance_mod = 0.4
 
 
 /obj/structure/window/examine(mob/user)
@@ -95,13 +96,15 @@
 	else
 		..(FULLTILE_WINDOW_DIR)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return 1
 	if(dir == FULLTILE_WINDOW_DIR)
 		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
-		return !density
+	var/attempted_dir = get_dir(loc, target)
+	if(attempted_dir == dir)
+		return
 	if(istype(mover, /obj/structure/window))
 		var/obj/structure/window/W = mover
 		if(!valid_window_location(loc, W.ini_dir))
@@ -112,7 +115,8 @@
 			return FALSE
 	else if(istype(mover, /obj/machinery/door/window) && !valid_window_location(loc, mover.dir))
 		return FALSE
-	return 1
+	else if(attempted_dir != dir)
+		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && (O.pass_flags & PASSGLASS))
@@ -123,7 +127,7 @@
 
 /obj/structure/window/attack_tk(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='notice'>Что-то стучит по [src.name].</span>")
+	user.visible_message("<span class='notice'>Что-то стучит по [sklonenie(src.name, VINITELNI, src.gender)].</span>")
 	add_fingerprint(user)
 	playsound(src, 'sound/effects/Glassknock.ogg', 50, TRUE)
 
@@ -139,8 +143,8 @@
 	if(!can_be_reached(user))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='notice'>[user] стучит по [src.name].</span>", \
-		"<span class='notice'>Стучу по [src.name].</span>")
+	user.visible_message("<span class='notice'>[user] стучит по [sklonenie(src.name, VINITELNI, src.gender)].</span>", \
+		"<span class='notice'>Стучу по [sklonenie(src.name, VINITELNI, src.gender)].</span>")
 	add_fingerprint(user)
 	playsound(src, 'sound/effects/Glassknock.ogg', 50, TRUE)
 
@@ -169,7 +173,7 @@
 				update_nearby_icons()
 				to_chat(user, "<span class='notice'>Чиню [src.name].</span>")
 		else
-			to_chat(user, "<span class='warning'>[src.name] не требуется починка!</span>")
+			to_chat(user, "<span class='warning'>[capitalize(sklonenie(src.name, VINITELNI, src.gender))] не требуется починка!</span>")
 		return
 
 	if(!(flags_1&NODECONSTRUCT_1) && !(reinf && state >= RWINDOW_FRAME_BOLTED))
@@ -264,13 +268,13 @@
 
 /obj/structure/window/proc/can_be_rotated(mob/user,rotation_type)
 	if(anchored)
-		to_chat(user, "<span class='warning'>[src.name] не может быть повёрнуто. Оно прикручено к полу!</span>")
+		to_chat(user, "<span class='warning'>[capitalize(src.name)] не может быть повёрнуто. Оно прикручено к полу!</span>")
 		return FALSE
 
 	var/target_dir = turn(dir, rotation_type == ROTATION_CLOCKWISE ? -90 : 90)
 
 	if(!valid_window_location(loc, target_dir))
-		to_chat(user, "<span class='warning'>[src.name] не может быть повёрнуто в этом направлении!</span>")
+		to_chat(user, "<span class='warning'>[capitalize(src.name)] не может быть повёрнуто в этом направлении!</span>")
 		return FALSE
 	return TRUE
 
@@ -304,7 +308,8 @@
 		queue_smooth_neighbors(src)
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_icon()
+/obj/structure/window/update_overlays()
+	. = ..()
 	if(!QDELETED(src))
 		if(!fulltile)
 			return
@@ -319,7 +324,7 @@
 		if(ratio > 75)
 			return
 		crack_overlay = mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1))
-		add_overlay(crack_overlay)
+		. += crack_overlay
 
 /obj/structure/window/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 
@@ -366,6 +371,7 @@
 	state = RWINDOW_SECURE
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
+	ricochet_chance_mod = 0.8
 
 //this is shitcode but all of construction is shitcode and needs a refactor, it works for now
 //If you find this like 4 years later and construction still hasn't been refactored, I'm so sorry for this
@@ -373,8 +379,8 @@
 	switch(state)
 		if(RWINDOW_SECURE)
 			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HARM)
-				user.visible_message("<span class='notice'>[user] направил [I.name] на защищённые винтики [src.name]...</span>",
-										"<span class='notice'>Начинаю нагревать винтики [src.name]...</span>")
+				user.visible_message("<span class='notice'>[user] направляет [sklonenie(I.name, VINITELNI, I.gender)] на защищённые винтики [sklonenie(src.name, VINITELNI, src.gender)]...</span>",
+										"<span class='notice'>Начинаю нагревать винтики [sklonenie(src.name, VINITELNI, src.gender)]...</span>")
 				if(I.use_tool(src, user, 180, volume = 100))
 					to_chat(user, "<span class='notice'>Винтики раскалены до бела, похоже можно открутить их прямо сейчас..</span>")
 					state = RWINDOW_BOLTS_HEATED
@@ -390,23 +396,23 @@
 				return
 		if(RWINDOW_BOLTS_OUT)
 			if(I.tool_behaviour == TOOL_CROWBAR)
-				user.visible_message("<span class='notice'>[user] вставляет [I.name] в щель и начинает подпирать окно...</span>",
-										"<span class='notice'>Вставляю [I.name] в щель и начинаю подпирать окно...</span>")
+				user.visible_message("<span class='notice'>[user] вставляет [sklonenie(I.name, VINITELNI, I.gender)] в щель и начинает подпирать окно...</span>",
+										"<span class='notice'>Вставляю [sklonenie(I.name, VINITELNI, I.gender)] в щель и начинаю подпирать окно...</span>")
 				if(I.use_tool(src, user, 50, volume = 50))
 					state = RWINDOW_POPPED
 					to_chat(user, "<span class='notice'>Основная плита вышла из рамки и стали видны прутья, которые можно откусить.</span>")
 				return
 		if(RWINDOW_POPPED)
 			if(I.tool_behaviour == TOOL_WIRECUTTER)
-				user.visible_message("<span class='notice'>[user] начинает откусывать доступные прутья [src.name]...</span>",
-										"<span class='notice'>Начинаю откусывать доступные прутья [src.name]...</span>")
+				user.visible_message("<span class='notice'>[user] начинает откусывать доступные прутья [sklonenie(src.name, VINITELNI, src.gender)]...</span>",
+										"<span class='notice'>Начинаю откусывать доступные прутья [sklonenie(src.name, VINITELNI, src.gender)]...</span>")
 				if(I.use_tool(src, user, 30, volume = 50))
 					state = RWINDOW_BARS_CUT
 					to_chat(user, "<span class='notice'>Основная плита отделена от рамки и теперь её удерживает только несколько болтов.</span>")
 				return
 		if(RWINDOW_BARS_CUT)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				user.visible_message("<span class='notice'>[user] начинает откручивать [src.name] от рамки...</span>",
+				user.visible_message("<span class='notice'>[user] начинает откручивать [sklonenie(src.name, VINITELNI, src.gender)] от рамки...</span>",
 					"<span class='notice'>Начинаю откручивать болты...</span>")
 				if(I.use_tool(src, user, 50, volume = 50))
 					to_chat(user, "<span class='notice'>Снимаю окно с болтов и теперь оно может быть свободно перемещено.</span>")
@@ -418,7 +424,7 @@
 /obj/structure/window/proc/cool_bolts()
 	if(state == RWINDOW_BOLTS_HEATED)
 		state = RWINDOW_SECURE
-		visible_message("<span class='notice'>Винтики в [src.name] выглядят остывшими...</span>")
+		visible_message("<span class='notice'>Винтики в [sklonenie(src.name, DATELNI, src.gender)] выглядят остывшими...</span>")
 
 /obj/structure/window/reinforced/examine(mob/user)
 	. = ..()
@@ -588,6 +594,31 @@
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	glass_amount = 2
 
+/obj/structure/window/fulltile/attackby(obj/item/W, mob/user, params)
+	if(is_glass_sheet(W))
+		var/obj/item/stack/ST = W
+		if (ST.get_amount() < 2)
+			to_chat(user, "<span class='warning'>Надо бы хотя бы парочку листов стекла!</span>")
+			return
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Надо бы прикрутить [src] к полу!</span>")
+			return
+		for(var/obj/machinery/door/firedoor/window/FD in loc)
+			to_chat(user, "<span class='warning'>Здесь уже есть окно!</span>")
+			return
+		to_chat(user, "<span class='notice'>Начинаю ставить запасное окно...</span>")
+		if(do_after(user,30, target = src))
+			if(!src.loc || !anchored)
+				return
+			for(var/obj/machinery/door/firedoor/window/FD in loc)
+				to_chat(user, "<span class='warning'>Здесь уже есть запасное окно!</span>")
+				return
+			new/obj/machinery/door/firedoor/window(drop_location())
+			ST.use(2)
+			to_chat(user, "<span class='notice'>Ставлю запасное окно на [src].</span>")
+		return
+	. = ..()
+
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
 
@@ -616,6 +647,31 @@
 	smooth = SMOOTH_TRUE
 	glass_amount = 2
 
+/obj/structure/window/plasma/reinforced/fulltile/attackby(obj/item/W, mob/user, params)
+	if(is_glass_sheet(W))
+		var/obj/item/stack/ST = W
+		if (ST.get_amount() < 2)
+			to_chat(user, "<span class='warning'>Надо бы хотя бы парочку листов стекла!</span>")
+			return
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Надо бы прикрутить [src] к полу!</span>")
+			return
+		for(var/obj/machinery/door/firedoor/window/FD in loc)
+			to_chat(user, "<span class='warning'>Здесь уже есть окно!</span>")
+			return
+		to_chat(user, "<span class='notice'>Начинаю ставить запасное окно...</span>")
+		if(do_after(user,30, target = src))
+			if(!src.loc || !anchored)
+				return
+			for(var/obj/machinery/door/firedoor/window/FD in loc)
+				to_chat(user, "<span class='warning'>Здесь уже есть запасное окно!</span>")
+				return
+			new/obj/machinery/door/firedoor/window(drop_location())
+			ST.use(2)
+			to_chat(user, "<span class='notice'>Ставлю запасное окно на [src].</span>")
+		return
+	. = ..()
+
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
 	state = WINDOW_OUT_OF_FRAME
@@ -630,8 +686,32 @@
 	smooth = SMOOTH_TRUE
 	state = RWINDOW_SECURE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
-	level = 3
 	glass_amount = 2
+
+/obj/structure/window/reinforced/fulltile/attackby(obj/item/W, mob/user, params)
+	if(is_glass_sheet(W))
+		var/obj/item/stack/ST = W
+		if (ST.get_amount() < 2)
+			to_chat(user, "<span class='warning'>Надо бы хотя бы парочку листов стекла!</span>")
+			return
+		if(!anchored)
+			to_chat(user, "<span class='warning'>Надо бы прикрутить [src] к полу!</span>")
+			return
+		for(var/obj/machinery/door/firedoor/window/FD in loc)
+			to_chat(user, "<span class='warning'>Здесь уже есть окно!</span>")
+			return
+		to_chat(user, "<span class='notice'>Начинаю ставить запасное окно...</span>")
+		if(do_after(user,30, target = src))
+			if(!src.loc || !anchored)
+				return
+			for(var/obj/machinery/door/firedoor/window/FD in loc)
+				to_chat(user, "<span class='warning'>Здесь уже есть запасное окно!</span>")
+				return
+			new/obj/machinery/door/firedoor/window(drop_location())
+			ST.use(2)
+			to_chat(user, "<span class='notice'>Ставлю запасное окно на [src].</span>")
+		return
+	. = ..()
 
 /obj/structure/window/reinforced/fulltile/unanchored
 	anchored = FALSE
@@ -645,7 +725,6 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/ice
@@ -653,7 +732,6 @@
 	icon_state = "ice_window"
 	max_integrity = 150
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
-	level = 3
 	glass_amount = 2
 
 /obj/structure/window/shuttle
@@ -672,9 +750,9 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	explosion_block = 3
-	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
+	ricochet_chance_mod = 0.9
 
 /obj/structure/window/shuttle/narsie_act()
 	add_atom_colour("#3C3434", FIXED_COLOUR_PRIORITY)
@@ -700,8 +778,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = null
 	explosion_block = 3
-	damage_deflection = 11 //The same as normal reinforced windows.
-	level = 3
+	damage_deflection = 11 //The same as normal reinforced windows.3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 	glass_amount = 2
 	rad_insulation = RAD_HEAVY_INSULATION

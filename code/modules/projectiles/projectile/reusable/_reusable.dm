@@ -1,5 +1,5 @@
 /obj/projectile/bullet/reusable
-	name = "reusable bullet"
+	name = "многоразовая пуля"
 	desc = "How do you even reuse a bullet?"
 	var/ammo_type = /obj/item/ammo_casing/caseless
 	var/dropped = FALSE

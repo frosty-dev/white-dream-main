@@ -1,6 +1,6 @@
 /obj/projectile/spellcard
-	name = "enchanted card"
-	desc = "A piece of paper enchanted to give it extreme durability and stiffness, along with a very hot burn to anyone unfortunate enough to get hit by a charged one."
+	name = "продвинутая карта"
+	desc = "Кусок бумаги, зачарованный, чтобы придать ему чрезвычайную прочность и жесткость, а также очень горячий ожог для любого человека, достаточно несчастного, чтобы получить удар от заряженного."
 	icon_state = "spellcard"
 	damage_type = BURN
 	damage = 2

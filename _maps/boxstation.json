@@ -1,7 +1,7 @@
 {
-    "map_name": "Box Station",
+    "map_name": "WBox Station",
     "map_path": "map_files/BoxStation",
-    "map_file": "BoxStationWhite.dmm",
+    "map_file": ["BoxStationWhite.dmm"],
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",

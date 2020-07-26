@@ -6,41 +6,41 @@
   </ui-section>
 </ui-display>
 <ui-display title='Recipes'>
-<div class="display tabular">
-	<section class="candystripe">
-			<section class="cell bold">
-				Recipe
-			</section>
-			<section class="cell bold">
-				Cost (cm3)
-			</section>
-      <section class="cell bold">
-        Type
+  <div class="display tabular">
+    <section class="candystripe">
+        <section class="cell bold">
+          Recipe
+        </section>
+        <section class="cell bold">
+          Cost (cm3)
+        </section>
+        <section class="cell bold">
+          Type
+        </section>
+        <section class="cell bold" align='center'>
+          Create
+        </section>
       </section>
-			<section class="cell bold" align='center'>
-				Create
-			</section>
-		</section>
-	{{#each data.recipes}}
-		<section class="candystripe">
-			<section class="cell">
-				{{name}}
-			</section>
-			<section class="cell" align='right'>
-				{{cost}}
-			</section>
-      <section class="cell" align='right'>
-				{{category}}
-			</section>
-			<section class="table" alight='right'>
-				<section class="cell"></section>
-				<section class="cell">
-					<ui-button grid action='Create' state='{{data.can_afford ? null : "disabled"}}' params='{ "name" : {{name}} }' >
-						Create
-					</ui-button>
-				</section>
-			</section>
-		</section>
-	{{/each}}
-</div>
+    {{#each data.recipes}}
+      <section class="candystripe">
+        <section class="cell">
+          {{name}}
+        </section>
+        <section class="cell" align='right'>
+          {{cost}}
+        </section>
+        <section class="cell" align='right'>
+          {{category}}
+        </section>
+        <section class="table" alight='right'>
+          <section class="cell"></section>
+          <section class="cell">
+            <ui-button grid action='Create' state='{{data.can_afford ? null : "disabled"}}' params='{ "name" : {{name}} }' >
+              Create
+            </ui-button>
+          </section>
+        </section>
+      </section>
+    {{/each}}
+  </div>
 </ui-display>

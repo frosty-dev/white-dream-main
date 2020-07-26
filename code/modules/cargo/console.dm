@@ -1,6 +1,6 @@
 /obj/machinery/computer/cargo
-	name = "supply console"
-	desc = "Used to order supplies, approve requests, and control the shuttle."
+	name = "консоль снабжения"
+	desc = "Используется для заказа расходных материалов, утверждения заявок и управления шаттлом."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 	ui_x = 780
@@ -9,20 +9,21 @@
 	var/requestonly = FALSE
 	var/contraband = FALSE
 	var/self_paid = FALSE
-	var/safety_warning = "For safety reasons, the automated supply shuttle \
-		cannot transport live organisms, human remains, classified nuclear weaponry, \
-		homing beacons or machinery housing any form of artificial intelligence."
-	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
+	var/safety_warning = "По соображениям безопасности, автоматическая подача челнока \
+		не может перевозить живые организмы, человеческие останки, классифицированное ядерное оружие, \
+		самонаводящиеся маяки или механизмы, содержащие любую форму искусственного интеллекта."
+	var/blockade_warning = "Обнаружена блюспейс нестабильность. Движение челнока невозможно."
 	/// radio used by the console to send messages on supply channel
 	var/obj/item/radio/headset/radio
 	/// var that tracks message cooldown
 	var/message_cooldown
+	var/list/loaded_coupons
 
 	light_color = "#E2853D"//orange
 
 /obj/machinery/computer/cargo/request
-	name = "supply request console"
-	desc = "Used to request supplies from cargo."
+	name = "консоль запросов снабжения"
+	desc = "Используется для запроса припасов."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	requestonly = TRUE
@@ -51,8 +52,9 @@
 /obj/machinery/computer/cargo/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	user.visible_message("<span class='warning'>[user] swipes a suspicious card through [src]!</span>",
-	"<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
+	if(user)
+		user.visible_message("<span class='warning'>[user] проводит подозрительной картой через [src]!</span>",
+		"<span class='notice'>Вы перенастроили спектр маршрутизации и приемника консоли снабжения , разблокировав специальные материалы и контрабанду.</span>")
 
 	obj_flags |= EMAGGED
 	contraband = TRUE
@@ -67,7 +69,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "cargo", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Cargo", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/cargo/ui_data()
@@ -81,7 +83,7 @@
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
-	var/message = "Remember to stamp and send back the supply manifests."
+	var/message = "Не забудьте поставить печать и отправить обратно манифест."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
 	if(SSshuttle.supplyBlocked)
@@ -127,7 +129,7 @@
 			"cost" = P.cost,
 			"id" = pack,
 			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
-			"small_item" = P.small_item,
+			"goody" = P.goody,
 			"access" = P.access
 		))
 	return data
@@ -146,11 +148,11 @@
 			if(SSshuttle.supply.getDockedId() == "supply_home")
 				SSshuttle.supply.export_categories = get_export_categories()
 				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
-				say("The supply shuttle is departing.")
-				investigate_log("[key_name(usr)] sent the supply shuttle away.", INVESTIGATE_CARGO)
+				say("шаттл снабжения отправляется.")
+				investigate_log("[key_name(usr)] отправил шаттл снабжения на ЦК.", INVESTIGATE_CARGO)
 			else
-				investigate_log("[key_name(usr)] called the supply shuttle.", INVESTIGATE_CARGO)
-				say("The supply shuttle has been called and will arrive in [SSshuttle.supply.timeLeft(600)] minutes.")
+				investigate_log("[key_name(usr)] вызвал шаттл снабжения.", INVESTIGATE_CARGO)
+				say("Шаттл снабжения был вызван и прибудет в течении [SSshuttle.supply.timeLeft(600)] минут.")
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			. = TRUE
 		if("loan")
@@ -165,7 +167,9 @@
 				return
 			else
 				SSshuttle.shuttle_loan.loan_shuttle()
-				say("The supply shuttle has been loaned to CentCom.")
+				say("Шаттл снабжения был передан в аренду ЦК.")
+				investigate_log("[key_name(usr)] принял событие аренды шаттла.", INVESTIGATE_CARGO)
+				log_game("[key_name(usr)] принял событие аренды шаттла.")
 				. = TRUE
 		if("add")
 			var/id = text2path(params["id"])
@@ -191,36 +195,56 @@
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/id_card = H.get_idcard(TRUE)
 				if(!istype(id_card))
-					say("No ID card detected.")
+					say("Не зачемено ИД карты.")
+					return
+				if(istype(id_card, /obj/item/card/id/departmental_budget))
+					say("[src] отказывается от [id_card].")
 					return
 				account = id_card.registered_account
 				if(!istype(account))
-					say("Invalid bank account.")
+					say("Неверный банковский счет.")
 					return
 
 			var/reason = ""
 			if(requestonly && !self_paid)
-				reason = stripped_input("Reason:", name, "")
+				reason = stripped_input("Причина:", name, "")
 				if(isnull(reason) || ..())
 					return
 
+			if(pack.goody && !self_paid)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+				say("ОШИБКА: Малые ящики могут быть приобретены только частными аккаунтами.")
+				return
+
+			var/obj/item/coupon/applied_coupon
+			for(var/i in loaded_coupons)
+				var/obj/item/coupon/coupon_check = i
+				if(pack.type == coupon_check.discounted_pack)
+					say("Купон найден! [round(coupon_check.discount_pct_off * 100)]% скидки!")
+					coupon_check.moveToNullspace()
+					applied_coupon = coupon_check
+					break
+
 			var/turf/T = get_turf(src)
-			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account)
+			var/datum/supply_order/SO = new(pack, name, rank, ckey, reason, account, applied_coupon)
 			SO.generateRequisition(T)
 			if(requestonly && !self_paid)
 				SSshuttle.requestlist += SO
 			else
 				SSshuttle.shoppinglist += SO
 				if(self_paid)
-					say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
+					say("Заказ обработан. Цена будет снята с банковского счета [account.account_holder] при доставке.")
 			if(requestonly && message_cooldown < world.time)
-				radio.talk_into(src, "A new order has been requested.", RADIO_CHANNEL_SUPPLY)
+				radio.talk_into(src, "Новый заказ был запрошен.", RADIO_CHANNEL_SUPPLY)
 				message_cooldown = world.time + 30 SECONDS
 			. = TRUE
 		if("remove")
 			var/id = text2num(params["id"])
 			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 				if(SO.id == id)
+					if(SO.applied_coupon)
+						say("Купон возвращен.")
+						SO.applied_coupon.forceMove(get_turf(src))
 					SSshuttle.shoppinglist -= SO
 					. = TRUE
 					break

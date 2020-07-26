@@ -4,7 +4,7 @@
 //As long as this is working, solar panels on same powernet will track automatically
 
 /obj/machinery/power/tracker
-	name = "solar tracker"
+	name = "Отслеживатель солнечных лучей"
 	desc = "A solar directional tracker."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "tracker"
@@ -55,10 +55,10 @@
 
 /obj/machinery/power/tracker/crowbar_act(mob/user, obj/item/I)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	user.visible_message("<span class='notice'>[user] begins to take the glass off [src].</span>", "<span class='notice'>You begin to take the glass off [src]...</span>")
+	user.visible_message("<span class='notice'>[user] начинает снимать стекло с [src].</span>", "<span class='notice'>Вы начинаете снимать стекло с [src]...</span>")
 	if(I.use_tool(src, user, 50))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		user.visible_message("<span class='notice'>[user] takes the glass off [src].</span>", "<span class='notice'>You take the glass off [src].</span>")
+		user.visible_message("<span class='notice'>[user] снимает стекло с [src].</span>", "<span class='notice'>Вы снимаете стекло с [src].</span>")
 		deconstruct(TRUE)
 	return TRUE
 
@@ -74,7 +74,7 @@
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.forceMove(loc)
-				S.give_glass(stat & BROKEN)
+				S.give_glass(machine_stat & BROKEN)
 		else
 			playsound(src, "shatter", 70, TRUE)
 			new /obj/item/shard(src.loc)
@@ -84,4 +84,4 @@
 // Tracker Electronic
 
 /obj/item/electronics/tracker
-	name = "tracker electronics"
+	name = "электроника отслеживателя солнечных лучей"

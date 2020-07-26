@@ -1,8 +1,8 @@
 //modular computer program version is located in code\modules\modular_computers\file_system\programs\powermonitor.dm, /datum/computer_file/program/power_monitor
 
 /obj/machinery/computer/monitor
-	name = "power monitoring console"
-	desc = "It monitors power levels across the station."
+	name = "Консоль контроля энергии"
+	desc = "Эта консоль показывает состояние энергии на станции."
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	light_color = LIGHT_COLOR_YELLOW
@@ -10,7 +10,7 @@
 	idle_power_usage = 20
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/computer/powermonitor
-	tgui_id = "power_monitor"
+	tgui_id = "PowerMonitor"
 	ui_x = 550
 	ui_y = 700
 
@@ -24,14 +24,14 @@
 	var/is_secret_monitor = FALSE
 
 /obj/machinery/computer/monitor/secret //Hides the power monitor (such as ones on ruins & CentCom) from PDA's to prevent metagaming.
-	name = "outdated power monitoring console"
-	desc = "It monitors power levels across the local powernet."
+	name = "устаревшая консоль контроля энергии"
+	desc = "Эта консоль показывает состояние энергии в определённой электросети."
 	circuit = /obj/item/circuitboard/computer/powermonitor/secret
 	is_secret_monitor = TRUE
 
 /obj/machinery/computer/monitor/secret/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It's operating system seems quite outdated... It doesn't seem like it'd be compatible with the latest remote NTOS monitoring systems.</span>"
+	. += "<span class='notice'>Операционная система кажется устаревшей... Походу она не совместима с новейшими системами удалённого контроля NTOS.</span>"
 
 /obj/machinery/computer/monitor/Initialize()
 	. = ..()
@@ -88,7 +88,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, tgui_id, name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "PowerMonitor", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/monitor/ui_data()

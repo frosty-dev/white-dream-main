@@ -1,6 +1,6 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "red lipstick"
+	name = "красный lipstick"
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "lipstick"
@@ -9,7 +9,7 @@
 	var/open = FALSE
 
 /obj/item/lipstick/purple
-	name = "purple lipstick"
+	name = "фиолетовый lipstick"
 	colour = "purple"
 
 /obj/item/lipstick/jade
@@ -18,7 +18,7 @@
 	colour = "lime"
 
 /obj/item/lipstick/black
-	name = "black lipstick"
+	name = "чёрный lipstick"
 	colour = "black"
 
 /obj/item/lipstick/random
@@ -187,6 +187,9 @@
 				var/new_style = input(user, "Select a hairstyle", "Grooming")  as null|anything in GLOB.hairstyles_list
 				if(!get_location_accessible(H, location))
 					to_chat(user, "<span class='warning'>The headgear is in the way!</span>")
+					return
+				if(HAS_TRAIT(H, TRAIT_BALD))
+					to_chat(H, "<span class='warning'>[H] is just way too bald. Like, really really bald.</span>")
 					return
 				user.visible_message("<span class='notice'>[user] tries to change [H]'s hairstyle using [src].</span>", "<span class='notice'>You try to change [H]'s hairstyle using [src].</span>")
 				if(new_style && do_after(user, 60, target = H))

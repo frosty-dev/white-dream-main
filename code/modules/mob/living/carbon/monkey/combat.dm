@@ -54,8 +54,6 @@
 		return 1
 	if(health <= 0 && checkDead)
 		return 1
-	if(IsUnconscious())
-		return 1
 	if(IsStun() || IsParalyzed())
 		return 1
 	if(stat)
@@ -307,12 +305,12 @@
 	if(do_mob(src, M, MONKEY_ITEM_SNATCH_DELAY) && pickupTarget)
 		for(var/obj/item/I in M.held_items)
 			if(I == pickupTarget)
-				M.visible_message("<span class='danger'>[src] snatches [pickupTarget] from [M].</span>", "<span class='userdanger'>[src] snatched [pickupTarget]!</span>")
+				M.visible_message("<span class='danger'>[src] утягивает [pickupTarget] у [M].</span>", "<span class='userdanger'>[src] утягивает [pickupTarget]!</span>")
 				if(M.temporarilyRemoveItemFromInventory(pickupTarget))
 					if(!QDELETED(pickupTarget) && !equip_item(pickupTarget))
 						pickupTarget.forceMove(drop_location())
 				else
-					M.visible_message("<span class='danger'>[src] tried to snatch [pickupTarget] from [M], but failed!</span>", "<span class='userdanger'>[src] tried to grab [pickupTarget]!</span>")
+					M.visible_message("<span class='danger'>[src] пытается стянуть [pickupTarget] у [M], но проваливает попытку!</span>", "<span class='userdanger'>[src] пытается сграбастать [pickupTarget]!</span>")
 	pickpocketing = FALSE
 	pickupTarget = null
 	pickupTimer = 0
@@ -340,7 +338,7 @@
 
 	// attack with weapon if we have one
 	if(Weapon)
-		L.attackby(Weapon, src)
+		Weapon.melee_attack_chain(src, L)
 	else
 		L.attack_paw(src)
 

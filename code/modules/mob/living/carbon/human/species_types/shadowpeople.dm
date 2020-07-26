@@ -12,6 +12,7 @@
 	inherent_factions = list("faithless")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	mutanteyes = /obj/item/organ/eyes/night_vision
+	species_language_holder = /datum/language_holder/shadowpeople
 
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
@@ -38,8 +39,8 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_CHUNKYFINGERS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
-	mutant_organs = list(/obj/item/organ/heart/nightmare)
-	mutant_brain = /obj/item/organ/brain/nightmare
+	mutantheart = /obj/item/organ/heart/nightmare
+	mutantbrain = /obj/item/organ/brain/nightmare
 
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
@@ -48,7 +49,7 @@
 	. = ..()
 	to_chat(C, "[info_text]")
 
-	C.fully_replace_character_name("[pick(GLOB.nightmare_names)]")
+	C.fully_replace_character_name(null, pick(GLOB.nightmare_names))
 
 /datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
@@ -98,6 +99,10 @@
 	decay_factor = 0
 
 
+/obj/item/organ/heart/nightmare/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_blocker)
+
 /obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
@@ -127,9 +132,6 @@
 /obj/item/organ/heart/nightmare/Stop()
 	return 0
 
-/obj/item/organ/heart/nightmare/update_icon()
-	return //always beating visually
-
 /obj/item/organ/heart/nightmare/on_death()
 	if(!owner)
 		return
@@ -152,13 +154,18 @@
 		playsound(owner, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
 		respawn_progress = 0
 
+/obj/item/organ/heart/nightmare/get_availability(datum/species/S)
+	if(istype(S,/datum/species/shadow/nightmare))
+		return TRUE
+	return ..()
+
 //Weapon
 
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "arm_blade"
-	item_state = "arm_blade"
+	inhand_icon_state = "arm_blade"
 	force = 25
 	armour_penetration = 35
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -166,6 +173,8 @@
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
+	wound_bonus = -60
+	bare_wound_bonus = 20
 
 /obj/item/light_eater/Initialize()
 	. = ..()
@@ -185,7 +194,7 @@
 
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/borg = AM
-			if(!borg.lamp_cooldown)
+			if(borg.lamp_intensity)
 				borg.update_headlamp(TRUE, INFINITY)
 				to_chat(borg, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
 		else

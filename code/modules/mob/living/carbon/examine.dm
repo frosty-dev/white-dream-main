@@ -1,10 +1,9 @@
 /mob/living/carbon/examine(mob/user)
 	var/t_on 	= ru_who(TRUE)
 	var/t_ego 	= ru_ego()
-	//var/t_na 	= ru_na()
 	var/t_a 	= ru_a()
 
-	. = list("<span class='info'>*---------*\nЭто же [icon2html(src, user)] \a <EM>[src]</EM>!")
+	. = list("<span class='info'>*---------*\nЭто же [icon2html(src, user)] <EM>[src]</EM>!")
 	var/list/obscured = check_obscured_slots()
 
 	if (handcuffed)
@@ -30,14 +29,37 @@
 		else if(get_bodypart(BODY_ZONE_HEAD))
 			. += "<span class='deadsay'>Похоже, что у н[t_ego] нет мозга...</span>"
 
-	var/list/missing = get_missing_limbs()
+	var/list/msg = list("<span class='warning'>")
+	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/disabled = list()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.disabled)
+			disabled += BP
+		missing -= BP.body_zone
+		for(var/obj/item/I in BP.embedded_objects)
+			if(I.isEmbedHarmless())
+				msg += "<B>Из [t_ego] [BP.name] торчит [icon2html(I, user)] [I]!</B>\n"
+			else
+				msg += "<B>У н[t_ego] застрял [icon2html(I, user)] [I] в [BP.name]!</B>\n"
+		for(var/datum/wound/W in BP.wounds)
+			msg += "[W.get_examine_description(user)]\n"
+
+	for(var/X in disabled)
+		var/obj/item/bodypart/BP = X
+		var/damage_text
+		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
+			damage_text = "вялая"
+		else
+			damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
+		msg += "<B>[capitalize(t_ego)] [BP.name] [damage_text]!</B>\n"
+
 	for(var/t in missing)
 		if(t==BODY_ZONE_HEAD)
-			. += "<span class='deadsay'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
+			msg += "<span class='deadsay'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
 			continue
-		. += "<span class='warning'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
+		msg += "<span class='warning'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
 
-	var/list/msg = list("<span class='warning'>")
 	var/temp = getBruteLoss()
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
@@ -77,6 +99,22 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_on] удерживается захватом [pulledby].\n"
 
+	var/scar_severity = 0
+	for(var/i in all_scars)
+		var/datum/scar/S = i
+		if(S.is_visible(user))
+			scar_severity += S.severity
+
+	switch(scar_severity)
+		if(1 to 2)
+			msg += "<span class='smallnotice'>[t_on] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
+		if(3 to 4)
+			msg += "<span class='notice'><i>[t_on] имеет несколько серьёзных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></span>\n"
+		if(5 to 6)
+			msg += "<span class='notice'><b><i>[t_on] имеет множество ужасных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></b></span>\n"
+		if(7 to INFINITY)
+			msg += "<span class='notice'><b><i>[t_on] имеет разорванное в хлам тело состоящее из шрамов... Стоит присмотреться, чтобы разглядеть ещё?</i></b></span>\n"
+
 	msg += "</span>"
 
 	. += msg.Join("")
@@ -107,3 +145,27 @@
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				. += "[t_on] в экстазе."
 	. += "*---------*</span>"
+
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
+/mob/living/carbon/examine_more(mob/user)
+	if(!all_scars)
+		return ..()
+
+	var/list/visible_scars
+	for(var/i in all_scars)
+		var/datum/scar/S = i
+		if(S.is_visible(user))
+			LAZYADD(visible_scars, S)
+
+	if(!visible_scars)
+		return ..()
+
+	var/msg = list("<span class='notice'><i>Всматриваюсь в <b>[src]</b> и замечаю следующее...</i></span>")
+	for(var/i in visible_scars)
+		var/datum/scar/S = i
+		var/scar_text = S.get_examine_description(user)
+		if(scar_text)
+			msg += "[scar_text]"
+
+	return msg

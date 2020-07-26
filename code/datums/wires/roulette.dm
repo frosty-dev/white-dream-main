@@ -1,6 +1,6 @@
 /datum/wires/roulette
 	holder_type = /obj/machinery/roulette
-	proper_name = "Roulette Table"
+	proper_name = "Roulette стол"
 	randomize = TRUE
 
 /datum/wires/roulette/New(atom/holder)
@@ -15,16 +15,16 @@
 /datum/wires/roulette/interactable(mob/user)
 	. = FALSE
 	var/obj/machinery/roulette/R = holder
-	if(R.stat & MAINT)
+	if(R.machine_stat & MAINT)
 		. = TRUE
 
 /datum/wires/roulette/get_status()
 	var/obj/machinery/roulette/R = holder
 	var/list/status = list()
-	status += "The machines bolts [R.anchored ? "have fallen!" : "look up."]"
-	status += "The main circuit is [R.on ? "on" : "off"]."
-	status += "The main system lock appears to be [R.locked ? "on" : "off"]."
-	status += "The account balance system appears to be [R.my_card ? "connected to [R.my_card.registered_account.account_holder]" : "disconnected"]."
+	status += "Похоже болты [R.anchored ? "упали!" : "подняты."]"
+	status += "Основная микросхема [R.on ? "работает" : "не работает"]."
+	status += "Блокировка основной системы [R.locked ? "включена" : "выключена"]."
+	status += "Привязанный аккаунт [R.my_card ? "подключен к [R.my_card.registered_account.account_holder]" : "не существует"]."
 	return status
 
 /datum/wires/roulette/on_pulse(wire)
@@ -39,14 +39,14 @@
 			R.anchored = !R.anchored
 		if(WIRE_RESETOWNER)
 			R.my_card = null
-			R.audible_message("<span class='warning'>Owner reset!</span>")
+			R.audible_message("<span class='warning'>Владелец сброшен!</span>")
 			R.locked = FALSE
 		if(WIRE_PRIZEVEND)
 			if(isliving(usr))
 				R.shock(usr, 70)
 			if(R.locked)
 				return
-			R.audible_message("<span class='warning'>Unauthorized prize vend detected! Locking down machine!</span>")
+			R.audible_message("<span class='warning'>Неавторизованная выдача приза замечена! Немедленная блокировка!</span>")
 			R.prize_theft(0.20)
 
 /datum/wires/roulette/on_cut(wire, mend)
@@ -71,6 +71,6 @@
 				R.shock(usr, 75)
 			if(R.locked)
 				return
-			R.audible_message("<span class='warning'>Unauthorized prize vend detected! Locking down machine!</span>")
+			R.audible_message("<span class='warning'>Неавторизованная выдача приза замечена! Немедленная блокировка!</span>")
 			R.prize_theft(0.10)
 

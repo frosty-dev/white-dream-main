@@ -52,25 +52,25 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/oxygen
 	id = "o2"
 	specific_heat = 20
-	name = "Oxygen"
+	name = "Кислород"
 	rarity = 900
 
 /datum/gas/nitrogen
 	id = "n2"
 	specific_heat = 20
-	name = "Nitrogen"
+	name = "Азот"
 	rarity = 1000
 
 /datum/gas/carbon_dioxide //what the fuck is this?
 	id = "co2"
 	specific_heat = 30
-	name = "Carbon Dioxide"
+	name = "Углекислый газ"
 	rarity = 700
 
 /datum/gas/plasma
 	id = "plasma"
 	specific_heat = 200
-	name = "Plasma"
+	name = "Плазма"
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/water_vapor
 	id = "water_vapor"
 	specific_heat = 40
-	name = "Water Vapor"
+	name = "Пар"
 	gas_overlay = "water_vapor"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 8
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/hypernoblium
 	id = "nob"
 	specific_heat = 2000
-	name = "Hyper-noblium"
+	name = "Гипер-ноблий"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/nitrous_oxide
 	id = "n2o"
 	specific_heat = 40
-	name = "Nitrous Oxide"
+	name = "Закись азота"
 	gas_overlay = "nitrous_oxide"
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	fusion_power = 10
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/nitryl
 	id = "no2"
 	specific_heat = 20
-	name = "Nitryl"
+	name = "Нитрил"
 	gas_overlay = "nitryl"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/tritium
 	id = "tritium"
 	specific_heat = 10
-	name = "Tritium"
+	name = "Тритий"
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/bz
 	id = "bz"
 	specific_heat = 20
-	name = "BZ"
+	name = "БЗ"
 	dangerous = TRUE
 	fusion_power = 8
 	rarity = 400
@@ -135,24 +135,40 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /datum/gas/stimulum
 	id = "stim"
 	specific_heat = 5
-	name = "Stimulum"
+	name = "Стимулум"
 	fusion_power = 7
 	rarity = 1
 
 /datum/gas/pluoxium
 	id = "pluox"
 	specific_heat = 80
-	name = "Pluoxium"
+	name = "Плюоксиум"
 	fusion_power = -10
 	rarity = 200
 
 /datum/gas/miasma
 	id = "miasma"
 	specific_heat = 20
-	name = "Miasma"
+	name = "Миазма"
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
 	rarity = 250
+
+/datum/gas/freon
+	id = "freon"
+	specific_heat = 600
+	name = "Фреон"
+	gas_overlay = "freon"
+	moles_visible = MOLES_GAS_VISIBLE *30
+	fusion_power = -5
+	rarity = 10
+
+/datum/gas/hydrogen
+	id = "hydrogen"
+	specific_heat = 15
+	name = "Водород"
+	dangerous = TRUE
+	rarity = 700
 
 /obj/effect/overlay/gas
 	icon = 'icons/effects/atmospherics.dmi'
@@ -160,6 +176,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	anchored = TRUE  // should only appear in vis_contents, but to be safe
 	layer = FLY_LAYER
 	appearance_flags = TILE_BOUND
+	vis_flags = NONE
 
 /obj/effect/overlay/gas/New(state, alph)
 	. = ..()

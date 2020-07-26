@@ -1,5 +1,5 @@
 /obj/projectile/ion
-	name = "ion bolt"
+	name = "заряд ионов"
 	icon_state = "ion"
 	damage = 0
 	damage_type = BURN

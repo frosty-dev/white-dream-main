@@ -1,5 +1,5 @@
 /obj/projectile/hallucination
-	name = "bullet"
+	name = "пуля"
 	icon = null
 	icon_state = null
 	hitsound = ""
@@ -124,7 +124,7 @@
 	return
 
 /obj/projectile/hallucination/bullet
-	name = "bullet"
+	name = "пуля"
 	hal_icon_state = "bullet"
 	hal_fire_sound = "gunshot"
 	hal_hitsound = 'sound/weapons/pierce.ogg'
@@ -138,7 +138,7 @@
 	hal_target.adjustStaminaLoss(60)
 
 /obj/projectile/hallucination/laser
-	name = "laser"
+	name = "лазер"
 	damage_type = BURN
 	hal_icon_state = "laser"
 	hal_fire_sound = 'sound/weapons/laser.ogg'
@@ -155,7 +155,7 @@
 	hal_target.blur_eyes(2)
 
 /obj/projectile/hallucination/taser
-	name = "electrode"
+	name = "электрод"
 	damage_type = BURN
 	hal_icon_state = "spark"
 	color = "#FFFF00"
@@ -174,7 +174,7 @@
 		addtimer(CALLBACK(hal_target, /mob/living/carbon.proc/do_jitter_animation, 20), 5)
 
 /obj/projectile/hallucination/disabler
-	name = "disabler beam"
+	name = "останавливающий луч"
 	damage_type = STAMINA
 	hal_icon_state = "omnilaser"
 	hal_fire_sound = 'sound/weapons/taser2.ogg'
@@ -189,7 +189,7 @@
 	hal_target.adjustStaminaLoss(25)
 
 /obj/projectile/hallucination/ebow
-	name = "bolt"
+	name = "заряд"
 	damage_type = TOX
 	hal_icon_state = "cbbolt"
 	hal_fire_sound = 'sound/weapons/genhit.ogg'
@@ -204,7 +204,7 @@
 	hal_target.adjustStaminaLoss(8)
 
 /obj/projectile/hallucination/change
-	name = "bolt of change"
+	name = "заряд изменений"
 	damage_type = BURN
 	hal_icon_state = "ice_1"
 	hal_fire_sound = 'sound/magic/staff_change.ogg'
@@ -217,7 +217,7 @@
 	new /datum/hallucination/self_delusion(hal_target, TRUE, wabbajack = FALSE)
 
 /obj/projectile/hallucination/death
-	name = "bolt of death"
+	name = "заряд смерти"
 	damage_type = BURN
 	hal_icon_state = "pulse1_bl"
 	hal_fire_sound = 'sound/magic/wandodeath.ogg'

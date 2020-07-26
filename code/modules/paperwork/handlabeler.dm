@@ -1,9 +1,9 @@
 /obj/item/hand_labeler
-	name = "hand labeler"
-	desc = "A combined label printer and applicator in a portable device, designed to be easy to operate and use."
+	name = "этикетировщик"
+	desc = "Комбинированный принтер этикеток, аппликатор и съемник - все в одном портативном устройстве. Разработанный, чтобы быть простым в эксплуатации и использовании."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
-	item_state = "flight"
+	inhand_icon_state = "flight"
 	var/label = null
 	var/labels_left = 30
 	var/mode = 0
@@ -13,7 +13,7 @@
 	labels_left = max(labels_left - 1, 0)
 
 	var/old_real_name = user.real_name
-	user.real_name += " (suicide)"
+	user.real_name += " (суицид)"
 	// no conflicts with their identification card
 	for(var/atom/A in user.GetAllContents())
 		if(istype(A, /obj/item/card/id))
@@ -27,11 +27,11 @@
 			their_card.update_label()
 
 	// NOT EVEN DEATH WILL TAKE AWAY THE STAIN
-	user.mind.name += " (suicide)"
+	user.mind.name += " (суицид)"
 
 	mode = 1
 	icon_state = "labeler[mode]"
-	label = "suicide"
+	label = "суицид"
 
 	return OXYLOSS
 
@@ -43,51 +43,52 @@
 		return
 
 	if(!labels_left)
-		to_chat(user, "<span class='warning'>No labels left!</span>")
+		to_chat(user, "<span class='warning'>Ярлыки закончились!</span>")
 		return
 	if(!label || !length(label))
-		to_chat(user, "<span class='warning'>No text set!</span>")
+		to_chat(user, "<span class='warning'>Не выбран текст!</span>")
 		return
 	if(length(A.name) + length(label) > 64)
-		to_chat(user, "<span class='warning'>Label too big!</span>")
+		to_chat(user, "<span class='warning'>Текст слишком большой!</span>")
 		return
 	if(ismob(A))
-		to_chat(user, "<span class='warning'>You can't label creatures!</span>") // use a collar
+		to_chat(user, "<span class='warning'>Как я этим буду помечать то! <i>Хотя, ручкой получится точно.</i></span>") // use a collar
 		return
 
-	user.visible_message("<span class='notice'>[user] labels [A] as [label].</span>", \
-						 "<span class='notice'>You label [A] as [label].</span>")
-	A.name = "[A.name] ([label])"
+	user.visible_message("<span class='notice'><b>[user]</b> помечает <b>[A]</b> ярлыком \"[label]\".</span>", \
+						 "<span class='notice'>Помечаю <b>[A]</b> ярлыком \"[label]\".</span>")
+	A.AddComponent(/datum/component/label, label)
+	playsound(A, 'sound/items/handling/component_pickup.ogg', 20, TRUE)
 	labels_left--
 
 
 /obj/item/hand_labeler/attack_self(mob/user)
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
+		to_chat(user, "<span class='warning'>Как этим пользоваться то!</span>")
 		return
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		to_chat(user, "<span class='notice'>You turn on [src].</span>")
+		to_chat(user, "<span class='notice'>Включаю <b>[src]</b>.</span>")
 		//Now let them chose the text.
-		var/str = copytext(reject_bad_text(input(user,"Label text?","Set label","")),1,MAX_NAME_LEN)
+		var/str = reject_bad_text(stripped_input(user, "Текст?", "Метка","", MAX_NAME_LEN), ascii_only = FALSE)
 		if(!str || !length(str))
-			to_chat(user, "<span class='warning'>Invalid text!</span>")
+			to_chat(user, "<span class='warning'>Неправильный текст!</span>")
 			return
 		label = str
-		to_chat(user, "<span class='notice'>You set the text to '[str]'.</span>")
+		to_chat(user, "<span class='notice'>Выбираю метку '[str]'.</span>")
 	else
-		to_chat(user, "<span class='notice'>You turn off [src].</span>")
+		to_chat(user, "<span class='notice'>Выключаю <b>[src]</b>.</span>")
 
 /obj/item/hand_labeler/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/hand_labeler_refill))
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		to_chat(user, "<span class='notice'>Вставляю <b>[I]</b> в <b>[src]</b>.</span>")
 		qdel(I)
 		labels_left = initial(labels_left)	//Yes, it's capped at its initial value
 
 /obj/item/hand_labeler/borg
-	name = "cyborg-hand labeler"
+	name = "этикетировщик киборга"
 
 /obj/item/hand_labeler/borg/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -111,11 +112,11 @@
 			borgy.cell.use(cost)
 
 /obj/item/hand_labeler_refill
-	name = "hand labeler paper roll"
+	name = "рулон ярлыков для этикетировщика"
 	icon = 'icons/obj/bureaucracy.dmi'
-	desc = "A roll of paper. Use it on a hand labeler to refill it."
+	desc = "Используйте его на ручном этикетировщике, чтобы наполнить его."
 	icon_state = "labeler_refill"
-	item_state = "electropack"
+	inhand_icon_state = "electropack"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY

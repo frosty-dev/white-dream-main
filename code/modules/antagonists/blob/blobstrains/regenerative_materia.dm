@@ -10,10 +10,10 @@
 
 /datum/reagent/blob/regenerative_materia
 	name = "Regenerative Materia"
-	taste_description = "heaven"
+	taste_description = "небеса"
 	color = "#A88FB7"
 
-/datum/reagent/blob/regenerative_materia/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)
+/datum/reagent/blob/regenerative_materia/expose_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)
 	reac_volume = ..()
 	M.adjust_drugginess(reac_volume)
 	if(M.reagents)

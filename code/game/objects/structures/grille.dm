@@ -1,11 +1,11 @@
 /obj/structure/grille
-	desc = "A flimsy framework of metal rods."
-	name = "grille"
+	desc = "Хрупкий каркас из металлических стержней."
+	name = "решетка"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
-	flags_1 = CONDUCT_1
+	flags_1 = CONDUCT_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
@@ -15,7 +15,6 @@
 	var/rods_broken = TRUE
 	var/grille_type = null
 	var/broken_type = /obj/structure/grille/broken
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 
 /obj/structure/grille/Destroy()
 	update_cable_icons_on_turf(get_turf(src))
@@ -42,9 +41,9 @@
 /obj/structure/grille/examine(mob/user)
 	. = ..()
 	if(anchored)
-		. += "<span class='notice'>It's secured in place with <b>screws</b>. The rods look like they could be <b>cut</b> through.</span>"
+		. += "<span class='notice'>Это прикручено на месте <b>винтами</b>. Стержни выглядят так, как будто они могут быть <b>прокушены</b>.</span>"
 	if(!anchored)
-		. += "<span class='notice'>The anchoring screws are <i>unscrewed</i>. The rods look like they could be <b>cut</b> through.</span>"
+		. += "<span class='notice'>Это выглядит <i>открученым</i>. Стержни выглядят так, как будто они могут быть <b>прокушены</b>.</span>"
 
 /obj/structure/grille/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -60,13 +59,13 @@
 /obj/structure/grille/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
-			to_chat(user, "<span class='notice'>You deconstruct the grille.</span>")
+			to_chat(user, "<span class='notice'>Разбираю решетку.</span>")
 			qdel(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
 			if(locate(/obj/structure/window) in loc)
 				return FALSE
-			to_chat(user, "<span class='notice'>You construct the window.</span>")
+			to_chat(user, "<span class='notice'>Собираю окно.</span>")
 			var/obj/structure/window/WD = new the_rcd.window_type(drop_location())
 			WD.setAnchored(TRUE)
 			return TRUE
@@ -82,7 +81,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!shock(user, 70))
+	if(!shock(user, 70) && !QDELETED(src)) //Last hit still shocks but shouldn't deal damage to the grille
 		take_damage(rand(5,10), BRUTE, "melee", 1)
 
 /obj/structure/grille/attack_paw(mob/user)
@@ -102,7 +101,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message("<span class='warning'>[user] hits [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='warning'>[user] бьёт [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "hit")
 	if(!shock(user, 70))
 		take_damage(rand(5,10), BRUTE, "melee", 1)
@@ -110,23 +109,20 @@
 /obj/structure/grille/attack_alien(mob/living/user)
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='warning'>[user] mangles [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='warning'>[user] разрывает [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	if(!shock(user, 70))
 		take_damage(20, BRUTE, "melee", 1)
 
-
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSGRILLE))
+/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.pass_flags & PASSGRILLE)
 		return TRUE
-	else
-		if(istype(mover, /obj/projectile) && density)
-			return prob(30)
-		else
-			return !density
+	else if(!. && istype(mover, /obj/projectile))
+		return prob(30)
 
 /obj/structure/grille/CanAStarPass(ID, dir, caller)
 	. = !density
-	if(ismovableatom(caller))
+	if(ismovable(caller))
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSGRILLE)
 
@@ -141,14 +137,14 @@
 		if(!shock(user, 90))
 			W.play_tool_sound(src, 100)
 			setAnchored(!anchored)
-			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] [src].</span>", \
-								 "<span class='notice'>You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor.</span>")
+			user.visible_message("<span class='notice'>[user] [anchored ? "прикручивает" : "откручивает"] [src].</span>", \
+								 "<span class='notice'>Я [anchored ? "прикручиваю [src] к полу" : "откручиваю [src] от пола"].</span>")
 			return
 	else if(istype(W, /obj/item/stack/rods) && broken)
 		var/obj/item/stack/rods/R = W
 		if(!shock(user, 90))
-			user.visible_message("<span class='notice'>[user] rebuilds the broken grille.</span>", \
-								 "<span class='notice'>You rebuild the broken grille.</span>")
+			user.visible_message("<span class='notice'>[user] чинит решетку.</span>", \
+								 "<span class='notice'>Чиню решетку.</span>")
 			new grille_type(src.loc)
 			R.use(1)
 			qdel(src)
@@ -159,16 +155,16 @@
 		if (!broken)
 			var/obj/item/stack/ST = W
 			if (ST.get_amount() < 2)
-				to_chat(user, "<span class='warning'>You need at least two sheets of glass for that!</span>")
+				to_chat(user, "<span class='warning'>Надо бы хотя бы парочку листов стекла!</span>")
 				return
 			var/dir_to_set = SOUTHWEST
 			if(!anchored)
-				to_chat(user, "<span class='warning'>[src] needs to be fastened to the floor first!</span>")
+				to_chat(user, "<span class='warning'>Надо бы прикрутить [src] к полу!</span>")
 				return
 			for(var/obj/structure/window/WINDOW in loc)
-				to_chat(user, "<span class='warning'>There is already a window there!</span>")
+				to_chat(user, "<span class='warning'>Здесь уже есть окно!</span>")
 				return
-			to_chat(user, "<span class='notice'>You start placing the window...</span>")
+			to_chat(user, "<span class='notice'>Начинаю ставить окно...</span>")
 			if(do_after(user,20, target = src))
 				if(!src.loc || !anchored) //Grille broken or unanchored while waiting
 					return
@@ -192,7 +188,7 @@
 				WD.setAnchored(FALSE)
 				WD.state = 0
 				ST.use(2)
-				to_chat(user, "<span class='notice'>You place [WD] on [src].</span>")
+				to_chat(user, "<span class='notice'>Ставлю [WD] на [src].</span>")
 			return
 //window placing end
 
@@ -264,7 +260,7 @@
 				var/obj/structure/cable/C = T.get_cable_node()
 				if(C)
 					playsound(src, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
-					tesla_zap(src, 3, C.newavail() * 0.01, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN | TESLA_ALLOW_DUPLICATES) //Zap for 1/100 of the amount of power. At a million watts in the grid, it will be as powerful as a tesla revolver shot.
+					tesla_zap(src, 3, C.newavail() * 0.01, ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_MOB_STUN | ZAP_ALLOW_DUPLICATES) //Zap for 1/100 of the amount of power. At a million watts in the grid, it will be as powerful as a tesla revolver shot.
 					C.add_delayedload(C.newavail() * 0.0375) // you can gain up to 3.5 via the 4x upgrades power is halved by the pole so thats 2x then 1X then .5X for 3.5x the 3 bounces shock.
 	return ..()
 
