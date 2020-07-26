@@ -1,6 +1,6 @@
 /obj/item/ammo_casing
-	name = "bullet casing"
-	desc = "A bullet casing."
+	name = "патрон"
+	desc = "Патрон или гильза от патрона? Узнаем!"
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
 	flags_1 = CONDUCT_1
@@ -22,7 +22,7 @@
 	var/harmful = TRUE //pacifism check for boolet, set to FALSE if bullet is non-lethal
 
 /obj/item/ammo_casing/spent
-	name = "spent bullet casing"
+	name = "гильза"
 	BB = null
 
 /obj/item/ammo_casing/Initialize()
@@ -44,7 +44,7 @@
 /obj/item/ammo_casing/update_icon()
 	..()
 	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
-	desc = "[initial(desc)][BB ? "" : " This one is spent."]"
+	desc = "[initial(desc)][BB ? "" : " Этот уже стрелян."]"
 
 //proc to magically refill a casing with a new projectile
 /obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).
@@ -66,9 +66,9 @@
 					continue
 			if (boolets > 0)
 				box.update_icon()
-				to_chat(user, "<span class='notice'>You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s.</span>")
+				to_chat(user, "<span class='notice'>Собираю [boolets] в [box], который теперь содержит [box.stored_ammo.len] патронов.</span>")
 			else
-				to_chat(user, "<span class='warning'>You fail to collect anything!</span>")
+				to_chat(user, "<span class='warning'>БЛЯТЬ!</span>")
 	else
 		return ..()
 

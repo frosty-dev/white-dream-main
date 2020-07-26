@@ -1,5 +1,7 @@
 /mob/dead/observer/Login()
-	..()
+	. = ..()
+	if(!. || !client)
+		return FALSE
 
 	ghost_accs = client.prefs.ghost_accs
 	ghost_others = client.prefs.ghost_others
@@ -19,5 +21,3 @@
 	update_icon(preferred_form)
 	updateghostimages()
 
-	if(fexists("code/shitcode/hule/custom_ghosts/[ckey].dmi"))
-		swap_icons()

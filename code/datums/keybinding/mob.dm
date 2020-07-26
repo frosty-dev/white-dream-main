@@ -5,7 +5,6 @@
 
 /datum/keybinding/mob/face_north
 	hotkey_keys = list("CtrlW", "CtrlNorth")
-	classic_keys = list("CtrlNorth")
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -18,7 +17,6 @@
 
 /datum/keybinding/mob/face_east
 	hotkey_keys = list("CtrlD", "CtrlEast")
-	classic_keys = list("CtrlEast")
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -31,7 +29,6 @@
 
 /datum/keybinding/mob/face_south
 	hotkey_keys = list("CtrlS", "CtrlSouth")
-	classic_keys = list("CtrlSouth")
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -43,7 +40,6 @@
 
 /datum/keybinding/mob/face_west
 	hotkey_keys = list("CtrlA", "CtrlWest")
-	classic_keys = list("CtrlWest")
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
@@ -55,7 +51,6 @@
 
 /datum/keybinding/mob/stop_pulling
 	hotkey_keys = list("H", "Delete")
-	classic_keys = list("Delete")
 	name = "stop_pulling"
 	full_name = "Stop pulling"
 	description = ""
@@ -91,8 +86,7 @@
 	return TRUE
 
 /datum/keybinding/mob/swap_hands
-	hotkey_keys = list("X")
-	classic_keys = list("Northeast") // PAGEUP
+	hotkey_keys = list("X", "Northeast") // PAGEUP
 	name = "swap_hands"
 	full_name = "Swap hands"
 	description = ""
@@ -103,8 +97,7 @@
 	return TRUE
 
 /datum/keybinding/mob/activate_inhand
-	hotkey_keys = list("Z")
-	classic_keys = list("Southeast") // PAGEDOWN
+	hotkey_keys = list("Z", "Southeast") // PAGEDOWN
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"
@@ -126,7 +119,7 @@
 	var/mob/M = user.mob
 	var/obj/item/I = M.get_active_held_item()
 	if(!I)
-		to_chat(user, "<span class='warning'>You have nothing to drop in your hand!</span>")
+		to_chat(user, "<span class='warning'>Да у меня в руке ничего и нет!</span>")
 	else
 		user.mob.dropItemToGround(I)
 	return TRUE
@@ -229,7 +222,7 @@
 	return TRUE
 
 /datum/keybinding/client/ooc
-	hotkey_keys = list("F2")
+	hotkey_keys = list("F2", "O")
 	name = "ooc"
 	full_name = "OOC"
 	description = ""
@@ -244,7 +237,7 @@
 	ooc(message)
 
 /datum/keybinding/mob/say
-	hotkey_keys = list("F3")
+	hotkey_keys = list("F3", "T")
 	name = "say"
 	full_name = "Say"
 	description = ""
@@ -257,11 +250,14 @@
 /mob/verb/say_wrapper()
 	set name = ".Say"
 	set hidden = TRUE
+	/*
 	var/message = input("", "Say \"text\"") as null|text
 	say_verb(message)
+	*/
+	call(src, "say_verb_wrapper")()
 
 /datum/keybinding/mob/me
-	hotkey_keys = list("F4")
+	hotkey_keys = list("F4", "M")
 	name = "me"
 	full_name = "Me"
 	description = ""

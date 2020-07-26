@@ -20,8 +20,8 @@
 #define PA_CONSTRUCTION_COMPLETE   3
 
 /obj/structure/particle_accelerator
-	name = "Particle Accelerator"
-	desc = "Part of a Particle Accelerator."
+	name = "ускоритель частиц"
+	desc = "Часть ускорителя частиц."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	anchored = FALSE
@@ -40,11 +40,11 @@
 
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)
-			. += "Looks like it's not attached to the flooring."
+			. += "Похоже, он не прикреплен к полу."
 		if(PA_CONSTRUCTION_UNWIRED)
-			. += "It is missing some cables."
+			. += "Не хватает некоторых кабелей."
 		if(PA_CONSTRUCTION_PANEL_OPEN)
-			. += "The panel is open."
+			. += "Панель открыта."
 
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
@@ -67,40 +67,40 @@
 			if(W.tool_behaviour == TOOL_WRENCH && !isinspace())
 				W.play_tool_sound(src, 75)
 				anchored = TRUE
-				user.visible_message("<span class='notice'>[user.name] secures the [name] to the floor.</span>", \
-					"<span class='notice'>You secure the external bolts.</span>")
+				user.visible_message("<span class='notice'><b>[user.name]</b> прикручивает <b>[name]</b> к полу.</span>", \
+					"<span class='notice'>Прикручиваю к полу.</span>")
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
 		if(PA_CONSTRUCTION_UNWIRED)
 			if(W.tool_behaviour == TOOL_WRENCH)
 				W.play_tool_sound(src, 75)
 				anchored = FALSE
-				user.visible_message("<span class='notice'>[user.name] detaches the [name] from the floor.</span>", \
-					"<span class='notice'>You remove the external bolts.</span>")
+				user.visible_message("<span class='notice'><b>[user.name]</b> откручивает <b>[name]</b> от пола.</span>", \
+					"<span class='notice'>Откручиваю от пола.</span>")
 				construction_state = PA_CONSTRUCTION_UNSECURED
 				did_something = TRUE
 			else if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/CC = W
 				if(CC.use(1))
-					user.visible_message("<span class='notice'>[user.name] adds wires to the [name].</span>", \
-						"<span class='notice'>You add some wires.</span>")
+					user.visible_message("<span class='notice'><b>[user.name]</b> добавляет кабели в <b>[name]</b>.</span>", \
+						"<span class='notice'>Добавляю кабели.</span>")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			if(W.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
-				user.visible_message("<span class='notice'>[user.name] removes some wires from the [name].</span>", \
-					"<span class='notice'>You remove some wires.</span>")
+				user.visible_message("<span class='notice'><b>[user.name]</b> удаляет кабели из <b>[name]</b>.</span>", \
+					"<span class='notice'>Убираю кабели.</span>")
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("<span class='notice'>[user.name] closes the [name]'s access panel.</span>", \
-					"<span class='notice'>You close the access panel.</span>")
+				user.visible_message("<span class='notice'><b>[user.name]</b> закрывает крышку <b>[name]</b>.</span>", \
+					"<span class='notice'>Закрываю панель.</span>")
 				construction_state = PA_CONSTRUCTION_COMPLETE
 				did_something = TRUE
 		if(PA_CONSTRUCTION_COMPLETE)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("<span class='notice'>[user.name] opens the [name]'s access panel.</span>", \
-					"<span class='notice'>You open the access panel.</span>")
+				user.visible_message("<span class='notice'><b>[user.name]</b> открывает крышку <b>[name]</b>.</span>", \
+					"<span class='notice'>Открываю панель.</span>")
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
 				did_something = TRUE
 
@@ -125,7 +125,7 @@
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
-/obj/structure/particle_accelerator/update_icon()
+/obj/structure/particle_accelerator/update_icon_state()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"
@@ -153,21 +153,21 @@
 
 
 /obj/structure/particle_accelerator/end_cap
-	name = "Alpha Particle Generation Array"
-	desc = "This is where Alpha particles are generated from \[REDACTED\]."
+	name = "массив генерации альфа-частиц"
+	desc = "Это где альфа-частицы генерируются из \[REDACTED\]."
 	icon_state = "end_cap"
 	reference = "end_cap"
 
 /obj/structure/particle_accelerator/power_box
-	name = "Particle Focusing EM Lens"
-	desc = "This uses electromagnetic waves to focus the Alpha particles."
+	name = "ЭМ объектив с фокусировкой частиц"
+	desc = "Это использует электромагнитные волны, чтобы сфокусировать альфа-частицы."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "power_box"
 	reference = "power_box"
 
 /obj/structure/particle_accelerator/fuel_chamber
-	name = "EM Acceleration Chamber"
-	desc = "This is where the Alpha particles are accelerated to <b><i>radical speeds</i></b>."
+	name = "ЭМ ускоряющая камера"
+	desc = "Это где альфа-частицы ускоряются до <b><i>радикальных скоростей</i></b>."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "fuel_chamber"
 	reference = "fuel_chamber"

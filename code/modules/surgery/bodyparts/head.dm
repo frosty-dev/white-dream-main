@@ -1,6 +1,6 @@
 /obj/item/bodypart/head
-	name = BODY_ZONE_HEAD
-	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
+	name = "голова"
+	desc = "Круглая. Можно в футбик погонять."
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
@@ -13,6 +13,9 @@
 	px_y = -8
 	stam_damage_coeff = 1
 	max_stamina_damage = 100
+	wound_resistance = 10
+	specific_locations = list("левой брови", "скулах", "шее", "горле", "линии подбородка", "лице")
+	scars_covered_by_clothes = FALSE
 
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/obj/item/organ/brain/brain = null //The brain organ
@@ -65,29 +68,29 @@
 	. = ..()
 	if(status == BODYPART_ORGANIC)
 		if(!brain)
-			. += "<span class='info'>The brain has been removed from [src].</span>"
+			. += "<span class='info'>Здесь нет мозга.</span>"
 		else if(brain.suicided || brainmob?.suiciding)
-			. += "<span class='info'>There's a pretty dumb expression on [real_name]'s face; they must have really hated life. There is no hope of recovery.</span>"
-		else if(brain.brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD)
-			. += "<span class='info'>It seems to be leaking some kind of... clear fluid? The brain inside must be in pretty bad shape... There is no coming back from that.</span>"
+			. += "<span class='info'>Странная гримасса на лице [real_name]; похоже эта голова и правда не любила свою жизнь. Это можно выбросить.</span>"
+		else if(brainmob?.health <= HEALTH_THRESHOLD_DEAD)
+			. += "<span class='info'>Из этой штуки что-то... вытекает? Похоже мозгу внутри придали неестественную форму.</span>"
 		else if(brainmob)
 			if(brainmob.get_ghost(FALSE, TRUE))
-				. += "<span class='info'>Its muscles are still twitching slightly... It still seems to have a bit of life left to it.</span>"
+				. += "<span class='info'>Эта штука немного шевелится... Похоже внутрии неё что-то очень хочет жить.</span>"
 			else
-				. += "<span class='info'>It seems seems particularly lifeless. Perhaps there'll be a chance for them later.</span>"
+				. += "<span class='info'>Эта штука неподвижна. Возможно есть шанс сделать из этого что-то полезное.</span>"
 		else if(brain?.decoy_override)
-			. += "<span class='info'>It seems particularly lifeless. Perhaps there'll be a chance for them later.</span>"
+			. += "<span class='info'>Эта штука неподвижна. Возможно есть шанс сделать из этого что-то полезное.</span>"
 		else
-			. += "<span class='info'>It seems completely devoid of life.</span>"
+			. += "<span class='info'>Эта штука неподвижна.</span>"
 
 		if(!eyes)
-			. += "<span class='info'>[real_name]'s eyes appear to have been removed.</span>"
+			. += "<span class='info'>Глаза [real_name] отсутствуют.</span>"
 
 		if(!ears)
-			. += "<span class='info'>[real_name]'s ears appear to have been removed.</span>"
+			. += "<span class='info'>Уши [real_name] отсутствуют.</span>"
 
 		if(!tongue)
-			. += "<span class='info'>[real_name]'s tongue appears to have been removed.</span>"
+			. += "<span class='info'>Язык [real_name] отсутствует.</span>"
 
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
@@ -102,14 +105,14 @@
 	for(var/obj/item/I in src)
 		if(I == brain)
 			if(user)
-				user.visible_message("<span class='warning'>[user] saws [src] open and pulls out a brain!</span>", "<span class='notice'>You saw [src] open and pull out a brain.</span>")
+				user.visible_message("<span class='warning'>[user] распиливает [src] и вырывает мозг!</span>", "<span class='notice'>Распиливаю [src] и вырываю оттуда мозг.</span>")
 			if(brainmob)
 				brainmob.container = null
 				brainmob.forceMove(brain)
 				brain.brainmob = brainmob
 				brainmob = null
 			if(violent_removal && prob(rand(80, 100))) //ghetto surgery can damage the brain.
-				to_chat(user, "<span class='warning'>[brain] was damaged in the process!</span>")
+				to_chat(user, "<span class='warning'>[brain] был повреждён в процессе!</span>")
 				brain.setOrganDamage(brain.maxHealth)
 			brain.forceMove(T)
 			brain = null
@@ -147,6 +150,8 @@
 			if(S.hair_color)
 				if(S.hair_color == "mutcolor")
 					facial_hair_color = H.dna.features["mcolor"]
+				else if(hair_color == "fixedmutcolor")
+					facial_hair_color = "#[S.fixed_mut_color]"
 				else
 					facial_hair_color = S.hair_color
 			else
@@ -162,6 +167,8 @@
 			if(S.hair_color)
 				if(S.hair_color == "mutcolor")
 					hair_color = H.dna.features["mcolor"]
+				else if(hair_color == "fixedmutcolor")
+					hair_color = "#[S.fixed_mut_color]"
 				else
 					hair_color = S.hair_color
 			else

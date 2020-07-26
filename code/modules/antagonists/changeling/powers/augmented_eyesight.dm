@@ -2,9 +2,9 @@
 //Possible todo: make a custom message for directing a penlight/flashlight at the eyes - not sure what would display though.
 
 /datum/action/changeling/augmented_eyesight
-	name = "Augmented Eyesight"
-	desc = "Creates more light sensing rods in our eyes, allowing our vision to penetrate most blocking objects. Protects our vision from flashes while inactive."
-	helptext = "Grants us x-ray vision or flash protection. We will become a lot more vulnerable to flash-based devices while x-ray vision is active."
+	name = "Расширенное зрение"
+	desc = "Создает больше светочувствительных стержней в наших глазах, позволяя нашему зрению проникать через большинство твёрдых объектов. Защищает наше зрение от вспышек, когда неактивен."
+	helptext = "Дает нам рентгеновское зрение или защиту от вспышек. Мы станем намного более уязвимыми для устройств на основе вспышки, когда рентгеновское зрение активно."
 	button_icon_state = "augmented_eyesight"
 	chemical_cost = 0
 	dna_cost = 2 //Would be 1 without thermal vision
@@ -15,9 +15,9 @@
 	var/obj/item/organ/eyes/E = user.getorganslot(ORGAN_SLOT_EYES)
 	if (E)
 		E.flash_protect = FLASH_PROTECTION_WELDER //Adjust the user's eyes' flash protection
-		to_chat(user, "We adjust our eyes to protect them from bright lights.")
+		to_chat(user, "Мы настраиваем наши глаза, чтобы защитить их от яркого света.")
 	else
-		to_chat(user, "We can't adjust our eyes if we don't have any!")
+		to_chat(user, "Мы не можем настроить наши глаза, если у нас их нет!")
 
 /datum/action/changeling/augmented_eyesight/sting_action(mob/living/carbon/user)
 	if(!istype(user))
@@ -28,16 +28,16 @@
 		if(!active)
 			E.sight_flags |= SEE_MOBS | SEE_OBJS | SEE_TURFS //Add sight flags to the user's eyes
 			E.flash_protect = FLASH_PROTECTION_SENSITIVE //Adjust the user's eyes' flash protection
-			to_chat(user, "We adjust our eyes to sense prey through walls.")
+			to_chat(user, "Мы настраиваем наши глаза, чтобы чувствовать добычу сквозь стены.")
 			active = TRUE //Defined in code/modules/spells/spell.dm
 		else
 			E.sight_flags ^= SEE_MOBS | SEE_OBJS | SEE_TURFS //Remove sight flags from the user's eyes
 			E.flash_protect = FLASH_PROTECTION_WELDER //Adjust the user's eyes' flash protection
-			to_chat(user, "We adjust our eyes to protect them from bright lights.")
+			to_chat(user, "Мы настраиваем наши глаза, чтобы защитить их от яркого света.")
 			active = FALSE
 		user.update_sight()
 	else
-		to_chat(user, "We can't adjust our eyes if we don't have any!")
+		to_chat(user, "Мы не можем настроить наши глаза, если у нас их нет!")
 	return 1
 
 

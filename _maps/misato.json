@@ -1,0 +1,11 @@
+{
+    "map_name": "Misato",
+    "map_path": "map_files/Misato",
+    "map_file": ["Misato.dmm"],
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_box"
+    }
+}

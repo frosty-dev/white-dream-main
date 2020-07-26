@@ -193,7 +193,9 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	if(spam_flag == 0)
 		if(ishuman(C))
 			C.stuttering = 20
-			C.adjustEarDamage(0, 5) //far less damage than the H.O.N.K.
+			var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
+			if (ears && !HAS_TRAIT_FROM(C, TRAIT_DEAF, CLOTHING_TRAIT))
+				ears.adjustEarDamage(0, 5) //far less damage than the H.O.N.K.
 			C.Jitter(50)
 			C.Paralyze(60)
 			var/mob/living/carbon/human/H = C
@@ -210,8 +212,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 			log_combat(src,C,"honked")
 
-			C.visible_message("<span class='danger'>[src] has honked [C]!</span>",\
-					"<span class='userdanger'>[src] has honked you!</span>")
+			C.visible_message("<span class='danger'>[src] honks [C]!</span>",\
+					"<span class='userdanger'>[src] honks you!</span>")
 		else
 			C.stuttering = 20
 			C.Paralyze(80)
@@ -313,7 +315,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 				oldtarget_name = C.name
 				bike_horn()
 				speak("Honk!")
-				visible_message("<b>[src]</b> starts chasing [C.name]!")
+				visible_message("<b>[capitalize(src)]</b> starts chasing [C.name]!")
 				mode = BOT_HUNT
 				INVOKE_ASYNC(src, .proc/handle_automated_action)
 				break

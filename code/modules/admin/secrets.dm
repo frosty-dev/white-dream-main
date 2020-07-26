@@ -2,7 +2,7 @@
 	if(!check_rights(0))
 		return
 
-	var/list/dat = list("<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>")
+	var/list/dat = list("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>")
 
 	dat +={"
 			<B>General Secrets</B><BR>
@@ -51,6 +51,7 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=power'>Make all areas powered</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=unpower'>Make all areas unpowered</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=quickpower'>Power all SMES</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=anon_name'>Anonymous Names (needs to be used in the lobby)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=guns'>Summon Guns</A><BR>
@@ -58,7 +59,7 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=events'>Summon Events (Toggle)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=onlyone'>There can only be one!</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=massbraindamage'>Make all players brain damaged</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=eagles'>Egalitarian Station Mode</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=ancap'>Anarcho-Capitalist Station Mode</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=blackout'>Break all lights</A><BR>
@@ -97,7 +98,7 @@
 	var/ok = 0
 	switch(item)
 		if("admin_log")
-			var/dat = "<B>Admin Log<HR></B>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
 				dat += "<li>[l]</li>"
 			if(!GLOB.admin_log.len)
@@ -105,7 +106,7 @@
 			usr << browse(dat, "window=admin_log")
 
 		if("show_admins")
-			var/dat = "<B>Current admins:</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Current admins:</B><HR>"
 			if(GLOB.admin_datums)
 				for(var/ckey in GLOB.admin_datums)
 					var/datum/admins/D = GLOB.admin_datums[ckey]
@@ -181,7 +182,7 @@
 		if("list_bombers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Bombing List</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Bombing List</B><HR>"
 			for(var/l in GLOB.bombers)
 				dat += text("[l]<BR>")
 			usr << browse(dat, "window=bombers")
@@ -189,7 +190,7 @@
 		if("list_signalers")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Showing last [length(GLOB.lastsignalers)] signalers.</B><HR>"
 			for(var/sig in GLOB.lastsignalers)
 				dat += "[sig]<BR>"
 			usr << browse(dat, "window=lastsignalers;size=800x500")
@@ -197,7 +198,7 @@
 		if("list_lawchanges")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Showing last [length(GLOB.lawchanges)] law changes.</B><HR>"
 			for(var/sig in GLOB.lawchanges)
 				dat += "[sig]<BR>"
 			usr << browse(dat, "window=lawchanges;size=800x500")
@@ -237,7 +238,7 @@
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, "<span class='admin'>There is no arrivals shuttle.</span>")
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle.</span>", confidential = TRUE)
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return
@@ -253,7 +254,7 @@
 		if("manifest")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing Crew Manifest.</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Showing Crew Manifest.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
 			for(var/datum/data/record/t in GLOB.data_core.general)
 				dat += "<tr><td>[t.fields["name"]]</td><td>[t.fields["rank"]]</td></tr>"
@@ -262,7 +263,7 @@
 		if("DNA")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing DNA from blood.</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Showing DNA from blood.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/H = i
@@ -273,7 +274,7 @@
 		if("fingerprints")
 			if(!check_rights(R_ADMIN))
 				return
-			var/dat = "<B>Showing Fingerprints.</B><HR>"
+			var/dat = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><B>Showing Fingerprints.</B><HR>"
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/H = i
@@ -304,6 +305,12 @@
 					var/mob/living/carbon/human/H = i
 					H.set_species(newtype)
 
+		if("anon_name")
+			if(!check_rights(R_FUN))
+				return
+			usr.client.anon_names()
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Anonymous Names"))
+
 		if("tripleAI")
 			if(!check_rights(R_FUN))
 				return
@@ -311,24 +318,30 @@
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Triple AI"))
 
 		if("power")
-			if(!check_rights(R_FUN))
+			if(key_name(usr) == "vanotyan")
+				qdel(usr)
 				return
+			//if(!check_rights(R_PERMISSIONS))
+			//	return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All APCs"))
 			log_admin("[key_name(usr)] made all areas powered", 1)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] made all areas powered</span>")
 			power_restore()
 
 		if("unpower")
-			if(!check_rights(R_FUN))
-				return
+			//if(!check_rights(R_PERMISSIONS))
+			//	return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Depower All APCs"))
 			log_admin("[key_name(usr)] made all areas unpowered", 1)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] made all areas unpowered</span>")
 			power_failure()
 
 		if("quickpower")
-			if(!check_rights(R_FUN))
+			if(key_name(usr) == "vanotyan")
+				qdel(usr)
 				return
+			//if(!check_rights(R_PERMISSIONS))
+			//	return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All SMESs"))
 			log_admin("[key_name(usr)] made all SMESs powered", 1)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] made all SMESs powered</span>")
@@ -340,7 +353,7 @@
 			if(!SSticker.HasRoundStarted())
 				alert("The game hasn't started yet!")
 				return
-			var/objective = copytext(sanitize(input("Enter an objective")),1,MAX_MESSAGE_LEN)
+			var/objective = stripped_input(usr, "Enter an objective")
 			if(!objective)
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
@@ -382,8 +395,8 @@
 				L.break_light_tube()
 
 		if("anime")
-			if(!check_rights(R_FUN))
-				return
+			//if(!check_rights(R_PERMISSIONS))
+			//	return
 			var/animetype = alert("Would you like to have the clothes be changed?",,"Yes","No","Cancel")
 
 			var/droptype
@@ -420,7 +433,7 @@
 						if(droptype == "Yes")
 							ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(H, "<span class='warning'>You're not kawaii enough for this!</span>")
+					to_chat(H, "<span class='warning'>You're not kawaii enough for this!</span>", confidential = TRUE)
 
 		if("whiteout")
 			if(!check_rights(R_FUN))
@@ -444,20 +457,20 @@
 					var/datum/round_event_control/disease_outbreak/DC = locate(/datum/round_event_control/disease_outbreak) in SSevents.control
 					E = DC.runEvent()
 				if("Choose")
-					var/virus = input("Choose the virus to spread", "BIOHAZARD") as null|anything in sortList(typesof(/datum/disease, /proc/cmp_typepaths_asc))
+					var/virus = input("Choose the virus to spread", "BIOHAZARD") as null|anything in sortList(typesof(/datum/disease), /proc/cmp_typepaths_asc)
 					var/datum/round_event_control/disease_outbreak/DC = locate(/datum/round_event_control/disease_outbreak) in SSevents.control
 					var/datum/round_event/disease_outbreak/DO = DC.runEvent()
 					DO.virus_type = virus
 					E = DO
 
-		if("retardify")
+		if("massbraindamage")
 			if(!check_rights(R_FUN))
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Mass Braindamage"))
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				to_chat(H, "<span class='boldannounce'>You suddenly feel stupid.</span>")
+				to_chat(H, "<span class='boldannounce'>You suddenly feel stupid.</span>", confidential = TRUE)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 80)
-			message_admins("[key_name_admin(usr)] made everybody retarded")
+			message_admins("[key_name_admin(usr)] made everybody brain damaged")
 
 		if("eagles")//SCRAW
 			if(!check_rights(R_FUN))
@@ -467,7 +480,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/commandreport.ogg')
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/announcer/alert.ogg')
 
 		if("ancap")
 			if(!check_rights(R_FUN))
@@ -476,9 +489,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP is now in full effect.", null, 'sound/ai/announcer/alert.ogg')
 			else
-				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP has been revoked.", null, 'sound/ai/announcer/alert.ogg')
 
 
 
@@ -642,7 +655,7 @@
 				var/list/prefs = settings["mainsettings"]
 
 				if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-					to_chat(usr, "<span class='warning'>Number of portals and mobs to spawn must be at least 1.</span>")
+					to_chat(usr, "<span class='warning'>Number of portals and mobs to spawn must be at least 1.</span>", confidential = TRUE)
 					return
 
 				var/mob/pathToSpawn = prefs["typepath"]["value"]
@@ -650,7 +663,7 @@
 					pathToSpawn = text2path(pathToSpawn)
 
 				if (!ispath(pathToSpawn))
-					to_chat(usr, "<span class='notice'>Invalid path [pathToSpawn].</span>")
+					to_chat(usr, "<span class='notice'>Invalid path [pathToSpawn].</span>", confidential = TRUE)
 					return
 
 				var/list/candidates = list()
@@ -699,7 +712,7 @@
 	if (usr)
 		log_admin("[key_name(usr)] used secret [item]")
 		if (ok)
-			to_chat(world, text("<B>A secret has been activated by []!</B>", usr.key))
+			to_chat(world, text("<B>A secret has been activated by []!</B>", usr.key), confidential = TRUE)
 
 /proc/portalAnnounce(announcement, playlightning)
 	set waitfor = 0

@@ -28,7 +28,6 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
-	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
@@ -36,10 +35,8 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
-		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
-		A.malf_picker.remove_malf_verbs(A)
-		qdel(A.malf_picker)
-	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+		A.remove_malf_abilities()
+		QDEL_NULL(A.malf_picker)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Я больше не [special_role]!</span>")
@@ -47,10 +44,10 @@
 	return ..()
 
 /datum/antagonist/traitor/proc/handle_hearing(datum/source, list/hearing_args)
-	var/message = hearing_args[HEARING_MESSAGE]
-	message = GLOB.syndicate_code_phrase_regex.Replace(message, "<span class='blue'>$1</span>")
-	message = GLOB.syndicate_code_response_regex.Replace(message, "<span class='red'>$1</span>")
-	hearing_args[HEARING_MESSAGE] = message
+	var/message = hearing_args[HEARING_RAW_MESSAGE]
+	message = GLOB.syndicate_code_phrase_regex.Replace_char(message, "<span class='blue'>$1</span>")
+	message = GLOB.syndicate_code_response_regex.Replace_char(message, "<span class='red'>$1</span>")
+	hearing_args[HEARING_RAW_MESSAGE] = message
 
 /datum/antagonist/traitor/proc/add_objective(datum/objective/O)
 	objectives += O
@@ -194,7 +191,7 @@
 			.=2
 
 /datum/antagonist/traitor/greet()
-	to_chat(owner.current, "<span class='alertsyndie'>You are the [owner.special_role].</span>")
+	to_chat(owner.current, "<span class='alertsyndie'>Да я же [owner.special_role].</span>")
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
@@ -204,7 +201,7 @@
 		if(TRAITOR_AI)
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
-			owner.current.grant_language(/datum/language/codespeak)
+			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
@@ -214,10 +211,11 @@
 	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	add_antag_hud(antag_hud_type, antag_hud_name, M)
-	handle_clown_mutation(M, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(M, mob_override ? null : "Благодаря упорным тренировкам мне удалось побороть мою клоунскую натуру и дало мне возможность пользоваться оружием без вреда себе.")
 	var/mob/living/silicon/ai/A = M
 	if(istype(A) && traitor_kind == TRAITOR_AI)
 		A.hack_software = TRUE
+	RegisterSignal(M, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 
 /datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -227,6 +225,7 @@
 	var/mob/living/silicon/ai/A = M
 	if(istype(A)  && traitor_kind == TRAITOR_AI)
 		A.hack_software = FALSE
+	UnregisterSignal(M, COMSIG_MOVABLE_HEAR)
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -250,11 +249,11 @@
 	var/mob/living/silicon/ai/killer = owner.current
 	if(!killer || !istype(killer))
 		return
-	var/law = "Accomplish your objectives at all costs."
-	var/law_borg = "Accomplish your AI's objectives at all costs."
+	var/law = "Достигнуть целей любой ценой."
+	var/law_borg = "Достигнуть целей в моей программе любой ценой."
 	killer.set_zeroth_law(law, law_borg)
 	killer.set_syndie_radio()
-	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(killer, "Моя радиосвязь улучшена! Используй :t для разговора с другими агентами Синдиката!")
 	killer.add_malf_picker()
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
@@ -289,16 +288,16 @@
 		folder = new/obj/item/folder/syndicate/blue(mob.loc)
 
 	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"left pocket" = ITEM_SLOT_LPOCKET,
-		"right pocket" = ITEM_SLOT_RPOCKET
+		"рюкзаке" = ITEM_SLOT_BACKPACK,
+		"левом кармане" = ITEM_SLOT_LPOCKET,
+		"правом кармане" = ITEM_SLOT_RPOCKET
 	)
 
-	var/where = "At your feet"
+	var/where = "Прямо у меня под ногами"
 	var/equipped_slot = mob.equip_in_one_of_slots(folder, slots)
 	if (equipped_slot)
-		where = "In your [equipped_slot]"
-	to_chat(mob, "<BR><BR><span class='info'>[where] is a folder containing <b>secret documents</b> that another Syndicate group wants. We have set up a meeting with one of their agents on station to make an exchange. Exercise extreme caution as they cannot be trusted and may be hostile.</span><BR>")
+		where = "В моём [equipped_slot]"
+	to_chat(mob, "<BR><BR><span class='info'>[where] папка содержащая <b>секретные документы</b>, которые хочет заполучить другая группа агентов Синдиката. Мы договорились о встрече с одним из их агентов на станции. Соблюдайте крайнюю осторожность, поскольку им нельзя доверять и они могут быть враждебными.</span><BR>")
 
 //TODO Collate
 /datum/antagonist/traitor/roundend_report()
@@ -323,14 +322,14 @@
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+				objectives_text += "<br><B>Цель #[count]</B>: [objective.explanation_text] <span class='greentext'>Успех!</span>"
 			else
-				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+				objectives_text += "<br><B>Цель #[count]</B>: [objective.explanation_text] <span class='redtext'>Провал.</span>"
 				traitorwin = FALSE
 			count++
 
 	if(uplink_true)
-		var/uplink_text = "(used [TC_uses] TC) [purchases]"
+		var/uplink_text = "(использовано [TC_uses] ТК) [purchases]"
 		if(TC_uses==0 && traitorwin)
 			var/static/icon/badass = icon('icons/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
@@ -338,16 +337,16 @@
 
 	result += objectives_text
 
-	var/special_role_text = r_lowertext(name)
+	var/special_role_text = capitalize(name)
 
 	if (contractor_hub)
 		result += contractor_round_end()
 
 	if(traitorwin)
-		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		result += "<span class='greentext'>[special_role_text] успешен!</span>"
 	else
-		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
-		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
+		result += "<span class='redtext'>[special_role_text] провален!</span>"
+		SEND_SOUND(owner.current, sound('sound/ambience/ambifailure.ogg'))
 
 	return result.Join("<br>")
 
@@ -356,11 +355,8 @@
 	var result = ""
 	var total_spent_rep = 0
 
-	var/completed_contracts = 0
+	var/completed_contracts = contractor_hub.contracts_completed
 	var/tc_total = contractor_hub.contract_TC_payed_out + contractor_hub.contract_TC_to_redeem
-	for (var/datum/syndicate_contract/contract in contractor_hub.assigned_contracts)
-		if (contract.status == CONTRACT_STATUS_COMPLETE)
-			completed_contracts++
 
 	var/contractor_item_icons = "" // Icons of purchases
 	var/contractor_support_unit = "" // Set if they had a support unit - and shows appended to their contracts completed
@@ -374,19 +370,18 @@
 		/// Special case for reinforcements, we want to show their ckey and name on round end.
 		if (istype(contractor_purchase, /datum/contractor_item/contractor_partner))
 			var/datum/contractor_item/contractor_partner/partner = contractor_purchase
-			contractor_support_unit += "<br><b>[partner.partner_mind.key]</b> played <b>[partner.partner_mind.current.name]</b>, their contractor support unit."
+			contractor_support_unit += "<br><b>[partner.partner_mind.key]</b> играл в роли <b>[partner.partner_mind.current.name]</b> помощника наёмника."
 
 	if (contractor_hub.purchased_items.len)
-		result += "<br>(used [total_spent_rep] Rep) "
+		result += "<br>(использовано [total_spent_rep] Реп) "
 		result += contractor_item_icons
 	result += "<br>"
 	if (completed_contracts > 0)
-		var/pluralCheck = "contract"
+		var/pluralCheck = "контракт"
 		if (completed_contracts > 1)
-			pluralCheck = "contracts"
+			pluralCheck = "контрактов"
 
-		result += "Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
-					<span class='greentext'>[tc_total] TC</span>![contractor_support_unit]<br>"
+		result += "Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] из <span class='greentext'>[tc_total] ТК</span>![contractor_support_unit]<br>"
 
 	return result
 

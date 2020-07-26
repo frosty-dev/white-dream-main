@@ -3,25 +3,33 @@
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
+
+/turf/closed/Initialize()
+	. = ..()
+	update_air_ref()
 
 /turf/closed/AfterChange()
 	. = ..()
 	SSair.high_pressure_delta -= src
+	update_air_ref()
 
 /turf/closed/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE
 
-/turf/closed/CanPass(atom/movable/mover, turf/target)
+/turf/closed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSCLOSEDTURF))
 		return TRUE
-	return ..()
 
 /turf/closed/indestructible
 	name = "стена"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
+
+/turf/closed/indestructible/rust_heretic_act()
+	return
 
 /turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -54,15 +62,24 @@
 
 /turf/closed/indestructible/splashscreen
 	name = "White Dream"
-	icon = 'icons/blank_title.png'
-	icon_state = ""
-	layer = FLY_LAYER
+	desc = "Истерическая утопия."
+	icon = 'icons/protocol_c.dmi'
+	icon_state = "blank"
+	layer = SPLASHSCREEN_LAYER
+	plane = SPLASHSCREEN_PLANE
 	bullet_bounce_sound = null
+	maptext_height = 480
+	maptext_width = 608
+	maptext_x = 4
+	maptext_y = 8
+
+/turf/closed/indestructible/splashscreen/proc/do_cring()
+	filters += filter(type = "displace", icon = 'white/valtos/icons/cfas.png', size = 0)
+	animate(filters[1], size = 4, time = 300, loop = -1, easing = SINE_EASING)
+	animate(size = 0, y = -4, time = 300)
 
 /turf/closed/indestructible/splashscreen/New()
 	SStitle.splash_turf = src
-	if(SStitle.icon)
-		icon = SStitle.icon
 	..()
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
@@ -78,13 +95,22 @@
 	smooth = SMOOTH_TRUE
 
 /turf/closed/indestructible/syndicate
+	name = "пластитановая стена"
+	desc = "Зловещая стена со пластитановым покрытием."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "map-shuttle"
 	smooth = SMOOTH_MORE
+	canSmoothWith = list(/turf/closed/indestructible/syndicate, /turf/closed/wall/mineral/plastitanium/interior)
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium"
+
+/turf/closed/indestructible/riveted/plastinum
+	name = "plastinum wall"
+	desc = "A luxurious wall made out of a plasma-platinum alloy. Effectively impervious to conventional methods of destruction."
+	icon = 'icons/turf/walls/plastinum_wall.dmi'
+	icon_state = "shuttle"
 
 /turf/closed/indestructible/abductor
 	icon_state = "alien1"
@@ -142,6 +168,15 @@
 	desc = "Чрезвычайно плотно заполненные ледяные и скальные покровы, выкованные за годы сильного холода."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock"
+
+/turf/closed/indestructible/rock/snow/ice/ore
+	icon = 'icons/turf/walls/icerock_wall.dmi'
+	icon_state = "icerock"
+	smooth = SMOOTH_MORE|SMOOTH_BORDER
+	canSmoothWith = list (/turf/closed)
+	pixel_x = -4
+	pixel_y = -4
+
 
 /turf/closed/indestructible/paper
 	name = "толстая бумажная стена"

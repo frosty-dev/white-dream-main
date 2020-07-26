@@ -2,7 +2,8 @@
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
 	icon_state = "energy_katana"
-	item_state = "energy_katana"
+	inhand_icon_state = "energy_katana"
+	worn_icon_state = "energy_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 40
@@ -101,5 +102,5 @@
 /datum/action/innate/dash/ninja
 	current_charges = 3
 	max_charges = 3
-	charge_rate = 30
+	charge_rate = 150
 	recharge_sound = null

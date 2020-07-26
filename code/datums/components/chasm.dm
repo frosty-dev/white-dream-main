@@ -81,7 +81,7 @@
 			if(istype(H.belt, /obj/item/wormhole_jaunter))
 				var/obj/item/wormhole_jaunter/J = H.belt
 				//To freak out any bystanders
-				H.visible_message("<span class='boldwarning'>[H] falls into [parent]!</span>")
+				H.visible_message("<span class='boldwarning'><b>[H]</b> падает в <b>[parent]</b>!</span>")
 				J.chasm_react(H)
 				return FALSE
 	return TRUE
@@ -95,8 +95,8 @@
 
 	if(T)
 		// send to the turf below
-		AM.visible_message("<span class='boldwarning'>[AM] falls into [parent]!</span>", "<span class='userdanger'>[fall_message]</span>")
-		T.visible_message("<span class='boldwarning'>[AM] falls from above!</span>")
+		AM.visible_message("<span class='boldwarning'><b>[AM]</b> падает в [parent]!</span>", "<span class='userdanger'>[fall_message]</span>")
+		T.visible_message("<span class='boldwarning'><b>[AM]</b> падает сверху!</span>")
 		AM.forceMove(T)
 		if(isliving(AM))
 			var/mob/living/L = AM
@@ -106,12 +106,13 @@
 
 	else
 		// send to oblivion
-		AM.visible_message("<span class='boldwarning'>[AM] falls into [parent]!</span>", "<span class='userdanger'>[oblivion_message]</span>")
+		AM.visible_message("<span class='boldwarning'><b>[AM]</b> спотыкается и падает в <b>[parent]</b>!</span>", "<span class='userdanger'>[oblivion_message]</span>")
 		if (isliving(AM))
 			var/mob/living/L = AM
 			L.notransform = TRUE
 			L.Stun(200)
 			L.resting = TRUE
+			inc_metabalance(L, METACOIN_CHASM_REWARD, reason="<b>АААААААААААААААААААААААААААААААААААААААААААА!!!</b>")
 
 		var/oldtransform = AM.transform
 		var/oldcolor = AM.color

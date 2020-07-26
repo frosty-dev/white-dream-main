@@ -29,11 +29,13 @@ BONUS
 	symptom_delay_min = 30
 	symptom_delay_max = 50
 	var/infective = FALSE
-	threshold_desc = "<b>Resistance 3:</b> Host will drop small items when shitting.<br>\
-					  <b>Resistance 10:</b> Occasionally causes shitting fits that stun the host.<br>\
-					  <b>Stage Speed 6:</b> Increases shitting frequency.<br>\
-					  <b>If Airborne:</b> Shitting will infect bystanders.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Resistance 3" = "Host will drop small items when shitting.",
+		"Resistance 10" = "Occasionally causes shitting fits that stun the host.",
+		"Stage Speed 6" = "Increases shitting frequency.",
+		"If Airborne" = "Shitting will infect bystanders.",
+		"Stealth 4" = "The symptom remains hidden until active."
+	)
 
 /datum/symptom/poo/Start(datum/disease/advance/A)
 	if(!..())

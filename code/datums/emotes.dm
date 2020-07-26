@@ -104,7 +104,7 @@
 /datum/emote/proc/select_message_type(mob/user, intentional)
 	. = message
 	if(!muzzle_ignore && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
-		return "makes a [pick("strong ", "weak ", "")]noise."
+		return "издаёт [pick("сильный ", "слабый ", "")]звук."
 	if(user.mind && user.mind.miming && message_mime)
 		. = message_mime
 	if(isalienadult(user) && message_alien)
@@ -135,11 +135,11 @@
 				return FALSE
 			switch(user.stat)
 				if(SOFT_CRIT)
-					to_chat(user, "<span class='warning'>You cannot [key] while in a critical condition!</span>")
+					to_chat(user, "<span class='warning'>Не могу сделать [key] в критическом состоянии!</span>")
 				if(UNCONSCIOUS)
-					to_chat(user, "<span class='warning'>You cannot [key] while unconscious!</span>")
+					to_chat(user, "<span class='warning'>Не могу сделать [key] без сознания!</span>")
 				if(DEAD)
-					to_chat(user, "<span class='warning'>You cannot [key] while dead!</span>")
+					to_chat(user, "<span class='warning'>Не могу сделать [key] в мёртвом состоянии!</span>")
 			return FALSE
 		if(restraint_check)
 			if(isliving(user))
@@ -147,12 +147,12 @@
 				if(L.IsParalyzed() || L.IsStun())
 					if(!intentional)
 						return FALSE
-					to_chat(user, "<span class='warning'>You cannot [key] while stunned!</span>")
+					to_chat(user, "<span class='warning'>Не могу сделать [key]. Меня оглушили!</span>")
 					return FALSE
 		if(restraint_check && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, "<span class='warning'>You cannot [key] while restrained!</span>")
+			to_chat(user, "<span class='warning'>Не могу сделать [key] в наручниках!</span>")
 			return FALSE
 
 	if(isliving(user))

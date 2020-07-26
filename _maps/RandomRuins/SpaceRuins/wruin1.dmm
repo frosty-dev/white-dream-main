@@ -11,11 +11,6 @@
 "ad" = (
 /turf/closed/wall/partyhard,
 /area/ruin/space/has_grav/telepadovo)
-"ae" = (
-/turf/open/floor/partyhard/steel{
-	icon_state = "mm-1"
-	},
-/area/ruin/space/has_grav/telepadovo)
 "af" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
@@ -107,7 +102,6 @@
 /area/ruin/space/has_grav/telepadovo)
 "ar" = (
 /obj/machinery/computer/telescience{
-	icon_state = "computer";
 	dir = 8
 	},
 /turf/open/floor/partyhard/steel{
@@ -121,7 +115,6 @@
 /area/ruin/space/has_grav/telepadovo)
 "at" = (
 /obj/machinery/computer/camera_advanced/syndie{
-	icon_state = "computer";
 	dir = 8
 	},
 /turf/open/floor/partyhard/steel{
@@ -142,7 +135,6 @@
 "aw" = (
 /obj/item/flashlight,
 /obj/structure/closet/cabinet,
-/obj/item/pda/syndicate,
 /obj/item/radio,
 /obj/item/crowbar/red,
 /turf/open/floor/partyhard/steel{
@@ -166,7 +158,6 @@
 /area/ruin/space/has_grav/telepadovo)
 "aA" = (
 /obj/machinery/sleeper/syndie/fullupgrade{
-	icon_state = "sleeper_s";
 	dir = 8
 	},
 /turf/open/floor/partyhard/steel{
@@ -178,7 +169,10 @@
 	dir = 4
 	},
 /obj/effect/mob_spawn/human/syndicate{
-	icon_state = "sleeper_s";
+	desc = "Там кто-то есть. И он смотрит на меня не очень мило.";
+	short_desc = "Я телепадовец";
+	flavour_text = "Я заведующий этой космоостановкой. В мои обязанности входит переправка прибывающих агентов на станцию.";
+	important_info = "И мне нельзя покидать это место, если только ему совсем не придут кранты.";
 	dir = 8
 	},
 /turf/open/floor/partyhard/steel{
@@ -220,7 +214,6 @@
 /area/ruin/space/has_grav/telepadovo)
 "aH" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
 	dir = 4
 	},
 /turf/open/floor/partyhard/steel{
@@ -228,7 +221,8 @@
 	},
 /area/ruin/space/has_grav/telepadovo)
 "aI" = (
-/obj/machinery/dna_scannernew,
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/melee/baton/loaded/german,
 /turf/open/floor/partyhard/steel{
 	icon_state = "mm-1"
 	},
@@ -242,10 +236,6 @@
 	},
 /area/ruin/space/has_grav/telepadovo)
 "aK" = (
-/obj/machinery/computer/prototype_cloning{
-	icon_state = "computer";
-	dir = 8
-	},
 /turf/open/floor/partyhard/steel{
 	icon_state = "mm-1"
 	},
@@ -254,12 +244,6 @@
 /obj/structure/chair/comfy/black,
 /turf/open/floor/partyhard/steel{
 	icon_state = "st-2"
-	},
-/area/ruin/space/has_grav/telepadovo)
-"aM" = (
-/obj/machinery/clonepod/experimental,
-/turf/open/floor/partyhard/steel{
-	icon_state = "mm-1"
 	},
 /area/ruin/space/has_grav/telepadovo)
 "aN" = (
@@ -318,7 +302,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
 	dir = 4
 	},
 /turf/open/floor/partyhard/steel{
@@ -354,12 +337,6 @@
 	icon_state = "st-2"
 	},
 /area/ruin/space/has_grav/telepadovo)
-"aZ" = (
-/obj/structure/table/wood/fancy/royalblack,
-/turf/open/floor/partyhard/steel{
-	icon_state = "st-2"
-	},
-/area/ruin/space/has_grav/telepadovo)
 "ba" = (
 /obj/structure/chair{
 	dir = 8
@@ -374,7 +351,6 @@
 	},
 /obj/machinery/airalarm/syndicate{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -23
 	},
 /turf/open/floor/partyhard/steel{
@@ -486,7 +462,6 @@
 /obj/machinery/door/airlock/external,
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	icon_state = "airlock_cyclelink_helper";
 	dir = 1
 	},
 /turf/open/floor/partyhard/steel{
@@ -519,6 +494,13 @@
 /area/ruin/space/has_grav/telepadovo)
 "bu" = (
 /obj/machinery/ntnet_relay,
+/turf/open/floor/partyhard/steel{
+	icon_state = "mm-1"
+	},
+/area/ruin/space/has_grav/telepadovo)
+"iP" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/restraints/handcuffs/cable/zipties,
 /turf/open/floor/partyhard/steel{
 	icon_state = "mm-1"
 	},
@@ -651,8 +633,8 @@ aa
 ab
 ad
 be
-ae
-ae
+aK
+aK
 bn
 bo
 bp
@@ -678,7 +660,7 @@ ab
 ab
 ad
 bf
-ae
+aK
 bk
 ad
 ad
@@ -705,7 +687,7 @@ ab
 ab
 ad
 bg
-ae
+aK
 bk
 ad
 ab
@@ -732,7 +714,7 @@ ad
 ad
 ad
 bh
-ae
+aK
 bl
 ad
 ab
@@ -755,11 +737,11 @@ ad
 aD
 aE
 aC
-ae
-ae
+aK
+aK
 aC
-ae
-ae
+aK
+aK
 bk
 ad
 ab
@@ -777,7 +759,7 @@ ak
 an
 as
 ax
-ae
+aK
 au
 aE
 aE
@@ -785,8 +767,8 @@ ad
 aN
 aV
 ad
-ae
-ae
+aK
+aK
 bm
 ad
 ab
@@ -799,12 +781,12 @@ aa
 ab
 ab
 ad
-ae
+aK
 al
 ao
 ap
 ay
-ae
+aK
 ad
 aE
 aJ
@@ -812,8 +794,8 @@ ad
 aO
 aW
 au
-ae
-ae
+aK
+aK
 ad
 ad
 ab
@@ -831,7 +813,7 @@ al
 ap
 ap
 ay
-ae
+aK
 aC
 aE
 aE
@@ -858,7 +840,7 @@ al
 aq
 ap
 ay
-ae
+aK
 aC
 aE
 aE
@@ -885,7 +867,7 @@ al
 ap
 ap
 ay
-ae
+aK
 ad
 aF
 aE
@@ -912,7 +894,7 @@ am
 ar
 at
 az
-ae
+aK
 au
 aE
 aE
@@ -935,11 +917,11 @@ ab
 ab
 ad
 aj
-ae
-ae
-ae
-ae
-ae
+aK
+aK
+aK
+aK
+aK
 ad
 aG
 aE
@@ -972,7 +954,7 @@ aE
 aE
 aE
 aT
-aZ
+aY
 bd
 ad
 ab
@@ -1023,8 +1005,8 @@ aA
 aB
 ad
 aI
-aK
-aM
+iP
+iP
 ad
 ad
 ad

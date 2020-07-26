@@ -215,7 +215,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_cone_waffle" //default for admin-spawned cones, href_list["cone"] should overwrite this all the time
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	tastes = list("cream" = 2, "waffle" = 1)
+	tastes = list("пломбир" = 2, "вафля" = 1)
 	var/ice_creamed = 0
 	var/cone_type
 	bitesize = 4
@@ -288,20 +288,19 @@
 	qdel(src)
 
 /obj/machinery/icecream_vat/AltClick(mob/living/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	. = ..()
+	if(!can_interact(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
 	replace_beaker(user)
 
 /obj/machinery/icecream_vat/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+	if(!user)
+		return FALSE
 	if(beaker)
-		beaker.forceMove(drop_location())
-		if(user && Adjacent(user) && !issiliconoradminghost(user))
-			user.put_in_hands(beaker)
+		user.put_in_hands(beaker)
+		beaker = null
 	if(new_beaker)
 		beaker = new_beaker
-	else
-		beaker = null
-		updateDialog()
 	return TRUE
 
 #undef ICECREAM_VANILLA

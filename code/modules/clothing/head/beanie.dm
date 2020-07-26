@@ -7,7 +7,7 @@
 	name = "белая шапочка"
 	desc = "Стильная шапочка. Идеальный зимний аксессуар для тех, кто ценит моду, и для тех, кто просто не может справиться с холодным ветерком на голове."
 	icon_state = "beanie" //Default white
-	custom_price = 10
+	custom_price = 60
 
 /obj/item/clothing/head/beanie/black
 	name = "чёрная шапочка"

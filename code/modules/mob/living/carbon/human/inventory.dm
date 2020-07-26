@@ -1,5 +1,5 @@
-/mob/living/carbon/human/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	return dna.species.can_equip(I, slot, disable_warning, src, bypass_equip_delay_self)
+/mob/living/carbon/human/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, swap = FALSE)
+	return dna.species.can_equip(I, slot, disable_warning, src, bypass_equip_delay_self, swap)
 
 // Return the item currently in the slot ID
 /mob/living/carbon/human/get_item_by_slot(slot_id)
@@ -79,23 +79,32 @@
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 // Initial is used to indicate whether or not this is the initial equipment (job datums etc) or just a player doing it
-/mob/living/carbon/human/equip_to_slot(obj/item/I, slot, initial = FALSE)
+/mob/living/carbon/human/equip_to_slot(obj/item/I, slot, initial = FALSE, redraw_mob = FALSE, swap = FALSE)
 	if(!..()) //a check failed or the item has already found its slot
 		return
 
+	var/current_equip
 	var/not_handled = FALSE //Added in case we make this type path deeper one day
 	switch(slot)
 		if(ITEM_SLOT_BELT)
+			if (belt && swap)
+				current_equip = belt
 			belt = I
 			update_inv_belt()
 		if(ITEM_SLOT_ID)
+			if (wear_id && swap)
+				current_equip = wear_id
 			wear_id = I
 			sec_hud_set_ID()
 			update_inv_wear_id()
 		if(ITEM_SLOT_EARS)
+			if (ears && swap)
+				current_equip = ears
 			ears = I
 			update_inv_ears()
 		if(ITEM_SLOT_EYES)
+			if (glasses && swap)
+				current_equip = glasses
 			glasses = I
 			var/obj/item/clothing/glasses/G = I
 			if(G.glass_colour_type)
@@ -109,12 +118,18 @@
 				update_sight()
 			update_inv_glasses()
 		if(ITEM_SLOT_GLOVES)
+			if (gloves && swap)
+				current_equip = gloves
 			gloves = I
 			update_inv_gloves()
 		if(ITEM_SLOT_FEET)
+			if (shoes && swap)
+				current_equip = shoes
 			shoes = I
 			update_inv_shoes()
 		if(ITEM_SLOT_OCLOTHING)
+			if (wear_suit && swap)
+				current_equip = wear_suit
 			wear_suit = I
 			if(I.flags_inv & HIDEJUMPSUIT)
 				update_inv_w_uniform()
@@ -123,6 +138,8 @@
 				update_action_buttons_icon() //certain action buttons will no longer be usable.
 			update_inv_wear_suit()
 		if(ITEM_SLOT_ICLOTHING)
+			if (w_uniform && swap)
+				current_equip = w_uniform
 			w_uniform = I
 			update_suit_sensors()
 			update_inv_w_uniform()
@@ -133,10 +150,15 @@
 			r_store = I
 			update_inv_pockets()
 		if(ITEM_SLOT_SUITSTORE)
+			if (s_store && swap)
+				current_equip = s_store
 			s_store = I
 			update_inv_s_store()
 		else
 			to_chat(src, "<span class='danger'>You are trying to equip this item to an unsupported inventory slot. Report this to a coder!</span>")
+
+	if (current_equip)
+		put_in_active_hand(current_equip)
 
 	//Item is handled and in slot, valid to call callback, for this proc should always be true
 	if(!not_handled)
@@ -284,7 +306,7 @@
 	var/obj/item/equipped_back = get_item_by_slot(ITEM_SLOT_BACK)
 	if(!equipped_back) // We also let you equip a backpack like this
 		if(!thing)
-			to_chat(src, "<span class='warning'>You have no backpack to take something out of!</span>")
+			to_chat(src, "<span class='warning'>Сумки то нет, что снимать блять?!</span>")
 			return
 		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BACK))
 			update_inv_hands()
@@ -293,21 +315,21 @@
 		if(!thing)
 			equipped_back.attack_hand(src)
 		else
-			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
 	if(thing) // put thing in backpack
 		if(!SEND_SIGNAL(equipped_back, COMSIG_TRY_STORAGE_INSERT, thing, src))
-			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
 	if(!equipped_back.contents.len) // nothing to take out
-		to_chat(src, "<span class='warning'>There's nothing in your backpack to take out!</span>")
+		to_chat(src, "<span class='warning'>Сумка пуста!</span>")
 		return
 	var/obj/item/stored = equipped_back.contents[equipped_back.contents.len]
 	if(!stored || stored.on_found(src))
 		return
 	stored.attack_hand(src) // take out thing from backpack
 	return
-	
+
 /mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt
 	if(incapacitated())
 		return
@@ -315,7 +337,7 @@
 	var/obj/item/equipped_belt = get_item_by_slot(ITEM_SLOT_BELT)
 	if(!equipped_belt) // We also let you equip a belt like this
 		if(!thing)
-			to_chat(src, "<span class='warning'>You have no belt to take something out of!</span>")
+			to_chat(src, "<span class='warning'>Пояса то нет!</span>")
 			return
 		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BELT))
 			update_inv_hands()
@@ -324,14 +346,14 @@
 		if(!thing)
 			equipped_belt.attack_hand(src)
 		else
-			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
 	if(thing) // put thing in belt
 		if(!SEND_SIGNAL(equipped_belt, COMSIG_TRY_STORAGE_INSERT, thing, src))
-			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
 	if(!equipped_belt.contents.len) // nothing to take out
-		to_chat(src, "<span class='warning'>There's nothing in your belt to take out!</span>")
+		to_chat(src, "<span class='warning'>Пояс пуст!</span>")
 		return
 	var/obj/item/stored = equipped_belt.contents[equipped_belt.contents.len]
 	if(!stored || stored.on_found(src))

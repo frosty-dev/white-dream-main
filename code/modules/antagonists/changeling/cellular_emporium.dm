@@ -2,7 +2,7 @@
 // The place where changelings go to buy their biological weaponry.
 
 /datum/cellular_emporium
-	var/name = "cellular emporium"
+	var/name = "сотовый эмпориум"
 	var/datum/antagonist/changeling/changeling
 
 /datum/cellular_emporium/New(my_changeling)
@@ -16,7 +16,7 @@
 /datum/cellular_emporium/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "cellular_emporium", name, 900, 480, master_ui, state)
+		ui = new(user, src, ui_key, "CellularEmporium", name, 900, 480, master_ui, state)
 		ui.open()
 
 /datum/cellular_emporium/ui_data(mob/user)
@@ -69,7 +69,7 @@
 			changeling.purchase_power(sting_name)
 
 /datum/action/innate/cellular_emporium
-	name = "Cellular Emporium"
+	name = "Сотовый Эмпориум"
 	icon_icon = 'icons/obj/drinks.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"

@@ -4,22 +4,28 @@
 	name = "шапочка ЦентКома"
 	icon_state = "centcom"
 	desc = "Как же заебись быть императором."
-	item_state = "that"
+	inhand_icon_state = "that"
 	flags_inv = 0
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 80
+
+/obj/item/clothing/head/spacepolice
+	name = "space police cap"
+	desc = "A blue cap for patrolling the daily beat."
+	icon_state = "policecap_families"
+	inhand_icon_state = "policecap_families"
 
 /obj/item/clothing/head/powdered_wig
 	name = "напудренный парик"
 	desc = "Пахнет стариной."
 	icon_state = "pwig"
-	item_state = "pwig"
+	inhand_icon_state = "pwig"
 
 /obj/item/clothing/head/that
 	name = "цилиндр"
 	desc = "Кругленький."
 	icon_state = "tophat"
-	item_state = "that"
+	inhand_icon_state = "that"
 	dog_fashion = /datum/dog_fashion/head
 	throwforce = 1
 
@@ -27,7 +33,7 @@
 	name = "полосатый красный цилиндр"
 	desc = "Пахнет как свежие дырки от бублика. / <i>Il sent comme des trous de beignets frais.</i>"
 	icon_state = "canada"
-	item_state = "canada"
+	inhand_icon_state = "canada"
 
 /obj/item/clothing/head/redcoat
 	name = "красная шапочка"
@@ -63,7 +69,7 @@
 /obj/item/clothing/head/syndicatefake
 	name = "чёрная реплика космошлема"
 	icon_state = "syndicate-helm-black-red"
-	item_state = "syndicate-helm-black-red"
+	inhand_icon_state = "syndicate-helm-black-red"
 	desc = "Пластиковая копия космического шлема агента Синдиката. В этом вы будете выглядеть как настоящий убийственный агент Синдиката! Это игрушка, она не предназначена для использования в космосе!"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -72,7 +78,7 @@
 	name = "бильярдный шлем"
 	desc = "Большой, безликий белый шар, предназначенный для ношения на голове. Как ты вообще видишь из этого?"
 	icon_state = "cueball"
-	item_state="cueball"
+	inhand_icon_state="cueball"
 	clothing_flags = SNUG_FIT
 	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -81,7 +87,7 @@
 	name = "Голова Снеговика"
 	desc = "Шар из белого пенопласта. Так празднично."
 	icon_state = "snowman_h"
-	item_state = "snowman_h"
+	inhand_icon_state = "snowman_h"
 	clothing_flags = SNUG_FIT
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -90,26 +96,26 @@
 	name = "шляпа правосудия"
 	desc = "Борись за то, что праведно!"
 	icon_state = "justicered"
-	item_state = "justicered"
+	inhand_icon_state = "justicered"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEHAIR|HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
-	item_state = "justiceblue"
+	inhand_icon_state = "justiceblue"
 
 /obj/item/clothing/head/justice/yellow
 	icon_state = "justiceyellow"
-	item_state = "justiceyellow"
+	inhand_icon_state = "justiceyellow"
 
 /obj/item/clothing/head/justice/green
 	icon_state = "justicegreen"
-	item_state = "justicegreen"
+	inhand_icon_state = "justicegreen"
 
 /obj/item/clothing/head/justice/pink
 	icon_state = "justicepink"
-	item_state = "justicepink"
+	inhand_icon_state = "justicepink"
 
 /obj/item/clothing/head/rabbitears
 	name = "кроличьи уши"
@@ -123,7 +129,7 @@
 	name = "пиратская шляпа"
 	desc = "Ярр."
 	icon_state = "pirate"
-	item_state = "pirate"
+	inhand_icon_state = "pirate"
 	dog_fashion = /datum/dog_fashion/head/pirate
 
 /obj/item/clothing/head/pirate
@@ -134,7 +140,7 @@
 	if(!ishuman(user))
 		return
 	if(slot == ITEM_SLOT_HEAD)
-		user.grant_language(/datum/language/piratespeak/)
+		user.grant_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "<span class='boldnotice'>Я вспоминаю как говорить, как пират!</span>")
 
 /obj/item/clothing/head/pirate/dropped(mob/user)
@@ -143,39 +149,40 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		user.remove_language(/datum/language/piratespeak/)
+		user.remove_language(/datum/language/piratespeak/, TRUE, TRUE, LANGUAGE_HAT)
 		to_chat(user, "<span class='boldnotice'>Я забываю как говорить, как пират.</span>")
 
 /obj/item/clothing/head/pirate/captain
+	name = "шляпа капитана пиратов"
 	icon_state = "hgpiratecap"
-	item_state = "hgpiratecap"
+	inhand_icon_state = "hgpiratecap"
 
 /obj/item/clothing/head/bandana
 	name = "пиратская бандана"
 	desc = "Ярр."
 	icon_state = "bandana"
-	item_state = "bandana"
+	inhand_icon_state = "bandana"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/bowler
 	name = "котелок"
 	desc = "Джентльмен, элита на борту!"
 	icon_state = "bowler"
-	item_state = "bowler"
+	inhand_icon_state = "bowler"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/witchwig
 	name = "ведьмин парик"
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
-	item_state = "witch"
+	inhand_icon_state = "witch"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/chicken
 	name = "куриная голова"
 	desc = "Кудах!"
 	icon_state = "chickenhead"
-	item_state = "chickensuit"
+	inhand_icon_state = "chickensuit"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
@@ -183,7 +190,7 @@
 	name = "голова гриффона"
 	desc = "Почему не «голова орла»? Кто знает."
 	icon_state = "griffinhat"
-	item_state = "griffinhat"
+	inhand_icon_state = "griffinhat"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
@@ -191,12 +198,12 @@
 	name = "медвежья шкура"
 	desc = "Чётко."
 	icon_state = "bearpelt"
-	item_state = "bearpelt"
+	inhand_icon_state = "bearpelt"
 
 /obj/item/clothing/head/xenos
 	name = "голова ксеноморфа"
 	icon_state = "xenos"
-	item_state = "xenos_helm"
+	inhand_icon_state = "xenos_helm"
 	desc = "Шлем из хитиновой шкуры ксеноса."
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -205,9 +212,19 @@
 /obj/item/clothing/head/fedora
 	name = "федора"
 	icon_state = "fedora"
-	item_state = "fedora"
+	inhand_icon_state = "fedora"
 	desc = "Действительно классная шляпа, если ты бандит. Действительно хромая шляпа, если ты нет."
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora
+
+/obj/item/clothing/head/fedora/white
+	name = "white fedora"
+	icon_state = "fedora_white"
+	inhand_icon_state = "fedora_white"
+
+/obj/item/clothing/head/fedora/beige
+	name = "beige fedora"
+	icon_state = "fedora_beige"
+	inhand_icon_state = "fedora_beige"
 
 /obj/item/clothing/head/fedora/suicide_act(mob/user)
 	if(user.gender == FEMALE)
@@ -222,7 +239,7 @@
 /obj/item/clothing/head/sombrero
 	name = "сомбреро"
 	icon_state = "sombrero"
-	item_state = "sombrero"
+	inhand_icon_state = "sombrero"
 	desc = "Вы можете практически попробовать фиесту."
 	flags_inv = HIDEHAIR
 
@@ -231,7 +248,7 @@
 /obj/item/clothing/head/sombrero/green
 	name = "зелёный сомбреро"
 	icon_state = "greensombrero"
-	item_state = "greensombrero"
+	inhand_icon_state = "greensombrero"
 	desc = "Изящен, как танцующий кактус."
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 	dog_fashion = null
@@ -239,7 +256,7 @@
 /obj/item/clothing/head/sombrero/shamebrero
 	name = "позорбреро"
 	icon_state = "shamebrero"
-	item_state = "shamebrero"
+	inhand_icon_state = "shamebrero"
 	desc = "Как только он надет, он никогда не снимется."
 	dog_fashion = null
 
@@ -251,13 +268,14 @@
 	name = "кепка"
 	desc = "Рабочая мужская шапка."
 	icon_state = "flat_cap"
-	item_state = "detective"
+	inhand_icon_state = "detective"
 
 /obj/item/clothing/head/hunter
 	name = "шляпа охотника за головами"
 	desc = "Никто не собирается обманывать палача в моем городе."
-	icon_state = "hunter"
-	item_state = "hunter"
+	icon_state = "cowboy"
+	worn_icon_state = "hunter"
+	inhand_icon_state = "hunter"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -266,7 +284,7 @@
 	name = "предупреждающий конус"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cone"
-	item_state = "cone"
+	inhand_icon_state = "cone"
 	force = 1
 	throwforce = 3
 	throw_speed = 2
@@ -280,7 +298,7 @@
 	name = "шляпа санты"
 	desc = "В первый день рождества мой работодатель подарил мне это!"
 	icon_state = "santahatnorm"
-	item_state = "that"
+	inhand_icon_state = "that"
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	dog_fashion = /datum/dog_fashion/head/santa
@@ -290,6 +308,9 @@
 	desc = "Шапка с колокольчиками, чтобы добавить веселья в костюм."
 	icon_state = "jester_hat"
 	dynamic_hair_suffix = ""
+
+/obj/item/clothing/head/jester/alt
+	icon_state = "jester2"
 
 /obj/item/clothing/head/rice_hat
 	name = "рисовая шапка"
@@ -348,13 +369,7 @@
 	name = "фараоновая шляпа"
 	desc = "Ходи как египтянин."
 	icon_state = "pharoah_hat"
-	item_state = "pharoah_hat"
-
-/obj/item/clothing/head/jester/alt
-	name = "шапка шута"
-	desc = "Шапка с колокольчиками, чтобы добавить веселья в костюм."
-	icon_state = "jester_hat"
-	dynamic_hair_suffix = ""
+	inhand_icon_state = "pharoah_hat"
 
 /obj/item/clothing/head/nemes
 	name = "головной убор Немеса"
@@ -433,9 +448,9 @@
 	name = "парик святой девы"
 	desc = "Очищайтесь стильно!"
 	flags_inv = HIDEHAIR //bald
-	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "shrine_wig"
-	item_state = "shrine_wig"
+	inhand_icon_state = "shrine_wig"
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	dynamic_hair_suffix = ""
@@ -444,4 +459,17 @@
 	name = "шляпа интерна"
 	desc = "Ужасная смесь из шапочки и мягкого колпачка зеленого цвета ЦентКома. Вы должны быть в отчаянии от власти над своими сверстниками, чтобы согласиться носить это."
 	icon_state = "intern_hat"
-	item_state = "intern_hat"
+	inhand_icon_state = "intern_hat"
+
+/obj/item/clothing/head/coordinator
+	name = "coordinator cap"
+	desc = "A cap for a party ooordinator, stylish!."
+	icon_state = "capcap"
+	inhand_icon_state = "that"
+	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+
+/obj/item/clothing/head/jackbros
+	name = "frosty hat"
+	desc = "Hee-ho!"
+	icon_state = "JackFrostHat"
+	inhand_icon_state = "JackFrostHat"

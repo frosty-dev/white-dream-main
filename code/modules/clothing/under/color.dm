@@ -2,7 +2,7 @@
 	desc = "Стандартный цветной комбинезон. Разнообразие - это часть жизни!"
 	dying_key = DYE_REGISTRY_UNDER
 	icon = 'icons/obj/clothing/under/color.dmi'
-	mob_overlay_icon = 'icons/mob/clothing/under/color.dmi'
+	worn_icon = 'icons/mob/clothing/under/color.dmi'
 
 /obj/item/clothing/under/color/jumpskirt
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -38,13 +38,13 @@
 /obj/item/clothing/under/color/black
 	name = "чёрный комбинезон"
 	icon_state = "black"
-	item_state = "bl_suit"
+	inhand_icon_state = "bl_suit"
 	resistance_flags = NONE
 
 /obj/item/clothing/under/color/jumpskirt/black
 	name = "чёрный юбкомбезон"
 	icon_state = "black_skirt"
-	item_state = "bl_suit"
+	inhand_icon_state = "bl_suit"
 
 /obj/item/clothing/under/color/black/ghost
 	item_flags = DROPDEL
@@ -57,13 +57,13 @@
 	name = "серый комбинезон"
 	desc = "Вкусный серый комбинезон, напоминающий о старых добрых временах."
 	icon_state = "grey"
-	item_state = "gy_suit"
+	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/color/jumpskirt/grey
 	name = "серый юбкомбезон"
 	desc = "Вкусная серая юбкомбезка, напоминающая старые добрые времена."
 	icon_state = "grey_skirt"
-	item_state = "gy_suit"
+	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/color/grey/glorf
 	name = "древний комбинезон"
@@ -76,156 +76,156 @@
 /obj/item/clothing/under/color/blue
 	name = "синий комбинезон"
 	icon_state = "blue"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 /obj/item/clothing/under/color/jumpskirt/blue
 	name = "синий юбкомбезон"
 	icon_state = "blue_skirt"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 /obj/item/clothing/under/color/green
 	name = "зелёный комбинезон"
 	icon_state = "green"
-	item_state = "g_suit"
+	inhand_icon_state = "g_suit"
 
 /obj/item/clothing/under/color/jumpskirt/green
 	name = "зелёный юбкомбезон"
 	icon_state = "green_skirt"
-	item_state = "g_suit"
+	inhand_icon_state = "g_suit"
 
 /obj/item/clothing/under/color/orange
 	name = "оранжевый комбинезон"
 	desc = "Не носите это рядом с параноидальными офицерами."
 	icon_state = "orange"
-	item_state = "o_suit"
+	inhand_icon_state = "o_suit"
 
 /obj/item/clothing/under/color/jumpskirt/orange
 	name = "оранжевый юбкомбезон"
 	icon_state = "orange_skirt"
-	item_state = "o_suit"
+	inhand_icon_state = "o_suit"
 
 /obj/item/clothing/under/color/pink
 	name = "розовый комбинезон"
 	icon_state = "pink"
-	desc = "Just looking at this makes you feel <i>fabulous</i>."
-	item_state = "p_suit"
+	desc = "Достаточно посмотреть на этот костюм и почувствовать себя <i>неповторимым</i> парнем на деревне."
+	inhand_icon_state = "p_suit"
 
 /obj/item/clothing/under/color/jumpskirt/pink
 	name = "розовый юбкомбезон"
 	icon_state = "pink_skirt"
-	item_state = "p_suit"
+	inhand_icon_state = "p_suit"
 
 /obj/item/clothing/under/color/red
 	name = "красный комбинезон"
 	icon_state = "red"
-	item_state = "r_suit"
+	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/color/jumpskirt/red
 	name = "красный юбкомбезон"
 	icon_state = "red_skirt"
-	item_state = "r_suit"
+	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/color/white
 	name = "белый комбинезон"
 	icon_state = "white"
-	item_state = "w_suit"
+	inhand_icon_state = "w_suit"
 
 /obj/item/clothing/under/color/jumpskirt/white
 	name = "белый юбкомбезон"
 	icon_state = "white_skirt"
-	item_state = "w_suit"
+	inhand_icon_state = "w_suit"
 
 /obj/item/clothing/under/color/yellow
 	name = "желтый комбинезон"
 	icon_state = "yellow"
-	item_state = "y_suit"
+	inhand_icon_state = "y_suit"
 
 /obj/item/clothing/under/color/jumpskirt/yellow
 	name = "желтый юбкомбезон"
 	icon_state = "yellow_skirt"
-	item_state = "y_suit"
+	inhand_icon_state = "y_suit"
 
 /obj/item/clothing/under/color/darkblue
 	name = "тёмно-синий комбинезон"
 	icon_state = "darkblue"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 /obj/item/clothing/under/color/jumpskirt/darkblue
 	name = "тёмно-синий юбкомбезон"
 	icon_state = "darkblue_skirt"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 /obj/item/clothing/under/color/teal
 	name = "сине-зеленый комбинезон"
 	icon_state = "teal"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 /obj/item/clothing/under/color/jumpskirt/teal
 	name = "сине-зеленый юбкомбезон"
 	icon_state = "teal_skirt"
-	item_state = "b_suit"
+	inhand_icon_state = "b_suit"
 
 
 /obj/item/clothing/under/color/lightpurple
 	name = "фиолетовый комбинезон"
 	icon_state = "lightpurple"
-	item_state = "p_suit"
+	inhand_icon_state = "p_suit"
 
 /obj/item/clothing/under/color/jumpskirt/lightpurple
 	name = "светло-фиолетовый юбкомбезон"
 	icon_state = "lightpurple_skirt"
-	item_state = "p_suit"
+	inhand_icon_state = "p_suit"
 
 /obj/item/clothing/under/color/darkgreen
 	name = "тёмно-зелёный комбинезон"
 	icon_state = "darkgreen"
-	item_state = "g_suit"
+	inhand_icon_state = "g_suit"
 
 /obj/item/clothing/under/color/jumpskirt/darkgreen
 	name = "тёмно-зелёный юбкомбезон"
 	icon_state = "darkgreen_skirt"
-	item_state = "g_suit"
+	inhand_icon_state = "g_suit"
 
 /obj/item/clothing/under/color/lightbrown
 	name = "светло-коричневый комбинезон"
 	icon_state = "lightbrown"
-	item_state = "lb_suit"
+	inhand_icon_state = "lb_suit"
 
 /obj/item/clothing/under/color/jumpskirt/lightbrown
 	name = "светло-коричневый юбкомбезон"
 	icon_state = "lightbrown_skirt"
-	item_state = "lb_suit"
+	inhand_icon_state = "lb_suit"
 
 /obj/item/clothing/under/color/brown
 	name = "коричневый комбинезон"
 	icon_state = "brown"
-	item_state = "lb_suit"
+	inhand_icon_state = "lb_suit"
 
 /obj/item/clothing/under/color/jumpskirt/brown
 	name = "коричневый юбкомбезон"
 	icon_state = "brown_skirt"
-	item_state = "lb_suit"
+	inhand_icon_state = "lb_suit"
 
 /obj/item/clothing/under/color/maroon
 	name = "бордовый комбинезон"
 	icon_state = "maroon"
-	item_state = "r_suit"
+	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/color/jumpskirt/maroon
 	name = "бордовый юбкомбезон"
 	icon_state = "maroon_skirt"
-	item_state = "r_suit"
+	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/color/rainbow
 	name = "радужный комбинезон"
 	desc = "Многоцветный комбинезон!"
 	icon_state = "rainbow"
-	item_state = "rainbow"
+	inhand_icon_state = "rainbow"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/color/jumpskirt/rainbow
 	name = "радужный юбкомбезон"
 	desc = "Многоцветный комбинезон!"
 	icon_state = "rainbow_skirt"
-	item_state = "rainbow"
+	inhand_icon_state = "rainbow"
 	can_adjust = FALSE

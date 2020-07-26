@@ -1,9 +1,9 @@
 /obj/item/export_scanner
-	name = "export scanner"
-	desc = "A device used to check objects against Nanotrasen exports and bounty database."
+	name = "сканер экспорта"
+	desc = "Устройство, используемое для проверки объектов по экспорту и в базе данных НТ."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "export_scanner"
-	item_state = "radio"
+	inhand_icon_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_flags = NOBLUDGEON
@@ -14,7 +14,7 @@
 /obj/item/export_scanner/examine(user)
 	. = ..()
 	if(!cargo_console)
-		. += "<span class='notice'>[src] is not currently linked to a cargo console.</span>"
+		. += "<span class='notice'>[src] не подключен к консоли снабжения.</span>"
 
 /obj/item/export_scanner/afterattack(obj/O, mob/user, proximity)
 	. = ..()
@@ -25,9 +25,9 @@
 		var/obj/machinery/computer/cargo/C = O
 		if(!C.requestonly)
 			cargo_console = C
-			to_chat(user, "<span class='notice'>Scanner linked to [C].</span>")
+			to_chat(user, "<span class='notice'>Сканер подключен к [C].</span>")
 	else if(!istype(cargo_console))
-		to_chat(user, "<span class='warning'>You must link [src] to a cargo console first!</span>")
+		to_chat(user, "<span class='warning'>Вы должны подключить [src] к консоли снабжения сначала!</span>")
 	else
 		// Before you fix it:
 		// yes, checking manifests is a part of intended functionality.
@@ -38,8 +38,8 @@
 			price += ex.total_value[x]
 
 		if(price)
-			to_chat(user, "<span class='notice'>Scanned [O], value: <b>[price]</b> credits[O.contents.len ? " (contents included)" : ""].</span>")
+			to_chat(user, "<span class='notice'>Сканировано [O], цена: <b>[price]</b> кредитов[O.contents.len ? " (contents included)" : ""].</span>")
 		else
-			to_chat(user, "<span class='warning'>Scanned [O], no export value.</span>")
+			to_chat(user, "<span class='warning'>Сканировано [O], нет цены.</span>")
 		if(bounty_ship_item_and_contents(O, dry_run=TRUE))
-			to_chat(user, "<span class='notice'>Scanned item is eligible for one or more bounties.</span>")
+			to_chat(user, "<span class='notice'>Отсканированный объект является заказом ЦК.</span>")

@@ -6,7 +6,7 @@
 	species_traits = list(MUTCOLORS, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_ALWAYS_CLEAN, TRAIT_NOSLIPALL)
 	attack_verb = "шлёпает"
-	say_mod = "slurs"
+	say_mod = "хрюкает"
 	coldmod = 0.5 //snails only come out when its cold and wet
 	burnmod = 2
 	speedmod = 6
@@ -41,14 +41,14 @@
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(ITEM_SLOT_BACK)
 	if(istype(bag, /obj/item/storage/backpack/snail))
 		bag.emptyStorage()
-		C.doUnEquip(bag, TRUE, no_move = TRUE)
+		C.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
 
 /obj/item/storage/backpack/snail
 	name = "snail shell"
 	desc = "Worn by snails as armor and storage compartment."
 	icon_state = "snailshell"
-	item_state = "snailshell"
+	inhand_icon_state = "snailshell"
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)

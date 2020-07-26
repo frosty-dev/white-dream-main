@@ -126,7 +126,7 @@
 
 /mob/living/simple_animal/hostile/swarmer/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("Игра"))
 		stat("Resources:",resources)
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
@@ -138,12 +138,12 @@
 	else
 		death()
 
-/mob/living/simple_animal/hostile/swarmer/CanPass(atom/movable/O)
+/mob/living/simple_animal/hostile/swarmer/CanAllowThrough(atom/movable/O)
+	. = ..()
 	if(istype(O, /obj/projectile/beam/disabler))//Allows for swarmers to fight as a group without wasting their shots hitting each other
 		return TRUE
 	if(isswarmer(O))
 		return TRUE
-	..()
 
 ////CTRL CLICK FOR SWARMERS AND SWARMER_ACT()'S////
 /mob/living/simple_animal/hostile/swarmer/AttackingTarget()
@@ -193,7 +193,7 @@
 
 /obj/item/IntegrateAmount() //returns the amount of resources gained when eating this item
 	if(custom_materials)
-		if(custom_materials[getmaterialref(/datum/material/iron)] || custom_materials[getmaterialref(/datum/material/glass)])
+		if(custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)] || custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)])
 			return 1
 	return ..()
 
@@ -259,7 +259,8 @@
 
 /obj/machinery/camera/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	S.DisIntegrate(src)
-	toggle_cam(S, 0)
+	if(!QDELETED(S)) //If it got blown up no need to turn it off.
+		toggle_cam(S, 0)
 	return TRUE
 
 /obj/machinery/particle_accelerator/control_box/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
@@ -370,18 +371,18 @@
 	to_chat(S, "<span class='warning'>This biological resource is somehow resisting our bluespace transceiver. Aborting.</span>")
 	return FALSE
 
-/obj/machinery/droneDispenser/swarmer/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+/obj/machinery/drone_dispenser/swarmer/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, "<span class='warning'>This object is receiving unactivated swarmer shells to help us. Aborting.</span>")
 	return FALSE
 
 /obj/structure/lattice/catwalk/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	. = ..()
 	var/turf/here = get_turf(src)
 	for(var/A in here.contents)
 		var/obj/structure/cable/C = A
 		if(istype(C))
 			to_chat(S, "<span class='warning'>Disrupting the power grid would bring no benefit to us. Aborting.</span>")
 			return FALSE
+	return ..()
 
 /obj/item/deactivated_swarmer/IntegrateAmount()
 	return 50
@@ -447,8 +448,7 @@
 	new /obj/effect/temp_visual/swarmer/disintegration(get_turf(target))
 	do_attack_animation(target)
 	changeNext_move(CLICK_CD_MELEE)
-	target.ex_act(EXPLODE_LIGHT)
-
+	SSexplosions.lowobj += target
 
 /mob/living/simple_animal/hostile/swarmer/proc/DisperseTarget(mob/living/target)
 	if(target == src)
@@ -575,7 +575,7 @@
 		var/mob/living/L = AM
 		if(!istype(L, /mob/living/simple_animal/hostile/swarmer))
 			playsound(loc,'sound/effects/snap.ogg',50, TRUE, -1)
-			L.electrocute_act(0, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION)
+			L.electrocute_act(10, src, 1, flags = SHOCK_NOGLOVES|SHOCK_ILLUSION)
 			if(iscyborg(L))
 				L.Paralyze(100)
 			qdel(src)
@@ -611,8 +611,10 @@
 	icon_state = "barricade"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	max_integrity = 50
+	density = TRUE
 
-/obj/structure/swarmer/blockade/CanPass(atom/movable/O)
+/obj/structure/swarmer/blockade/CanAllowThrough(atom/movable/O)
+	. = ..()
 	if(isswarmer(O))
 		return TRUE
 	if(istype(O, /obj/projectile/beam/disabler))

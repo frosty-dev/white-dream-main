@@ -45,7 +45,6 @@ All foods are distributed among various categories. Use common sense.
 	var/eatverb
 	var/dried_type = null
 	var/dry = 0
-	var/dunkable = FALSE // for dunkable food, make true
 	var/dunk_amount = 10 // how much reagent is transferred per dunk
 	var/cooked_type = null  //for microwave cooking. path of the resulting item after microwaving
 	var/filling_color = "#FFFFFF" //color to use when added to custom food.
@@ -54,6 +53,8 @@ All foods are distributed among various categories. Use common sense.
 	var/list/bonus_reagents //the amount of reagents (usually nutriment and vitamin) added to crafted/cooked snacks, on top of the ingredients reagents.
 	var/customfoodfilling = 1 // whether it can be used as filling in custom food
 	var/list/tastes  // for example list("crisps" = 2, "salt" = 1)
+	var/value = 10	//Which export tier of value the item falls under.
+	var/silver_spawned = FALSE	//Special case used for exporting, only true if created from a silver slime to prevent cheese.
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 
@@ -87,9 +88,9 @@ All foods are distributed among various categories. Use common sense.
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(!eatverb)
-		eatverb = pick("bite","chew","nibble","gnaw","gobble","chomp")
+		eatverb = pick("кусает","чмакает","наяривает","пожирает","грызёт","втягивает")
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
-		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
+		to_chat(user, "<span class='warning'>Похоже [src] совсем закончился. Беда!</span>")
 		qdel(src)
 		return FALSE
 	if(iscarbon(M))
@@ -102,39 +103,39 @@ All foods are distributed among various categories. Use common sense.
 
 		if(M == user)								//If you're eating it yourself.
 			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
-				to_chat(M, "<span class='warning'>You don't feel like eating any more junk food at the moment!</span>")
+				to_chat(M, "<span class='warning'>Не хочу я жрать эти отбросы!</span>")
 				return FALSE
 			else if(fullness <= 50)
-				user.visible_message("<span class='notice'>[user] hungrily [eatverb]s \the [src], gobbling it down!</span>", "<span class='notice'>You hungrily [eatverb] \the [src], gobbling it down!</span>")
+				user.visible_message("<span class='notice'>[user] жадно [eatverb] [src], проглатывая кусками!</span>", "<span class='notice'>Жадно кусаю [src], проглатывая кусками!</span>")
 			else if(fullness > 50 && fullness < 150)
-				user.visible_message("<span class='notice'>[user] hungrily [eatverb]s \the [src].</span>", "<span class='notice'>You hungrily [eatverb] \the [src].</span>")
+				user.visible_message("<span class='notice'>[user] жадно [eatverb] [src].</span>", "<span class='notice'>Жадно пожираю [src].</span>")
 			else if(fullness > 150 && fullness < 500)
-				user.visible_message("<span class='notice'>[user] [eatverb]s \the [src].</span>", "<span class='notice'>You [eatverb] \the [src].</span>")
+				user.visible_message("<span class='notice'>[user] [eatverb] [src].</span>", "<span class='notice'>Кушаю [src].</span>")
 			else if(fullness > 500 && fullness < 600)
-				user.visible_message("<span class='notice'>[user] unwillingly [eatverb]s a bit of \the [src].</span>", "<span class='notice'>You unwillingly [eatverb] a bit of \the [src].</span>")
+				user.visible_message("<span class='notice'>[user] нехотя [eatverb] кусочек [src].</span>", "<span class='notice'>Нямкаю кусочек [src].</span>")
 			else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				user.visible_message("<span class='warning'>[user] cannot force any more of \the [src] to go down [user.p_their()] throat!</span>", "<span class='warning'>You cannot force any more of \the [src] to go down your throat!</span>")
+				user.visible_message("<span class='warning'>[user] не может запихнуть [src] в свою глотку!</span>", "<span class='warning'>В меня больше не лезет [src]!</span>")
 				return FALSE
 			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
 			if(!isbrain(M))		//If you're feeding it to someone else.
 				if(fullness <= (600 * (1 + M.overeatduration / 1000)))
-					M.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>", \
-										"<span class='userdanger'>[user] attempts to feed you [src].</span>")
+					M.visible_message("<span class='danger'>[user] пытает дать [M] попробовать [src].</span>", \
+									"<span class='userdanger'>[user] пытается дать мне попробовать [src].</span>")
 				else
-					M.visible_message("<span class='warning'>[user] cannot force any more of [src] down [M]'s throat!</span>", \
-										"<span class='warning'>[user] cannot force any more of [src] down your throat!</span>")
+					M.visible_message("<span class='warning'>[user] не может больше запихнуть [src] внутрь [M]!</span>", \
+									"<span class='warning'>[user] не может больше запихнуть [src] в меня!</span>")
 					return FALSE
 
 				if(!do_mob(user, M))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
-				M.visible_message("<span class='danger'>[user] forces [M] to eat [src]!</span>", \
-									"<span class='userdanger'>[user] forces you to eat [src]!</span>")
+				M.visible_message("<span class='danger'>[user] принуждает [M] скушать [src]!</span>", \
+									"<span class='userdanger'>[user] принуждает меня скушать [src]!</span>")
 
 			else
-				to_chat(user, "<span class='warning'>[M] doesn't seem to have a mouth!</span>")
+				to_chat(user, "<span class='warning'>[M] похоже не имеет рта!</span>")
 				return
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -160,11 +161,11 @@ All foods are distributed among various categories. Use common sense.
 			if (0)
 				return
 			if(1)
-				. += "[src] was bitten by someone!"
+				. += "[src] надкушено кем-то!"
 			if(2,3)
-				. += "[src] was bitten [bitecount] times!"
+				. += "[src] надкусили [bitecount] раза!"
 			else
-				. += "[src] was bitten multiple times!"
+				. += "[src] обглодали жутко!"
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage))
@@ -225,19 +226,19 @@ All foods are distributed among various categories. Use common sense.
 			!(locate(/obj/structure/table/optable) in src.loc) && \
 			!(locate(/obj/item/storage/bag/tray) in src.loc) \
 		)
-		to_chat(user, "<span class='warning'>You cannot slice [src] here! You need a table or at least a tray.</span>")
+		to_chat(user, "<span class='warning'>Не могу нарезать [src] здесь! Надо бы на стол или поднос всё это.</span>")
 		return FALSE
 
 	var/slices_lost = 0
 	if (accuracy >= IS_SHARP_ACCURATE)
 		user.visible_message( \
-			"[user] slices [src].", \
-			"<span class='notice'>You slice [src].</span>" \
+			"[user] режет [src].", \
+			"<span class='notice'>Режу [src].</span>" \
 		)
 	else
 		user.visible_message( \
-			"[user] inaccurately slices [src] with [W]!", \
-			"<span class='notice'>You inaccurately slice [src] with your [W]!</span>" \
+			"[user] криво режет [src] при помощи [W]!", \
+			"<span class='notice'>Криво режу [src] при помощи [W]!</span>" \
 		)
 		slices_lost = rand(1,min(1,round(slices_num/2)))
 
@@ -252,7 +253,7 @@ All foods are distributed among various categories. Use common sense.
 	slice.create_reagents(slice.volume)
 	reagents.trans_to(slice,reagents_per_slice)
 	if(name != initial(name))
-		slice.name = "slice of [name]"
+		slice.name = "кусочек [name]"
 	if(desc != initial(desc))
 		slice.desc = "[desc]"
 	if(foodtype != initial(foodtype))
@@ -324,30 +325,15 @@ All foods are distributed among various categories. Use common sense.
 		if(isdog(M))
 			var/mob/living/L = M
 			if(bitecount == 0 || prob(50))
-				M.emote("me", 1, "nibbles away at \the [src]")
+				M.emote("me", 1, "откусывает кусочек [src]")
 			bitecount++
 			L.taste(reagents) // why should carbons get all the fun?
 			if(bitecount >= 5)
-				var/sattisfaction_text = pick("burps from enjoyment", "yaps for more", "woofs twice", "looks at the area where \the [src] was")
+				var/sattisfaction_text = pick("отрыгивает от удовольствия", "просит ещё", "гавкает дважды", "не может найти куда пропал [src]")
 				if(sattisfaction_text)
 					M.emote("me", 1, "[sattisfaction_text]")
 				qdel(src)
 
-/obj/item/reagent_containers/food/snacks/afterattack(obj/item/reagent_containers/M, mob/user, proximity)
-	. = ..()
-	if(!dunkable || !proximity)
-		return
-	if(istype(M, /obj/item/reagent_containers/glass) || istype(M, /obj/item/reagent_containers/food/drinks))	//you can dunk dunkable snacks into beakers or drinks
-		if(!M.is_drainable())
-			to_chat(user, "<span class='warning'>[M] is unable to be dunked in!</span>")
-			return
-		if(M.reagents.trans_to(src, dunk_amount, transfered_by = user))	//if reagents were transfered, show the message
-			to_chat(user, "<span class='notice'>You dunk \the [src] into \the [M].</span>")
-			return
-		if(!M.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[M] is empty!</span>")
-		else
-			to_chat(user, "<span class='warning'>[src] is full!</span>")
 
 // //////////////////////////////////////////////Store////////////////////////////////////////
 /// All the food items that can store an item inside itself, like bread or cake.
@@ -365,9 +351,9 @@ All foods are distributed among various categories. Use common sense.
 		if(!iscarbon(user))
 			return 0
 		if(contents.len >= 20)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, "<span class='warning'>[capitalize(src.name)] переполнен.</span>")
 			return 0
-		to_chat(user, "<span class='notice'>You slip [W] inside [src].</span>")
+		to_chat(user, "<span class='notice'>Вставляю [W] внутрь [src].</span>")
 		user.transferItemToLoc(W, src)
 		add_fingerprint(user)
 		contents += W

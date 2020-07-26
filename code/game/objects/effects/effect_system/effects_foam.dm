@@ -39,12 +39,12 @@
 	if(hotspot && istype(T) && T.air)
 		qdel(hotspot)
 		var/datum/gas_mixture/G = T.air
-		var/plas_amt = min(30,G.gases[/datum/gas/plasma][MOLES]) //Absorb some plasma
-		G.gases[/datum/gas/plasma][MOLES] -= plas_amt
-		absorbed_plasma += plas_amt
-		if(G.temperature > T20C)
-			G.temperature = max(G.temperature/2,T20C)
-		G.garbage_collect()
+		if(G.get_moles(/datum/gas/plasma))
+			var/plas_amt = min(30,G.get_moles(/datum/gas/plasma)) //Absorb some plasma
+			G.adjust_moles(/datum/gas/plasma, -plas_amt)
+			absorbed_plasma += plas_amt
+		if(G.return_temperature() > T20C)
+			G.set_temperature(max(G.return_temperature()/2,T20C))
 		T.air_update_turf()
 
 /obj/effect/particle_effect/foam/firefighting/kill_foam()
@@ -142,10 +142,10 @@
 			continue
 		if(isturf(O.loc))
 			var/turf/T = O.loc
-			if(T.intact && O.level == 1) //hidden under the floor
+			if(T.intact && HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
 				continue
 		if(lifetime % reagent_divisor)
-			reagents.reaction(O, VAPOR, fraction)
+			reagents.expose(O, VAPOR, fraction)
 	var/hit = 0
 	for(var/mob/living/L in range(0,src))
 		hit += foam_mob(L)
@@ -153,7 +153,7 @@
 		lifetime++ //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 	var/T = get_turf(src)
 	if(lifetime % reagent_divisor)
-		reagents.reaction(T, VAPOR, fraction)
+		reagents.expose(T, VAPOR, fraction)
 
 	if(--amount < 0)
 		return
@@ -166,13 +166,13 @@
 		return 0
 	var/fraction = 1/initial(reagent_divisor)
 	if(lifetime % reagent_divisor)
-		reagents.reaction(L, VAPOR, fraction)
+		reagents.expose(L, VAPOR, fraction)
 	lifetime--
 	return 1
 
 /obj/effect/particle_effect/foam/proc/spread_foam()
 	var/turf/t_loc = get_turf(src)
-	for(var/turf/T in t_loc.GetAtmosAdjacentTurfs())
+	for(var/turf/T in t_loc.reachableAdjacentTurfs())
 		var/obj/effect/particle_effect/foam/foundfoam = locate() in T //Don't spread foam where there's already foam!
 		if(foundfoam)
 			continue
@@ -238,7 +238,7 @@
 
 	amount = round(sqrt(amt / 2), 1)
 	carry.copy_to(chemholder, carry.total_volume)
-	if(metaltype != 0)
+	if(metaltype)
 		metal = metaltype
 
 /datum/effect_system/foam_spread/start()
@@ -290,9 +290,6 @@
 	to_chat(user, "<span class='warning'>You hit [src] but bounce off it!</span>")
 	playsound(src.loc, 'sound/weapons/tap.ogg', 100, TRUE)
 
-/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target)
-	return !density
-
 /obj/structure/foamedmetal/iron
 	max_integrity = 50
 	icon_state = "ironfoam"
@@ -313,15 +310,13 @@
 		O.ClearWet()
 		if(O.air)
 			var/datum/gas_mixture/G = O.air
-			G.temperature = 293.15
+			G.set_temperature(293.15)
 			for(var/obj/effect/hotspot/H in O)
 				qdel(H)
-			var/list/G_gases = G.gases
-			for(var/I in G_gases)
+			for(var/I in G.get_gases())
 				if(I == /datum/gas/oxygen || I == /datum/gas/nitrogen)
 					continue
-				G_gases[I][MOLES] = 0
-			G.garbage_collect()
+				G.set_moles(I, 0)
 			O.air_update_turf()
 		for(var/obj/machinery/atmospherics/components/unary/U in O)
 			if(!U.welded)
@@ -333,10 +328,10 @@
 		for(var/obj/item/Item in O)
 			Item.extinguish()
 
-/obj/structure/foamedmetal/resin/CanPass(atom/movable/mover, turf/target)
+/obj/structure/foamedmetal/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return TRUE
-	. = ..()
 
 #undef ALUMINUM_FOAM
 #undef IRON_FOAM

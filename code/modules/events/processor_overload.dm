@@ -1,8 +1,8 @@
 /datum/round_event_control/processor_overload
 	name = "Processor Overload"
 	typepath = /datum/round_event/processor_overload
-	weight = 15
-	min_players = 20
+	weight = 55
+	min_players = 5
 
 /datum/round_event/processor_overload
 	announceWhen	= 1
@@ -34,6 +34,6 @@
 			explosion(get_turf(P), 0, 0, 2)
 			// Only a level 1 explosion actually damages the machine
 			// at all
-			P.ex_act(EXPLODE_DEVASTATE)
+			SSexplosions.highobj += P
 		else
 			P.emp_act(EMP_HEAVY)

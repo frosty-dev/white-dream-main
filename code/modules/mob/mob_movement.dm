@@ -1,7 +1,3 @@
-///Can the atom pass this mob (always true for /mob)
-/mob/CanPass(atom/movable/mover, turf/target)
-	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
-
 /**
   * If your mob is concious, drop the item in the active hand
   *
@@ -38,17 +34,17 @@
   * Move a client in a direction
   *
   * Huge proc, has a lot of functionality
-  * 
+  *
   * Mostly it will despatch to the mob that you are the owner of to actually move
   * in the physical realm
-  * 
+  *
   * Things that stop you moving as a mob:
   * * world time being less than your next move_delay
   * * not being in a mob, or that mob not having a loc
   * * missing the n and direction parameters
   * * being in remote control of an object (calls Moveobject instead)
   * * being dead (it ghosts you instead)
-  * 
+  *
   * Things that stop you moving as a mob living (why even have OO if you're just shoving it all
   * in the parent proc with istype checks right?):
   * * having incorporeal_move set (calls Process_Incorpmove() instead)
@@ -68,7 +64,7 @@
   *
   * Finally if you're pulling an object and it's dense, you are turned 180 after the move
   * (if you ask me, this should be at the top of the move so you don't dance around)
-  * 
+  *
   */
 /client/Move(n, direct)
 	if(world.time < move_delay) //do not move anything ahead of this check please
@@ -78,6 +74,7 @@
 		next_move_dir_sub = 0
 	var/old_move_delay = move_delay
 	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
+
 	if(!mob || !mob.loc)
 		return FALSE
 	if(!n || !direct)
@@ -121,6 +118,7 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 	//We are now going to move
+
 	var/add_delay = mob.cached_multiplicative_slowdown
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
@@ -175,7 +173,7 @@
   * Allows mobs to ignore density and phase through objects
   *
   * Called by client/Move()
-  * 
+  *
   * The behaviour depends on the incorporeal_move value of the mob
   *
   * * INCORPOREAL_MOVE_BASIC - forceMoved to the next tile with no stop
@@ -263,13 +261,13 @@
   * Handles mob/living movement in space (or no gravity)
   *
   * Called by /client/Move()
-  * 
+  *
   * return TRUE for movement or FALSE for none
-  * 
+  *
   * You can move in space if you have a spacewalk ability
   */
 /mob/Process_Spacemove(movement_dir = 0)
-	if(spacewalk || ..())
+	if(HAS_TRAIT(src, TRAIT_SPACEWALK) || ..())
 		return TRUE
 	var/atom/movable/backup = get_spacemove_backup()
 	if(backup)
@@ -330,9 +328,9 @@
 /mob/proc/update_gravity(has_gravity, override=FALSE)
 	var/speed_change = max(0, has_gravity - STANDARD_GRAVITY)
 	if(!speed_change)
-		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE)
+		remove_movespeed_modifier(/datum/movespeed_modifier/gravity)
 	else
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speed_change, blacklisted_movetypes=FLOATING)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/gravity, multiplicative_slowdown=speed_change)
 
 //bodypart selection verbs - Cyberboss
 //8:repeated presses toggles through head - eyes - mouth
@@ -443,7 +441,7 @@
 
 /**
   * Toggle the move intent of the mob
-  * 
+  *
   * triggers an update the move intent hud as well
   */
 /mob/proc/toggle_move_intent(mob/user)
@@ -457,32 +455,48 @@
 
 ///Moves a mob upwards in z level
 /mob/verb/up()
-	set name = "Move Upwards"
+	set name = "Выше"
 	set category = "IC"
 
+	var/turf/current_turf = get_turf(src)
+	var/turf/above_turf = SSmapping.get_turf_above(current_turf)
+
+	if(can_zFall(above_turf, 1, current_turf, DOWN)) //Will be fall down if we go up?
+		to_chat(src, "<span class='notice'>You are not Superman.<span>")
+		return
+
 	if(zMove(UP, TRUE))
-		to_chat(src, "<span class='notice'>You move upwards.</span>")
+		to_chat(src, "<span class='notice'>Поднимаюсь.</span>")
 
 ///Moves a mob down a z level
 /mob/verb/down()
-	set name = "Move Down"
+	set name = "Ниже"
 	set category = "IC"
 
 	if(zMove(DOWN, TRUE))
-		to_chat(src, "<span class='notice'>You move down.</span>")
+		to_chat(src, "<span class='notice'>Опускаюсь.</span>")
 
 ///Move a mob between z levels, if it's valid to move z's on this turf
 /mob/proc/zMove(dir, feedback = FALSE)
 	if(dir != UP && dir != DOWN)
 		return FALSE
+	if(incapacitated())
+		if(feedback)
+			to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+			return FALSE
 	var/turf/target = get_step_multiz(src, dir)
+	if(isliving(src))
+		if(!(movement_type & FLYING))
+			if(feedback)
+				to_chat(src, "<span class='warning'>Я не в состоянии летать!</span>")
+			return FALSE
 	if(!target)
 		if(feedback)
-			to_chat(src, "<span class='warning'>There's nothing in that direction!</span>")
+			to_chat(src, "<span class='warning'>ПОТОЛОК!</span>")
 		return FALSE
 	if(!canZMove(dir, target))
 		if(feedback)
-			to_chat(src, "<span class='warning'>You couldn't move there!</span>")
+			to_chat(src, "<span class='warning'>Не могу!</span>")
 		return FALSE
 	forceMove(target)
 	return TRUE

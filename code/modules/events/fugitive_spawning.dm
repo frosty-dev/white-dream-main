@@ -2,7 +2,7 @@
 	name = "Spawn Fugitives"
 	typepath = /datum/round_event/ghost_role/fugitives
 	max_occurrences = 1
-	min_players = 20
+	min_players = 10
 	earliest_start = 30 MINUTES //deadchat sink, lets not even consider it early on.
 	gamemode_blacklist = list("nuclear")
 
@@ -25,6 +25,8 @@
 	if(candidates.len >= 1) //solo refugees
 		if(prob(30))
 			possible_backstories.Add("waldo") //less common as it comes with magicks and is kind of immershun shattering
+		else //For accurate deadchat feedback
+			minimum_required = 4
 	if(candidates.len >= 4)//group refugees
 		possible_backstories.Add("prisoner", "cultist", "synth")
 	if(!possible_backstories.len)

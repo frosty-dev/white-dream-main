@@ -1,59 +1,59 @@
 /datum/bounty/item/medical/heart
-	name = "Heart"
-	description = "Commander Johnson is in critical condition after suffering yet another heart attack. Doctors say he needs a new heart fast. Ship one, pronto!"
+	name = "Сердце"
+	description = "Командир Джонсон находится в критическом состоянии после очередного сердечного приступа. Врачи говорят, что ему нужно новое сердце быстро. Отправьте один, быстро!"
 	reward = 3000
 	wanted_types = list(/obj/item/organ/heart)
 
 /datum/bounty/item/medical/lung
-	name = "Lungs"
-	description = "A recent explosion at Central Command has left multiple staff with punctured lungs. Ship spare lungs to be rewarded."
+	name = "Лёгкие"
+	description = "Недавний взрыв на ЦК оставил множество сотрудников с проколотыми легкими. Отправка запасных лёгких будет вознаграждена."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/organ/lungs)
 
 /datum/bounty/item/medical/appendix
-	name = "Appendix"
-	description = "Chef Gibb of Central Command wants to prepare a meal using a very special delicacy: an appendix. If you ship one, he'll pay."
+	name = "Аппендицит"
+	description = "Шеф-повар Гибб Центрального командования хочет приготовить еду, используя особый деликатес: аппендицит. Если вы отправите один, он вам заплатит."
 	reward = 5000 //there are no synthetic appendixes
 	wanted_types = list(/obj/item/organ/appendix)
 
 /datum/bounty/item/medical/ears
-	name = "Ears"
-	description = "Multiple staff at Station 12 have been left deaf due to unauthorized clowning. Ship them new ears."
+	name = "Уши"
+	description = "Несколько сотрудников на Станции 12 остались глухими из-за несанкционированной клоунады. Отправь им новые уши."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/organ/ears)
 
 /datum/bounty/item/medical/liver
-	name = "Livers"
-	description = "Multiple high-ranking CentCom diplomats have been hospitalized with liver failure after a recent meeting with Third Soviet Union ambassadors. Help us out, will you?"
+	name = "Печень"
+	description = "Несколько высокопоставленных дипломатов ЦК были госпитализированы с печеночной недостаточностью после недавней встречи с послами стран Третьего Советского Союза. Помоги нам, ладно?"
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/organ/liver)
 
 /datum/bounty/item/medical/eye
-	name = "Organic Eyes"
-	description = "Station 5's Research Director Willem is requesting a few pairs of non-robotic eyes. Don't ask questions, just ship them."
+	name = "Глаза"
+	description = "Директор по исследованиям станции 5 Виллем запрашивает несколько пар глаз. Не задавайте вопросы, просто отправляйте их."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/organ/eyes)
 	exclude_types = list(/obj/item/organ/eyes/robotic)
 
 /datum/bounty/item/medical/tongue
-	name = "Tongues"
-	description = "A recent attack by Mime extremists has left staff at Station 23 speechless. Ship some spare tongues."
+	name = "Язык"
+	description = "Недавнее нападение мимов экстремистов оставило персонал на Станции 23 безмолвным. Отправьте несколько запасных языков."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/organ/tongue)
 
 /datum/bounty/item/medical/lizard_tail
-	name = "Lizard Tail"
-	description = "The Wizard Federation has made off with Nanotrasen's supply of lizard tails. While CentCom is dealing with the wizards, can the station spare a tail of their own?"
+	name = "Хвост ящерицы"
+	description = "Федерация Волшебников закончила поставку для НТ хвостов ящериц. Пока ЦК ведёт переговоры с волшебниками, может ли станция пощадить свой хвост?"
 	reward = 3000
 	wanted_types = list(/obj/item/organ/tail/lizard)
 
 /datum/bounty/item/medical/cat_tail
-	name = "Cat Tail"
-	description = "Central Command has run out of heavy duty pipe cleaners. Can you ship over a cat tail to help us out?"
+	name = "Хвост кошки"
+	description = "Центральное командование исчерпало запас мощных уборщиков труб. Можете ли вы отправить хвост кошки, чтобы помочь им?"
 	reward = 3000
 	wanted_types = list(/obj/item/organ/tail/cat)

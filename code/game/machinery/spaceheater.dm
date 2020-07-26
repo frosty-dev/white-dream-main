@@ -15,7 +15,7 @@
 	circuit = /obj/item/circuitboard/machine/space_heater
 	ui_x = 400
 	ui_y = 305
-
+	use_power = NO_POWER_USE		/// We don't use area power, we always use the cell
 	var/obj/item/stock_parts/cell/cell
 	var/on = FALSE
 	var/mode = HEATER_MODE_STANDBY
@@ -66,7 +66,7 @@
 
 /obj/machinery/space_heater/update_overlays()
 	. = ..()
-	
+
 	if(panel_open)
 		. += "sheater-open"
 
@@ -87,9 +87,9 @@
 		var/datum/gas_mixture/env = L.return_air()
 
 		var/newMode = HEATER_MODE_STANDBY
-		if(setMode != HEATER_MODE_COOL && env.temperature < targetTemperature - temperatureTolerance)
+		if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
 			newMode = HEATER_MODE_HEAT
-		else if(setMode != HEATER_MODE_HEAT && env.temperature > targetTemperature + temperatureTolerance)
+		else if(setMode != HEATER_MODE_HEAT && env.return_temperature() > targetTemperature + temperatureTolerance)
 			newMode = HEATER_MODE_COOL
 
 		if(mode != newMode)
@@ -100,7 +100,7 @@
 			return
 
 		var/heat_capacity = env.heat_capacity()
-		var/requiredPower = abs(env.temperature - targetTemperature) * heat_capacity
+		var/requiredPower = abs(env.return_temperature() - targetTemperature) * heat_capacity
 		requiredPower = min(requiredPower, heatingPower)
 
 		if(requiredPower < 1)
@@ -110,7 +110,7 @@
 		if(mode == HEATER_MODE_COOL)
 			deltaTemperature *= -1
 		if(deltaTemperature)
-			env.temperature += deltaTemperature
+			env.set_temperature(env.return_temperature() + deltaTemperature)
 			air_update_turf()
 		cell.use(requiredPower / efficiency)
 	else
@@ -131,20 +131,22 @@
 	settableTemperatureRange = cap * 30
 	efficiency = (cap + 1) * 10000
 
-	targetTemperature = CLAMP(targetTemperature,
+	targetTemperature = clamp(targetTemperature,
 		max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 		settableTemperatureMedian + settableTemperatureRange)
 
 /obj/machinery/space_heater/emp_act(severity)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_CONTENTS)
+	if(machine_stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_CONTENTS)
 		return
 	if(cell)
 		cell.emp_act(severity)
 
 /obj/machinery/space_heater/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
-	if(istype(I, /obj/item/stock_parts/cell))
+	if(default_unfasten_wrench(user, I))
+		return
+	else if(istype(I, /obj/item/stock_parts/cell))
 		if(panel_open)
 			if(cell)
 				to_chat(user, "<span class='warning'>There is already a power cell inside!</span>")
@@ -172,7 +174,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "space_heater", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "SpaceHeater", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/space_heater/ui_data()
@@ -191,9 +193,9 @@
 	var/curTemp
 	if(istype(L))
 		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.temperature
+		curTemp = env.return_temperature()
 	else if(isturf(L))
-		curTemp = L.temperature
+		curTemp = L.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else
@@ -219,20 +221,11 @@
 			if(!panel_open)
 				return
 			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
-				target = input("New target temperature:", name, round(targetTemperature - T0C, 1)) as num|null
-				if(!isnull(target) && !..())
-					target += T0C
-					. = TRUE
-			else if(adjust)
-				target = targetTemperature + adjust
-				. = TRUE
-			else if(text2num(target) != null)
+			if(text2num(target) != null)
 				target= text2num(target) + T0C
 				. = TRUE
 			if(.)
-				targetTemperature = CLAMP(round(target),
+				targetTemperature = clamp(round(target),
 					max(settableTemperatureMedian - settableTemperatureRange, TCMB),
 					settableTemperatureMedian + settableTemperatureRange)
 		if("eject")

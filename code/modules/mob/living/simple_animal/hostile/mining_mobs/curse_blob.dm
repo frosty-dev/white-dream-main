@@ -15,8 +15,8 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	melee_damage_type = BURN
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "разрывает"
+	attack_verb_simple = "разрывает"
 	attack_sound = 'sound/effects/curseattack.ogg'
 	throw_message = "passes through the smokey body of"
 	obj_damage = 0
@@ -71,14 +71,14 @@
 		return
 
 //if it's not our target, we ignore it
-/mob/living/simple_animal/hostile/asteroid/curseblob/CanPass(atom/movable/mover, turf/target)
+/mob/living/simple_animal/hostile/asteroid/curseblob/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover == set_target)
 		return FALSE
 	if(istype(mover, /obj/projectile))
 		var/obj/projectile/P = mover
 		if(P.firer == set_target)
 			return FALSE
-	return TRUE
 
 #define IGNORE_PROC_IF_NOT_TARGET(X) /mob/living/simple_animal/hostile/asteroid/curseblob/##X(AM) { if (AM == set_target) return ..(); }
 

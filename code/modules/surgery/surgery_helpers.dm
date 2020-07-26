@@ -44,7 +44,7 @@
 		if(!available_surgeries.len)
 			return
 
-		var/P = input("Begin which procedure?", "Surgery", null, null) as null|anything in sortList(available_surgeries)
+		var/P = input("Какую операцию будем делать?", "Хирургия", null, null) as null|anything in sortList(available_surgeries)
 		if(P && user && user.Adjacent(M) && (I in user))
 			var/datum/surgery/S = available_surgeries[P]
 
@@ -69,12 +69,12 @@
 
 			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
-				user.visible_message("<span class='notice'>[user] drapes [I] over [M]'s [parse_zone(selected_zone)] to prepare for surgery.</span>", \
-					"<span class='notice'>You drape [I] over [M]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name].</span>")
+				user.visible_message("<span class='notice'><b>[user]</b> накладывает [I] на [parse_zone(selected_zone)] <b>[M]</b> готовя операцию.</span>", \
+					"<span class='notice'>Накладываю [I] на [parse_zone(selected_zone)] <b>[M]</b> готовя операцию \"[procedure.name]\".</span>")
 
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 			else
-				to_chat(user, "<span class='warning'>You need to expose [M]'s [parse_zone(selected_zone)] first!</span>")
+				to_chat(user, "<span class='warning'>Стоит открыть [parse_zone(selected_zone)] <b>[M]</b> для начала!</span>")
 
 	else if(!current_surgery.step_in_progress)
 		attempt_cancel_surgery(current_surgery, I, M, user)
@@ -83,27 +83,39 @@
 
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
+
 	if(S.status == 1)
 		M.surgeries -= S
-		user.visible_message("<span class='notice'>[user] removes [I] from [M]'s [parse_zone(selected_zone)].</span>", \
-			"<span class='notice'>You remove [I] from [M]'s [parse_zone(selected_zone)].</span>")
+		user.visible_message("<span class='notice'><b>[user]</b> убирает [I] с [parse_zone(selected_zone)] <b>[M]</b>.</span>", \
+			"<span class='notice'>Убираю [I] с [parse_zone(selected_zone)] <b>[M]</b>.</span>")
 		qdel(S)
-	else if(S.can_cancel)
+		return
+
+	if(S.can_cancel)
 		var/required_tool_type = TOOL_CAUTERY
 		var/obj/item/close_tool = user.get_inactive_held_item()
 		var/is_robotic = S.requires_bodypart_type == BODYPART_ROBOTIC
+
 		if(is_robotic)
 			required_tool_type = TOOL_SCREWDRIVER
-		if(close_tool?.tool_behaviour == required_tool_type || iscyborg(user))
-			if (ishuman(M))
-				var/mob/living/carbon/human/H = M
-				H.bleed_rate = max( (H.bleed_rate - 3), 0)
-			M.surgeries -= S
-			user.visible_message("<span class='notice'>[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].</span>", \
-				"<span class='notice'>You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I].</span>")
-			qdel(S)
-		else
-			to_chat(user, "<span class='warning'>You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your inactive hand to stop [M]'s surgery!</span>")
+
+		if(iscyborg(user))
+			close_tool = locate(/obj/item/cautery) in user.held_items
+			if(!close_tool)
+				to_chat(user, "<span class='warning'>Мне нужен термокаутер в другой руке для завершения хирургической процедуры над <b>[M]</b>!</span>")
+				return
+		else if(!close_tool || close_tool.tool_behaviour != required_tool_type)
+			to_chat(user, "<span class='warning'>Мне [is_robotic ? "нужна отвёртка" : "нужен термокаутер"] для завершения хирургической процедуры над <b>[M]</b>!</span>")
+			return
+
+		if(S.operated_bodypart)
+			S.operated_bodypart.generic_bleedstacks -= 5
+
+		M.surgeries -= S
+		user.visible_message("<span class='notice'><b>[user]</b> зашивает [parse_zone(selected_zone)] <b>[M]</b> используя [close_tool] и убирает [I].</span>", \
+			"<span class='notice'>Зашиваю [parse_zone(selected_zone)] <b>[M]</b> with [close_tool] и убираю [I].</span>")
+		qdel(S)
+
 
 /proc/get_location_modifier(mob/M)
 	var/turf/T = get_turf(M)

@@ -77,8 +77,6 @@
 	if (success)
 		log_game("[key_name(teleatom)] has teleported from [loc_name(curturf)] to [loc_name(destturf)]")
 		tele_play_specials(teleatom, destturf, effectout, asoundout)
-		if(ismegafauna(teleatom))
-			message_admins("[teleatom] [ADMIN_FLW(teleatom)] has teleported from [ADMIN_VERBOSEJMP(curturf)] to [ADMIN_VERBOSEJMP(destturf)].")
 
 	if(ismob(teleatom))
 		var/mob/M = teleatom
@@ -116,9 +114,8 @@
 			continue
 
 		var/datum/gas_mixture/A = F.air
-		var/list/A_gases = A.gases
 		var/trace_gases
-		for(var/id in A_gases)
+		for(var/id in A.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
 			trace_gases = TRUE
@@ -127,15 +124,15 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(!(A_gases[/datum/gas/oxygen] && A_gases[/datum/gas/oxygen][MOLES] >= 16))
+		if(A.get_moles(/datum/gas/oxygen) < 16)
 			continue
-		if(A_gases[/datum/gas/plasma])
+		if(A.get_moles(/datum/gas/plasma))
 			continue
-		if(A_gases[/datum/gas/carbon_dioxide] && A_gases[/datum/gas/carbon_dioxide][MOLES] >= 10)
+		if(A.get_moles(/datum/gas/carbon_dioxide) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure
-		if((A.temperature <= 270) || (A.temperature >= 360))
+		if((A.return_temperature() <= 270) || (A.return_temperature() >= 360))
 			continue
 		var/pressure = A.return_pressure()
 		if((pressure <= 20) || (pressure >= 550))
@@ -163,4 +160,6 @@
 	return posturfs
 
 /proc/get_teleport_turf(turf/center, precision = 0)
-	return safepick(get_teleport_turfs(center, precision))
+	var/list/turfs = get_teleport_turfs(center, precision)
+	if (length(turfs))
+		return pick(turfs)

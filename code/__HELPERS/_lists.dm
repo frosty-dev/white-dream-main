@@ -11,6 +11,7 @@
 
 #define LAZYINITLIST(L) if (!L) L = list()
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
+#define LAZYCOPY(L) (L ? L.Copy() : list() )
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
@@ -21,34 +22,48 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
+#define PEEKLIST(L) ((L.len ? L[L.len] : null))
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
-// binary search sorted insert
-// IN: Object to be inserted
-// LIST: List to insert object into
-// TYPECONT: The typepath of the contents of the list
-// COMPARE: The variable on the objects to compare
-#define BINARY_INSERT(IN, LIST, TYPECONT, COMPARE) \
-	var/__BIN_CTTL = length(LIST);\
-	if(!__BIN_CTTL) {\
-		LIST += IN;\
-	} else {\
-		var/__BIN_LEFT = 1;\
-		var/__BIN_RIGHT = __BIN_CTTL;\
-		var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
-		var/##TYPECONT/__BIN_ITEM;\
-		while(__BIN_LEFT < __BIN_RIGHT) {\
-			__BIN_ITEM = LIST[__BIN_MID];\
-			if(__BIN_ITEM.##COMPARE <= IN.##COMPARE) {\
-				__BIN_LEFT = __BIN_MID + 1;\
-			} else {\
-				__BIN_RIGHT = __BIN_MID;\
+/// Passed into BINARY_INSERT to compare keys
+#define COMPARE_KEY __BIN_LIST[__BIN_MID]
+/// Passed into BINARY_INSERT to compare values
+#define COMPARE_VALUE __BIN_LIST[__BIN_LIST[__BIN_MID]]
+
+/****
+	* Binary search sorted insert
+	* INPUT: Object to be inserted
+	* LIST: List to insert object into
+	* TYPECONT: The typepath of the contents of the list
+	* COMPARE: The object to compare against, usualy the same as INPUT
+	* COMPARISON: The variable on the objects to compare
+	*/
+#define BINARY_INSERT(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE) \
+	do {\
+		var/list/__BIN_LIST = LIST;\
+		var/__BIN_CTTL = length(__BIN_LIST);\
+		if(!__BIN_CTTL) {\
+			__BIN_LIST += INPUT;\
+		} else {\
+			var/__BIN_LEFT = 1;\
+			var/__BIN_RIGHT = __BIN_CTTL;\
+			var/__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			var/##TYPECONT/__BIN_ITEM;\
+			while(__BIN_LEFT < __BIN_RIGHT) {\
+				__BIN_ITEM = COMPTYPE;\
+				if(__BIN_ITEM.##COMPARISON <= COMPARE.##COMPARISON) {\
+					__BIN_LEFT = __BIN_MID + 1;\
+				} else {\
+					__BIN_RIGHT = __BIN_MID;\
+				};\
+				__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
 			};\
-			__BIN_MID = (__BIN_LEFT + __BIN_RIGHT) >> 1;\
+			__BIN_ITEM = COMPTYPE;\
+			__BIN_MID = __BIN_ITEM.##COMPARISON > COMPARE.##COMPARISON ? __BIN_MID : __BIN_MID + 1;\
+			__BIN_LIST.Insert(__BIN_MID, INPUT);\
 		};\
-		__BIN_ITEM = LIST[__BIN_MID];\
-		__BIN_MID = __BIN_ITEM.##COMPARE > IN.##COMPARE ? __BIN_MID : __BIN_MID + 1;\
-		LIST.Insert(__BIN_MID, IN);\
-	}
+	} while(FALSE)
 
 //Returns a list in plain english as a string
 /proc/english_list(list/input, nothing_text = "ничего", and_text = " и ", comma_text = ", ", final_comma_text = "" )
@@ -72,27 +87,6 @@
 
 			return "[output][and_text][input[index]]"
 
-//Returns list element or null. Should prevent "index out of bounds" error.
-/proc/listgetindex(list/L, index)
-	if(LAZYLEN(L))
-		if(isnum(index) && ISINTEGER(index))
-			if(ISINRANGE(index,1,L.len))
-				return L[index]
-		else if(index in L)
-			return L[index]
-	return
-
-//Return either pick(list) or null if list is not of type /list or is empty
-/proc/safepick(list/L)
-	if(LAZYLEN(L))
-		return pick(L)
-
-//Checks if the list is empty
-/proc/isemptylist(list/L)
-	if(!L.len)
-		return TRUE
-	return FALSE
-
 //Checks for specific types in a list
 /proc/is_type_in_list(atom/A, list/L)
 	if(!LAZYLEN(L) || !A)
@@ -104,24 +98,6 @@
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
 #define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
-
-//Checks for a string in a list
-/proc/is_string_in_list(string, list/L)
-	if(!LAZYLEN(L) || !string)
-		return
-	for(var/V in L)
-		if(string == V)
-			return TRUE
-	return
-
-//Removes a string from a list
-/proc/remove_strings_from_list(string, list/L)
-	if(!LAZYLEN(L) || !string)
-		return
-	for(var/V in L)
-		if(V == string)
-			L -= V //No return here so that it removes all strings of that type
-	return
 
 //returns a new list with only atoms that are in typecache L
 /proc/typecache_filter_list(list/atoms, list/typecache)
@@ -174,12 +150,6 @@
 					for(var/T in typesof(P))
 						L[T] = TRUE
 		return L
-
-//Empties the list by setting the length to 0. Hopefully the elements get garbage collected
-/proc/clearlist(list/list)
-	if(istype(list))
-		list.len = 0
-	return
 
 //Removes any null entries from the list
 //Returns TRUE if the list had nulls, FALSE otherwise
@@ -590,3 +560,24 @@
 			return FALSE
 
 	return TRUE
+
+//Mergesort: any value in a list, preserves key=value structure
+/proc/sortAssoc(var/list/L)
+	if(L.len < 2)
+		return L
+	var/middle = L.len / 2 + 1 // Copy is first,second-1
+	return mergeAssoc(sortAssoc(L.Copy(0,middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
+
+/proc/mergeAssoc(var/list/L, var/list/R)
+	var/Li=1
+	var/Ri=1
+	var/list/result = new()
+	while(Li <= L.len && Ri <= R.len)
+		if(sorttext(L[Li], R[Ri]) < 1)
+			result += R&R[Ri++]
+		else
+			result += L&L[Li++]
+
+	if(Li <= L.len)
+		return (result + L.Copy(Li, 0))
+	return (result + R.Copy(Ri, 0))

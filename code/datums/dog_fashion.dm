@@ -46,131 +46,136 @@
 	icon_file = 'icons/mob/corgi_back.dmi'
 
 /datum/dog_fashion/head/helmet
-	name = "Sergeant REAL_NAME"
-	desc = "The ever-loyal, the ever-vigilant."
+	name = "Сержант REAL_NAME"
+	desc = "Всегда верный, всегда бдительный."
 
 /datum/dog_fashion/head/chef
-	name = "Sous chef REAL_NAME"
-	desc = "Your food will be taste-tested. All of it."
+	name = "Соусный шеф REAL_NAME"
+	desc = "Ваша еда будет проверена на вкус. Да."
 
 
 /datum/dog_fashion/head/captain
-	name = "Captain REAL_NAME"
-	desc = "Probably better than the last captain."
+	name = "Капитан REAL_NAME"
+	desc = "Наверное, лучше, чем последний капитан."
 
 /datum/dog_fashion/head/kitty
-	name = "Runtime"
-	emote_see = list("coughs up a furball", "stretches")
-	emote_hear = list("purrs")
-	speak = list("Purrr", "Meow!", "MAOOOOOW!", "HISSSSS", "MEEEEEEW")
-	desc = "It's a cute little kitty-cat! ... wait ... what the hell?"
+	name = "Рантайм"
+	emote_see = list("выкашливает клубок шерсти", "тянется")
+	emote_hear = list("мурлычет")
+	speak = list("Мурр", "Мяу!", "МИААААУ!", "ПШШШШШШШ", "МИИИИИУ")
+	desc = "Это милый маленький котенок!... подождите... какого черта?"
 
 /datum/dog_fashion/head/rabbit
-	name = "Hoppy"
-	emote_see = list("twitches its nose", "hops around a bit")
-	desc = "This is Hoppy. It's a corgi-...urmm... bunny rabbit."
+	name = "Хоппи"
+	emote_see = list("дергает носиком", "немного прыгает")
+	desc = "Это Хоппи. Это корги... Урмм... кролик."
 
 /datum/dog_fashion/head/beret
-	name = "Yann"
+	name = "Янн"
 	desc = "Mon dieu! C'est un chien!"
-	speak = list("le woof!", "le bark!", "JAPPE!!")
-	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a wall in front of him.")
+	speak = list("le-вуф!", "le-гаф!", "JAPPE!!")
+	emote_see = list("в страхе.", "сдаётся.", "изображает мёртвого.","выглядит так, как будто перед ним стена.")
 
 
 /datum/dog_fashion/head/detective
-	name = "Detective REAL_NAME"
-	desc = "NAME sees through your lies..."
-	emote_see = list("investigates the area.","sniffs around for clues.","searches for scooby snacks.","takes a candycorn from the hat.")
+	name = "Детектив REAL_NAME"
+	desc = "NAME видит меня насквозь..."
+	emote_see = list("исследует область.","обнюхивает подсказки.","ищет вкусные закуски.","берет конфетку из шляпы.")
 
 
 /datum/dog_fashion/head/nurse
-	name = "Nurse REAL_NAME"
-	desc = "NAME needs 100cc of beef jerky... STAT!"
+	name = "Медсестра REAL_NAME"
+	desc = "NAME требуется 100кк стейка... СРОЧНО!"
 
 /datum/dog_fashion/head/pirate
-	name = "Pirate-title Pirate-name"
-	desc = "Yaarghh!! Thar' be a scurvy dog!"
-	emote_see = list("hunts for treasure.","stares coldly...","gnashes his tiny corgi teeth!")
-	emote_hear = list("growls ferociously!", "snarls.")
-	speak = list("Arrrrgh!!","Grrrrrr!")
+	name = "Спиздили"
+	desc = "Яррррх!! Эта собака с цингой!"
+	emote_see = list("охотится за сокровищами.","смотрит холодно...","скрежетает своими крошечными корги зубами!")
+	emote_hear = list("свирепо рычит!", "огрызается.")
+	speak = list("Аррргх!!","Гррррр!")
 
 /datum/dog_fashion/head/pirate/New(mob/M)
 	..()
 	name = "[pick("Ol'","Scurvy","Black","Rum","Gammy","Bloody","Gangrene","Death","Long-John")] [pick("kibble","leg","beard","tooth","poop-deck","Threepwood","Le Chuck","corsair","Silver","Crusoe")]"
 
 /datum/dog_fashion/head/ushanka
-	name = "Communist-title Realname"
-	desc = "A follower of Karl Barx."
-	emote_see = list("contemplates the failings of the capitalist economic model.", "ponders the pros and cons of vanguardism.")
+	name = "Котлетки будут завтра"
+	desc = "Последователь Карла Баркса."
+	emote_see = list("рассматривает недостатки капиталистической экономической модели.", "обдумывает плюсы и минусы авангардизма.")
 
 /datum/dog_fashion/head/ushanka/New(mob/M)
 	..()
-	name = "[pick("Comrade","Commissar","Glorious Leader")] [M.real_name]"
+	name = "[pick("Комрад","Комиссар","Славный лидер")] [M.real_name]"
 
 /datum/dog_fashion/head/warden
-	name = "Officer REAL_NAME"
-	emote_see = list("drools.","looks for donuts.")
+	name = "Офицер REAL_NAME"
+	emote_see = list("пускает слюни.","ищет пончики.")
 	desc = "Stop right there criminal scum!"
 
 /datum/dog_fashion/head/blue_wizard
-	name = "Grandwizard REAL_NAME"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "EI NATH!")
+	name = "Великий Волшебник REAL_NAME"
+	speak = list("ЯП", "Вуф!", "Гав!", "АУУУУУ", "ЭЙ, НАХ!")
 
 /datum/dog_fashion/head/red_wizard
-	name = "Pyromancer REAL_NAME"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "ONI SOMA!")
+	name = "Пиромансер REAL_NAME"
+	speak = list("ЯП", "Вуф!", "Гав!", "АУУУУУ", "СОСНИ СОМА!")
 
 /datum/dog_fashion/head/cardborg
-	name = "Borgi"
-	speak = list("Ping!","Beep!","Woof!")
-	emote_see = list("goes rogue.", "sniffs out non-humans.")
-	desc = "Result of robotics budget cuts."
+	name = "Борги"
+	speak = list("Пинг!","Бип!","Вуф!")
+	emote_see = list("суетится.", "вынюхивает нелюдей.")
+	desc = "Результат сокращения бюджета робототехники."
 
 /datum/dog_fashion/head/ghost
-	name = "\improper Ghost"
-	speak = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
-	emote_see = list("stumbles around.", "shivers.")
-	emote_hear = list("howls!","groans.")
-	desc = "Spooky!"
+	name = "Призрак"
+	speak = list("ВуууУУУуууу~","АУУУУУУУУУУУУУУУУУУУУУУ")
+	emote_see = list("спотыкается вокруг.", "дрожит.")
+	emote_hear = list("воет!","стонет.")
+	desc = "Жуткий!"
 	obj_icon_state = "sheet"
 
 /datum/dog_fashion/head/santa
-	name = "Santa's Corgi Helper"
-	emote_hear = list("barks Christmas songs.", "yaps merrily!")
-	emote_see = list("looks for presents.", "checks his list.")
-	desc = "He's very fond of milk and cookies."
+	name = "Помощник Санты"
+	emote_hear = list("лает рождественские песни.", "весело тявкает!")
+	emote_see = list("ищет подарки.", "проверяет его список.")
+	desc = "Он очень любит молоко и печенье."
 
 /datum/dog_fashion/head/cargo_tech
-	name = "Corgi Tech REAL_NAME"
-	desc = "The reason your yellow gloves have chew-marks."
+	name = "Грузорги REAL_NAME"
+	desc = "Причина, по которой у ваших желтых перчаток есть жевательные метки."
 
 /datum/dog_fashion/head/reindeer
-	name = "REAL_NAME the red-nosed Corgi"
-	emote_hear = list("lights the way!", "illuminates.", "yaps!")
-	desc = "He has a very shiny nose."
+	name = "Красноносый корги REAL_NAME"
+	emote_hear = list("освещает путь!", "подсвечивается.", "тявкает!")
+	desc = "У него очень блестящий нос."
 
 /datum/dog_fashion/head/sombrero
-	name = "Segnor REAL_NAME"
-	desc = "You must respect Elder Dogname"
+	name = "Старейшина REAL_NAME"
+	desc = "Вы должны уважать БЛЯЯЯЯ"
 
 /datum/dog_fashion/head/sombrero/New(mob/M)
 	..()
-	desc = "You must respect Elder [M.real_name]."
+	desc = "Вы должны уважать Старейшину [M.real_name]."
 
 /datum/dog_fashion/head/hop
-	name = "Lieutenant REAL_NAME"
-	desc = "Can actually be trusted to not run off on his own."
+	name = "Лейтенант REAL_NAME"
+	desc = "На самом деле можно доверять, чтобы он не сбежал сам по себе."
 
 /datum/dog_fashion/head/deathsquad
-	name = "Trooper REAL_NAME"
-	desc = "That's not red paint. That's real corgi blood."
+	name = "Кавалерист REAL_NAME"
+	desc = "Это не красная краска. Это настоящая кровь корги."
 
 /datum/dog_fashion/head/clown
-	name = "REAL_NAME the Clown"
-	desc = "Honkman's best friend."
-	speak = list("HONK!", "Honk!")
-	emote_see = list("plays tricks.", "slips.")
+	name = "Клоун REAL_NAME"
+	desc = "Лучший друг хонкающего человека"
+	speak = list("ХОНК!", "Хонк!")
+	emote_see = list("трюкачит.", "скользит.")
 
 /datum/dog_fashion/back/deathsquad
-	name = "Trooper REAL_NAME"
-	desc = "That's not red paint. That's real corgi blood."
+	name = "Кавалерист REAL_NAME"
+	desc = "Это не красная краска. Это настоящая кровь корги."
+
+/datum/dog_fashion/head/festive
+	name = "Праздничный REAL_NAME"
+	desc = "Готов к вечеринке!"
+	obj_icon_state = "festive"

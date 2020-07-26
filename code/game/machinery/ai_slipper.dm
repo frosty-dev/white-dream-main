@@ -18,16 +18,16 @@
 	. += "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>"
 
 /obj/machinery/ai_slipper/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
-	if((stat & NOPOWER) || cooldown_time > world.time || !uses)
+	if((machine_stat & NOPOWER) || cooldown_time > world.time || !uses)
 		icon_state = "ai-slipper0"
 	else
 		icon_state = "ai-slipper1"
 
 /obj/machinery/ai_slipper/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access denied.</span>")
+		to_chat(user, "<span class='danger'>Доступ запрещён.</span>")
 		return
 	if(!uses)
 		to_chat(user, "<span class='warning'>[src] is out of foam and cannot be activated!</span>")

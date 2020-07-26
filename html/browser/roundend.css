@@ -61,15 +61,15 @@ li {
 }
 
 .panel {
-	background-color: #313131;
+	background-color: #020D18;
 	padding: 10px;
 	border-radius: 10px;
 	margin-bottom: 5px;
 }
 
 body {
-	background-color: #272727;
-	color: #efefef;
+	background-color: #010408;
+	color: #aaaaaa;
 }
 
 .tooltip_container {

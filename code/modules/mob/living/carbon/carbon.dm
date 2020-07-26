@@ -5,7 +5,7 @@
 	update_body_parts() //to update the carbon's new bodyparts appearance
 	GLOB.carbon_list += src
 
-	grant_tts()
+	AddComponent(/datum/component/tts)
 
 /mob/living/carbon/Destroy()
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
@@ -20,16 +20,15 @@
 	GLOB.carbon_list -= src
 
 /mob/living/carbon/swap_hand(held_index)
+	. = ..()
+	if(!.)
+		var/obj/item/held_item = get_active_held_item()
+		to_chat(usr, "<span class='warning'>Моя другая рука слишком занята [held_item].</span>")
+		return
+
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
 
-	var/obj/item/item_in_hand = src.get_active_held_item()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/twohanded/TH = item_in_hand
-		if(istype(TH))
-			if(TH.wielded == 1)
-				to_chat(usr, "<span class='warning'>Твои руки заняты твоим [TH.name].</span>")
-				return
 	var/oindex = active_hand_index
 	active_hand_index = held_index
 	if(hud_used)
@@ -64,32 +63,50 @@
 			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
 				if(S.next_step(user,user.a_intent))
 					return 1
+
+	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+		return ..()
+
+	// The following priority/nonpriority searching is so that if we have two wounds on a limb that use the same item for treatment (gauze can bandage cuts AND splint broken bones),
+	// we prefer whichever wound is not already treated (ignore the splinted broken bone for the open cut). If there's no priority wounds that this can treat, go through the
+	// non-priority ones randomly.
+	var/list/nonpriority_wounds = list()
+	for(var/datum/wound/W in shuffle(all_wounds))
+		if(!W.treat_priority)
+			nonpriority_wounds += W
+		else if(W.treat_priority && W.try_treating(I, user))
+			return 1
+
+	for(var/datum/wound/W in shuffle(nonpriority_wounds))
+		if(W.try_treating(I, user))
+			return 1
+
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/hurt = TRUE
+	var/extra_speed = 0
+	if(throwingdatum.thrower != src)
+		extra_speed = min(max(0, throwingdatum.speed - initial(throw_speed)), 3)
+
 	if(istype(throwingdatum, /datum/thrownthing))
-		var/datum/thrownthing/D = throwingdatum
-		if(iscyborg(D.thrower))
-			var/mob/living/silicon/robot/R = D.thrower
-			if(!R.emagged)
-				hurt = FALSE
+		hurt = !throwingdatum.gentle
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
 			Paralyze(20)
-			take_bodypart_damage(10,check_armor = TRUE)
+			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
 		if(hurt)
-			victim.take_bodypart_damage(10,check_armor = TRUE)
-			take_bodypart_damage(10,check_armor = TRUE)
+			victim.take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
+			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.Paralyze(20)
 			Paralyze(20)
-			visible_message("<span class='danger'><b>[src]</b> врезается в <b>[victim]</b>, роняя обоих на пол!</span>",\
-				"<span class='userdanger'>Врезаюсь в <b>[victim]</b>!</span>")
+			visible_message("<span class='danger'><b>[src]</b> врезается в <b>[victim]</b>[extra_speed ? "невероятно сильно" : ""], роняя обоих на пол!</span>",\
+				"<span class='userdanger'>Врезаюсь в <b>[victim]</b>[extra_speed ? "удивительно больно" : ""]!</span>")
 		playsound(src,'sound/weapons/punch1.ogg', 50, TRUE)
 
 
@@ -138,25 +155,31 @@
 				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, "<span class='notice'>Аккуратно отпускаю <b>[throwable_mob]</b>.</span>")
 					return
-				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-				var/turf/end_T = get_turf(target)
-				if(start_T && end_T)
-					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
-
-	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
-		thrown_thing = I
-		dropItemToGround(I, silent = TRUE)
-
-		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
-			to_chat(src, "<span class='notice'>Аккуратно ложу <b>[I.name]</b> на пол.</span>")
-			return
+	else
+		thrown_thing = I.on_thrown(src, target)
 
 	if(thrown_thing)
-		visible_message("<span class='danger'><b>[src]</b> бросает <b>[thrown_thing.name]</b>.</span>", \
-						"<span class='danger'>Бросаю <b>[thrown_thing.name]</b>.</span>")
-		log_message("has thrown [thrown_thing.name]", LOG_ATTACK)
+
+		if(isliving(thrown_thing))
+			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+			var/turf/end_T = get_turf(target)
+			if(start_T && end_T)
+				log_combat(src, thrown_thing, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
+		var/power_throw = 0
+		if(HAS_TRAIT(src, TRAIT_HULK))
+			power_throw++
+		if(HAS_TRAIT(src, TRAIT_DWARF))
+			power_throw--
+		if(HAS_TRAIT(thrown_thing, TRAIT_DWARF))
+			power_throw++
+		if(pulling && grab_state >= GRAB_NECK)
+			power_throw++
+		visible_message("<span class='danger'><b>[src]</b> кидает <b>[thrown_thing.name]</b>[power_throw ? " невероятно сильно!" : "."]</span>", \
+						"<span class='danger'>Кидаю <b>[thrown_thing.name]</b>[power_throw ? " невероятно сильно!" : "."].</span>")
+		playsound(get_turf(src), 'white/valtos/sounds/throw.wav', 50, TRUE)
+		log_message("has thrown [thrown_thing] [power_throw ? "really hard" : ""]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
-		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, null, null, null, move_force)
+		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed + power_throw, src, null, null, null, move_force)
 
 /mob/living/carbon/restrained(ignore_grab)
 	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
@@ -167,7 +190,7 @@
 
 /mob/living/carbon/show_inv(mob/user)
 	user.set_machine(src)
-	var/dat = {"<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head>
+	var/dat = {"<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>
 	<HR>
 	<B><FONT size=3>[name]</FONT></B>
 	<HR>
@@ -192,7 +215,7 @@
 	dat += "<BR><B>Спина:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_BACK]'>[back ? back : "Nothing"]</A>"
 
 	if(istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank))
-		dat += "<BR><A href='?src=[REF(src)];internal=1'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+		dat += "<BR><A href='?src=[REF(src)];internal=[ITEM_SLOT_BACK]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 
 	if(handcuffed)
 		dat += "<BR><A href='?src=[REF(src)];item=[ITEM_SLOT_HANDCUFFED]'>Handcuffed</A>"
@@ -229,8 +252,19 @@
 								"<span class='userdanger'>[usr] [internal ? "opens" : "closes"] the valve on your [ITEM.name].</span>", null, null, usr)
 				to_chat(usr, "<span class='notice'>You [internal ? "open" : "close"] the valve on [src]'s [ITEM.name].</span>")
 
-/mob/living/carbon/fall(forced)
-    loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
+		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
+		if(!L)
+			return
+		var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
+		if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
+			return
+		SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+		return
+
+/mob/living/carbon/on_fall()
+	. = ..()
+	loc.handle_fall(src)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
 /mob/living/carbon/is_muzzled()
 	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
@@ -249,15 +283,15 @@
 		if(handcuffed)
 			var/obj/item/restraints/O = src.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 			buckle_cd = O.breakouttime
-		visible_message("<span class='warning'>[src] attempts to unbuckle [p_them()]self!</span>", \
-					"<span class='notice'>You attempt to unbuckle yourself... (This will take around [round(buckle_cd/600,1)] minute\s, and you need to stay still.)</span>")
+		visible_message("<span class='warning'>[src] пытается выбраться из наручников!</span>", \
+					"<span class='notice'>Пытаюсь выбраться из наручников... (займёт примерно [round(buckle_cd/600,1)] минут, и надо не двигаться.)</span>")
 		if(do_after(src, buckle_cd, 0, target = src))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
 		else
 			if(src && buckled)
-				to_chat(src, "<span class='warning'>You fail to unbuckle yourself!</span>")
+				to_chat(src, "<span class='warning'>Не получилось выбраться из наручников!</span>")
 	else
 		buckled.user_unbuckle_mob(src,src)
 
@@ -265,12 +299,12 @@
 	fire_stacks -= 5
 	Paralyze(60, TRUE, TRUE)
 	spin(32,2)
-	visible_message("<span class='danger'>[src] rolls on the floor, trying to put [p_them()]self out!</span>", \
-		"<span class='notice'>You stop, drop, and roll!</span>")
+	visible_message("<span class='danger'>[src] катается по полу пытаясь сбросить пламя!</span>", \
+		"<span class='notice'>Я останавливаюсь, падаю и катаюсь по полу!</span>")
 	sleep(30)
 	if(fire_stacks <= 0)
-		visible_message("<span class='danger'>[src] has successfully extinguished [p_them()]self!</span>", \
-			"<span class='notice'>You extinguish yourself.</span>")
+		visible_message("<span class='danger'>[src] успешно тушит себя!</span>", \
+			"<span class='notice'>Фух! Мне удалось потушить себя.</span>")
 		ExtinguishMob()
 	return
 
@@ -295,29 +329,29 @@
 
 /mob/living/carbon/proc/cuff_resist(obj/item/I, breakouttime = 600, cuff_break = 0)
 	if(I.item_flags & BEING_REMOVED)
-		to_chat(src, "<span class='warning'>You're already attempting to remove [I]!</span>")
+		to_chat(src, "<span class='warning'>Я уже пытаюсь снять [I]!</span>")
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
 	if(!cuff_break)
-		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
-		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")
+		visible_message("<span class='warning'>[src] пытается снять [I]!</span>")
+		to_chat(src, "<span class='notice'>Пытаюсь снять [I]... (это займёт примерно [DisplayTimeText(breakouttime)] и надо бы не двигаться.)</span>")
 		if(do_after(src, breakouttime, 0, target = src))
-			clear_cuffs(I, cuff_break)
+			. = clear_cuffs(I, cuff_break)
 		else
-			to_chat(src, "<span class='warning'>You fail to remove [I]!</span>")
+			to_chat(src, "<span class='warning'>Не получилось снять [I]!</span>")
 
 	else if(cuff_break == FAST_CUFFBREAK)
 		breakouttime = 50
-		visible_message("<span class='warning'>[src] is trying to break [I]!</span>")
-		to_chat(src, "<span class='notice'>You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)</span>")
+		visible_message("<span class='warning'>[src] пытается разорвать [I]!</span>")
+		to_chat(src, "<span class='notice'>Пытаюсь разорвать [I]... (это займёт примерно 5 секунд, надо бы не двигаться.)</span>")
 		if(do_after(src, breakouttime, 0, target = src))
-			clear_cuffs(I, cuff_break)
+			. = clear_cuffs(I, cuff_break)
 		else
-			to_chat(src, "<span class='warning'>You fail to break [I]!</span>")
+			to_chat(src, "<span class='warning'>У меня не вышло разорвать [I]!</span>")
 
 	else if(cuff_break == INSTANT_CUFFBREAK)
-		clear_cuffs(I, cuff_break)
+		. = clear_cuffs(I, cuff_break)
 	I.item_flags &= ~BEING_REMOVED
 
 /mob/living/carbon/proc/uncuff()
@@ -349,14 +383,15 @@
 				W.layer = initial(W.layer)
 				W.plane = initial(W.plane)
 		changeNext_move(0)
+	update_equipment_speed_mods() // In case cuffs ever change speed
 
 /mob/living/carbon/proc/clear_cuffs(obj/item/I, cuff_break)
 	if(!I.loc || buckled)
 		return FALSE
 	if(I != handcuffed && I != legcuffed)
 		return FALSE
-	visible_message("<span class='danger'>[src] manages to [cuff_break ? "break" : "remove"] [I]!</span>")
-	to_chat(src, "<span class='notice'>You successfully [cuff_break ? "break" : "remove"] [I].</span>")
+	visible_message("<span class='danger'>[src] успешно [cuff_break ? "разрывает" : "снимает"] [I]!</span>")
+	to_chat(src, "<span class='notice'>Я успешно [cuff_break ? "разрываю" : "снимаю"] [I].</span>")
 
 	if(cuff_break)
 		. = !((I == handcuffed) || (I == legcuffed))
@@ -366,16 +401,16 @@
 	else
 		if(I == handcuffed)
 			handcuffed.forceMove(drop_location())
-			handcuffed.dropped(src)
 			handcuffed = null
+			I.dropped(src)
 			if(buckled && buckled.buckle_requires_restraints)
 				buckled.unbuckle_mob(src)
 			update_handcuffed()
 			return TRUE
 		if(I == legcuffed)
 			legcuffed.forceMove(drop_location())
-			legcuffed.dropped()
 			legcuffed = null
+			I.dropped(src)
 			update_inv_legcuffed()
 			return TRUE
 
@@ -415,7 +450,7 @@
 
 /mob/living/carbon/Stat()
 	..()
-	if(statpanel("Game"))
+	if(statpanel("Игра"))
 		var/obj/item/organ/alien/plasmavessel/vessel = getorgan(/obj/item/organ/alien/plasmavessel)
 		if(vessel)
 			stat(null, "Plasma Stored: [vessel.storedPlasma]/[vessel.max_plasma]")
@@ -429,27 +464,27 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE, harm = TRUE, force = FALSE)
+/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE, harm = TRUE, force = FALSE, purge = FALSE)
 	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
 		return TRUE
 
 	if(nutrition < 100 && !blood)
 		if(message)
-			visible_message("<span class='warning'>[src] dry heaves!</span>", \
-							"<span class='userdanger'>You try to throw up, but there's nothing in your stomach!</span>")
+			visible_message("<span class='warning'>[src] корчится в рвотном позыве!</span>", \
+							"<span class='userdanger'>Рвота не идёт, ведь мой желудок пуст!</span>")
 		if(stun)
 			Paralyze(200)
 		return TRUE
 
 	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 		if(message)
-			visible_message("<span class='danger'>[src] throws up all over [p_them()]self!</span>", \
-							"<span class='userdanger'>You throw up all over yourself!</span>")
+			visible_message("<span class='danger'>[src] заблёвывает себя!</span>", \
+							"<span class='userdanger'>Заблевываю себя. Заебись!</span>")
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomitself)
 		distance = 0
 	else
 		if(message)
-			visible_message("<span class='danger'>[src] throws up!</span>", "<span class='userdanger'>You throw up!</span>")
+			visible_message("<span class='danger'>[src] блюёт!</span>", "<span class='userdanger'>Блюю!</span>")
 			if(!isflyperson(src))
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
 
@@ -472,7 +507,7 @@
 				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
+				T.add_vomit_floor(src, VOMIT_TOXIC, purge)//toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break
@@ -498,9 +533,9 @@
 /mob/living/carbon/update_mobility()
 	. = ..()
 	if(!(mobility_flags & MOBILITY_STAND))
-		add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
+		add_movespeed_modifier(/datum/movespeed_modifier/carbon_crawling)
 	else
-		remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
+		remove_movespeed_modifier(/datum/movespeed_modifier/carbon_crawling)
 
 //Updates the mob's health from bodyparts and mob damage variables
 /mob/living/carbon/updatehealth()
@@ -514,18 +549,18 @@
 		total_brute	+= (BP.brute_dam * BP.body_damage_coeff)
 		total_burn	+= (BP.burn_dam * BP.body_damage_coeff)
 		total_stamina += (BP.stamina_dam * BP.stam_damage_coeff)
-	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
+	set_health(round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION))
 	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	update_stat()
 	update_mobility()
-	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD )
+	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD )
 		become_husk("burn")
 
 	med_hud_set_health()
 	if(stat == SOFT_CRIT)
-		add_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE, multiplicative_slowdown = SOFTCRIT_ADD_SLOWDOWN)
+		add_movespeed_modifier(/datum/movespeed_modifier/carbon_softcrit)
 	else
-		remove_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE)
+		remove_movespeed_modifier(/datum/movespeed_modifier/carbon_softcrit)
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
@@ -533,6 +568,7 @@
 		enter_stamcrit()
 	else if(stam_paralyzed)
 		stam_paralyzed = FALSE
+		REMOVE_TRAIT(src,TRAIT_INCAPACITATED, STAMINA)
 	else
 		return
 	update_health_hud()
@@ -751,28 +787,41 @@
 	if(hud_used && hud_used.internals)
 		hud_used.internals.icon_state = "internal[internal_state]"
 
+/mob/living/carbon/proc/update_spacesuit_hud_icon(cell_state = "empty")
+	if(hud_used && hud_used.spacesuit)
+		hud_used.spacesuit.icon_state = "spacesuit_[cell_state]"
+
+
+/mob/living/carbon/set_health(new_value)
+	. = ..()
+	if(. > hardcrit_threshold)
+		if(health <= hardcrit_threshold && !HAS_TRAIT(src, TRAIT_NOHARDCRIT))
+			ADD_TRAIT(src, TRAIT_KNOCKEDOUT, CRIT_HEALTH_TRAIT)
+	else if(health > hardcrit_threshold)
+		REMOVE_TRAIT(src, TRAIT_KNOCKEDOUT, CRIT_HEALTH_TRAIT)
+	if(CONFIG_GET(flag/near_death_experience))
+		if(. > HEALTH_THRESHOLD_NEARDEATH)
+			if(health <= HEALTH_THRESHOLD_NEARDEATH && !HAS_TRAIT(src, TRAIT_NODEATH))
+				ADD_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
+		else if(health > HEALTH_THRESHOLD_NEARDEATH)
+			REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
+
+
+
 /mob/living/carbon/update_stat()
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
 		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
 			death()
-			cure_blind(UNCONSCIOUS_BLIND)
 			return
-		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
-			stat = UNCONSCIOUS
-			become_blind(UNCONSCIOUS_BLIND)
-			if(CONFIG_GET(flag/near_death_experience) && health <= HEALTH_THRESHOLD_NEARDEATH && !HAS_TRAIT(src, TRAIT_NODEATH))
-				ADD_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
-			else
-				REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
+		if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+			set_stat(UNCONSCIOUS)
 		else
 			if(health <= crit_threshold && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
-				stat = SOFT_CRIT
+				set_stat(SOFT_CRIT)
 			else
-				stat = CONSCIOUS
-			cure_blind(UNCONSCIOUS_BLIND)
-			REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
+				set_stat(CONSCIOUS)
 		update_mobility()
 	update_damage_hud()
 	update_health_hud()
@@ -801,13 +850,13 @@
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
-	var/obj/item/organ/brain/B = getorgan(/obj/item/organ/brain)
-	if(B)
-		B.brain_death = FALSE
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
 		if(D.severity != DISEASE_SEVERITY_POSITIVE)
 			D.cure(FALSE)
+	for(var/thing in all_wounds)
+		var/datum/wound/W = thing
+		W.remove_wound()
 	if(admin_revive)
 		suiciding = FALSE
 		regenerate_limbs()
@@ -820,14 +869,49 @@
 			reagents.addiction_list = list()
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	..()
-	// heal ears after healing traits, since ears check TRAIT_DEAF trait
-	// when healing.
-	restoreEars()
 
 /mob/living/carbon/can_be_revived()
 	. = ..()
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
+
+/mob/living/carbon/proc/can_defib()
+	if (suiciding)
+		return DEFIB_FAIL_SUICIDE
+
+	if (hellbound)
+		return DEFIB_FAIL_HELLBOUND
+
+	if (HAS_TRAIT(src, TRAIT_HUSK))
+		return DEFIB_FAIL_HUSK
+
+	if ((getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+		return DEFIB_FAIL_TISSUE_DAMAGE
+
+	// Only check for a heart if they actually need a heart. Who would've thunk
+	if (needs_heart())
+		var/obj/item/organ/heart = getorgan(/obj/item/organ/heart)
+
+		if (!heart)
+			return DEFIB_FAIL_NO_HEART
+
+		if (heart.organ_flags & ORGAN_FAILING)
+			return DEFIB_FAIL_FAILING_HEART
+
+	// Carbons with HARS do not need a brain
+	if (!dna?.check_mutation(HARS))
+		var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
+
+		if (QDELETED(BR))
+			return DEFIB_FAIL_NO_BRAIN
+
+		if (BR.organ_flags & ORGAN_FAILING)
+			return DEFIB_FAIL_FAILING_BRAIN
+
+		if (BR.suicided || BR.brainmob?.suiciding)
+			return DEFIB_FAIL_NO_INTELLIGENCE
+
+	return DEFIB_POSSIBLE
 
 /mob/living/carbon/harvest(mob/living/user)
 	if(QDELETED(src))
@@ -840,7 +924,7 @@
 			O.Remove(src)
 			O.forceMove(drop_location())
 	if(organs_amt)
-		to_chat(user, "<span class='notice'>You retrieve some of [src]\'s internal organs!</span>")
+		to_chat(user, "<span class='notice'>Мне удалось достать несколько внутренних органов из [src]!</span>")
 
 /mob/living/carbon/ExtinguishMob()
 	for(var/X in get_equipped_items())
@@ -885,6 +969,10 @@
 			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
+	for(var/i in status_effects)
+		var/datum/status_effect/S = i
+		. *= S.interact_speed_modifier()
+
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/X in internal_organs)
 		var/obj/item/organ/I = X
@@ -911,6 +999,8 @@
 	if(href_list[VV_HK_MODIFY_BODYPART])
 		if(!check_rights(R_SPAWN))
 			return
+		//if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+		//	return
 		var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("add","remove", "augment")
 		if(!edit_action)
 			return
@@ -951,6 +1041,8 @@
 	if(href_list[VV_HK_MAKE_AI])
 		if(!check_rights(R_SPAWN))
 			return
+		//if(!check_rights(R_PERMISSIONS, FALSE) && !is_centcom_level(usr.z))
+		//	return
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
 			return
 		usr.client.holder.Topic("vv_override", list("makeai"=href_list[VV_HK_TARGET]))
@@ -1029,3 +1121,83 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+
+/mob/living/carbon/washed(var/atom/washer)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "shower", /datum/mood_event/nice_shower)
+
+	wash_poo()
+
+	for(var/obj/item/I in held_items)
+		I.washed(washer)
+
+	if(back && back.washed(washer))
+		update_inv_back(0)
+
+	var/list/obscured = check_obscured_slots()
+
+	if(head && head.washed(washer))
+		headstamp = null
+		update_inv_head()
+
+	if(glasses && !(ITEM_SLOT_EYES in obscured) && glasses.washed(washer))
+		update_inv_glasses()
+
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured && wear_mask.washed(washer)))
+		update_inv_wear_mask()
+
+	if(ears && !(HIDEEARS in obscured) && ears.washed(washer))
+		update_inv_ears()
+
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured) && wear_neck.washed(washer))
+		update_inv_neck()
+
+	if(shoes && !(HIDESHOES in obscured) && shoes.washed(washer))
+		update_inv_shoes()
+
+/// if any of our bodyparts are bleeding
+/mob/living/carbon/proc/is_bleeding()
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		if(BP.get_bleed_rate())
+			return TRUE
+
+/// get our total bleedrate
+/mob/living/carbon/proc/get_total_bleed_rate()
+	var/total_bleed_rate = 0
+	for(var/i in bodyparts)
+		var/obj/item/bodypart/BP = i
+		total_bleed_rate += BP.get_bleed_rate()
+
+	return total_bleed_rate
+
+/**
+  * generate_fake_scars()- for when you want to scar someone, but you don't want to hurt them first. These scars don't count for temporal scarring (hence, fake)
+  *
+  * If you want a specific wound scar, pass that wound type as the second arg, otherwise you can pass a list like WOUND_LIST_CUT to generate a random cut scar.
+  *
+  * Arguments:
+  * * num_scars- A number for how many scars you want to add
+  * * forced_type- Which wound or category of wounds you want to choose from, WOUND_LIST_BONE, WOUND_LIST_CUT, or WOUND_LIST_BURN (or some combination). If passed a list, picks randomly from the listed wounds. Defaults to all 3 types
+  */
+/mob/living/carbon/proc/generate_fake_scars(num_scars, forced_type)
+	for(var/i in 1 to num_scars)
+		var/datum/scar/S = new
+		var/obj/item/bodypart/BP = pick(bodyparts)
+
+		var/wound_type
+		if(forced_type)
+			if(islist(forced_type))
+				wound_type = pick(forced_type)
+			else
+				wound_type = forced_type
+		else
+			wound_type = pick(WOUND_LIST_BONE + WOUND_LIST_CUT + WOUND_LIST_BURN)
+
+		var/datum/wound/W = new wound_type
+		S.generate(BP, W)
+		S.fake = TRUE
+		QDEL_NULL(W)
+
+/mob/living/carbon/is_face_visible()
+	return !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE)

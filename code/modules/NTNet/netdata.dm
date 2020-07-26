@@ -11,10 +11,11 @@
 
 	var/list/passkey
 
-/datum/netdata/proc/standard_format_data(primary, secondary, passkey)
+/datum/netdata/proc/standard_format_data(primary, secondary, passkey_in)
 	data["data"] = primary
 	data["data_secondary"] = secondary
-	data["encrypted_passkey"] = passkey
+	data["encrypted_passkey"] = passkey_in
+	passkey = safe_json_decode(XorEncrypt(hextostr(passkey_in, TRUE), SScircuit.cipherkey))
 
 /datum/netdata/proc/json_to_data(json)
 	data = json_decode(json)

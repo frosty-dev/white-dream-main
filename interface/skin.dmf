@@ -56,13 +56,14 @@ window "mainwindow"
 		background-color = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
 		icon = 'icons\\tg_32.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
 		type = CHILD
-		pos = 3,0
-		size = 634x440
+		pos = 0,0
+		size = 640x440
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
@@ -77,11 +78,12 @@ window "mainwindow"
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
+		auto-format = false
 		saved-params = ""
 	elem "tooltip"
 		type = BROWSER
 		pos = 0,0
-		size = 999x999
+		size = 640x440
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
@@ -106,8 +108,7 @@ window "mapwindow"
 		font-size = 7
 		text-color = none
 		is-default = true
-		saved-params = "icon-size"
-		zoom-mode = normal
+		style=".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold;	font-size: 8px; } .small { font-size: 6px; } .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .greentext { color: #00FF00; font-size: 7px; } .redtext { color: #FF0000; font-size: 7px; } .clown { color: #FF69Bf; font-size: 7px;  font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-size: 6px; }"
 
 window "infowindow"
 	elem "infowindow"
@@ -134,7 +135,7 @@ window "infowindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 372,0
+		pos = 281,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -142,8 +143,8 @@ window "outputwindow"
 		is-pane = true
 	elem "saybutton"
 		type = BUTTON
-		pos = 600,456
-		size = 40x20
+		pos = 600,454
+		size = 40x24
 		anchor1 = 100,100
 		anchor2 = none
 		saved-params = "is-checked"
@@ -152,8 +153,8 @@ window "outputwindow"
 		button-type = pushbox
 	elem "oocbutton"
 		type = BUTTON
-		pos = 560,456
-		size = 40x20
+		pos = 560,454
+		size = 40x24
 		anchor1 = 100,100
 		anchor2 = none
 		saved-params = "is-checked"
@@ -162,8 +163,8 @@ window "outputwindow"
 		button-type = pushbox
 	elem "mebutton"
 		type = BUTTON
-		pos = 520,456
-		size = 40x20
+		pos = 520,454
+		size = 40x24
 		anchor1 = 100,100
 		anchor2 = none
 		saved-params = "is-checked"
@@ -172,10 +173,12 @@ window "outputwindow"
 		button-type = pushbox
 	elem "input"
 		type = INPUT
-		pos = 0,456
-		size = 517x20
+		pos = 0,454
+		size = 515x24
 		anchor1 = 0,100
 		anchor2 = 100,100
+		font-family = "Courier New"
+		font-size = 12
 		background-color = #d3b5b5
 		is-default = true
 		border = sunken
@@ -183,7 +186,7 @@ window "outputwindow"
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
-		size = 640x456
+		size = 640x452
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #ffffff
@@ -194,7 +197,7 @@ window "outputwindow"
 	elem "output"
 		type = OUTPUT
 		pos = 0,0
-		size = 640x456
+		size = 640x452
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-default = true
@@ -216,25 +219,26 @@ window "popupwindow"
 window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
-		pos = 281,0
-		size = 1280x1000
+		pos = 64,64
+		size = 1200x640
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
-	elem "preferences_browser"
+	elem "preferences_browser_new"
 		type = BROWSER
 		pos = 0,0
-		size = 960x1000
+		size = 960x640
 		anchor1 = 0,0
-		anchor2 = 75,100
+		anchor2 = 80,100
 		saved-params = ""
+		can-scroll = vertical
 	elem "character_preview_map"
 		type = MAP
 		pos = 960,0
-		size = 320x1000
-		anchor1 = 75,0
+		size = 240x640
+		anchor1 = 80,0
 		anchor2 = 100,100
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
@@ -251,9 +255,8 @@ window "statwindow"
 	elem "stat"
 		type = INFO
 		pos = 0,0
-		size = 636x480
+		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-default = true
 		saved-params = ""
-

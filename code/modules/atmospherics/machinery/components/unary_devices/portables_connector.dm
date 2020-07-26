@@ -7,8 +7,8 @@
 	can_unwrench = TRUE
 
 	use_power = NO_POWER_USE
-	level = 0
 	layer = GAS_FILTER_LAYER
+	hide = TRUE
 
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
@@ -18,7 +18,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/New()
 	..()
 	var/datum/gas_mixture/air_contents = airs[1]
-	air_contents.volume = 0
+	air_contents.set_volume(0)
 
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
@@ -51,7 +51,7 @@
 	icon_state = "connector_map-3"
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible
-	level = 2
+	hide = FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer1
 	piping_layer = 1

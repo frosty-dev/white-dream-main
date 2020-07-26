@@ -1,16 +1,15 @@
 /client/proc/forcerandomrotate()
-	set category = "Server"
+	set category = "Срв"
 	set name = "Trigger Random Map Rotation"
 	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "Cancel")
 	if (rotate != "Yes")
 		return
 	message_admins("[key_name_admin(usr)] is forcing a random map rotation.")
 	log_admin("[key_name(usr)] is forcing a random map rotation.")
-	SSticker.maprotatechecked = 1
 	SSmapping.maprotate()
 
 /client/proc/adminchangemap()
-	set category = "Server"
+	set category = "Срв"
 	set name = "Change Map"
 	var/list/maprotatechoices = list()
 	for (var/map in config.maplist)
@@ -36,8 +35,7 @@
 	var/chosenmap = input("Choose a map to change to", "Change Map")  as null|anything in sortList(maprotatechoices)|"Custom"
 	if (!chosenmap)
 		return
-	
-	SSticker.maprotatechecked = 1
+
 	if(chosenmap == "Custom")
 		message_admins("[key_name_admin(usr)] is changing the map to a custom map")
 		log_admin("[key_name(usr)] is changing the map to a custom map")
@@ -46,29 +44,29 @@
 		VM.map_name = input("Choose the name for the map", "Map Name") as null|text
 		if(isnull(VM.map_name))
 			VM.map_name = "Custom"
-		
+
 		var/map_file = input("Pick file:", "Map File") as null|file
 		if(isnull(map_file))
 			return
-		
-		if(copytext("[map_file]",-4) != ".dmm")
+
+		if(copytext("[map_file]", -4) != ".dmm")//4 == length(".dmm")
 			to_chat(src, "<span class='warning'>Filename must end in '.dmm': [map_file]</span>")
 			return
 
 		if(!fcopy(map_file, "_maps/custom/[map_file]"))
 			return
-		
+
 		// This is to make sure the map works so the server does not start without a map.
 		var/datum/parsed_map/M = new (map_file)
 		if(!M)
 			to_chat(src, "<span class='warning'>Map '[map_file]' failed to parse properly.</span>")
 			return
-		
+
 		if(!M.bounds)
 			to_chat(src, "<span class='warning'>Map '[map_file]' has non-existant bounds.</span>")
 			qdel(M)
 			return
-		
+
 		qdel(M)
 
 		var/shuttles = alert("Do you want to modify the shuttles?", "Map Shuttles", "Yes", "No")
@@ -105,3 +103,18 @@
 		log_admin("[key_name(usr)] is changing the map to [VM.map_name]")
 		if (SSmapping.changemap(VM))
 			message_admins("[key_name_admin(usr)] has changed the map to [VM.map_name]")
+
+/client/proc/adminchangeminingmap()
+	set category = "Срв"
+	set name = "Change Mining Map"
+	if(SSticker.current_state < GAME_STATE_PREGAME)
+		to_chat(src, "<span class='interface'>Please wait until after the server is done setting up.</span>")
+		return
+	var/chosenmap = input("Choose the next mining map", "Change Mining Map")  as null|anything in GLOB.mining_maps
+	if (!chosenmap)
+		return
+	GLOB.next_mining_map = chosenmap
+	var/datum/map_config/VM = load_map_config()
+	SSmapping.changemap(VM)
+	message_admins("[key_name_admin(usr)] set the next mining map to [chosenmap]")
+	log_admin("[key_name(usr)] set the next mining map to [chosenmap]")

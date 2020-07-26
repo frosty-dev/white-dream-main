@@ -14,7 +14,7 @@
 	var/default_rotation_direction = ROTATION_CLOCKWISE
 
 /datum/component/simple_rotation/Initialize(rotation_flags = NONE ,can_user_rotate,can_be_rotated,after_rotation)
-	if(!ismovableatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	//throw if no rotation direction is specificed ?
@@ -136,27 +136,27 @@
 	return !AM.anchored
 
 /datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
-	to_chat(user,"<span class='notice'>You [rotation_type == ROTATION_FLIP ? "flip" : "rotate"] [parent].</span>")
+	to_chat(user,"<span class='notice'>[rotation_type == ROTATION_FLIP ? "Переворачиваю" : "Поворачиваю"] [parent].</span>")
 
 /atom/movable/proc/simple_rotate_clockwise()
-	set name = "Rotate Clockwise"
-	set category = "Object"
+	set name = "Повернуть по часовой"
+	set category = "Объект"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)
 		rotcomp.HandRot(null,usr,ROTATION_CLOCKWISE)
 
 /atom/movable/proc/simple_rotate_counterclockwise()
-	set name = "Rotate Counter-Clockwise"
-	set category = "Object"
+	set name = "Повернуть против часовой"
+	set category = "Объект"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)
 		rotcomp.HandRot(null,usr,ROTATION_COUNTERCLOCKWISE)
 
 /atom/movable/proc/simple_rotate_flip()
-	set name = "Flip"
-	set category = "Object"
+	set name = "Перевернуть"
+	set category = "Объект"
 	set src in oview(1)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)

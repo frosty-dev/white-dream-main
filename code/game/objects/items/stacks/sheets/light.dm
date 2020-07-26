@@ -1,7 +1,7 @@
 /obj/item/stack/light_w
-	name = "wired glass tile"
-	singular_name = "wired glass floor tile"
-	desc = "A glass tile, which is wired, somehow."
+	name = "светоплитка"
+	singular_name = "светоплитка"
+	desc = "Светится. Охуенно!"
 	icon = 'icons/obj/tiles.dmi'
 	icon_state = "glass_wire"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,11 +18,11 @@
 		var/obj/item/stack/sheet/metal/M = O
 		if (M.use(1))
 			var/obj/item/L = new /obj/item/stack/tile/light(user.drop_location())
-			to_chat(user, "<span class='notice'>You make a light tile.</span>")
+			to_chat(user, "<span class='notice'>Создаю светоплитку.</span>")
 			L.add_fingerprint(user)
 			use(1)
 		else
-			to_chat(user, "<span class='warning'>You need one metal sheet to finish the light tile!</span>")
+			to_chat(user, "<span class='warning'>Мне нужен один металлический лист, чтобы закончить светоплитку!</span>")
 	else
 		return ..()
 

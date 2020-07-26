@@ -15,7 +15,8 @@
 	name = "pen"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
-	item_state = "pen"
+	inhand_icon_state = "pen"
+	worn_icon_state = "pen"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
@@ -27,6 +28,7 @@
 	var/colour = "black"	//what colour the ink is!
 	var/degrees = 0
 	var/font = PEN_FONT
+	embedding = list()
 
 /obj/item/pen/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is scribbling numbers all over [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit sudoku...</span>")
@@ -41,6 +43,7 @@
 	desc = "It's a normal red ink pen."
 	icon_state = "pen_red"
 	colour = "red"
+	throw_speed = 4 // red ones go faster (in this case, fast enough to embed!)
 
 /obj/item/pen/invisible
 	desc = "It's an invisible pen marker."
@@ -56,8 +59,10 @@
 	switch(colour)
 		if("black")
 			colour = "red"
+			throw_speed++
 		if("red")
 			colour = "green"
+			throw_speed = initial(throw_speed)
 		if("green")
 			colour = "blue"
 		else
@@ -70,6 +75,22 @@
 	desc = "It's a common fountain pen, with a faux wood body."
 	icon_state = "pen-fountain"
 	font = FOUNTAIN_PEN_FONT
+
+/obj/item/pen/charcoal
+	name = "charcoal stylus"
+	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
+	icon_state = "pen-charcoal"
+	colour = "dimgray"
+	font = CHARCOAL_FONT
+	custom_materials = null
+	grind_results = list(/datum/reagent/ash = 5, /datum/reagent/cellulose = 10)
+
+/datum/crafting_recipe/charcoal_stylus
+	name = "Charcoal Stylus"
+	result = /obj/item/pen/charcoal
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
+	time = 30
+	category = CAT_PRIMAL
 
 /obj/item/pen/fountain/captain
 	name = "captain's fountain pen"
@@ -88,6 +109,7 @@
 						"Black and Silver" = "pen-fountain-b",
 						"Command Blue" = "pen-fountain-cb"
 						)
+	embedding = list("embed_chance" = 75)
 
 /obj/item/pen/fountain/captain/Initialize()
 	. = ..()
@@ -112,7 +134,7 @@
 	if(!force)
 		if(user.zone_selected == BODY_ZONE_HEAD)
 			var/input = input("Что бы ты хотел написать у [M] на лбу?","Засранец...", M.headstamp) as text|null
-			if(!input)
+			if(!input || length(input) >= 30)
 				to_chat(user, "<span class='warning'>Тебе перехотелось писать...</span>")
 				return
 			M.visible_message(user, "<span class='danger'>[user] начинает писать что-то на лбу <b>[M]</b>.</span>")
@@ -128,7 +150,7 @@
 		if(M.can_inject(user, 1))
 			to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
 			if(!stealth)
-				to_chat(M, "<span class='danger'>You feel a tiny prick!</span>")
+				to_chat(M, "<span class='danger'>Чувствую небольшое покалывание!</span>")
 			. = 1
 
 		log_combat(user, M, "втыкает", src)
@@ -173,7 +195,7 @@
 	if(..())
 		if(reagents.total_volume)
 			if(M.reagents)
-				reagents.reaction(M, INJECT, reagents.total_volume)
+				reagents.expose(M, INJECT, reagents.total_volume)
 				reagents.trans_to(M, reagents.total_volume, transfered_by = user)
 
 
@@ -192,9 +214,10 @@
 	sharpness = IS_SHARP
 	var/on = FALSE
 
-/obj/item/pen/edagger/Initialize()
+/obj/item/pen/edagger/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg')
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/pen/edagger/get_sharpness()
 	return on * sharpness
@@ -215,7 +238,7 @@
 		w_class = initial(w_class)
 		name = initial(name)
 		hitsound = initial(hitsound)
-		embedding = embedding.setRating(embed_chance = EMBED_CHANCE)
+		embedding = list(embed_chance = EMBED_CHANCE)
 		throwforce = initial(throwforce)
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, TRUE)
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
@@ -226,20 +249,35 @@
 		w_class = WEIGHT_CLASS_NORMAL
 		name = "energy dagger"
 		hitsound = 'sound/weapons/blade1.ogg'
-		embedding = embedding.setRating(embed_chance = 100) //rule of cool
+		embedding = list(embed_chance = 100) //rule of cool
 		throwforce = 35
 		playsound(user, 'sound/weapons/saberon.ogg', 5, TRUE)
 		to_chat(user, "<span class='warning'>[src] is now active.</span>")
+	updateEmbedding()
 	update_icon()
 
-/obj/item/pen/edagger/update_icon()
+/obj/item/pen/edagger/update_icon_state()
 	if(on)
-		icon_state = "edagger"
-		item_state = "edagger"
+		icon_state = inhand_icon_state = "edagger"
 		lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 		righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	else
 		icon_state = initial(icon_state) //looks like a normal pen when off.
-		item_state = initial(item_state)
+		inhand_icon_state = initial(inhand_icon_state)
 		lefthand_file = initial(lefthand_file)
 		righthand_file = initial(righthand_file)
+
+/obj/item/pen/survival
+	name = "survival pen"
+	desc = "The latest in portable survival technology, this pen was designed as a miniature diamond pickaxe. Watchers find them very desirable for their diamond exterior."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "digging_pen"
+	inhand_icon_state = "pen"
+	worn_icon_state = "pen"
+	force = 3
+	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(/datum/material/iron=10, /datum/material/diamond=100, /datum/material/titanium = 10)
+	pressure_resistance = 2
+	grind_results = list(/datum/reagent/iron = 2, /datum/reagent/iodine = 1)
+	tool_behaviour = TOOL_MINING //For the classic "digging out of prison with a spoon but you're in space so this analogy doesn't work" situation.
+	toolspeed = 10 //You will never willingly choose to use one of these over a shovel.

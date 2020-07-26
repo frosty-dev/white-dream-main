@@ -7,15 +7,13 @@
 
 	if(!gibbed)
 		emote("deathgasp")
+	reagents.end_metabolization(src)
 
 	. = ..()
 
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/BT = T
 		BT.on_death()
-
-	if(SSticker.mode)
-		SSticker.mode.check_win() //Calls the rounds wincheck, mainly for wizard, malf, and changeling now
 
 /mob/living/carbon/proc/inflate_gib() // Plays an animation that makes mobs appear to inflate before finally gibbing
 	addtimer(CALLBACK(src, .proc/gib, null, null, TRUE, TRUE), 25)
@@ -32,7 +30,7 @@
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
-		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
+		visible_message("<span class='danger'>[M] вырывается из [src]!</span>")
 	. = ..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)

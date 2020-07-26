@@ -7,7 +7,7 @@
 //Chef
 /obj/item/clothing/head/chefhat
 	name = "шапочка шэф-повара"
-	item_state = "chef"
+	inhand_icon_state = "chef"
 	icon_state = "chef"
 	desc = "Командир в головном уборе шеф-повара."
 	strip_delay = 10
@@ -29,7 +29,7 @@
 	name = "капитанская шляпа"
 	desc = "Пахнет благородством."
 	icon_state = "captain"
-	item_state = "that"
+	inhand_icon_state = "that"
 	flags_inv = 0
 	armor = list("melee" = 25, "bullet" = 15, "laser" = 25, "energy" = 35, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 60
@@ -137,7 +137,7 @@
 
 //Security
 
-/obj/item/clothing/head/HoS
+/obj/item/clothing/head/hos
 	name = "шапочка главы безопасности"
 	desc = "Прочная стандартная крышка главы службы безопасности. За то, что показал офицерам, кто здесь главный."
 	icon_state = "hoscap"
@@ -145,16 +145,16 @@
 	strip_delay = 80
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/HoS/syndicate
+/obj/item/clothing/head/hos/syndicate
 	name = "синдишляпа"
 	desc = "Черная шапочка подходит для высокопоставленного офицера синдиката."
 
-/obj/item/clothing/head/HoS/beret
+/obj/item/clothing/head/hos/beret
 	name = "берет главы безопасности"
 	desc = "Прочный берет для главы службы безопасности, выглядит стильно, не жертвуя при этом защитой."
 	icon_state = "hosberetblack"
 
-/obj/item/clothing/head/HoS/beret/syndicate
+/obj/item/clothing/head/hos/beret/syndicate
 	name = "берет синдиката"
 	desc = "Черный берет с толстой подкладкой изнутри. Стильный и прочный."
 
@@ -170,7 +170,7 @@
 	name = "предвыборная шапка надзирателя"
 	desc = "Специальная броневая шапка с эмблемой безопасности, украшенная эмблемой кампании. Использует армированную ткань для обеспечения достаточной защиты."
 	icon_state = "wardendrill"
-	item_state = "wardendrill"
+	inhand_icon_state = "wardendrill"
 	dog_fashion = null
 	var/mode = DRILL_DEFAULT
 
@@ -235,7 +235,7 @@
 		speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/clothing/head/beret/sec
-	name = "берет секьюрити"
+	name = "офицерский берет"
 	desc = "Крепкий берет с эмблемой безопасности на нем. Использует армированную ткань для обеспечения достаточной защиты."
 	icon_state = "beret_badge"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 50)

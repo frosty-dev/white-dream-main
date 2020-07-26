@@ -14,7 +14,7 @@
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/blob/announce(fake)
-	priority_announce("Подтвержденная вспышка биологической опасности уровня 5 на борту [station_name()]. Весь персонал должен противостоять эпидемии.", "Биологическая тревога", 'sound/ai/outbreak5.ogg')
+	priority_announce("Подтвержденная вспышка биологической опасности уровня 5 на борту [station_name()]. Весь персонал должен противостоять эпидемии.", "Биологическая тревога", 'sound/ai/announcer/biology.ogg')
 
 /datum/round_event/ghost_role/blob/spawn_role()
 	if(!GLOB.blobstart.len)

@@ -1,7 +1,7 @@
 // .50 (Sniper)
 
 /obj/projectile/bullet/p50
-	name =".50 bullet"
+	name =".50 пуля"
 	speed = 0.4
 	damage = 70
 	paralyze = 100
@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/projectile/bullet/p50/soporific
-	name =".50 soporific bullet"
+	name =".50 усыпляющая пуля"
 	armour_penetration = 0
 	damage = 0
 	dismemberment = 0
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/projectile/bullet/p50/penetrator
-	name = "penetrator round"
+	name = "ББ пуля"
 	icon_state = "gauss"
 	damage = 60
 	movement_type = FLYING | UNSTOPPABLE

@@ -1,10 +1,11 @@
 /obj/projectile/bullet
-	name = "bullet"
+	name = "пуля"
 	icon_state = "bullet"
 	damage = 60
 	damage_type = BRUTE
 	nodamage = FALSE
 	flag = "bullet"
 	hitsound_wall = "ricochet"
+	sharpness = TRUE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	speed = 0.4

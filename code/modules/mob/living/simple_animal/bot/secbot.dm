@@ -44,15 +44,17 @@
 	var/payment_department = ACCOUNT_SEC
 
 /mob/living/simple_animal/bot/secbot/beepsky
-	name = "Officer Beep O'sky"
-	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
+	name = "Commander Beep O'sky"
+	desc = "It's Commander Beep O'sky! Officially the superior officer of all bots on station, Beepsky remains as humble and dedicated to the law as the day he was first fabricated."
 	idcheck = FALSE
 	weaponscheck = FALSE
 	auto_patrol = TRUE
+	commissioned = TRUE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
-	desc = "It's Officer Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	desc = "It's Commander Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	commissioned = FALSE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize()
 	. = ..()
@@ -265,7 +267,7 @@ Auto Patrol: []"},
 	if(!C.handcuffed)
 		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
 		C.update_handcuffed()
-		playsound(src, "law", 50, FALSE)
+		playsound(src, "law_russian", 50, FALSE)
 		back_to_idle()
 
 /mob/living/simple_animal/bot/secbot/proc/stun_attack(mob/living/carbon/C, harm = FALSE)
@@ -274,6 +276,11 @@ Auto Patrol: []"},
 	icon_state = "[initial(icon_state)]-c"
 	addtimer(CALLBACK(src, /atom/.proc/update_icon), 2)
 	var/threat = 5
+
+	if(prob(15))
+		C.visible_message("<span class='danger'><b>[capitalize(src.name)]</b> промахивается, пытаясь ударить <b>[C]</b>!</span>",\
+								"<span class='userdanger'>[capitalize(src.name)] промахивается пытаясь ударить меня!</span>")
+		return FALSE
 
 	if(harm)
 		weapon.attack(C, src)
@@ -291,8 +298,8 @@ Auto Patrol: []"},
 	if(declare_arrests)
 		var/area/location = get_area(src)
 		speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
-	C.visible_message("<span class='danger'>[src] has stunned [C]!</span>",\
-							"<span class='userdanger'>[src] has stunned you!</span>")
+	C.visible_message("<span class='danger'><b>[capitalize(src.name)]</b> бьёт шокером <b>[C]</b>!</span>",\
+							"<span class='userdanger'>[capitalize(src.name)] бьёт меня шокером!</span>")
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
 	if(!..())
@@ -425,8 +432,9 @@ Auto Patrol: []"},
 			if(ranged)
 				playsound(src, pick('sound/voice/ed209_20sec.ogg', 'sound/voice/edplaceholder.ogg'), 50, FALSE)
 			else
-				playsound(src, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
-			visible_message("<b>[src]</b> points at [C.name]!")
+				//playsound(src, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
+				playsound(loc, pick('white/valtos/sounds/beepsky_russian/criminal.ogg', 'white/valtos/sounds/beepsky_russian/justice.ogg', 'white/valtos/sounds/beepsky_russian/freeze.ogg'), 50, FALSE)
+			visible_message("<b>[capitalize(src)]</b> points at [C.name]!")
 			mode = BOT_HUNT
 			INVOKE_ASYNC(src, .proc/handle_automated_action)
 			break

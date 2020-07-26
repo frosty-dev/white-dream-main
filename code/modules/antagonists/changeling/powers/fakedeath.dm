@@ -1,6 +1,6 @@
 /datum/action/changeling/fakedeath
-	name = "Reviving Stasis"
-	desc = "We fall into a stasis, allowing us to regenerate and trick our enemies. Costs 15 chemicals."
+	name = "Восстанавливающий стазис"
+	desc = "Мы падаем в стазис, позволяя нам возродиться и обмануть наших врагов. Стоит 15 химикатов."
 	button_icon_state = "fake_death"
 	chemical_cost = 15
 	dna_cost = 0
@@ -15,16 +15,15 @@
 	if(revive_ready)
 		INVOKE_ASYNC(src, .proc/revive, user)
 		revive_ready = FALSE
-		name = "Reviving Stasis"
-		desc = "We fall into a stasis, allowing us to regenerate and trick our enemies."
+		name = "Восстанавливающий стазис"
+		desc = "Мы падаем в стазис, позволяя нам возродиться и обмануть наших врагов."
 		button_icon_state = "fake_death"
 		UpdateButtonIcon()
 		chemical_cost = 15
-		to_chat(user, "<span class='notice'>We have revived ourselves.</span>")
+		to_chat(user, "<span class='notice'>Мы оживили себя.</span>")
 	else
-		to_chat(user, "<span class='notice'>We begin our stasis, preparing energy to arise once more.</span>")
+		to_chat(user, "<span class='notice'>Мы начинаем наш стазис, готовя энергию, чтобы возродиться еще раз.</span>")
 		user.fakedeath("changeling") //play dead
-		user.update_stat()
 		user.update_mobility()
 		addtimer(CALLBACK(src, .proc/ready_to_regenerate, user), LING_FAKEDEATH_TIME, TIMER_UNIQUE)
 	return TRUE
@@ -38,12 +37,7 @@
 	missing -= BODY_ZONE_HEAD // headless changelings are funny
 	if(missing.len)
 		playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
-		user.visible_message("<span class='warning'>[user]'s missing limbs \
-			reform, making a loud, grotesque sound!</span>",
-			"<span class='userdanger'>Your limbs regrow, making a \
-			loud, crunchy sound and giving you great pain!</span>",
-			"<span class='hear'>You hear organic matter ripping \
-			and tearing!</span>")
+		user.visible_message("<span class='warning'>Конечности <b>[user]</b> внезапно отрастают, издавая громкие хрустящие звуки!</span>", "<span class='userdanger'>Наши конечности вырастают, издают громкий хрустящий звук и причиняют нам сильную боль!</span>", "<span class='hear'>Слышу, как что-то органическое разрывается!</span>")
 		user.emote("scream")
 		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
 	user.regenerate_organs()
@@ -52,9 +46,9 @@
 	if(user && user.mind)
 		var/datum/antagonist/changeling/C = user.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(C && C.purchasedpowers)
-			to_chat(user, "<span class='notice'>We are ready to revive.</span>")
-			name = "Revive"
-			desc = "We arise once more."
+			to_chat(user, "<span class='notice'>Мы готовы возродиться.</span>")
+			name = "Возрождение"
+			desc = "Мы восстанем ещё раз."
 			button_icon_state = "revive"
 			UpdateButtonIcon()
 			chemical_cost = 0
@@ -62,10 +56,10 @@
 
 /datum/action/changeling/fakedeath/can_sting(mob/living/user)
 	if(HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, "changeling") && !revive_ready)
-		to_chat(user, "<span class='warning'>We are already reviving.</span>")
+		to_chat(user, "<span class='warning'>Мы уже восстанавливаемся.</span>")
 		return
 	if(!user.stat && !revive_ready) //Confirmation for living changelings if they want to fake their death
-		switch(alert("Are we sure we wish to fake our own death?",,"Yes", "No"))
-			if("No")
+		switch(alert("Хотим ли мы устроить иммитацию нашей смерти?",,"Да", "Нет"))
+			if("Нет")
 				return
 	return ..()

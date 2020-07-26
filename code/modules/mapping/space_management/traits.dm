@@ -53,6 +53,8 @@
 /datum/controller/subsystem/mapping/proc/get_turf_below(turf/T)
 	if (!T)
 		return
+	if (T.below_override)
+		return T.below_override
 	var/offset = level_trait(T.z, ZTRAIT_DOWN)
 	if (!offset)
 		return
@@ -62,6 +64,8 @@
 /datum/controller/subsystem/mapping/proc/get_turf_above(turf/T)
 	if (!T)
 		return
+	if (T.above_override)
+		return T.above_override
 	var/offset = level_trait(T.z, ZTRAIT_UP)
 	if (!offset)
 		return

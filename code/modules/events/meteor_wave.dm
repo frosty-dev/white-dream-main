@@ -3,9 +3,9 @@
 /datum/round_event_control/meteor_wave
 	name = "Meteor Wave: Normal"
 	typepath = /datum/round_event/meteor_wave
-	weight = 4
-	min_players = 15
-	max_occurrences = 3
+	weight = 50
+	min_players = 1
+	max_occurrences = 12
 	earliest_start = 25 MINUTES
 
 /datum/round_event/meteor_wave
@@ -47,7 +47,7 @@
 			kill()
 
 /datum/round_event/meteor_wave/announce(fake)
-	priority_announce("Метеоры были обнаружены на пути столкновения со станцией.", "Метеоритная тревога", 'sound/ai/meteors.ogg')
+	priority_announce("Метеоры были обнаружены на пути столкновения со станцией.", "Метеоритная тревога", 'sound/ai/announcer/meteors.ogg')
 
 /datum/round_event/meteor_wave/tick()
 	if(ISMULTIPLE(activeFor, 3))
@@ -56,9 +56,9 @@
 /datum/round_event_control/meteor_wave/threatening
 	name = "Meteor Wave: Threatening"
 	typepath = /datum/round_event/meteor_wave/threatening
-	weight = 5
-	min_players = 20
-	max_occurrences = 3
+	weight = 40
+	min_players = 1
+	max_occurrences = 6
 	earliest_start = 35 MINUTES
 
 /datum/round_event/meteor_wave/threatening
@@ -67,9 +67,9 @@
 /datum/round_event_control/meteor_wave/catastrophic
 	name = "Meteor Wave: Catastrophic"
 	typepath = /datum/round_event/meteor_wave/catastrophic
-	weight = 7
-	min_players = 25
-	max_occurrences = 3
+	weight = 30
+	min_players = 1
+	max_occurrences = 6
 	earliest_start = 45 MINUTES
 
 /datum/round_event/meteor_wave/catastrophic

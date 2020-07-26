@@ -29,6 +29,7 @@
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
 	antagonist.trauma = src
+	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, .proc/stare)
 	..()
 	//antag stuff//
 	antagonist.forge_objectives(obsession.mind)
@@ -65,6 +66,8 @@
 /datum/brain_trauma/special/obsessed/on_lose()
 	..()
 	owner.mind.remove_antag_datum(/datum/antagonist/obsessed)
+	if(obsession)
+		UnregisterSignal(obsession, COMSIG_MOB_EYECONTACT)
 
 /datum/brain_trauma/special/obsessed/handle_speech(datum/source, list/speech_args)
 	if(!viewing)
@@ -91,15 +94,22 @@
 			owner.dizziness += 10
 			fail = TRUE
 		if(3)
-			to_chat(owner, "<span class='userdanger'>You feel your heart lurching in your chest...</span>")
+			to_chat(owner, "<span class='userdanger'>Чувствую биение собственного сердца...</span>")
 			owner.Stun(20)
 			shake_camera(owner, 15, 1)
 		if(4)
-			to_chat(owner, "<span class='warning'>You faint.</span>")
+			to_chat(owner, "<span class='warning'>Ощущаю слабость.</span>")
 			owner.Unconscious(80)
 			fail = TRUE
 	return fail
 
+// if the creep examines first, then the obsession examines them, have a 50% chance to possibly blow their cover. wearing a mask avoids this risk
+/datum/brain_trauma/special/obsessed/proc/stare(datum/source, mob/living/examining_mob, triggering_examiner)
+	if(examining_mob != owner || !triggering_examiner || prob(50))
+		return
+
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, obsession, "<span class='warning'>You catch [examining_mob] staring at you...</span>", 3))
+	return COMSIG_BLOCK_EYECONTACT
 
 /datum/brain_trauma/special/obsessed/proc/find_obsession()
 	var/chosen_victim

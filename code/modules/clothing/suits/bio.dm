@@ -1,8 +1,8 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
-	name = "bio hood"
+	name = "био-капюшон"
 	icon_state = "bio"
-	desc = "A hood that protects the head and face from biological contaminants."
+	desc = "Капюшон, защищающий голову и лицо от биологических загрязнений."
 	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | SNUG_FIT
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 80, "fire" = 30, "acid" = 100)
@@ -11,10 +11,10 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 
 /obj/item/clothing/suit/bio_suit
-	name = "bio suit"
-	desc = "A suit that protects against biological contamination."
+	name = "био-костюм"
+	desc = "Костюм, который защищает от биологического загрязнения."
 	icon_state = "bio"
-	item_state = "bio_suit"
+	inhand_icon_state = "bio_suit"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -88,10 +88,10 @@
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
-	name = "plague doctor suit"
-	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
+	name = "костюм чумного доктора"
+	desc = "Тогда он защищал врачей от Черной смерти. Вы держите пари, что это поможет вам против вирусов."
 	icon_state = "plaguedoctor"
-	item_state = "bio_suit"
+	inhand_icon_state = "bio_suit"
 	strip_delay = 40
 	equip_delay_other = 20
 

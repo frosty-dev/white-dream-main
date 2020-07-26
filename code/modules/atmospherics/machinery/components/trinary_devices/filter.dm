@@ -18,14 +18,16 @@
 	ui_y = 187
 
 /obj/machinery/atmospherics/components/trinary/filter/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(can_interact(user))
 		on = !on
+		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+	if(can_interact(user))
 		transfer_rate = MAX_TRANSFER_RATE
+		investigate_log("was set to [transfer_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
 		update_icon()
 	return ..()
 
@@ -67,7 +69,7 @@
 
 	//Early return
 	var/datum/gas_mixture/air1 = airs[1]
-	if(!air1 || air1.temperature <= 0)
+	if(!air1 || air1.return_temperature() <= 0)
 		return
 
 	var/datum/gas_mixture/air2 = airs[2]
@@ -79,7 +81,7 @@
 		//No need to transfer if target is already full!
 		return
 
-	var/transfer_ratio = transfer_rate/air1.volume
+	var/transfer_ratio = transfer_rate/air1.return_volume()
 
 	//Actually transfer the gas
 
@@ -98,15 +100,13 @@
 		else
 			filtering = FALSE
 
-	if(filtering && removed.gases[filter_type])
+	if(filtering && removed.get_moles(filter_type))
 		var/datum/gas_mixture/filtered_out = new
 
-		filtered_out.temperature = removed.temperature
-		filtered_out.add_gas(filter_type)
-		filtered_out.gases[filter_type][MOLES] = removed.gases[filter_type][MOLES]
+		filtered_out.set_temperature(removed.return_temperature())
+		filtered_out.set_moles(filter_type, removed.get_moles(filter_type))
 
-		removed.gases[filter_type][MOLES] = 0
-		removed.garbage_collect()
+		removed.set_moles(filter_type, 0)
 
 		var/datum/gas_mixture/target = (air2.return_pressure() < MAX_OUTPUT_PRESSURE ? air2 : air1) //if there's no room for the filtered gas; just leave it in air1
 		target.merge(filtered_out)
@@ -123,7 +123,7 @@
 																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_filter", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "AtmosFilter", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_data()
@@ -153,15 +153,11 @@
 			if(rate == "max")
 				rate = MAX_TRANSFER_RATE
 				. = TRUE
-			else if(rate == "input")
-				rate = input("New transfer rate (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
-				if(!isnull(rate) && !..())
-					. = TRUE
 			else if(text2num(rate) != null)
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				transfer_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
+				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 		if("filter")
 			filter_type = null

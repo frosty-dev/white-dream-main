@@ -1,5 +1,5 @@
 /obj/projectile/meteor
-	name = "meteor"
+	name = "метеор"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small1"
 	damage = 0
@@ -11,7 +11,10 @@
 	if(A == firer)
 		forceMove(A.loc)
 		return
-	A.ex_act(EXPLODE_HEAVY)
+	if(isobj(A))
+		SSexplosions.medobj += A
+	else if(isturf(A))
+		SSexplosions.medturf += A
 	playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, TRUE)
 	for(var/mob/M in urange(10, src))
 		if(!M.stat)

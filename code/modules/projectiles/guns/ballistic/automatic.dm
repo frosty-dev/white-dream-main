@@ -14,7 +14,7 @@
 
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper Nanotrasen Saber SMG"
-	desc = "A prototype three-round burst 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
+	desc = "Пистолет-пулемет, делающий три выстрела за раз. Магазин 9mm , разработаный 'SABR'. Имеет возможность поставить глушитель."
 	icon_state = "saber"
 	mag_type = /obj/item/ammo_box/magazine/smgm9mm
 	pin = null
@@ -24,12 +24,12 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/update_overlays()
+	. = ..()
 	if(!select)
-		add_overlay("[initial(icon_state)]_semi")
+		. += "[initial(icon_state)]_semi"
 	if(select == 1)
-		add_overlay("[initial(icon_state)]_burst")
+		. += "[initial(icon_state)]_burst"
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -43,11 +43,11 @@
 	if(!select)
 		burst_size = 1
 		fire_delay = 0
-		to_chat(user, "<span class='notice'>You switch to semi-automatic.</span>")
+		to_chat(user, "<span class='notice'>Переключаюсь на полу-автоматический режим.</span>")
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
-		to_chat(user, "<span class='notice'>You switch to [burst_size]-rnd burst.</span>")
+		to_chat(user, "<span class='notice'>Переключаюсь на стрельбу очередями по [burst_size] пули за выстрел.</span>")
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_icon()
@@ -57,12 +57,12 @@
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
-	desc = "A bullpup two-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	desc = "Стреляет двумя пулями за выстрел, используя калибр .45 SMG, разработаный 'C-20r'."
 	icon_state = "c20r"
-	item_state = "c20r"
+	inhand_icon_state = "c20r"
 	mag_type = /obj/item/ammo_box/magazine/smgm45
 	fire_delay = 2
-	burst_size = 2
+	burst_size = 3
 	pin = /obj/item/firing_pin/implant/pindicate
 	can_bayonet = TRUE
 	knife_x_offset = 26
@@ -79,10 +79,10 @@
 	update_icon()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	name = "WT-550"
+	desc = "Устаревшее оружие. Использует патроны 4.6x30mm калибра и разработано \"WT-550 Automatic Rifle\"."
 	icon_state = "wt550"
-	item_state = "arg"
+	inhand_icon_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	can_suppress = FALSE
@@ -95,9 +95,23 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
+/obj/item/gun/ballistic/automatic/plastikov
+	name = "\improper PP-95 SMG"
+	desc = "Древняя автоматическая винтовка калибра 9x19mm обновлена и сделана максимально дешёвой. <b>Слишком</b> дешёвой."
+	icon_state = "plastikov"
+	inhand_icon_state = "plastikov"
+	mag_type = /obj/item/ammo_box/magazine/plastikov9mm
+	burst_size = 5
+	spread = 25
+	can_suppress = FALSE
+	actions_types = list()
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/gun/smg/shot_alt.ogg'
+
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
-	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
+	desc = "Стреляет длинными очередями. Использует 9mm патроны."
 	icon_state = "miniuzi"
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
@@ -106,15 +120,16 @@
 	rack_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
+	name = "\improper карабин M-90gl"
+	desc = "Три патрона за выстрел 5.56 карабин, назначеный как 'M-90gl'. Имеет встроенный гранатомёт."
 	icon_state = "m90"
-	item_state = "m90"
+	inhand_icon_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
 	can_suppress = FALSE
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
 	burst_size = 3
 	fire_delay = 2
+	spread = 5
 	pin = /obj/item/firing_pin/implant/pindicate
 	mag_display = TRUE
 	empty_indicator = TRUE
@@ -142,21 +157,20 @@
 /obj/item/gun/ballistic/automatic/m90/attackby(obj/item/A, mob/user, params)
 	if(istype(A, /obj/item/ammo_casing))
 		if(istype(A, underbarrel.magazine.ammo_type))
-			underbarrel.attack_self()
+			underbarrel.attack_self(user)
 			underbarrel.attackby(A, user, params)
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/m90/update_overlays()
+	. = ..()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]_semi")
+			. += "[initial(icon_state)]_semi"
 		if(1)
-			add_overlay("[initial(icon_state)]_burst")
+			. += "[initial(icon_state)]_burst"
 		if(2)
-			add_overlay("[initial(icon_state)]_gren")
-	return
+			. += "[initial(icon_state)]_gren"
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
@@ -165,24 +179,24 @@
 			select = 1
 			burst_size = initial(burst_size)
 			fire_delay = initial(fire_delay)
-			to_chat(user, "<span class='notice'>You switch to [burst_size]-rnd burst.</span>")
+			to_chat(user, "<span class='notice'>Выбираю режим [burst_size] пули за выстрел.</span>")
 		if(1)
 			select = 2
-			to_chat(user, "<span class='notice'>You switch to grenades.</span>")
+			to_chat(user, "<span class='notice'>Выбран гранатомёт.</span>")
 		if(2)
 			select = 0
 			burst_size = 1
 			fire_delay = 0
-			to_chat(user, "<span class='notice'>You switch to semi-auto.</span>")
+			to_chat(user, "<span class='notice'>Выбран полуавтоматический режим.</span>")
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_icon()
 	return
 
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "\improper Thompson SMG"
-	desc = "Based on the classic 'Chicago Typewriter'."
+	name = "\improper пистолет-пулемёт Томпсона"
+	desc = "Сделано для классических Техасских разборок."
 	icon_state = "tommygun"
-	item_state = "shotgun"
+	inhand_icon_state = "shotgun"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/tommygunm45
@@ -193,9 +207,9 @@
 
 /obj/item/gun/ballistic/automatic/ar
 	name = "\improper NT-ARG 'Boarder'"
-	desc = "A robust assault rifle used by Nanotrasen fighting forces."
+	desc = "Крутая штурмовая винтовка, используемая вооруженными силами НТ."
 	icon_state = "arg"
-	item_state = "arg"
+	inhand_icon_state = "arg"
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/m556
 	can_suppress = FALSE
@@ -207,9 +221,9 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "Улучшенная модификами, стреляющая 7.12x82mm патронами, назначена как 'L6 SAW'. Гравировка на обратной стороне 'Aussec Armoury - 2531'."
 	icon_state = "l6"
-	item_state = "l6closedmag"
+	inhand_icon_state = "l6"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/mm712x82
@@ -232,28 +246,36 @@
 	pin = /obj/item/firing_pin
 
 
+/obj/item/gun/ballistic/automatic/l6_saw/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
 	. = ..()
-	. += "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover."
+	. += "<b>alt + click</b> [cover_open ? "Закрываю" : "Открываю"] пылевой чехол."
 	if(cover_open && magazine)
-		. += "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>"
+		. += "<span class='notice'>Можно использовать <b>пустую руку</b> для извлечения магазина.</span>"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
+	if(!user.canUseTopic(src))
+		return
 	cover_open = !cover_open
-	to_chat(user, "<span class='notice'>You [cover_open ? "open" : "close"] [src]'s cover.</span>")
-	playsound(user, 'sound/weapons/gun/l6/l6_door.ogg', 60, TRUE)
+	to_chat(user, "<span class='notice'>[cover_open ? "Открываю" : "Закрываю"] покрытие [src].</span>")
+	playsound(src, 'sound/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_icon()
 
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon_state()
+	inhand_icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? "mag":"nomag"]"
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
+/obj/item/gun/ballistic/automatic/l6_saw/update_overlays()
 	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
+	. += "l6_door_[cover_open ? "Открыто" : "Закрыто"]"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(cover_open)
-		to_chat(user, "<span class='warning'>[src]'s cover is open! Close it before firing!</span>")
+		to_chat(user, "<span class='warning'>У [src.name] не закрыта крышка! Надо бы закрыть перед стрельбой!</span>")
 		return
 	else
 		. = ..()
@@ -265,13 +287,13 @@
 		..()
 		return
 	if (!cover_open)
-		to_chat(user, "<span class='warning'>[src]'s cover is closed! Open it before trying to remove the magazine!</span>")
+		to_chat(user, "<span class='warning'>У [src.name] крышка закрыта! Перед выемкой магазина стоит открыть!</span>")
 		return
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
 	if(!cover_open && istype(A, mag_type))
-		to_chat(user, "<span class='warning'>[src]'s dust cover prevents a magazine from being fit.</span>")
+		to_chat(user, "<span class='warning'>У [src.name] пылезащитный чехол предотвращает подгонку магазина.</span>")
 		return
 	..()
 
@@ -280,10 +302,11 @@
 // SNIPER //
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
-	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
+	name = "снайперская винтовка"
+	desc = "Дальнобойное оружие, которое делает сильные повреждения. Нет, быстро стрелять вы не сможете."
 	icon_state = "sniper"
-	item_state = "sniper"
+	inhand_icon_state = "sniper"
+	worn_icon_state = null
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
@@ -298,14 +321,14 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
-	zoom_out_amt = 13
+	zoom_out_amt = 5
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+	name = "синдикатская снайперская винтовка"
+	desc = "Нелегально модифицирована, стреляющая .50 кал. патронами снайперская винтовка имеет возможность установки глушителя. Скорострельность отсутствует."
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -313,10 +336,11 @@
 // Old Semi-Auto Rifle //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Rifle"
-	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	name = "винтовка"
+	desc = "Одна из бесчисленных устаревших баллистических винтовок, которые по-прежнему считают дешевым средством сдерживания. Использует патроны 10mm и громадная рама не позволит стрелять ей из одной руки."
 	icon_state = "surplus"
-	item_state = "moistnugget"
+	inhand_icon_state = "moistnugget"
+	worn_icon_state = null
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
 	fire_delay = 30
@@ -331,10 +355,10 @@
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
-	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
+	name = "лазерная винтовка"
+	desc = "Несмотря на ее слабость в огне, её достоинство - самоперезаряжающийся магазин. Это оружие сделало немало побед НТ"
 	icon_state = "oldrifle"
-	item_state = "arg"
+	inhand_icon_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/recharge
 	fire_delay = 2
 	can_suppress = FALSE

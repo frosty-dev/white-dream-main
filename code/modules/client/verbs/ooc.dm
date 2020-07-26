@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
-	
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -14,18 +14,18 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	if(!holder)
 		if(!GLOB.ooc_allowed)
-			to_chat(src, "<span class='danger'>OOC выключен. Приятной игры.</span>")
+			to_chat(src, "<span class='danger'> > OOC выключен. Приятной игры.</span>")
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>OOC трупам не разрешён. Приятной игры.</span>")
+			to_chat(usr, "<span class='danger'> > OOC трупам не разрешён. Приятной игры.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>Тебе нельзя. Приятной игры.</span>")
+			to_chat(src, "<span class='danger'> > Тебе нельзя. Приятной игры.</span>")
 			return
 	if(QDELETED(src))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -33,60 +33,76 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
+		if(alert("Похоже \"[raw_msg]\" выглядит как внутриигровое сообщение, написать его в OOC?", "Для OOC?", "Да", "Нет") != "Да")
 			return
 
 	if(!holder)
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Ты че ебать...</B>")
+			to_chat(src, "<B> > Ты че ебать...</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			qdel(src)
 			return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, "<span class='danger'>Тебе нельзя.</span>")
+		to_chat(src, "<span class='danger'> > Тебе нельзя.</span>")
 		return
 
 	if(!src.shadowbanned_ooc)
 		whiningcheck(src, msg)
 
-	mob.log_talk(raw_msg, LOG_OOC)
+	//lobby ooc
+	var/tagmsg = "bepis"
+	if(isnewplayer(mob))
+		tagmsg = "LOBBY"
+		mob.log_talk(raw_msg, LOG_LOBBY)
+	else
+		tagmsg = "OOC"
+		mob.log_talk(raw_msg, LOG_OOC)
 
 	var/keyname = key
+	if(prefs.hearted)
+		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
+		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	for(var/client/C in GLOB.clients)
+		if(isnewplayer(mob) && !isnewplayer(C.mob))
+			if(!C.holder)
+				continue
 		if(src.shadowbanned_ooc || is_banned_from(ckey, "OOC"))
 			if(!(C == src))
 				continue
 			else
-				message_admins("SOOC: [key_name_admin(src)]: [msg]")
+				message_admins("S[tagmsg]: [key_name_admin(src)]: [msg]")
 		if(C.prefs.chat_toggles & CHAT_OOC)
+			if(holder?.fakekey in C.prefs.ignoring)
+				continue
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font style='text-shadow: 0 0 1px black' color=[prefs.ooccolor]>" :"" ]<span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
+						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'> > [tagmsg]:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 					else
-						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
+						to_chat(C, "<span class='adminobserverooc'><span class='prefix'> > [tagmsg]:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
 				else
 					if(GLOB.OOC_COLOR)
-						to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
+						to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'> > [tagmsg]:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 					else
-						to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
+						to_chat(C, "<span class='ooc'><span class='prefix'> > [tagmsg]:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
 
 			else if(!(key in C.prefs.ignoring))
 				if(check_donations(ckey))
-					to_chat(C, "<font style='text-shadow: 0 0 1px black' color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
+					to_chat(C, "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'><b><span class='prefix'> > [tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else if(GLOB.OOC_COLOR)
-					to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
+					to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'> > [tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else
-					to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
-	if(src.shadowbanned_ooc)
+					to_chat(C, "<span class='ooc'><span class='prefix'> > [tagmsg]:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
+	if(src.shadowbanned_ooc || isnewplayer(mob))
 		return
 	webhook_send_ooc(key, msg)
 
@@ -110,20 +126,20 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
 /client/proc/set_ooc(newColor as color)
-	set name = " #️⃣ Set Player OOC Color"
+	set name = "#️⃣ Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
-	set category = "Fun"
+	set category = "Фан"
 	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
-	set name = " ❌ Reset Player OOC Color"
+	set name = "❌ Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
-	set category = "Fun"
+	set category = "Фан"
 	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
-	set name = " #️⃣ Свой цвет OOC"
-	set category = "Preferences"
+	set name = "#️⃣ Свой цвет OOC"
+	set category = "Настройки"
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!check_donations(ckey))
@@ -138,9 +154,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	return
 
 /client/verb/resetcolorooc()
-	set name = " ❌ Сбросить свой цвет OOC"
+	set name = "❌ Сбросить свой цвет OOC"
 	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
+	set category = "Настройки"
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!check_donations(ckey))
@@ -152,8 +168,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 //Checks admin notice
 /client/verb/admin_notice()
-	set name = " 📝 Заметки раунда"
-	set category = "Admin"
+	set name = "📘 Заметки раунда"
+	set category = "Адм"
 	set desc ="Check the admin notice if it has been set"
 	set hidden = TRUE
 
@@ -163,13 +179,13 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		to_chat(src, "<span class='notice'>There are no admin notices at the moment.</span>")
 
 /client/verb/fix_chat()
-	set name = " ❗ ПОЧИНИТЬ ЧАТ"
-	set category = "OOC"
+	set name = "❗ ПОЧИНИТЬ ЧАТ"
+	set category = "Особенное"
 	if (!chatOutput || !istype(chatOutput))
 		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Wot?", "Recreate Chat Output data", "Cancel")
 		if (action != "Recreate Chat Output data")
 			return
-		chatOutput = new /datum/chatOutput(src)
+		chatOutput = new /datum/chat_output(src)
 		chatOutput.start()
 		action = alert(src, "Goon chat reloading, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
 		if (action == "Fixed")
@@ -246,7 +262,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 
 /client/verb/motd()
-	set name = " 📝 Приветствие"
+	set name = "📘 Приветствие"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
 
@@ -257,7 +273,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
 
 /client/proc/self_notes()
-	set name = " 📝 Просмотреть чем я отличился"
+	set name = "📘 Просмотреть чем я отличился"
 	set category = "OOC"
 	set desc = "View the notes that admins have written about you"
 
@@ -268,7 +284,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	browse_messages(null, usr.ckey, null, TRUE)
 
 /client/proc/self_playtime()
-	set name = " 📝 Показать моё время игры"
+	set name = "📘 Показать моё время игры"
 	set category = "OOC"
 	set desc = "View the amount of playtime for roles the server has tracked."
 
@@ -277,59 +293,141 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	var/list/body = list()
-	body += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
+	body += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
 	body += get_exp_report()
 	body += "</BODY></HTML>"
 	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
 
-/client/proc/ignore_key(client, displayed_key)
-	var/client/C = client
-	if(C.key in prefs.ignoring)
-		prefs.ignoring -= C.key
-	else
-		prefs.ignoring |= C.key
-	to_chat(src, "You are [(C.key in prefs.ignoring) ? "now" : "no longer"] ignoring [displayed_key] on the OOC channel.")
-	prefs.save_preferences()
-
+// Ignore verb
 /client/verb/select_ignore()
-	set name = " ❌ Игнорировать"
+	set name = "❌ Игнорировать"
 	set category = "OOC"
 	set desc ="Ignore a player's messages on the OOC channel"
 
+	// Make a list to choose players from
+	var/list/players = list()
 
-	var/see_ghost_names = isobserver(mob)
-	var/list/choices = list()
-	var/displayed_choicename = ""
+	// Use keys and fakekeys for the same purpose
+	var/displayed_key = ""
+
+	// Try to add every player who's online to the list
 	for(var/client/C in GLOB.clients)
+		// Don't add ourself
+		if(C == src)
+			continue
+
+		// Don't add players we've already ignored if they're not using a fakekey
+		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
+			continue
+
+		// Don't add players using a fakekey we've already ignored
+		if(C.holder?.fakekey in prefs.ignoring)
+			continue
+
+		// Use the player's fakekey if they're using one
 		if(C.holder?.fakekey)
-			displayed_choicename = C.holder.fakekey
+			displayed_key = C.holder.fakekey
+
+		// Use the player's key if they're not using a fakekey
 		else
-			displayed_choicename = C.key
-		if(isobserver(C.mob) && see_ghost_names)
-			choices["[C.mob]([displayed_choicename])"] = C
+			displayed_key = C.key
+
+		// Check if both we and the player are ghosts and they're not using a fakekey
+		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
+			// Show us the player's mob name in the list in front of their displayed key
+			// Add the player's displayed key to the list
+			players["[C.mob]([displayed_key])"] = displayed_key
+
+		// Add the player's displayed key to the list if we or the player aren't a ghost or they're using a fakekey
 		else
-			choices[displayed_choicename] = C
-	choices = sortList(choices)
-	var/selection = input("Please, select a player!", "Ignore", null, null) as null|anything in choices
-	if(!selection || !(selection in choices))
+			players[displayed_key] = displayed_key
+
+	// Check if the list is empty
+	if(!players.len)
+		// Express that there are no players we can ignore in chat
+		to_chat(src, "There are no other players you can ignore!")
+
+		// Stop running
 		return
-	displayed_choicename = selection // ckey string
-	selection = choices[selection] // client
-	if(selection == src)
-		to_chat(src, "You can't ignore yourself.")
+
+	// Sort the list
+	players = sortList(players)
+
+	// Request the player to ignore
+	var/selection = input("Please, select a player!", "Ignore", null, null) as null|anything in players
+
+	// Stop running if we didn't receieve a valid selection
+	if(!selection || !(selection in players))
 		return
-	ignore_key(selection, displayed_choicename)
+
+	// Store the selected player
+	selection = players[selection]
+
+	// Check if the selected player is on our ignore list
+	if(selection in prefs.ignoring)
+		// Express that the selected player is already on our ignore list in chat
+		to_chat(src, "You are already ignoring [selection]!")
+
+		// Stop running
+		return
+
+	// Add the selected player to our ignore list
+	prefs.ignoring.Add(selection)
+
+	// Save our preferences
+	prefs.save_preferences()
+
+	// Express that we've ignored the selected player in chat
+	to_chat(src, "You are now ignoring [selection] on the OOC channel.")
+
+// Unignore verb
+/client/verb/select_unignore()
+	set name = "❌ Не игнорировать"
+	set category = "OOC"
+	set desc = "Stop ignoring a player's messages on the OOC channel"
+
+	// Check if we've ignored any players
+	if(!prefs.ignoring.len)
+		// Express that we haven't ignored any players in chat
+		to_chat(src, "You haven't ignored any players!")
+
+		// Stop running
+		return
+
+	// Request the player to unignore
+	var/selection = input("Please, select a player!", "Unignore", null, null) as null|anything in prefs.ignoring
+
+	// Stop running if we didn't receive a selection
+	if(!selection)
+		return
+
+	// Check if the selected player is not on our ignore list
+	if(!(selection in prefs.ignoring))
+		// Express that the selected player is not on our ignore list in chat
+		to_chat(src, "You are not ignoring [selection]!")
+
+		// Stop running
+		return
+
+	// Remove the selected player from our ignore list
+	prefs.ignoring.Remove(selection)
+
+	// Save our preferences
+	prefs.save_preferences()
+
+	// Express that we've unignored the selected player in chat
+	to_chat(src, "You are no longer ignoring [selection] on the OOC channel.")
 
 /client/proc/show_previous_roundend_report()
-	set name = " 📝 Мой последний раунд"
+	set name = "📘 Мой последний раунд"
 	set category = "OOC"
 	set desc = "View the last round end report you've seen"
 
 	SSticker.show_roundend_report(src, TRUE)
 
 /client/verb/fit_viewport()
-	set name = " ❗ Подстроить экран"
-	set category = "OOC"
+	set name = "❗ Подстроить экран"
+	set category = "Особенное"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -374,14 +472,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
 /client/verb/bot_token(token as text)
-	set name = " ❗ Discord Bot token"
-	set category = "Special Verbs"
+	set name = "❗ Discord Bot token"
+	set category = "Особенное"
 	set desc = "Sends specific token to bot through webhook"
 
 	webhook_send_token(key, token)
 
 /client/verb/policy()
-	set name = " 📝 Показать политику"
+	set name = "📘 Показать политику"
 	set desc = "Show special server rules related to your current character."
 	set category = "OOC"
 

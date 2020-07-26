@@ -25,6 +25,8 @@ SUBSYSTEM_DEF(lighting)
 
 	fire(FALSE, TRUE)
 
+	SStitle.set_load_state("light")
+
 	return ..()
 
 /datum/controller/subsystem/lighting/fire(resumed, init_tick_checks)

@@ -1,17 +1,17 @@
 /////// MANNED TURRET ////////
 
 /obj/machinery/manned_turret
-	name = "machine gun turret"
-	desc = "While the trigger is held down, this gun will redistribute recoil to allow its user to easily shift targets."
-	icon = 'icons/obj/turrets.dmi'
-	icon_state = "machinegun"
+	name = "пулемётная турель"
+	desc = "Враги начинают танцевать, когда нажат курок. Попробуй!"
+	icon = 'white/valtos/icons/eris_turret.dmi'
+	icon_state = "turret_gun"
 	can_buckle = TRUE
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 100
 	buckle_lying = FALSE
 	layer = ABOVE_MOB_LAYER
-	var/view_range = 10
+	var/view_range = 2.5
 	var/cooldown = 0
 	var/projectile_type = /obj/projectile/bullet/manned_turret
 	var/rate_of_fire = 1
@@ -21,6 +21,10 @@
 	var/turf/target_turf
 	var/warned = FALSE
 	var/list/calculated_projectile_vars
+
+/obj/machinery/manned_turret/Initialize()
+	. = ..()
+	underlays += mutable_appearance(icon, "turret_legs")
 
 /obj/machinery/manned_turret/Destroy()
 	target = null
@@ -38,7 +42,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.resetToDefault()
 	anchored = FALSE
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -65,7 +69,7 @@
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	anchored = TRUE
 	if(M.client)
-		M.client.change_view(view_range)
+		M.client.view_size.setTo(view_range)
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/manned_turret/process()
@@ -164,7 +168,7 @@
 	P.fire()
 
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
-	name = "Infinity Gun"
+	name = "Ультратурель"
 	view_range = 12
 	projectile_type = /obj/projectile/bullet/manned_turret
 
@@ -176,7 +180,7 @@
 	fire_helper(user)
 
 /obj/item/gun_control
-	name = "turret controls"
+	name = "Контроллер турели"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE

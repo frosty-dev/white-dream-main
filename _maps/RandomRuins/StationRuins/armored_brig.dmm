@@ -1,0 +1,9387 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/space)
+"ab" = (
+/turf/template_noop,
+/area/template_noop)
+"ac" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"ae" = (
+/turf/closed/wall/r_wall,
+/area/security/prison)
+"ag" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"ah" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = -32
+	},
+/turf/template_noop,
+/area/template_noop)
+"ai" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ak" = (
+/obj/machinery/computer/bookmanagement,
+/obj/structure/table,
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison)
+"al" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"am" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison)
+"an" = (
+/obj/structure/chair/stool,
+/obj/structure/cable,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 32
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ao" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison)
+"ap" = (
+/turf/open/floor/engine,
+/area/security/prison)
+"aq" = (
+/obj/structure/chair/stool,
+/turf/open/floor/engine,
+/area/security/prison)
+"ar" = (
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"as" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool,
+/turf/open/floor/engine,
+/area/security/prison)
+"at" = (
+/obj/structure/table,
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/engine,
+/area/security/prison)
+"au" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/structure/cable,
+/obj/item/instrument/harmonica,
+/turf/open/floor/engine,
+/area/security/prison)
+"av" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/item/radio/intercom{
+	desc = "A station intercom. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aw" = (
+/obj/machinery/computer/arcade,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison)
+"ax" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/engine,
+/area/security/prison)
+"ay" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/turf/open/floor/engine,
+/area/security/prison)
+"az" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/engine,
+/area/security/prison)
+"aA" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aD" = (
+/obj/structure/chair/stool,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aE" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aF" = (
+/obj/machinery/camera{
+	c_tag = "Prison Common Room";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aG" = (
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/engine,
+/area/security/prison)
+"aH" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"aI" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"aJ" = (
+/turf/closed/wall/r_wall,
+/area/security/prison/safe)
+"aK" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/plate_press,
+/turf/open/floor/engine,
+/area/security/prison)
+"aL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"aN" = (
+/obj/structure/table,
+/obj/item/folder,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/photo_album/prison,
+/obj/item/camera,
+/turf/open/floor/engine,
+/area/security/prison)
+"aO" = (
+/obj/structure/cable,
+/obj/machinery/camera{
+	c_tag = "Prison Yard";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"aQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"aR" = (
+/turf/closed/wall/r_wall,
+/area/ai_monitored/security/armory)
+"aS" = (
+/obj/machinery/camera/motion{
+	c_tag = "Armory - External";
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"aT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"aU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aV" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Permabrig Maintenance";
+	req_access_txt = "1"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"aW" = (
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/hos)
+"aX" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"aY" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"aZ" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	areastring = "/area/security/prison/safe";
+	dir = 4;
+	name = "Prison Wing Cells APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"ba" = (
+/obj/item/stack/sheet/cardboard{
+	amount = 14
+	},
+/obj/item/stack/package_wrap,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Prison Workshop";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"bb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"bd" = (
+/obj/structure/grille,
+/turf/template_noop,
+/area/template_noop)
+"be" = (
+/turf/closed/wall/r_wall,
+/area/security/main)
+"bf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bg" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/engine,
+/area/security/main)
+"bh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bi" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"bj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"bk" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/engine,
+/area/security/prison)
+"bl" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Common Room"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bm" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Common Room"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"bn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bp" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"bq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"br" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"bt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"bv" = (
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"bw" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/security/main)
+"bx" = (
+/turf/open/floor/engine,
+/area/security/main)
+"by" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/security/main)
+"bz" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"bA" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_y = 30
+	},
+/obj/item/radio/intercom{
+	dir = 4;
+	pixel_x = -31
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/seccarts{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/storage/box/deputy,
+/obj/machinery/button/door{
+	id = "hosspace";
+	name = "Space Shutters Control";
+	pixel_x = -26;
+	pixel_y = 34
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bB" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bC" = (
+/obj/machinery/computer/security/hos,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bD" = (
+/obj/machinery/computer/card/minor/hos,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bE" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bF" = (
+/obj/structure/lattice,
+/obj/structure/sign/warning/securearea{
+	pixel_y = -32
+	},
+/turf/template_noop,
+/area/template_noop)
+"bG" = (
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/structure/closet/crate,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/security/prison)
+"bH" = (
+/obj/structure/closet/crate,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/item/stack/license_plates/empty/fifty,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/security/prison)
+"bI" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bK" = (
+/obj/machinery/door/airlock/security{
+	name = "Prison Workshop"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"bL" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"bM" = (
+/obj/structure/closet/bombcloset/security,
+/turf/open/floor/engine,
+/area/security/main)
+"bN" = (
+/obj/effect/landmark/secequipment,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/security/main)
+"bO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"bQ" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -30
+	},
+/obj/machinery/camera{
+	c_tag = "Head of Security's Office";
+	dir = 4
+	},
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bR" = (
+/obj/structure/chair/comfy/black,
+/obj/machinery/button/door{
+	id = "armory";
+	name = "Armory Shutters";
+	pixel_x = 26;
+	pixel_y = -26;
+	req_access_txt = "3"
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bS" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bT" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bU" = (
+/obj/machinery/keycard_auth{
+	pixel_x = 24;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/obj/item/radio/off,
+/obj/item/taperecorder,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"bV" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = -32
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"bY" = (
+/obj/machinery/door/airlock/security{
+	name = "Prison Yard"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ca" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/beach_ball/holoball,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/holohoop{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
+"ce" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Permabrig North";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ch" = (
+/obj/structure/table,
+/obj/item/storage/box/firingpins,
+/obj/item/storage/box/firingpins,
+/obj/item/key/security,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"ci" = (
+/obj/structure/table,
+/obj/item/storage/box/chemimp{
+	pixel_x = 6
+	},
+/obj/item/storage/box/trackimp{
+	pixel_x = -3
+	},
+/obj/item/storage/lockbox/loyalty,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cj" = (
+/obj/structure/rack,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/item/gun/ballistic/automatic/M41A{
+	pixel_y = 4
+	},
+/obj/item/gun/ballistic/automatic/M41A,
+/obj/item/gun/ballistic/automatic/M41A{
+	pixel_y = -4
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"ck" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/alt{
+	layer = 3.00001;
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/alt{
+	layer = 3.00001
+	},
+/obj/item/clothing/head/helmet/alt{
+	layer = 3.00001;
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Armory Motion Sensor"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cl" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/shield/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shield/riot,
+/obj/item/shield/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/item/shield/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shield/riot,
+/obj/item/shield/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cm" = (
+/obj/structure/rack,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/temperature/security,
+/obj/item/clothing/suit/hooded/ablative,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cn" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/item/ammo_box/magazine/traumatic,
+/obj/item/ammo_box/magazine/traumatic,
+/obj/item/ammo_box/magazine/traumatic,
+/obj/item/ammo_box/magazine/m41a,
+/obj/item/ammo_box/magazine/m41a,
+/obj/item/ammo_box/magazine/m41a,
+/obj/item/ammo_box/magazine/m41a,
+/obj/item/ammo_box/magazine/m41a,
+/obj/item/ammo_box/magazine/m41a,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"co" = (
+/obj/vehicle/ridden/secway,
+/obj/machinery/turretid{
+	lethal = 1;
+	name = "Armory Turret Control";
+	pixel_x = 27;
+	req_one_access_txt = "3"
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cp" = (
+/obj/structure/closet/l3closet/security,
+/obj/machinery/camera{
+	c_tag = "Brig Equipment Room";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"cq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"cr" = (
+/obj/machinery/door/airlock/external{
+	name = "Security External Airlock";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/engine,
+/area/security/main)
+"cs" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"ct" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cu" = (
+/obj/structure/table/wood,
+/obj/item/folder/red,
+/obj/item/stamp/hos,
+/obj/item/gun/ballistic/automatic/wzzzz/stg,
+/obj/item/ammo_box/magazine/wzzzz/stg,
+/obj/item/ammo_box/magazine/wzzzz/stg,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cv" = (
+/obj/item/book/manual/wiki/security_space_law,
+/obj/structure/table/wood,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cw" = (
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit/hos,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/security/prison)
+"cA" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"cB" = (
+/obj/machinery/door/airlock/security{
+	name = "Prison Yard"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"cC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line,
+/turf/open/floor/engine,
+/area/security/prison)
+"cF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cG" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"cH" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/breadslice/plain,
+/obj/item/reagent_containers/food/snacks/breadslice/plain,
+/obj/item/reagent_containers/food/snacks/breadslice/plain,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/onion,
+/obj/item/reagent_containers/food/snacks/grown/onion,
+/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain,
+/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain,
+/obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain,
+/turf/open/floor/engine,
+/area/security/prison)
+"cI" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"cJ" = (
+/obj/item/grenade/barrier{
+	pixel_x = 4
+	},
+/obj/item/grenade/barrier,
+/obj/item/grenade/barrier{
+	pixel_x = -4
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/porta_turret/armory{
+	density = 0
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cM" = (
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/ai_monitored/security/armory";
+	dir = 4;
+	name = "Armory APC";
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"cN" = (
+/obj/machinery/vending/security,
+/turf/open/floor/engine,
+/area/security/main)
+"cO" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = -32
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"cP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cQ" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cS" = (
+/mob/living/simple_animal/pet/dog/shepherd,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"cT" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/engine,
+/area/security/prison)
+"cU" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"cV" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/item/soap/nanotrasen,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"cW" = (
+/obj/machinery/shower{
+	dir = 8;
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"cX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"cY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"cZ" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/security/prison)
+"da" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"db" = (
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/lootdrop/armory_contraband/metastation,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dc" = (
+/obj/item/storage/toolbox/drone,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dd" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/bot,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/gun/ballistic/automatic/ar/wzzzz/fg42{
+	pixel_y = 4
+	},
+/obj/item/gun/ballistic/automatic/ar/wzzzz/fg42,
+/obj/item/gun/ballistic/automatic/ar/wzzzz/fg42{
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"de" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/bot,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/gun/ballistic/automatic/m90/unrestricted/wzzzz/z8{
+	pixel_y = 4
+	},
+/obj/item/gun/ballistic/automatic/m90/unrestricted/wzzzz/z8,
+/obj/item/gun/ballistic/automatic/m90/unrestricted/wzzzz/z8{
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"df" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/bot,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/gun/ballistic/automatic/pistol/traumatic{
+	pixel_y = 4
+	},
+/obj/item/gun/ballistic/automatic/pistol/traumatic,
+/obj/item/gun/ballistic/automatic/pistol/traumatic{
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dg" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/bot,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/southleft{
+	name = "Armory Rack";
+	req_access_txt = "3"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/gun/ballistic/automatic/wzzzz/assault_rifle{
+	pixel_y = 4
+	},
+/obj/item/gun/ballistic/automatic/wzzzz/assault_rifle,
+/obj/item/gun/ballistic/automatic/wzzzz/assault_rifle{
+	pixel_y = -4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dh" = (
+/obj/effect/landmark/event_spawn,
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"di" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dj" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	id = "armory";
+	name = "Armoury Shutter"
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dk" = (
+/obj/machinery/door/airlock/external{
+	name = "Security External Airlock";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"dl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dm" = (
+/obj/item/storage/secure/safe/hos{
+	pixel_x = 35
+	},
+/obj/structure/closet/secure_closet/hos,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"dn" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hos";
+	dir = 8;
+	name = "Head of Security's Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"do" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"dp" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"dq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dr" = (
+/obj/structure/rack,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"ds" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"dt" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/glass/bowl,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/kitchen/fork/plastic,
+/obj/item/kitchen/fork/plastic,
+/obj/item/kitchen/fork/plastic,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/kitchen/spoon/plastic,
+/obj/item/kitchen/spoon/plastic,
+/obj/item/kitchen/spoon/plastic,
+/obj/item/kitchen/knife/plastic,
+/obj/item/kitchen/knife/plastic,
+/obj/item/kitchen/knife/plastic,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/engine,
+/area/security/prison)
+"dv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dw" = (
+/obj/structure/table,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/turf/open/floor/engine,
+/area/security/prison)
+"dx" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"dy" = (
+/obj/machinery/shower{
+	dir = 8;
+	pixel_y = -4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"dz" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"dA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dC" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 8"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"dD" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"dF" = (
+/obj/machinery/biogenerator,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dG" = (
+/obj/machinery/seed_extractor,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"dH" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/seeds/onion,
+/obj/item/seeds/garlic,
+/obj/item/seeds/potato,
+/obj/item/seeds/tomato,
+/obj/item/seeds/carrot,
+/obj/item/seeds/grass,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/wheat,
+/obj/item/seeds/pumpkin,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/turf/open/floor/engine,
+/area/security/prison)
+"dI" = (
+/obj/machinery/flasher/portable,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dK" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dL" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dM" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dO" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dP" = (
+/obj/machinery/button/door{
+	id = "armory";
+	name = "Armory Shutters";
+	pixel_x = 26;
+	pixel_y = -26;
+	req_access_txt = "3"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dQ" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "armory";
+	name = "Armoury Shutter"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"dR" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"dS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"dT" = (
+/obj/structure/table,
+/obj/item/stack/package_wrap,
+/obj/item/pen,
+/turf/open/floor/engine,
+/area/security/main)
+"dU" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"dV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"dW" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"dX" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"dY" = (
+/obj/machinery/camera{
+	c_tag = "Security Escape Pod";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"ea" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ec" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ed" = (
+/obj/machinery/camera{
+	c_tag = "Permabrig Central";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ee" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/mob/living/simple_animal/mouse/brown/tom,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"ef" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/trash/chips,
+/obj/item/trash/candy,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"eg" = (
+/obj/structure/window,
+/obj/effect/decal/cleanable/food/flour,
+/turf/open/floor/engine,
+/area/security/prison)
+"eh" = (
+/obj/machinery/door/window/southleft{
+	name = "Permabrig Kitchen"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ei" = (
+/obj/structure/table,
+/obj/structure/window,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	layer = 3.1;
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/engine,
+/area/security/prison)
+"ej" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"ek" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"el" = (
+/obj/mecha/working/ripley/buran,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"em" = (
+/obj/structure/rack,
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/assault_rifle{
+	pixel_x = 8
+	},
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/fg42,
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/item/ammo_box/magazine/wzzzz/a556carbine{
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"en" = (
+/obj/structure/rack,
+/obj/item/storage/box/teargas{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"eo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"ep" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"eq" = (
+/obj/machinery/suit_storage_unit/security,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"er" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/engine,
+/area/security/main)
+"es" = (
+/obj/machinery/recharger,
+/obj/structure/table,
+/turf/open/floor/engine,
+/area/security/main)
+"et" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"eu" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
+/turf/open/floor/engine,
+/area/security/main)
+"ev" = (
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"ex" = (
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"ey" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"ez" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"eA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"eB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"eC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"eD" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Three"
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"eE" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Three"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"eF" = (
+/obj/machinery/door/airlock{
+	name = "Permabrig Showers"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"eG" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"eH" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/turf/template_noop,
+/area/space)
+"eI" = (
+/obj/docking_port/stationary/random{
+	dir = 4;
+	id = "pod_lavaland3";
+	name = "lavaland"
+	},
+/turf/template_noop,
+/area/template_noop)
+"eK" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"eM" = (
+/obj/machinery/door/airlock/security{
+	name = "Prison Forestry"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"eN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"eO" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"eP" = (
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
+"eS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"eT" = (
+/obj/machinery/door/airlock{
+	name = "Cleaning Closet"
+	},
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"eU" = (
+/obj/item/storage/bag/trash,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"eV" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 12
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bottle/ammonia,
+/turf/open/floor/plating,
+/area/security/prison/safe)
+"eW" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "armory";
+	name = "Armoury Shutter"
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"eX" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "armory";
+	name = "Armoury Shutter"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"eY" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Equipment Room";
+	req_access_txt = "1"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"fb" = (
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fc" = (
+/obj/structure/table,
+/obj/item/restraints/handcuffs,
+/obj/item/assembly/timer,
+/turf/open/floor/engine,
+/area/security/main)
+"fd" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "armory";
+	name = "Armoury Shutter"
+	},
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"fe" = (
+/obj/structure/reagent_dispensers/peppertank,
+/turf/closed/wall/r_wall,
+/area/ai_monitored/security/armory)
+"ff" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/sign/warning/securearea{
+	pixel_x = -32
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fg" = (
+/obj/effect/landmark/start/head_of_security,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"fi" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/engine,
+/area/security/main)
+"fj" = (
+/obj/structure/table,
+/obj/item/radio/off,
+/obj/item/screwdriver{
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fk" = (
+/obj/effect/landmark/start/security_officer,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fm" = (
+/obj/structure/sign/warning/pods{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fn" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fp" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/turf/open/floor/engine,
+/area/security/prison)
+"fq" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"fr" = (
+/obj/machinery/door/airlock/security{
+	name = "Interrogation";
+	req_access_txt = "63"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"fs" = (
+/obj/machinery/door/firedoor,
+/obj/structure/sign/warning/securearea{
+	pixel_x = -32
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Wing"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"ft" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Wing"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"fu" = (
+/obj/machinery/requests_console{
+	department = "Security";
+	departmentType = 5;
+	pixel_x = -30
+	},
+/obj/machinery/camera{
+	c_tag = "Brig Control Room";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"fv" = (
+/obj/machinery/computer/prisoner/management,
+/turf/open/floor/engine,
+/area/security/warden)
+"fw" = (
+/obj/machinery/computer/security,
+/turf/open/floor/engine,
+/area/security/warden)
+"fx" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/engine,
+/area/security/warden)
+"fy" = (
+/turf/open/floor/engine,
+/area/security/warden)
+"fz" = (
+/turf/closed/wall/r_wall,
+/area/security/warden)
+"fB" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/sunglasses{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/sunglasses{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"fC" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"fD" = (
+/obj/structure/table,
+/obj/machinery/syndicatebomb/training,
+/obj/item/gun/energy/laser/practice,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fE" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"fF" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fG" = (
+/obj/machinery/requests_console{
+	department = "Security";
+	departmentType = 5;
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"fH" = (
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"fI" = (
+/obj/structure/table,
+/obj/item/assembly/flash/handheld,
+/turf/open/floor/engine,
+/area/security/main)
+"fJ" = (
+/obj/structure/cable,
+/obj/machinery/holopad/secure,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/mob/living/simple_animal/bot/secbot/ed209,
+/turf/open/floor/engine,
+/area/security/main)
+"fK" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/pen,
+/turf/open/floor/engine,
+/area/security/main)
+"fL" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/main)
+"fM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"fO" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"fP" = (
+/obj/item/cigbutt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"fQ" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"fS" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"fT" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"fU" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"fV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"fW" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"fX" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular,
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"fY" = (
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/obj/structure/table/glass,
+/obj/machinery/computer/med_data/laptop,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"fZ" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/iv_drip,
+/obj/item/reagent_containers/blood,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ga" = (
+/obj/structure/cable,
+/obj/machinery/holopad/secure,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"gb" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/engine,
+/area/security/warden)
+"gc" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/engine,
+/area/security/warden)
+"gd" = (
+/obj/structure/table,
+/obj/item/storage/fancy/donut_box,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"ge" = (
+/obj/effect/landmark/start/security_officer,
+/turf/open/floor/engine,
+/area/security/main)
+"gf" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/turf/open/floor/engine,
+/area/security/main)
+"gg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"gi" = (
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4;
+	sortType = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/security_officer,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gl" = (
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4;
+	sortType = 7
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/main)
+"gm" = (
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	dir = 8;
+	icon_state = "left";
+	name = "Security Delivery";
+	req_access_txt = "1"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gn" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	dir = 8;
+	freq = 1400;
+	location = "Security"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/engine,
+/area/security/main)
+"go" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"gp" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/turf/open/floor/engine,
+/area/security/prison)
+"gr" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/warden";
+	dir = 8;
+	name = "Brig Control APC";
+	pixel_x = -25
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"gt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"gu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/warden)
+"gw" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig Control";
+	req_access_txt = "3"
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"gx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gz" = (
+/obj/item/storage/box/bodybags,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/item/reagent_containers/syringe{
+	name = "steel point"
+	},
+/obj/item/reagent_containers/glass/bottle/multiver,
+/obj/item/reagent_containers/glass/bottle/epinephrine,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"gA" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"gB" = (
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	name = "Brig Infirmary"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"gC" = (
+/obj/structure/bodycontainer/morgue,
+/obj/machinery/camera{
+	c_tag = "Brig Infirmary";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"gD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"gE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gF" = (
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/chair,
+/obj/effect/landmark/start/security_officer,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"gH" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"gI" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/main)
+"gJ" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/main";
+	dir = 4;
+	name = "Security Office APC";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/main)
+"gK" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/taperecorder,
+/turf/open/floor/engine,
+/area/security/prison)
+"gL" = (
+/obj/machinery/camera{
+	c_tag = "Brig Interrogation";
+	dir = 8;
+	network = list("interrogation")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"gM" = (
+/obj/structure/closet/secure_closet/warden,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"gN" = (
+/obj/structure/table,
+/turf/open/floor/engine,
+/area/security/warden)
+"gO" = (
+/obj/structure/chair/office,
+/obj/effect/landmark/start/warden,
+/obj/machinery/button/door{
+	id = "Prison Gate";
+	name = "Prison Wing Lockdown";
+	pixel_x = -27;
+	pixel_y = 8;
+	req_access_txt = "2"
+	},
+/obj/machinery/button/door{
+	id = "Secure Gate";
+	name = "Cell Shutters";
+	pixel_x = -27;
+	pixel_y = -2
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"gP" = (
+/obj/machinery/computer/crew{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"gQ" = (
+/obj/structure/table,
+/obj/item/folder/red,
+/obj/item/pen,
+/obj/item/hand_labeler,
+/obj/item/book/manual/wiki/security_space_law,
+/turf/open/floor/engine,
+/area/security/warden)
+"gR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/warden)
+"gS" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/engine,
+/area/security/warden)
+"gT" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"gU" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"gV" = (
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Brig Infirmary"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"gW" = (
+/obj/structure/bodycontainer/morgue,
+/turf/open/floor/engine,
+/area/security/brig)
+"gX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/engine,
+/area/security/warden)
+"gY" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"gZ" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"ha" = (
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hb" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hc" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hd" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"he" = (
+/obj/machinery/rnd/production/techfab/department/security,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hf" = (
+/obj/machinery/camera{
+	c_tag = "Security Office";
+	dir = 1
+	},
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hg" = (
+/obj/item/radio/intercom{
+	pixel_y = -29
+	},
+/obj/machinery/computer/security{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hh" = (
+/obj/structure/filingcabinet,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/main)
+"hi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"hj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"hk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/main)
+"hl" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"hn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"ho" = (
+/obj/structure/sign/warning/electricshock{
+	pixel_x = -32
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/warden)
+"hp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	name = "Armory Desk";
+	req_access_txt = "3"
+	},
+/obj/machinery/door/window/southleft{
+	name = "Reception Desk";
+	req_access_txt = "63"
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/engine,
+/area/security/warden)
+"hq" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig Control";
+	req_access_txt = "3"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/warden)
+"hr" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	name = "Security Office";
+	req_access_txt = null;
+	req_one_access_txt = "1;4"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/main)
+"hs" = (
+/obj/machinery/door/airlock/security{
+	name = "Interrogation";
+	req_access_txt = "63"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"ht" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hu" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hw" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/brig)
+"hx" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"hy" = (
+/obj/structure/bed,
+/obj/item/clothing/suit/straight_jacket,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"hz" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/bed,
+/obj/item/clothing/suit/straight_jacket,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hA" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	name = "Labor Shuttle";
+	req_access_txt = "2"
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hB" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hC" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hD" = (
+/obj/machinery/camera{
+	c_tag = "Brig East"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hE" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hJ" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/brig";
+	dir = 1;
+	name = "Brig APC";
+	pixel_y = 23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hK" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hL" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hM" = (
+/obj/machinery/computer/security/telescreen/interrogation{
+	pixel_y = 30
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hN" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"hW" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hX" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"hZ" = (
+/obj/machinery/camera{
+	c_tag = "Brig West";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"ia" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"id" = (
+/obj/machinery/light,
+/obj/machinery/door_timer{
+	id = "Cell 1";
+	name = "Cell 1";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ie" = (
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"if" = (
+/obj/machinery/door_timer{
+	id = "Cell 2";
+	name = "Cell 2";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"ig" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Head of Security";
+	req_access_txt = "58"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/crew_quarters/heads/hos)
+"ih" = (
+/obj/machinery/camera{
+	c_tag = "Brig Central";
+	dir = 1
+	},
+/obj/machinery/door_timer{
+	id = "Cell 3";
+	name = "Cell 3";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ii" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ij" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/brig)
+"il" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"im" = (
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/security/brig)
+"io" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"ip" = (
+/obj/machinery/button/flasher{
+	id = "cell4";
+	pixel_x = 24
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iq" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Evidence Storage";
+	req_access_txt = "63"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"is" = (
+/obj/machinery/door/window/brigdoor/security/cell{
+	id = "Cell 1";
+	name = "Cell 1"
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"iu" = (
+/obj/machinery/door/window/brigdoor/security/cell{
+	id = "Cell 2";
+	name = "Cell 2"
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"iv" = (
+/obj/machinery/door/window/brigdoor/security/cell{
+	id = "Cell 3";
+	name = "Cell 3"
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"iw" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig Desk";
+	req_access_txt = "1"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"ix" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/brig)
+"iy" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "innerbrig";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/brig)
+"iz" = (
+/turf/closed/wall/r_wall,
+/area/security/brig)
+"iA" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "innerbrig";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"iB" = (
+/obj/machinery/door/window/brigdoor/security/holding{
+	id = "Holding Cell";
+	name = "Holding Cell"
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"iC" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iD" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iE" = (
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = -25;
+	pixel_y = -2;
+	prison_radio = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/brig)
+"iG" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iH" = (
+/obj/effect/landmark/event_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iI" = (
+/obj/machinery/button/door{
+	id = "briggate";
+	name = "Desk Shutters";
+	pixel_x = -26;
+	pixel_y = 6
+	},
+/obj/machinery/button/flasher{
+	id = "brigentry";
+	pixel_x = -28;
+	pixel_y = -8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iJ" = (
+/obj/machinery/computer/secure_data,
+/turf/open/floor/engine,
+/area/security/brig)
+"iK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "briggate";
+	name = "security shutters"
+	},
+/obj/machinery/door/window/eastleft{
+	name = "Brig Desk";
+	req_access_txt = "1"
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/engine,
+/area/security/brig)
+"iL" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/brig)
+"iM" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iN" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iQ" = (
+/obj/machinery/flasher{
+	id = "cell4";
+	pixel_x = 28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/turf/open/floor/engine,
+/area/security/brig)
+"iR" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iS" = (
+/turf/open/floor/engine,
+/area/security/brig)
+"iT" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"iU" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/flasher{
+	id = "Cell 1";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"iV" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"iW" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"iX" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 2";
+	name = "Cell 2 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"iY" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/flasher{
+	id = "Cell 3";
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"iZ" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 3";
+	name = "Cell 3 Locker"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/brig)
+"ja" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "outerbrig";
+	name = "Brig Exterior Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = -26;
+	pixel_y = -5;
+	req_access_txt = "63"
+	},
+/obj/machinery/button/door{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "innerbrig";
+	name = "Brig Interior Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = -26;
+	pixel_y = 5;
+	req_access_txt = "63"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jb" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jc" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "briggate";
+	name = "security shutters"
+	},
+/obj/machinery/door/window/eastright{
+	name = "Brig Desk";
+	req_access_txt = "2"
+	},
+/obj/item/restraints/handcuffs,
+/obj/item/radio/off,
+/turf/open/floor/engine,
+/area/security/brig)
+"jd" = (
+/obj/machinery/flasher{
+	id = "brigentry";
+	pixel_x = 28
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"je" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jf" = (
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = 25;
+	pixel_y = -2;
+	prison_radio = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jg" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"jh" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/brig)
+"ji" = (
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jj" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "Secure Gate";
+	name = "brig shutters"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/brig)
+"jk" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "briggate";
+	name = "security shutters"
+	},
+/obj/machinery/door/window/southleft{
+	name = "Brig Desk";
+	req_access_txt = "1"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "briggate";
+	name = "security shutters"
+	},
+/obj/machinery/door/window/southleft{
+	base_state = "right";
+	icon_state = "right";
+	name = "Brig Desk";
+	req_access_txt = "1"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jm" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/brig)
+"jn" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "outerbrig";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/brig)
+"jo" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/turf/open/floor/engine,
+/area/security/brig)
+"jp" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "outerbrig";
+	name = "Brig";
+	req_access_txt = "63"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "briggate";
+	name = "security blast door"
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/brig)
+"jq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jr" = (
+/obj/machinery/shower{
+	dir = 8;
+	pixel_y = -4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"jt" = (
+/obj/machinery/camera{
+	c_tag = "Prison Cell Block North";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"jx" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/cultivator,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jy" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/plant_analyzer,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/turf/open/floor/engine,
+/area/security/prison)
+"jz" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Laundry"
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"jA" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/trash/sosjerky,
+/obj/item/trash/boritos,
+/obj/item/trash/can,
+/turf/open/floor/engine,
+/area/security/prison)
+"jC" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/energybar,
+/turf/open/floor/engine,
+/area/security/prison)
+"jD" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"jF" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/obj/item/storage/bag/tray/cafeteria,
+/turf/open/floor/engine,
+/area/security/prison)
+"jG" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"jH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jJ" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 7"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"jK" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/landmark/start/prisoner,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"jL" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/cultivator,
+/obj/machinery/camera{
+	c_tag = "Prison Forestry";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jM" = (
+/obj/machinery/hydroponics/soil,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/turf/open/floor/engine,
+/area/security/prison)
+"jN" = (
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"jO" = (
+/obj/structure/closet/crate/trashcart/laundry,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner,
+/obj/item/clothing/under/rank/prisoner/skirt,
+/obj/item/clothing/under/rank/prisoner/skirt,
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jQ" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Cafeteria"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/security/prison)
+"jR" = (
+/obj/item/radio/intercom{
+	desc = "A station intercom. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/security/prison)
+"jT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"jU" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/engine,
+/area/security/prison)
+"jV" = (
+/obj/machinery/camera{
+	c_tag = "Prison Cafeteria";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jX" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"jZ" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/shovel/spade,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Prison Laundry";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kd" = (
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ke" = (
+/obj/machinery/washing_machine,
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kf" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Prison Cafeteria"
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ki" = (
+/obj/structure/table/reinforced,
+/obj/structure/reagent_dispensers/servingdish,
+/turf/open/floor/engine,
+/area/security/prison)
+"kj" = (
+/obj/structure/toilet/greyscale{
+	dir = 8;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kn" = (
+/obj/machinery/hydroponics/soil,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/turf/open/floor/engine,
+/area/security/prison)
+"ko" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/turf/open/floor/engine,
+/area/security/prison)
+"kp" = (
+/obj/machinery/hydroponics/soil,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/green,
+/obj/effect/turf_decal/tile/hex/green{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kq" = (
+/obj/structure/table,
+/obj/structure/bedsheetbin,
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kr" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ks" = (
+/obj/structure/cable,
+/obj/item/radio/intercom{
+	desc = "A station intercom. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_x = -30;
+	prison_radio = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"kt" = (
+/obj/machinery/holopad,
+/turf/open/floor/engine,
+/area/security/prison)
+"ku" = (
+/obj/machinery/vending/sustenance,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kw" = (
+/obj/structure/table,
+/turf/open/floor/engine,
+/area/security/prison)
+"kx" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"ky" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kz" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 5"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kC" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 6"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kD" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kE" = (
+/obj/structure/lattice,
+/turf/closed/wall/r_wall,
+/area/security/execution/transfer)
+"kF" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"kH" = (
+/obj/machinery/camera{
+	c_tag = "Permabrig South";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/cola/red,
+/turf/open/floor/engine,
+/area/security/prison)
+"kJ" = (
+/obj/structure/table,
+/obj/item/kitchen/fork/plastic,
+/turf/open/floor/engine,
+/area/security/prison)
+"kK" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/security/prison)
+"kL" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/template_noop,
+/area/template_noop)
+"kP" = (
+/obj/item/radio/intercom{
+	desc = "A station intercom. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"kQ" = (
+/obj/machinery/door/airlock/security{
+	name = "Cell Block"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/security/prison)
+"kR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"kV" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/bedsheet/red,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kW" = (
+/obj/structure/toilet/greyscale{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"kY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"la" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"lb" = (
+/obj/structure/cable,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ld" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/security/prison)
+"lg" = (
+/obj/machinery/door/airlock/security{
+	name = "Cell Block"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/security/prison)
+"lh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"li" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"lj" = (
+/obj/machinery/door/airlock/security{
+	name = "Permabrig Visitation"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ll" = (
+/obj/machinery/flasher{
+	id = "visitorflash";
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ln" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lo" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lp" = (
+/obj/machinery/button/flasher{
+	id = "visitorflash";
+	pixel_x = -6;
+	pixel_y = 24
+	},
+/obj/machinery/button/door{
+	id = "visitation";
+	name = "Visitation Shutters";
+	pixel_x = 6;
+	pixel_y = 25;
+	req_access_txt = "2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lq" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"ls" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 4"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lt" = (
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"lu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Prison Cell Block Central";
+	dir = 1;
+	network = list("ss13","prison")
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lw" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ly" = (
+/obj/machinery/camera{
+	c_tag = "Prison Cell Block East";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lz" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainner";
+	name = "Permabrig Transfer"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lA" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainner";
+	name = "Permabrig Transfer"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"lB" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lC" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lD" = (
+/obj/machinery/door/airlock/security{
+	name = "Isolation Cell";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lE" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 3"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lG" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 2"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lH" = (
+/obj/machinery/door/airlock/security{
+	name = "Permanent Cell 1"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lJ" = (
+/obj/machinery/flasher{
+	id = "transferflash";
+	pixel_y = 28
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lL" = (
+/obj/structure/table,
+/obj/machinery/door/poddoor/shutters{
+	id = "visitation";
+	name = "Visitation Shutters"
+	},
+/obj/machinery/door/window/southright,
+/turf/open/floor/engine,
+/area/security/prison)
+"lM" = (
+/obj/structure/table,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "visitation";
+	name = "Visitation Shutters"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/engine,
+/area/security/prison)
+"lN" = (
+/obj/structure/table,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "visitation";
+	name = "Visitation Shutters"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/engine,
+/area/security/prison)
+"lO" = (
+/obj/structure/table,
+/obj/machinery/door/poddoor/shutters{
+	id = "visitation";
+	name = "Visitation Shutters"
+	},
+/obj/machinery/door/window/southleft,
+/turf/open/floor/engine,
+/area/security/prison)
+"lP" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lR" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Isolation Cell";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lS" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lU" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lV" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"lW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"lY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"lZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ma" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mb" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/chair/stool,
+/turf/open/floor/engine,
+/area/security/prison)
+"mc" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/chair/stool,
+/turf/open/floor/engine,
+/area/security/prison)
+"md" = (
+/obj/structure/toilet/greyscale{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"me" = (
+/obj/structure/bed,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mf" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mg" = (
+/obj/machinery/camera{
+	c_tag = "Prison Isolation Cell";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mh" = (
+/obj/structure/toilet/greyscale{
+	dir = 4;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mi" = (
+/obj/structure/toilet/greyscale{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mk" = (
+/obj/structure/toilet/greyscale{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"ml" = (
+/obj/structure/bed,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/item/bedsheet/red,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mm" = (
+/obj/structure/table,
+/obj/item/clothing/shoes/sneakers/orange{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/clothing/shoes/sneakers/orange{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/sneakers/orange{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/clothing/shoes/sneakers/orange{
+	pixel_x = -6;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/rank/prisoner{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mn" = (
+/obj/structure/table,
+/obj/item/clothing/under/rank/prisoner/skirt{
+	pixel_x = -13;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/rank/prisoner/skirt{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/clothing/under/rank/prisoner{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mq" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mr" = (
+/obj/machinery/camera{
+	c_tag = "Prison Visitation";
+	dir = 1;
+	network = list("ss13","prison")
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ms" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mt" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mv" = (
+/obj/machinery/door/airlock/security{
+	name = "Isolation Cell";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison/safe)
+"mw" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permaouter";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mx" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permaouter";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/security/prison)
+"my" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Permabrig Visitation";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mz" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Visitation Observation";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mA" = (
+/obj/machinery/door/poddoor{
+	id = "executionspaceblast"
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"mB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mC" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/sparker{
+	id = "executionburn";
+	pixel_y = 25
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mF" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mI" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mJ" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"mK" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = /area/security/prison;
+	dir = 1;
+	name = "Prison Wing APC";
+	pixel_y = 23
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mL" = (
+/obj/machinery/button/door{
+	id = "permaouter";
+	name = "Outer Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 6;
+	pixel_y = 25;
+	req_access_txt = "2";
+	specialfunctions = 4
+	},
+/obj/machinery/button/door{
+	id = "permainner";
+	name = "Inner Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -6;
+	pixel_y = 25;
+	req_access_txt = "2";
+	specialfunctions = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mM" = (
+/obj/machinery/button/flasher{
+	id = "transferflash";
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mN" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mO" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/engine,
+/area/security/prison)
+"mP" = (
+/obj/structure/cable,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mQ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1,
+/turf/open/floor/engine,
+/area/security/prison)
+"mR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mS" = (
+/obj/machinery/camera{
+	c_tag = "Prison Public Area";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"mT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mU" = (
+/obj/structure/bed,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/flasher{
+	id = "executionflash";
+	pixel_x = 25
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"mW" = (
+/obj/machinery/camera{
+	c_tag = "Prison Hallway West";
+	dir = 4;
+	network = list("ss13","prison")
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"mZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"nb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"nc" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nd" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor,
+/obj/structure/sign/warning/securearea{
+	pixel_y = -32
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "Prison Gate";
+	name = "prison blast door"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ne" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ng" = (
+/obj/item/radio/intercom{
+	dir = 4;
+	pixel_x = 27
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"ni" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nk" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"nm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nn" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/orange,
+/obj/item/restraints/handcuffs,
+/obj/item/reagent_containers/spray/pepper,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"no" = (
+/obj/structure/closet/secure_closet/brig,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"np" = (
+/obj/structure/table,
+/obj/item/storage/box/prisoner{
+	pixel_y = 8
+	},
+/obj/item/storage/box/prisoner,
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nq" = (
+/obj/structure/table,
+/obj/item/storage/box/hug{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/razor{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nr" = (
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ns" = (
+/obj/structure/table,
+/obj/item/electropack,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nt" = (
+/obj/structure/table,
+/obj/item/assembly/signaler,
+/obj/item/clothing/suit/straight_jacket,
+/obj/machinery/camera{
+	c_tag = "Prison Hallway East";
+	dir = 8;
+	network = list("ss13","prison")
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nu" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/prison)
+"nv" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/prison)
+"nw" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/prison)
+"nx" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"ny" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/prison)
+"nz" = (
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/red,
+/turf/open/floor/engine,
+/area/security/prison)
+"nC" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nD" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "executionfireblast"
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/westright{
+	dir = 1;
+	name = "Transfer Room";
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nE" = (
+/obj/structure/bed/roller,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"nF" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nG" = (
+/obj/structure/table,
+/obj/item/razor,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nH" = (
+/obj/structure/table,
+/obj/item/folder/red{
+	pixel_x = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = -3
+	},
+/obj/item/assembly/flash/handheld,
+/obj/item/reagent_containers/spray/pepper,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nI" = (
+/obj/machinery/button/door{
+	id = "executionfireblast";
+	name = "Transfer Area Lockdown";
+	pixel_x = 25;
+	pixel_y = -5;
+	req_access_txt = "2"
+	},
+/obj/machinery/button/flasher{
+	id = "executionflash";
+	pixel_x = 24;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nJ" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	aiControlDisabled = 1;
+	name = "Prisoner Transfer Centre";
+	req_access_txt = "2"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nK" = (
+/obj/structure/table,
+/obj/item/electropack,
+/obj/item/screwdriver,
+/obj/item/wrench,
+/obj/item/clothing/head/helmet,
+/obj/item/assembly/signaler,
+/obj/machinery/button/ignition{
+	id = "executionburn";
+	pixel_x = -24;
+	pixel_y = 5
+	},
+/obj/machinery/button/door{
+	id = "executionspaceblast";
+	name = "Vent to Space";
+	pixel_x = -25;
+	pixel_y = -5;
+	req_access_txt = "2"
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nL" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nM" = (
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nN" = (
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nO" = (
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nQ" = (
+/obj/structure/closet/secure_closet/injection,
+/obj/machinery/power/apc{
+	areastring = "/area/security/execution/transfer";
+	dir = 4;
+	name = "Prisoner Transfer Centre";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nR" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal,
+/obj/item/storage/box/bodybags,
+/obj/item/pen,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nS" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/machinery/light/small,
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nU" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer3{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nV" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nW" = (
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nX" = (
+/obj/structure/rack,
+/obj/item/flashlight{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/tank/internals/anesthetic{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/tank/internals/oxygen/red{
+	pixel_x = 3
+	},
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/hex/neutral,
+/obj/effect/turf_decal/tile/hex/neutral{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/security/execution/transfer)
+"nZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"oa" = (
+/obj/machinery/door/window/southleft{
+	base_state = "right";
+	dir = 1;
+	icon_state = "right";
+	name = "Gas Storage";
+	req_access_txt = "2"
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"ob" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"oc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/pipe/simple/general/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"od" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/manifold/general/hidden,
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"oe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/security/execution/transfer)
+"of" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosspace";
+	name = "space shutters"
+	},
+/turf/open/floor/engine,
+/area/security/prison)
+"TC" = (
+/obj/machinery/suit_storage_unit/security,
+/obj/effect/turf_decal/tile/hex/red,
+/obj/effect/turf_decal/tile/hex/red{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/engine,
+/area/ai_monitored/security/armory)
+"YX" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/ai_monitored/security/armory)
+
+(1,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+bd
+bd
+bd
+bd
+bd
+bd
+bd
+bd
+bd
+bd
+kL
+kL
+kL
+kL
+kL
+kL
+eP
+mA
+mA
+mA
+eP
+nF
+eP
+nF
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(2,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+ab
+ag
+ab
+ab
+ag
+ab
+ab
+ag
+ag
+ag
+ab
+ab
+ag
+ab
+ab
+ag
+eP
+mB
+mT
+nh
+nC
+nG
+nK
+nR
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(3,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+bF
+aJ
+cU
+cU
+aJ
+cU
+cU
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+eP
+mC
+mU
+ni
+nC
+nH
+nL
+nS
+kE
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(4,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+ab
+aJ
+cV
+dx
+ej
+dx
+jG
+aJ
+da
+kx
+aJ
+kV
+lq
+aJ
+lP
+md
+eP
+mD
+mV
+nj
+nD
+nI
+nM
+nW
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(5,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+ag
+aJ
+cW
+dy
+ek
+jr
+cW
+aJ
+kj
+ky
+aJ
+kW
+lr
+aJ
+lQ
+me
+eP
+eP
+eP
+eP
+eP
+eP
+nN
+nU
+eP
+nF
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(6,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+ab
+aJ
+aJ
+aJ
+eF
+aJ
+aJ
+aJ
+aJ
+kz
+aJ
+aJ
+ls
+aJ
+lR
+mf
+aJ
+mF
+mW
+nk
+nk
+eP
+nO
+nV
+nZ
+oc
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(7,1,1) = {"
+ab
+ab
+ab
+ab
+bd
+bd
+bd
+bd
+bd
+ab
+ai
+ap
+dA
+eG
+jt
+jH
+kR
+kk
+lt
+kR
+kY
+lt
+lD
+lS
+mg
+mv
+kR
+mX
+nl
+nl
+nJ
+nP
+nW
+oa
+od
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(8,1,1) = {"
+ab
+ab
+ab
+ab
+bd
+ag
+ag
+ag
+ag
+ag
+ai
+cX
+mY
+am
+am
+mY
+jX
+kl
+mY
+am
+am
+lu
+aJ
+aJ
+aJ
+aJ
+ap
+mY
+nm
+nE
+eP
+nQ
+nX
+ob
+oe
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(9,1,1) = {"
+bd
+bd
+bd
+bd
+bd
+ag
+ae
+ae
+ae
+ae
+aJ
+aJ
+dC
+aJ
+aJ
+jJ
+aJ
+aJ
+kC
+aJ
+al
+aX
+lE
+lU
+mh
+aJ
+ap
+mY
+ae
+ae
+eP
+eP
+eP
+eP
+eP
+eP
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(10,1,1) = {"
+bd
+ag
+ag
+ag
+ag
+ag
+ae
+aK
+ba
+bG
+aJ
+mi
+dD
+aJ
+mk
+dD
+aJ
+mi
+dD
+aJ
+lb
+lv
+aJ
+kD
+da
+aJ
+ap
+mY
+nn
+ae
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(11,1,1) = {"
+bd
+ah
+ae
+ae
+ae
+ae
+ae
+aL
+bb
+bH
+aJ
+da
+kD
+aJ
+ml
+jK
+aJ
+da
+kD
+aJ
+la
+lw
+aJ
+aJ
+aJ
+aJ
+mH
+mZ
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(12,1,1) = {"
+bd
+ag
+ai
+ak
+aq
+ax
+ae
+aK
+bj
+bJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+am
+aX
+lG
+lU
+mi
+aJ
+ap
+mY
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(13,1,1) = {"
+bd
+ab
+ae
+al
+ap
+ap
+ae
+ae
+ae
+bK
+ae
+ae
+dF
+eK
+jx
+jL
+jZ
+kn
+ae
+ae
+ld
+lx
+aJ
+lV
+ml
+aJ
+ap
+mY
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(14,1,1) = {"
+bd
+ag
+ai
+am
+as
+aq
+lW
+ap
+bk
+lv
+cf
+ae
+dG
+fM
+aT
+jT
+hl
+ko
+ae
+kP
+am
+lv
+aJ
+aJ
+aJ
+aJ
+mI
+mY
+np
+ae
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(15,1,1) = {"
+bd
+ab
+ae
+an
+at
+ay
+aD
+aI
+bk
+lv
+ap
+ae
+dH
+lv
+jy
+jM
+jM
+kp
+ae
+ap
+am
+bf
+lH
+lU
+mk
+aJ
+ap
+mY
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(16,1,1) = {"
+bd
+ag
+ai
+ao
+au
+az
+aE
+ap
+bl
+lx
+cy
+ae
+ae
+eM
+ae
+ae
+ae
+ae
+ae
+ap
+am
+ly
+aJ
+jK
+ml
+aJ
+ap
+mY
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(17,1,1) = {"
+bd
+ab
+ae
+ae
+av
+am
+aB
+nl
+bm
+eN
+nl
+dl
+nl
+eN
+jz
+jN
+kc
+kq
+ae
+kQ
+lg
+ae
+aJ
+aJ
+aJ
+aJ
+mJ
+ne
+no
+of
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(18,1,1) = {"
+bd
+ag
+ag
+ai
+aw
+aA
+aF
+aN
+bk
+mY
+ap
+dq
+aI
+eO
+ae
+jO
+kd
+kr
+ae
+ap
+am
+lz
+ap
+lW
+mm
+ae
+mK
+mY
+nq
+ae
+ae
+ae
+ae
+ae
+ae
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(19,1,1) = {"
+bd
+bd
+ah
+ae
+ae
+ae
+ae
+ae
+ae
+bY
+cB
+ae
+aL
+mY
+ae
+ae
+ke
+ke
+ae
+ap
+lh
+lA
+nl
+lX
+mn
+ae
+mL
+mY
+nr
+ae
+mp
+ap
+ap
+ce
+ae
+iz
+hA
+iz
+iz
+iz
+iz
+ab
+"}
+(20,1,1) = {"
+ab
+bd
+ag
+ag
+ag
+ae
+ap
+aO
+bp
+eO
+ap
+ae
+ap
+mY
+jA
+ae
+ae
+ae
+ae
+aL
+mY
+ae
+lJ
+lY
+nl
+mw
+nl
+nb
+nr
+fr
+bn
+go
+go
+dv
+ae
+hI
+hX
+iz
+iC
+iR
+jg
+iz
+"}
+(21,1,1) = {"
+ab
+bd
+bd
+bd
+ag
+ae
+aG
+aP
+bq
+ca
+cC
+ae
+ec
+lY
+nl
+nl
+mX
+ks
+kF
+nl
+li
+cZ
+ap
+lZ
+ap
+mx
+ap
+mY
+ns
+ae
+fO
+gp
+gK
+dv
+ae
+hJ
+hY
+iq
+bL
+iS
+jh
+iz
+"}
+(22,1,1) = {"
+ab
+ab
+ab
+bd
+ab
+ae
+ap
+al
+br
+kh
+cE
+ae
+ed
+eS
+jq
+ap
+lv
+kt
+ap
+ap
+lv
+cZ
+jD
+ma
+jD
+ae
+mM
+mY
+nt
+ae
+fP
+jD
+jD
+dv
+ae
+hK
+hZ
+iz
+iD
+iT
+ji
+iz
+"}
+(23,1,1) = {"
+ab
+ab
+ab
+bd
+ag
+ae
+aH
+am
+br
+kh
+cE
+aJ
+aJ
+eT
+aJ
+ap
+lv
+ap
+kH
+ae
+lj
+ae
+ae
+ae
+ae
+ae
+mN
+nc
+ae
+ae
+bo
+aM
+gL
+hn
+hs
+hL
+ia
+iz
+iz
+iz
+iz
+iz
+"}
+(24,1,1) = {"
+ab
+ab
+ab
+bd
+ab
+ae
+aI
+aQ
+bs
+cb
+cE
+aJ
+ee
+eU
+aJ
+jQ
+kf
+ae
+ae
+ae
+lv
+aq
+lL
+aq
+mp
+ae
+mO
+nd
+ae
+iz
+iz
+iz
+iz
+iz
+iz
+hM
+gA
+ix
+iE
+iU
+jj
+ab
+"}
+(25,1,1) = {"
+ab
+ab
+ab
+bd
+ag
+ae
+aG
+al
+bt
+cc
+cF
+aJ
+ef
+eV
+aJ
+ap
+lv
+ku
+kI
+ae
+lk
+lB
+lM
+mb
+mq
+ae
+mP
+mY
+nu
+iz
+fW
+gz
+gC
+gW
+iz
+hN
+io
+is
+ea
+iF
+jj
+ab
+"}
+(26,1,1) = {"
+ab
+ab
+ab
+bd
+bd
+ae
+aJ
+aV
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+jR
+kg
+ap
+aI
+ae
+ll
+lC
+lN
+mc
+mr
+ae
+mQ
+ne
+nv
+iz
+fX
+gA
+gU
+hx
+iz
+hT
+ie
+ix
+iG
+iV
+jj
+ab
+"}
+(27,1,1) = {"
+ab
+ab
+ab
+ag
+ag
+ag
+aJ
+aY
+bv
+bv
+bv
+dr
+aJ
+go
+go
+aI
+kh
+go
+go
+ae
+ap
+aq
+lO
+aq
+bf
+my
+kR
+nb
+nw
+iz
+fY
+iS
+iS
+hy
+iz
+hT
+id
+iz
+iz
+iz
+iz
+ab
+"}
+(28,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ag
+aJ
+aZ
+bz
+bv
+cG
+ds
+aJ
+fp
+jC
+ap
+dv
+kw
+kJ
+ae
+ln
+ln
+ae
+ln
+ln
+ae
+mR
+mZ
+nx
+iz
+fZ
+gB
+gV
+hz
+iz
+hT
+gA
+ix
+iE
+iW
+jj
+ab
+"}
+(29,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ag
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+fq
+jD
+ap
+kh
+jD
+kK
+ae
+lo
+kw
+kw
+kw
+ms
+ae
+ap
+nf
+ny
+fs
+fQ
+fQ
+fQ
+fQ
+ht
+hS
+io
+iu
+ea
+iF
+jj
+ab
+"}
+(30,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+ae
+cH
+dt
+eg
+ap
+jE
+jT
+aU
+ap
+aI
+ae
+lp
+aM
+aM
+aM
+mt
+mz
+mS
+ng
+nz
+ft
+iN
+iN
+iN
+iN
+hu
+hT
+ie
+ix
+iG
+iX
+jj
+ab
+"}
+(31,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ae
+cI
+ap
+eh
+aI
+jF
+jU
+ki
+ki
+jU
+ae
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+fz
+fS
+fz
+fS
+fz
+hC
+hT
+if
+iz
+iz
+iz
+iz
+ab
+"}
+(32,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ae
+cT
+dw
+ei
+jq
+aI
+jV
+ap
+aI
+ap
+ae
+aR
+YX
+aR
+ch
+cJ
+db
+dI
+dI
+aR
+fu
+fT
+gr
+gM
+ho
+hw
+hU
+gA
+ix
+iE
+iY
+jj
+ab
+"}
+(33,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bF
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+aR
+YX
+aR
+ci
+cK
+dc
+dJ
+el
+aR
+fv
+fy
+fT
+gN
+fS
+hC
+cY
+io
+iv
+iH
+iF
+jj
+ab
+"}
+(34,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+cj
+cL
+dd
+dK
+em
+fd
+fw
+fU
+fT
+gO
+hp
+hC
+hT
+ie
+ix
+iG
+iZ
+jj
+ab
+"}
+(35,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+ck
+cL
+de
+dL
+en
+fd
+fx
+fV
+fT
+gP
+fS
+hC
+hT
+ih
+iz
+iz
+iz
+iz
+ab
+"}
+(36,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+cl
+cL
+df
+dM
+eo
+eW
+fy
+fV
+gt
+gQ
+fS
+hC
+hT
+ar
+iw
+iI
+ja
+jk
+ab
+"}
+(37,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+cm
+cL
+dg
+dN
+ep
+eX
+gR
+ga
+gu
+gR
+hq
+cA
+dz
+ii
+ix
+iJ
+jb
+jl
+ab
+"}
+(38,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+cn
+cL
+dh
+dO
+eq
+fd
+fB
+fy
+fT
+gS
+fS
+hC
+hT
+ar
+iz
+iK
+jc
+jm
+ab
+"}
+(39,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+ag
+ag
+aR
+YX
+aR
+co
+cM
+di
+dP
+TC
+fe
+fC
+gb
+fT
+gT
+fz
+hB
+hV
+ij
+iy
+iL
+iL
+jn
+ab
+"}
+(40,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+aS
+be
+bi
+aR
+aR
+aR
+dj
+dQ
+aR
+aR
+fz
+gc
+gw
+gX
+fz
+hC
+hT
+iM
+ix
+iM
+iM
+jo
+ab
+"}
+(41,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ab
+be
+bw
+bM
+cp
+cN
+bx
+bx
+er
+ff
+fD
+gd
+gx
+gY
+be
+hD
+dV
+il
+iA
+il
+jd
+jp
+ab
+"}
+(42,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+bi
+bx
+bx
+bx
+bx
+bx
+bx
+es
+bg
+ex
+ge
+gy
+gZ
+hr
+hE
+dz
+im
+iz
+iz
+iz
+iz
+ab
+"}
+(43,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ab
+be
+bx
+bN
+bN
+bN
+bN
+dR
+et
+eY
+fE
+et
+gD
+ha
+be
+hC
+hT
+iS
+ix
+iO
+iO
+iz
+ab
+"}
+(44,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+bi
+bx
+bO
+cq
+cq
+cq
+dS
+eu
+bg
+fF
+bx
+gE
+hb
+be
+hC
+cY
+io
+iB
+iP
+je
+iz
+ab
+"}
+(45,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+be
+by
+bw
+bw
+bw
+bw
+be
+be
+be
+fG
+cq
+bu
+hc
+be
+iN
+hW
+ip
+ix
+iQ
+jf
+iz
+ab
+"}
+(46,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+ag
+aW
+aW
+aW
+cs
+cs
+aW
+aW
+ev
+fb
+fH
+ge
+gE
+hd
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(47,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+aW
+bA
+bQ
+ct
+cP
+dn
+cs
+ex
+fc
+fI
+gf
+gE
+he
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(48,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ag
+ag
+bI
+bB
+bR
+cu
+cQ
+bh
+aW
+ex
+bx
+bx
+gg
+gF
+hf
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(49,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+bI
+bC
+bS
+cv
+cR
+do
+ig
+ey
+fg
+fJ
+gh
+gG
+hg
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(50,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ag
+ag
+ag
+ag
+ag
+ag
+bI
+bD
+bT
+cw
+cS
+dp
+aW
+ez
+fi
+fi
+gi
+gE
+hh
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(51,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+aW
+bE
+bU
+cx
+dm
+dW
+dX
+eA
+fj
+fK
+gj
+gH
+hi
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(52,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+ex
+fk
+fk
+gk
+gI
+hj
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(53,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+bi
+dT
+eB
+fl
+fL
+gl
+gJ
+hk
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(54,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+bi
+dU
+eC
+fm
+be
+gm
+be
+cd
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(55,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bV
+be
+be
+be
+be
+eD
+be
+be
+gn
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(56,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+cr
+cO
+dk
+dY
+bx
+fn
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(57,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+be
+be
+be
+be
+eE
+be
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(58,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+be
+aa
+eH
+aa
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(59,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+be
+aa
+aa
+aa
+be
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(60,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(61,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(62,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+eI
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}

@@ -1,7 +1,7 @@
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
-	weight = 15
+	weight = 55
 	min_players = 2
 
 /datum/round_event/ion_storm
@@ -23,7 +23,7 @@
 
 /datum/round_event/ion_storm/announce(fake)
 	if(prob(announceChance) || fake)
-		priority_announce("Вблизи станции обнаружен ионный шторм. Пожалуйста, проверьте все контролируемое ИИ оборудование на наличие ошибок.", "Аномальная тревога", 'sound/ai/ionstorm.ogg')
+		priority_announce("Вблизи станции обнаружен ионный шторм. Пожалуйста, проверьте все контролируемое ИИ оборудование на наличие ошибок.", "Аномальная тревога")
 
 
 /datum/round_event/ion_storm/start()

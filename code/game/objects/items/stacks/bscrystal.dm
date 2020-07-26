@@ -1,10 +1,10 @@
 //Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
 /obj/item/stack/ore/bluespace_crystal
-	name = "bluespace crystal"
-	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
+	name = "блюспейс кристаллы"
+	desc = "Светящийся блюспейс кристалл, мало что известно о том, как они работают. Этот выглядит очень деликатно."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	singular_name = "bluespace crystal"
+	singular_name = "блюспейс кристалл"
 	dye_color = DYE_COSMIC
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
@@ -12,9 +12,10 @@
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 	refined_type = /obj/item/stack/sheet/bluespace_crystal
 	grind_results = list(/datum/reagent/bluespace = 20)
+	scan_state = "rock_BScrystal"
 
 /obj/item/stack/ore/bluespace_crystal/refined
-	name = "refined bluespace crystal"
+	name = "изысканный блюспейс кристалл"
 	points = 0
 	refined_type = null
 
@@ -27,7 +28,7 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
-	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
+	user.visible_message("<span class='warning'><b>[user]</b> раздавливает <b>[src]</b>!</span>", "<span class='danger'>Раздавливаю <b>[src]</b>!</span>")
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, TRUE)
 	blink_mob(user)
@@ -38,7 +39,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) // not caught in mid-air
-		visible_message("<span class='notice'>[src] fizzles and disappears upon impact!</span>")
+		visible_message("<span class='notice'><b>[capitalize(src)]</b> шипит и исчезает при ударе!</span>")
 		var/turf/T = get_turf(hit_atom)
 		new /obj/effect/particle_effect/sparks(T)
 		playsound(loc, "sparks", 50, TRUE)
@@ -48,8 +49,8 @@
 
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
-	name = "artificial bluespace crystal"
-	desc = "An artificially made bluespace crystal, it looks delicate."
+	name = "искусственный блюспейс кристалл"
+	desc = "Искусственно сделанный блюспейс кристалл, выглядит изысканно."
 	custom_materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*0.5)
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try
@@ -58,12 +59,12 @@
 
 //Polycrystals, aka stacks
 /obj/item/stack/sheet/bluespace_crystal
-	name = "bluespace polycrystal"
+	name = "блюспейс поликристаллы"
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "polycrystal"
-	item_state = "sheet-polycrystal"
-	singular_name = "bluespace polycrystal"
-	desc = "A stable polycrystal, made of fused-together bluespace crystals. You could probably break one off."
+	inhand_icon_state = "sheet-polycrystal"
+	singular_name = "блюспейс поликристалл"
+	desc = "Стабильный поликристалл, изготовленный из сплавленных блюспейс кристаллов. Вы могли бы вероятно сломать один."
 	custom_materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
 	attack_verb =list("блюспейс полибьёт", "блюспейс полиударяет", "блюспейс полилупит", "блюспейс поливмазывает", "блюспейс полиразносит")
 	novariants = TRUE
@@ -72,7 +73,7 @@
 	var/crystal_type = /obj/item/stack/ore/bluespace_crystal/refined
 
 /obj/item/stack/sheet/bluespace_crystal/attack_self(mob/user)// to prevent the construction menu from ever happening
-	to_chat(user, "<span class='warning'>You cannot crush the polycrystal in-hand, try breaking one off.</span>")
+	to_chat(user, "<span class='warning'>Не могу сломать целый поликристалл в руке. Надо бы их разделить.</span>")
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/sheet/bluespace_crystal/attack_hand(mob/user)
@@ -83,8 +84,8 @@
 		user.put_in_hands(BC)
 		use(1)
 		if(!amount)
-			to_chat(user, "<span class='notice'>You break the final crystal off.</span>")
+			to_chat(user, "<span class='notice'>Разбиваю последний кристалл.</span>")
 		else
-			to_chat(user, "<span class='notice'>You break off a crystal.</span>")
+			to_chat(user, "<span class='notice'>Разбиваю кристалл.</span>")
 	else
 		..()

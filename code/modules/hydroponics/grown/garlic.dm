@@ -2,7 +2,7 @@
 	name = "pack of garlic seeds"
 	desc = "A packet of extremely pungent seeds."
 	icon_state = "seed-garlic"
-	species = /datum/reagent/consumable/garlic
+	species = "garlic"
 	plantname = "Garlic Sprouts"
 	product = /obj/item/reagent_containers/food/snacks/grown/garlic
 	yield = 6
@@ -18,5 +18,5 @@
 	icon_state = "garlic"
 	filling_color = "#C0C9A0"
 	bitesize_mod = 2
-	tastes = list("garlic" = 1)
+	tastes = list("чеснок" = 1)
 	wine_power = 10

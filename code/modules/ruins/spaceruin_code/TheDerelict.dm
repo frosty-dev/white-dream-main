@@ -76,7 +76,7 @@
 
 ///Tries to charge from powernet excess, no upper limit except max charge.
 /obj/machinery/computer/vaultcontroller/proc/attempt_siphon()
-	var/surpluspower = CLAMP(attached_cable.surplus(), 0, (siphon_max - siphoned_power))
+	var/surpluspower = clamp(attached_cable.surplus(), 0, (siphon_max - siphoned_power))
 	if(surpluspower)
 		attached_cable.add_load(surpluspower)
 		siphoned_power += surpluspower
@@ -133,7 +133,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "vault_controller", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "VaultController", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 
@@ -183,7 +183,7 @@
 			to_chat(user, "<span class='boldannounce'>You start skimming through [src], but you already know dronespeak.</span>")
 		else
 			to_chat(user, "<span class='boldannounce'>You start skimming through [src], and suddenly the drone chittering makes sense.</span>")
-			user.grant_language(/datum/language/drone)
+			user.grant_language(/datum/language/drone, TRUE, TRUE, LANGUAGE_MIND)
 		return
 
 	if(user.has_language(/datum/language/drone))
@@ -197,14 +197,14 @@
 	if(M == user)
 		attack_self(user)
 		return
-	
+
 	playsound(loc, "punch", 25, TRUE, -1)
 	if(isdrone(M) || issilicon(M))
 		if(M.has_language(/datum/language/drone))
 			M.visible_message("<span class='danger'>[user] beats [M] over the head with [src]!</span>", "<span class='userdanger'>[user] beats you over the head with [src]!</span>", "<span class='hear'>You hear smacking.</span>")
 		else
 			M.visible_message("<span class='notice'>[user] teaches [M] by beating [M.p_them()] over the head with [src]!</span>", "<span class='boldnotice'>As [user] hits you with [src], chitters resonate in your mind.</span>", "<span class='hear'>You hear smacking.</span>")
-			M.grant_language(/datum/language/drone)
+			M.grant_language(/datum/language/drone, TRUE, TRUE, LANGUAGE_MIND)
 		return
 
 /obj/structure/fluff/oldturret

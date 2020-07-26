@@ -1,7 +1,7 @@
 /datum/action/changeling/resonant_shriek
-	name = "Resonant Shriek"
-	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded. Costs 20 chemicals."
-	helptext = "Emits a high-frequency sound that confuses and deafens humans, blows out nearby lights and overloads cyborg sensors."
+	name = "Резонансный вопль"
+	desc = "Наши легкие и голосовые связки смещаются, что позволяет нам на короткое время издавать шум, который оглушает и сбивает с толку слабоумных. Стоит 20 химикатов."
+	helptext = "Издает высокочастотный звук, который сбивает с толку и оглушает людей, гасит близлежащие лампочки и перегружает датчики киборгов."
 	button_icon_state = "resonant_shriek"
 	chemical_cost = 20
 	dna_cost = 1
@@ -14,7 +14,9 @@
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(!C.mind || !C.mind.has_antag_datum(/datum/antagonist/changeling))
-				C.adjustEarDamage(0, 30)
+				var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
+				if(ears)
+					ears.adjustEarDamage(0, 30)
 				C.confused += 25
 				C.Jitter(50)
 			else
@@ -30,8 +32,8 @@
 	return TRUE
 
 /datum/action/changeling/dissonant_shriek
-	name = "Dissonant Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Costs 20 chemicals."
+	name = "Диссонирующий вопль"
+	desc = "Мы сдвигаем наши голосовые связки, чтобы издавать высокочастотный звук, который перегружает соседнюю электронику. Стоит 20 химикатов."
 	button_icon_state = "dissonant_shriek"
 	chemical_cost = 20
 	dna_cost = 1

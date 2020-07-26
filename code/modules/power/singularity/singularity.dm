@@ -1,8 +1,8 @@
 
 
 /obj/singularity
-	name = "gravitational singularity"
-	desc = "A gravitational singularity."
+	name = "гравитационная сингулярность"
+	desc = "Бублик."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = TRUE
@@ -27,6 +27,7 @@
 	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
 	var/last_warning
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
+	var/drifting_dir = 0 // Chosen direction to drift in
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -53,6 +54,17 @@
 	return ..()
 
 /obj/singularity/Move(atom/newloc, direct)
+	var/turf/T = get_turf(src)
+	for(var/dir in GLOB.cardinals)
+		if(direct & dir)
+			T = get_step(T, dir)
+			if(!T)
+				break
+			// eat the stuff if we're going to move into it so it doesn't mess up our movement
+			for(var/atom/A in T.contents)
+				consume(A)
+			consume(T)
+
 	if(current_size >= STAGE_FIVE || check_turfs_in(direct))
 		last_failed_movement = 0//Reset this because we moved
 		return ..()
@@ -86,7 +98,7 @@
 /obj/singularity/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.visible_message("<span class='danger'>[C]'s head begins to collapse in on itself!</span>", "<span class='userdanger'>Your head feels like it's collapsing in on itself! This was really not a good idea!</span>", "<span class='hear'>You hear something crack and explode in gore.</span>")
+		C.visible_message("<span class='danger'>Голова <b>[C]</b> взрывается!</span>", "<span class='userdanger'>Моя голова начинает разрываться! Это хуёвая идея!</span>", "<span class='hear'>Слышу как что-то взрывается со сладким хрустом.</span>")
 		var/turf/T = get_turf(C)
 		for(var/i in 1 to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
@@ -120,8 +132,13 @@
 
 /obj/singularity/Bump(atom/A)
 	consume(A)
+	if(QDELETED(A)) // don't keep moving into objects that weren't destroyed infinitely
+		step(src, drifting_dir)
 	return
 
+/obj/singularity/Crossed(atom/A)
+	..()
+	consume(A)
 
 /obj/singularity/Bumped(atom/movable/AM)
 	consume(AM)
@@ -130,6 +147,14 @@
 /obj/singularity/process()
 	if(current_size >= STAGE_TWO)
 		move()
+		var/datum/component/soundplayer/SP = GetComponent(/datum/component/soundplayer)
+		if(!SP)
+			SP = AddComponent(/datum/component/soundplayer)
+			SP.active = TRUE
+			SP.environmental = TRUE
+			SP.playing_channel = CHANNEL_CUSTOM_JUKEBOX
+		SP.playing_volume = current_size*10
+		SP.playing_range = current_size*5
 		radiation_pulse(src, min(5000, (energy*4.5)+1000), RAD_DISTANCE_COEFFICIENT*0.5)
 		if(prob(event_chance))//Chance for it to run a special event TODO:Come up with one or two more that fit
 			event()
@@ -291,7 +316,7 @@
 	var/gain = A.singularity_act(current_size, src)
 	src.energy += gain
 	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
-		desc = "[initial(desc)] It glows fiercely with inner fire."
+		desc = "[initial(desc)] Яростно светится внутренним огнем."
 		name = "supermatter-charged [initial(name)]"
 		consumedSupermatter = 1
 		set_light(10)
@@ -302,15 +327,15 @@
 	if(!move_self)
 		return 0
 
-	var/movement_dir = pick(GLOB.alldirs - last_failed_movement)
+	var/drifting_dir = pick(GLOB.alldirs - last_failed_movement)
 
 	if(force_move)
-		movement_dir = force_move
+		drifting_dir = force_move
 
 	if(target && prob(60))
-		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
+		drifting_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
 
-	step(src, movement_dir)
+	step(src, drifting_dir)
 
 /obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
 	. = length(GLOB.cardinals)			//Should be 4.
@@ -410,8 +435,8 @@
 
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/C in urange(20, src, 1))
-		C.visible_message("<span class='warning'>[C]'s skin bursts into flame!</span>", \
-						  "<span class='userdanger'>You feel an inner fire as your skin bursts into flames!</span>")
+		C.visible_message("<span class='warning'>Кожа <b>[C]</b> воспламеняется!</span>", \
+						  "<span class='userdanger'>Чувствую, что я сейчас <b>ГОРЮ БЛЯТЬ</b>!</span>")
 		C.adjust_fire_stacks(5)
 		C.IgniteMob()
 	return
@@ -428,12 +453,12 @@
 				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
 					var/obj/item/clothing/glasses/meson/MS = H.glasses
 					if(MS.vision_flags == SEE_TURFS)
-						to_chat(H, "<span class='notice'>You look directly into the [src.name], good thing you had your protective eyewear on!</span>")
+						to_chat(H, "<span class='notice'>Смотрю прямо в <b>сингулярность</b>, но меня спасают мои защитные очки!</span>")
 						return
 
 		M.apply_effect(60, EFFECT_STUN)
-		M.visible_message("<span class='danger'>[M] stares blankly at the [src.name]!</span>", \
-						"<span class='userdanger'>You look directly into the [src.name] and feel weak.</span>")
+		M.visible_message("<span class='danger'><b>[M]</b> смотрит прямо в <b>сингулярность</b>!</span>", \
+						"<span class='userdanger'>Смотрю прямо в <b>сингулярность</b> и ощущаю слабость.</span>")
 	return
 
 

@@ -1,0 +1,166 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"d" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"h" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"p" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/mining)
+"q" = (
+/obj/item/radio/intercom{
+	pixel_y = 22
+	},
+/obj/structure/table,
+/obj/item/crowbar/red,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"r" = (
+/obj/docking_port/mobile{
+	dir = 8;
+	dwidth = 2;
+	height = 6;
+	id = "mining";
+	name = "mining shuttle";
+	port_direction = 4;
+	preferred_direction = 4;
+	width = 5
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "Mining Shuttle Airlock"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"u" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"A" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"O" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency,
+/obj/machinery/light/small,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"Q" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/mining)
+"U" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Mining Shuttle Airlock"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"V" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"W" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate/internals,
+/obj/machinery/light/small,
+/obj/effect/turf_decal/box,
+/obj/structure/sign/warning/fire{
+	pixel_x = 32
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"Y" = (
+/obj/structure/ore_box,
+/obj/structure/sign/warning/fire{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+p
+V
+V
+V
+p
+"}
+(2,1,1) = {"
+p
+q
+A
+O
+p
+"}
+(3,1,1) = {"
+U
+d
+u
+d
+U
+"}
+(4,1,1) = {"
+V
+h
+h
+h
+V
+"}
+(5,1,1) = {"
+p
+Y
+d
+W
+p
+"}
+(6,1,1) = {"
+Q
+p
+r
+p
+Q
+"}

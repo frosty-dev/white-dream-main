@@ -37,7 +37,7 @@
 			living_aliens = TRUE
 
 	if(living_aliens || fake)
-		priority_announce("Неопознанные признаки жизни обнаружены на борту [station_name()]. Заблокируйте любой внешний доступ, включая воздуховоды и вентиляцию.", "Вторжение на борт", 'sound/ai/aliens.ogg')
+		priority_announce("Неопознанные признаки жизни обнаружены на борту [station_name()]. Заблокируйте любой внешний доступ, включая воздуховоды и вентиляцию.", "Вторжение на борт", 'sound/ai/announcer/assault.ogg')
 
 
 /datum/round_event/ghost_role/alien_infestation/spawn_role()

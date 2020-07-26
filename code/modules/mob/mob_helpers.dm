@@ -51,32 +51,26 @@
 /**
   * Convert random parts of a passed in message to stars
   *
-  * * n - the string to convert
-  * * pr - probability any character gets changed
+  * * phrase - the string to convert
+  * * probability - probability any character gets changed
   *
   * This proc is dangerously laggy, avoid it or die
   */
-/proc/stars(n, pr)
-	n = html_encode(n)
-	if (pr == null)
-		pr = 25
-	if (pr <= 0)
-		return null
-	else
-		if (pr >= 100)
-			return n
-	var/te = n
-	var/t = ""
-	n = length(n)
-
-	for(var/p = 1 to min(n,MAX_BROADCAST_LEN))
-		if ((copytext(te, p, p + 1) == " " || prob(pr)))
-			t = text("[][]", t, copytext(te, p, p + 1))
+/proc/stars(phrase, probability = 25)
+	if(probability <= 0)
+		return phrase
+	phrase = html_decode(phrase)
+	var/leng = length(phrase)
+	. = ""
+	var/char = ""
+	for(var/i = 1, i <= leng, i += length(char))
+		char = phrase[i]
+		if(char == " " || !prob(probability))
+			. += char
 		else
-			t = text("[]*", t)
-	if(n > MAX_BROADCAST_LEN)
-		t += "..." //signals missing text
-	return sanitize(t)
+			. += "*"
+	return sanitize(.)
+
 /**
   * Makes you speak like you're drunk
   */
@@ -169,15 +163,20 @@
   * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
   */
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
+	text = html_decode(text)
 	. = ""
-	for(var/i in 1 to length(text))
-		var/letter = ascii2text(text2ascii(text, i))
+	var/rawchar = ""
+	var/letter = ""
+	var/lentext = length(text)
+	for(var/i = 1, i <= lentext, i += length(rawchar))
+		rawchar = letter = text[i]
 		if(prob(chance))
 			if(replace_characters)
 				letter = ""
 			for(var/j in 1 to rand(0, 2))
-				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+				letter += pick("#", "@", "*", "&", "%", "$", "/", "<", ">", ";", "*", "*", "*", "*", "*", "*", "*")
 		. += letter
+	return sanitize(.)
 
 
 /**
@@ -285,12 +284,10 @@
 	if(hud_used && hud_used.action_intent)
 		hud_used.action_intent.icon_state = "[a_intent]"
 
-///Checks if passed through item is blind
-/proc/is_blind(A)
-	if(ismob(A))
-		var/mob/B = A
-		return B.eye_blind
-	return FALSE
+///Checks if the mob is able to see or not. eye_blind is temporary blindness, the trait is if they're permanently blind.
+/mob/proc/is_blind()
+	SHOULD_BE_PURE(TRUE)
+	return eye_blind ? TRUE : HAS_TRAIT(src, TRAIT_BLIND)
 
 ///Is the mob hallucinating?
 /mob/proc/hallucinating()
@@ -376,7 +373,7 @@
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(!notify_suiciders && (O in GLOB.suicided_mob_list))
 			continue
-		if (ignore_key && O.ckey in GLOB.poll_ignore[ignore_key])
+		if (ignore_key && (O.ckey in GLOB.poll_ignore[ignore_key]))
 			continue
 		var/orbit_link
 		if (source && action == NOTIFY_ORBIT)
@@ -416,14 +413,14 @@
 		if((brute_heal > 0 && affecting.brute_dam > 0) || (burn_heal > 0 && affecting.burn_dam > 0))
 			if(affecting.heal_damage(brute_heal, burn_heal, 0, BODYPART_ROBOTIC))
 				H.update_damage_overlays()
-			user.visible_message("<span class='notice'>[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].</span>", \
+			user.visible_message("<span class='notice'>[user] fixes some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].</span>", \
 			"<span class='notice'>You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
 			return 1 //successful heal
 		else
 			to_chat(user, "<span class='warning'>[affecting] is already in good condition!</span>")
 
 ///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
+/proc/IsAdminGhost(var/mob/user, ignore_AI_interact)
 	if(!user)		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
@@ -432,7 +429,7 @@
 		return
 	if(!check_rights_for(user.client, R_ADMIN)) // Are they allowed?
 		return
-	if(!user.client.AI_Interact) // Do they have it enabled?
+	if(!ignore_AI_interact && !user.client.AI_Interact) // Do they have it enabled?
 		return
 	return TRUE
 
@@ -470,11 +467,13 @@
 		return FALSE
 
 ///Is the mob a flying mob
-/mob/proc/is_flying(mob/M = src)
-	if(M.movement_type & FLYING)
-		return 1
-	else
-		return 0
+/mob/proc/is_flying()
+	return (movement_type & FLYING)
+
+///Is the mob a floating mob
+/mob/proc/is_floating()
+	return (movement_type & FLOATING)
+
 
 ///Clicks a random nearby mob with the source from this mob
 /mob/proc/click_random_mob()

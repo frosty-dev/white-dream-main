@@ -8,7 +8,7 @@ Assistant
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "absolutely everyone"
+	supervisors = "практически всем"
 	selection_color = "#dddddd"
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
@@ -32,10 +32,11 @@ Assistant
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
 	..()
 	if (CONFIG_GET(flag/grey_assistants))
+		//uniform = /obj/item/clothing/under/switer/tracksuit
 		if(H.jumpsuit_style == PREF_SUIT)
-			uniform = /obj/item/clothing/under/color/grey
+			uniform = /obj/item/clothing/under/color/grey // ASS WEEK
 		else
-			uniform = /obj/item/clothing/under/color/jumpskirt/grey
+			uniform = /obj/item/clothing/under/color/jumpskirt/grey // ASS WEEK
 	else
 		if(H.jumpsuit_style == PREF_SUIT)
 			uniform = /obj/item/clothing/under/color/random

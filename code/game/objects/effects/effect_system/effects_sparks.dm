@@ -17,7 +17,7 @@
 
 
 /obj/effect/particle_effect/sparks
-	name = "sparks"
+	name = "искры"
 	icon_state = "sparks"
 	anchored = TRUE
 	light_power = 1.3
@@ -29,7 +29,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/particle_effect/sparks/LateInitialize()
-	flick(icon_state, src) // replay the animation
+	flick(icon_state, src)
 	playsound(src, "sparks", 100, TRUE)
 	var/turf/T = loc
 	if(isturf(T))
@@ -58,11 +58,11 @@
 //electricity
 
 /obj/effect/particle_effect/sparks/electricity
-	name = "lightning"
+	name = "молния"
 	icon_state = "electricity"
 
 /obj/effect/particle_effect/sparks/quantum
-	name = "quantum sparks"
+	name = "квантовые искры"
 	icon_state = "quantum_sparks"
 
 /datum/effect_system/lightning_spread

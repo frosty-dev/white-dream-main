@@ -20,7 +20,7 @@
 	name = "коллекционная шапочка шэф-повара"
 	desc = "Редкий поварской колпак, предназначенный для коллекционеров колпаков!"
 	icon_state = "chef"
-	item_state = "chef"
+	inhand_icon_state = "chef"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/chef
@@ -36,13 +36,13 @@
 	name = "коллекционная топ-шляпа"
 	desc = "Верхнюю шляпу носят только самые престижные коллекционеры шляп."
 	icon_state = "tophat"
-	item_state = "that"
+	inhand_icon_state = "that"
 
 /obj/item/clothing/head/collectable/captain
 	name = "коллекционная капитанская шляпа"
 	desc = "Коллекционная шляпа, которая заставит вас выглядеть как настоящий комдом!"
 	icon_state = "captain"
-	item_state = "caphat"
+	inhand_icon_state = "caphat"
 
 	dog_fashion = /datum/dog_fashion/head/captain
 
@@ -65,14 +65,14 @@
 	name = "коллекционный сварочный шлем"
 	desc = "Коллекционный сварочный шлем. Теперь на 80% меньше свинца! Не для реальной сварки. Любая сварка, выполняемая во время ношения шлема, выполняется на собственный страх и риск владельца!"
 	icon_state = "welding"
-	item_state = "welding"
+	inhand_icon_state = "welding"
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/collectable/slime
 	name = "коллекционный слаймовый шлем"
 	desc = "Прямо как настоящая мозговая пуля!"
 	icon_state = "headslime"
-	item_state = "headslime"
+	inhand_icon_state = "headslime"
 	clothing_flags = SNUG_FIT
 	dynamic_hair_suffix = ""
 
@@ -80,13 +80,13 @@
 	name = "коллекционный кепарик"
 	desc = "Коллекционная колпачок крестьянина!"
 	icon_state = "flat_cap"
-	item_state = "detective"
+	inhand_icon_state = "detective"
 
 /obj/item/clothing/head/collectable/pirate
 	name = "коллекционная пиратская шляпа"
-	desc = "Из тебя получился бы отличный Дредовый Синди Робертс!"
+	desc = "Из меня получился бы отличный Дредовый Синди Робертс!"
 	icon_state = "pirate"
-	item_state = "pirate"
+	inhand_icon_state = "pirate"
 
 	dog_fashion = /datum/dog_fashion/head/pirate
 
@@ -94,7 +94,7 @@
 	name = "коллекционные котоушки"
 	desc = "Мех кажется... слишком реалистичным."
 	icon_state = "kitty"
-	item_state = "kitty"
+	inhand_icon_state = "kitty"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/kitty
@@ -103,7 +103,7 @@
 	name = "коллекционные кроличьи ушки"
 	desc = "Не так повезло, как ногам!"
 	icon_state = "bunny"
-	item_state = "bunny"
+	inhand_icon_state = "bunny"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/rabbit
@@ -120,17 +120,17 @@
 	desc = "ВНИМАНИЕ! Не предлагает никакой реальной защиты, или яркости, но черт возьми, это так причудливо!"
 	clothing_flags = SNUG_FIT
 	icon_state = "hardhat0_yellow"
-	item_state = "hardhat0_yellow"
+	inhand_icon_state = "hardhat0_yellow"
 
 	dog_fashion = /datum/dog_fashion/head
 
-/obj/item/clothing/head/collectable/HoS
+/obj/item/clothing/head/collectable/hos
 	name = "коллекционная шляпа главы безопасности"
 	desc = "Теперь вы тоже можете бить заключенных, выносить глупые приговоры и арестовывать без всякой причины!"
 	icon_state = "hoscap"
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/collectable/HoP
+/obj/item/clothing/head/collectable/hop
 	name = "коллекционная шляпа главы персонала"
 	desc = "Теперь ваша очередь требовать чрезмерной бумажной работы, подписей, штампов и нанимать больше клоунов! Документы, пожалуйста!"
 	icon_state = "hopcap"
@@ -140,7 +140,7 @@
 	name = "коллекционный Thunderdome шлем"
 	desc = "Go Red! I mean Green! I mean Red! No Green!"
 	icon_state = "thunderdome"
-	item_state = "thunderdome"
+	inhand_icon_state = "thunderdome"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEHAIR
 
@@ -148,6 +148,6 @@
 	name = "коллекционный шлем спецназа"
 	desc = "Это не настоящая кровь. Это красная краска." //Reference to the actual description
 	icon_state = "swat"
-	item_state = "swat"
+	inhand_icon_state = "swat"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEHAIR

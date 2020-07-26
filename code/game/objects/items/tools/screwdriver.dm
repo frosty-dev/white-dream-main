@@ -3,7 +3,8 @@
 	desc = "Ею можно откручивать и закручивать различные штуки."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
+	worn_icon_state = "screwdriver"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -22,6 +23,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
 	drop_sound = 'sound/items/handling/screwdriver_drop.ogg'
 	pickup_sound =  'sound/items/handling/screwdriver_pickup.ogg'
+	item_flags = EYE_STAB
 	var/random_color = TRUE //if the screwdriver uses random coloring
 	var/static/list/screwdriver_colors = list(
 		"blue" = rgb(24, 97, 213),
@@ -47,13 +49,13 @@
 	if(prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/screwdriver/update_icon()
+/obj/item/screwdriver/update_overlays()
+	. = ..()
 	if(!random_color) //icon override
 		return
-	cut_overlays()
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "screwdriver_screwybits")
 	base_overlay.appearance_flags = RESET_COLOR
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/item/screwdriver/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
@@ -72,24 +74,12 @@
 	else
 		return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state)
 
-/obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(!istype(M))
-		return ..()
-	if(user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_HEAD)
-		return ..()
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='warning'>You don't want to harm [M]!</span>")
-		return
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
-		M = user
-	return eyestab(M,user)
-
 /obj/item/screwdriver/abductor
 	name = "чужеродная отвёртка"
 	desc = "Сверхзвуковая, сука."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "screwdriver_a"
-	item_state = "screwdriver_nuke"
+	inhand_icon_state = "screwdriver_nuke"
 	usesound = 'sound/items/pshoom.ogg'
 	toolspeed = 0.1
 	random_color = FALSE
@@ -101,7 +91,8 @@
 	name = "дрель"
 	desc = "Простая ручная дрель с электроприводом."
 	icon_state = "drill_screw"
-	item_state = "drill"
+	inhand_icon_state = "drill"
+	worn_icon_state = "drill"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	custom_materials = list(/datum/material/iron=150,/datum/material/silver=50,/datum/material/titanium=25) //done for balance reasons, making them high value for research, but harder to get

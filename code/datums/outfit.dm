@@ -88,7 +88,7 @@
 	/// Internals box. Will be inserted at the start of backpack_contents
 	var/box
 
-	/** 
+	/**
 	  * Any implants the mob should start implanted with
 	  *
 	  * Format of this list is (typepath, typepath, typepath)
@@ -153,6 +153,8 @@
   */
 /datum/outfit/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	pre_equip(H, visualsOnly)
+
+	//special_equip(H)
 
 	//Start with uniform,suit,backpack for additional slots
 	if(uniform)

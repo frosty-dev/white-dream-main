@@ -1,6 +1,6 @@
 //Nuclear particle projectile - a deadly side effect of fusion
 /obj/projectile/energy/nuclear_particle
-	name = "nuclear particle"
+	name = "ядерная частица"
 	icon_state = "nuclear_particle"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	flag = "rad"

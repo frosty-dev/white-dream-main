@@ -3,6 +3,14 @@
 	icon_state = "plating"
 	initial_gas_mix = AIRLESS_ATMOS
 
+/turf/open/floor/plating/lowpressure
+	initial_gas_mix = OPENTURF_LOW_PRESSURE
+	baseturfs = /turf/open/floor/plating/lowpressure
+
+/turf/open/floor/plating/icemoon
+	icon_state = "plating"
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
 /turf/open/floor/plating/abductor
 	name = "чужеродное покрытие"
 	icon_state = "alienpod1"
@@ -202,8 +210,7 @@
 /turf/open/floor/plating/ice/smooth
 	icon_state = "smooth"
 	smooth = SMOOTH_MORE | SMOOTH_BORDER
-	canSmoothWith = list(/turf/open/floor/plating/ice/smooth, /turf/open/floor/plating/ice)
-	/turf/open/floor/plating/ice/colder
+	canSmoothWith = list(/turf/open/floor/plating/ice/smooth, /turf/open/floor/plating/ice, /turf/open/floor/plating/ice/colder)
 
 /turf/open/floor/plating/ice/colder
 	temperature = 140
@@ -217,6 +224,9 @@
 /turf/open/floor/plating/ice/burn_tile()
 	return
 
+/turf/open/floor/plating/ice/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	slowdown = 0
 
 /turf/open/floor/plating/snowed
 	name = "заснеженное покрытие"
@@ -235,6 +245,9 @@
 /turf/open/floor/plating/snowed/cavern
 	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120"
 
+/turf/open/floor/plating/snowed/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
 /turf/open/floor/plating/snowed/smoothed
 	smooth = SMOOTH_MORE | SMOOTH_BORDER
 	canSmoothWith = list(/turf/open/floor/plating/snowed/smoothed, /turf/open/floor/plating/snowed)
@@ -248,9 +261,8 @@
 /turf/open/floor/plating/snowed/temperatre
 	temperature = 255.37
 
-/turf/open/floor/plating/snowed/smoothed/centcom
-	temperature = 293.15
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+/turf/open/floor/plating/snowed/smoothed/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/plating/grass
 	name = "трава"

@@ -116,25 +116,25 @@
 /area/ruin/space/has_grav/austation)
 "ap" = (
 /obj/effect/turf_decal/trimline/yellow/line{
-	icon_state = "trimline";
-	dir = 9
+	dir = 9;
+	icon_state = "trimline"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
 "aq" = (
 /obj/effect/turf_decal/trimline/yellow/line{
-	icon_state = "trimline";
-	dir = 1
+	dir = 1;
+	icon_state = "trimline"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
 "ar" = (
 /obj/effect/turf_decal/trimline/yellow/line{
-	icon_state = "trimline";
-	dir = 1
+	dir = 1;
+	icon_state = "trimline"
 	},
 /obj/machinery/light{
 	dir = 1
@@ -149,7 +149,7 @@
 /area/ruin/space/has_grav/austation)
 "at" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/packageWrap,
+/obj/item/stack/package_wrap,
 /obj/item/hand_labeler,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -190,8 +190,8 @@
 /area/ruin/space/has_grav/austation)
 "ax" = (
 /obj/effect/turf_decal/trimline/yellow/line{
-	icon_state = "trimline";
-	dir = 8
+	dir = 8;
+	icon_state = "trimline"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
@@ -199,7 +199,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/camera{
@@ -365,8 +365,8 @@
 /area/ruin/space/has_grav/austation)
 "aI" = (
 /obj/effect/turf_decal/trimline/yellow/line{
-	icon_state = "trimline";
-	dir = 4
+	dir = 4;
+	icon_state = "trimline"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
@@ -881,7 +881,6 @@
 /area/ruin/space/has_grav/austation)
 "bN" = (
 /obj/structure/window/reinforced,
-/obj/machinery/clonepod,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -1090,14 +1089,8 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/austation)
 "ck" = (
-/obj/machinery/computer/cloning{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/austation)
+/turf/open/space/basic,
+/area/space)
 "cl" = (
 /obj/structure/table/glass,
 /obj/machinery/reagentgrinder{
@@ -1281,8 +1274,8 @@
 	req_access_txt = "5"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
-	icon_state = "airlock_unres_helper";
-	dir = 1
+	dir = 1;
+	icon_state = "airlock_unres_helper"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -1962,7 +1955,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
 "dJ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/light{
@@ -2174,7 +2167,7 @@
 	},
 /obj/item/storage/box/syringes,
 /obj/item/gun/syringe,
-/obj/item/reagent_containers/hypospray/CMO,
+/obj/item/reagent_containers/hypospray/cmo,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/neck/stethoscope,
@@ -2499,8 +2492,8 @@
 	req_access_txt = "5"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
-	icon_state = "airlock_unres_helper";
-	dir = 8
+	dir = 8;
+	icon_state = "airlock_unres_helper"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2976,8 +2969,8 @@
 /area/ruin/space/has_grav/austation)
 "fn" = (
 /obj/effect/turf_decal/caution{
-	icon_state = "caution";
-	dir = 1
+	dir = 1;
+	icon_state = "caution"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
@@ -2997,8 +2990,8 @@
 "fp" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space/basic,
+/area/space/nearstation)
 "fq" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable,
@@ -3094,14 +3087,14 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
 "fA" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/austation)
 "fB" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -3715,8 +3708,8 @@
 	req_access_txt = "5"
 	},
 /obj/effect/mapping_helpers/airlock/unres{
-	icon_state = "airlock_unres_helper";
-	dir = 8
+	dir = 8;
+	icon_state = "airlock_unres_helper"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3930,7 +3923,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/obj/item/stack/packageWrap,
+/obj/item/stack/package_wrap,
 /obj/item/stack/sheet/glass{
 	amount = 30
 	},
@@ -4036,8 +4029,8 @@
 /area/ruin/space/has_grav/austation)
 "hg" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /obj/machinery/rnd/production/protolathe/department/service,
 /obj/item/radio/intercom{
@@ -4139,8 +4132,8 @@
 /area/ruin/space/has_grav/austation)
 "hp" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/austation)
@@ -4172,7 +4165,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/austation)
 "hs" = (
-/obj/machinery/plantgenes,
+/obj/item/secateurs,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -4193,8 +4186,8 @@
 /area/ruin/space/has_grav/austation)
 "hu" = (
 /obj/effect/mob_spawn/human/austation{
-	icon_state = "sleeper";
-	dir = 1
+	dir = 1;
+	icon_state = "sleeper"
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/austation)
@@ -4308,7 +4301,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/austation)
 "hI" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -4370,8 +4363,8 @@
 /area/ruin/space/has_grav/austation)
 "hO" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
 /obj/machinery/vending/clothing,
 /turf/open/floor/wood,
@@ -4587,7 +4580,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/austation)
 "is" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -4632,7 +4625,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/austation)
 "iw" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/delivery,
@@ -4840,8 +4833,8 @@
 /area/ruin/space/has_grav/austation)
 "jb" = (
 /obj/effect/turf_decal/caution{
-	icon_state = "caution";
-	dir = 1
+	dir = 1;
+	icon_state = "caution"
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -4958,15 +4951,15 @@
 "jq" = (
 /obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 4;
-	height = 9;
-	width = 5;
+	dwidth = 8;
+	height = 12;
 	id = "explorer_mini_custom";
 	name = "Autism Station";
-	roundstart_template = /datum/map_template/shuttle/ruin/explorer_mini
+	roundstart_template = /datum/map_template/shuttle/ruin/explorer_mini;
+	width = 12
 	},
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space/basic,
+/area/space)
 "jr" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
@@ -5146,8 +5139,8 @@
 /area/ruin/space/has_grav/austation)
 "jQ" = (
 /obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space/basic,
+/area/space/nearstation)
 "jR" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -5170,18 +5163,18 @@
 /area/ruin/space/has_grav/austation)
 "jY" = (
 /obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/template_noop)
+/turf/open/space/basic,
+/area/space/nearstation)
 "jZ" = (
 /obj/structure/fluff/oldturret,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav/austation)
 "ka" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 4
+	dir = 4;
+	icon_state = "warningline"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -5394,11 +5387,11 @@ ac
 ab
 jQ
 jQ
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (5,1,1) = {"
@@ -5446,11 +5439,11 @@ ac
 ac
 ab
 jQ
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+jq
+ck
+ck
 aa
 "}
 (6,1,1) = {"
@@ -5498,11 +5491,11 @@ ac
 ac
 ab
 jQ
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (7,1,1) = {"
@@ -5550,11 +5543,11 @@ ac
 ac
 ab
 ho
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (8,1,1) = {"
@@ -5602,11 +5595,11 @@ ac
 ac
 ab
 fp
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (9,1,1) = {"
@@ -5654,11 +5647,11 @@ ad
 ac
 ab
 fp
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (10,1,1) = {"
@@ -5680,7 +5673,7 @@ ac
 ac
 bl
 bN
-ck
+dH
 cG
 da
 ak
@@ -5706,11 +5699,11 @@ ad
 ac
 ac
 fp
-aa
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (11,1,1) = {"
@@ -5758,11 +5751,11 @@ ad
 ac
 ac
 fp
-aa
-aa
-jq
-aa
-aa
+ck
+ck
+ck
+ck
+ck
 aa
 "}
 (12,1,1) = {"
@@ -5811,10 +5804,10 @@ ac
 ac
 fp
 fp
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
 aa
 "}
 (13,1,1) = {"
@@ -5863,10 +5856,10 @@ ac
 ac
 ac
 fp
-aa
-aa
-aa
-aa
+ck
+ck
+ck
+ck
 aa
 "}
 (14,1,1) = {"
@@ -5916,9 +5909,9 @@ ac
 ac
 fp
 fp
-aa
-aa
-aa
+ck
+ck
+ck
 aa
 "}
 (15,1,1) = {"
@@ -5968,9 +5961,9 @@ ad
 ad
 ad
 fp
-aa
-aa
-aa
+ck
+ck
+ck
 aa
 "}
 (16,1,1) = {"
@@ -6020,9 +6013,9 @@ fo
 fq
 fr
 fp
-aa
-aa
-aa
+ck
+ck
+ck
 aa
 "}
 (17,1,1) = {"
@@ -6073,8 +6066,8 @@ eP
 jB
 jY
 jQ
-aa
-aa
+ck
+ck
 aa
 "}
 (18,1,1) = {"
@@ -6125,8 +6118,8 @@ ad
 ad
 jY
 jQ
-aa
-aa
+ck
+ck
 aa
 "}
 (19,1,1) = {"
@@ -6177,8 +6170,8 @@ jr
 jD
 jY
 jQ
-aa
-aa
+ck
+ck
 aa
 "}
 (20,1,1) = {"
@@ -6229,8 +6222,8 @@ jr
 jD
 jY
 jQ
-aa
-aa
+ck
+ck
 aa
 "}
 (21,1,1) = {"
@@ -6282,7 +6275,7 @@ jE
 jY
 jQ
 jQ
-aa
+ck
 aa
 "}
 (22,1,1) = {"
@@ -6334,7 +6327,7 @@ ad
 ad
 ac
 jQ
-aa
+ck
 aa
 "}
 (23,1,1) = {"

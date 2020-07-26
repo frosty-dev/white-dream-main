@@ -14,14 +14,14 @@
 #define DECEMBER	12
 
 //Select holiday names -- If you test for a holiday in the code, make the holiday's name a define and test for that instead
-#define NEW_YEAR				"New Year"
-#define VALENTINES				"Valentine's Day"
-#define APRIL_FOOLS				"April Fool's Day"
-#define EASTER					"Easter"
-#define HALLOWEEN				"Halloween"
-#define CHRISTMAS				"Christmas"
-#define FESTIVE_SEASON			"Festive Season"
-#define GARBAGEDAY				"Garbage Day"
+#define NEW_YEAR				"Новый Год"
+#define VALENTINES				"День Святого Валентина"
+#define APRIL_FOOLS				"День дурака"
+#define EASTER					"Пасха"
+#define HALLOWEEN				"Хэллоуин"
+#define CHRISTMAS				"Рождество"
+#define FESTIVE_SEASON			"Праздничный сезон"
+#define GARBAGEDAY				"Мусорный День"
 /*
 
 Days of the week to make it easier to reference them.
@@ -31,7 +31,7 @@ When using time2text(), please use "DDD" to find the weekday. Refrain from using
 */
 
 #define MONDAY		"Mon"
-#define TUESDAY	"Tue"
+#define TUESDAY		"Tue"
 #define WEDNESDAY	"Wed"
 #define THURSDAY	"Thu"
 #define FRIDAY		"Fri"

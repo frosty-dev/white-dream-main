@@ -1,0 +1,1317 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aR" = (
+/obj/structure/grille/rospilovo/wood{
+	icon_state = "zabor_horizontal2"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"bg" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass2"
+	},
+/area/space)
+"bn" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_ul"
+	},
+/area/space)
+"bC" = (
+/obj/structure/rospilovo/cover,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"bV" = (
+/obj/effect/turf_decal/trimline/white/line{
+	icon_state = "trimline";
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/line,
+/turf/open/floor/rospilovo,
+/area/space)
+"bX" = (
+/obj/structure/table/rospilovo,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"bY" = (
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"dW" = (
+/obj/structure/rospilovo/water/luzha,
+/turf/open/floor/rospilovo,
+/area/space)
+"ed" = (
+/obj/structure/rospilovo/luk,
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"eR" = (
+/obj/structure/rospilovo/tree{
+	icon_state = "derevo3"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"fk" = (
+/obj/structure/rospilovo/plita,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"fD" = (
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"fU" = (
+/obj/structure/toilet/greyscale,
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"fV" = (
+/obj/structure/grille/rospilovo/wood{
+	icon_state = "zabor_3"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"fX" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"gR" = (
+/obj/structure/curtain,
+/obj/machinery/shower{
+	pixel_y = 24
+	},
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"gV" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"hW" = (
+/obj/structure/rospilovo/tree{
+	icon_state = "derevo4"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"jC" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"jK" = (
+/obj/structure/rospilovo/tree{
+	icon_state = "derevo5"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"jR" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/space)
+"ko" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"lr" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_u"
+	},
+/area/space)
+"lY" = (
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"mc" = (
+/obj/structure/rospilovo/shkaf64,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"mg" = (
+/obj/structure/rospilovo/painting/stalin,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"nv" = (
+/obj/structure/rospilovo/shina3,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"oz" = (
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"pM" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_dr"
+	},
+/area/space)
+"qf" = (
+/obj/structure/rospilovo/komod,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"rn" = (
+/obj/structure/rospilovo/painting/lenin,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"tB" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_dl"
+	},
+/area/space)
+"uv" = (
+/obj/structure/rospilovo/lift,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"uH" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_l"
+	},
+/area/space)
+"uJ" = (
+/mob/living/simple_animal/pet/cat{
+	health = 0
+	},
+/turf/open/floor/grass/rospilovo{
+	icon_state = "sand4"
+	},
+/area/space)
+"vC" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_ur"
+	},
+/area/space)
+"vK" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/space)
+"ws" = (
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"wJ" = (
+/obj/machinery/light/small,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"yH" = (
+/obj/structure/mineral_door/wood{
+	color = "#aaaaaa";
+	name = "деревянная дверь"
+	},
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"zy" = (
+/obj/structure/rospilovo/shina2,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"zJ" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "sand3"
+	},
+/area/space)
+"zR" = (
+/obj/structure/rospilovo/water/bochka/kap,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"zX" = (
+/obj/effect/bump_teleporter{
+	id = "down_d";
+	id_target = "up_d"
+	},
+/turf/open/floor/plasteel/stairs/left,
+/area/space)
+"An" = (
+/obj/structure/rospilovo/okno{
+	icon_state = "okno4"
+	},
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"AQ" = (
+/obj/machinery/light/small,
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"CW" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/rospilovo/propane/dual{
+	layer = 2
+	},
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"EO" = (
+/obj/structure/rospilovo/clocks,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"Fg" = (
+/obj/effect/bump_teleporter{
+	id = "top_d";
+	id_target = "down_d"
+	},
+/turf/open/floor/plasteel/stairs/left,
+/area/space)
+"IW" = (
+/obj/structure/rospilovo/intercom{
+	pixel_y = 32
+	},
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"KG" = (
+/obj/structure/grille/rospilovo/wood{
+	icon_state = "zabor_horizontal3"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"KJ" = (
+/obj/structure/rospilovo/apc/open,
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"Nq" = (
+/obj/structure/rospilovo/tree{
+	icon_state = "derevo2"
+	},
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"Ox" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_ugolok_ur"
+	},
+/area/space)
+"Pl" = (
+/obj/structure/rospilovo/pech,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"Qc" = (
+/obj/structure/rospilovo/shina,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"QC" = (
+/turf/closed/wall/rospilovo/bricks,
+/area/space)
+"Rp" = (
+/obj/structure/mineral_door/wood{
+	color = "#aaaaaa";
+	name = "деревянная дверь"
+	},
+/turf/open/floor/rospilovo/plitka,
+/area/space)
+"Si" = (
+/obj/structure/rospilovo/tree,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"SP" = (
+/obj/structure/grille/rospilovo/wood,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"Td" = (
+/obj/structure/rospilovo/vanna,
+/turf/open/floor/rospilovo/plitka/old,
+/area/space)
+"TL" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass5"
+	},
+/area/space)
+"Uo" = (
+/turf/open/floor/rospilovo/plitka{
+	icon_state = "plita4"
+	},
+/area/space)
+"Uu" = (
+/turf/open/floor/rospilovo,
+/area/space)
+"UC" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/rospilovo,
+/area/space)
+"UK" = (
+/obj/structure/rospilovo/luk,
+/turf/open/floor/rospilovo/plitka{
+	icon_state = "plita4"
+	},
+/area/space)
+"VM" = (
+/obj/structure/rospilovo/musor_yashik/red,
+/turf/open/floor/grass/rospilovo,
+/area/space)
+"We" = (
+/turf/open/floor/grass/rospilovo{
+	icon_state = "grass-sand_d"
+	},
+/area/space)
+"Yw" = (
+/turf/open/floor/plasteel/stairs/medium,
+/area/space)
+"YE" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/rospilovo/televizor,
+/obj/structure/table/rospilovo,
+/turf/open/floor/rospilovo/wood,
+/area/space)
+"YO" = (
+/obj/effect/turf_decal/trimline/white/filled/shrink_cw,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/rospilovo,
+/area/space)
+
+(1,1,1) = {"
+QC
+QC
+QC
+QC
+QC
+yH
+QC
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+nv
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(2,1,1) = {"
+rn
+bY
+bY
+bY
+fX
+bY
+bX
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+eR
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(3,1,1) = {"
+yH
+bY
+bY
+bY
+bX
+bY
+bY
+An
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+bn
+uH
+tB
+KG
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(4,1,1) = {"
+bC
+YE
+bY
+bY
+ko
+bY
+wJ
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+An
+fD
+lr
+zJ
+We
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+Si
+fD
+"}
+(5,1,1) = {"
+QC
+fk
+bY
+bY
+bY
+bY
+bY
+An
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+lr
+uJ
+We
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(6,1,1) = {"
+QC
+QC
+yH
+EO
+bX
+bY
+qf
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+zy
+vC
+Ox
+We
+KG
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(7,1,1) = {"
+QC
+oz
+lY
+QC
+QC
+yH
+QC
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+jK
+fD
+lr
+We
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+dW
+Uo
+fD
+fD
+"}
+(8,1,1) = {"
+mg
+fU
+lY
+QC
+Pl
+bY
+bY
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+Nq
+lr
+We
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(9,1,1) = {"
+QC
+jC
+lY
+QC
+mc
+bY
+wJ
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+An
+fD
+fD
+lr
+We
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+jK
+"}
+(10,1,1) = {"
+QC
+gR
+Td
+QC
+bX
+bY
+bY
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+zR
+fD
+vC
+pM
+KG
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(11,1,1) = {"
+QC
+QC
+QC
+QC
+QC
+yH
+QC
+QC
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+bg
+hW
+fD
+fD
+aR
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(12,1,1) = {"
+ws
+ws
+ws
+QC
+ws
+ws
+ws
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+fD
+fD
+fD
+fD
+fV
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(13,1,1) = {"
+ws
+ws
+ws
+uv
+ws
+ws
+AQ
+QC
+QC
+ed
+ws
+ws
+QC
+ws
+vK
+Uo
+Uo
+Uo
+fD
+Uo
+fD
+Uo
+UC
+UC
+UC
+UC
+YO
+Uo
+fD
+fD
+"}
+(14,1,1) = {"
+ws
+ws
+ws
+QC
+ws
+gV
+gV
+QC
+CW
+gV
+gV
+ws
+Rp
+ws
+Yw
+Uo
+Uo
+fD
+Uo
+Uo
+Uo
+Uo
+UC
+UC
+YO
+UC
+UC
+Uo
+hW
+fD
+"}
+(15,1,1) = {"
+ws
+ws
+ws
+KJ
+ws
+vK
+Fg
+QC
+zX
+vK
+vK
+ws
+QC
+IW
+jR
+Uo
+Uo
+Uo
+Uo
+fD
+Uo
+Uo
+UC
+UC
+UC
+UC
+UC
+Uo
+fD
+fD
+"}
+(16,1,1) = {"
+ws
+ws
+ws
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+fD
+fD
+VM
+VM
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(17,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(18,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+jK
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(19,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+An
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(20,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+Qc
+fD
+fD
+fD
+KG
+UK
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(21,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+Si
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(22,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(23,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+TL
+fD
+fD
+Uo
+dW
+Uu
+bV
+Uu
+Uu
+Uo
+Nq
+fD
+"}
+(24,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+An
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(25,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+hW
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(26,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(27,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+Nq
+fD
+aR
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+eR
+fD
+"}
+(28,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+An
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(29,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+Qc
+fD
+fD
+aR
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}
+(30,1,1) = {"
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+ws
+QC
+Uo
+Uo
+QC
+fD
+fD
+fD
+fD
+SP
+Uo
+Uu
+Uu
+bV
+Uu
+Uu
+Uo
+fD
+fD
+"}

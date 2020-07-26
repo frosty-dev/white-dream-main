@@ -9,12 +9,12 @@
 	stat_value = rand(4, 11)
 	if(rand(3) == 1)
 		stat_value *= -1
-	name = "Virus ([stat_name] of [stat_value])"
-	description = "Nanotrasen is interested in a virus with a [stat_name] stat of exactly [stat_value]. Central Command will pay handsomely for such a virus."
+	name = "Вирус ([stat_name] [stat_value])"
+	description = "НТ интересуется вирусом со статистическим значением [stat_name], равным [stat_value]. Центральное командование заплатит щедро за такой вирус."
 	reward += rand(0, 4) * 500
 
 /datum/bounty/virus/completion_string()
-	return shipped ? "Shipped" : "Not Shipped"
+	return shipped ? "Отпрален" : "Не отправлен"
 
 /datum/bounty/virus/can_claim()
 	return ..() && shipped
@@ -52,28 +52,28 @@
 	return TRUE
 
 /datum/bounty/virus/resistance
-	stat_name = "resistance"
+	stat_name = "сопротивление"
 
 /datum/bounty/virus/resistance/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.totalResistance() == stat_value
 
 /datum/bounty/virus/stage_speed
-	stat_name = "stage speed"
+	stat_name = "скорость этапа"
 
 /datum/bounty/virus/stage_speed/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.totalStageSpeed() == stat_value
 
 /datum/bounty/virus/stealth
-	stat_name = "stealth"
+	stat_name = "скрытность"
 
 /datum/bounty/virus/stealth/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.totalStealth() == stat_value
 
 /datum/bounty/virus/transmit
-	stat_name = "transmissible"
+	stat_name = "передающийся"
 
 /datum/bounty/virus/transmit/accepts_virus(V)
 	var/datum/disease/advance/A = V

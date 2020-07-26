@@ -9,7 +9,7 @@
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
 	ui_x = 400
-	ui_y = 400
+	ui_y = 350
 
 	var/auth_need = 3
 	var/list/authorized = list()
@@ -23,7 +23,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "emergency_shuttle_console", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "EmergencyShuttleConsole", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/emergency_shuttle/ui_data()
@@ -107,7 +107,7 @@
 	authorized += ID
 
 	message_admins("[ADMIN_LOOKUPFLW(user)] has authorized early shuttle launch")
-	log_game("[key_name(user)] has authorized early shuttle launch in [COORD(src)]")
+	log_shuttle("[key_name(user)] has authorized early shuttle launch in [COORD(src)]")
 	// Now check if we're on our way
 	. = TRUE
 	process()
@@ -121,7 +121,7 @@
 
 	if(SSshuttle.emergency.mode == SHUTTLE_STRANDED)
 		authorized.Cut()
-		DISABLE_BITFIELD(obj_flags, EMAGGED)
+		obj_flags &= ~(EMAGGED)
 
 	if(ENGINES_STARTED || (!IS_DOCKED))
 		return .
@@ -140,15 +140,15 @@
 	if(!IS_DOCKED)
 		return
 
-	if(CHECK_BITFIELD(obj_flags, EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
+	if((obj_flags & EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
 		to_chat(user, "<span class='warning'>The shuttle is already about to launch!</span>")
 		return
 
 	var/time = TIME_LEFT
-	message_admins("[ADMIN_LOOKUPFLW(user.client)] has emagged the emergency shuttle [time] seconds before launch.")
-	log_game("[key_name(user)] has emagged the emergency shuttle in [COORD(src)] [time] seconds before launch.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has emagged the emergency shuttle [time] seconds before launch.")
+	log_shuttle("[key_name(user)] has emagged the emergency shuttle in [COORD(src)] [time] seconds before launch.")
 
-	ENABLE_BITFIELD(obj_flags, EMAGGED)
+	obj_flags |= EMAGGED
 	SSshuttle.emergency.movement_force = list("KNOCKDOWN" = 60, "THROW" = 20)//YOUR PUNY SEATBELTS can SAVE YOU NOW, MORTAL
 	var/datum/species/S = new
 	for(var/i in 1 to 10)
@@ -283,7 +283,9 @@
 	set waitfor = FALSE
 	if(!SSdbcore.Connect())
 		return
-	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shuttle_name = '[name]' WHERE id = [GLOB.round_id]")
+	var/datum/db_query/query_round_shuttle_name = SSdbcore.NewQuery({"
+		UPDATE [format_table_name("round")] SET shuttle_name = :name WHERE id = :round_id
+	"}, list("name" = name, "round_id" = GLOB.round_id))
 	query_round_shuttle_name.Execute()
 	qdel(query_round_shuttle_name)
 
@@ -316,8 +318,8 @@
 				mode = SHUTTLE_DOCKED
 				webhook_send_roundstatus("shuttle docked")
 				setTimer(SSshuttle.emergencyDockTime)
-				send2tgs("Server", "The Emergency Shuttle has docked with the station.")
-				priority_announce("Эвакуационный шаттл был пристыкован к станции. В вашем распоряжении [timeLeft(600)] минут на посадку.", null, 'sound/ai/shuttledock.ogg', "Priority")
+				send2adminchat("Server", "The Emergency Shuttle has docked with the station.")
+				priority_announce("Эвакуационный шаттл был пристыкован к станции. В вашем распоряжении [timeLeft(600)] минуты на посадку.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
 
 
@@ -370,6 +372,7 @@
 				setTimer(SSshuttle.emergencyEscapeTime * engine_coeff)
 				priority_announce("Эвакуационный шаттл покинул станцию. Осталось [timeLeft(600)] минуты до прибытия в доки Центрального Коммандования.", null, null, "Priority")
 				webhook_send_roundstatus("shuttle left")
+				//SSmapping.mapvote() //If no map vote has been run yet, start one.
 
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
@@ -457,13 +460,14 @@
 	light_color = LIGHT_COLOR_BLUE
 	density = FALSE
 
-/obj/machinery/computer/shuttle/pod/update_icon()
-	return
+/obj/machinery/computer/shuttle/pod/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_blocker)
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	ENABLE_BITFIELD(obj_flags, EMAGGED)
+	obj_flags |= EMAGGED
 	to_chat(user, "<span class='warning'>You fry the pod's alert level checking system.</span>")
 
 /obj/machinery/computer/shuttle/pod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
@@ -478,6 +482,8 @@
 	width = 3
 	height = 4
 	var/target_area = /area/lavaland/surface/outdoors
+	var/gensokyo_area = /area/mine/unexplored/gensokyo
+	var/icemoon_area = /area/space // lol
 	var/edge_distance = 16
 	// Minimal distance from the map edge, setting this too low can result in shuttle landing on the edge and getting "sliced"
 
@@ -486,7 +492,7 @@
 	if(!mapload)
 		return
 
-	var/list/turfs = get_area_turfs(target_area)
+	var/list/turfs = get_area_turfs(target_area) + get_area_turfs(gensokyo_area) + get_area_turfs(icemoon_area)
 	var/original_len = turfs.len
 	while(turfs.len)
 		var/turf/T = pick(turfs)
@@ -506,12 +512,12 @@
 /obj/item/clothing/head/helmet/space/orange
 	name = "emergency космошлем"
 	icon_state = "syndicate-helm-orange"
-	item_state = "syndicate-helm-orange"
+	inhand_icon_state = "syndicate-helm-orange"
 
 /obj/item/clothing/suit/space/orange
 	name = "emergency скафандр"
 	icon_state = "syndicate-orange"
-	item_state = "syndicate-orange"
+	inhand_icon_state = "syndicate-orange"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency

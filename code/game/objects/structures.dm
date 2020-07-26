@@ -4,6 +4,8 @@
 	max_integrity = 300
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	layer = BELOW_OBJ_LAYER
+	flags_ricochet = RICOCHET_HARD
+	ricochet_chance_mod = 0.5
 
 	var/climb_time = 20
 	var/climb_stun = 20
@@ -36,10 +38,10 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src)
 		structureclimber.Paralyze(40)
-		structureclimber.visible_message("<span class='warning'><b>[structureclimber]</b> сваливается с <b>[src.name]</b>.", "Ты упал с [src.name]!", "Ты видишь как [structureclimber] падает с [src.name].</span>")
+		structureclimber.visible_message("<span class='warning'><b>[structureclimber]</b> сваливается с <b>[src.name]</b>.", "Падаю с [src.name]!", "Вижу как [structureclimber] падает с [src.name].</span>")
 
 /obj/structure/ui_act(action, params)
-	..()
+	. = ..()
 	add_fingerprint(usr)
 
 /obj/structure/MouseDrop_T(atom/movable/O, mob/user)
@@ -66,6 +68,11 @@
 
 /obj/structure/proc/do_climb(atom/movable/A)
 	if(climbable)
+		if(A.loc == src.loc)
+			var/where_to_climb = get_step(A,dir)
+			if(!(is_blocked_turf(where_to_climb)))
+				A.forceMove(where_to_climb)
+				return TRUE
 		density = FALSE
 		. = step(A,get_dir(A,src.loc))
 		density = TRUE
@@ -106,6 +113,12 @@
 		if(examine_status)
 			. += examine_status
 
+/obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+
+	if(mover.pass_flags & PASSSTRUCTURE)
+		return TRUE
+
 /obj/structure/proc/examine_status(mob/user) //An overridable proc, mostly for falsewalls.
 	var/healthpercent = (obj_integrity/max_integrity) * 100
 	switch(healthpercent)
@@ -116,3 +129,6 @@
 		if(0 to 25)
 			if(!broken)
 				return  "<span class='warning'>Кажется эта штука сейчас развалится!</span>"
+
+/obj/structure/rust_heretic_act()
+	take_damage(500, BRUTE, "melee", 1)

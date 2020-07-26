@@ -1,6 +1,8 @@
 /obj/item/reagent_containers/food/snacks/meat
 	var/subjectname = ""
 	var/subjectjob = null
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4)
+	material_flags = MATERIAL_NO_EFFECTS //Remove this once we refactor food, prevents meat literaly being eaten twice
 
 /obj/item/reagent_containers/food/snacks/meat/slab
 	name = "meat"
@@ -13,7 +15,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain
 	slices_num = 3
 	filling_color = "#FF0000"
-	tastes = list("meat" = 1)
+	tastes = list("мясо" = 1)
 	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/meat/slab/initialize_slice(obj/item/reagent_containers/food/snacks/meat/rawcutlet/slice, reagents_per_slice)
@@ -36,7 +38,7 @@
 	name = "meat"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/plain/human
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human
-	tastes = list("tender meat" = 1)
+	tastes = list("человечина" = 1)
 	foodtype = MEAT | RAW | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/initialize_slice(obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human/slice, reagents_per_slice)
@@ -63,7 +65,7 @@
 	desc = "Because jello wasn't offensive enough to vegans."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin/slimejelly = 3)
 	filling_color = "#00FFFF"
-	tastes = list("slime" = 1, "jelly" = 1)
+	tastes = list("слаймы" =1, "желе" =1)
 	foodtype = MEAT | RAW | TOXIC
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem
@@ -71,7 +73,7 @@
 	desc = "Edible rocks, welcome to the future."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/iron = 3)
 	filling_color = "#A9A9A9"
-	tastes = list("rock" = 1)
+	tastes = list("камни" = 1)
 	foodtype = MEAT | RAW | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine
@@ -84,35 +86,35 @@
 	icon_state = "lizardmeat"
 	desc = "Delicious dino damage."
 	filling_color = "#6B8E23"
-	tastes = list("meat" = 4, "scales" = 1)
+	tastes = list("мясо" = 4, "чешуйки" = 1)
 	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	icon_state = "plantmeat"
 	desc = "All the joys of healthy eating with all the fun of cannibalism."
 	filling_color = "#E9967A"
-	tastes = list("salad" = 1, "wood" = 1)
+	tastes = list("салат" =1, "дерево" =1)
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	icon_state = "shadowmeat"
 	desc = "Ow, the edge."
 	filling_color = "#202020"
-	tastes = list("darkness" = 1, "meat" = 1)
+	tastes = list("тьма" = 1, "мясо" = 1)
 	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/fly
 	icon_state = "flymeat"
 	desc = "Nothing says tasty like maggot filled radioactive mutant flesh."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/uranium = 3)
-	tastes = list("maggots" = 1, "the inside of a reactor" = 1)
+	tastes = list("личинки" = 1, "внутренности реактора" = 1)
 	foodtype = MEAT | RAW | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
 	icon_state = "mothmeat"
 	desc = "Unpleasantly powdery and dry. Kind of pretty, though."
 	filling_color = "#BF896B"
-	tastes = list("dust" = 1, "powder" = 1, "meat" = 2)
+	tastes = list("пыль" = 1, "порох" = 1, "мясо" = 2)
 	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
@@ -120,7 +122,7 @@
 	icon_state = "skeletonmeat"
 	desc = "There's a point where this needs to stop, and clearly we have passed it."
 	filling_color = "#F0F0F0"
-	tastes = list("bone" = 1)
+	tastes = list("кости" = 1)
 	slice_path = null  //can't slice a bone into cutlets
 	foodtype = GROSS
 
@@ -129,7 +131,7 @@
 	icon_state = "rottenmeat"
 	desc = "Halfway to becoming fertilizer for your garden."
 	filling_color = "#6B8E23"
-	tastes = list("brains" = 1, "meat" = 1)
+	tastes = list("мозги" = 1, "мясо" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
@@ -137,7 +139,7 @@
 	desc = "So shiny you feel like ingesting it might make you shine too"
 	filling_color = "#97ee63"
 	list_reagents = list(/datum/reagent/consumable/liquidelectricity = 3)
-	tastes = list("pure electricity" = 2, "meat" = 1)
+	tastes = list("электричество" = 2, "мясо" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 ////////////////////////////////////// OTHER MEATS ////////////////////////////////////////////////////////
@@ -165,7 +167,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well you know..."
-	tastes = list("meat" = 4, "a fondness for wearing hats" = 1)
+	tastes = list("мясо" = 4, "любовь к ношению шляп" = 1)
 	foodtype = RAW | MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/pug
@@ -181,7 +183,7 @@
 	filling_color = "#FF0000"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/killertomato
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/killertomato
-	tastes = list("tomato" = 1)
+	tastes = list("томаты" = 1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/bear
@@ -192,7 +194,7 @@
 	filling_color = "#FFB6C1"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/bear
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/bear
-	tastes = list("meat" = 1, "salmon" = 1)
+	tastes = list("мясо" = 1, "лосось" = 1)
 	foodtype = RAW | MEAT
 
 
@@ -205,18 +207,18 @@
 	filling_color = "#32CD32"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/xeno
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/xeno
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("мясо" = 1, "кислота" = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/spider
 	name = "spider meat"
-	desc = "A slab of spider meat."
+	desc = "A slab of spider meat. That is so Kafkaesque."
 	icon_state = "spidermeat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#7CFC00"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/spider
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/spider
-	tastes = list("cobwebs" = 1)
+	tastes = list("паутина" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 
@@ -225,7 +227,7 @@
 	desc = "A slab of goliath meat. It's not very edible now, but it cooks great in lava."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/toxin = 5, /datum/reagent/consumable/cooking_oil = 3)
 	icon_state = "goliathmeat"
-	tastes = list("meat" = 1)
+	tastes = list("мясо" = 1)
 	foodtype = RAW | MEAT | TOXIC
 
 /obj/item/reagent_containers/food/snacks/meat/slab/goliath/burn()
@@ -240,7 +242,7 @@
 	filling_color = rgb(150, 0, 0)
 	icon_state = "meatwheat_clump"
 	bitesize = 4
-	tastes = list("meat" = 1, "wheat" = 1)
+	tastes = list("мясо" = 1, "пшеница" = 1)
 	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gorilla
@@ -256,7 +258,7 @@
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cooking_oil = 3)
 	filling_color = "#B22222"
-	tastes = list("bacon" = 1)
+	tastes = list("бекон" = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/bacon
@@ -266,14 +268,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 2)
 	filling_color = "#854817"
-	tastes = list("bacon" = 1)
+	tastes = list("бекон" = 1)
 	foodtype = MEAT | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	name = "gondola meat"
 	desc = "According to legends of old, consuming raw gondola flesh grants one inner peace."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/tranquility = 5, /datum/reagent/consumable/cooking_oil = 3)
-	tastes = list("meat" = 4, "tranquility" = 1)
+	tastes = list("мясо" = 4, "спокойствие" = 1)
 	filling_color = "#9A6750"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/gondola
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/gondola
@@ -286,7 +288,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin
 	filling_color = "#B22222"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("говядина" = 1, "треска" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcrab
 	name = "raw crab meat"
@@ -296,7 +298,7 @@
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cooking_oil = 3)
 	filling_color = "#EAD079"
-	tastes = list("raw crab" = 1)
+	tastes = list("сырой краб" = 1)
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/crab
@@ -306,7 +308,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/cooking_oil = 2)
 	filling_color = "#DFB73A"
-	tastes = list("crab" = 1)
+	tastes = list("краб" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/slab/chicken
@@ -314,7 +316,7 @@
 	desc = "A slab of raw chicken. Remember to wash your hands!"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/chicken
-	tastes = list("chicken" = 1)
+	tastes = list("цыплёнок" = 1)
 
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
@@ -328,31 +330,31 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#B22222"
 	foodtype = MEAT
-	tastes = list("meat" = 1)
+	tastes = list("мясо" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain
     foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human
-	tastes = list("tender meat" = 1)
+	tastes = list("нежное мясо" = 1)
 	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/steak/killertomato
 	name = "killer tomato steak"
-	tastes = list("tomato" = 1)
+	tastes = list("томаты" =1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/bear
 	name = "bear steak"
-	tastes = list("meat" = 1, "salmon" = 1)
+	tastes = list("мясо" = 1, "лосось" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/xeno
 	name = "xeno steak"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("мясо" = 1, "кислота" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/spider
 	name = "spider steak"
-	tastes = list("cobwebs" = 1)
+	tastes = list("паутина" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/goliath
 	name = "goliath steak"
@@ -360,20 +362,20 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	icon_state = "goliathsteak"
 	trash = null
-	tastes = list("meat" = 1, "rock" = 1)
+	tastes = list("мясо" = 1, "камни" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/gondola
 	name = "gondola steak"
-	tastes = list("meat" = 1, "tranquility" = 1)
+	tastes = list("мясо" = 1, "спокойствие" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	name = "penguin steak"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("говядина" = 1, "треска" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/chicken
 	name = "chicken steak" //Can you have chicken steaks? Maybe this should be renamed once it gets new sprites.
-	tastes = list("chicken" = 1)
+	tastes = list("цыплёнок" = 1)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 
@@ -387,7 +389,7 @@
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	filling_color = "#B22222"
-	tastes = list("meat" = 1)
+	tastes = list("мясо" = 1)
 	var/meat_type = "meat"
 	foodtype = MEAT | RAW
 
@@ -401,7 +403,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
-	tastes = list("tender meat" = 1)
+	tastes = list("нежное мясо" = 1)
 	foodtype = MEAT | RAW | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/plain/human/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency)
@@ -414,38 +416,38 @@
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/killertomato
 	name = "raw killer tomato cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/killertomato
-	tastes = list("tomato" = 1)
+	tastes = list("томаты" =1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/bear
 	name = "raw bear cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
-	tastes = list("meat" = 1, "salmon" = 1)
+	tastes = list("мясо" = 1, "лосось" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/xeno
 	name = "raw xeno cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("мясо" = 1, "кислота" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/spider
 	name = "raw spider cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
-	tastes = list("cobwebs" = 1)
+	tastes = list("паутина" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/gondola
 	name = "raw gondola cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/gondola
-	tastes = list("meat" = 1, "tranquility" = 1)
+	tastes = list("мясо" = 1, "спокойствие" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/penguin
 	name = "raw penguin cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("говядина" = 1, "треска" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/rawcutlet/chicken
 	name = "raw chicken cutlet"
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
-	tastes = list("chicken" = 1)
+	tastes = list("цыплёнок" = 1)
 
 //Cooked cutlets
 
@@ -457,40 +459,40 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#B22222"
-	tastes = list("meat" = 1)
+	tastes = list("мясо" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
-	tastes = list("tender meat" = 1)
+	tastes = list("нежное мясо" = 1)
 	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/killertomato
 	name = "killer tomato cutlet"
-	tastes = list("tomato" = 1)
+	tastes = list("томаты" =1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
 	name = "bear cutlet"
-	tastes = list("meat" = 1, "salmon" = 1)
+	tastes = list("мясо" = 1, "лосось" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
 	name = "xeno cutlet"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("мясо" = 1, "кислота" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider cutlet"
-	tastes = list("cobwebs" = 1)
+	tastes = list("паутина" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/gondola
 	name = "gondola cutlet"
-	tastes = list("meat" = 1, "tranquility" = 1)
+	tastes = list("мясо" = 1, "спокойствие" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin cutlet"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("говядина" = 1, "треска" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
 	name = "chicken cutlet"
-	tastes = list("chicken" = 1)
+	tastes = list("цыплёнок" = 1)

@@ -7,13 +7,14 @@
 	slices_num = 6
 	volume = 80
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/pizzaslice
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtype = GRAIN | DAIRY | VEGETABLES
+	value = FOOD_JUNK
 
 /obj/item/reagent_containers/food/snacks/pizza/margherita
 	name = "pizza margherita"
@@ -21,8 +22,9 @@
 	icon_state = "pizzamargherita"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/margherita
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize()
 	bonus_reagents += list(/datum/reagent/nanomachines = 70)
@@ -33,7 +35,7 @@
 	desc = "A slice of the most cheezy pizza in galaxy."
 	icon_state = "pizzamargheritaslice"
 	filling_color = "#FFA500"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/meat
@@ -43,15 +45,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/meat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 8)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 8)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES| DAIRY | MEAT
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/meat
 	name = "meatpizza slice"
 	desc = "A nutritious slice of meatpizza."
 	icon_state = "meatpizzaslice"
 	filling_color = "#A52A2A"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /obj/item/reagent_containers/food/snacks/pizza/mushroom
@@ -61,15 +64,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/mushroom
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "грибы" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+	value = FOOD_FAST
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/mushroom
 	name = "mushroom pizza slice"
 	desc = "Maybe it is the last slice of pizza in your life."
 	icon_state = "mushroompizzaslice"
 	filling_color = "#FFE4C4"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "грибы" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/vegetable
@@ -79,15 +83,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/vegetable
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/medicine/oculine = 12, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
+	tastes = list("корка" = 1, "томаты" =2, "сыр" = 1, "морковь" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vegetable
 	name = "vegetable pizza slice"
 	desc = "A slice of the most green pizza of all pizzas not containing green ingredients."
 	icon_state = "vegetablepizzaslice"
 	filling_color = "#FFA500"
-	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
+	tastes = list("корка" = 1, "томаты" =2, "сыр" = 1, "морковь" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/donkpocket
@@ -97,15 +102,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/donkpocket
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/medicine/omnizine = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1, "лень" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/donkpocket
 	name = "donkpocket pizza slice"
 	desc = "Smells like donkpocket."
 	icon_state = "donkpocketpizzaslice"
 	filling_color = "#FFA500"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1, "лень" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
 
 /obj/item/reagent_containers/food/snacks/pizza/dank
@@ -115,15 +121,16 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/doctor_delight = 5, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	name = "dank pizza slice"
 	desc = "So good, man..."
 	icon_state = "dankpizzaslice"
 	filling_color = "#2E8B57"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/sassysage
@@ -132,15 +139,16 @@
 	icon_state = "sassysagepizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/sassysage
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
+	value = FOOD_EXOTIC
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/sassysage
 	name = "sassysage pizza slice"
 	desc = "Deliciously sassy."
 	icon_state = "sassysagepizzaslice"
 	filling_color = "#FF4500"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "мясо" = 1)
 	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/pineapple
@@ -149,15 +157,16 @@
 	icon_state = "pineapplepizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "ананас" = 2, "ветчина" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
+	value = FOOD_RARE
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
 	name = "\improper Hawaiian pizza slice"
 	desc = "A slice of delicious controversy."
 	icon_state = "pineapplepizzaslice"
 	filling_color = "#FF4500"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "ананас" = 2, "ветчина" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
 
 /obj/item/reagent_containers/food/snacks/pizza/arnold
@@ -166,7 +175,8 @@
 	icon_state = "arnoldpizza"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/arnold
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/iron = 10, /datum/reagent/medicine/omnizine = 30)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2, "9 millimeter bullets" = 2)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "пепперони" = 2, "9-ти миллиметровые пули" = 2)
+	value = FOOD_ILLEGAL
 
 /obj/item/reagent_containers/food/snacks/proc/try_break_off(mob/living/M, mob/living/user) //maybe i give you a pizza maybe i break off your arm
 	var/obj/item/bodypart/l_arm = user.get_bodypart(BODY_ZONE_L_ARM)
@@ -177,7 +187,7 @@
 			l_arm.dismember()
 		else
 			r_arm.dismember()
-		playsound(user, "desceration" ,50, TRUE, -1)
+		playsound(user, "desecration" ,50, TRUE, -1)
 
 /obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/pineappleslice))
@@ -198,7 +208,7 @@
 	desc = "I come over, maybe I give you a pizza, maybe I break off your arm."
 	icon_state = "arnoldpizzaslice"
 	filling_color = "#A52A2A"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2, "9 millimeter bullets" = 2)
+	tastes = list("корка" = 1, "томаты" =1, "сыр" = 1, "пепперони" = 2, "9-ти миллиметровые пули" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/arnold/attack(mob/living/M, mob/living/user)
@@ -216,3 +226,13 @@
 	filling_color = "#FFFFFF"
 	foodtype = GRAIN | VEGETABLES
 
+/obj/item/reagent_containers/food/snacks/pizzaslice/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/kitchen/rollingpin))
+		if(!isturf(loc))
+			to_chat(user, "<span class='warning'>You need to put [src] on a surface to roll it out!</span>")
+			return
+		new /obj/item/stack/sheet/pizza(loc)
+		to_chat(user, "<span class='notice'>You smoosh [src] into a cheesy sheet.</span>")
+		qdel(src)
+		return
+	return ..()

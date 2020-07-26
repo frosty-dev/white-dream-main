@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/russian
-	name = "Russian"
+	name = "Russian Comrade"
 	desc = "For the Motherland!"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "russianmelee"
@@ -26,21 +26,18 @@
 	faction = list("russian")
 	status_flags = CANPUSH
 	del_on_death = 1
-
 	footstep_type = FOOTSTEP_MOB_SHOE
-
 
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged,
 				/obj/item/gun/ballistic/revolver/nagant)
-	ranged = 1
+	ranged = TRUE
 	retreat_distance = 5
 	minimum_distance = 5
 	projectilesound = 'sound/weapons/gun/revolver/shot.ogg'
 	casingtype = /obj/item/ammo_casing/n762
-
 
 /mob/living/simple_animal/hostile/russian/ranged/mosin
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged,
@@ -65,7 +62,8 @@
 	rapid = 3
 	casingtype = /obj/item/ammo_casing/c9mm
 	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/officer,
-				/obj/item/gun/ballistic/automatic/pistol/APS)
+				/obj/item/gun/ballistic/automatic/pistol/aps)
+
 
 /mob/living/simple_animal/hostile/russian/ranged/officer/Aggro()
 	..()

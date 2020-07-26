@@ -20,9 +20,9 @@
 	desc = "Привязной галстук из неоткани."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bluetie"
-	item_state = ""	//no inhands
+	inhand_icon_state = ""	//no inhands
 	w_class = WEIGHT_CLASS_SMALL
-	custom_price = 15
+	custom_price = 60
 
 /obj/item/clothing/neck/tie/blue
 	name = "синий галстук"
@@ -52,7 +52,7 @@
 	icon_state = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] wont hear much!</span>")
+	user.visible_message("<span class='suicide'>[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] won't hear much!</span>")
 	return OXYLOSS
 
 /obj/item/clothing/neck/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
@@ -76,9 +76,6 @@
 					if(!(M.failed_last_breath || M.losebreath))
 						lung_strength = "здоровый звук"
 
-			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT * 10)
-				heart_strength = "<span class='boldannounce'>слабый и трепетный</span>"
-
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "Слышу [heart_strength] пульса и [lung_strength] дыхания." : "Я еле слышу [heart_strength] пульс.")
 			user.visible_message("<span class='notice'>[user] пристраивает [src] в [ru_exam_parse_zone(body_part)] [M] и слушает внимательно.</span>", "<span class='notice'>Прикладываю [src] к [ru_exam_parse_zone(body_part)] [M]. [diagnosis]</span>")
 			return
@@ -93,7 +90,7 @@
 	icon_state = "scarf"
 	desc = "Стильный шарф. Идеальный зимний аксессуар для тех, у кого острое чувство моды, и для тех, кто просто не может справиться с холодным бризом на шеях."
 	dog_fashion = /datum/dog_fashion/head
-	custom_price = 10
+	custom_price = 60
 
 /obj/item/clothing/neck/scarf/black
 	name = "чёрный шарф"
@@ -181,7 +178,7 @@
 	return ..()
 */
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = copytext(sanitize(input(user, "Хотите изменить имя на теге?", "Назовите своего нового питомца", "Шепард") as null|text),1,MAX_NAME_LEN)
+	tagname = stripped_input(user, "Хотите изменить имя на теге?", "Назовите своего нового питомца", "Шепард", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
 
 //////////////
@@ -193,6 +190,41 @@
 	desc = "Как же заебись быть гангстером."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
+
+/obj/item/clothing/neck/necklace/dope/merchant
+	desc = "Don't ask how it works, the proof is in the holochips!"
+	/// scales the amount received in case an admin wants to emulate taxes/fees.
+	var/profit_scaling = 1
+	/// toggles between sell (TRUE) and get price post-fees (FALSE)
+	var/selling = FALSE
+
+/obj/item/clothing/neck/necklace/dope/merchant/attack_self(mob/user)
+	. = ..()
+	selling = !selling
+	to_chat(user, "<span class='notice'>[src] has been set to [selling ? "'Sell'" : "'Get Price'"] mode.</span>")
+
+/obj/item/clothing/neck/necklace/dope/merchant/afterattack(obj/item/I, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	var/datum/export_report/ex = export_item_and_contents(I, allowed_categories = (ALL), dry_run=TRUE)
+	var/price = 0
+	for(var/x in ex.total_amount)
+		price += ex.total_value[x]
+
+	if(price)
+		var/true_price = round(price*profit_scaling)
+		to_chat(user, "<span class='notice'>[selling ? "Sold" : "Getting the price of"] [I], value: <b>[true_price]</b> credits[I.contents.len ? " (exportable contents included)" : ""].[profit_scaling < 1 && selling ? "<b>[round(price-true_price)]</b> credit\s taken as processing fee\s." : ""]</span>")
+		if(selling)
+			new /obj/item/holochip(get_turf(user),true_price)
+			for(var/i in ex.exported_atoms_ref)
+				var/atom/movable/AM = i
+				if(QDELETED(AM))
+					continue
+				qdel(AM)
+	else
+		to_chat(user, "<span class='warning'>There is no export value for [I] or any items within it.</span>")
+
 
 /obj/item/clothing/neck/neckerchief
 	icon = 'icons/obj/clothing/masks.dmi' //In order to reuse the bandana sprite
@@ -222,3 +254,16 @@
 			user.visible_message("<span class='notice'>Развязываю [oldName] обратно к [newBand.name].</span>", "<span class='notice'>[user] развязывает [oldName] обратно к [newBand.name].</span>")
 		else
 			to_chat(user, "<span class='warning'>Надо бы держать в руках [src], чтобы развязать!</span>")
+
+/obj/item/clothing/neck/beads
+	name = "plastic bead necklace"
+	desc = "A cheap, plastic bead necklace. Show team spirit! Collect them! Throw them away! The posibilites are endless!"
+	icon = 'icons/obj/clothing/neck.dmi'
+	icon_state = "beads"
+	color = "#ffffff"
+	custom_price = 10
+	custom_materials = (list(/datum/material/plastic = 500))
+
+/obj/item/clothing/neck/beads/Initialize()
+	. = ..()
+	color = color = pick("#ff0077","#d400ff","#2600ff","#00ccff","#00ff2a","#e5ff00","#ffae00","#ff0000", "#ffffff")

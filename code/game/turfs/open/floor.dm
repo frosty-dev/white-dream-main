@@ -25,7 +25,6 @@
 	tiled_dirt = TRUE
 
 /turf/open/floor/Initialize(mapload)
-
 	if (!broken_states)
 		broken_states = typelist("broken_states", list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5"))
 	else
@@ -46,6 +45,9 @@
 					"basalt","basalt_dug",
 					"basalt0","basalt1","basalt2","basalt3","basalt4",
 					"basalt5","basalt6","basalt7","basalt8","basalt9","basalt10","basalt11","basalt12",
+					"snow","snow_dug","ice",
+					"snow0","snow1","snow2","snow3","snow4",
+					"snow5","snow6","snow7","snow8","snow9","snow10","snow11","snow12",
 					"oldburning","light-on-r","light-on-y","light-on-g","light-on-b", "wood", "carpetsymbol", "carpetstar",
 					"carpetcorner", "carpetside", "carpet", "ironsand1", "ironsand2", "ironsand3", "ironsand4", "ironsand5",
 					"ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
@@ -56,6 +58,14 @@
 		icon_regular_floor = icon_state
 	if(mapload && prob(33))
 		MakeDirty()
+	if(is_station_level(z))
+		GLOB.station_turfs += src
+
+
+/turf/open/floor/Destroy()
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
+	return ..()
 
 /turf/open/floor/ex_act(severity, target, prikolist)
 	var/shielded = is_shielded()
@@ -98,8 +108,7 @@
 
 /turf/open/floor/is_shielded()
 	for(var/obj/structure/A in contents)
-		if(A.level == 3)
-			return 1
+		return 1
 
 /turf/open/floor/blob_act(obj/structure/blob/B)
 	return
@@ -110,9 +119,6 @@
 
 /turf/open/floor/attack_paw(mob/user)
 	return attack_hand(user)
-
-/turf/open/floor/proc/gets_drilled()
-	return
 
 /turf/open/floor/proc/break_tile_to_plating()
 	var/turf/open/floor/plating/T = make_plating()
@@ -135,8 +141,12 @@
 		icon_state = pick(broken_states)
 	burnt = 1
 
-/turf/open/floor/proc/make_plating()
+/turf/open/floor/proc/make_plating(force = FALSE)
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+
+///For when the floor is placed under heavy load. Calls break_tile(), but exists to be overridden by floor types that should resist crushing force.
+/turf/open/floor/proc/crush()
+	break_tile()
 
 /turf/open/floor/ChangeTurf(path, new_baseturf, flags)
 	if(!isfloorturf(src))
@@ -189,28 +199,32 @@
 		if(user && !silent)
 			to_chat(user, "<span class='notice'>Снимаю плитку.</span>")
 		if(floor_tile && make_tile)
-			new floor_tile(src)
+			spawn_tile()
 	return make_plating()
+
+/turf/open/floor/proc/spawn_tile()
+	new floor_tile(src)
 
 /turf/open/floor/singularity_pull(S, current_size)
 	..()
-	if(current_size == STAGE_THREE)
-		if(prob(30))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size == STAGE_FOUR)
-		if(prob(50))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size >= STAGE_FIVE)
-		if(floor_tile)
+	var/sheer = FALSE
+	switch(current_size)
+		if(STAGE_THREE)
+			if(prob(30))
+				sheer = TRUE
+		if(STAGE_FOUR)
+			if(prob(50))
+				sheer = TRUE
+		if(STAGE_FIVE to INFINITY)
 			if(prob(70))
-				new floor_tile(src)
-				make_plating()
-		else if(prob(50))
-			ReplaceWithLattice()
+				sheer = TRUE
+			else if(prob(50) && (/turf/open/space in baseturfs))
+				ReplaceWithLattice()
+	if(sheer)
+		if(floor_tile)
+			make_plating(TRUE)
+			new floor_tile(src)
+
 
 /turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)
 	. = ..()
@@ -250,18 +264,19 @@
 				return FALSE
 			to_chat(user, "<span class='notice'>Строю шлюз.</span>")
 			var/obj/machinery/door/airlock/A = new the_rcd.airlock_type(src)
-
-			A.electronics = new/obj/item/electronics/airlock(A)
-
-			if(the_rcd.conf_access)
-				A.electronics.accesses = the_rcd.conf_access.Copy()
-			A.electronics.one_access = the_rcd.use_one_access
-
+			A.electronics = new /obj/item/electronics/airlock(A)
+			if(the_rcd.airlock_electronics)
+				A.electronics.accesses = the_rcd.airlock_electronics.accesses.Copy()
+				A.electronics.one_access = the_rcd.airlock_electronics.one_access
+				A.electronics.unres_sides = the_rcd.airlock_electronics.unres_sides
 			if(A.electronics.one_access)
 				A.req_one_access = A.electronics.accesses
 			else
 				A.req_access = A.electronics.accesses
+			if(A.electronics.unres_sides)
+				A.unres_sides = A.electronics.unres_sides
 			A.autoclose = TRUE
+			A.update_icon()
 			return TRUE
 		if(RCD_DECONSTRUCT)
 			if(!ScrapeAway(flags = CHANGETURF_INHERIT_AIR))
@@ -293,3 +308,13 @@
 			return TRUE
 
 	return FALSE
+
+/turf/open/floor/material
+	name = "floor"
+	icon_state = "materialfloor"
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+
+/turf/open/floor/material/spawn_tile()
+	for(var/i in custom_materials)
+		var/datum/material/M = i
+		new M.sheet_type(src, FLOOR(custom_materials[M] / MINERAL_MATERIAL_AMOUNT, 1))

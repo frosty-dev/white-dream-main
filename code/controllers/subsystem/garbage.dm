@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(garbage)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	init_order = INIT_ORDER_GARBAGE
 
-	var/list/collection_timeout = list(0, 2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
+	var/list/collection_timeout = list(2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
 
 	//Stat tracking
 	var/delslasttick = 0			// number of del()'s we've done this tick
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-	
+
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -279,7 +279,6 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_IWILLGC)
 				D.gc_destroyed = world.time
-				SSdemo.mark_destroyed(D) // hippie -- moody blues
 				return
 			if (QDEL_HINT_LETMELIVE)	//qdel should let the object live after calling destory.
 				if(!force)
@@ -300,9 +299,7 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(D)
 			if (QDEL_HINT_HARDDEL)		//qdel should assume this object won't gc, and queue a hard delete
 				SSgarbage.Queue(D, GC_QUEUE_HARDDELETE)
-				SSdemo.mark_destroyed(D) // hippie -- moody blues
 			if (QDEL_HINT_HARDDEL_NOW)	//qdel should assume this object won't gc, and hard del it post haste.
-				SSdemo.mark_destroyed(D) // hippie -- moody blues
 				SSgarbage.HardDelete(D)
 			if (QDEL_HINT_FINDREFERENCE)//qdel will, if TESTING is enabled, display all references to this object, then queue the object for deletion.
 				SSgarbage.Queue(D)
@@ -321,15 +318,13 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				I.no_hint++
 				SSgarbage.Queue(D)
-		if(D) // hippie -- moody blues
-			SSdemo.mark_destroyed(D)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
 
 #ifdef TESTING
 
 /datum/verb/find_refs()
-	set category = "Debug"
+	set category = "Дбг"
 	set name = "Find References"
 	set src in world
 
@@ -381,7 +376,7 @@ SUBSYSTEM_DEF(garbage)
 	SSgarbage.next_fire = world.time + world.tick_lag
 
 /datum/verb/qdel_then_find_references()
-	set category = "Debug"
+	set category = "Дбг"
 	set name = "qdel() then Find References"
 	set src in world
 
@@ -390,7 +385,7 @@ SUBSYSTEM_DEF(garbage)
 		find_references(TRUE)
 
 /datum/verb/qdel_then_if_fail_find_references()
-	set category = "Debug"
+	set category = "Дбг"
 	set name = "qdel() then Find References if GC failure"
 	set src in world
 

@@ -1,0 +1,45 @@
+@use '../base.scss';
+@use '../colors.scss';
+@use '../functions.scss' as *;
+
+$color-danger: colors.bg(colors.$red) !default;
+$color-caution: colors.bg(colors.$yellow) !default;
+
+$background-beige: #E8E4C9;
+
+.Cellphone__padding {
+  padding-left: 4px;
+}
+
+.Cellphone__fixrm {
+  margin-right: -4px;
+}
+
+.Cellphone__bg {
+  background-color: hsl(40, 100%, 45%);
+  border: 4px inset $background-beige;
+}
+
+.Cellphone__font {
+  //border: 4px inset $background-beige;
+  color: black;
+  font-family: System, bold;
+  font-size: 16px;
+}
+
+.Cellphone__Button--keypad {
+  background-color: $background-beige;
+  border-color: $background-beige;
+  &:hover {
+    background-color: lighten($background-beige, 15%) !important;
+    border-color: lighten($background-beige, 15%) !important;
+  }
+}
+
+.Cellphone__OSIcon {
+  background-image: url('../assets/shvainokaras_icon.svg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -20px;
+}

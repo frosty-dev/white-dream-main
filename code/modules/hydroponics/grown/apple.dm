@@ -25,7 +25,7 @@
 	bitesize = 100 // Always eat the apple in one bite
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/applejuice = 0)
-	tastes = list("apple" = 1)
+	tastes = list("яблоко" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
 
 // Gold Apple

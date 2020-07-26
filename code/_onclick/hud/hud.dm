@@ -6,6 +6,7 @@
 
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
+	"Cyberspess" = 'icons/mob/screen_cyberspess.dmi',
 	"Midnight" = 'icons/mob/screen_midnight.dmi',
 	"Retro" = 'icons/mob/screen_retro.dmi',
 	"Plasmafire" = 'icons/mob/screen_plasmafire.dmi',
@@ -57,7 +58,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/obj/screen/healths
 	var/obj/screen/healthdoll
 	var/obj/screen/internals
-
+	var/obj/screen/tooltip
+	var/obj/screen/wanted/wanted_lvl
+	var/obj/screen/spacesuit
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 
@@ -75,10 +78,22 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	hand_slots = list()
 
+	tooltip = new /obj/screen/tooltip()
+	tooltip.hud = src
+	if (owner.client.prefs.w_toggles & TOOLTIP_USER_POS)
+		tooltip.screen_loc = "SOUTH+1,CENTER-4:16"
+	infodisplay += tooltip
+
+	/*
+	extend(owner)
+	*/
+
 	for(var/mytype in subtypesof(/obj/screen/plane_master))
 		var/obj/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
+
+	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -100,7 +115,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	healths = null
 	healthdoll = null
+	wanted_lvl = null
 	internals = null
+	spacesuit = null
 	lingchemdisplay = null
 	devilsouldisplay = null
 	lingstingdisplay = null
@@ -189,7 +206,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	hud_version = display_hud_version
 	persistent_inventory_update(screenmob)
 	screenmob.update_action_buttons(1)
-	reorganize_alerts()
+	reorganize_alerts(screenmob)
 	screenmob.reload_fullscreen()
 	update_parallax_pref(screenmob)
 

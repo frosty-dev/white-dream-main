@@ -6,15 +6,15 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
+	supervisors = "главе персонала"
+	selection_color = "#bbe291"
 
 	outfit = /datum/outfit/job/curator
 
 	access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
 	minimal_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION, ACCESS_MINING_STATION)
 	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_CIV
+	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 
@@ -31,6 +31,7 @@
 	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
+		/obj/item/modular_computer/tablet/preset/cheap=1,
 		/obj/item/choice_beacon/hero = 1,
 		/obj/item/soapstone = 1,
 		/obj/item/barcodescanner = 1
@@ -42,4 +43,4 @@
 	if(visualsOnly)
 		return
 
-	H.grant_all_languages(omnitongue=TRUE)
+	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)

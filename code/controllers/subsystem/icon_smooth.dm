@@ -50,4 +50,6 @@ SUBSYSTEM_DEF(icon_smooth)
 		if(T && AM)
 			T.add_blueprints(AM)
 
+	SStitle.set_load_state("smoothing")
+
 	return ..()

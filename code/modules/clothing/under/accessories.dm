@@ -3,7 +3,7 @@
 	desc = "Something has gone wrong!"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
-	item_state = ""	//no inhands
+	inhand_icon_state = ""	//no inhands
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
@@ -88,7 +88,7 @@
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
-	item_state = "waistcoat"
+	inhand_icon_state = "waistcoat"
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -96,7 +96,7 @@
 	name = "maid apron"
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
-	item_state = "maidapron"
+	inhand_icon_state = "maidapron"
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -105,8 +105,8 @@
 //////////
 
 /obj/item/clothing/accessory/medal
-	name = "bronze medal"
-	desc = "A bronze medal."
+	name = "бронзовая медаль"
+	desc = "Прикольн."
 	icon_state = "bronze"
 	custom_materials = list(/datum/material/iron=1000)
 	resistance_flags = FIRE_PROOF
@@ -114,12 +114,12 @@
 	var/commended = FALSE
 
 //Pinning medals on people
-/obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user, params)
 	if(ishuman(M) && (user.a_intent == INTENT_HELP))
 
 		if(M.wear_suit)
 			if((M.wear_suit.flags_inv & HIDEJUMPSUIT)) //Check if the jumpsuit is covered
-				to_chat(user, "<span class='warning'>Medals can only be pinned on jumpsuits.</span>")
+				to_chat(user, "<span class='warning'>Медали могут быть повешены только на нижнюю одежду.</span>")
 				return
 
 		if(M.w_uniform)
@@ -128,87 +128,87 @@
 			if(user == M)
 				delay = 0
 			else
-				user.visible_message("<span class='notice'>[user] is trying to pin [src] on [M]'s chest.</span>", \
-									 "<span class='notice'>You try to pin [src] on [M]'s chest.</span>")
+				user.visible_message("<span class='notice'><b>[user]</b> начинает вешать <b>[src.name]</b> на грудь <b>[M]</b>.</span>", \
+									 "<span class='notice'>Пытаюсь повесить <b>[src.name]</b> на грудь <b>[M]</b>.</span>")
 			var/input
 			if(!commended && user != M)
-				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
+				input = stripped_input(user,"Напишите комментарий к награде. Это будет рассматриваться Нанотрейзеном в дальнейшем.", ,"", 140)
 			if(do_after(user, delay, target = M))
-				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
+				if(U.attach_accessory(src, user, 0, params)) //Attach it, do not notify the user of the attachment
 					if(user == M)
-						to_chat(user, "<span class='notice'>You attach [src] to [U].</span>")
+						to_chat(user, "<span class='notice'>Прикрепляю <b>[src.name]</b> на <b>[U]</b>.</span>")
 					else
-						user.visible_message("<span class='notice'>[user] pins \the [src] on [M]'s chest.</span>", \
-											 "<span class='notice'>You pin \the [src] on [M]'s chest.</span>")
+						user.visible_message("<span class='notice'><b>[user]</b> прикрепляет <b>[src.name]</b> на грудь <b>[M]</b>.</span>", \
+											 "<span class='notice'>Прикрепляю <b>[src.name]</b> на грудь <b>[M]</b>.</span>")
 						if(input)
-							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src]", "reason" = input))
+							SSblackbox.record_feedback("associative", "commendation", 1, list("commender" = "[user.real_name]", "commendee" = "[M.real_name]", "medal" = "[src.name]", "reason" = input))
 							GLOB.commendations += "[user.real_name] awarded <b>[M.real_name]</b> the <span class='medaltext'>[name]</span>! \n- [input]"
 							commended = TRUE
-							desc += "<br>The inscription reads: [input] - [user.real_name]"
+							desc += "<br>Подпись гласит: [input] - [user.real_name]"
 							log_game("<b>[key_name(M)]</b> was given the following commendation by <b>[key_name(user)]</b>: [input]")
 							message_admins("<b>[key_name_admin(M)]</b> was given the following commendation by <b>[key_name_admin(user)]</b>: [input]")
 
 		else
-			to_chat(user, "<span class='warning'>Medals can only be pinned on jumpsuits!</span>")
+			to_chat(user, "<span class='warning'>Медали могут быть повешены только на нижнюю одежду!</span>")
 	else
 		..()
 
 /obj/item/clothing/accessory/medal/conduct
-	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by Nanotrasen. It is often awarded by a captain to a member of his crew."
+	name = "медаль за выдающееся поведение"
+	desc = "Бронзовая медаль за выдающееся поведение. Хотя это большая честь, это самая основная награда, присуждаемая Nanotrasen. Он часто присуждается капитаном члену его команды."
 
 /obj/item/clothing/accessory/medal/bronze_heart
-	name = "bronze heart medal"
-	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
+	name = "бронзовая медаль за жертву"
+	desc = "Бронзовая медаль в форме сердца, вручаемая за жертву. Он часто присуждается посмертно или за тяжелые травмы при исполнении служебных обязанностей."
 	icon_state = "bronze_heart"
 
 /obj/item/clothing/accessory/medal/ribbon
-	name = "ribbon"
-	desc = "A ribbon"
+	name = "лента"
+	desc = "Ленточка!"
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/medal/ribbon/cargo
-	name = "\"cargo tech of the shift\" award"
-	desc = "An award bestowed only upon those cargotechs who have exhibited devotion to their duty in keeping with the highest traditions of Cargonia."
+	name = "\"грузчик смены\""
+	desc = "Награда присуждалась только тем карготехам, которые проявили преданность своему долгу в соответствии с высочайшими традициями Каргонии."
 
 /obj/item/clothing/accessory/medal/silver
-	name = "silver medal"
-	desc = "A silver medal."
+	name = "серебрянная медаль"
+	desc = "Сверкает."
 	icon_state = "silver"
 	medaltype = "medal-silver"
 	custom_materials = list(/datum/material/silver=1000)
 
 /obj/item/clothing/accessory/medal/silver/valor
-	name = "medal of valor"
-	desc = "A silver medal awarded for acts of exceptional valor."
+	name = "медаль отваги"
+	desc = "Серебряная медаль присуждается за акты исключительной доблести."
 
 /obj/item/clothing/accessory/medal/silver/security
-	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+	name = "надежная награда за безопасность"
+	desc = "Награда за выдающиеся бои и жертвы в защиту коммерческих интересов Нанотрейзена. Часто присуждается сотрудникам службы безопасности."
 
 /obj/item/clothing/accessory/medal/silver/excellence
-	name = "the head of personnel award for outstanding achievement in the field of excellence"
-	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
+	name = "награда руководителя персонала за выдающиеся достижения в области передового опыта"
+	desc = "Словарь Нанотрейзен определяет превосходство как \"качество или условие отличного качества\". Это присуждается тем редким членам экипажа, которые соответствуют этому определению."
 
 /obj/item/clothing/accessory/medal/gold
-	name = "gold medal"
-	desc = "A prestigious golden medal."
+	name = "золотая медаль"
+	desc = "Престижная золотая медаль."
 	icon_state = "gold"
 	medaltype = "medal-gold"
 	custom_materials = list(/datum/material/gold=1000)
 
 /obj/item/clothing/accessory/medal/gold/captain
-	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
+	name = "медаль капитана"
+	desc = "Золотая медаль присуждается исключительно тем, кто получил звание капитана. Это означает кодифицированную ответственность капитана перед Нанотрейзен и их бесспорную власть над своей командой."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/accessory/medal/gold/heroism
-	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	name = "медаль исключительного героизма"
+	desc = "Чрезвычайно редкая золотая медаль, присуждаемая только CentCom. Получить такую медаль - высшая честь, и как таковые существуют очень немногие. Эта медаль почти никогда не вручается никому, кроме командиров."
 
 /obj/item/clothing/accessory/medal/plasma
-	name = "plasma medal"
-	desc = "An eccentric medal made of plasma."
+	name = "медаль из плазмы"
+	desc = "Эксцентричная медаль из плазмы."
 	icon_state = "plasma"
 	medaltype = "medal-plasma"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = -10, "acid" = 0) //It's made of plasma. Of course it's flammable.
@@ -217,12 +217,12 @@
 /obj/item/clothing/accessory/medal/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		atmos_spawn_air("plasma=20;TEMP=[exposed_temperature]")
-		visible_message("<span class='danger'>\The [src] bursts into flame!</span>", "<span class='userdanger'>Your [src] bursts into flame!</span>")
+		visible_message("<span class='danger'><b>[src.name]</b> загорается!</span>", "<span class='userdanger'>Моя <b>[src.name]</b> начинает гореть!</span>")
 		qdel(src)
 
 /obj/item/clothing/accessory/medal/plasma/nobel_science
-	name = "nobel sciences award"
-	desc = "A plasma medal which represents significant contributions to the field of science or engineering."
+	name = "премия нобелевских наук"
+	desc = "Медаль из плазмы, которая представляет значительный вклад в области науки или техники."
 
 
 
@@ -322,7 +322,7 @@
 	name = "Clown Pin"
 	desc = "A pin to show off your appreciation for clowns and clowning"
 	icon_state = "fan_clown_pin"
-	above_suit = TRUE
+	above_suit = FALSE
 	minimize_when_attached = TRUE
 	attachment_slot = CHEST
 
@@ -340,19 +340,19 @@
 	name = "Mime Pin"
 	desc = "A pin to show off your appreciation for mimes and miming"
 	icon_state = "fan_mime_pin"
-	above_suit = TRUE
+	above_suit = FALSE
 	minimize_when_attached = TRUE
 	attachment_slot = CHEST
 
-/obj/item/clothing/accessory/fan_clown_pin/on_uniform_equip(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/fan_mime_pin/on_uniform_equip(obj/item/clothing/under/U, user)
 	var/mob/living/L = user
 	if(HAS_TRAIT(L, TRAIT_FAN_MIME))
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "fan_mime_pin", /datum/mood_event/fan_mime_pin)
 
-/obj/item/clothing/accessory/fan_clown_pin/on_uniform_dropped(obj/item/clothing/under/U, user)
+/obj/item/clothing/accessory/fan_mime_pin/on_uniform_dropped(obj/item/clothing/under/U, user)
 	var/mob/living/L = user
 	if(HAS_TRAIT(L, TRAIT_FAN_MIME))
-		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "fan_clown_pin")
+		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "fan_mime_pin")
 
 ////////////////
 //OONGA BOONGA//
@@ -382,3 +382,28 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
 	attachment_slot = GROIN
 
+/obj/item/clothing/accessory/allergy_dogtag
+	name = "Allergy dogtag"
+	desc = "Dogtag with a list of your allergies"
+	icon_state = "allergy"
+	above_suit = FALSE
+	minimize_when_attached = TRUE
+	attachment_slot = CHEST
+	///Display message
+	var/display
+
+/obj/item/clothing/accessory/allergy_dogtag/examine(mob/user)
+	. = ..()
+	. += "The dogtag has a listing of allergies : [display]"
+
+/obj/item/clothing/accessory/allergy_dogtag/on_uniform_equip(obj/item/clothing/under/U, user)
+	. = ..()
+	RegisterSignal(U,COMSIG_PARENT_EXAMINE,.proc/on_examine)
+
+/obj/item/clothing/accessory/allergy_dogtag/on_uniform_dropped(obj/item/clothing/under/U, user)
+	. = ..()
+	UnregisterSignal(U,COMSIG_PARENT_EXAMINE)
+
+///What happens when we examine the uniform
+/obj/item/clothing/accessory/allergy_dogtag/proc/on_examine(datum/source, mob/user, list/examine_list)
+	examine_list += "The dogtag has a listing of allergies : [display]"
