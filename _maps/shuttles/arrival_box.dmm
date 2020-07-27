@@ -96,8 +96,8 @@
 	pixel_x = 29
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -124,6 +124,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
 "u" = (
@@ -143,6 +144,7 @@
 /obj/machinery/computer/monitor{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "x" = (
@@ -157,9 +159,10 @@
 	pixel_x = 27
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 4
+	dir = 4;
+	icon_state = "tube"
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "z" = (
@@ -186,8 +189,31 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"D" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/arrival)
+"O" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
+"Q" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
 "S" = (
 /turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
+"U" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/shuttle/arrival)
 
 (1,1,1) = {"
@@ -212,7 +238,7 @@ a
 a
 b
 p
-S
+O
 y
 b
 a
@@ -230,7 +256,7 @@ b
 b
 e
 S
-S
+O
 S
 x
 b
@@ -239,10 +265,10 @@ b
 c
 f
 r
-r
-r
-f
-c
+Q
+Q
+D
+U
 "}
 (7,1,1) = {"
 b

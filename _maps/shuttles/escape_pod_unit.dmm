@@ -3,6 +3,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Shuttle Airlock"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
 "g" = (
@@ -15,6 +16,7 @@
 	port_direction = 2;
 	width = 4
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
 "l" = (

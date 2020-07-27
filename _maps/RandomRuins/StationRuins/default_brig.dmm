@@ -4111,7 +4111,7 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader (East)";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},

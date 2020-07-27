@@ -20,6 +20,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Shuttle Airlock"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "f" = (
@@ -58,6 +59,7 @@
 	port_direction = 2;
 	preferred_direction = 4
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 

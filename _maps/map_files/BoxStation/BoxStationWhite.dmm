@@ -447,7 +447,7 @@
 	dwidth = 12;
 	height = 18;
 	id = "emergency_home";
-	name = "BoxStation emergency evac bay";
+	name = "NT SS13: emergency evac bay";
 	width = 32
 	},
 /turf/open/space/basic,
@@ -465,7 +465,7 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader (East)";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
@@ -1975,7 +1975,7 @@
 	dwidth = 2;
 	height = 5;
 	id = "laborcamp_home";
-	name = "fore bay 1";
+	name = "NT SS13: Fore bay #1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
 	},
@@ -4479,7 +4479,7 @@
 	dwidth = 12;
 	height = 17;
 	id = "syndicate_ne";
-	name = "northeast of station";
+	name = "northeast of NT SS13";
 	width = 23
 	},
 /turf/open/space/basic,
@@ -6315,6 +6315,7 @@
 /area/crew_quarters/toilet)
 "aBB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aBC" = (
@@ -10800,12 +10801,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "aRZ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aSa" = (
@@ -11134,6 +11137,7 @@
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aTt" = (
@@ -11490,6 +11494,7 @@
 	c_tag = "Arrivals Bay 2";
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aUN" = (
@@ -13841,8 +13846,7 @@
 	dwidth = 2;
 	height = 5;
 	id = "trader_transport_station";
-	name = "Trader Transport Station";
-	roundstart_template = null;
+	name = "NT SS13: Trader Transport dock";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -22476,7 +22480,7 @@
 	dwidth = 3;
 	height = 10;
 	id = "mining_home";
-	name = "mining shuttle bay";
+	name = "NT SS13: Mining shuttle bay";
 	roundstart_template = /datum/map_template/shuttle/mining/large;
 	width = 7
 	},
@@ -24657,6 +24661,10 @@
 "bPl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
 	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
+	dir = 8;
+	on = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
@@ -32189,7 +32197,7 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader (West)";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
@@ -33598,7 +33606,7 @@
 	dwidth = 2;
 	height = 13;
 	id = "ferry_home";
-	name = "port bay 2";
+	name = "NT SS13: Port bay #2";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -33699,7 +33707,7 @@
 	dwidth = 11;
 	height = 22;
 	id = "whiteship_home";
-	name = "SS13: Auxiliary Dock, Station-Port";
+	name = "NT SS13: Auxiliary Dock, Station-Port";
 	width = 35
 	},
 /turf/open/space/basic,
@@ -33832,7 +33840,7 @@
 	dwidth = 5;
 	height = 7;
 	id = "supply_home";
-	name = "Cargo Bay";
+	name = "NT SS13: Cargo Bay";
 	width = 12
 	},
 /turf/open/space/basic,
@@ -34994,7 +35002,7 @@
 	dwidth = 3;
 	height = 15;
 	id = "arrivals_stationary";
-	name = "arrivals";
+	name = "NT SS13: Arrivals dock";
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
@@ -35008,6 +35016,7 @@
 	name = "Port Docking Bay 1";
 	safety_mode = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "cMC" = (
@@ -37836,6 +37845,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "hFi" = (
@@ -42714,6 +42724,14 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"qSG" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "qVo" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -45175,6 +45193,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "vgF" = (
@@ -45255,6 +45274,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"vly" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "vmV" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/structure/disposalpipe/segment,
@@ -45997,7 +46020,7 @@
 	dwidth = 3;
 	height = 5;
 	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
+	name = "NT SS13: Common Mining Dock";
 	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
 	width = 7
 	},
@@ -56687,9 +56710,9 @@ aaa
 aaa
 aaa
 hFg
-auP
+vly
 cIh
-ayl
+itz
 aRY
 awW
 aaa
@@ -58746,7 +58769,7 @@ awW
 awW
 awW
 aQG
-aRX
+qSG
 arB
 aaa
 aWa
@@ -59774,10 +59797,10 @@ aNb
 ayl
 ayl
 aIK
-ayl
+itz
 aTr
 aUM
-ayl
+itz
 vdW
 aWc
 baG
