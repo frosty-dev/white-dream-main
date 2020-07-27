@@ -465,12 +465,12 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "NT SS13: Escape pod loader (East)";
+	name = "NT SS13: Escape pod loader #3";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating,
+/area/engine/engineering)
 "afs" = (
 /obj/machinery/shower{
 	dir = 8
@@ -32089,8 +32089,9 @@
 	id = "pod_lavaland2";
 	name = "lavaland"
 	},
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cph" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -32197,12 +32198,12 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "NT SS13: Escape pod loader (West)";
+	name = "NT SS13: Escape pod loader #1";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cqr" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -32523,6 +32524,17 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ctk" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "NT SS13: Escape pod loader #2";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cto" = (
 /obj/machinery/door/airlock/hatch{
 	name = "MiniSat Foyer";
@@ -33586,8 +33598,9 @@
 	id = "pod_lavaland1";
 	name = "lavaland"
 	},
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cxl" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -33886,8 +33899,9 @@
 	id = "pod_lavaland4";
 	name = "lavaland"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
-/area/space/nearstation)
+/area/engine/engineering)
 "czO" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -37028,6 +37042,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"fZW" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "gby" = (
 /obj/machinery/light{
 	dir = 1
@@ -37384,6 +37402,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"gKR" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/space/basic,
+/area/engine/engineering)
 "gLd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -38032,6 +38054,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hZh" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "hZk" = (
 /turf/open/floor/plasteel,
 /area/science/nanite)
@@ -43624,6 +43653,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
+"sFC" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "sFL" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -52087,11 +52121,11 @@ aaa
 aaa
 aaa
 aaa
+aaq
 aaa
 aaa
 aaa
-aaa
-aaa
+aaw
 aaa
 aaa
 aaa
@@ -53132,7 +53166,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaw
 aaa
 aaa
 aaa
@@ -53632,7 +53666,7 @@ aaa
 aaa
 aaa
 aaa
-aaq
+aaa
 aaa
 aaa
 aaa
@@ -53886,7 +53920,7 @@ aaa
 aaa
 aaa
 aaa
-aaw
+aaa
 aaa
 aaa
 aaa
@@ -54149,14 +54183,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+gXs
+eRz
+eRz
+eRz
+eRz
+eRz
+gXs
+eRz
 aaa
 aaq
 aaa
@@ -54383,23 +54417,25 @@ aaa
 aaq
 aaa
 aaa
-aaa
-aaa
+arB
+fZW
 cpe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+fZW
+arB
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+arB
+fZW
 cwV
+fZW
+arB
 aaa
 aaa
 aaa
@@ -54411,9 +54447,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaw
-aaa
+gXs
 aaa
 aaa
 aaa
@@ -54640,11 +54674,11 @@ aaa
 aaa
 aaw
 gXs
-aaa
-aaa
-aaa
-aaa
-aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaw
 aaa
@@ -54654,6 +54688,11 @@ aaa
 aaa
 aaa
 aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -54665,12 +54704,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -54897,6 +54931,25 @@ aaa
 aaa
 aaa
 gXs
+arB
+auP
+auP
+auP
+arB
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -54908,26 +54961,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -55154,6 +55188,25 @@ aaa
 aaa
 aaa
 gXs
+arB
+auP
+auP
+auP
+arB
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -55165,26 +55218,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -55411,9 +55445,11 @@ aaa
 aaa
 aaa
 gXs
-aaa
-aaa
+fZW
+auP
 cqq
+auP
+fZW
 aaa
 aaa
 aaa
@@ -55423,13 +55459,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-cqq
-aaa
-aaa
+fZW
+auP
+ctk
+auP
+fZW
 aaa
 aaa
 aaa
@@ -55441,7 +55475,7 @@ wCV
 aaa
 aaa
 aaa
-aaa
+gXs
 aaa
 aaa
 aaa
@@ -55697,8 +55731,8 @@ asE
 xzN
 asE
 asE
-aaa
-aaa
+gXs
+eRz
 aaa
 aaa
 aaa
@@ -57485,13 +57519,13 @@ aOe
 ayl
 ayl
 aRY
-awW
+sFC
 aaa
 aaa
 aaa
 aaa
 aaa
-awW
+sFC
 awZ
 ayl
 ayl
@@ -80420,11 +80454,11 @@ ckY
 clW
 clW
 bOh
-cig
+ccw
 cig
 czg
 cig
-cDN
+cDL
 crh
 crA
 crR
@@ -80677,11 +80711,11 @@ ckX
 clV
 clW
 bOh
-cig
-aaa
+ccw
+ciZ
 afp
-aaa
-cDN
+ciZ
+cDL
 cqY
 cqY
 cqY
@@ -80934,11 +80968,11 @@ ckZ
 clW
 clW
 bOh
-cig
-aaa
-aaa
-aaa
-cDN
+ccw
+ciZ
+ciZ
+ciZ
+cDL
 aaa
 aaa
 aaa
@@ -81192,9 +81226,9 @@ bOh
 bOh
 bOh
 ccw
-aaa
-aaa
-aaa
+ciZ
+ciZ
+ciZ
 cDL
 gXs
 aaa
@@ -81448,11 +81482,11 @@ clb
 clY
 clZ
 bOh
-aaa
-aaa
-aaa
-aaa
-cCQ
+ccw
+ciZ
+ciZ
+ciZ
+hZh
 gXs
 aaa
 aaa
@@ -81705,11 +81739,11 @@ cla
 cBP
 clZ
 bOh
-aaa
-aaa
+ccw
+gKR
 czN
-aaa
-cCQ
+gKR
+hZh
 gXs
 aaa
 aaa
