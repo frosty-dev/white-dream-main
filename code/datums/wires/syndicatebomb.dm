@@ -69,7 +69,7 @@
 			if(!mend && B.anchored)
 				holder.visible_message("<span class='notice'>[icon2html(B, viewers(holder))] Болты начинают подниматься!</span>")
 				playsound(B, 'sound/effects/stealthoff.ogg', 30, TRUE)
-				B.anchored = FALSE
+				B.set_anchored(FALSE)
 		if(WIRE_PROCEED)
 			if(!mend && B.active)
 				holder.visible_message("<span class='danger'>[icon2html(B, viewers(holder))] Издаёт сигнал тревоги! Кажется сей-</span>")

@@ -73,16 +73,14 @@
 								"IC", "OOC", "Объект", "Призрак", "Особенное", "Настройки",
 								"Адм", "Адс", "Дбг", "Срв", "Фан"
 							)
-	var/ui_x = 450
-	var/ui_y = 400
 
 /obj/screen/verbbutton/Click()
 	ui_interact(usr)
 
-/obj/screen/verbbutton/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/screen/verbbutton/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "VerbMenu", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "VerbMenu", name)
 		ui.open()
 
 /obj/screen/verbbutton/ui_status(mob/user)
@@ -117,7 +115,6 @@
 	icon_state = "admin"
 	screen_loc = ui_admin
 	allowed_categories = list("Адм", "Адс", "Дбг", "Срв", "Фан", "Маппинг", "Профайл")
-	ui_y = 500
 
 /obj/screen/verbbutton/admin/Click()
 	if(usr.client.holder)
@@ -129,7 +126,6 @@
 	icon_state = "main"
 	screen_loc = ui_main
 	allowed_categories = list("IC", "OOC", "Объект", "Призрак")
-	ui_y = 300
 
 /obj/screen/verbbutton/special
 	name = "Особое"

@@ -127,11 +127,34 @@
 // gauze is only relevant for wounds, which are handled in the wounds themselves
 /obj/item/stack/medical/gauze/try_heal(mob/living/M, mob/user, silent)
 	var/obj/item/bodypart/limb = M.get_bodypart(check_zone(user.zone_selected))
-	if(limb)
-		if(limb.brute_dam > 40)
-			to_chat(user, "<span class='warning'>Кровотечение на [limb.name][user==M ? " " : " [M] "]от травм и не может быть обработано при помощи медицинского бинта!</span>")
-		else
-			to_chat(user, "<span class='warning'>Здесь нет кровотечений на [limb.name][user==M ? "" : " [M]"].</span>")
+	if(!limb)
+		to_chat(user, "<span class='notice'>Здесь нечего перевязывать!</span>")
+		return
+	if(!LAZYLEN(limb.wounds))
+		to_chat(user, "<span class='notice'>Рана не требует перевязки на [limb.name][user==M ? "" : " [M]"]!</span>") // good problem to have imo
+		return
+
+	var/gauzeable_wound = FALSE
+	for(var/i in limb.wounds)
+		var/datum/wound/woundies = i
+		if(woundies.wound_flags & ACCEPTS_GAUZE)
+			gauzeable_wound = TRUE
+			break
+	if(!gauzeable_wound)
+		to_chat(user, "<span class='notice'>Рана не требует перевязки на [limb.name][user==M ? "" : " [M]"]!</span>") // good problem to have imo
+		return
+
+	if(limb.current_gauze && (limb.current_gauze.absorption_capacity * 0.8 > absorption_capacity)) // ignore if our new wrap is < 20% better than the current one, so someone doesn't bandage it 5 times in a row
+		to_chat(user, "<span class='warning'>Бинт на [limb.name] [user==M ? "" : "[M]"] всё ещё в норме!</span>")
+		return
+
+	user.visible_message("<span class='warning'>[user] начинает оборачивать [limb.name] [M] используя [src.name]...</span>", "<span class='warning'>Начинаю оборачивать [limb.name] [user == M ? "" : "[M]"] используя [src.name]...</span>")
+
+	if(!do_after(user, (user == M ? self_delay : other_delay), target=M))
+		return
+
+	user.visible_message("<span class='green'>[user] применяет [src.name] на [limb.name] [M].</span>", "<span class='green'>Перевязываю раны на [limb.name] [user == M ? "yourself" : "[M]"].</span>")
+	limb.apply_gauze(src)
 
 /obj/item/stack/medical/gauze/twelve
 	amount = 12
@@ -141,7 +164,7 @@
 		if(get_amount() < 2)
 			to_chat(user, "<span class='warning'>На как минимум два кусочка бинта!</span>")
 			return
-		new /obj/item/stack/sheet/cloth(user.drop_location())
+		new /obj/item/stack/sheet/cloth(user.drop_location()[1])
 		user.visible_message("<span class='notice'><b>[user]</b> нарезает <b>[src]</b> на куски ткани при помощи <b>[I]</b>.</span>", \
 					 "<span class='notice'>Нарезаю <b>[src]</b> на куски ткани при помощи <b>[I]</b>.</span>", \
 					 "<span class='hear'>Слышу как что-то режет ткань.</span>")
@@ -409,9 +432,9 @@
 			C.emote("scream")
 			for(var/i in C.bodyparts)
 				var/obj/item/bodypart/bone = i
-				var/datum/wound/brute/bone/severe/oof_ouch = new
+				var/datum/wound/blunt/severe/oof_ouch = new
 				oof_ouch.apply_wound(bone)
-				var/datum/wound/brute/bone/critical/oof_OUCH = new
+				var/datum/wound/blunt/critical/oof_OUCH = new
 				oof_OUCH.apply_wound(bone)
 
 			for(var/i in C.bodyparts)

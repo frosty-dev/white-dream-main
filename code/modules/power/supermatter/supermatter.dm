@@ -837,7 +837,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	dust_mob(user, cause = "hand")
 
 /obj/machinery/power/supermatter_crystal/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
-	if(nom.incorporeal_move || nom.status_flags & GODMODE)
+	if(nom.incorporeal_move || nom.status_flags & GODMODE) //try to keep supermatter sliver's + hemostat's dust conditions in sync with this too
 		return
 	if(!vis_msg)
 		vis_msg = "<span class='danger'>[nom] протягивает руку и касается [src.name], вызывая резонанс... [nom.ru_ego(TRUE)] тело начинает светиться и загораться, прежде чем превратиться в пыль!</span>"
@@ -889,7 +889,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(W.use_tool(src, user, 60, volume=100))
 			if (scalpel.usesLeft)
 				to_chat(user, "<span class='danger'>Извлекаю осколок из <b>[src.name]</b>. [capitalize(src.name)] начинает бурно реагировать!</span>")
-				new /obj/item/nuke_core/supermatter_sliver(drop_location())
+				new /obj/item/nuke_core/supermatter_sliver(drop_location()[1])
 				matter_power += 800
 				scalpel.usesLeft--
 				if (!scalpel.usesLeft)

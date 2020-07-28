@@ -614,10 +614,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	for(var/obj/machinery/field/generator/F in GLOB.machines)
 		if(F.active == 0)
+			F.set_anchored(TRUE)
 			F.active = 1
 			F.state = 2
 			F.power = 250
-			F.anchored = TRUE
 			F.warming_up = 3
 			F.start_fields()
 			F.update_icon()
@@ -634,7 +634,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				S.pixel_x = -96
 				S.pixel_y = -96
 				S.grav_pull = 0
-				//S.consume_range = 3
 				S.dissipate = 0
 				//S.dissipate_delay = 10
 				//S.dissipate_track = 0

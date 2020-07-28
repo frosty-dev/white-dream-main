@@ -161,7 +161,7 @@
 	throw_speed = 0
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("атакует", "рубит", "втыкает", "разрезает", "кромсает", "разрывает", "нарезает", "режет")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	wound_bonus = -60
 	bare_wound_bonus = 20
 	var/can_drop = FALSE
@@ -309,7 +309,7 @@
 
 /obj/projectile/tentacle/fire(setAngle)
 	if(firer)
-		chain = firer.Beam(src, icon_state = "tentacle", time = INFINITY, maxdistance = INFINITY, beam_sleep_time = 1)
+		chain = firer.Beam(src, icon_state = "tentacle", time = INFINITY)
 	..()
 
 /obj/projectile/tentacle/proc/reset_throw(mob/living/carbon/human/H)

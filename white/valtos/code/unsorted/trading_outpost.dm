@@ -25,8 +25,6 @@
 	req_access = list(ACCESS_TRADER)
 	var/list/shoppinglist = list()
 	var/list/supply_packs = list()
-	ui_x = 780
-	ui_y = 750
 	flags_1 = NODECONSTRUCT_1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
@@ -41,11 +39,10 @@
 /obj/machinery/trading_beacon/can_be_unfasten_wrench(mob/user, silent)
 	return FALSE
 
-/obj/machinery/trading_beacon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/trading_beacon/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Trader", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Trader", name)
 		ui.open()
 
 /obj/machinery/trading_beacon/ui_data()

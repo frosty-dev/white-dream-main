@@ -22,7 +22,7 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
+		ShiftMiddleClickOn(A, params)
 		return
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
@@ -53,7 +53,7 @@
 	if(user.client)
 		if(user.gas_scan && atmosanalyzer_scan(user, src))
 			return TRUE
-		else if(IsAdminGhost(user))
+		else if(isAdminGhostAI(user))
 			attack_ai(user)
 		else if(user.client.prefs.inquisitive_ghost)
 			user.examinate(src)

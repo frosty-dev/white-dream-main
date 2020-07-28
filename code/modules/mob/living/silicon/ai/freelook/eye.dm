@@ -148,7 +148,9 @@
 // This is handled in the proc below this one.
 
 /client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
-
+	if(world.time < move_delay)
+		return
+	move_delay = world.time + 0.05 SECONDS // cameras and AI eyes still move tile by tile so we need a delay here
 	var/initial = initial(user.sprint)
 	var/max_sprint = 50
 
@@ -211,10 +213,10 @@
 	acceleration = !acceleration
 	to_chat(usr, "Camera acceleration has been toggled [acceleration ? "on" : "off"].")
 
-/mob/camera/ai_eye/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+/mob/camera/ai_eye/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(relay_speech && speaker && ai && !radio_freq && speaker != ai && near_camera(speaker))
-		ai.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
+		ai.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mods)
 
 /obj/effect/overlay/ai_detect_hud
 	name = ""

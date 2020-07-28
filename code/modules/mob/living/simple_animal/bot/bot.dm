@@ -130,6 +130,7 @@
 	update_mobility()
 	set_light(initial(light_range))
 	update_icon()
+	to_chat(src, "<span class='boldnotice'>You turned on!</span>")
 	diag_hud_set_botstat()
 	return TRUE
 
@@ -138,6 +139,7 @@
 	update_mobility()
 	set_light(0)
 	bot_reset() //Resets an AI's call, should it exist.
+	to_chat(src, "<span class='userdanger'>You turned off!</span>")
 	update_icon()
 
 /mob/living/simple_animal/bot/Initialize()
@@ -398,22 +400,19 @@
 	else
 		say(message)
 
-/mob/living/simple_animal/bot/radio(message, message_mode, list/spans, language)
+/mob/living/simple_animal/bot/radio(message, list/message_mods = list(), list/spans, language)
 	. = ..()
 	if(. != 0)
 		return
 
-	switch(message_mode)
-		if(MODE_HEADSET)
-			Radio.talk_into(src, message, , spans, language)
-			return REDUCE_RANGE
-
-		if(MODE_DEPARTMENT)
-			Radio.talk_into(src, message, message_mode, spans, language)
-			return REDUCE_RANGE
-
-	if(message_mode in GLOB.radiochannels)
-		Radio.talk_into(src, message, message_mode, spans, language)
+	if(message_mods[MODE_HEADSET])
+		Radio.talk_into(src, message, , spans, language, message_mods)
+		return REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT)
+		Radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		return REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] in GLOB.radiochannels)
+		Radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 		return REDUCE_RANGE
 
 /mob/living/simple_animal/bot/proc/drop_part(obj/item/drop_item, dropzone)
@@ -517,16 +516,16 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return FALSE
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
 	var/turf/last_node = get_turf(path[path.len]) //This is the turf at the end of the path, it should be equal to dest.
-	if(get_turf(src) == dest) //We have arrived, no need to move again.
+	if(dest in locs) //We have arrived, no need to move again.
 		return TRUE
 	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
 		set_path(null)
 		return FALSE
 	var/step_count = move_speed ? move_speed : base_speed //If a value is passed into move_speed, use that instead of the default speed var.
-
+	//step_count = round((step_count * 32) / step_size)
 	if(step_count >= 1 && tries < BOT_STEP_MAX_RETRIES)
 		for(var/step_number = 0, step_number < step_count,step_number++)
-			addtimer(CALLBACK(src, .proc/bot_step, dest), BOT_STEP_DELAY*step_number)
+			addtimer(CALLBACK(src, .proc/bot_step, dest), BOT_STEP_DELAY*step_count)
 	else
 		return FALSE
 	return TRUE
@@ -536,15 +535,15 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(!path)
 		return FALSE
 	if(path.len > 1)
-		step_towards(src, path[1])
-		if(get_turf(src) == path[1]) //Successful move
-			increment_path()
+		walk_to(src, path[1])
+		if(path[1] in obounds()) //Successful move and entire bot in on turf
 			tries = 0
+			increment_path()
 		else
 			tries++
 			return FALSE
 	else if(path.len == 1)
-		step_to(src, dest)
+		walk_to(src, dest)
 		set_path(null)
 	return TRUE
 
@@ -658,14 +657,14 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(client)		// In use by player, don't actually move.
 		return
 
-	if(loc == patrol_target)		// reached target
+	if(patrol_target in obounds())		// reached target
 		//Find the next beacon matching the target.
 		if(!get_next_patrol_target())
 			find_patrol_target() //If it fails, look for the nearest one instead.
 		return
 
 	else if(path.len > 0 && patrol_target)		// valid path
-		if(path[1] == loc)
+		if(path[1] in obounds())
 			increment_path()
 			return
 
@@ -796,12 +795,12 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(client)		// In use by player, don't actually move.
 		return
 
-	if(loc == summon_target)		// Arrived to summon location.
+	if(summon_target in locs)		// Arrived to summon location.
 		bot_reset()
 		return
 
 	else if(path.len > 0 && summon_target)		//Proper path acquired!
-		if(path[1] == loc)
+		if(path[1] in obounds())
 			increment_path()
 			return
 
@@ -883,7 +882,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 				log_game("Safety lock of [src] was re-enabled by [key_name(usr)] in [AREACOORD(src)]")
 				bot_reset()
 		if("ejectpai")
-			if(paicard && (!locked || issilicon(usr) || IsAdminGhost(usr)))
+			if(paicard && (!locked || issilicon(usr) || isAdminGhostAI(usr)))
 				to_chat(usr, "<span class='notice'>You eject [paicard] from [bot_name].</span>")
 				ejectpai(usr)
 	update_controls()
@@ -910,13 +909,13 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(emagged == 2) //An emagged bot cannot be controlled by humans, silicons can if one hacked it.
 		if(!hacked) //Manually emagged by a human - access denied to all.
 			return TRUE
-		else if(!issilicon(user) && !IsAdminGhost(user)) //Bot is hacked, so only silicons and admins are allowed access.
+		else if(!issilicon(user) && !isAdminGhostAI(user)) //Bot is hacked, so only silicons and admins are allowed access.
 			return TRUE
 	return FALSE
 
 /mob/living/simple_animal/bot/proc/hack(mob/user)
 	var/hack
-	if(issilicon(user) || IsAdminGhost(user)) //Allows silicons or admins to toggle the emag status of a bot.
+	if(issilicon(user) || isAdminGhostAI(user)) //Allows silicons or admins to toggle the emag status of a bot.
 		hack += "[emagged == 2 ? "Software compromised! Unit may exhibit dangerous or erratic behavior." : "Unit operating normally. Release safety lock?"]<BR>"
 		hack += "Harm Prevention Safety System: <A href='?src=[REF(src)];operation=hack'>[emagged ? "<span class='bad'>DANGER</span>" : "Engaged"]</A><BR>"
 	else if(!locked) //Humans with access can use this option to hide a bot from the AI's remote control panel and PDA control.
@@ -925,7 +924,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/proc/showpai(mob/user)
 	var/eject = ""
-	if((!locked || issilicon(usr) || IsAdminGhost(usr)))
+	if((!locked || issilicon(usr) || isAdminGhostAI(usr)))
 		if(paicard || allow_pai)
 			eject += "Personality card status: "
 			if(paicard)
@@ -1016,7 +1015,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	faction -= "silicon"
 
 /mob/living/simple_animal/bot/proc/set_path(list/newpath)
-	path = newpath ? newpath : list()
+	QDEL_LIST(path) // wipe the old path
 	if(!path_hud)
 		return
 	var/list/path_huds_watching_me = list(GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED])
@@ -1076,6 +1075,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/image/I = path[path[1]]
 	if(I)
 		I.icon_state = null
+	qdel(path[1])
 	path.Cut(1, 2)
 
 /mob/living/simple_animal/bot/rust_heretic_act()

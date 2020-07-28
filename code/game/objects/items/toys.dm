@@ -168,6 +168,14 @@
 		var/mob/M = loc
 		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "badass_antag", /datum/mood_event/badass_antag)
 	. = ..()
+	
+	
+/obj/item/toy/balloon/arrest
+	name = "arreyst balloon"
+	desc = "A half inflated balloon about a boyband named Arreyst that was popular about ten years ago, famous for making fun of red jumpsuits as unfashionable."
+	icon_state = "arrestballoon"
+	inhand_icon_state = "arrestballoon"
+	random_color = FALSE
 
 /*
  * Fake singularity
@@ -874,7 +882,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/cardname = null
 	var/flipped = 0
-	pixel_x = -5
+	step_x = -5
 
 
 /obj/item/toy/cards/singlecard/examine(mob/user)
@@ -901,12 +909,12 @@
 		else
 			src.icon_state = "sc_Ace of Spades_[deckstyle]"
 			src.name = "What Card"
-		src.pixel_x = 5
+		forceMove(loc, 5, step_y)
 	else if(flipped)
 		src.flipped = 0
 		src.icon_state = "singlecard_down_[deckstyle]"
 		src.name = "card"
-		src.pixel_x = -5
+		forceMove(loc, -5, step_y)
 
 /obj/item/toy/cards/singlecard/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/toy/cards/singlecard/))
@@ -1418,7 +1426,7 @@
 	to_chat(user, "<span class='notice'>You name the dummy as \"[doll_name]\".</span>")
 	name = "[initial(name)] - [doll_name]"
 
-/obj/item/toy/dummy/talk_into(atom/movable/A, message, channel, list/spans, datum/language/language)
+/obj/item/toy/dummy/talk_into(atom/movable/A, message, channel, list/spans, datum/language/language, list/message_mods)
 	var/mob/M = A
 	if (istype(M))
 		M.log_talk(message, LOG_SAY, tag="dummy toy")
@@ -1438,8 +1446,7 @@
 
 /obj/item/toy/seashell/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	forceMove(loc, rand(-5, 5), rand(-5, 5))
 	icon_state = "shell[rand(1,3)]"
 	color = pickweight(possible_colors)
 	setDir(pick(GLOB.cardinals))

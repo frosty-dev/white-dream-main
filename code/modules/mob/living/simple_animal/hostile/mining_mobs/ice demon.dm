@@ -10,7 +10,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	speak_emote = list("telepathically cries")
 	speed = 2
-	move_to_delay = 2
+	move_to_delay = 0.2
 	projectiletype = /obj/projectile/temp/basilisk/ice
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged = TRUE
@@ -57,6 +57,8 @@
 		if(isclosedturf(T))
 			continue
 		possible_ends |= T
+	if(!possible_ends.len)
+		return ..()
 	var/turf/end = pick(possible_ends)
 	do_teleport(src, end, 0,  channel=TELEPORT_CHANNEL_BLUESPACE, forced = TRUE)
 	SLEEP_CHECK_DEATH(8)

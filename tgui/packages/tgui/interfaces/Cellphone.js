@@ -6,7 +6,10 @@ import { Window } from '../layouts';
 export const Cellphone = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window theme="retro">
+    <Window
+      width={264}
+      height={600}
+      theme="retro">
       <Window.Content>
         <Box width="252px" height="270px"
           className={classes(['Cellphone__bg'])}>

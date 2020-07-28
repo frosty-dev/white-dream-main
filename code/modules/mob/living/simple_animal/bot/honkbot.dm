@@ -90,7 +90,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 "<A href='?src=[REF(src)];power=[TRUE]'>[on ? "On" : "Off"]</A>" )
 
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR> Auto Patrol: []"},
 
 "<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
@@ -250,7 +250,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 						if(threatlevel >= 6)
 							set waitfor = 0
 							stun_attack(target)
-							anchored = FALSE
+							set_anchored(FALSE)
 							target_lastloc = target.loc
 					return
 
@@ -326,7 +326,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 	walk_to(src,0)
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 	//doesn't drop cardboard nor its assembly, since its a very frail material.
 	if(prob(50))
 		drop_part(robot_arm, Tsec)

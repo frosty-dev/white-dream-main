@@ -71,12 +71,12 @@
 		H.apply_damage(source.force, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND) // easy tiger, we'll get to that in a sec
 		var/obj/item/bodypart/slit_throat = H.get_bodypart(BODY_ZONE_HEAD)
 		if(slit_throat)
-			var/datum/wound/brute/cut/critical/screaming_through_a_slit_throat = new
+			var/datum/wound/slash/critical/screaming_through_a_slit_throat = new
 			screaming_through_a_slit_throat.apply_wound(slit_throat)
 		H.apply_status_effect(/datum/status_effect/neck_slice)
 
 /datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/meat)
-	var/turf/T = meat.drop_location()
+	var/turf/T = meat.drop_location()[1]
 	var/final_effectiveness = effectiveness - meat.butcher_difficulty
 	var/bonus_chance = max(0, (final_effectiveness - 100) + bonus_modifier) //so 125 total effectiveness = 25% extra chance
 	for(var/V in meat.butcher_results)

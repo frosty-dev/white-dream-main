@@ -29,6 +29,10 @@
 	var/mob/living/ass //i can't believe i didn't write a stupid-ass comment about this var when i first coded asscopy.
 	var/busy = FALSE
 
+/obj/machinery/photocopier/Initialize()
+	. = ..()
+	AddComponent(/datum/component/payment, 5, SSeconomy.get_dep_account(ACCOUNT_CIV), PAYMENT_CLINICAL)
+
 /obj/machinery/photocopier/ui_interact(mob/user)
 	. = ..()
 	var/list/dat = list("Photocopier<BR><BR>")
@@ -56,8 +60,12 @@
 		return
 	if(href_list["copy"])
 		if(copy)
+			if(busy)
+				return
 			for(var/i = 0, i < copies, i++)
-				if(toner > 0 && !busy && copy)
+				if(toner > 0 && copy)
+					if(attempt_charge(src, usr) & COMPONENT_OBJ_CANCEL_CHARGE)
+						return
 					var/copy_as_paper = 1
 					if(istype(copy, /obj/item/paper/contract/employment))
 						var/obj/item/paper/contract/employment/E = copy
@@ -89,16 +97,24 @@
 					break
 			updateUsrDialog()
 		else if(photocopy)
+			if(busy)
+				return
 			for(var/i = 0, i < copies, i++)
-				if(toner >= 5 && !busy && photocopy)  //Was set to = 0, but if there was say 3 toner left and this ran, you would get -2 which would be weird for ink
+				if(attempt_charge(src, usr) & COMPONENT_OBJ_CANCEL_CHARGE)
+					return
+				if(toner >= 5 && photocopy)  //Was set to = 0, but if there was say 3 toner left and this ran, you would get -2 which would be weird for ink
 					new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
 					busy = TRUE
 					addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)
 				else
 					break
 		else if(doccopy)
+			if(busy)
+				return
 			for(var/i = 0, i < copies, i++)
-				if(toner > 5 && !busy && doccopy)
+				if(attempt_charge(src, usr) & COMPONENT_OBJ_CANCEL_CHARGE)
+					return
+				if(toner > 5 && doccopy)
 					new /obj/item/documents/photocopy(loc, doccopy)
 					toner-= 6 // the sprite shows 6 papers, yes I checked
 					busy = TRUE
@@ -107,7 +123,11 @@
 					break
 			updateUsrDialog()
 		else if(ass) //ASS COPY. By Miauw
+			if(busy)
+				return
 			for(var/i = 0, i < copies, i++)
+				if(attempt_charge(src, usr) & COMPONENT_OBJ_CANCEL_CHARGE)
+					return
 				var/icon/temp_img
 				if(ishuman(ass) && (ass.get_item_by_slot(ITEM_SLOT_ICLOTHING) || ass.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" )
@@ -125,8 +145,7 @@
 					sleep(15)
 					var/obj/item/photo/p = new /obj/item/photo (loc)
 					var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
-					p.pixel_x = rand(-10, 10)
-					p.pixel_y = rand(-10, 10)
+					p.forceMove(p.loc, rand(-10, 10), rand(-10, 10))
 					toEmbed.psize_x = 128
 					toEmbed.psize_y = 128
 					p.set_picture(toEmbed, TRUE, TRUE)
@@ -166,8 +185,7 @@
 				return
 			var/datum/picture/selection = tempAI.aicamera.selectpicture(usr)
 			var/obj/item/photo/photo = new(loc, selection)
-			photo.pixel_x = rand(-10, 10)
-			photo.pixel_y = rand(-10, 10)
+			photo.forceMove(photo.loc, rand(-10, 10), rand(-10, 10))
 			toner -= 5	 //AI prints color pictures only, thus they can do it more efficiently
 			busy = TRUE
 			addtimer(CALLBACK(src, .proc/reset_busy), 1.5 SECONDS)

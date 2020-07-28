@@ -1,7 +1,5 @@
 /obj/item/clothing/glasses/monocle/map
 	name = "amplification lens"
-	var/ui_x = 350
-	var/ui_y = 350
 
 	var/map_name
 
@@ -88,18 +86,16 @@
 	M.Scale((size_x+1)/map_overlay.default_width_tiles, (size_y+1)/map_overlay.default_height_tiles)
 	map_overlay.transform = M
 
-/obj/item/clothing/glasses/monocle/map/ui_interact(\
-		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/item/clothing/glasses/monocle/map/ui_interact(mob/user, datum/tgui/ui)
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		user.client.register_map_obj(map_overlay)
 		user.client.register_map_obj(cam_screen)
 		user.client.register_map_obj(cam_plane_master)
 		user.client.register_map_obj(cam_background)
 
-		ui = new(user, src, ui_key, "MapWindow", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MapWindow", name)
 		ui.open()
 
 	update_view()

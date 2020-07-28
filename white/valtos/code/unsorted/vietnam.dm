@@ -188,7 +188,7 @@
 		if(istype(contents[contents.len], /obj/item/ingot))
 			var/obj/item/ingot/N = contents[contents.len]
 			if(N.progress_current == N.progress_need + 1)
-				var/obj/item/O = new N.recipe.result(drop_location())
+				var/obj/item/O = new N.recipe.result(drop_location()[1])
 				if(istype(O, /obj/item/katanus))
 					O.force = round((O.force / 1.25) * N.mod_grade)
 				if(istype(O, /obj/item/pickaxe))
@@ -211,7 +211,7 @@
 				LAZYCLEARLIST(contents)
 				playsound(src, 'white/valtos/sounds/vaper.ogg', 100)
 			else
-				N.forceMove(drop_location())
+				N.forceMove(drop_location()[1])
 		icon_state = "tongs"
 
 /obj/item/ingot
@@ -310,7 +310,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("атакует", "рубит", "втыкает", "разрубает", "кромсает", "разрывает", "нарезает", "режет")
 	block_chance = 25
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	max_integrity = 50
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
@@ -602,7 +602,7 @@
 	furnacing = FALSE
 	light_range = 0
 
-	new /obj/item/ingot(drop_location())
+	new /obj/item/ingot(drop_location()[1])
 
 
 /obj/furnace/attackby(obj/item/I, mob/living/user, params)

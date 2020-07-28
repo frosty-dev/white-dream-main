@@ -3804,7 +3804,7 @@
 "nN" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/holofloor/hyperspace,
-/area/centcom/supplypod/fly_me_to_the_moon)
+/area/centcom/supplypod/supplypod_temp_holding)
 "nP" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/holofloor/grass,

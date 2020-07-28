@@ -8,7 +8,7 @@
 	needs_physical_contact = 1
 	whitelisted = FALSE
 
-datum/interaction/kiss/evaluate_user(var/mob/user, var/silent=1)
+/datum/interaction/kiss/evaluate_user(var/mob/user, var/silent=1)
 	if(..())
 		if(!user.has_lips())
 			if(!silent) to_chat(user, "<span class='warning'>У меня нет губ!</span>")

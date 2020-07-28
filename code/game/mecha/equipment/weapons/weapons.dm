@@ -10,6 +10,7 @@
 	var/projectile_delay = 0
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the weapon is fired.
 	var/kickback = TRUE //Will using this weapon in no grav push mecha back.
+	mech_flags = EXOSUIT_MODULE_COMBAT
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(!..())
@@ -37,10 +38,11 @@
 	set_ready_state(0)
 	for(var/i=1 to get_shot_amount())
 		var/obj/projectile/A = new projectile(curloc)
-		A.firer = chassis.occupant
+		A.firer = chassis
 		A.original = target
 		if(!A.suppressed && firing_effect_type)
-			new firing_effect_type(get_turf(src), chassis.dir)
+			var/atom/movable/E = new firing_effect_type(get_turf(src), chassis.dir)
+			E.forceStep(chassis)
 
 		var/spread = 0
 		if(variance)
@@ -48,7 +50,7 @@
 				spread = round((rand() - 0.5) * variance)
 			else
 				spread = round((i / projectiles_per_shot - 0.5) * variance)
-		A.preparePixelProjectile(target, chassis.occupant, params, spread)
+		A.preparePixelProjectile(target, chassis, params, spread)
 
 		A.fire()
 		playsound(chassis, fire_sound, 50, TRUE)
@@ -144,7 +146,7 @@
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	harmful = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/working/M)
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
 	if(..()) //combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))
@@ -169,6 +171,7 @@
 	equip_cooldown = 150
 	range = MECHA_MELEE|MECHA_RANGED
 	kickback = FALSE
+	mech_flags = EXOSUIT_MODULE_HONK
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M)
 	if(..())
@@ -422,6 +425,7 @@
 	missile_speed = 1.5
 	projectile_energy_cost = 100
 	equip_cooldown = 20
+	mech_flags = EXOSUIT_MODULE_HONK
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/can_attach(obj/mecha/combat/honker/M)
 	if(..())
@@ -439,6 +443,7 @@
 	missile_speed = 1.5
 	projectile_energy_cost = 100
 	equip_cooldown = 10
+	mech_flags = EXOSUIT_MODULE_HONK
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/can_attach(obj/mecha/combat/honker/M)
 	if(..())
@@ -466,9 +471,10 @@
 	harmful = TRUE
 	diags_first = TRUE
 	/// Damage done by the glove on contact. Also used to determine throw distance (damage / 5)
-	var/punch_damage = 35 
+	var/punch_damage = 35
 	/// TRUE - Can toggle between lethal and non-lethal || FALSE - Cannot toggle
-	var/can_toggle_lethal = TRUE 
+	var/can_toggle_lethal = TRUE
+	mech_flags = EXOSUIT_MODULE_HONK
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove/can_attach(obj/mecha/combat/honker/M)
 	if(..())
@@ -509,7 +515,7 @@
 		PG.throwforce = 0
 
 	 //has to be low sleep or it looks weird, the beam doesn't exist for very long so it's a non-issue
-	chassis.Beam(PG, icon_state = "chain", time = missile_range * 20, maxdistance = missile_range + 2, beam_sleep_time = 1)
+	chassis.Beam(PG, icon_state = "chain", time = missile_range * 20)
 
 /obj/item/punching_glove
 	name = "punching glove"

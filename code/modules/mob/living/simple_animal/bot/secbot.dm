@@ -63,7 +63,7 @@
 
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 	new /obj/item/stock_parts/cell/potato(Tsec)
 	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/S = new(Tsec)
 	S.reagents.add_reagent(/datum/reagent/consumable/ethanol/whiskey, 15)
@@ -133,7 +133,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 "<A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
 
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR>
 Arrest Unidentifiable Persons: []<BR>
 Arrest for Unauthorized Weapons: []<BR>
@@ -330,13 +330,13 @@ Auto Patrol: []"},
 						stun_attack(target)
 
 					mode = BOT_PREP_ARREST
-					anchored = TRUE
+					set_anchored(TRUE)
 					target_lastloc = target.loc
 					return
 
 				else								// not next to perp
 					var/turf/olddist = get_dist(src, target)
-					walk_to(src, target,1,4)
+					walk_to(src, target,1,0.4)
 					if((get_dist(src, target)) >= (olddist))
 						frustration++
 					else
@@ -364,7 +364,7 @@ Auto Patrol: []"},
 
 		if(BOT_ARREST)
 			if(!target)
-				anchored = FALSE
+				set_anchored(FALSE)
 				mode = BOT_IDLE
 				last_found = world.time
 				frustration = 0
@@ -382,7 +382,7 @@ Auto Patrol: []"},
 				return
 			else //Try arresting again if the target escapes.
 				mode = BOT_PREP_ARREST
-				anchored = FALSE
+				set_anchored(FALSE)
 
 		if(BOT_START_PATROL)
 			look_for_perp()
@@ -450,7 +450,7 @@ Auto Patrol: []"},
 
 	walk_to(src,0)
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 	if(ranged)
 		var/obj/item/bot_assembly/ed209/Sa = new (Tsec)
 		Sa.build_step = 1

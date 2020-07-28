@@ -13,7 +13,10 @@ export const MedicalKiosk = (props, context) => {
     active_status_4,
   } = data;
   return (
-    <Window resizable>
+    <Window
+      width={575}
+      height={420}
+      resizable>
       <Window.Content scrollable>
         <Flex mb={1}>
           <Flex.Item mr={1}>
@@ -99,7 +102,9 @@ const MedicalKioskScanButton = (props, context) => {
           tooltipPosition="right"
           content={name}
           onClick={() => {
-            act(`beginScan_${index}`);
+            if (!paid) {
+              act(`beginScan_${index}`);
+            }
             setScanIndex(index);
           }} />
       </Flex.Item>

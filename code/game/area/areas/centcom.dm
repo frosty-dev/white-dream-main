@@ -37,7 +37,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = TRUE
 
-/area/centcom/supplypod/fly_me_to_the_moon
+/area/centcom/supplypod/supplypod_temp_holding
 	name = "Supplypod Shipping lane"
 	icon_state = "supplypod_flight"
 

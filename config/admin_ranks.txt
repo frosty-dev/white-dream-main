@@ -59,7 +59,7 @@ Include = @ POSSESS POLL BUILD SERVER FUN
 Exclude =
 Edit =
 
-Name = Terrorist
+Name = Game Admin
 Include = @ STEALTH SOUND DEBUG
 Exclude =
 Edit =
@@ -74,7 +74,7 @@ Include = EVERYTHING
 Exclude = AUTOADMIN
 Edit = EVERYTHING
 
-Name = Master
+Name = Host
 Include = EVERYTHING
 Exclude =
 Edit = EVERYTHING

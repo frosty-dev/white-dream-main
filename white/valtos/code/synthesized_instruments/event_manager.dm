@@ -1,4 +1,4 @@
-datum/musical_event
+/datum/musical_event
 	var/sound/object
 	var/mob/subject
 	var/datum/sound_player/source
@@ -13,7 +13,7 @@ datum/musical_event
 	src.new_volume = volume
 
 /datum/musical_event/proc/tick()
-	if (!(istype(object) && istype(subject) && istype(source))) 
+	if (!(istype(object) && istype(subject) && istype(source)))
 		return
 	if (src.new_volume > 0) src.update_sound()
 	else src.destroy_sound()

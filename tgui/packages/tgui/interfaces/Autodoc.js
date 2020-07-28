@@ -10,7 +10,10 @@ export const Autodoc = (props, context) => {
   const operations = data.surgeries;
   if (data.mode === 1) {
     return (
-      <Window>
+      <Window
+        width={555}
+        height={440}
+        resizable>
         <Section>
           <Tabs.Tab
             key="head"

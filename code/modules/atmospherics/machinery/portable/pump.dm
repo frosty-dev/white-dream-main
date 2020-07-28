@@ -8,9 +8,11 @@
 	name = "portable air pump"
 	icon_state = "psiphon:0"
 	density = TRUE
-	ui_x = 300
-	ui_y = 315
-
+	bound_height = 16
+	bound_width = 16
+	bound_x = 7
+	bound_y = 2
+	brotation = NONE
 	max_integrity = 250
 	///Max amount of heat allowed inside of the canister before it starts to melt (different tiers have different limits)
 	var/heat_limit = 5000
@@ -88,12 +90,10 @@
 		else if(on && holding && direction == PUMP_OUT)
 			investigate_log("[key_name(user)] started a transfer into [holding].", INVESTIGATE_ATMOS)
 
-
-/obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-														datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortablePump", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "PortablePump", name)
 		ui.open()
 
 /obj/machinery/portable_atmospherics/pump/ui_data()

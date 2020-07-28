@@ -197,7 +197,7 @@
 	stock_max = 1
 	availability_prob = 25
 
-datum/blackmarket_item/smisc/potion
+/datum/blackmarket_item/smisc/potion
 	name = "Syndicate Sentience Potion"
 	desc = "A potion recovered at great risk by undercover Syndicate operatives and then subsequently modified with Syndicate technology. \
 			Using it will make any animal sentient, and bound to serve you, as well as implanting an internal radio for communication and an internal ID card for opening doors."

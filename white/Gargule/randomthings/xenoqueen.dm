@@ -1,4 +1,4 @@
-mob/living/carbon/alien/humanoid/royal/queen/tamed
+/mob/living/carbon/alien/humanoid/royal/queen/tamed
 	has_fine_manipulation = 1
 
 /mob/living/carbon/alien/humanoid/royal/queen/tamed/Initialize()

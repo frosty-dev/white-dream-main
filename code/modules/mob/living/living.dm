@@ -12,6 +12,9 @@
 	killcounter = new /datum/cs_killcounter
 	killcounter.owner = src
 
+	overlay_fullscreen("noise", /obj/screen/fullscreen/noisescreen)
+	add_client_colour(/datum/client_colour/correction)
+
 	AddComponent(/datum/component/battletension)
 
 /mob/living/prepare_huds()
@@ -80,10 +83,6 @@
 		if(PushAM(AM, move_force))
 			return
 
-/mob/living/Bumped(atom/movable/AM)
-	..()
-	last_bumped = world.time
-
 //Called when we bump onto a mob
 /mob/living/proc/MobBump(mob/M)
 	//Even if we don't push/swap places, we "touched" them, so spread fire
@@ -92,10 +91,8 @@
 	if(now_pushing)
 		return TRUE
 
-	var/they_can_move = TRUE
 	if(isliving(M))
 		var/mob/living/L = M
-		they_can_move = L.mobility_flags & MOBILITY_MOVE
 		//Also spread diseases
 		for(var/thing in diseases)
 			var/datum/disease/D = thing
@@ -121,54 +118,6 @@
 						to_chat(src, "<span class='warning'><b>[L]</b> удерживает <b>[P]</b> и не даёт тебе пройти.</span>")
 					return TRUE
 
-	if(moving_diagonally)//no mob swap during diagonal moves.
-		return TRUE
-
-	if(!M.buckled && !M.has_buckled_mobs())
-		var/mob_swap = FALSE
-		var/too_strong = (M.move_resist > move_force) //can't swap with immovable objects unless they help us
-		if(!they_can_move) //we have to physically move them
-			if(!too_strong)
-				mob_swap = TRUE
-		else
-			//You can swap with the person you are dragging on grab intent, and restrained people in most cases
-			if(M.pulledby == src && a_intent == INTENT_GRAB && !too_strong)
-				mob_swap = TRUE
-			else if(
-				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP))&&\
-				((M.restrained() && !too_strong) || M.a_intent == INTENT_HELP) &&\
-				(restrained() || a_intent == INTENT_HELP)
-			)
-				mob_swap = TRUE
-		if(mob_swap)
-			//switch our position with M
-			if(loc && !loc.Adjacent(M.loc))
-				return TRUE
-			now_pushing = 1
-			var/oldloc = loc
-			var/oldMloc = M.loc
-
-
-			var/M_passmob = (M.pass_flags & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
-			var/src_passmob = (pass_flags & PASSMOB)
-			M.pass_flags |= PASSMOB
-			pass_flags |= PASSMOB
-
-			var/move_failed = FALSE
-			if(!M.Move(oldloc) || !Move(oldMloc))
-				M.forceMove(oldMloc)
-				forceMove(oldloc)
-				move_failed = TRUE
-			if(!src_passmob)
-				pass_flags &= ~PASSMOB
-			if(!M_passmob)
-				M.pass_flags &= ~PASSMOB
-
-			now_pushing = 0
-
-			if(!move_failed)
-				return TRUE
-
 	//okay, so we didn't switch. but should we push?
 	//not if he's not CANPUSH of course
 	if(!(M.status_flags & CANPUSH))
@@ -184,7 +133,7 @@
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
 			if(prob(I.block_chance*2))
-				return
+				return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()
@@ -210,12 +159,11 @@
 /mob/living/proc/PushAM(atom/movable/AM, force = move_force)
 	if(now_pushing)
 		return TRUE
-	if(moving_diagonally)// no pushing during diagonal moves.
-		return TRUE
 	if(!client && (mob_size < MOB_SIZE_SMALL))
 		return
 	now_pushing = TRUE
-	var/t = get_dir(src, AM)
+	var/pd = GET_DEG(src, AM)
+	var/t = angle2dir(pd)
 	var/push_anchored = FALSE
 	if((AM.move_resist * MOVE_FORCE_CRUSH_RATIO) <= force)
 		if(move_crush(AM, move_force, t))
@@ -232,15 +180,12 @@
 			for(var/obj/structure/window/win in get_step(W,t))
 				now_pushing = FALSE
 				return
-	if(pulling == AM)
-		stop_pulling()
 	var/current_dir
 	if(isliving(AM))
 		current_dir = AM.dir
-	if(step(AM, t))
-		step(src, t)
 	if(current_dir)
 		AM.setDir(current_dir)
+	degstep(AM, dir2angle(t), step_size)
 	now_pushing = FALSE
 
 /mob/living/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
@@ -640,26 +585,22 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direct, _step_x, _step_y)
 	if(lying_angle != 0)
 		lying_angle_on_movement(direct)
-	if (buckled && buckled.loc != newloc) //not updating position
+	if (buckled && (!(newloc in buckled.locs) || buckled.step_x != _step_x || buckled.step_y != _step_y)) // We're buckled and trying to move somewhere the buckled thing isnt yet
 		if (!buckled.anchored)
-			return buckled.Move(newloc, direct)
+			return buckled.Move(newloc, direct, _step_x, _step_y)
 		else
 			return FALSE
 
 	var/old_direction = dir
 	var/turf/T = loc
-
 	if(pulling)
 		update_pull_movespeed()
-
 	. = ..()
 
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
-		pulledby.stop_pulling()
-	else
+	if(!check_pulling())
 		if(isliving(pulledby))
 			var/mob/living/L = pulledby
 			L.set_pull_offsets(src, pulledby.grab_state)
@@ -681,40 +622,56 @@
 	return
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
-	if(!has_gravity())
+	if(!has_gravity() || !isturf(start) || !blood_volume)
 		return
-	var/blood_exists = FALSE
 
-	for(var/obj/effect/decal/cleanable/trail_holder/C in start) //checks for blood splatter already on the floor
-		blood_exists = TRUE
-	if(isturf(start))
-		var/trail_type = getTrail()
-		if(trail_type)
-			var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
-			if(blood_volume && blood_volume > max(BLOOD_VOLUME_NORMAL*(1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
-				blood_volume = max(blood_volume - max(1, brute_ratio * 2), 0) 					//that depends on our brute damage.
-				var/newdir = get_dir(target_turf, start)
-				if(newdir != direction)
-					newdir = newdir | direction
-					if(newdir == 3) //N + S
-						newdir = NORTH
-					else if(newdir == 12) //E + W
-						newdir = EAST
-				if((newdir in GLOB.cardinals) && (prob(50)))
-					newdir = turn(get_dir(target_turf, start), 180)
-				if(!blood_exists)
-					new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+	var/blood_exists = locate(/obj/effect/decal/cleanable/trail_holder) in start
 
-				for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
-					if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
-						TH.existing_dirs += newdir
-						TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
-						TH.transfer_mob_blood_dna(src)
+	var/trail_type = getTrail()
+	if(!trail_type)
+		return
+
+	var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
+	if(blood_volume < max(BLOOD_VOLUME_NORMAL*(1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
+		return
+
+	var/bleed_amount = bleedDragAmount()
+	blood_volume = max(blood_volume - bleed_amount, 0) 					//that depends on our brute damage.
+	var/newdir = get_dir(target_turf, start)
+	if(newdir != direction)
+		newdir = newdir | direction
+		if(newdir == (NORTH|SOUTH))
+			newdir = NORTH
+		else if(newdir == (EAST|WEST))
+			newdir = EAST
+	if((newdir in GLOB.cardinals) && (prob(50)))
+		newdir = turn(get_dir(target_turf, start), 180)
+	if(!blood_exists)
+		var/obj/effect/decal/cleanable/trail_holder/T = new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		T.forceStep(src)
+
+	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
+		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
+			TH.existing_dirs += newdir
+			TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))
+			TH.transfer_mob_blood_dna(src)
 
 /mob/living/carbon/human/makeTrail(turf/T)
 	if((NOBLOOD in dna.species.species_traits) || !is_bleeding() || bleedsuppress)
 		return
 	..()
+
+///Returns how much blood we're losing from being dragged a tile, from [mob/living/proc/makeTrail]
+/mob/living/proc/bleedDragAmount()
+	var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
+	return max(1, brute_ratio * 2)
+
+/mob/living/carbon/bleedDragAmount()
+	var/bleed_amount = 0
+	for(var/i in all_wounds)
+		var/datum/wound/iter_wound = i
+		bleed_amount += iter_wound.drag_bleed_amount()
+	return bleed_amount
 
 /mob/living/proc/getTrail()
 	if(getBruteLoss() < 300)
@@ -931,6 +888,8 @@
 
 /mob/living/singularity_pull(S, current_size)
 	..()
+	if(move_resist == INFINITY)
+		return
 	if(current_size >= STAGE_SIX) //your puny magboots/wings/whatever will not save you against supermatter singularity
 		throw_at(S, 14, 3, src, TRUE)
 	else if(!src.mob_negates_gravity())
@@ -1049,7 +1008,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
+/mob/living/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE, params)
 	stop_pulling()
 	. = ..()
 
@@ -1280,7 +1239,7 @@
 		return LINGHIVE_LINK
 	return LINGHIVE_NONE
 
-/mob/living/forceMove(atom/destination)
+/mob/living/forceMove(atom/destination, _step_x, _step_y)
 	stop_pulling()
 	if(buckled)
 		buckled.unbuckle_mob(src, force = TRUE)
@@ -1298,13 +1257,23 @@
 			SSmobs.clients_by_zlevel[registered_z] -= src
 		if (client)
 			if (new_z)
+				//Figure out how many clients were here before
+				var/oldlen = SSmobs.clients_by_zlevel[new_z].len
 				SSmobs.clients_by_zlevel[new_z] += src
 				for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
 					var/mob/living/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
 					if (SA)
-						SA.toggle_ai(AI_ON) // Guarantees responsiveness for when appearing right next to mobs
+						if(oldlen == 0)
+							//Start AI idle if nobody else was on this z level before (mobs will switch off when this is the case)
+							SA.toggle_ai(AI_IDLE)
+
+						//If they are also within a close distance ask the AI if it wants to wake up
+						if(get_dist(get_turf(src), get_turf(SA)) < MAX_SIMPLEMOB_WAKEUP_RANGE)
+							SA.consider_wakeup() // Ask the mob if it wants to turn on it's AI
+					//They should clean up in destroy, but often don't so we get them here
 					else
 						SSidlenpcpool.idle_mobs_by_zlevel[new_z] -= SA
+
 
 			registered_z = new_z
 		else
@@ -1376,39 +1345,29 @@
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
-		if ("maxHealth")
+		if (NAMEOF(src, maxHealth))
 			if (!isnum(var_value) || var_value <= 0)
 				return FALSE
-		if("stat")
+		if(NAMEOF(src, stat))
 			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
 				remove_from_dead_mob_list()
 				add_to_alive_mob_list()
 			if((stat < DEAD) && (var_value == DEAD))//Kill he
 				remove_from_alive_mob_list()
 				add_to_dead_mob_list()
+		if(NAMEOF(src, health)) //this doesn't work. gotta use procs instead.
+			return FALSE
 	. = ..()
 	switch(var_name)
-		if("knockdown")
-			SetParalyzed(var_value)
-		if("stun")
-			SetStun(var_value)
-		if("unconscious")
-			SetUnconscious(var_value)
-		if("sleeping")
-			SetSleeping(var_value)
-		if("eye_blind")
+		if(NAMEOF(src, eye_blind))
 			set_blindness(var_value)
-		if("eye_damage")
-			var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
-			if(E)
-				E.setOrganDamage(var_value)
-		if("eye_blurry")
+		if(NAMEOF(src, eye_blurry))
 			set_blurriness(var_value)
-		if("maxHealth")
+		if(NAMEOF(src, maxHealth))
 			updatehealth()
-		if("resize")
+		if(NAMEOF(src, resize))
 			update_transform()
-		if("lighting_alpha")
+		if(NAMEOF(src, lighting_alpha))
 			sync_lighting_plane_alpha()
 
 /mob/living/vv_get_header()
@@ -1518,7 +1477,7 @@
 
 ///Checks if the user is incapacitated or on cooldown.
 /mob/living/proc/can_look_up()
-	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE))
+	return !(incapacitated(ignore_restraints = TRUE))
 
 /**
  * look_up Changes the perspective of the mob to any openspace turf above the mob
@@ -1527,27 +1486,91 @@
  *
  */
 /mob/living/proc/look_up()
-
 	if(client.perspective != MOB_PERSPECTIVE) //We are already looking up.
 		stop_look_up()
-		return
 	if(!can_look_up())
 		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_look_up) //We stop looking up if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/start_look_up) //We start looking again after we move.
+	start_look_up()
+
+/mob/living/proc/start_look_up()
 	var/turf/ceiling = get_step_multiz(src, UP)
 	if(!ceiling) //We are at the highest z-level.
 		to_chat(src, "<span class='warning'>You can't see through the ceiling above you.</span>")
 		return
 	else if(!istransparentturf(ceiling)) //There is no turf we can look through above us
-		to_chat(src, "<span class='warning'>You can't see through the floor above you.</span>")
-		return
+		var/turf/front_hole = get_step(ceiling, dir)
+		if(istransparentturf(front_hole))
+			ceiling = front_hole
+		else
+			var/list/checkturfs = block(locate(x-1,y-1,ceiling.z),locate(x+1,y+1,ceiling.z))-ceiling-front_hole //Try find hole near of us
+			for(var/turf/checkhole in checkturfs)
+				if(istransparentturf(checkhole))
+					ceiling = checkhole
+					break
+		if(!istransparentturf(ceiling))
+			to_chat(src, "<span class='warning'>You can't see through the floor above you.</span>")
+			return
 
-	changeNext_move(CLICK_CD_LOOK_UP)
 	reset_perspective(ceiling)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_look_up) //We stop looking up if we move.
 
 /mob/living/proc/stop_look_up()
 	reset_perspective()
+
+/mob/living/proc/end_look_up()
+	stop_look_up()
 	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+
+/**
+ * look_down Changes the perspective of the mob to any openspace turf below the mob
+ *
+ * This also checks if an openspace turf is below the mob before looking down or resets the perspective if already looking up
+ *
+ */
+/mob/living/proc/look_down()
+	if(client.perspective != MOB_PERSPECTIVE) //We are already looking down.
+		stop_look_down()
+	if(!can_look_up()) //if we cant look up, we cant look down.
+		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_look_down) //We stop looking down if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/start_look_down) //We start looking again after we move.
+	start_look_down()
+
+/mob/living/proc/start_look_down()
+	var/turf/floor = get_turf(src)
+	var/turf/lower_level = get_step_multiz(floor, DOWN)
+	if(!lower_level) //We are at the lowest z-level.
+		to_chat(src, "<span class='warning'>You can't see through the floor below you.</span>")
+		return
+	else if(!istransparentturf(floor)) //There is no turf we can look through below us
+		var/turf/front_hole = get_step(floor, dir)
+		if(istransparentturf(front_hole))
+			floor = front_hole
+			lower_level = get_step_multiz(front_hole, DOWN)
+		else
+			var/list/checkturfs = block(locate(x-1,y-1,z),locate(x+1,y+1,z))-floor //Try find hole near of us
+			for(var/turf/checkhole in checkturfs)
+				if(istransparentturf(checkhole))
+					floor = checkhole
+					lower_level = get_step_multiz(checkhole, DOWN)
+					break
+		if(!istransparentturf(floor))
+			to_chat(src, "<span class='warning'>You can't see through the floor below you.</span>")
+			return
+
+	reset_perspective(lower_level)
+
+/mob/living/proc/stop_look_down()
+	reset_perspective()
+
+/mob/living/proc/end_look_down()
+	stop_look_down()
+	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 
 
 /mob/living/set_stat(new_stat)

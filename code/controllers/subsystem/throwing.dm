@@ -60,9 +60,28 @@ SUBSYSTEM_DEF(throwing)
 	var/pure_diagonal
 	var/diagonal_error
 	var/datum/callback/callback
+	var/angle = 0
 	var/paused = FALSE
 	var/delayed_time = 0
 	var/last_move = 0
+
+
+/datum/thrownthing/New(thrownthing, target, target_turf, init_dir, maxrange, speed, thrower, diagonals_first, force, gentle, callback, target_zone)
+	. = ..()
+	src.thrownthing = thrownthing
+	RegisterSignal(thrownthing, COMSIG_PARENT_QDELETING, .proc/on_thrownthing_qdel)
+	src.target = target
+	src.target_turf = target_turf
+	src.init_dir = init_dir
+	src.maxrange = maxrange
+	src.speed = speed
+	src.thrower = thrower
+	src.diagonals_first = diagonals_first
+	src.force = force
+	src.gentle = gentle
+	src.callback = callback
+	src.target_zone = target_zone
+
 
 /datum/thrownthing/Destroy()
 	SSthrowing.processing -= thrownthing
@@ -70,11 +89,20 @@ SUBSYSTEM_DEF(throwing)
 	thrownthing = null
 	target = null
 	thrower = null
-	callback = null
+	if(callback)
+		QDEL_NULL(callback) //It stores a reference to the thrownthing, its source. Let's clean that.
 	return ..()
+
+
+///Defines the datum behavior on the thrownthing's qdeletion event.
+/datum/thrownthing/proc/on_thrownthing_qdel(atom/movable/source, force)
+	qdel(src)
+
 
 /datum/thrownthing/proc/tick()
 	var/atom/movable/AM = thrownthing
+	if(!angle)
+		angle = GET_DEG(AM, target_turf)
 	if (!isturf(AM.loc) || !AM.throwing)
 		finalize()
 		return
@@ -83,18 +111,19 @@ SUBSYSTEM_DEF(throwing)
 		delayed_time += world.time - last_move
 		return
 
-	if (dist_travelled && hitcheck()) //to catch sneaky things moving on our tile while we slept
+	if (hitcheck()) //to catch sneaky things moving on our tile while we slept
 		finalize()
 		return
 
 	var/atom/step
-
 	last_move = world.time
-
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
+	// whatever we're moving we need double to get the pixels to travel, 1 tile = 16 * 2 pixels!
+	// this might end up screwy in the long run, but this make sense to me right now
+	tilestomove *= 2
 	while (tilestomove-- > 0)
-		if ((dist_travelled >= maxrange || AM.loc == target_turf) && AM.has_gravity(AM.loc))
+		if ((dist_travelled >= maxrange || (target_turf in AM.locs)) && AM.has_gravity(AM.loc))
 			finalize()
 			return
 
@@ -112,13 +141,13 @@ SUBSYSTEM_DEF(throwing)
 			finalize()
 			return
 
-		AM.Move(step, get_dir(AM, step))
+		degstepprojectile(AM, angle, 16)
 
 		if (!AM.throwing) // we hit something during our move
 			finalize(hit = TRUE)
 			return
 
-		dist_travelled++
+		dist_travelled += 0.5 // half a tile
 
 		if (dist_travelled > MAX_THROWING_DIST)
 			finalize()
@@ -130,21 +159,21 @@ SUBSYSTEM_DEF(throwing)
 	if(!thrownthing)
 		return
 	thrownthing.throwing = null
+	if(target != src.target && bounds_dist(thrownthing, src.target) == 0)
+		target = src.target
 	if (!hit)
-		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.
-			var/atom/A = thing
-			if (A == target)
-				hit = TRUE
-				thrownthing.throw_impact(A, src)
-				break
-		if (!hit)
-			thrownthing.throw_impact(get_turf(thrownthing), src)  // we haven't hit something yet and we still must, let's hit the ground.
+		if(!(target in bounds(thrownthing)))
+			target = get_turf(thrownthing)	// we haven't hit something yet and we still must, let's hit the ground.
+			if(QDELETED(thrownthing)) //throw_impact can delete things, such as glasses smashing
+				return //deletion should already be handled by on_thrownthing_qdel()
 			thrownthing.newtonian_move(init_dir)
 	else
 		thrownthing.newtonian_move(init_dir)
 
 	if(target)
 		thrownthing.throw_impact(target, src)
+		if(QDELETED(thrownthing)) //throw_impact can delete things, such as glasses smashing
+			return //deletion should already be handled by on_thrownthing_qdel()
 
 	if (callback)
 		callback.Invoke()
@@ -160,7 +189,9 @@ SUBSYSTEM_DEF(throwing)
 	finalize(hit=TRUE, target=A)
 
 /datum/thrownthing/proc/hitcheck()
-	for (var/thing in get_turf(thrownthing))
+	for(var/thing in obounds(thrownthing))
+		if(!ismovable(thing))
+			return
 		var/atom/movable/AM = thing
 		if (AM == thrownthing || (AM == thrower && !ismob(thrownthing)))
 			continue

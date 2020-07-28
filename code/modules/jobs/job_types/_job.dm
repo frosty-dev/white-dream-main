@@ -66,6 +66,7 @@
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
 	var/tmp/list/gear_leftovers = list()
+	var/bounty_types = CIV_JOB_BASIC
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it

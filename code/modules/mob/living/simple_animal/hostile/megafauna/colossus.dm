@@ -41,7 +41,7 @@ Difficulty: Very Hard
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	speed = 10
-	move_to_delay = 10
+	move_to_delay = 0.7
 	ranged = TRUE
 	pixel_x = -32
 	del_on_death = TRUE
@@ -109,7 +109,7 @@ Difficulty: Very Hard
 		ranged_cooldown = world.time + 30
 		telegraph()
 		dir_shots(GLOB.alldirs)
-		move_to_delay = 3
+		move_to_delay = 0.3
 		return
 	else
 		move_to_delay = initial(move_to_delay)
@@ -291,6 +291,7 @@ Difficulty: Very Hard
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	pixel_y = -4
 	use_power = NO_POWER_USE
+	base_build_path = /obj/machinery/smartfridge/black_box
 	var/memory_saved = FALSE
 	var/list/stored_items = list()
 	var/list/blacklist = list()
@@ -428,7 +429,7 @@ Difficulty: Very Hard
 		. += observer_desc
 		. += "It is activated by [activation_method]."
 
-/obj/machinery/anomalous_crystal/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+/obj/machinery/anomalous_crystal/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	..()
 	if(isliving(speaker))
 		ActivationReaction(speaker, ACTIVATE_SPEECH)

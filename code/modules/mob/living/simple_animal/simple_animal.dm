@@ -150,7 +150,7 @@
 	///How much bare wounding power it has
 	var/bare_wound_bonus = 0
 	///If the attacks from this are sharp
-	var/sharpness = FALSE
+	var/sharpness = SHARP_NONE
 	///Generic flags
 	var/simple_mob_flags = NONE
 
@@ -230,16 +230,23 @@
 
 /mob/living/simple_animal/proc/handle_automated_movement()
 	set waitfor = FALSE
-	if(!stop_automated_movement && wander)
-		if((isturf(loc) || allow_movement_on_non_turfs) && (mobility_flags & MOBILITY_MOVE))		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			turns_since_move++
-			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Some animals don't move when pulled
-					var/anydir = pick(GLOB.cardinals)
-					if(Process_Spacemove(anydir))
-						Move(get_step(src, anydir), anydir)
-						turns_since_move = 0
-			return 1
+	if(stop_automated_movement || !wander)
+		return
+	if(!isturf(loc) && !allow_movement_on_non_turfs)
+		return
+	if(!(mobility_flags & MOBILITY_MOVE))
+		return
+	. = TRUE
+	turns_since_move++
+	if(turns_since_move < turns_per_move)
+		return
+	if(stop_automated_movement_when_pulled && pulledby)
+		return
+	var/anydir = pick(GLOB.alldirs)
+	if(!Process_Spacemove(anydir))
+		return
+	walk_for(src, anydir, until=0.5 SECONDS)
+	turns_since_move = 0
 
 /mob/living/simple_animal/proc/handle_automated_speech(var/override)
 	set waitfor = FALSE
@@ -363,7 +370,7 @@
 			butcher += butcher_results
 		if(guaranteed_butcher_results)
 			butcher += guaranteed_butcher_results
-		var/atom/Tsec = drop_location()
+		var/atom/Tsec = drop_location()[1]
 		for(var/path in butcher)
 			for(var/i in 1 to butcher[path])
 				new path(Tsec)
@@ -373,7 +380,7 @@
 	if(icon_gib)
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
 
-/mob/living/simple_animal/say_mod(input, message_mode)
+/mob/living/simple_animal/say_mod(input, list/message_mods = list())
 	if(speak_emote && speak_emote.len)
 		verb_say = pick(speak_emote)
 	. = ..()

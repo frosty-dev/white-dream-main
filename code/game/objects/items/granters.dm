@@ -269,7 +269,7 @@
 /obj/item/book/granter/spell/barnyard/recoil(mob/living/carbon/user)
 	if(ishuman(user))
 		to_chat(user,"<font size='15' color='red'><b>HORSIE HAS RISEN</b></font>")
-		var/obj/item/clothing/magichead = new /obj/item/clothing/mask/horsehead/cursed(user.drop_location())
+		var/obj/item/clothing/magichead = new /obj/item/clothing/mask/horsehead/cursed(user.drop_location()[1])
 		if(!user.dropItemToGround(user.wear_mask))
 			qdel(user.wear_mask)
 		user.equip_to_slot_if_possible(magichead, ITEM_SLOT_MASK, TRUE, TRUE)
@@ -370,6 +370,7 @@
 	However, you are also unable to use any ranged weaponry, and some medical supplies will prove useless to you. You can learn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
+	worn_icon_state = "scroll"
 	remarks = list("Wait, a high protein diet is really all it takes to become bulletproof...?", "Overwhelming force, immovable object...", "Focus... And you'll be able to incapacitate any foe in seconds...", "I must pierce armor for maximum damage...", "I don't think this would combine with other martial arts...", "Become one with the carp...", "Glub...")
 
 /obj/item/book/granter/martial/carp/onlearned(mob/living/carbon/user)

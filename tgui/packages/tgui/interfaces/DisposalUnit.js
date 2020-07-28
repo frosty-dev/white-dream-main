@@ -23,7 +23,9 @@ export const DisposalUnit = (props, context) => {
     stateText = 'Выключено';
   }
   return (
-    <Window>
+    <Window
+      width={300}
+      height={180}>
       <Window.Content>
         <Section>
           <LabeledList>

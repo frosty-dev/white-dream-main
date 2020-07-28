@@ -42,6 +42,7 @@
 	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 	var/safety_mode = FALSE ///Whether or not the airlock can be opened with bare hands while unpowered
 	var/can_crush = TRUE /// Whether or not the door can crush mobs.
+	var/next_deny // Keeps track of the cooldown for the bump deny animation so it isnt spammed
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -134,9 +135,6 @@
 			return
 		if(isliving(AM))
 			var/mob/living/M = AM
-			if(world.time - M.last_bumped <= 10)
-				return	//Can bump-open one airlock per second. This is to prevent shock spam.
-			M.last_bumped = world.time
 			if(M.restrained() && !check_access(null))
 				return
 			if(try_safety_unlock(M))
@@ -147,10 +145,6 @@
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		if(density)
-			if(mecha.occupant)
-				if(world.time - mecha.occupant.last_bumped <= 10)
-					return
-				mecha.occupant.last_bumped = world.time
 			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
 				open()
 			else
@@ -306,6 +300,9 @@
 			else
 				flick("doorc1", src)
 		if("deny")
+			if(world.time < next_deny)
+				return
+			next_deny = world.time + 0.5 SECONDS
 			if(!machine_stat)
 				flick("door_deny", src)
 
@@ -376,11 +373,12 @@
 		open()
 
 /obj/machinery/door/proc/crush()
-	for(var/mob/living/L in get_turf(src))
+	for(var/mob/living/L in obounds(src))
 		L.visible_message("<span class='warning'>[src] closes on [L], crushing [L.p_them()]!</span>", "<span class='userdanger'>[src] closes on you and crushes you!</span>")
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
-			for(var/datum/wound/W in C.all_wounds)
+			for(var/i in C.all_wounds) // should probably replace with signal
+				var/datum/wound/W = i
 				W.crush(DOOR_CRUSH_DAMAGE)
 		if(isalien(L))  //For xenos
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.

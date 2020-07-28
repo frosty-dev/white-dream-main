@@ -35,7 +35,7 @@
 	..()
 	ui_interact(user)
 
-/obj/structure/votebox/ui_interact(mob/user, ui_key, datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state)
+/obj/structure/votebox/ui_interact(mob/user)
 	. = ..()
 
 	var/list/dat = list()
@@ -138,7 +138,7 @@
 	return TRUE
 
 /obj/structure/votebox/dump_contents()
-	var/atom/droppoint = drop_location()
+	var/atom/droppoint = drop_location()[1]
 	for(var/atom/movable/AM in contents)
 		AM.forceMove(droppoint)
 
@@ -172,7 +172,7 @@
 			results[text] += 1
 	sortTim(results, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
 
-	var/obj/item/paper/P = new(drop_location())
+	var/obj/item/paper/P = new(drop_location()[1])
 	var/list/tally = list()
 	tally += {"
 		<style>

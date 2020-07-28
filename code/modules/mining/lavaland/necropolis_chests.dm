@@ -411,7 +411,7 @@
 
 /obj/projectile/hook/fire(setAngle)
 	if(firer)
-		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
+		chain = firer.Beam(src, icon_state = "chain", time = INFINITY)
 	..()
 	//TODO: root the firer until the chain returns
 
@@ -548,7 +548,7 @@
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
 	STR.max_items = 21
-	new /obj/item/shared_storage/blue(drop_location(), STR)
+	new /obj/item/shared_storage/blue(drop_location()[1], STR)
 
 /obj/item/shared_storage/blue/Initialize(mapload, datum/component/storage/concrete/master)
 	. = ..()
@@ -711,7 +711,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")
 	var/transform_cooldown
@@ -817,7 +817,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 1
 	throwforce = 1

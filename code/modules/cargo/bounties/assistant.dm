@@ -130,6 +130,7 @@
 	reward = 4000
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/poppy/geranium)
+	include_subtypes = FALSE
 
 /datum/bounty/item/assistant/poppy
 	name = "Мак"

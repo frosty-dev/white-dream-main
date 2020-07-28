@@ -795,7 +795,7 @@
 	desc = "Зелённый забор. Лучше, чем серый."
 	icon_state = "1"
 
-obj/structure/grille/rospilovo/beton/CanPass(atom/movable/mover, turf/target, height=0)
+/obj/structure/grille/rospilovo/beton/CanPass(atom/movable/mover, turf/target, height=0)
 	. = ..()
 	if(height==0) return 1
 	if(istype(mover) && (mover.pass_flags == PASSGRILLE))

@@ -131,9 +131,12 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	var/obj/machinery/gateway/gateway
 	density = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
+	var/cooldown = 1 SECONDS
+	var/last_bump = 0
 
 /obj/effect/gateway_portal_bumper/Bumped(atom/movable/AM)
-	if(get_dir(src,AM) == SOUTH)
+	if(get_dir(src,AM) == SOUTH && world.time > last_bump + cooldown)
+		last_bump = world.time
 		gateway.Transfer(AM)
 
 /obj/effect/gateway_portal_bumper/Destroy(force)
@@ -152,8 +155,6 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	pixel_y = -32
 	bound_height = 64
 	bound_width = 96
-	bound_x = -32
-	bound_y = 0
 	density = TRUE
 
 	use_power = IDLE_POWER_USE
@@ -275,11 +276,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	. = ..()
 	try_to_linkup()
 
-/obj/machinery/computer/gateway_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui, force_open, datum/tgui/master_ui, datum/ui_state/state = GLOB.default_state)
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/gateway_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Gateway", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Gateway", name)
 		ui.open()
 
 /obj/machinery/computer/gateway_control/ui_data(mob/user)

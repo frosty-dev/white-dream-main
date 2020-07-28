@@ -6,7 +6,10 @@ import { Window } from '../layouts';
 export const BSEmitter = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={500}
+      height={500}
+      resizable>
       <Window.Content>
         <Section
           title="Эмиттер"

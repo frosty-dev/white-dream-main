@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 					dat += "<div class='notice'>Проведите своей картой, чтобы идентифицировать себя</div><BR>"
 				dat += "<b>Сообщение: </b>[message ? message : "<i>Нет сообщения</i>"]<BR>"
 				dat += "<A href='?src=[REF(src)];writeAnnouncement=1'>[message ? "Изменить" : "Написать"] сообщение</A><BR><BR>"
-				if ((announceAuth || IsAdminGhost(user)) && message)
+				if ((announceAuth || isAdminGhostAI(user)) && message)
 					dat += "<A href='?src=[REF(src)];sendAnnouncement=1'>Объявить сообщение</A><BR>"
 				else
 					dat += "<span class='linkOff'>Объявить сообщение</span><BR>"
@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 	updateUsrDialog()
 
-/obj/machinery/requests_console/say_mod(input, message_mode)
+/obj/machinery/requests_console/say_mod(input, list/message_mods = list())
 	if(spantext_char(input, "!", -3))
 		return "вспыхивает"
 	else

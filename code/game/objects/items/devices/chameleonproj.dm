@@ -82,7 +82,7 @@
 		new /obj/effect/temp_visual/emp/pulse(get_turf(src))
 	else
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, TRUE, -6)
-		var/obj/effect/dummy/chameleon/C = new/obj/effect/dummy/chameleon(user.drop_location())
+		var/obj/effect/dummy/chameleon/C = new/obj/effect/dummy/chameleon(user.drop_location()[1])
 		C.activate(user, saved_appearance, src)
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
 		new /obj/effect/temp_visual/emp/pulse(get_turf(src))
@@ -158,22 +158,20 @@
 	if(isspaceturf(loc) || !direction)
 		return //No magical space movement!
 
-	if(can_move < world.time)
-		var/amount
-		switch(user.bodytemperature)
-			if(300 to INFINITY)
-				amount = 10
-			if(295 to 300)
-				amount = 13
-			if(280 to 295)
-				amount = 16
-			if(260 to 280)
-				amount = 20
-			else
-				amount = 25
-
-		can_move = world.time + amount
-		step(src, direction)
+	var/amount
+	switch(user.bodytemperature)
+		if(300 to INFINITY)
+			amount = 10
+		if(295 to 300)
+			amount = 13
+		if(280 to 295)
+			amount = 16
+		if(260 to 280)
+			amount = 20
+		else
+			amount = 25
+	step_size = min(1, round(user.step_size - (amount / 10)))
+	step(src, direction)
 	return
 
 /obj/effect/dummy/chameleon/Destroy()

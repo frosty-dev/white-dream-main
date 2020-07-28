@@ -93,21 +93,28 @@
 		return ..()
 
 /obj/item/clothing/attackby(obj/item/W, mob/user, params)
-	if(damaged_clothes && istype(W, repairable_by))
-		var/obj/item/stack/S = W
-		switch(damaged_clothes)
-			if(CLOTHING_DAMAGED)
-				S.use(1)
-				repair(user, params)
-			if(CLOTHING_SHREDDED)
-				if(S.amount < 3)
-					to_chat(user, "<span class='warning'>Мне потребуется 3 единицы [S.name] для починки [src].</span>")
-					return
-				to_chat(user, "<span class='notice'>Начинаю чинить повреждения [src] используя [S]...</span>")
-				if(do_after(user, 6 SECONDS, TRUE, src))
-					if(S.use(3))
-						repair(user, params)
-		return 1
+	if(!istype(W, repairable_by))
+		return ..()
+
+	switch(damaged_clothes)
+		if(CLOTHING_PRISTINE)
+			return..()
+		if(CLOTHING_DAMAGED)
+			var/obj/item/stack/cloth_repair = W
+			cloth_repair.use(1)
+			repair(user, params)
+			return TRUE
+		if(CLOTHING_SHREDDED)
+			var/obj/item/stack/cloth_repair = W
+			if(cloth_repair.amount < 3)
+				to_chat(user, "<span class='warning'>Мне потребуется 3 единицы [W.name] для починки [src.name].</span>")
+				return TRUE
+			to_chat(user, "<span class='notice'>Начинаю чинить повреждения [src.name] используя [W.name]...</span>")
+			if(!do_after(user, 6 SECONDS, TRUE, src) || !cloth_repair.use(3))
+				return TRUE
+			repair(user, params)
+			return TRUE
+
 	return ..()
 
 /// Set the clothing's integrity back to 100%, remove all damage to bodyparts, and generally fix it up
@@ -170,7 +177,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		C.visible_message("<span class='danger'>The [zone_name] on [C]'s [src.name] is [break_verb] away!</span>", "<span class='userdanger'>The [zone_name] on your [src.name] is [break_verb] away!</span>", vision_distance = COMBAT_MESSAGE_RANGE)
-		RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/bristle)
+		RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/bristle, override = TRUE)
 
 	zones_disabled++
 	for(var/i in zone2body_parts_covered(def_zone))
@@ -212,7 +219,7 @@
 		return
 	if(slot_flags & slot) //Was equipped to a valid slot for this item?
 		if(iscarbon(user) && LAZYLEN(zones_disabled))
-			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/bristle)
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/bristle, override = TRUE)
 		if (LAZYLEN(user_vars_to_edit))
 			for(var/variable in user_vars_to_edit)
 				if(variable in user.vars)
@@ -354,8 +361,8 @@
 			to_chat(M, "<span class='warning'>[capitalize(src)] начинает распадаться на части!</span>")
 
 //This mostly exists so subtypes can call appriopriate update icon calls on the wearer.
-/obj/item/clothing/proc/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
-	damaged_clothes = damaged_state
+/obj/item/clothing/proc/update_clothes_damaged_state()
+	return
 
 /obj/item/clothing/update_overlays()
 	. = ..()

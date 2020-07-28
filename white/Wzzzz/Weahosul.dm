@@ -62,12 +62,12 @@
 	slot_flags = 0
 	knife_y_offset = 13
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/can_shoot()
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/can_shoot()
 	if (bolt_locked)
 		return FALSE
 	return ..()
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/attackby(obj/item/A, mob/user, params)
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/attackby(obj/item/A, mob/user, params)
 	if (!bolt_locked)
 		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
 		return
@@ -92,7 +92,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/attackby(obj/item/A, mob/us
 		icon_state = "kar98k"
 	return
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/rack(mob/user = null)
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/rack(mob/user = null)
 	if (bolt_locked == FALSE)
 		to_chat(user, "<span class='notice'>You open the bolt of \the [src]</span>")
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
@@ -113,12 +113,12 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/rack(mob/user = null)
 	zoom_out_amt = 13
 	actions_types = list()
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/can_shoot()
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/can_shoot()
 	if (bolt_locked)
 		return FALSE
 	return ..()
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/attackby(obj/item/A, mob/user, params)
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/attackby(obj/item/A, mob/user, params)
 	if (!bolt_locked)
 		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
 		return
@@ -148,7 +148,7 @@ obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/attackby(obj/item/A, 
 		fire_sound = 'white/Wzzzz/kar_shot.ogg'
 		return
 
-obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/rack(mob/user = null)
+/obj/item/gun/ballistic/rifle/boltaction/wzzzz/kar98k/scope/rack(mob/user = null)
 	if (bolt_locked == FALSE)
 		to_chat(user, "<span class='notice'>You open the bolt of \the [src]</span>")
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)

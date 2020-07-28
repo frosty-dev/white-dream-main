@@ -10,27 +10,32 @@ const VendingRow = (props, context) => {
     productStock,
     custom,
   } = props;
+  const {
+    onstation,
+    department,
+    user,
+  } = data;
   const free = (
-    !data.onstation
+    !onstation
     || product.price === 0
     || (
       !product.premium
-      && data.department
-      && data.user
-      && data.department === data.user.department
+      && department
+      && user
+      && department === user.department
     )
   );
   return (
     <Table.Row>
       <Table.Cell collapsing>
-        {product.img ? (
+        {product.base64 && (
           <img
             src={`data:image/jpeg;base64,${product.img}`}
             style={{
               'vertical-align': 'middle',
               'horizontal-align': 'middle',
             }} />
-        ) : (
+        ) || (
           <span
             className={classes([
               'vending32x32',
@@ -47,14 +52,13 @@ const VendingRow = (props, context) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box
-          color={custom
-            ? 'good'
-            : productStock <= 0
-              ? 'bad'
-              : productStock <= (product.max_amount / 2)
-                ? 'average'
-                : 'good'}>
-          {productStock} шт.
+          color={(
+            custom && 'good'
+            || productStock <= 0 && 'bad'
+            || productStock <= (product.max_amount / 2) && 'average'
+            || 'good'
+          )}>
+          {productStock} в наличии
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
@@ -87,52 +91,67 @@ const VendingRow = (props, context) => {
 
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
+  const {
+    user,
+    onstation,
+    product_records = [],
+    coin_records = [],
+    hidden_records = [],
+    stock,
+  } = data;
   let inventory;
   let custom = false;
   if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
+    inventory = data.vending_machine_input || [];
     custom = true;
-  } else if (data.extended_inventory) {
-    inventory = [
-      ...data.product_records,
-      ...data.coin_records,
-      ...data.hidden_records,
-    ];
-  } else {
-    inventory = [
-      ...data.product_records,
-      ...data.coin_records,
-    ];
   }
+  else {
+    inventory = [
+      ...product_records,
+      ...coin_records,
+    ];
+    if (data.extended_inventory) {
+      inventory = [
+        ...inventory,
+        ...hidden_records,
+      ];
+    }
+  }
+  // Just in case we still have undefined values in the list
+  inventory = inventory.filter(item => !!item);
   return (
-    <Window resizable>
+    <Window
+      title="Vending Machine"
+      width={450}
+      height={600}
+      resizable>
       <Window.Content scrollable>
-        {!!data.onstation && (
+        {!!onstation && (
           <Section title="Пользователь">
-            {data.user && (
+            {user && (
               <Box>
-                Здравствуйте, <b>{data.user.name}</b>,
+                Здравствуйте, <b>{user.name}</b>,
                 {' '}
-                <b>{data.user.job || 'Безработный'}</b>!
+                <b>{user.job || 'Безработный'}</b>!
                 <br />
-                Ваш баланс: <b>{data.user.cash} кредитов</b>.
+                Ваш баланс: <b>{user.cash} кредитов</b>.
               </Box>
             ) || (
-              <Box color="light-gray">
+              <Box color="light-grey">
                 Нет ID-карты!<br />
                 Свяжитесь с вашим местным отделом кадров!
               </Box>
             )}
           </Section>
         )}
-        <Section title="Товары" >
+        <Section title="Товары">
           <Table>
             {inventory.map(product => (
               <VendingRow
                 key={product.name}
                 custom={custom}
                 product={product}
-                productStock={data.stock[product.name]} />
+                productStock={stock[product.name]} />
             ))}
           </Table>
         </Section>

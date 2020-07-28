@@ -26,7 +26,7 @@
 			if(I.tool_behaviour == TOOL_WRENCH && !anchored)
 				I.play_tool_sound(src, 100)
 				to_chat(user, "<span class='notice'>You secure the external bolts.</span>")
-				setAnchored(TRUE)
+				set_anchored(TRUE)
 				build_step = PTURRET_BOLTED
 				return
 
@@ -51,7 +51,7 @@
 			else if(I.tool_behaviour == TOOL_WRENCH)
 				I.play_tool_sound(src, 75)
 				to_chat(user, "<span class='notice'>You unfasten the external bolts.</span>")
-				setAnchored(FALSE)
+				set_anchored(FALSE)
 				build_step = PTURRET_UNSECURED
 				return
 
@@ -72,7 +72,7 @@
 				if(I.use_tool(src, user, 20, volume=50, amount=5)) //uses up 5 fuel
 					build_step = PTURRET_BOLTED
 					to_chat(user, "<span class='notice'>You remove the turret's interior metal armor.</span>")
-					new /obj/item/stack/sheet/metal(drop_location(), 2)
+					new /obj/item/stack/sheet/metal(drop_location()[1], 2)
 					return
 
 

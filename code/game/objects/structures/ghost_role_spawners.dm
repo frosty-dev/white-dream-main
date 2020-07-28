@@ -323,7 +323,7 @@
 
 /datum/outfit/hermit
 	name = "Lavaland hermit"
-	uniform = /obj/item/clothing/under/color/grey/glorf
+	uniform = /obj/item/clothing/under/color/grey/ancient
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack
 	mask = /obj/item/clothing/mask/breath
@@ -564,7 +564,7 @@
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldsec/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location()[1])
 	return ..()
 
 /obj/effect/mob_spawn/human/oldeng
@@ -590,7 +590,7 @@
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldeng/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location()[1])
 	return ..()
 
 /obj/effect/mob_spawn/human/oldsci
@@ -615,7 +615,7 @@
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldsci/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location()[1])
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate
@@ -647,7 +647,7 @@
 	return "[rank] [pick(beggings)][pick(endings)]"
 
 /obj/effect/mob_spawn/human/pirate/Destroy()
-	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location()[1])
 	return ..()
 
 /obj/effect/mob_spawn/human/pirate/captain
@@ -713,6 +713,7 @@
 
 /datum/outfit/syndicatespace/syndicaptain
 	name = "Syndicate Ship Captain"
+	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	uniform = /obj/item/clothing/under/syndicate/combat
 	glasses = /obj/item/clothing/glasses/night

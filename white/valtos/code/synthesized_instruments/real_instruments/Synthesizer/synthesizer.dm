@@ -165,8 +165,7 @@
 /obj/structure/synthesized_instrument/synthesizer/shouldStopPlaying(mob/user)
 	return !((src && in_range(src, user) && src.anchored) || src.player.song.autorepeat)
 
-/obj/structure/synthesized_instrument/synthesizer/mindbreaker
-	New()
-		..()
-		qdel(src.player)
-		src.player = new /datum/sound_player/synthesizer/torture(src, instruments[pick(instruments)])
+/obj/structure/synthesized_instrument/synthesizer/mindbreaker/Initialize()
+	..()
+	qdel(src.player)
+	src.player = new /datum/sound_player/synthesizer/torture(src, instruments[pick(instruments)])

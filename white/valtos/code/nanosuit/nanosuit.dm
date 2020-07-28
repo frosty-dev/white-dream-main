@@ -981,7 +981,7 @@
 		return
 	return ..()
 
-/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, quickstart = TRUE)
+/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, quickstart = TRUE, params)
 	if(thrower && ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
@@ -1126,7 +1126,7 @@
 	maxcharge = 100
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
-mob/living/carbon/human/key_down(_key, client/user)
+/mob/living/carbon/human/key_down(_key, client/user)
 	switch(_key)
 		if("C")
 			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))

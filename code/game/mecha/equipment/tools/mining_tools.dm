@@ -17,6 +17,7 @@
 	toolspeed = 0.9
 	var/drill_delay = 7
 	var/drill_level = DRILL_BASIC
+	mech_flags = EXOSUIT_MODULE_WORKING | EXOSUIT_MODULE_COMBAT
 
 /obj/item/mecha_parts/mecha_equipment/drill/Initialize()
 	. = ..()
@@ -127,9 +128,9 @@
 		//blood splatters
 		var/splatter_dir = get_dir(chassis, target)
 		if(isalien(target))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target.drop_location(), splatter_dir)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target.drop_location()[1], splatter_dir)
 		else
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location(), splatter_dir)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location()[1], splatter_dir)
 
 		//organs go everywhere
 		if(target_part && prob(10 * drill_level))
@@ -148,15 +149,22 @@
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner
 	name = "exosuit mining scanner"
-	desc = "Equipment for engineering and combat exosuits. It will automatically check surrounding rock for useful minerals."
+	desc = "Equipment for working exosuits. It will automatically check surrounding rock for useful minerals."
 	icon_state = "mecha_analyzer"
 	selectable = 0
 	equip_cooldown = 15
 	var/scanning_time = 0
+	mech_flags = EXOSUIT_MODULE_WORKING
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize()
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/mecha_parts/mecha_equipment/mining_scanner/can_attach(obj/mecha/M as obj)
+	if(..())
+		if(istype(M, /obj/mecha/working))
+			return TRUE
+	return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner/process()
 	if(!loc)

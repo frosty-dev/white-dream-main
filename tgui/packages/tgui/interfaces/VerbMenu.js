@@ -11,7 +11,10 @@ export const VerbMenu = (props, context) => {
   const matchingVerbs = verbsByTab.filter((val, key) =>
     val[0].toLowerCase().search(searchText.toLowerCase()) !== -1).sort();
   return (
-    <Window resizable>
+    <Window
+      width={450}
+      height={400}
+      resizable>
       <Window.Content scrollable>
         {!(keys.length > 1) || (
           <Tabs>

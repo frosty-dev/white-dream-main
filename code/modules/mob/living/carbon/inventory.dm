@@ -197,7 +197,8 @@
 		to_chat(src, "<span class='warning'>Мои руки заняты!</span>")
 		return
 	if(!giver.temporarilyRemoveItemFromInventory(I))
-		visible_message("<span class='notice'><b>[src.name]</b> пытается дать <b>[I.name]</b>, но похоже оно приклеено к его руке...</span>", \
-						"<span class'notice'>Туплю, пытаясь отдать предмет, застрявший в моей руке.</span>")
+		visible_message("<span class='notice'><b>[giver.name]</b> пытается дать <b>[I.name]</b>, но похоже оно приклеено к его руке...</span>")
 		return
+	visible_message("<span class='notice'><b>[src]</b> берёт [I.name] у <b>[giver.name]</b>.</span>", \
+					"<span class='notice'>Беру [I.name] у <b>[giver.name]</b>.</span>")
 	put_in_hands(I)

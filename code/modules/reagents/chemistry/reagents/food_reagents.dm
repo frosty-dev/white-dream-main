@@ -121,7 +121,7 @@
 	if(holder && holder.chem_temp >= fry_temperature)
 		if(isitem(O) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
 			O.loc.visible_message("<span class='warning'>[O] rapidly fries as it's splashed with hot oil! Somehow.</span>")
-			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
+			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location()[1], O)
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
@@ -798,3 +798,25 @@
 	color = "#78280A" // rgb: 120 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "дымчатая сладость"
+
+/datum/reagent/consumable/chocolatepudding
+	name = "Chocolate Pudding"
+	description = "A great dessert for chocolate lovers."
+	color = "#800000"
+	quality = DRINK_VERYGOOD
+	nutriment_factor = 4 * REAGENTS_METABOLISM
+	taste_description = "сладкий шоколад"
+	glass_icon_state = "chocolatepudding"
+	glass_name = "chocolate pudding"
+	glass_desc = "Tasty."
+
+/datum/reagent/consumable/vanillapudding
+	name = "Vanilla Pudding"
+	description = "A great dessert for vanilla lovers."
+	color = "#FAFAD2"
+	quality = DRINK_VERYGOOD
+	nutriment_factor = 4 * REAGENTS_METABOLISM
+	taste_description = "сладкая ваниль"
+	glass_icon_state = "vanillapudding"
+	glass_name = "vanilla pudding"
+	glass_desc = "Tasty."

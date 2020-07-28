@@ -10,7 +10,12 @@
 	datum_flags = DF_USE_TAG
 	density = TRUE
 	layer = MOB_LAYER
-	animate_movement = SLIDE_STEPS
+	step_size = 32 // mob movespeed system will handle
+	bound_width = 16
+	bound_height = 16
+	bound_x = 8
+	brotation = NONE
+
 	flags_1 = HEAR_1
 	hud_possible = list(ANTAG_HUD)
 	pressure_resistance = 8
@@ -136,7 +141,7 @@
 	var/research_scanner = FALSE
 
 	/// Is the mob throw intent on
-	var/in_throw_mode = 0
+	var/in_throw_mode = FALSE
 
 	/// What job does this mob have
 	var/job = null//Living
@@ -207,7 +212,8 @@
 
 	var/bloody_hands = 0
 
-	var/datum/focus //What receives our keyboard inputs. src by default
+	/// What receives our keyboard inputs. src by default
+	var/datum/focus
 
 	/// Used for tracking last uses of emotes for cooldown purposes
 	var/list/emotes_used

@@ -9,8 +9,6 @@
 	idle_power_usage = 20
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_master
-	ui_x = 465
-	ui_y = 550
 
 	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/bottle = null
@@ -152,20 +150,16 @@
 		bottle = null
 	return ..()
 
-/obj/machinery/chem_master/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_master/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/simple/pills),
+	)
+
+/obj/machinery/chem_master/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-		assets.send(user)
-
-		ui = new(user, src, ui_key, "ChemMaster", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ChemMaster", name)
 		ui.open()
-
-//Insert our custom spritesheet css link into the html
-/obj/machinery/chem_master/ui_base_html(html)
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
 
 /obj/machinery/chem_master/ui_data(mob/user)
 	var/list/data = list()
@@ -304,7 +298,7 @@
 		// Start filling
 		if(item_type == "pill")
 			var/obj/item/reagent_containers/pill/P
-			var/target_loc = drop_location()
+			var/target_loc = drop_location()[1]
 			var/drop_threshold = INFINITY
 			if(bottle)
 				var/datum/component/storage/STRB = bottle.GetComponent(
@@ -315,7 +309,7 @@
 				if(i < drop_threshold)
 					P = new/obj/item/reagent_containers/pill(target_loc)
 				else
-					P = new/obj/item/reagent_containers/pill(drop_location())
+					P = new/obj/item/reagent_containers/pill(drop_location()[1])
 				P.name = trim("[name] pill")
 				if(chosenPillStyle == RANDOM_PILL_STYLE)
 					P.icon_state ="pill[rand(1,21)]"
@@ -329,7 +323,7 @@
 		if(item_type == "patch")
 			var/obj/item/reagent_containers/pill/patch/P
 			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/pill/patch(drop_location())
+				P = new/obj/item/reagent_containers/pill/patch(drop_location()[1])
 				P.name = trim("[name] patch")
 				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
@@ -337,7 +331,7 @@
 		if(item_type == "bottle")
 			var/obj/item/reagent_containers/glass/bottle/P
 			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/glass/bottle(drop_location())
+				P = new/obj/item/reagent_containers/glass/bottle(drop_location()[1])
 				P.name = trim("[name] bottle")
 				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
@@ -345,7 +339,7 @@
 		if(item_type == "condimentPack")
 			var/obj/item/reagent_containers/food/condiment/pack/P
 			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
+				P = new/obj/item/reagent_containers/food/condiment/pack(drop_location()[1])
 				P.originalname = name
 				P.name = trim("[name] pack")
 				P.desc = "A small condiment pack. The label says it contains [name]."
@@ -354,7 +348,7 @@
 		if(item_type == "condimentBottle")
 			var/obj/item/reagent_containers/food/condiment/P
 			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/food/condiment(drop_location())
+				P = new/obj/item/reagent_containers/food/condiment(drop_location()[1])
 				P.originalname = name
 				P.name = trim("[name] bottle")
 				reagents.trans_to(P, vol_each, transfered_by = usr)
@@ -399,23 +393,20 @@
 
 /obj/machinery/chem_master/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
 	if (AM == beaker)
-		AM.pixel_x = -8
-		AM.pixel_y = 8
+		AM.forceMove(AM.loc, -8, 8)
 		return null
 	else if (AM == bottle)
 		if (length(bottle.contents))
-			AM.pixel_x = -13
+			AM.forceMove(AM.loc, -13, -8)
 		else
-			AM.pixel_x = -7
-		AM.pixel_y = -8
+			AM.forceMove(AM.loc, -7, -8)
 		return null
 	else
 		var/md5 = md5(AM.name)
 		for (var/i in 1 to 32)
 			. += hex2num(md5[i])
 		. = . % 9
-		AM.pixel_x = ((.%3)*6)
-		AM.pixel_y = -8 + (round( . / 3)*8)
+		AM.forceMove(AM.loc, ((.%3)*6), -8 + (round( . / 3)*8))
 
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"

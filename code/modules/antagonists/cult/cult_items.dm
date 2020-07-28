@@ -39,7 +39,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 30 // whoever balanced this got beat in the head by a bible too many times good lord
 	throwforce = 10
@@ -91,7 +91,7 @@
 	armour_penetration = 45
 	throw_speed = 1
 	throw_range = 3
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	light_color = "#ff0000"
 	attack_verb = list("разрубает", "рубит", "кромсает", "уничтожает", "разрывает", "нарезает", "режет")
 	icon_state = "cultbastard"
@@ -627,7 +627,7 @@
 	armour_penetration = 30
 	block_chance = 30
 	attack_verb = list("атакует", "протыкает", "втыкает", "кромсает", "насаживает")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
 	var/wielded = FALSE // track wielded status on item
@@ -925,12 +925,12 @@
 					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
 					M.faction = list("cult")
 					M.Copy_Parent(owner, 70, 10, 5)
-					M.move_to_delay = owner.cached_multiplicative_slowdown
+					M.move_to_delay = owner.step_size
 				else
 					var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
 					E.Copy_Parent(owner, 70, 10)
 					E.GiveTarget(owner)
-					E.Goto(owner, owner.cached_multiplicative_slowdown, E.minimum_distance)
+					E.Goto(owner, owner.step_size, E.minimum_distance)
 			return TRUE
 	else
 		if(prob(50))
@@ -938,7 +938,7 @@
 			H.Copy_Parent(owner, 100, 20, 5)
 			H.faction = list("cult")
 			H.GiveTarget(owner)
-			H.move_to_delay = owner.cached_multiplicative_slowdown
+			H.move_to_delay = owner.step_size
 			to_chat(owner, "<span class='danger'><b>[src] betrays you!</b></span>")
 		return FALSE
 

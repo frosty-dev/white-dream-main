@@ -7,7 +7,9 @@ export const MapWindow = (props, context) => {
   const { act, data, config } = useBackend(context);
 
   return (
-    <Window>
+    <Window
+      width={350}
+      height={350}>
       <Window.Content>
         <ByondUi
           params={{

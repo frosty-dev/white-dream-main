@@ -187,7 +187,7 @@
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
-		if ("cyclelinkeddir")
+		if (NAMEOF(src, cyclelinkeddir))
 			cyclelinkairlock()
 
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
@@ -611,6 +611,9 @@
 		if("closing")
 			update_icon(AIRLOCK_CLOSING)
 		if("deny")
+			if(world.time < next_deny)
+				return
+			next_deny = world.time + 0.5 SECONDS
 			if(!machine_stat)
 				update_icon(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,FALSE,3)
@@ -731,7 +734,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!(issilicon(user) || IsAdminGhost(user)))
+	if(!(issilicon(user) || isAdminGhostAI(user)))
 		if(isElectrified())
 			if(shock(user, 100))
 				return
@@ -774,7 +777,7 @@
 	// Otherwise it will runtime with this kind of error: null.Topic()
 	if(!nowindow)
 		..()
-	if(!usr.canUseTopic(src) && !IsAdminGhost(usr))
+	if(!usr.canUseTopic(src) && !isAdminGhostAI(usr))
 		return
 	add_fingerprint(usr)
 
@@ -789,7 +792,7 @@
 
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user, params)
-	if(!issilicon(user) && !IsAdminGhost(user))
+	if(!issilicon(user) && !isAdminGhostAI(user))
 		if(isElectrified())
 			if(shock(user, 75))
 				return
@@ -1159,7 +1162,8 @@
 
 /obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/doorjack/D)
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
-		D.use_charge(user)
+		if(istype(D, /obj/item/card/emag/doorjack))
+			D.use_charge(user)
 		operating = TRUE
 		update_icon(AIRLOCK_EMAG, 1)
 		sleep(6)
@@ -1262,7 +1266,7 @@
 			A = new /obj/structure/door_assembly(loc)
 			//If you come across a null assemblytype, it will produce the default assembly instead of disintegrating.
 		A.heat_proof_finished = heat_proof //tracks whether there's rglass in
-		A.setAnchored(TRUE)
+		A.set_anchored(TRUE)
 		A.glass = glass
 		A.state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
 		A.created_name = name
@@ -1320,11 +1324,10 @@
 	else if(istype(note, /obj/item/photo))
 		return "photo"
 
-/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-													datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/door/airlock/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "AiAirlock", name, 500, 390, master_ui, state)
+		ui = new(user, src, "AiAirlock", name)
 		ui.open()
 	return TRUE
 
@@ -1417,7 +1420,7 @@
 			. = TRUE
 
 /obj/machinery/door/airlock/proc/user_allowed(mob/user)
-	return (issilicon(user) && canAIControl(user)) || IsAdminGhost(user)
+	return (issilicon(user) && canAIControl(user)) || isAdminGhostAI(user)
 
 /obj/machinery/door/airlock/proc/shock_restore(mob/user)
 	if(!user_allowed(user))

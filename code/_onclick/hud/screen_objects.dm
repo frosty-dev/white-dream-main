@@ -99,7 +99,7 @@
 	screen_loc = ui_building
 
 /obj/screen/area_creator/Click()
-	if(usr.incapacitated() || (isobserver(usr) && !IsAdminGhost(usr)))
+	if(usr.incapacitated() || (isobserver(usr) && !isAdminGhostAI(usr)))
 		return TRUE
 	var/area/A = get_area(usr)
 	if(!A.outdoors)
@@ -132,7 +132,7 @@
 	if(world.time <= usr.next_move)
 		return TRUE
 
-	if(usr.incapacitated())
+	if(usr.incapacitated(ignore_stasis = TRUE))
 		return TRUE
 	if(ismecha(usr.loc)) // stops inventory actions in a mech
 		return TRUE
@@ -376,6 +376,9 @@
 			icon_state = "walking"
 		if(MOVE_INTENT_RUN)
 			icon_state = "running"
+		if(MOVE_INTENT_CRAWL)
+			icon_state = "crawling"
+
 
 /obj/screen/mov_intent/proc/toggle(mob/user)
 	if(isobserver(user))

@@ -49,6 +49,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	icon_state = "generic"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
+	bound_width = 24
+	bound_x = 4
+	brotation = NONE
 	verb_say = "бипает"
 	verb_ask = "бипает"
 	verb_exclaim = "бипает"
@@ -318,10 +321,34 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
-		R.custom_price = initial(temp.custom_price)
-		R.custom_premium_price = initial(temp.custom_premium_price)
+		R.custom_price = initial(temp.custom_price) * SSeconomy.inflation_value()
+		R.custom_premium_price = initial(temp.custom_premium_price) * SSeconomy.inflation_value()
 		R.age_restricted = initial(temp.age_restricted)
 		recordlist += R
+
+/**
+  * Reassign the prices of the vending machine as a result of the inflation value, as provided by SSeconomy
+  *
+  * This rebuilds both /datum/data/vending_products lists for premium and standard products based on their most relevant pricing values.
+  * Arguments:
+  * * recordlist - the list of standard product datums in the vendor to refresh their prices.
+  * * premiumlist - the list of premium product datums in the vendor to refresh their prices.
+  */
+/obj/machinery/vending/proc/reset_prices(list/recordlist, list/premiumlist)
+	for(var/R in recordlist)
+		var/datum/data/vending_product/record = R
+		var/atom/potential_product = record.product_path
+		record.custom_price = round(initial(potential_product.custom_price) * SSeconomy.inflation_value())
+	for(var/R in premiumlist)
+		var/datum/data/vending_product/record = R
+		var/atom/potential_product = record.product_path
+		var/premium_sanity = round(initial(potential_product.custom_premium_price))
+		if(premium_sanity)
+			record.custom_premium_price = round(premium_sanity * SSeconomy.inflation_value())
+			continue
+		//For some ungodly reason, some premium only items only have a custom_price
+		record.custom_premium_price = round(extra_price + (initial(potential_product.custom_price) * (SSeconomy.inflation_value() - 1)))
+
 /**
   * Refill a vending machine from a refill canister
   *
@@ -546,8 +573,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 						for(var/i in C.bodyparts)
 							var/obj/item/bodypart/squish_part = i
 							if(squish_part.is_organic_limb())
-								//var/type_wound = pick(WOUND_LIST_BONE)
-								var/type_wound = pick(list(/datum/wound/brute/bone/critical, /datum/wound/brute/bone/severe, /datum/wound/brute/bone/critical, /datum/wound/brute/bone/severe, /datum/wound/brute/bone/moderate))
+								var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
 								squish_part.force_wound_upwards(type_wound)
 							else
 								squish_part.receive_damage(brute=30)
@@ -587,9 +613,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/matrix/M = matrix()
 	M.Turn(pick(90, 270))
 	transform = M
+	forceStep(fatty)
 
 	if(get_turf(fatty) != get_turf(src))
-		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
+		throw_at(get_turf(fatty), get_dist(src, fatty), 1, spin=FALSE)
 
 /obj/machinery/vending/proc/untilt(mob/user)
 	user.visible_message("<span class='notice'>[user] rights [src].</span>", \
@@ -691,16 +718,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	return ..()
 
-/obj/machinery/vending/ui_base_html(html)
-	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/vending)
-	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
+/obj/machinery/vending/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/vending),
+	)
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/vending)
-		assets.send(user)
-		ui = new(user, src, ui_key, "Vending", ui_key, 450, 600, master_ui, state)
+		ui = new(user, src, "Vending")
 		ui.open()
 
 /obj/machinery/vending/ui_static_data(mob/user)
@@ -1078,7 +1104,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							SSblackbox.record_feedback("amount", "vending_spent", S.custom_price)
 							log_econ("[S.custom_price] credits were spent on [src] buying a [S] by [owner.account_holder], owned by [private_a.account_holder].")
 						vending_machine_input[N] = max(vending_machine_input[N] - 1, 0)
-						S.forceMove(drop_location())
+						S.forceMove(drop_location()[1])
 						loaded_items--
 						use_power(5)
 						if(last_shopper != usr || purchase_message_cooldown < world.time)

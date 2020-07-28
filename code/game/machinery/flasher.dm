@@ -164,7 +164,7 @@
 
 	if(istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M = AM
-		if (M.m_intent != MOVE_INTENT_WALK && anchored)
+		if (M.m_intent != (MOVE_INTENT_WALK || MOVE_INTENT_CRAWL) && anchored)
 			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/W, mob/user, params)
@@ -174,13 +174,13 @@
 		if (!anchored && !isinspace())
 			to_chat(user, "<span class='notice'>[src] is now secured.</span>")
 			add_overlay("[base_state]-s")
-			setAnchored(TRUE)
+			set_anchored(TRUE)
 			power_change()
 			proximity_monitor.SetRange(range)
 		else
 			to_chat(user, "<span class='notice'>[src] can now be moved.</span>")
 			cut_overlays()
-			setAnchored(FALSE)
+			set_anchored(FALSE)
 			power_change()
 			proximity_monitor.SetRange(0)
 

@@ -23,7 +23,7 @@
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			return
 
-		if((flags & CALTROP_IGNORE_WALKERS) && H.m_intent == MOVE_INTENT_WALK)
+		if((flags & CALTROP_IGNORE_WALKERS) && (H.m_intent == MOVE_INTENT_WALK || H.m_intent == MOVE_INTENT_CRAWL))
 			return
 
 		//move these next two down a level if you add more mobs to this.
@@ -51,7 +51,7 @@
 			damage *= 0.75
 
 
-		if(COOLDOWN_FINISHED(src, caltrop_cooldown))
+		if(!(flags & CALTROP_SILENT) && COOLDOWN_FINISHED(src, caltrop_cooldown))
 			COOLDOWN_START(src, caltrop_cooldown, 1 SECONDS) //cooldown to avoid message spam.
 			var/atom/A = parent
 			if(!H.incapacitated(ignore_restraints = TRUE))

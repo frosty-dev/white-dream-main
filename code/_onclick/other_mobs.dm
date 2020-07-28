@@ -40,7 +40,7 @@
 
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
 /atom/proc/_try_interact(mob/user)
-	if(IsAdminGhost(user))		//admin abuse
+	if(isAdminGhostAI(user))		//admin abuse
 		return interact(user)
 	if(can_interact(user))
 		return interact(user)
@@ -92,8 +92,8 @@
 		if(istype(G) && G.Touch(A,0)) // for magic gloves
 			return
 
-	if(isturf(A) && get_dist(src,A) <= 1)
-		src.Move_Pulled(A)
+	if(isturf(A) && bounds_dist(src, A) <= 32)
+		Move_Pulled(A, mouseparams)
 		return
 
 /*

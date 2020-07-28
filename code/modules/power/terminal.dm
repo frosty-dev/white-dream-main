@@ -62,7 +62,7 @@
 			do_sparks(5, TRUE, master)
 			return
 
-		new /obj/item/stack/cable_coil(drop_location(), 10)
+		new /obj/item/stack/cable_coil(drop_location()[1], 10)
 		to_chat(user, "<span class='notice'>Отрезаю кабели и разбираю терминал.</span>")
 		qdel(src)
 

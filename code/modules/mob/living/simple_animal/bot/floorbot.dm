@@ -88,7 +88,7 @@
 		dat += "None Loaded<BR>"
 
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "Add tiles to new hull plating: <A href='?src=[REF(src)];operation=autotile'>[autotile ? "Yes" : "No"]</A><BR>"
 		dat += "Place floor tiles: <A href='?src=[REF(src)];operation=place'>[placetiles ? "Yes" : "No"]</A><BR>"
 		dat += "Replace existing floor tiles with custom tiles: <A href='?src=[REF(src)];operation=replace'>[replacetiles ? "Yes" : "No"]</A><BR>"
@@ -148,7 +148,7 @@
 		if("autotile")
 			autotile = !autotile
 		if("anchor")
-			anchored = !anchored
+			set_anchored(!anchored)
 		if("eject")
 			if(specialtiles && tiletype != null)
 				empty_tiles()
@@ -169,7 +169,7 @@
 	update_controls()
 
 /mob/living/simple_animal/bot/floorbot/proc/empty_tiles()
-	new tiletype(drop_location(), specialtiles)
+	new tiletype(drop_location()[1], specialtiles)
 	specialtiles = 0
 	tiletype = null
 
@@ -229,20 +229,23 @@
 				shuffle = TRUE
 				if(prob(50))	//50% chance to still try to repair so we dont end up with 2 floorbots failing to fix the last breach
 					target = null
+					QDEL_LIST(path)
 					path = list()
 					return
 			if(isturf(target) && emagged < 2)
 				repair(target)
 			else if(emagged == 2 && isfloorturf(target))
 				var/turf/open/floor/F = target
-				anchored = TRUE
+				set_anchored(TRUE)
 				mode = BOT_REPAIRING
 				F.ReplaceWithLattice()
 				audible_message("<span class='danger'>[src] makes an excited booping sound.</span>")
 				addtimer(CALLBACK(src, .proc/go_idle), 0.5 SECONDS)
+			QDEL_LIST(path)
 			path = list()
 			return
 		if(path.len == 0)
+			QDEL_LIST(path)
 			if(!isturf(target))
 				var/turf/TL = get_turf(target)
 				path = get_path_to(src, TL, /turf/proc/Distance_cardinal, 0, 30, id=access_card,simulated_only = FALSE)
@@ -283,11 +286,11 @@
 		if(HULL_BREACH) //The most common job, patching breaches in the station's hull.
 			if(is_hull_breach(scan_target)) //Ensure that the targeted space turf is actually part of the station, and not random space.
 				result = scan_target
-				anchored = TRUE //Prevent the floorbot being blown off-course while trying to reach a hull breach.
+				set_anchored(TRUE) //Prevent the floorbot being blown off-course while trying to reach a hull breach.
 		if(LINE_SPACE_MODE) //Space turfs in our chosen direction are considered.
 			if(get_dir(src, scan_target) == targetdirection)
 				result = scan_target
-				anchored = TRUE
+				set_anchored(TRUE)
 		if(PLACE_TILE)
 			F = scan_target
 			if(isplatingturf(F)) //The floor must not already have a tile.
@@ -318,7 +321,7 @@
 	else if(!isfloorturf(target_turf))
 		return
 	if(isspaceturf(target_turf)) //If we are fixing an area not part of pure space, it is
-		anchored = TRUE
+		set_anchored(TRUE)
 		icon_state = "[toolbox_color]floorbot-c"
 		visible_message("<span class='notice'>[targetdirection ? "[src] begins installing a bridge plating." : "[src] begins to repair the hole."] </span>")
 		mode = BOT_REPAIRING
@@ -333,7 +336,7 @@
 		var/turf/open/floor/F = target_turf
 
 		if(F.type != initial(tiletype.turf_type) && (F.broken || F.burnt || isplatingturf(F)) || F.type == (initial(tiletype.turf_type) && (F.broken || F.burnt)))
-			anchored = TRUE
+			set_anchored(TRUE)
 			icon_state = "[toolbox_color]floorbot-c"
 			mode = BOT_REPAIRING
 			visible_message("<span class='notice'>[src] begins repairing the floor.</span>")
@@ -344,7 +347,7 @@
 				F.PlaceOnTop(/turf/open/floor/plasteel, flags = CHANGETURF_INHERIT_AIR)
 
 		if(replacetiles && F.type != initial(tiletype.turf_type) && specialtiles && !isplatingturf(F))
-			anchored = TRUE
+			set_anchored(TRUE)
 			icon_state = "[toolbox_color]floorbot-c"
 			mode = BOT_REPAIRING
 			visible_message("<span class='notice'>[src] begins replacing the floor tiles.</span>")
@@ -368,7 +371,7 @@
 /mob/living/simple_animal/bot/floorbot/explode()
 	on = FALSE
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 
 	drop_part(toolbox, Tsec)
 

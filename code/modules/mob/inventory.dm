@@ -155,7 +155,7 @@
 			return FALSE
 		if(get_item_for_held_index(hand_index) != null)
 			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
-		I.forceMove(src)
+		I.forceMove(src, step_x, step_y)
 		held_items[hand_index] = I
 		I.layer = ABOVE_HUD_LAYER
 		I.plane = ABOVE_HUD_PLANE
@@ -275,8 +275,7 @@
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
 	if(. && I) //ensure the item exists and that it was dropped properly.
-		I.pixel_x = rand(-6,6)
-		I.pixel_y = rand(-6,6)
+		I.forceStep(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
@@ -296,11 +295,16 @@
 	PROTECTED_PROC(TRUE)
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for TRAIT_NODROP.
 		return TRUE
-
 	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
 		return FALSE
-
+	var/_step_x = step_x
+	var/_step_y = step_y
 	var/hand_index = get_held_index_of_item(I)
+	if(islist(newloc)) // we're dropping it at a pixel offset
+		if(length(newloc) > 2)
+			_step_x = newloc[2]
+			_step_y = newloc[3]
+		newloc = newloc[1]
 	if(hand_index)
 		held_items[hand_index] = null
 		update_inv_hands()
@@ -314,7 +318,7 @@
 			if (isnull(newloc))
 				I.moveToNullspace()
 			else
-				I.forceMove(newloc)
+				I.forceMove(newloc, _step_x, _step_y)
 		I.dropped(src, silent)
 	return TRUE
 
@@ -493,7 +497,7 @@
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
 
-//GetAllContenst that is reasonable and not stupid
+//GetAllContents that is reasonable and not stupid
 /mob/living/carbon/proc/get_all_gear()
 	var/list/processing_list = get_equipped_items(include_pockets = TRUE) + held_items
 	listclearnulls(processing_list) // handles empty hands

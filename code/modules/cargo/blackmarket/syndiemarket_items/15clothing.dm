@@ -5,7 +5,7 @@
 /datum/blackmarket_item/sclothing/ancient_jumpsuit
 	name = "Ancient Jumpsuit"
 	desc = "Alt-клик on древний комбинезон чтобы носить как дебил."
-	item = /obj/item/clothing/under/color/grey/glorf
+	item = /obj/item/clothing/under/color/grey/ancient
 
 	price_min = 5000
 	price_max = 10000
@@ -46,7 +46,7 @@
 	stock_max = 1
 	availability_prob = 50
 
-datum/blackmarket_item/sclothing/elite
+/datum/blackmarket_item/sclothing/elite
 	name = "Elite Syndicate Hardsuit"
 	desc = "An upgraded, elite version of the Syndicate hardsuit. It features fireproofing, and also \
 			provides the user with superior armor and mobility compared to the standard Syndicate hardsuit."

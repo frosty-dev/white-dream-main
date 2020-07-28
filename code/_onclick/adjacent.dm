@@ -29,7 +29,8 @@
 	var/turf/T0 = get_turf(neighbor)
 
 	if(T0 == src) //same turf
-		return TRUE
+		if(!mover || nearest_turf(mover) == src) // only accounts for the nearest turf to the mover if we have a mover
+			return TRUE
 
 	if(get_dist(src, T0) > 1 || z != T0.z) //too far
 		return FALSE
@@ -71,8 +72,10 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return FALSE
-	if(T.Adjacent(neighbor,target = neighbor, mover = src))
-		return TRUE
+	for(var/i in locs)
+		var/turf/place = i
+		if(place.Adjacent(neighbor,target = neighbor, mover = src))
+			return TRUE
 	return FALSE
 
 // This is necessary for storage items not on your person.

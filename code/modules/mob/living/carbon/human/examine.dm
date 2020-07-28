@@ -207,8 +207,9 @@
 			else
 				msg += "<B>У н[t_ego] застрял [icon2html(I, user)] [I] в [BP.name]!</B>\n"
 
-		for(var/datum/wound/W in BP.wounds)
-			msg += "[W.get_examine_description(user)]\n"
+		for(var/i in BP.wounds)
+			var/datum/wound/iter_wound = i
+			msg += "[iter_wound.get_examine_description(user)]\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -307,20 +308,30 @@
 				bleeding_limbs += BP
 
 		var/num_bleeds = LAZYLEN(bleeding_limbs)
-		var/bleed_text = "<B>[t_on] имеет кровотечение из [ru_ego(FALSE)] "
+
+		var/list/bleed_text
+		if(appears_dead)
+			bleed_text = list("<span class='deadsay'><B>Кровь брызгает струйками из [ru_ego(FALSE)]")
+		else
+			bleed_text = list("<B>[t_on] имеет кровотечение из [ru_ego(FALSE)]")
+
 		switch(num_bleeds)
 			if(1 to 2)
-				bleed_text += " [bleeding_limbs[1].name][num_bleeds == 2 ? " и [bleeding_limbs[2].name]" : ""]"
+				bleed_text += " [ru_gde_zone(bleeding_limbs[1].name)][num_bleeds == 2 ? " и [ru_gde_zone(bleeding_limbs[2].name)]" : ""]"
 			if(3 to INFINITY)
 				for(var/i in 1 to (num_bleeds - 1))
 					var/obj/item/bodypart/BP = bleeding_limbs[i]
-					bleed_text += " [BP.name],"
-				bleed_text += " и [bleeding_limbs[num_bleeds].name]"
-		if(reagents.has_reagent(/datum/reagent/toxin/heparin, needs_metabolizing = TRUE))
-			bleed_text += " с брызгами"
+					bleed_text += " [ru_gde_zone(BP.name)],"
+				bleed_text += " и [ru_gde_zone(bleeding_limbs[num_bleeds].name)]"
 
-		bleed_text += "!</B>\n"
-		msg += bleed_text
+		if(appears_dead)
+			bleed_text += ", но похоже уже замедляется.</span></B>\n"
+		else
+			if(reagents.has_reagent(/datum/reagent/toxin/heparin, needs_metabolizing = TRUE))
+				bleed_text += " невероятно быстро"
+
+			bleed_text += "!</B>\n"
+		msg += bleed_text.Join()
 
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
 		msg += "[t_on] испускает нежное голубое свечение!\n"
@@ -397,7 +408,7 @@
 
 	switch(scar_severity)
 		if(1 to 2)
-			msg += "<span class='smallnotice'>[t_on] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
+			msg += "<span class='smallnoticeital'>[t_on] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
 		if(3 to 4)
 			msg += "<span class='notice'><i>[t_on] имеет несколько серьёзных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></span>\n"
 		if(5 to 6)

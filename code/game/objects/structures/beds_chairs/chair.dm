@@ -9,6 +9,10 @@
 	resistance_flags = NONE
 	max_integrity = 250
 	integrity_failure = 0.1
+	bound_x = 7
+	bound_width = 17
+	bound_height = 26
+	brotation = NONE // the bounds hardly change enough to warrant updating
 	custom_materials = list(/datum/material/iron = 2000)
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
@@ -212,12 +216,13 @@
 	buildstackamount = 5
 	item_chair = null
 	icon_state = "officechair_dark"
-
+	var/last_move_sound
 
 /obj/structure/chair/office/Moved()
 	. = ..()
-	if(has_gravity())
-		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
+	if(has_gravity() && world.time > last_move_sound + 0.5 SECONDS)
+		playsound(src, 'sound/effects/roll.ogg', 100, 1)
+		last_move_sound = world.time
 
 /obj/structure/chair/office/light
 	icon_state = "officechair_white"

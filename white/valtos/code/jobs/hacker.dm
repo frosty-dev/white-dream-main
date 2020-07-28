@@ -1,9 +1,7 @@
 /datum/job/hacker
 	title = "Hacker"
-	flag = SCIENTIST
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -23,12 +21,16 @@
 /datum/atom_hud/hacker
 	hud_icons = list(HACKER_HUD)
 
+/*
 /mob/living/Initialize()
 	. = ..()
+	if(!src)
+		return
 	var/datum/atom_hud/hacker/hhud = GLOB.huds[DATA_HUD_HACKER]
 	hhud.add_to_hud(src)
 	hud_list[HACKER_HUD].icon = image('white/valtos/icons/dz-031.dmi', src)
 	hud_list[HACKER_HUD].icon_state = "node"
+*/
 
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()

@@ -4,6 +4,7 @@
 	name = "5.56mm пуля"
 	damage = 35
 	armour_penetration = 30
+	wound_bonus = -40
 
 /obj/projectile/bullet/a556/phasic
 	name = "5.56mm фазовая пуля"
@@ -17,6 +18,8 @@
 /obj/projectile/bullet/a762
 	name = "7.62 пуля"
 	damage = 60
+	wound_bonus = -35
+	wound_falloff_tile = 0
 
 /obj/projectile/bullet/a762_enchanted
 	name = "продвинутая 7.62 пуля"

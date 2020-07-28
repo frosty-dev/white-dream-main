@@ -17,6 +17,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
 	movement_type = GROUND | FLYING
+	step_size = 16
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -280,9 +281,13 @@ Works together with spawning an observer, noted above.
 			ghost.key = key
 			if(!can_reenter_corpse)	// Disassociates observer mind from the body mind
 				ghost.mind = null
-			else
-				ghost.mind.current?.med_hud_set_status()
 			return ghost
+
+/mob/living/ghostize(can_reenter_corpse = TRUE)
+	. = ..()
+	if(. && can_reenter_corpse)
+		var/mob/dead/observer/ghost = .
+		ghost.mind.current?.med_hud_set_status()
 
 /*
 This is the proc mobs get to turn into a ghost. Forked from ghostize due to compatibility issues.
@@ -314,25 +319,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	ghostize(FALSE)
 
-/mob/dead/observer/Move(NewLoc, direct)
+/mob/dead/observer/Move(atom/newloc, direct, _step_x, _step_y)
 	if(updatedir)
-		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
-	var/oldloc = loc
-	if(NewLoc)
-		forceMove(NewLoc)
+		setDir(direct)
+	if(newloc)
+		forceMove(newloc, _step_x, _step_y)
 		update_parallax_contents()
 	else
-		forceMove(get_turf(src))  //Get out of closets and such as a ghost
-		if((direct & NORTH) && y < world.maxy)
-			y++
-		else if((direct & SOUTH) && y > 1)
-			y--
-		if((direct & EAST) && x < world.maxx)
-			x++
-		else if((direct & WEST) && x > 1)
-			x--
-
-	Moved(oldloc, direct)
+		forceMove(get_turf(src))
+		return
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Призрак"
@@ -460,7 +455,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else //Circular
 			rot_seg = 36 //360/10 bby, smooth enough aproximation of a circle
 
-	orbit(target,orbitsize, FALSE, 20, rot_seg)
+	orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 /mob/dead/observer/orbit()
 	setDir(2)//reset dir so the right directional sprites show up
@@ -793,7 +788,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	update_icon()
 
 /mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
-	return IsAdminGhost(usr)
+	return isAdminGhostAI(usr)
 
 /mob/dead/observer/is_literate()
 	return TRUE
@@ -801,13 +796,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()
 	switch(var_name)
-		if("icon")
+		if(NAMEOF(src, icon))
 			ghostimage_default.icon = icon
 			ghostimage_simple.icon = icon
-		if("icon_state")
+		if(NAMEOF(src, icon_state))
 			ghostimage_default.icon_state = icon_state
 			ghostimage_simple.icon_state = icon_state
-		if("fun_verbs")
+		if(NAMEOF(src, fun_verbs))
 			if(fun_verbs)
 				verbs += /mob/dead/observer/verb/boo
 				verbs += /mob/dead/observer/verb/possess
@@ -886,6 +881,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/datum/mafia_controller/game = GLOB.mafia_game //this needs to change if you want multiple mafia games up at once.
 	if(!game)
 		game = create_mafia_game("mafia")
+	var/total_slots = game.custom_setup.len ? assoc_value_sum(game.custom_setup) : 12
 	if(GLOB.mafia_signup[client.ckey])
 		GLOB.mafia_signup -= ckey
 		to_chat(usr, "<span class='notice'>Отписываюсь от Мафии.</span>")
@@ -893,9 +889,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		GLOB.mafia_signup[ckey] = client
 		to_chat(usr, "<span class='notice'>Записываюсь на Мафию.</span>")
-	to_chat(usr, "<span class='bold notice'>Готово [GLOB.mafia_signup.len]/12 игроков для начала.</span>")
+	to_chat(usr, "<span class='bold notice'>Готово [GLOB.mafia_signup.len]/[total_slots] игроков.</span>")
 	if(game.phase != MAFIA_PHASE_SETUP)
-		to_chat(usr, "<span class='notice'>Мафия уже в процессе. Тебе предложат поиграть в следующей игре.</span>")
+		to_chat(usr, "<span class='notice'>Мафия уже в процессе. Тебе предложат поиграть в следующей игре.</b></span>")
 	else
 		game.try_autostart()
 
@@ -909,7 +905,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		. += "It seems extremely obvious."
 
 /mob/dead/observer/examine_more(mob/user)
-	if(!IsAdminGhost(user, TRUE))
+	if(!isAdminObserver(user))
 		return ..()
 	. = list("<span class='notice'><i>Изучаю <b>[src.name]</b> ближе и замечаю следующее...</i></span>")
 	. += list("\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>")
@@ -927,7 +923,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()
-	if(var_name == "invisibility")
+	if(var_name == NAMEOF(src, invisibility))
 		set_invisibility(invisibility) // updates light
 
 /proc/set_observer_default_invisibility(amount, message=null)

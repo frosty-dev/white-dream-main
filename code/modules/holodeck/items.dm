@@ -127,7 +127,7 @@
 /obj/structure/holohoop/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if (isitem(AM) && !istype(AM,/obj/projectile))
 		if(prob(50))
-			AM.forceMove(get_turf(src))
+			AM.forceMove(get_turf(src), -8)
 			visible_message("<span class='warning'>Swish! [AM] lands in [src].</span>")
 			return
 		else
@@ -217,7 +217,7 @@
 /obj/machinery/conveyor/holodeck
 
 /obj/machinery/conveyor/holodeck/attackby(obj/item/I, mob/user, params)
-	if(!user.transferItemToLoc(I, drop_location()))
+	if(!user.transferItemToLoc(I, src))
 		return ..()
 
 /obj/item/paper/fluff/holodeck/trek_diploma

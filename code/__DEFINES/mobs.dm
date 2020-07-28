@@ -16,6 +16,7 @@
 //movement intent defines for the m_intent var
 #define MOVE_INTENT_WALK "walk"
 #define MOVE_INTENT_RUN  "run"
+#define MOVE_INTENT_CRAWL "crawl"
 
 //Blood levels
 #define BLOOD_VOLUME_MAX_LETHAL		2150
@@ -226,6 +227,9 @@
 #define AI_IDLE		2
 #define AI_OFF		3
 #define AI_Z_OFF	4
+
+//The range at which a mob should wake up if you spawn into the z level near it
+#define MAX_SIMPLEMOB_WAKEUP_RANGE 5
 
 //determines if a mob can smash through it
 #define ENVIRONMENT_SMASH_NONE			0

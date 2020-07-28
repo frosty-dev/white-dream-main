@@ -16,8 +16,8 @@
 /obj/effect/decal/cleanable/ash/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/ash, 30)
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	if(loc)
+		forceMove(loc, rand(-5, 5), rand(-5, 5))
 
 /obj/effect/decal/cleanable/ash/crematorium
 //crematoriums need their own ash cause default ash deletes itself if created in an obj
@@ -65,11 +65,11 @@
 		smooth = SMOOTH_MORE
 		icon = 'icons/effects/dirt.dmi'
 		icon_state = ""
-		queue_smooth(src)
-	queue_smooth_neighbors(src)
+		QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/effect/decal/cleanable/dirt/Destroy()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/effect/decal/cleanable/dirt/dust
@@ -178,8 +178,8 @@
 		qdel(src)
 
 /obj/effect/decal/cleanable/shreds/Initialize(mapload, oldname)
-	pixel_x = rand(-10, 10)
-	pixel_y = rand(-10, 10)
+	if(loc)
+		forceMove(loc, rand(-10, 10), rand(-10, 10))
 	if(!isnull(oldname))
 		desc = "The sad remains of what used to be [oldname]"
 	. = ..()

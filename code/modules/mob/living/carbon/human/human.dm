@@ -1027,16 +1027,16 @@
 		if(do_after(src, carrydelay, TRUE, target))
 			//Second check to make sure they're still valid to be carried
 			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE) && !target.buckled)
-				if(target.loc != loc)
+				if(!(target in obounds()))
 					var/old_density = density
 					density = FALSE
-					step_towards(target, loc)
+					step_towards(target, loc, bounds_dist(target, src))
 					density = old_density
-					if(target.loc == loc)
-						buckle_mob(target, TRUE, TRUE, 90, 1, 0)
-						return
+					buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+					return
 				else
 					buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+					return
 		visible_message("<span class='warning'><b>[src]</b> не может поднять <b>[target]</b>!</span>")
 	else
 		to_chat(src, "<span class='warning'>Не могу поднять <b>[target]</b> пока [target.ru_who()] стоит!</span>")
@@ -1096,6 +1096,44 @@
 			if(C.clothing_flags & BLOCKS_SHOVE_KNOCKDOWN)
 				return TRUE
 	return FALSE
+
+/mob/living/carbon/human/Bump(atom/A)
+	. = ..()
+	if(shoved && shover)
+		walk(src, 0)
+		var/obj/structure/table/target_table = istype(A, /obj/structure/table) ? A : null
+		var/obj/machinery/disposal/bin/target_disposal_bin = istype(A, /obj/machinery/disposal/bin) ? A : null
+		var/mob/living/carbon/human/target_collateral_human = istype(A, /mob/living/carbon/human) ? A : null
+		if(!is_shove_knockdown_blocked() && !buckled)
+			if((!target_table && !target_collateral_human && !target_disposal_bin))
+				Knockdown(SHOVE_KNOCKDOWN_SOLID)
+				visible_message("<span class='danger'><b>[shover.name]</b> толкает <b>[name]</b>, повалив на пол!</span>",
+					"<span class='danger'>Меня толкает <b>[shover.name]</b>, повалив на пол!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, shover)
+				to_chat(shover, "<span class='danger'>Толкаю <b>[name]</b>, повалив на пол!</span>")
+				log_combat(shover, src, "shoved", "knocking them down")
+			else if(target_table)
+				Knockdown(SHOVE_KNOCKDOWN_TABLE)
+				visible_message("<span class='danger'><b>[shover.name]</b> заталкивает <b>[name]</b> на [target_table]!</span>",
+					"<span class='danger'>Меня заталкивает <b>[shover.name]</b> на [target_table]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, shover)
+				to_chat(shover, "<span class='danger'>Заталкиваю <b>[name]</b> на [target_table]!</span>")
+				throw_at(target_table, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
+				log_combat(shover, src, "shoved", "onto [target_table] (table)")
+			else if(target_collateral_human)
+				Knockdown(SHOVE_KNOCKDOWN_HUMAN)
+				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_COLLATERAL)
+				visible_message("<span class='danger'><b>[shover.name]</b> толкает <b>[name]</b> в [target_collateral_human.name]!</span>",
+					"<span class='danger'>Меня толкает <b>[shover.name]</b> в [target_collateral_human.name]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, shover)
+				to_chat(shover, "<span class='danger'>Толкаю <b>[name]</b> в [target_collateral_human.name]!</span>")
+				log_combat(shover, src, "shoved", "into [target_collateral_human.name]")
+			else if(target_disposal_bin)
+				Knockdown(SHOVE_KNOCKDOWN_SOLID)
+				forceMove(target_disposal_bin)
+				visible_message("<span class='danger'><b>[shover.name]</b> толкает <b>[name]</b> в [target_disposal_bin]!</span>",
+					"<span class='danger'>Меня толкает <b>[shover.name]</b> в [target_disposal_bin]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, shover)
+				to_chat(shover, "<span class='danger'>Толкаю <b>[name]</b> прямо в [target_disposal_bin]!</span>")
+				log_combat(shover, src, "shoved", "into [target_disposal_bin] (disposal bin)")
+		shoved = FALSE
+		shover = null
 
 /mob/living/carbon/human/proc/clear_shove_slowdown()
 	remove_movespeed_modifier(/datum/movespeed_modifier/shove)

@@ -222,6 +222,13 @@
 			var/skill_modifier = C?.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
 			kinetic_gun.attempt_reload(kinetic_gun.overheat_time * skill_modifier) //If you hit a mineral, you might get a quicker reload. epic gamer style.
 	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
+	var/_step_x = 0
+	var/_step_y = 0
+	if(ismovable(target))
+		var/atom/movable/AM = target
+		_step_x = AM.step_x
+		_step_y = AM.step_y
+	K.forceStep(null, _step_x, _step_y)
 	K.color = color
 
 
@@ -234,6 +241,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	require_module = 1
 	module_type = list(/obj/item/robot_module/miner)
+	module_flags = BORG_MODULE_MINER
 	var/denied_type = null
 	var/maximum_of_type = 1
 	var/cost = 30

@@ -67,8 +67,6 @@
 		return
 	if(isliving(user))
 		var/mob/living/M = user
-		if(world.time - M.last_bumped <= 60)
-			return //NOTE do we really need that?
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -130,7 +128,7 @@
 	else
 		return ..()
 
-/obj/structure/mineral_door/setAnchored(anchorvalue) //called in default_unfasten_wrench() chain
+/obj/structure/mineral_door/set_anchored(anchorvalue) //called in default_unfasten_wrench() chain
 	. = ..()
 	set_opacity(anchored ? !door_opened : FALSE)
 	air_update_turf(TRUE)
@@ -311,7 +309,7 @@
 
 /obj/structure/mineral_door/paperframe/Initialize()
 	. = ..()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
@@ -346,5 +344,5 @@
 	return
 
 /obj/structure/mineral_door/paperframe/Destroy()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()

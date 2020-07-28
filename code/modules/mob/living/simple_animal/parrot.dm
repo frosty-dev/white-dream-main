@@ -72,7 +72,7 @@
 	var/parrot_sleep_dur = 25 //Same as above, this is the var that physically counts down
 	var/parrot_dam_zone = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG) //For humans, select a bodypart to attack
 
-	var/parrot_speed = 5 //"Delay in world ticks between movement." according to byond. Yeah, that's BS but it does directly affect movement. Higher number = slower.
+	var/parrot_speed = 0.5 //"Delay in world ticks between movement." according to byond. Yeah, that's BS but it does directly affect movement. Higher number = slower.
 	var/parrot_lastmove = null //Updates/Stores position of the parrot while it's moving
 	var/parrot_stuck = 0	//If parrot_lastmove hasn't changed, this will increment until it reaches parrot_stuck_threshold
 	var/parrot_stuck_threshold = 10 //if this == parrot_stuck, it'll force the parrot back to wandering
@@ -147,7 +147,7 @@
 		stat("Held Item", held_item)
 		stat("Mode",a_intent)
 
-/mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
+/mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker != src && prob(50)) //Dont imitate ourselves
 		if(!radio_freq || prob(10))
@@ -157,25 +157,22 @@
 	if(speaker == src && !client) //If a parrot squawks in the woods and no one is around to hear it, does it make a sound? This code says yes!
 		return message
 
-/mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
+/mob/living/simple_animal/parrot/radio(message, list/message_mods = list(), list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
 		return .
 
-	switch(message_mode)
-		if(MODE_HEADSET)
-			if (ears)
-				ears.talk_into(src, message, , spans, language)
-			return ITALICS | REDUCE_RANGE
-
-		if(MODE_DEPARTMENT)
-			if (ears)
-				ears.talk_into(src, message, message_mode, spans, language)
-			return ITALICS | REDUCE_RANGE
-
-	if(message_mode in GLOB.radiochannels)
+	if(message_mods[MODE_HEADSET])
 		if(ears)
-			ears.talk_into(src, message, message_mode, spans, language)
+			ears.talk_into(src, message, , spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT)
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		return ITALICS | REDUCE_RANGE
+	else if(message_mods[RADIO_EXTENSION] in GLOB.radiochannels)
+		if(ears)
+			ears.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	return 0
@@ -632,9 +629,11 @@
 					item = I
 					break
 		if(item)
-			if(!AStar(src, get_turf(item), /turf/proc/Distance_cardinal))
+			var/list/path = AStar(src, get_turf(item), /turf/proc/Distance_cardinal)
+			if(!path)
 				item = null
 				continue
+			QDEL_LIST(path)
 			return item
 
 	return null

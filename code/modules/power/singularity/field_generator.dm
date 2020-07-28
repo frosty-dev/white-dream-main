@@ -61,7 +61,7 @@ field_generator power level display
 
 /obj/machinery/field/generator/anchored/Initialize()
 	. = ..()
-	setAnchored(TRUE)
+	set_anchored(TRUE)
 
 /obj/machinery/field/generator/ComponentInitialize()
 	. = ..()
@@ -88,8 +88,10 @@ field_generator power level display
 	else
 		to_chat(user, "<span class='warning'><b>[src]</b> должен быть надёждно закреплён на полу!</span>")
 
-/obj/machinery/field/generator/setAnchored(anchorvalue)
+/obj/machinery/field/generator/set_anchored(anchorvalue)
 	. = ..()
+	if(isnull(.))
+		return
 	if(active)
 		turn_off()
 	state = anchorvalue ? FG_SECURED : FG_UNSECURED
@@ -147,8 +149,8 @@ field_generator power level display
 
 /obj/machinery/field/generator/attack_animal(mob/living/simple_animal/M)
 	if(M.environment_smash & ENVIRONMENT_SMASH_RWALLS && active == FG_OFFLINE && state != FG_UNSECURED)
-		setAnchored(FALSE)
-		M.visible_message("<span class='warning'><b>[M]</b> вырывает <b>[src]</b> с места!</span>")
+		set_anchored(FALSE)
+		M.visible_message("<span class='warning'><b>[M.name]</b> вырывает <b>[src.name]</b> с места!</span>")
 	else
 		..()
 	if(!anchored)

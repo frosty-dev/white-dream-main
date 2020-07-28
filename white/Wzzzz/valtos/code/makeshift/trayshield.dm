@@ -67,7 +67,7 @@
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
 	siemens_coefficient = 0 //Means it's insulated
 	embedding = list("embed_chance" = 10)
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/shard/shank/attack_self(mob/user)
 	playsound(user, 'white/valtos/sounds/ducttape2.ogg', 50, 1)

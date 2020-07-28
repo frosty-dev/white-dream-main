@@ -10,7 +10,7 @@
 
 	for(var/atom/A in spiral_range(rss, where))
 		var/matrix/M = A.transform
-		A.transform = M.Scale(rand(1, 2), rand(1, 2))
+		//A.transform = M.Scale(rand(1, 2), rand(1, 2))
 		A.transform = M.Translate(rand(-2, 2), rand(-2, 2))
 		A.transform = M.Turn(rand(0, 90))
 		A.color = "#[random_short_color()]"

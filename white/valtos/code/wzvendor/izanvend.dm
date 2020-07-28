@@ -50,8 +50,6 @@
 
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
-	ui_x = 480
-	ui_y = 550
 
 /obj/machinery/izanvend/Initialize()
 	. = ..()
@@ -61,7 +59,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "Izanvend", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Izanvend", name, master_ui, state)
 		ui.open()
 
 /obj/machinery/izanvend/ui_static_data()

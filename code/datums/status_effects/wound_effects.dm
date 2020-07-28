@@ -1,8 +1,8 @@
 
 // The shattered remnants of your broken limbs fill you with determination!
 /obj/screen/alert/status_effect/determined
-	name = "Determined"
-	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	name = "Решительность"
+	desc = "Серьезные раны, которые я получил, привели моё тело в режим «сражайся или беги»! Сейчас самое время искать выход!"
 	icon_state = "regenerative_core"
 
 /datum/status_effect/determined
@@ -11,10 +11,10 @@
 
 /datum/status_effect/determined/on_apply()
 	. = ..()
-	owner.visible_message("<span class='danger'>[owner] grits [owner.p_their()] teeth in pain!</span>", "<span class='notice'><b>Your senses sharpen as your body tenses up from the wounds you've sustained!</b></span>", vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message("<span class='danger'>[owner] стискивает [owner.ru_ego()] зубы от боли!</span>", "<span class='notice'><b>Прилив адреналина даёт мне на мгновение забыть про раны!</b></span>", vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message("<span class='danger'>[owner]'s body slackens noticeably!</span>", "<span class='warning'><b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b></span>", vision_distance=COMBAT_MESSAGE_RANGE)
+	owner.visible_message("<span class='danger'>[owner] заметно ослабевает!</span>", "<span class='warning'><b>Раны начинают болеть с огромной силой...</b></span>", vision_distance=COMBAT_MESSAGE_RANGE)
 	return ..()
 
 /datum/status_effect/limp
@@ -49,8 +49,8 @@
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_GAIN_WOUND, COMSIG_CARBON_LOSE_WOUND, COMSIG_CARBON_ATTACH_LIMB, COMSIG_CARBON_REMOVE_LIMB))
 
 /obj/screen/alert/status_effect/limp
-	name = "Limping"
-	desc = "One or more of your legs has been wounded, slowing down steps with that leg! Get it fixed, or at least splinted!"
+	name = "Хромота"
+	desc = "Одна или несколько моих ног были ранены, замедляя меня! Стоит вылечить или хотя бы перевязать!"
 
 /datum/status_effect/limp/proc/check_step(mob/whocares, OldLoc, Dir, forced)
 	if(!owner.client || !(owner.mobility_flags & MOBILITY_STAND) || !owner.has_gravity() || (owner.movement_type & FLYING) || forced)
@@ -99,8 +99,8 @@
 
 // wound alert
 /obj/screen/alert/status_effect/wound
-	name = "Wounded"
-	desc = "Your body has sustained serious damage, click here to inspect yourself."
+	name = "Раны"
+	desc = "Моё тело пережило серьёзный урон. Стоит осмотреть себя."
 
 /obj/screen/alert/status_effect/wound/Click()
 	var/mob/living/carbon/C = usr
@@ -116,8 +116,7 @@
 
 /datum/status_effect/wound/on_creation(mob/living/new_owner, incoming_wound)
 	. = ..()
-	var/datum/wound/W = incoming_wound
-	linked_wound = W
+	linked_wound = incoming_wound
 	linked_limb = linked_wound.limb
 
 /datum/status_effect/wound/on_remove()
@@ -138,18 +137,18 @@
 
 
 // bones
-/datum/status_effect/wound/bone
+/datum/status_effect/wound/blunt
 
-/datum/status_effect/wound/bone/interact_speed_modifier()
+/datum/status_effect/wound/blunt/interact_speed_modifier()
 	var/mob/living/carbon/C = owner
 
 	if(C.get_active_hand() == linked_limb)
-		to_chat(C, "<span class='warning'>The [lowertext(linked_wound)] in your [linked_limb.name] slows your progress!</span>")
+		to_chat(C, "<span class='warning'>[capitalize(linked_wound)] в моей [ru_gde_zone(linked_limb.name)] замедляет скорость моей работы!</span>")
 		return linked_wound.interaction_efficiency_penalty
 
 	return 1
 
-/datum/status_effect/wound/bone/nextmove_modifier()
+/datum/status_effect/wound/blunt/nextmove_modifier()
 	var/mob/living/carbon/C = owner
 
 	if(C.get_active_hand() == linked_limb)
@@ -157,30 +156,31 @@
 
 	return 1
 
-/datum/status_effect/wound/bone/moderate
+// blunt
+/datum/status_effect/wound/blunt/moderate
 	id = "disjoint"
-/datum/status_effect/wound/bone/severe
+/datum/status_effect/wound/blunt/severe
 	id = "hairline"
-
-/datum/status_effect/wound/bone/critical
+/datum/status_effect/wound/blunt/critical
 	id = "compound"
-
-// cuts
-/datum/status_effect/wound/cut/moderate
+// slash
+/datum/status_effect/wound/slash/moderate
 	id = "abrasion"
-
-/datum/status_effect/wound/cut/severe
+/datum/status_effect/wound/slash/severe
 	id = "laceration"
-
-/datum/status_effect/wound/cut/critical
+/datum/status_effect/wound/slash/critical
 	id = "avulsion"
-
+// pierce
+/datum/status_effect/wound/pierce/moderate
+	id = "breakage"
+/datum/status_effect/wound/pierce/severe
+	id = "puncture"
+/datum/status_effect/wound/pierce/critical
+	id = "rupture"
 // burns
 /datum/status_effect/wound/burn/moderate
 	id = "seconddeg"
-
 /datum/status_effect/wound/burn/severe
 	id = "thirddeg"
-
 /datum/status_effect/wound/burn/critical
 	id = "fourthdeg"

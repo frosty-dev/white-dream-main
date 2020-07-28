@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 		user.visible_message("<span class='notice'><b>[user]</b> начинает срезать шерсть с <b>[src]</b>.</span>", "<span class='notice'>Начинаю срезать шерсть с <b>[src]</b>...</span>", "<span class='hear'>Слыш как нож режет плоть.</span>")
 		if(do_after(user, 50, target = src))
 			to_chat(user, "<span class='notice'>Срезаю шерсть с <b>[src.singular_name]</b>.</span>")
-			new /obj/item/stack/sheet/hairlesshide(user.drop_location(), 1)
+			new /obj/item/stack/sheet/hairlesshide(user.drop_location()[1], 1)
 			use(1)
 	else
 		return ..()
@@ -247,11 +247,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	if(exposed_temperature >= drying_threshold_temperature)
 		wetness--
 		if(wetness == 0)
-			new /obj/item/stack/sheet/leather(drop_location(), 1)
+			new /obj/item/stack/sheet/leather(drop_location()[1], 1)
 			wetness = initial(wetness)
 			use(1)
 
 /obj/item/stack/sheet/wethide/microwave_act(obj/machinery/microwave/MW)
 	..()
-	new /obj/item/stack/sheet/leather(drop_location(), amount)
+	new /obj/item/stack/sheet/leather(drop_location()[1], amount)
 	qdel(src)

@@ -46,10 +46,10 @@
 /mob/living/carbon/human/species/loly
 	race = /datum/species/loly
 
-	Life()
-		listclearnulls(hand_bodyparts)
-		..()
-		listclearnulls(hand_bodyparts)
+/mob/living/carbon/human/species/loly/Life()
+	listclearnulls(hand_bodyparts)
+	..()
+	listclearnulls(hand_bodyparts)
 
 /proc/pisk()
 	set name = "squeak"
@@ -67,27 +67,25 @@
 
 	var/list/hand_mutaparts = list(/obj/item/bodypart/l_arm/loly, /obj/item/bodypart/r_arm/loly)
 
-	on_species_gain(mob/living/carbon/human/C, datum/species/old_species, replace_current = TRUE)
-		..()
+/mob/living/carbon/human/species/loly/proc/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, replace_current = TRUE)
+	for(var/obj/item/bodypart/i in C.bodyparts)
+		QDEL_NULL(i)
 
-		for(var/obj/item/bodypart/i in C.bodyparts)
-			QDEL_NULL(i)
+	//C.bodyparts = mutant_bodyparts
+	//C.hand_bodyparts = hand_mutaparts
 
-		C.bodyparts = mutant_bodyparts
-		//C.hand_bodyparts = hand_mutaparts
+	C.icon = 'human_3.dmi'//'loly.dmi'
+	C.icon_state = "loly1"
+	C.real_name = "Loly"
+	C.name = "Loly"
+	C.icon_render_key = null
+	C.underwear = "Nude"
+	C.undershirt = "Nude"
+	C.socks = "Nude"
+	C.verbs += /proc/pisk
 
-		C.icon = 'human_3.dmi'//'loly.dmi'
-		C.icon_state = "loly1"
-		C.real_name = "Loly"
-		C.name = "Loly"
-		C.icon_render_key = null
-		C.underwear = "Nude"
-		C.undershirt = "Nude"
-		C.socks = "Nude"
-		C.verbs += /proc/pisk
+	C.create_bodyparts()
+	C.create_internal_organs()
+	C.update_body()
 
-		C.create_bodyparts()
-		C.create_internal_organs()
-		C.update_body()
-
-		//listclearnulls(hand_bodyparts)
+	//listclearnulls(hand_bodyparts)

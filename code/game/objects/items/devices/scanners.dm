@@ -186,8 +186,20 @@ GENE SCANNER
 		render_list += "<span class='alert ml-1'>Пациент имеет [M.getCloneLoss() > 30 ? "серьёзный" : "небольшой"] клеточный урон.</span>\n"
 		if(advanced)
 			render_list += "<span class='info ml-1'>Уровень клеточного урона: [M.getCloneLoss()].</span>\n"
-	if (!M.getorgan(/obj/item/organ/brain))
+	if (!M.getorganslot(ORGAN_SLOT_BRAIN)) // brain not added to carbon/human check because it's funny to get to bully simple mobs
 		render_list += "<span class='alert ml-1'>У пациента отсутствует мозг.</span>\n"
+	if(ishuman(M))
+		var/mob/living/carbon/human/the_dude = M
+		var/datum/species/the_dudes_species = the_dude.dna.species
+		if (!(NOBLOOD in the_dudes_species.species_traits) && !the_dude.getorganslot(ORGAN_SLOT_HEART))
+			render_list += "<span class='alert ml-1'>Нет сердца.</span>\n"
+		if (!(TRAIT_NOBREATH in the_dudes_species.species_traits) && !the_dude.getorganslot(ORGAN_SLOT_LUNGS))
+			render_list += "<span class='alert ml-1'>Нет лёгких.</span>\n"
+		if (!(TRAIT_NOMETABOLISM in the_dudes_species.species_traits) && !the_dude.getorganslot(ORGAN_SLOT_LIVER))
+			render_list += "<span class='alert ml-1'>Нет печени.</span>\n"
+		if (!(NOSTOMACH in the_dudes_species.species_traits) && !the_dude.getorganslot(ORGAN_SLOT_STOMACH))
+			render_list += "<span class='alert ml-1'>Нет желудка.</span>\n"
+
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(LAZYLEN(C.get_traumas()))

@@ -171,6 +171,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/clear_dynamic_transit,
 	/client/proc/toggle_medal_disable,
 	/client/proc/view_runtimes,
+	/datum/admins/proc/view_boundingbox,
 	/client/proc/pump_random_event,
 	/client/proc/cmd_display_init_log,
 	/client/proc/cmd_display_overlay_log,
@@ -777,7 +778,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Allows you to interact with most machines as an AI would as a ghost"
 
 	AI_Interact = !AI_Interact
-	if(mob && IsAdminGhost(mob))
+	if(mob && isAdminGhostAI(mob))
 		mob.has_unlimited_silicon_privilege = AI_Interact
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")

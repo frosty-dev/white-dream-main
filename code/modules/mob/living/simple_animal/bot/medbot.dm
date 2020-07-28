@@ -130,6 +130,7 @@
 	update_icon()
 
 /mob/living/simple_animal/bot/medbot/proc/soft_reset() //Allows the medibot to still actively perform its medical duties without being completely halted as a hard reset does.
+	QDEL_LIST(path)
 	path = list()
 	patient = null
 	mode = BOT_IDLE
@@ -153,7 +154,7 @@
 	dat += "Status: <A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<BR>"
 	dat += "<br>Behaviour controls are [locked ? "locked" : "unlocked"]<hr>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "<TT>Healing Threshold: "
 		dat += "<a href='?src=[REF(src)];adj_threshold=-10'>--</a> "
 		dat += "<a href='?src=[REF(src)];adj_threshold=-5'>-</a> "
@@ -189,6 +190,7 @@
 
 	else if(href_list["stationary"])
 		stationary_mode = !stationary_mode
+		QDEL_LIST(path)
 		path = list()
 		update_icon()
 
@@ -203,7 +205,7 @@
 		if(tech_boosters)
 			heal_amount = (round(tech_boosters/2,0.1)*initial(heal_amount))+initial(heal_amount) //every 2 tend wounds tech gives you an extra 100% healing, adjusting for unique branches (combo is bonus)
 			if(oldheal_amount < heal_amount)
-				speak("Surgical Knowledge Found! Efficiency is increased by [round(heal_amount/oldheal_amount*100)]%!")
+				speak("New knowledge found! Surgical efficacy improved to [round(heal_amount/initial(heal_amount)*100)]%!")
 	update_controls()
 	return
 
@@ -264,9 +266,8 @@
 		else
 			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
 	else
-		visible_message("<span class='notice'>[src] manages to writhe wiggle enough to right itself.</span>")
+		visible_message("<span class='notice'>[src] manages to wriggle enough to right itself.</span>")
 		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
-
 	tipper_name = null
 	if(world.time > last_tipping_action_voice + 15 SECONDS)
 		last_tipping_action_voice = world.time
@@ -369,6 +370,7 @@
 
 	//Patient has moved away from us!
 	else if(patient && path.len && (get_dist(patient,path[path.len]) > 2))
+		QDEL_LIST(path)
 		path = list()
 		mode = BOT_IDLE
 		last_found = world.time
@@ -378,6 +380,7 @@
 		return
 
 	if(patient && path.len == 0 && (get_dist(src,patient) > 1))
+		QDEL_LIST(path)
 		path = get_path_to(src, get_turf(patient), /turf/proc/Distance_cardinal, 0, 30,id=access_card)
 		mode = BOT_MOVING
 		if(!path.len) //try to get closer if you can't reach the patient directly
@@ -539,7 +542,8 @@
 
 		if(!treatment_method && emagged != 2) //If they don't need any of that they're probably cured!
 			if(C.maxHealth - C.get_organic_health() < heal_threshold)
-				to_chat(src, "<span class='notice'>[C] is healthy! Your programming prevents you from injecting anyone without at least [heal_threshold] damage of any one type ([heal_threshold + 5] for oxygen damage.)</span>")
+				to_chat(src, "<span class='notice'>[C] is healthy! Your programming prevents you from tending the wounds of anyone without at least [heal_threshold] damage of any one type ([heal_threshold + 5] for oxygen damage.)</span>")
+
 			var/list/messagevoice = list("All patched up!" = 'sound/voice/medbot/patchedup.ogg',"An apple a day keeps me away." = 'sound/voice/medbot/apple.ogg',"Feel better soon!" = 'sound/voice/medbot/feelbetter.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
@@ -582,7 +586,7 @@
 /mob/living/simple_animal/bot/medbot/explode()
 	on = FALSE
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 
 	drop_part(firstaid, Tsec)
 	new /obj/item/assembly/prox_sensor(Tsec)

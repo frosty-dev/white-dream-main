@@ -1,10 +1,10 @@
 import { map } from 'common/collections';
 import { Fragment } from 'inferno';
-import { act } from '../byond';
+import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, LabeledList, Section, Tabs } from '../components';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
-export const Izanvend = props => {
+export const Izanvend = (props, context) => {
   const { state } = props;
   const { config, data } = state;
   const { ref } = config;
@@ -32,9 +32,10 @@ export const Izanvend = props => {
   );
 };
 
-const Catalog = props => {
+const Catalog = (props, context) => {
+  const { act, data } = useBackend(context);
   const { state, products } = props;
-  const { config, data } = state;
+  const { config } = state;
   const { ref } = config;
   const renderTab = key => {
     const supply = products[key];
@@ -51,7 +52,7 @@ const Catalog = props => {
             <td className="LabeledList__cell LabeledList__buttons">
               <Button fluid
                 content="Получить"
-                onClick={() => act(ref, 'vend', {
+                onClick={() => act('vend', {
                   product_path: pack.product_path,
                 })} />
             </td>

@@ -91,8 +91,9 @@
 			L.reset_pull_offsets(M, TRUE)
 
 	if(!check_loc && M.loc != loc)
-		M.forceMove(loc)
+		M.forceMove(loc, step_x, step_y)
 
+	M.forceStep(null, step_x, step_y)
 	M.buckling = null
 	M.buckled = src
 	M.setDir(dir)
@@ -115,7 +116,7 @@
 	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle() || force))
 		. = buckled_mob
 		buckled_mob.buckled = null
-		buckled_mob.anchored = initial(buckled_mob.anchored)
+		buckled_mob.set_anchored(initial(buckled_mob.anchored))
 		buckled_mob.update_mobility()
 		buckled_mob.clear_alert("buckled")
 		buckled_mobs -= buckled_mob

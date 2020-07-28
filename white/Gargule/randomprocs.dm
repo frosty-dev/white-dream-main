@@ -33,7 +33,7 @@
 	qdel(src)
 
 
-mob/living/carbon/human/species/lizard/Initialize()
+/mob/living/carbon/human/species/lizard/Initialize()
 	..()
 	if(src.dna.features["tail_lizard"] == "Alien")
 		src.dna.features["tail_lizard"] = "Smooth"
@@ -94,7 +94,7 @@ mob/living/carbon/human/species/lizard/Initialize()
 		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return 1
 
-mob/living/carbon/alien/humanoid/royal/queen/tamed/default_can_use_topic(src_object)//tgui sasat
+/mob/living/carbon/alien/humanoid/royal/queen/tamed/default_can_use_topic(src_object)//tgui sasat
 	. = shared_ui_interaction(src_object)
 	if(. > UI_CLOSE)
 		. = min(., shared_living_ui_distance(src_object)) // Check the distance...

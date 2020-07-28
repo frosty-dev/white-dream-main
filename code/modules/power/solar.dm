@@ -59,7 +59,7 @@
 	if(!S)
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/sheet/glass
-		S.anchored = TRUE
+		S.set_anchored(TRUE)
 	else
 		S.forceMove(src)
 	if(S.glass_type == /obj/item/stack/sheet/rglass) //if the panel is in reinforced glass
@@ -221,7 +221,7 @@
 
 // Give back the glass type we were supplied with
 /obj/item/solar_assembly/proc/give_glass(device_broken)
-	var/atom/Tsec = drop_location()
+	var/atom/Tsec = drop_location()[1]
 	if(device_broken)
 		new /obj/item/shard(Tsec)
 		new /obj/item/shard(Tsec)
@@ -229,23 +229,21 @@
 		new glass_type(Tsec, 2)
 	glass_type = null
 
+/obj/item/solar_assembly/set_anchored(anchorvalue)
+	. = ..()
+	if(isnull(.))
+		return
+	randomise_offset(anchored ? 0 : random_offset)
 
 /obj/item/solar_assembly/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && isturf(loc))
 		if(isinspace())
 			to_chat(user, "<span class='warning'>Вы не можете прикрутить [src] тут.</span>")
 			return
-		anchored = !anchored
-		if(anchored)
-			user.visible_message("<span class='notice'>[user] прикручивает основание солнечной панели к полу.</span>", "<span class='notice'>Вы прикручиваете основание солнечной панели к полу.</span>")
-			W.play_tool_sound(src, 75)
-			pixel_x = 0
-			pixel_y = 0
-		else
-			user.visible_message("<span class='notice'>[user] откручивает основание солнечной панели от пола.</span>", "<span class='notice'>Вы откручиваете основание солнечной панели от пола.</span>")
-			W.play_tool_sound(src, 75)
-			randomise_offset(random_offset)
-		return 1
+		set_anchored(!anchored)
+		user.visible_message("<span class='notice'>[user] [anchored ? "при" : "от"]кручивает основание солнечной панели.</span>", "<span class='notice'>[anchored ? "При" : "от"]кручиваю основание солнечной панели.</span>")
+		W.play_tool_sound(src, 75)
+		return TRUE
 
 	if(istype(W, /obj/item/stack/sheet/glass) || istype(W, /obj/item/stack/sheet/rglass))
 		if(!anchored)
@@ -263,22 +261,22 @@
 		else
 			to_chat(user, "<span class='warning'>Вы должны иметь два листа стекла прежде чем вставлять их в основание!</span>")
 			return
-		return 1
+		return TRUE
 
 	if(!tracker)
 		if(istype(W, /obj/item/electronics/tracker))
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
-			tracker = 1
+			tracker = TRUE
 			qdel(W)
-			user.visible_message("<span class='notice'>[user] вставляет электронику в основание солнечной панели.</span>", "<span class='notice'>Вы вставляете электронику в основание солнечной панели.</span>")
-			return 1
+			user.visible_message("<span class='notice'>[user] вставляет электронику в основание солнечной панели.</span>", "<span class='notice'>Вставляю электронику в основание солнечной панели.</span>")
+			return TRUE
 	else
 		if(W.tool_behaviour == TOOL_CROWBAR)
 			new /obj/item/electronics/tracker(src.loc)
-			tracker = 0
-			user.visible_message("<span class='notice'>[user] вынимает электронику из основания солнечной панели.</span>", "<span class='notice'>Вы вынимаете электронику из основания солнечной панели.</span>")
-			return 1
+			tracker = FALSE
+			user.visible_message("<span class='notice'>[user] вынимает электронику из основания солнечной панели.</span>", "<span class='notice'>Вынимаю электронику из основания солнечной панели.</span>")
+			return TRUE
 	return ..()
 
 //
@@ -348,11 +346,10 @@
 	else
 		. += mutable_appearance(icon, icon_screen)
 
-/obj/machinery/power/solar_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/solar_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SolarControl", name, 380, 230, master_ui, state)
+		ui = new(user, src, "SolarControl", name)
 		ui.open()
 
 /obj/machinery/power/solar_control/ui_data()
@@ -415,7 +412,7 @@
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
-				A.anchored = TRUE
+				A.set_anchored(TRUE)
 				qdel(src)
 			else
 				to_chat(user, "<span class='notice'>Вы отсоединяете монитор.</span>")
@@ -426,7 +423,7 @@
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"
-				A.anchored = TRUE
+				A.set_anchored(TRUE)
 				qdel(src)
 	else if(user.a_intent != INTENT_HARM && !(I.item_flags & NOBLUDGEON))
 		attack_hand(user)

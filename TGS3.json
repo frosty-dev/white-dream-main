@@ -13,7 +13,7 @@
       "html/changelogs/*"
     ],
     "static_directories": [
-      "config",
+      "cfg",
       "data"
     ],
     "dlls": [

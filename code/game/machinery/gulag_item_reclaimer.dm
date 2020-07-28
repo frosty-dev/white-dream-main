@@ -8,8 +8,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 100
 	active_power_usage = 2500
-	ui_x = 325
-	ui_y = 400
+
 	var/list/stored_items = list()
 	var/obj/machinery/gulag_teleporter/linked_teleporter = null
 
@@ -27,11 +26,10 @@
 	req_access = list()
 	obj_flags |= EMAGGED
 
-/obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/gulag_item_reclaimer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "GulagItemReclaimer", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "GulagItemReclaimer", name)
 		ui.open()
 
 /obj/machinery/gulag_item_reclaimer/ui_data(mob/user)
@@ -80,7 +78,7 @@
 /obj/machinery/gulag_item_reclaimer/proc/drop_items(mob/user)
 	if(!stored_items[user])
 		return
-	var/drop_location = drop_location()
+	var/list/drop_location = drop_location()
 	for(var/i in stored_items[user])
 		var/obj/item/W = i
 		stored_items[user] -= W

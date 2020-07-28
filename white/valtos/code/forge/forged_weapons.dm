@@ -65,7 +65,7 @@
 	weapon_type = MELEE_TYPE_DAGGER
 	stabby = TRANSFER_SHARP
 	w_class = WEIGHT_CLASS_SMALL
-	sharpness = IS_SHARP_ACCURATE
+	sharpness = SHARP_POINTY
 	attack_verb = list("тычет", "протыкает", "втыкает", "нанизывает", "гопстопает", "пробивает")
 
 
@@ -80,7 +80,7 @@
 	weapon_type = MELEE_TYPE_SWORD
 	stabby = TRANSFER_SHARPER
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("рубит", "режет", "втыкает", "нарезает", "нарезает", "пробивает")
 
 
@@ -95,7 +95,6 @@
 	weapon_type = MELEE_TYPE_MACE
 	stabby = TRANSFER_PARTIALLY_BLUNT
 	w_class = WEIGHT_CLASS_BULKY
-	sharpness = IS_BLUNT
 	attack_verb = list("бьёт", "ударяет")
 	armour_penetration = 5
 
@@ -140,7 +139,7 @@
 	weapon_type = MELEE_TYPE_GREATSWORD
 	stabby = TRANSFER_SHARPEST
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("нанизывает", "пробивает", "втыкает", "рубит", "кромсает", "протыкает")
 
 
@@ -161,7 +160,6 @@
 	weapon_type = MELEE_TYPE_WARHAMMER
 	stabby = TRANSFER_BLUNT
 	w_class = WEIGHT_CLASS_HUGE
-	sharpness = IS_BLUNT
 	attack_verb = list("уничтожает", "молотит", "ударяет", "долбит", "разбивает")
 	armour_penetration = 10
 

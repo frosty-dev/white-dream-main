@@ -57,7 +57,7 @@
 	name = "зубы таяры"
 	singular_name = "зуб таяры"
 	desc = "Трофейный."
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	icon_state = "teeth_cat"
 
 /obj/item/stack/teeth/cat/Initialize()
@@ -68,7 +68,7 @@
 	name = "зубы ящера"
 	singular_name = "зуб ящера"
 	desc = "Достаточно острый."
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	icon_state = "teeth_cat"
 
 /obj/item/stack/teeth/lizard/Initialize()
@@ -80,7 +80,7 @@
 	singular_name = "зуб ксеноса"
 	desc = "Единственный способ получить это - захватить ксеноморфа и хирургически удалить их зубы."
 	throwforce = 4
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	icon_state = "teeth_xeno"
 	max_amount = 48
 

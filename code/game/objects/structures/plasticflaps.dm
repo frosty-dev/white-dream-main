@@ -32,7 +32,7 @@
 	var/uraction = anchored ? "unscrew [src] from " : "screw [src] to"
 	user.visible_message("<span class='warning'>[user] [action] the floor.</span>", "<span class='notice'>You start to [uraction] the floor...</span>", "<span class='hear'>You hear rustling noises.</span>")
 	if(W.use_tool(src, user, 100, volume=100, extra_checks = CALLBACK(src, .proc/check_anchored_state, anchored)))
-		setAnchored(!anchored)
+		set_anchored(!anchored)
 		to_chat(user, "<span class='notice'>You [anchored ? "unscrew" : "screw"] [src] from the floor.</span>")
 		return TRUE
 	else
@@ -78,11 +78,6 @@
 	var/obj/structure/bed/B = A
 	if(istype(A, /obj/structure/bed) && (B.has_buckled_mobs() || B.density))//if it's a bed/chair and is dense or someone is buckled, it will not pass
 		return FALSE
-
-	if(istype(A, /obj/structure/closet/cardboard))
-		var/obj/structure/closet/cardboard/C = A
-		if(C.move_delay)
-			return FALSE
 
 	if(ismecha(A))
 		return FALSE

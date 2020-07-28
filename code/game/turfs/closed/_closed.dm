@@ -72,6 +72,7 @@
 	maptext_width = 608
 	maptext_x = 4
 	maptext_y = 8
+	pixel_y = -8
 
 /turf/closed/indestructible/splashscreen/proc/do_cring()
 	filters += filter(type = "displace", icon = 'white/valtos/icons/cfas.png', size = 0)
@@ -86,7 +87,7 @@
 	. = ..()
 	if(.)
 		switch(var_name)
-			if("icon")
+			if(NAMEOF(src, icon))
 				SStitle.icon = icon
 
 /turf/closed/indestructible/riveted

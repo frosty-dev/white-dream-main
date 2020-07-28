@@ -87,14 +87,14 @@
 				var/obj/item/forged/F = I
 				F.armour_penetration += 10
 				F.stabby += TRANSFER_SHARP_BONUS
-				if(F.sharpness == IS_SHARP)
-					F.sharpness = IS_SHARP_ACCURATE
+				if(F.sharpness == SHARP_EDGED)
+					F.sharpness = SHARP_POINTY
 			if(FORGED_MELEE_TWOHANDED)
 				var/obj/item/forged/F = I
 				F.armour_penetration += 10
 				F.stabby += TRANSFER_SHARP_BONUS
-				if(F.sharpness == IS_SHARP)
-					F.sharpness = IS_SHARP_ACCURATE
+				if(F.sharpness == SHARP_EDGED)
+					F.sharpness = SHARP_POINTY
 			if(FORGED_BULLET_CASING)
 				var/obj/projectile/bullet/forged/F = I
 				F.dismemberment += 20

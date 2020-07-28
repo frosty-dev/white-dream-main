@@ -14,7 +14,7 @@
 	armour_penetration = 0
 	attack_verb = list("ударяет", "рубит", "протыкает", "режет")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	custom_materials = list(/datum/material/iron=5000)
 	max_integrity = 200
 	var/wielded = TRUE
@@ -46,7 +46,7 @@
 	armour_penetration = 10
 	attack_verb = list("ударяет", "приносит справедливость", "рубит", "протыкает")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	custom_materials = list(/datum/material/iron=5000)
 	max_integrity = 200
 	var/charged = TRUE

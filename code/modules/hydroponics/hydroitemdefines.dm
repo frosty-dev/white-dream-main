@@ -6,7 +6,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	inhand_icon_state = "analyzer"
-	worn_icon_state = "analyzer"
+	worn_icon_state = "plantanalyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -42,6 +42,7 @@
 	name = "weed spray"
 	icon_state = "weedspray"
 	inhand_icon_state = "spraycan"
+	worn_icon_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
@@ -57,6 +58,7 @@
 	name = "pest spray"
 	icon_state = "pestspray"
 	inhand_icon_state = "plantbgone"
+	worn_icon_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
@@ -125,7 +127,7 @@
 	custom_materials = list(/datum/material/iron = 15000)
 	attack_verb = list("рубит", "кромсает", "режет")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 
 /obj/item/hatchet/Initialize()
 	. = ..()
@@ -238,8 +240,8 @@
 
 /obj/item/reagent_containers/glass/bottle/nutrient/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
+	if(loc)
+		forceMove(loc, rand(-5, 5), rand(-5, 5))
 
 
 /obj/item/reagent_containers/glass/bottle/nutrient/ez

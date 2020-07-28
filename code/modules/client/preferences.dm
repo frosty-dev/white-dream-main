@@ -28,15 +28,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = TRUE
-	var/chat_on_map = FALSE
+
+	///Runechat preference. If true, certain messages will be displayed on the map, not ust on the chat area. Boolean.
+	var/chat_on_map = TRUE
+	///Limit preference on the size of the message. Requires chat_on_map to have effect.
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
-	var/see_chat_non_mob = FALSE
+	///Whether non-mob messages will be displayed, such as machine vendor announcements. Requires chat_on_map to have effect. Boolean.
+	var/see_chat_non_mob = TRUE
+	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
+	var/see_rc_emotes = TRUE
 
 	// Custom Keybindings
 	var/list/key_bindings = list()
 
 	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
+	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/w_toggles = W_TOGGLES_DEFAULT
@@ -323,7 +329,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "</table></td><td width='400px' valign='top'><h3 class='statusDisplay'>Подробности</h3><table width='400px' class='block'>"
 
-			if(CAN_SCAR in pref_species.species_traits)
+			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
 				dat += "<tr><td><b>Получение шрамов:</b></td><td align='right'><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Включено" : "Отключено"]</A>"
 				dat += "<a href='?_src_=prefs;preference=clear_scars'>Очистить шрамы</A></td></tr>"
 
@@ -1674,6 +1680,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					chat_on_map = !chat_on_map
 				if("see_chat_non_mob")
 					see_chat_non_mob = !see_chat_non_mob
+				if("see_rc_emotes")
+					see_rc_emotes = !see_rc_emotes
 
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -1994,15 +2002,3 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 		else
 			custom_names[name_id] = sanitized_name
-
-//Used in savefile update 32, can be removed once that is no longer relevant.
-/datum/preferences/proc/force_reset_keybindings()
-	var/choice = tgalert(parent.mob, "Your basic keybindings need to be reset, emotes will remain as before. Would you prefer 'hotkey' or 'classic' mode?", "Reset keybindings", "Hotkey", "Classic")
-	hotkeys = (choice != "Classic")
-	var/list/oldkeys = key_bindings
-	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-
-	for(var/key in oldkeys)
-		if(!key_bindings[key])
-			key_bindings[key] = oldkeys[key]
-	parent.update_movement_keys()

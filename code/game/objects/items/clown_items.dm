@@ -20,6 +20,10 @@
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON
+	bound_height = 1
+	bound_width = 21
+	bound_x = 6
+	bound_y = 22
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -206,24 +210,24 @@
 	desc = "Golden? Clearly, it's made with bananium! Honk!"
 	icon_state = "gold_horn"
 	inhand_icon_state = "gold_horn"
-	var/flip_cooldown = 0
+	COOLDOWN_DECLARE(golden_horn_cooldown)
 
 /obj/item/bikehorn/golden/attack()
-	if(flip_cooldown < world.time)
-		flip_mobs()
+	flip_mobs()
 	return ..()
 
 /obj/item/bikehorn/golden/attack_self(mob/user)
-	if(flip_cooldown < world.time)
-		flip_mobs()
+	flip_mobs()
 	..()
 
 /obj/item/bikehorn/golden/proc/flip_mobs(mob/living/carbon/M, mob/user)
+	if(!COOLDOWN_FINISHED(src, golden_horn_cooldown))
+		return
 	var/turf/T = get_turf(src)
 	for(M in ohearers(7, T))
 		if(M.can_hear())
 			M.emote("flip")
-	flip_cooldown = world.time + 7
+	COOLDOWN_START(src, golden_horn_cooldown, 1 SECONDS)
 
 //canned laughter
 /obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter

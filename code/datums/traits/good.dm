@@ -59,7 +59,7 @@
 	lose_text = "<span class='danger'>Я чувствую себя изолированными ото всех.</span>"
 	medical_record_text = "Пациент очень восприимчив и чувствителен к социальным сигналам, или возможно имеет экстрасенсорные способности. Необходима дальнейшая проверка."
 
-datum/quirk/fan_clown
+/datum/quirk/fan_clown
 	name = "Clown Fan"
 	desc = "You enjoy clown antics and get a mood boost from wearing your clown pin."
 	value = 1
@@ -79,7 +79,7 @@ datum/quirk/fan_clown
 	var/datum/atom_hud/fan = GLOB.huds[DATA_HUD_FAN]
 	fan.add_hud_to(H)
 
-datum/quirk/fan_mime
+/datum/quirk/fan_mime
 	name = "Mime Fan"
 	desc = "You enjoy mime antics and get a mood boost from wearing your mime pin."
 	value = 1

@@ -14,7 +14,10 @@ export const Trader = (props, context) => {
   const cart = data.cart || [];
   const requests = data.requests || [];
   return (
-    <Window resizable>
+    <Window
+      width={780}
+      height={750}
+      resizable>
       <Window.Content scrollable>
         <Status />
         <Tabs>

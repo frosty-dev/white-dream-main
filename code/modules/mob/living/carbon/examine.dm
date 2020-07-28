@@ -42,7 +42,8 @@
 				msg += "<B>Из [t_ego] [BP.name] торчит [icon2html(I, user)] [I]!</B>\n"
 			else
 				msg += "<B>У н[t_ego] застрял [icon2html(I, user)] [I] в [BP.name]!</B>\n"
-		for(var/datum/wound/W in BP.wounds)
+		for(var/i in BP.wounds)
+			var/datum/wound/W = i
 			msg += "[W.get_examine_description(user)]\n"
 
 	for(var/X in disabled)
@@ -56,9 +57,9 @@
 
 	for(var/t in missing)
 		if(t==BODY_ZONE_HEAD)
-			msg += "<span class='deadsay'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
+			msg += "<span class='deadsay'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>\n"
 			continue
-		msg += "<span class='warning'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>"
+		msg += "<span class='warning'><B>[ru_ego(TRUE)] [parse_zone(t)] отсутствует!</B></span>\n"
 
 	var/temp = getBruteLoss()
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
@@ -107,7 +108,7 @@
 
 	switch(scar_severity)
 		if(1 to 2)
-			msg += "<span class='smallnotice'>[t_on] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
+			msg += "<span class='smallnoticeital'>[t_on] похоже имеет шрамы... Стоит присмотреться, чтобы разглядеть ещё.</span>\n"
 		if(3 to 4)
 			msg += "<span class='notice'><i>[t_on] имеет несколько серьёзных шрамов... Стоит присмотреться, чтобы разглядеть ещё.</i></span>\n"
 		if(5 to 6)

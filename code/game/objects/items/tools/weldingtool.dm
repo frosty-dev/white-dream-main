@@ -36,6 +36,8 @@
 	tool_behaviour = TOOL_WELDER
 	toolspeed = 1
 	gender = FEMALE
+	wound_bonus = 10
+	bare_wound_bonus = 15
 
 /obj/item/weldingtool/Initialize()
 	. = ..()

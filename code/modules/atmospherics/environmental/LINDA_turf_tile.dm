@@ -243,7 +243,7 @@
 			var/throw_speed = clamp(round(move_force / 2000), 1, 10)
 			throw_at(throw_turf, move_force / 2000, throw_speed)
 		else
-			step(src, direction)
+			walk_for(src, direction, 0, 8, until=0.25 SECONDS)
 		last_high_pressure_movement_air_cycle = SSair.times_fired
 
 ////////////////////////SUPERCONDUCTIVITY/////////////////////////////

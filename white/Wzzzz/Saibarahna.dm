@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 30
 	armour_penetration = 25
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 
@@ -34,7 +34,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 30
 	armour_penetration = 20
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 
@@ -54,7 +54,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 45
 	armour_penetration = 15
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 
@@ -74,7 +74,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
 	armour_penetration = 20
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 
@@ -94,7 +94,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 65
 	armour_penetration = 35
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 

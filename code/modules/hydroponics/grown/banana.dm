@@ -29,6 +29,12 @@
 	juice_results = list(/datum/reagent/consumable/banana = 0)
 	distill_reagent = /datum/reagent/consumable/ethanol/bananahonk
 
+/obj/item/reagent_containers/food/snacks/grown/banana/generate_trash(atom/location)
+	. = ..()
+	var/obj/item/grown/bananapeel/peel = .
+	if(istype(peel))
+		peel.grind_results = list(/datum/reagent/consumable/banana_peel = seed.potency * 0.2)
+
 /obj/item/reagent_containers/food/snacks/grown/banana/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is aiming [src] at [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	playsound(loc, 'sound/items/bikehorn.ogg', 50, TRUE, -1)
@@ -55,6 +61,11 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
+	bound_x = 9
+	bound_width = 14
+	bound_height = 10
+	bound_y = 12
+	brotation = NONE
 
 /obj/item/grown/bananapeel/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is deliberately slipping on [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")

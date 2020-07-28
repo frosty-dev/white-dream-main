@@ -17,7 +17,7 @@
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("размазывает", "уничтожает", "разрубает", "рубит", "ударяет")
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
 	var/list/trophies = list()
@@ -105,7 +105,6 @@
 			var/obj/item/crusher_trophy/T = t
 			T.on_projectile_fire(D, user)
 		D.preparePixelProjectile(target, user, clickparams)
-		D.firer = user
 		D.hammer_synced = src
 		playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
 		D.fire()

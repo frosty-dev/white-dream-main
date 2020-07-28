@@ -299,64 +299,36 @@
 	for(var/obj/item/I in held_items)
 		qdel(I)
 
-/mob/living/carbon/human/proc/smart_equipbag() // take most recent item out of bag or place held item in bag
-	if(incapacitated())
-		return
-	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_back = get_item_by_slot(ITEM_SLOT_BACK)
-	if(!equipped_back) // We also let you equip a backpack like this
-		if(!thing)
-			to_chat(src, "<span class='warning'>Сумки то нет, что снимать блять?!</span>")
-			return
-		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BACK))
-			update_inv_hands()
-		return
-	if(!SEND_SIGNAL(equipped_back, COMSIG_CONTAINS_STORAGE)) // not a storage item
-		if(!thing)
-			equipped_back.attack_hand(src)
-		else
-			to_chat(src, "<span class='warning'>Не помещается!</span>")
-		return
-	if(thing) // put thing in backpack
-		if(!SEND_SIGNAL(equipped_back, COMSIG_TRY_STORAGE_INSERT, thing, src))
-			to_chat(src, "<span class='warning'>Не помещается!</span>")
-		return
-	if(!equipped_back.contents.len) // nothing to take out
-		to_chat(src, "<span class='warning'>Сумка пуста!</span>")
-		return
-	var/obj/item/stored = equipped_back.contents[equipped_back.contents.len]
-	if(!stored || stored.on_found(src))
-		return
-	stored.attack_hand(src) // take out thing from backpack
-	return
+/// take the most recent item out of a slot or place held item in a slot
 
-/mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt
+/mob/living/carbon/human/proc/smart_equip_targeted(slot_type = ITEM_SLOT_BELT, slot_item_name = "belt")
 	if(incapacitated())
 		return
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_belt = get_item_by_slot(ITEM_SLOT_BELT)
-	if(!equipped_belt) // We also let you equip a belt like this
+	var/obj/item/equipped_item = get_item_by_slot(slot_type)
+	if(!equipped_item) // We also let you equip an item like this
 		if(!thing)
 			to_chat(src, "<span class='warning'>Пояса то нет!</span>")
 			return
-		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BELT))
+		if(equip_to_slot_if_possible(thing, slot_type))
 			update_inv_hands()
 		return
-	if(!SEND_SIGNAL(equipped_belt, COMSIG_CONTAINS_STORAGE)) // not a storage item
+	if(!SEND_SIGNAL(equipped_item, COMSIG_CONTAINS_STORAGE)) // not a storage item
 		if(!thing)
-			equipped_belt.attack_hand(src)
+			equipped_item.attack_hand(src)
 		else
 			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
-	if(thing) // put thing in belt
-		if(!SEND_SIGNAL(equipped_belt, COMSIG_TRY_STORAGE_INSERT, thing, src))
+	if(thing) // put thing in storage item
+		if(!SEND_SIGNAL(equipped_item, COMSIG_TRY_STORAGE_INSERT, thing, src))
 			to_chat(src, "<span class='warning'>Не помещается!</span>")
 		return
-	if(!equipped_belt.contents.len) // nothing to take out
-		to_chat(src, "<span class='warning'>Пояс пуст!</span>")
+	if(!equipped_item.contents.len) // nothing to take out
+		to_chat(src, "<span class='warning'>Пусто!</span>")
 		return
-	var/obj/item/stored = equipped_belt.contents[equipped_belt.contents.len]
+	var/obj/item/stored = equipped_item.contents[equipped_item.contents.len]
 	if(!stored || stored.on_found(src))
 		return
-	stored.attack_hand(src) // take out thing from belt
+	stored.attack_hand(src) // take out thing from item in storage slot
 	return
+

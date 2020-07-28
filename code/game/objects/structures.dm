@@ -19,15 +19,15 @@
 		armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	. = ..()
 	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 		icon_state = ""
 	GLOB.cameranet.updateVisibility(src)
 
 /obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
 	if(smooth)
-		queue_smooth_neighbors(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/structure/attack_hand(mob/user)
@@ -68,13 +68,15 @@
 
 /obj/structure/proc/do_climb(atom/movable/A)
 	if(climbable)
-		if(A.loc == src.loc)
+		if(loc in A.locs)
 			var/where_to_climb = get_step(A,dir)
 			if(!(is_blocked_turf(where_to_climb)))
-				A.forceMove(where_to_climb)
+				A.forceMove(where_to_climb, step_x, step_y)
 				return TRUE
+		passtable_on(A, src)
 		density = FALSE
-		. = step(A,get_dir(A,src.loc))
+		. = step(A , GET_PIXELDIR(A,loc), (bounds_dist(A, src)) + 16)
+		passtable_off(A, src)
 		density = TRUE
 
 /obj/structure/proc/climb_structure(mob/living/user)
@@ -115,7 +117,6 @@
 
 /obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-
 	if(mover.pass_flags & PASSSTRUCTURE)
 		return TRUE
 

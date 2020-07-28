@@ -60,7 +60,7 @@
 			lastattackerckey = L.ckey
 
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness=P.sharpness)
+		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness = P.sharpness)
 		apply_effects(P.stun, P.knockdown, P.unconscious, P.irradiate, P.slur, P.stutter, P.eyeblur, P.drowsy, armor, P.stamina, P.jitter, P.paralyze, P.immobilize)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
@@ -89,14 +89,15 @@
 
 		dtype = I.damtype
 		if(!blocked)
-			visible_message("<span class='danger'>В <b>[src]</b> попадает <b>[I.name]</b>!</span>", \
-							"<span class='userdanger'>В <b>меня</b> попадает [I.name]!</span>")
-			if(!I.throwforce)
-				return
-			var/armor = run_armor_check(zone, "melee", "Моя броня отражает попадание в [ru_parse_zone(parse_zone(zone))].", "Моя броня смягчает попадание в [ru_parse_zone(parse_zone(zone))].",I.armour_penetration)
-			apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.sharpness)
 			if(I.thrownby)
 				log_combat(I.thrownby, src, "threw and hit", I)
+			if(!nosell_hit)
+				visible_message("<span class='danger'>В <b>[src]</b> попадает <b>[I.name]</b>!</span>", \
+								"<span class='userdanger'>В <b>меня</b> попадает [I.name]!</span>")
+				if(!I.throwforce)
+					return
+				var/armor = run_armor_check(zone, "melee", "Моя броня отражает попадание в [ru_parse_zone(parse_zone(zone))].", "Моя броня смягчает попадание в [ru_parse_zone(parse_zone(zone))].",I.armour_penetration)
+				apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness(), wound_bonus=(nosell_hit * CANT_WOUND))
 
 		else
 			return 1
@@ -210,7 +211,7 @@
 				to_chat(user, "<span class='danger'>Хватаю [src] за шею!</span>")
 				update_mobility() //we fall down
 				if(!buckled && !density)
-					Move(user.loc)
+					Move(user.loc, NONE, user.step_x, user.step_y)
 			if(GRAB_KILL)
 				log_combat(user, src, "strangled", addition="kill grab")
 				visible_message("<span class='danger'><b>[user]</b> душит <b>[src]</b>!</span>", \
@@ -218,7 +219,7 @@
 				to_chat(user, "<span class='danger'>Душу [src]!</span>")
 				update_mobility() //we fall down
 				if(!buckled && !density)
-					Move(user.loc)
+					Move(user.loc, NONE, user.step_x, user.step_y)
 		user.set_pull_offsets(src, grab_state)
 		return 1
 

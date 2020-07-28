@@ -286,11 +286,6 @@
 	connector.connected_device = src
 	activate_pin(2)
 
-// Required for making the connector port script work
-obj/item/integrated_circuit/atmospherics/connector/proc/portableConnectorReturnAir()
-	return air_contents
-
-
 // - gas filter - // **works**
 /obj/item/integrated_circuit/atmospherics/pump/filter
 	name = "gas filter"

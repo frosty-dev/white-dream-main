@@ -18,7 +18,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "song_usage_info", "Usage info", 500, 150, master_ui, state)
-		ui.push_data(data)
+		//ui.push_data(data)
 		ui.open()
 
 /datum/usage_info/proc/track_usage()

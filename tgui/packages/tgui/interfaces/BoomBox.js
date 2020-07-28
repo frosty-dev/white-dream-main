@@ -6,7 +6,10 @@ import { Window } from '../layouts';
 export const BoomBox = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={370}
+      height={343}
+      resizable>
       <Window.Content>
         <Section
           title="Проигрыватель"

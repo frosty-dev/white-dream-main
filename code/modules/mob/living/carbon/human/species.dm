@@ -1415,10 +1415,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, "<span class='danger'>Укладываю [target] полежать!</span>")
 			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration
 			target.apply_effect(knockdown_duration, EFFECT_KNOCKDOWN, armor_block)
-			target.forcesay(GLOB.hit_appends)
 			log_combat(user, target, "got a stun punch with their previous punch")
-		else if(!(target.mobility_flags & MOBILITY_STAND))
-			target.forcesay(GLOB.hit_appends)
 
 /datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return
@@ -1435,8 +1432,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(user.loc == target.loc)
-		return FALSE
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
@@ -1445,24 +1440,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.w_uniform.add_fingerprint(user)
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
 
-		var/turf/target_oldturf = target.loc
-		var/shove_dir = get_dir(user.loc, target_oldturf)
-		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
-		var/mob/living/carbon/human/target_collateral_human
-		var/obj/structure/table/target_table
-		var/obj/machinery/disposal/bin/target_disposal_bin
-		var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
-
-		//Thank you based whoneedsspace
-		target_collateral_human = locate(/mob/living/carbon/human) in target_shove_turf.contents
-		if(target_collateral_human)
-			shove_blocked = TRUE
-		else
-			target.Move(target_shove_turf, shove_dir)
-			if(get_turf(target) == target_oldturf)
-				target_table = locate(/obj/structure/table) in target_shove_turf.contents
-				target_disposal_bin = locate(/obj/machinery/disposal/bin) in target_shove_turf.contents
-				shove_blocked = TRUE
+		var/shove_dir = GET_PIXELDIR(user, target)
+		walk_for(target, shove_dir, 0, 8, until=0.2 SECONDS) // 16px per 0.1 seconds
+		target.shoved = TRUE
+		target.shover = user
+		addtimer(VARSET_CALLBACK(target, shoved, FALSE), 0.2 SECONDS)
+		addtimer(VARSET_CALLBACK(target, shover, null), 0.2 SECONDS)
 
 		if(target.IsKnockdown() && !target.IsParalyzed())
 			target.Paralyze(SHOVE_CHAIN_PARALYZE)
@@ -1471,47 +1454,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, "<span class='danger'>Укладываю <b>[target.name]</b> на лопатки!</span>")
 			addtimer(CALLBACK(target, /mob/living/proc/SetKnockdown, 0), SHOVE_CHAIN_PARALYZE)
 			log_combat(user, target, "kicks", "onto their side (paralyzing)")
-
-		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
-			var/directional_blocked = FALSE
-			if(shove_dir in GLOB.cardinals) //Directional checks to make sure that we're not shoving through a windoor or something like that
-				var/target_turf = get_turf(target)
-				for(var/obj/O in target_turf)
-					if(O.flags_1 & ON_BORDER_1 && O.dir == shove_dir && O.density)
-						directional_blocked = TRUE
-						break
-				if(target_turf != target_shove_turf) //Make sure that we don't run the exact same check twice on the same tile
-					for(var/obj/O in target_shove_turf)
-						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
-							directional_blocked = TRUE
-							break
-			if((!target_table && !target_collateral_human && !target_disposal_bin) || directional_blocked)
-				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-				target.visible_message("<span class='danger'><b>[user.name]</b> толкает <b>[target.name]</b>, повалив на пол!</span>",
-					"<span class='danger'>Меня толкает <b>[user.name]</b>, повалив на пол!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
-				to_chat(user, "<span class='danger'>Толкаю <b>[target.name]</b>, повалив на пол!</span>")
-				log_combat(user, target, "shoved", "knocking them down")
-			else if(target_table)
-				target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
-				target.visible_message("<span class='danger'><b>[user.name]</b> заталкивает <b>[target.name]</b> на [target_table]!</span>",
-					"<span class='danger'>Меня заталкивает <b>[user.name]</b> на [target_table]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
-				to_chat(user, "<span class='danger'>Заталкиваю <b>[target.name]</b> на [target_table]!</span>")
-				target.throw_at(target_table, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
-				log_combat(user, target, "shoved", "onto [target_table] (table)")
-			else if(target_collateral_human)
-				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
-				target_collateral_human.Knockdown(SHOVE_KNOCKDOWN_COLLATERAL)
-				target.visible_message("<span class='danger'><b>[user.name]</b> толкает <b>[target.name]</b> в [target_collateral_human.name]!</span>",
-					"<span class='danger'>Меня толкает <b>[user.name]</b> в [target_collateral_human.name]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
-				to_chat(user, "<span class='danger'>Толкаю <b>[target.name]</b> в [target_collateral_human.name]!</span>")
-				log_combat(user, target, "shoved", "into [target_collateral_human.name]")
-			else if(target_disposal_bin)
-				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-				target.forceMove(target_disposal_bin)
-				target.visible_message("<span class='danger'><b>[user.name]</b> толкает <b>[target.name]</b> в [target_disposal_bin]!</span>",
-					"<span class='danger'>Меня толкает <b>[user.name]</b> в [target_disposal_bin]!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
-				to_chat(user, "<span class='danger'>Толкаю <b>[target.name]</b> прямо в [target_disposal_bin]!</span>")
-				log_combat(user, target, "shoved", "into [target_disposal_bin] (disposal bin)")
 		else
 			target.visible_message("<span class='danger'><b>[user.name]</b> толкает <b>[target.name]</b>!</span>",
 				"<span class='danger'>Меня толкает <b>[user.name]</b>!</span>", "<span class='hear'>Слышу агрессивную потасовку сопровождающуюся громким стуком!</span>", COMBAT_MESSAGE_RANGE, user)
@@ -1575,7 +1517,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
 	if(user != H)
-		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
+		if(H.check_shields(I, I.force, "[I.name]", MELEE_ATTACK, I.armour_penetration))
 			return 0
 	if(H.check_block())
 		H.visible_message("<span class='warning'>[H] блокирует [I]!</span>", \
@@ -1591,7 +1533,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/armor_block = H.run_armor_check(affecting, "melee", "<span class='notice'>Моя броня защищает меня от удара в [hit_area]!</span>", "<span class='warning'>Моя броня смягчает удар в [hit_area]!</span>",I.armour_penetration)
 	armor_block = min(90,armor_block) //cap damage reduction at 90%
-	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 	var/Iwound_bonus = I.wound_bonus
 
 	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are laying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
@@ -1601,17 +1542,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 
-	H.send_item_attack_message(I, user, hit_area)
+	H.send_item_attack_message(I, user, hit_area, affecting)
 
 	if(!I.force)
 		return 0 //item force is zero
-
-	//dismemberment
-	var/probability = I.get_dismemberment_chance(affecting)
-	if(prob(probability) || (HAS_TRAIT(H, TRAIT_EASYDISMEMBER) && prob(probability))) //try twice
-		if(affecting.dismember(I.damtype))
-			I.add_mob_blood(H)
-			playsound(get_turf(H), I.get_dismember_sound(), 80, TRUE)
 
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
@@ -1672,11 +1606,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						H.w_uniform.add_mob_blood(H)
 						H.update_inv_w_uniform()
 
-		if(Iforce > 10 || Iforce >= 5 && prob(33))
-			H.forcesay(GLOB.hit_appends)	//forcesay checks stat already.
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
@@ -2150,3 +2082,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			to_chat(H, "<span class='notice'>Начинаю взмахивать крыльями и плавно парить над полом...</span>")
 			H.set_resting(FALSE, TRUE)
+
+/**
+  * The human species version of [/mob/living/carbon/proc/get_biological_state]. Depends on the HAS_FLESH and HAS_BONE species traits, having bones lets you have bone wounds, having flesh lets you have burn, slash, and piercing wounds
+  */
+/datum/species/proc/get_biological_state(mob/living/carbon/human/H)
+	. = BIO_INORGANIC
+	if(HAS_FLESH in species_traits)
+		. |= BIO_JUST_FLESH
+	if(HAS_BONE in species_traits)
+		. |= BIO_JUST_BONE

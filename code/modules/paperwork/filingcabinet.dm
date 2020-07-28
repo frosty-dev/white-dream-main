@@ -17,10 +17,17 @@
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
+	bound_width = 12
+	bound_x = 10
+	brotation = NONE
+
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
 	icon_state = "chestdrawer"
+	bound_width = 16
+	bound_height = 28
+	bound_x = 8
 
 /obj/structure/filingcabinet/chestdrawer/wheeled
 	name = "rolling chest drawer"
@@ -50,7 +57,7 @@
 		to_chat(user, "<span class='notice'>You begin to [anchored ? "unwrench" : "wrench"] [src].</span>")
 		if(P.use_tool(src, user, 20, volume=50))
 			to_chat(user, "<span class='notice'>You successfully [anchored ? "unwrench" : "wrench"] [src].</span>")
-			anchored = !anchored
+			set_anchored(!anchored)
 	else if(P.w_class < WEIGHT_CLASS_NORMAL)
 		if(!user.transferItemToLoc(P, src))
 			return

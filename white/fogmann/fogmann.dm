@@ -8,7 +8,7 @@
 	warcry = "<b>КАЗАХСТАН УГРОЖАЕТ ВАМ БОМБАРДИРОВКОЙ!!</b>"
 
 
-obj/item/banner/engineering/atmos/mundane
+/obj/item/banner/engineering/atmos/mundane
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/atmos_banner
