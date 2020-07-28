@@ -37764,12 +37764,10 @@
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "bKS" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-06"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/computer/shuttle/ferry/request/trader,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bKT" = (
@@ -66525,6 +66523,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/medical/virology)
+"dBO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-06"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dBX" = (
 /obj/machinery/door/window/brigdoor/security/cell{
 	id = "Cell 3";
@@ -89717,7 +89724,7 @@ aaa
 aaa
 aVs
 bKS
-aWT
+dBO
 aVs
 aVs
 aVs

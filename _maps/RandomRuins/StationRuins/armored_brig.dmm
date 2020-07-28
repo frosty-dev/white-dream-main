@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/template_noop,
-/area/space)
+/turf/open/floor/plating,
+/area/security/main)
 "ab" = (
 /turf/template_noop,
 /area/template_noop)
@@ -2119,20 +2119,21 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader #4";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/template_noop,
-/area/space)
+/turf/open/floor/plating,
+/area/security/main)
 "eI" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
 	id = "pod_lavaland3";
 	name = "lavaland"
 	},
-/turf/template_noop,
-/area/template_noop)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/main)
 "eK" = (
 /obj/structure/sink{
 	dir = 4;
@@ -6643,6 +6644,10 @@
 	},
 /turf/open/floor/engine,
 /area/security/prison)
+"tR" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/main)
 "TC" = (
 /obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/tile/hex/red,
@@ -9191,11 +9196,11 @@ ab
 ab
 ab
 ab
-be
+tR
 aa
 eH
 aa
-be
+tR
 ab
 ab
 ab
@@ -9279,11 +9284,11 @@ ab
 ab
 ab
 ab
-ab
+be
 aa
 aa
 aa
-ab
+be
 ab
 ab
 ab
@@ -9323,11 +9328,11 @@ ab
 ab
 ab
 ab
-ab
+be
 aa
 aa
 aa
-ab
+be
 ab
 ab
 ab
@@ -9367,11 +9372,11 @@ ab
 ab
 ab
 ab
-ab
-aa
+be
+tR
 eI
-aa
-ab
+tR
+be
 ab
 ab
 ab

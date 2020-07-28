@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/space)
 "ab" = (
 /turf/template_noop,
 /area/template_noop)
@@ -2329,20 +2326,21 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader #4";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/template_noop,
-/area/space)
+/turf/open/floor/plating,
+/area/security/main)
 "eI" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
 	id = "pod_lavaland3";
 	name = "lavaland"
 	},
-/turf/template_noop,
-/area/template_noop)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/main)
 "eJ" = (
 /obj/structure/cable,
 /obj/machinery/holopad/secure,
@@ -6250,11 +6248,11 @@ ab
 ab
 ab
 ab
-bf
-aa
+bg
+eF
 eH
-aa
-bf
+eF
+bg
 ab
 ab
 ab
@@ -6295,9 +6293,9 @@ ab
 ab
 ab
 be
-aa
-aa
-aa
+eF
+eF
+eF
 be
 ab
 ab
@@ -6338,11 +6336,11 @@ ab
 ab
 ab
 ab
-ab
-aa
-aa
-aa
-ab
+be
+eF
+eF
+eF
+be
 ab
 ab
 ab
@@ -6382,11 +6380,11 @@ ab
 ab
 ab
 ab
-ab
-aa
-aa
-aa
-ab
+be
+eF
+eF
+eF
+be
 ab
 ab
 ab
@@ -6426,11 +6424,11 @@ ab
 ab
 ab
 ab
-ab
-aa
+be
+bg
 eI
-aa
-ab
+bg
+be
 ab
 ab
 ab

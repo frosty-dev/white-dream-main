@@ -447,7 +447,7 @@
 	dwidth = 12;
 	height = 18;
 	id = "emergency_home";
-	name = "BoxStation emergency evac bay";
+	name = "NT SS13: emergency evac bay";
 	width = 32
 	},
 /turf/open/space/basic,
@@ -465,12 +465,12 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader #3";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating,
+/area/engine/engineering)
 "afs" = (
 /obj/machinery/shower{
 	dir = 8
@@ -1975,7 +1975,7 @@
 	dwidth = 2;
 	height = 5;
 	id = "laborcamp_home";
-	name = "fore bay 1";
+	name = "NT SS13: Fore bay #1";
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
 	},
@@ -4479,7 +4479,7 @@
 	dwidth = 12;
 	height = 17;
 	id = "syndicate_ne";
-	name = "northeast of station";
+	name = "northeast of NT SS13";
 	width = 23
 	},
 /turf/open/space/basic,
@@ -6315,6 +6315,7 @@
 /area/crew_quarters/toilet)
 "aBB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aBC" = (
@@ -10800,12 +10801,14 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
 "aRZ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aSa" = (
@@ -11134,6 +11137,7 @@
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aTt" = (
@@ -11490,6 +11494,7 @@
 	c_tag = "Arrivals Bay 2";
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aUN" = (
@@ -13841,8 +13846,7 @@
 	dwidth = 2;
 	height = 5;
 	id = "trader_transport_station";
-	name = "Trader Transport Station";
-	roundstart_template = null;
+	name = "NT SS13: Trader Transport dock";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -22476,7 +22480,7 @@
 	dwidth = 3;
 	height = 10;
 	id = "mining_home";
-	name = "mining shuttle bay";
+	name = "NT SS13: Mining shuttle bay";
 	roundstart_template = /datum/map_template/shuttle/mining/large;
 	width = 7
 	},
@@ -24657,6 +24661,10 @@
 "bPl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
 	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
+	dir = 8;
+	on = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
@@ -32081,8 +32089,9 @@
 	id = "pod_lavaland2";
 	name = "lavaland"
 	},
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cph" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -32189,12 +32198,12 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader #1";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cqr" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -32515,6 +32524,17 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ctk" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "NT SS13: Escape pod loader #2";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cto" = (
 /obj/machinery/door/airlock/hatch{
 	name = "MiniSat Foyer";
@@ -33578,8 +33598,9 @@
 	id = "pod_lavaland1";
 	name = "lavaland"
 	},
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "cxl" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -33598,7 +33619,7 @@
 	dwidth = 2;
 	height = 13;
 	id = "ferry_home";
-	name = "port bay 2";
+	name = "NT SS13: Port bay #2";
 	width = 5
 	},
 /turf/open/space/basic,
@@ -33699,7 +33720,7 @@
 	dwidth = 11;
 	height = 22;
 	id = "whiteship_home";
-	name = "SS13: Auxiliary Dock, Station-Port";
+	name = "NT SS13: Auxiliary Dock, Station-Port";
 	width = 35
 	},
 /turf/open/space/basic,
@@ -33832,7 +33853,7 @@
 	dwidth = 5;
 	height = 7;
 	id = "supply_home";
-	name = "Cargo Bay";
+	name = "NT SS13: Cargo Bay";
 	width = 12
 	},
 /turf/open/space/basic,
@@ -33878,8 +33899,9 @@
 	id = "pod_lavaland4";
 	name = "lavaland"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
-/area/space/nearstation)
+/area/engine/engineering)
 "czO" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -34994,7 +35016,7 @@
 	dwidth = 3;
 	height = 15;
 	id = "arrivals_stationary";
-	name = "arrivals";
+	name = "NT SS13: Arrivals dock";
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
@@ -35008,6 +35030,7 @@
 	name = "Port Docking Bay 1";
 	safety_mode = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "cMC" = (
@@ -37019,6 +37042,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"fZW" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "gby" = (
 /obj/machinery/light{
 	dir = 1
@@ -37375,6 +37402,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"gKR" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/space/basic,
+/area/engine/engineering)
 "gLd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -37834,6 +37865,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "hFi" = (
@@ -38020,6 +38052,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hZh" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "hZk" = (
 /turf/open/floor/plasteel,
 /area/science/nanite)
@@ -42712,6 +42751,14 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"qSG" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/entry)
 "qVo" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -43604,6 +43651,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
+"sFC" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "sFL" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -45173,6 +45225,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "vgF" = (
@@ -45253,6 +45306,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"vly" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "vmV" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/structure/disposalpipe/segment,
@@ -45995,7 +46052,7 @@
 	dwidth = 3;
 	height = 5;
 	id = "commonmining_home";
-	name = "SS13: Common Mining Dock";
+	name = "NT SS13: Common Mining Dock";
 	roundstart_template = /datum/map_template/shuttle/mining_common/meta;
 	width = 7
 	},
@@ -52062,11 +52119,11 @@ aaa
 aaa
 aaa
 aaa
+aaq
 aaa
 aaa
 aaa
-aaa
-aaa
+aaw
 aaa
 aaa
 aaa
@@ -53107,7 +53164,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaw
 aaa
 aaa
 aaa
@@ -53607,7 +53664,7 @@ aaa
 aaa
 aaa
 aaa
-aaq
+aaa
 aaa
 aaa
 aaa
@@ -53861,7 +53918,7 @@ aaa
 aaa
 aaa
 aaa
-aaw
+aaa
 aaa
 aaa
 aaa
@@ -54124,14 +54181,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+gXs
+eRz
+eRz
+eRz
+eRz
+eRz
+gXs
+eRz
 aaa
 aaq
 aaa
@@ -54358,23 +54415,25 @@ aaa
 aaq
 aaa
 aaa
-aaa
-aaa
+arB
+fZW
 cpe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+fZW
+arB
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+gXs
+arB
+fZW
 cwV
+fZW
+arB
 aaa
 aaa
 aaa
@@ -54386,9 +54445,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaw
-aaa
+gXs
 aaa
 aaa
 aaa
@@ -54615,11 +54672,11 @@ aaa
 aaa
 aaw
 gXs
-aaa
-aaa
-aaa
-aaa
-aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaw
 aaa
@@ -54629,6 +54686,11 @@ aaa
 aaa
 aaa
 aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -54640,12 +54702,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -54872,6 +54929,25 @@ aaa
 aaa
 aaa
 gXs
+arB
+auP
+auP
+auP
+arB
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -54883,26 +54959,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -55129,6 +55186,25 @@ aaa
 aaa
 aaa
 gXs
+arB
+auP
+auP
+auP
+arB
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+arB
+auP
+auP
+auP
+arB
 aaa
 aaa
 aaa
@@ -55140,26 +55216,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+eRz
 aaa
 aaa
 aaa
@@ -55386,9 +55443,11 @@ aaa
 aaa
 aaa
 gXs
-aaa
-aaa
+fZW
+auP
 cqq
+auP
+fZW
 aaa
 aaa
 aaa
@@ -55398,13 +55457,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-cqq
-aaa
-aaa
+fZW
+auP
+ctk
+auP
+fZW
 aaa
 aaa
 aaa
@@ -55416,7 +55473,7 @@ wCV
 aaa
 aaa
 aaa
-aaa
+gXs
 aaa
 aaa
 aaa
@@ -55672,8 +55729,8 @@ asE
 xzN
 asE
 asE
-aaa
-aaa
+gXs
+eRz
 aaa
 aaa
 aaa
@@ -56685,9 +56742,9 @@ aaa
 aaa
 aaa
 hFg
-auP
+vly
 cIh
-ayl
+itz
 aRY
 awW
 aaa
@@ -57460,13 +57517,13 @@ aOe
 ayl
 ayl
 aRY
-awW
+sFC
 aaa
 aaa
 aaa
 aaa
 aaa
-awW
+sFC
 awZ
 ayl
 ayl
@@ -58744,7 +58801,7 @@ awW
 awW
 awW
 aQG
-aRX
+qSG
 arB
 aaa
 aWa
@@ -59772,10 +59829,10 @@ aNb
 ayl
 ayl
 aIK
-ayl
+itz
 aTr
 aUM
-ayl
+itz
 vdW
 aWc
 baG
@@ -80395,11 +80452,11 @@ ckY
 clW
 clW
 bOh
-cig
+ccw
 cig
 czg
 cig
-cDN
+cDL
 crh
 crA
 crR
@@ -80652,11 +80709,11 @@ ckX
 clV
 clW
 bOh
-cig
-aaa
+ccw
+ciZ
 afp
-aaa
-cDN
+ciZ
+cDL
 cqY
 cqY
 cqY
@@ -80909,11 +80966,11 @@ ckZ
 clW
 clW
 bOh
-cig
-aaa
-aaa
-aaa
-cDN
+ccw
+ciZ
+ciZ
+ciZ
+cDL
 aaa
 aaa
 aaa
@@ -81167,9 +81224,9 @@ bOh
 bOh
 bOh
 ccw
-aaa
-aaa
-aaa
+ciZ
+ciZ
+ciZ
 cDL
 gXs
 aaa
@@ -81423,11 +81480,11 @@ clb
 clY
 clZ
 bOh
-aaa
-aaa
-aaa
-aaa
-cCQ
+ccw
+ciZ
+ciZ
+ciZ
+hZh
 gXs
 aaa
 aaa
@@ -81680,11 +81737,11 @@ cla
 cBP
 clZ
 bOh
-aaa
-aaa
+ccw
+gKR
 czN
-aaa
-cCQ
+gKR
+hZh
 gXs
 aaa
 aaa

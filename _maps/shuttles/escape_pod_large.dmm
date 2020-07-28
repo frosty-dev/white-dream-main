@@ -76,6 +76,7 @@
 	port_direction = 2;
 	width = 5
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
 "W" = (

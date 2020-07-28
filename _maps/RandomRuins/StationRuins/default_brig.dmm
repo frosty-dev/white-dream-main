@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/space)
 "ac" = (
 /turf/closed/wall/r_wall,
 /area/security/prison)
@@ -4111,20 +4108,21 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: Escape pod loader #4";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/turf/template_noop,
-/area/space)
+/turf/open/floor/plating,
+/area/security/main)
 "jo" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
 	id = "pod_lavaland3";
 	name = "lavaland"
 	},
-/turf/template_noop,
-/area/template_noop)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/security/main)
 "jp" = (
 /obj/machinery/camera/motion{
 	c_tag = "Armory - External";
@@ -9065,11 +9063,11 @@ aS
 ae
 bb
 bb
-bb
+ba
 bb
 iW
 bb
-bb
+ba
 aS
 aS
 aS
@@ -9109,11 +9107,11 @@ ag
 ag
 ag
 ag
-bb
-aa
+bc
+iV
 jn
-aa
-bb
+iV
+bc
 aS
 aS
 aS
@@ -9154,9 +9152,9 @@ ag
 aS
 aS
 ba
-aa
-aa
-aa
+iV
+iV
+iV
 ba
 aS
 aS
@@ -9197,11 +9195,11 @@ aS
 aS
 aS
 aS
-aS
-aa
-aa
-aa
-aS
+ba
+iV
+iV
+iV
+ba
 aS
 aS
 aS
@@ -9241,11 +9239,11 @@ aS
 aS
 aS
 aS
-aS
-aa
-aa
-aa
-aS
+ba
+iV
+iV
+iV
+ba
 aS
 aS
 aS
@@ -9285,11 +9283,11 @@ aS
 aS
 aS
 aS
-aS
-aa
+ba
+bc
 jo
-aa
-aS
+bc
+ba
 aS
 aS
 aS

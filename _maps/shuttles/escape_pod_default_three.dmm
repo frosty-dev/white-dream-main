@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "B" = (
 /turf/closed/wall/mineral/titanium,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 "G" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -13,7 +13,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 "N" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Escape Pod Airlock"
@@ -23,11 +23,11 @@
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 "Q" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 "U" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -42,11 +42,11 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 "Z" = (
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/closed/wall/mineral/titanium,
-/area/shuttle/pod_1)
+/area/shuttle/pod_3)
 
 (1,1,1) = {"
 B

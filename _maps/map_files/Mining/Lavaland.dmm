@@ -541,6 +541,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/item/crowbar/red,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "bE" = (
@@ -784,6 +785,7 @@
 	opacity = 0
 	},
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "ck" = (
@@ -793,6 +795,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "cl" = (
@@ -997,6 +1000,7 @@
 	pixel_y = 32
 	},
 /obj/structure/cable,
+/obj/item/stack/sheet/mineral/plasma,
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "cU" = (
@@ -5229,6 +5233,7 @@
 	name = "Mining Shuttle Airlock";
 	opacity = 0
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "Xb" = (
@@ -19702,7 +19707,7 @@ aj
 aj
 ab
 br
-bP
+Rx
 br
 ab
 aj
@@ -20473,7 +20478,7 @@ ab
 bq
 bC
 Lu
-bP
+Rx
 cl
 cH
 cO
