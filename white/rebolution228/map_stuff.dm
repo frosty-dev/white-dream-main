@@ -9,8 +9,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	noteleport = TRUE
-	valid_territory = FALSE
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | NOTELEPORT
 
 /area/awaymission/chilly/facility
 	name = "Base"
@@ -76,14 +75,17 @@
 
 /turf/open/floor/plasteel/stairs/old/zalupa_left
 	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
 	icon_state = "stairs_left"
 
 /turf/open/floor/plasteel/stairs/old/zalupa_med
 	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
 	icon_state = "stairs_med"
 
 /turf/open/floor/plasteel/stairs/old/zalupa_right
 	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
 	icon_state = "stairs_right"
 
 
