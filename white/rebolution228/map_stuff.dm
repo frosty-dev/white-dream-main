@@ -1,7 +1,6 @@
 
 /* AREAS */
 
-
 /area/awaymission/chilly
 	name = "Surface"
 	icon = 'white/rebolution228/map_sprites.dmi'
@@ -10,6 +9,10 @@
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | NOTELEPORT
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = FALSE
+	poweralm = FALSE
 
 /area/awaymission/chilly/facility
 	name = "Base"
@@ -17,11 +20,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 	ambientsounds = MAINTENANCE
-	poweralm = FALSE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = FALSE
-	poweralm = FALSE
+	always_unpowered = TRUE
 
 /area/awaymission/chilly/facility2
 	name = "Base 2"
@@ -29,7 +28,6 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 	ambientsounds = MAINTENANCE
-	poweralm = FALSE
 	always_unpowered = TRUE
 
 /area/awaymission/chilly/facility3
@@ -37,14 +35,14 @@
 	icon_state = "base3"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
-	poweralm = FALSE
+	always_unpowered = TRUE
 
 /area/awaymission/chilly/facility4
 	name = "Base 4"
 	icon_state = "base4"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
-	poweralm = FALSE
+	always_unpowered = TRUE
 
 /area/awaymission/chilly/cave
 	name = "Cavern"
@@ -53,45 +51,21 @@
 	requires_power = TRUE
 	ambientsounds = SPOOKY
 	always_unpowered = TRUE
-	power_environ = FALSE
-	power_equip = FALSE
-	power_light = FALSE
-	poweralm = FALSE
 
 /area/awaymission/chilly/mountain
 	name = "Mountain"
-	icon = 'map_sprites.dmi'
 	icon_state = "mountain"
-
-
-
 
 /* TURFS */
 
-/turf/open/floor/plasteel/stairs/old/zalupa
+
+/turf/open/floor/plasteel/stairs/old
 	name = "stairs"
 	icon = 'white/rebolution228/map_sprites.dmi'
 	icon_state = "stairs"
 
-/turf/open/floor/plasteel/stairs/old/zalupa_left
-	name = "stairs"
-	icon = 'white/rebolution228/map_sprites.dmi'
-	icon_state = "stairs_left"
-
-/turf/open/floor/plasteel/stairs/old/zalupa_med
-	name = "stairs"
-	icon = 'white/rebolution228/map_sprites.dmi'
-	icon_state = "stairs_med"
-
-/turf/open/floor/plasteel/stairs/old/zalupa_right
-	name = "stairs"
-	icon = 'white/rebolution228/map_sprites.dmi'
-	icon_state = "stairs_right"
-
-
-
-
 /* MISC */
+
 
 /obj/effect/turf_decal/weather/side
 	name = "side"
@@ -101,3 +75,16 @@
 
 /obj/effect/turf_decal/weather/side/corner
 	icon_state = "sidecorn"
+
+/obj/effect/turf_decal/dust
+	name = "dust"
+	icon = 'white/rebolution228/map_sprites.dmi'
+	icon_state = "dirty"
+	mouse_opacity = 0
+
+/turf/open/floor/grass/snow/safe/oxy
+	initial_gas_mix = "o2=21;n2=79;TEMP=15"
+
+/turf/open/floor/plating/snowed/oxy
+	initial_gas_mix = "o2=21;n2=79;TEMP=10"
+	planetary_atmos = FALSE
