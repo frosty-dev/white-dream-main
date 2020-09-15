@@ -55,14 +55,30 @@
 /area/awaymission/chilly/mountain
 	name = "Mountain"
 	icon_state = "mountain"
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /* TURFS */
 
 
-/turf/open/floor/plasteel/stairs/old
+/turf/open/floor/plasteel/stairs/old/chilly
 	name = "stairs"
 	icon = 'white/rebolution228/map_sprites.dmi'
 	icon_state = "stairs"
+
+/turf/open/floor/plasteel/stairs/old/chilly/right
+	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
+	icon_state = "stairs_right"
+
+/turf/open/floor/plasteel/stairs/old/chilly/left
+	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
+	icon_state = "stairs_left"
+
+/turf/open/floor/plasteel/stairs/old/chilly/single
+	name = "stairs"
+	icon = 'white/rebolution228/map_sprites.dmi'
+	icon_state = "stairs_single"
 
 /* MISC */
 
@@ -83,8 +99,16 @@
 	mouse_opacity = 0
 
 /turf/open/floor/grass/snow/safe/oxy
-	initial_gas_mix = "o2=21;n2=79;TEMP=15"
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/floor/plating/snowed/oxy
-	initial_gas_mix = "o2=21;n2=79;TEMP=10"
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
+
+/turf/open/floor/plating/asteroid/snow/ice/oxy
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
+
+/turf/open/floor/plating/snowed/smoothed/temperatre
+	temperature = 255.37
 	planetary_atmos = FALSE
