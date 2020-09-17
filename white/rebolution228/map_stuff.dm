@@ -44,6 +44,13 @@
 	requires_power = TRUE
 	always_unpowered = TRUE
 
+/area/awaymission/chilly/gatewaystart
+	name = "Gateway"
+	icon_state = "base4"
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	requires_power = FALSE
+	always_unpowered = FALSE
+
 /area/awaymission/chilly/cave
 	name = "Cavern"
 	icon_state = "caverns"
@@ -55,7 +62,8 @@
 /area/awaymission/chilly/mountain
 	name = "Mountain"
 	icon_state = "mountain"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	always_unpowered = TRUE
 
 /* TURFS */
 
@@ -112,3 +120,18 @@
 /turf/open/floor/plating/snowed/smoothed/temperatre
 	temperature = 255.37
 	planetary_atmos = FALSE
+	
+/turf/open/floor/engine/hull/oxy
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	temperature = 255.37
+	
+/turf/open/floor/plating/ice/smooth/oxy
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
+	temperature = 250
+	baseturfs = /turf/open/floor/grass/snow/safe/oxy
+	
+/turf/closed/mineral/snowmountain/cavern/oxy
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/oxy
+	environment_type = null
+	turf_type = /turf/open/floor/plating/asteroid/snow/ice/oxy
