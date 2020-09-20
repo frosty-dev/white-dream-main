@@ -14,7 +14,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	poweralm = FALSE
-	ambientsounds = list('sound/ambience/ambimo2.ogg', 'sound/ambience/ambimine.ogg')
+	ambientsounds = list('sound/ambience/ambimine.ogg')
 
 
 //Facilities
@@ -24,7 +24,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 	always_unpowered = TRUE
-	ambientsounds = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambireebe1.ogg', 'sound/ambience/ambireebe2.ogg', 'sound/ambience/signal.ogg')
+	ambientsounds = list('sound/ambience/ambireebe1.ogg')
 
 /area/awaymission/chilly/facility/croom
 	name = "Base I Underground Control Room"
@@ -38,7 +38,7 @@
 	icon_state = "base2"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
-	ambientsounds = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambiruin3.ogg', 'sound/ambience/ambiruin5.ogg', 'sound/ambience/ambiruin6.ogg', 'sound/ambience/ambimo1.ogg', 'sound/ambience/ambimo2.ogg', 'sound/ambience/signal.ogg')
+	ambientsounds = list('sound/ambience/ambireebe3.ogg')
 	always_unpowered = TRUE
 
 /area/awaymission/chilly/facility3
@@ -47,7 +47,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 	always_unpowered = TRUE
-	ambientsounds = list('sound/ambience/ambimo2.ogg', 'sound/ambience/ambireebe1.ogg', 'sound/ambience/ambireebe2.ogg')
+	ambientsounds = list('sound/ambience/ambireebe2.ogg')
 
 /area/awaymission/chilly/facility4
 	name = "Base IV House"
@@ -63,7 +63,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 	always_unpowered = TRUE
-	ambientsounds = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambireebe1.ogg', 'sound/ambience/ambireebe2.ogg')
+	ambientsounds = list('sound/ambience/ambitech.ogg')
 
 
 //Underground something
@@ -184,6 +184,15 @@
 	desc = "An energy blaster auto-turret."
 	lethal_projectile = /obj/projectile/beam/laser/heavylaser
 	turret_flags = TURRET_FLAG_SHOOT_ALL
-	faction = list(ROLE_SYNDICATE)
 	scan_range = 6
 	armor = list(MELEE = 50, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 80, BIO = 0, RAD = 0, FIRE = 90, ACID = 90)
+
+/obj/machinery/porta_turret/syndicate/shuttle/chilly
+	shot_delay = 8
+	armor = list(MELEE = 50, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 80, BIO = 0, RAD = 0, FIRE = 90, ACID = 90)
+
+/obj/effect/mob_spawn/human/corpse/damaged/chilly
+	burn_damage = 1000
+	hairstyle = null
+	facial_hairstyle = null
+	husk = TRUE
