@@ -28021,6 +28021,7 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/rods/fifty,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cpF" = (
@@ -28057,8 +28058,9 @@
 /turf/open/floor/plasteel/monofloor,
 /area/engine/engineering)
 "cpX" = (
-/obj/structure/table,
-/obj/item/stack/rods/fifty,
+/obj/machinery/computer/sat_control{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cqn" = (
