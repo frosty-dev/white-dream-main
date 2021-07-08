@@ -127,7 +127,7 @@
 	dir = 8
 	},
 /obj/machinery/bounty_board{
-	dir = 4;
+	dir = 8;
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
@@ -206,11 +206,11 @@
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "aN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/mine/laborcamp)
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/mine/eva)
 "aO" = (
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_y = 32
@@ -461,9 +461,10 @@
 /area/mine/eva)
 "bv" = (
 /obj/machinery/light/small{
-	dir = 8
+	dir = 8;
+	pixel_x = 32
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/closed/wall,
 /area/mine/eva)
 "bw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1518,18 +1519,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/production)
-"eq" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"es" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "et" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -1630,12 +1619,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"eC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/mine/production)
 "eD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -1693,11 +1676,6 @@
 /area/mine/living_quarters)
 "eM" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"eN" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "eO" = (
@@ -2387,7 +2365,7 @@
 	dwidth = 2;
 	height = 5;
 	id = "laborcamp_away";
-	name = "labor camp";
+	name = "NT Lavaland base: labor camp";
 	width = 9
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -4605,7 +4583,7 @@
 	dwidth = 3;
 	height = 7;
 	id = "lavaland_common_away";
-	name = "Mining base public dock";
+	name = "NT Lavaland base: Public dock";
 	width = 7
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -4950,7 +4928,7 @@
 	dwidth = 11;
 	height = 22;
 	id = "whiteship_lavaland";
-	name = "lavaland wastes";
+	name = "south-east of NT Lavaland base";
 	width = 35
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -5126,7 +5104,7 @@
 	dwidth = 3;
 	height = 10;
 	id = "mining_away";
-	name = "lavaland mine";
+	name = "NT Lavaland base: Mining shuttle bay";
 	width = 7
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -11940,10 +11918,10 @@ ch
 iM
 sa
 Iq
-eq
-eq
-eq
-eq
+QW
+QW
+QW
+QW
 RO
 YY
 cM
@@ -13229,7 +13207,7 @@ di
 dy
 dP
 eb
-eq
+QW
 kv
 eQ
 ef
@@ -14771,7 +14749,7 @@ Ho
 dD
 dR
 ef
-eq
+QW
 dZ
 cM
 fg
@@ -20673,16 +20651,16 @@ Zh
 UC
 Rx
 bQ
-eC
+Uh
 cE
-eC
-eC
-eC
-eC
-eC
+Uh
+Uh
+Uh
+Uh
+Uh
 kI
 Be
-eC
+Uh
 eP
 eT
 bq
@@ -23240,11 +23218,11 @@ ai
 aj
 aj
 ab
-bf
+aN
 bg
 WD
 bg
-bf
+bv
 ai
 bq
 bq
@@ -23497,11 +23475,11 @@ ab
 ab
 ab
 ab
-bv
 ab
 ab
 ab
-bv
+ab
+ab
 ai
 ai
 ab

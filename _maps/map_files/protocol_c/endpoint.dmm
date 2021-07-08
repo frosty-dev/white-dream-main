@@ -108,7 +108,7 @@
 	area_type = /area/syndicate_mothership/control;
 	dwidth = 3;
 	height = 7;
-	name = "escape pod loader";
+	name = "Syndicate recon outpost: Pod loader";
 	roundstart_template = /datum/map_template/shuttle/assault_pod/default;
 	width = 7
 	},
@@ -551,7 +551,7 @@
 	dwidth = 1;
 	height = 4;
 	id = "pod_2_away";
-	name = "recovery ship";
+	name = "NT CentCom: Recovery field #2";
 	width = 3
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -928,7 +928,7 @@
 	height = 13;
 	id = "ferry_away";
 	json_key = "ferry";
-	name = "CentCom Ferry Dock";
+	name = "NT CentCom: Ferry dock";
 	width = 5
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -1560,7 +1560,7 @@
 	height = 7;
 	id = "supply_away";
 	json_key = "cargo";
-	name = "CentCom";
+	name = "NT CentCom: Cargo Shuttle Dock";
 	width = 20
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -2900,7 +2900,7 @@
 	dwidth = 12;
 	height = 17;
 	id = "syndicate_away";
-	name = "syndicate recon outpost";
+	name = "Syndicate recon outpost: Shuttle Dock";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/basic;
 	width = 23
 	},
@@ -5514,7 +5514,7 @@
 	dwidth = 1;
 	height = 4;
 	id = "pod_3_away";
-	name = "recovery ship";
+	name = "NT CentCom: Recovery field #3";
 	width = 3
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -5873,7 +5873,7 @@
 	dwidth = 25;
 	height = 50;
 	id = "emergency_syndicate";
-	name = "Syndicate Auxillary Shuttle Dock";
+	name = "Syndicate recon outpost: Auxillary Dock";
 	width = 50
 	},
 /turf/open/floor/plating/grass,
@@ -6040,7 +6040,7 @@
 	dwidth = 1;
 	height = 4;
 	id = "pod_4_away";
-	name = "recovery ship";
+	name = "NT CentCom: Recovery field #4";
 	width = 3
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -7270,7 +7270,7 @@
 	dwidth = 2;
 	height = 7;
 	id = "pod_away";
-	name = "recovery ship";
+	name = "NT CentCom: Recovery field #1";
 	width = 5
 	},
 /turf/open/floor/plating/grass/jungle,
@@ -7504,7 +7504,7 @@
 	height = 50;
 	id = "emergency_away";
 	json_key = "emergency";
-	name = "CentCom Emergency Shuttle Dock";
+	name = "NT CentCom: Emergency Shuttle Dock";
 	width = 50
 	},
 /turf/open/openspace/fakez/north,

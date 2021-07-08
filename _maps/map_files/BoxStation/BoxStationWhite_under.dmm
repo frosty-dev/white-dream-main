@@ -11614,7 +11614,7 @@
 	dwidth = 5;
 	height = 7;
 	id = "exploration_home";
-	name = "Док Рейнджеров";
+	name = "NT SS13: Док Рейнджеров";
 	roundstart_template = /datum/map_template/shuttle/exploration;
 	width = 13
 	},
