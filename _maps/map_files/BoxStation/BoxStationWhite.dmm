@@ -28053,8 +28053,13 @@
 /turf/open/floor/plasteel/monofloor,
 /area/engine/engineering)
 "cpX" = (
-/obj/machinery/computer/sat_control{
-	dir = 8
+/obj/machinery/computer{
+	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
+	dir = 8;
+	name = "Broken Computer"
+	},
+/obj/item/shard{
+	icon_state = "small"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -29125,7 +29130,8 @@
 /area/maintenance/fore)
 "cyb" = (
 /obj/machinery/door/airlock/external{
-	name = "Escape Pod One"
+	name = "Escape Pod Three";
+	shuttledocked = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -33850,7 +33856,7 @@
 /area/maintenance/disposal/incinerator)
 "hsB" = (
 /obj/machinery/door/airlock/external{
-	name = "Escape Pod Four";
+	name = "Escape Pod One";
 	shuttledocked = 1
 	},
 /turf/open/floor/plating,
@@ -34752,7 +34758,8 @@
 /area/engine/atmos)
 "iEJ" = (
 /obj/machinery/door/airlock/external{
-	name = "Escape Pod One"
+	name = "Escape Pod Three";
+	shuttledocked = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -37152,7 +37159,7 @@
 	dir = 2;
 	dwidth = 1;
 	height = 4;
-	name = "NT SS13: escape pod loader";
+	name = "NT SS13: escape pod #1 loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
@@ -37795,7 +37802,7 @@
 	dir = 8;
 	dwidth = 1;
 	height = 4;
-	name = "NT SS13: escape pod loader";
+	name = "NT SS13: escape pod #3 loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
@@ -40894,6 +40901,16 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sAl" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two";
+	shuttledocked = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "sBm" = (
 /obj/structure/ladder,
 /turf/open/floor/plasteel,
@@ -43238,6 +43255,17 @@
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"wgB" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 4;
+	name = "NT SS13: escape pod #2 loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "whq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -44069,6 +44097,16 @@
 	},
 /turf/open/floor/plasteel/monofloor,
 /area/hallway/primary/port)
+"xsX" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Two";
+	shuttledocked = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "xtj" = (
 /turf/closed/wall/r_wall,
 /area/lawoffice)
@@ -52978,7 +53016,7 @@ aaa
 aaa
 fZW
 auP
-nRQ
+wgB
 auP
 fZW
 aaa
@@ -53235,7 +53273,7 @@ aaa
 aaa
 arB
 asE
-cyb
+xsX
 asE
 arB
 aaa
@@ -53749,7 +53787,7 @@ aaa
 aaa
 arB
 asE
-iEJ
+sAl
 avP
 arB
 aaa
