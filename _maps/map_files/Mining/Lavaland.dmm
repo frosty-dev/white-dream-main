@@ -207,10 +207,10 @@
 /area/mine/laborcamp)
 "aN" = (
 /obj/machinery/light/small{
-	dir = 8
+	pixel_y = 32
 	},
-/turf/closed/wall,
-/area/mine/eva)
+/turf/closed/wall/r_wall,
+/area/mine/laborcamp)
 "aO" = (
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_y = 32
@@ -3622,9 +3622,10 @@
 /area/mine/laborcamp/security)
 "po" = (
 /obj/machinery/light/small{
-	dir = 1
+	dir = 1;
+	pixel_y = -32
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/closed/wall,
 /area/mine/production)
 "pr" = (
 /obj/structure/toilet{
@@ -4214,10 +4215,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"Dr" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/mine/laborcamp)
 "Dv" = (
 /obj/structure/sign/poster/official/obey{
 	pixel_y = 32
@@ -13434,8 +13431,8 @@ an
 aD
 aD
 aD
-Dr
-yr
+aD
+aN
 yr
 yr
 jz
@@ -13948,8 +13945,8 @@ an
 aD
 aD
 aD
-Dr
-yr
+aD
+aN
 yr
 yr
 hL
@@ -20923,8 +20920,8 @@ eU
 bq
 bq
 bq
-bq
 po
+ab
 ab
 ab
 aj
@@ -21951,8 +21948,8 @@ eW
 bq
 bq
 bq
-bq
 po
+ab
 ab
 ab
 ab
@@ -23218,7 +23215,7 @@ ai
 aj
 aj
 ab
-aN
+bv
 bg
 WD
 bg
