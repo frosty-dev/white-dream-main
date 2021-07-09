@@ -13,6 +13,7 @@
 /obj/docking_port/mobile/pod{
 	height = 6;
 	id = "podunit";
+	name = "Cпасательная капсула (юнит)";
 	port_direction = 2;
 	width = 4
 	},

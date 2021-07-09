@@ -19,6 +19,7 @@
 	name = "Escape Pod Airlock"
 	},
 /obj/docking_port/mobile/pod{
+	name = "Cпасательная капсула #2";
 	port_direction = 2
 	},
 /obj/structure/fans/tiny,
