@@ -946,7 +946,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	name = "Escape Pod Three"
+	name = "Escape Pod Four";
+	shuttledocked = 1
 	},
 /turf/open/floor/plating,
 /area/security/main)
@@ -2903,11 +2904,12 @@
 /turf/open/floor/plating,
 /area/security/main)
 "iW" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Four";
+	shuttledocked = 1
 	},
 /turf/open/floor/plating,
 /area/security/main)
@@ -3083,7 +3085,7 @@
 	dir = 4;
 	dwidth = 1;
 	height = 4;
-	name = "escape pod loader";
+	name = "NT SS13: escape pod #4 loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
