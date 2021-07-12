@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/crossbow
-	name = "crossbow"
-	desc = "A powerful crossbow, capable of shooting metal rods. Very effective for hunting."
+	name = "арбалет"
+	desc = "Мощный арбалет, который умеет стрелять металлическими стержнями. Очень полезен в целях охоты."
 	icon = 'white/valtos/icons/crossbow.dmi'
 	icon_state = "crossbow_body"
 	inhand_icon_state = "crossbow_body"
@@ -37,12 +37,12 @@
 
 					playsound(user, insert_sound, 50, 1)
 
-					user.visible_message("<span class='notice'>[user] carefully places the [chambered.BB] into the [src].</span>", \
-                                         "<span class='notice'>You carefully place the [chambered.BB] into the [src].</span>")
+					user.visible_message("<span class='notice'>[user] аккуратно устанавливает [chambered.BB] в [src].</span>", \
+                                         "<span class='notice'>Аккуратно устанавливаю [chambered.BB] в [src].</span>")
 		else
-			to_chat(user, "<span class='warning'>You need to draw the bow string before loading a bolt!</span>")
+			to_chat(user, "<span class='warning'>Стоит натянуть тетиву перед установкой снаряда!</span>")
 	else
-		to_chat(user, "<span class='warning'>There's already a [chambered.BB] loaded!<span>")
+		to_chat(user, "<span class='warning'>Здесь уже есть [chambered.BB] внутри!<span>")
 
 	update_icon()
 	return
@@ -76,21 +76,21 @@
 			if (do_after(user, charge_time, 0, timed_action_flags = IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE) && charging)
 				charge = charge + 1
 				charging = FALSE
-				var/draw = "a little"
+				var/draw = "немножечко"
 
 				if (charge > 2)
-					draw = "fully"
+					draw = "на максимум"
 				else if (charge > 1)
-					draw = "further"
-				user.visible_message("<span class='notice'>[user] pulls the drawstring back [draw].</span>", \
-	                                     "<span class='notice'>You draw the bow string back [draw].</span>")
+					draw = "дальше"
+				user.visible_message("<span class='notice'>[user] натягивает тетиву [draw].</span>", \
+	                                     "<span class='notice'>Натягиваю тетиву [draw].</span>")
 			else
 				charging = FALSE
 		else
-			to_chat(user, "<span class='warning'>The bow string is fully drawn!</span>")
+			to_chat(user, "<span class='warning'>Тетива натянута, милорд!</span>")
 	else
-		user.visible_message("<span class='notice'>[user] removes the [chambered.BB] from the [src].</span>", \
-							"<span class='notice'>You remove the [chambered.BB] from the [src].</span>")
+		user.visible_message("<span class='notice'>[user] достаёт [chambered.BB] из [src].</span>", \
+							"<span class='notice'>Достаю [chambered.BB] из [src].</span>")
 		user.put_in_hands(new /obj/item/stack/rods)
 		chambered = null
 		playsound(user, insert_sound, 50, 1)
@@ -100,19 +100,19 @@
 
 /obj/item/gun/ballistic/crossbow/examine(mob/user)
 	..()
-	var/bowstring = "The bow string is "
+	var/bowstring = "Тетива "
 	if (charge > 2)
-		bowstring = bowstring + "drawn back fully"
+		bowstring = bowstring + "в полной боевой готовности"
 	else if (charge > 1)
-		bowstring = bowstring + "drawn back most the way"
+		bowstring = bowstring + "натянута на половину"
 	else if (charge > 0)
-		bowstring = bowstring + "drawn back a little"
+		bowstring = bowstring + "слабо натянута"
 	else
-		bowstring = bowstring + "not drawn"
+		bowstring = bowstring + "в покое"
 	to_chat(user, "[bowstring][charge > 2 ? "!" : "."]")
 
 	if (chambered?.BB)
-		to_chat(user, "A [chambered.BB] is loaded.")
+		to_chat(user, "[capitalize(chambered.BB)] установлен.")
 
 /obj/item/gun/ballistic/crossbow/update_icon()
 	..()
@@ -131,14 +131,14 @@
 	return
 
 /obj/item/gun/ballistic/crossbow/improv
-	name = "improvised crossbow"
-	desc = "A poorly-built improvised crossbow, probably couldn't even hurt small game."
+	name = "импровизированный арбалет"
+	desc = "Арбалет собранный из хлама, вероятнее всего не сможет навредить кому-то."
 	icon_state = "crossbow_body_improv"
 	inhand_icon_state = "crossbow_body_improv"
 	charge_time = 20
 
 /datum/crafting_recipe/crossbow_improv
-	name = "Improvised Crossbow"
+	name = "Импровизированный арбалет"
 	result = /obj/item/gun/ballistic/crossbow/improv
 	reqs = list(/obj/item/stack/rods = 3,
 		        /obj/item/stack/cable_coil = 10,
@@ -150,7 +150,7 @@
 	subcategory = CAT_WEAPON
 
 /obj/projectile/rod
-	name = "metal rod"
+	name = "металлический стержень"
 	icon = 'white/valtos/icons/crossbow.dmi'
 	icon_state = "rod_proj"
 	suppressed = TRUE
@@ -165,23 +165,22 @@
 
 /obj/projectile/rod/on_range()
 	// we didn't hit anything, place a rod here
-	new /obj/item/stack/rods/bent(get_turf(src))
+	new /obj/item/bent_rod(get_turf(src))
 	..()
 
 /obj/projectile/rod/proc/Impale(mob/living/carbon/human/H)
 	if (H)
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
-		//var/obj/item/stack/rods/R = new(H.loc, 1, FALSE) // Don't merge
-		var/obj/item/stack/rods/bent/R = new(H.loc, 1, FALSE)
+		var/obj/item/bent_rod/R = new(H.loc, 1, FALSE)
 
 		if (istype(BP))
 			R.add_blood_DNA(H.return_blood_DNA())
 			R.forceMove(H)
 			BP.embedded_objects += R
 			H.update_damage_overlays()
-			visible_message("<span class='warning'>The [R] has embedded into [H] [BP]!</span>",
-							"<span class='userdanger'>You feel [R] lodge into your [BP]!</span>")
+			visible_message("<span class='warning'><b>[capitalize(R.name)]</b> проникает в [ru_parse_zone(BP)] <b>[H]</b>!</span>",
+							"<span class='userdanger'>Ох! <b>[capitalize(R.name)]</b> проникает в <b>[ru_parse_zone(BP)]</b>!</span>")
 			playsound(H, impale_sound, 50, 1)
 			H.emote("scream")
 
@@ -194,21 +193,23 @@
 			var/mob/living/carbon/human/H = target
 			Impale(H)
 		else
-			new /obj/item/stack/rods/bent(get_turf(src))
+			new /obj/item/bent_rod(get_turf(src))
 	else
 		playsound(target, hitsound_override, volume, 1, -1)
-		new /obj/item/stack/rods/bent(get_turf(src))
+		new /obj/item/bent_rod(get_turf(src))
 	qdel(src)
 
 /obj/item/ammo_casing/rod
 	projectile_type = /obj/projectile/rod
 
-/obj/item/stack/rods/bent
+/obj/item/bent_rod
 	name = "погнутый металлический стержень"
-	singular_name = "погнутый металлический стержень"
 	desc = "Надо-бы выгнуть."
-	merge_type = null
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "rods-1"
+	custom_materials = list(/datum/material/iron = 1000)
 
-/obj/item/stack/rods/bent/get_main_recipes()
+/obj/item/bent_rod/attack_self(mob/user)
 	. = ..()
-	return list(new/datum/stack_recipe("выгнуть стержень", /obj/item/stack/rods, 1, time = 1, one_per_turf = FALSE))
+	new /obj/item/stack/rods(get_turf(user))
+	qdel(src)

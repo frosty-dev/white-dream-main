@@ -21,3 +21,17 @@
 	desc = "Увеличивает скорость метаболизма и сопротивляемость температурам."
 	icon_state = "pill9"
 	list_reagents = list(/datum/reagent/medicine/aspirin = 10)
+
+//funny meds
+
+/obj/item/reagent_containers/pill/penthrite
+	name = "таблетка Пентрита"
+	desc = "Позволяет жить без сердца и не терять сознание от боли."
+	icon_state = "pill12"
+	list_reagents = list(/datum/reagent/medicine/c2/penthrite = 15)
+
+/obj/item/reagent_containers/pill/nooartrium
+	name = "таблетка Нооартирума"
+	desc = "Реанимирует трупы с рабочим сердцем."
+	icon_state = "pill2"
+	list_reagents = list(/datum/reagent/inverse/penthrite = 19)

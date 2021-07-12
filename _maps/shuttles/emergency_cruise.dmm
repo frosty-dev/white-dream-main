@@ -13,24 +13,6 @@
 /area/shuttle/escape)
 "ap" = (
 /obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
-	desc = "A synthetic candle that won't melt down.";
-	name = "crimson red candle";
-	pixel_x = 1;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = -7
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 12
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = 13
-	},
-/obj/item/reagent_containers/food/drinks/bottle/rum{
-	pixel_x = -4
-	},
 /turf/open/floor/carpet/purple,
 /area/shuttle/escape)
 "ar" = (
@@ -64,17 +46,13 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aY" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+/obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "ca" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/snack/orange,
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
@@ -92,7 +70,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 6
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/light/colour_cycle,
 /area/shuttle/escape)
 "cm" = (
 /obj/effect/turf_decal/stripes{
@@ -111,7 +89,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "cu" = (
-/obj/machinery/vending/cola/red,
+/obj/machinery/vending/snack/green,
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
@@ -219,24 +197,8 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "er" = (
-/obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
-	desc = "A synthetic candle that won't melt down.";
-	name = "crimson red candle";
-	pixel_x = 1;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = -5;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 9
+/obj/structure/chair/comfy/brown{
+	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
@@ -300,7 +262,7 @@
 /turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
 "fI" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "fV" = (
@@ -314,6 +276,10 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"gb" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "go" = (
 /obj/structure/window/reinforced{
@@ -341,10 +307,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/light/colour_cycle,
 /area/shuttle/escape)
 "gJ" = (
-/obj/structure/chair/comfy/brown,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
 "gQ" = (
@@ -367,6 +333,16 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"iT" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "ja" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -550,6 +526,10 @@
 /obj/machinery/door/airlock/shuttle/glass,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"oj" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "oo" = (
 /obj/machinery/light{
 	dir = 4
@@ -604,6 +584,10 @@
 /obj/structure/chair/sofa/left,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"qa" = (
+/obj/structure/shuttle/engine/propulsion/burst,
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
 "qd" = (
 /obj/machinery/computer/warrant,
 /obj/effect/turf_decal/tile/red{
@@ -621,14 +605,10 @@
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
 "qE" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "qG" = (
 /turf/open/floor/plasteel/stairs/old/chilly/left{
@@ -643,9 +623,11 @@
 /turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
 "qV" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/template_noop)
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "qX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -731,24 +713,6 @@
 /area/shuttle/escape)
 "sc" = (
 /obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
-	desc = "A synthetic candle that won't melt down.";
-	name = "crimson red candle";
-	pixel_x = 1;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = -5;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 9
-	},
 /turf/open/floor/carpet/blue,
 /area/shuttle/escape)
 "si" = (
@@ -819,7 +783,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "sW" = (
-/obj/structure/shuttle/engine/huge,
+/obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "tb" = (
@@ -989,6 +953,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "xj" = (
+/obj/structure/shuttle/engine/router,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "xZ" = (
@@ -1002,31 +967,14 @@
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "yq" = (
-/obj/machinery/vending/snack/green,
-/obj/effect/turf_decal/stripes{
-	dir = 4
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "yK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
-	desc = "A synthetic candle that won't melt down.";
-	name = "crimson red candle";
-	pixel_x = 1;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = -5;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 7;
-	pixel_y = 9
+/obj/structure/chair/comfy/brown{
+	dir = 1
 	},
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
@@ -1148,11 +1096,10 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Cw" = (
-/obj/machinery/vending/snack/orange,
-/obj/effect/turf_decal/stripes{
-	dir = 8
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "CK" = (
 /obj/machinery/light,
@@ -1169,20 +1116,11 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "CR" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+/obj/machinery/vending/cola/red,
+/obj/effect/turf_decal/stripes{
 	dir = 4
 	},
-/obj/docking_port/mobile/emergency{
-	height = 22;
-	name = "The NTSS Independence";
-	width = 44
-	},
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
 "Do" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -1453,7 +1391,7 @@
 /obj/effect/turf_decal/stripes{
 	dir = 10
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/light/colour_cycle,
 /area/shuttle/escape)
 "Ib" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -1488,6 +1426,22 @@
 	},
 /turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
+"IG" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/docking_port/mobile/emergency{
+	height = 22;
+	name = "The NTSS Independence";
+	width = 44
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "IL" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
@@ -1509,7 +1463,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/turf/open/floor/plasteel/monofloor/dark,
+/turf/open/floor/light/colour_cycle,
 /area/shuttle/escape)
 "IX" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -1611,10 +1565,11 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "LF" = (
-/obj/structure/chair/comfy/brown{
-	dir = 1
+/obj/machinery/vending/cola,
+/obj/effect/turf_decal/stripes{
+	dir = 8
 	},
-/turf/open/floor/carpet/royalblue,
+/turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
 "LM" = (
 /obj/structure/chair/sofa{
@@ -1623,9 +1578,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Me" = (
-/obj/structure/chair/comfy/brown{
-	dir = 1
-	},
+/obj/structure/chair/comfy/brown,
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
 "ME" = (
@@ -2016,7 +1969,7 @@
 /turf/open/floor/plasteel/monofloor/dark,
 /area/shuttle/escape)
 "Vi" = (
-/obj/structure/chair/comfy/brown,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Vm" = (
@@ -2218,25 +2171,6 @@
 /area/shuttle/escape)
 "Zs" = (
 /obj/structure/table/wood/fancy,
-/obj/item/candle/infinite{
-	desc = "A synthetic candle that won't melt down.";
-	name = "crimson red candle";
-	pixel_x = 1;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = -7
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -11
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_y = 13
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = 9;
-	pixel_y = 3
-	},
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "Zu" = (
@@ -2275,10 +2209,9 @@ kd
 kd
 jt
 tm
-CR
 jt
-kd
-kd
+tm
+jt
 kd
 kd
 kd
@@ -2292,7 +2225,8 @@ kd
 kd
 jt
 tm
-tm
+jt
+IG
 jt
 kd
 kd
@@ -2315,28 +2249,28 @@ kd
 kd
 kd
 kd
-qV
+en
 en
 en
 jt
 jt
 mq
 mq
+mq
 jt
 jt
 jt
-jt
+uV
 kd
 kd
 kd
 kd
-kd
-kd
-jt
+uV
 en
 en
 en
 jt
+mq
 mq
 mq
 jt
@@ -2365,27 +2299,27 @@ en
 sc
 NH
 YZ
+uV
+jp
 jt
-aY
-aY
-jt
-yq
+jp
+uV
 cu
-jt
-jt
+CR
+uV
 en
 en
 en
 en
-jt
-jt
+uV
+Me
 gJ
 yK
-Me
+uV
+jp
 jt
-aY
-aY
-jt
+jp
+uV
 ZW
 ap
 kz
@@ -2411,13 +2345,13 @@ en
 EC
 Hi
 WT
+aY
+qE
+qE
+qE
+yq
 WT
-WT
-WT
-WT
-WT
-WT
-WT
+yq
 WT
 WT
 WT
@@ -2427,11 +2361,11 @@ YZ
 WT
 WT
 WT
-WT
-WT
-WT
-WT
-WT
+aY
+qE
+qE
+qE
+yq
 kP
 HB
 kP
@@ -2523,7 +2457,7 @@ Vm
 iz
 Vm
 Vm
-Vm
+uV
 DF
 WT
 WT
@@ -2629,7 +2563,7 @@ uV
 dR
 xj
 xj
-xj
+sW
 "}
 (9,1,1) = {"
 en
@@ -2638,7 +2572,7 @@ KB
 So
 uh
 uV
-Vm
+uV
 KD
 ET
 KD
@@ -2646,23 +2580,23 @@ KD
 KD
 pc
 KD
-Vm
-Vm
+uV
+uV
 Rp
 KD
 KD
 KD
 KD
 Nc
-Vm
-Vm
+uV
+uV
 fV
 go
 ac
 WQ
 fA
-Vm
-Vm
+uV
+uV
 Cs
 WT
 gz
@@ -2675,7 +2609,7 @@ uV
 dR
 xj
 xj
-xj
+sW
 "}
 (10,1,1) = {"
 en
@@ -2868,7 +2802,7 @@ Ho
 QE
 jw
 uV
-Vm
+uV
 tb
 ET
 tb
@@ -2876,23 +2810,23 @@ tb
 tb
 pc
 tb
-Vm
-Vm
+uV
+uV
 zb
 tb
 tb
 tb
 tb
 ME
-Vm
-Vm
+uV
+uV
 fe
 FC
 gv
 rx
 Dv
-Vm
-Vm
+uV
+uV
 Cs
 WT
 IQ
@@ -2905,7 +2839,7 @@ uV
 dR
 xj
 xj
-sW
+qa
 "}
 (15,1,1) = {"
 jt
@@ -2951,7 +2885,7 @@ uV
 dR
 xj
 xj
-xj
+qa
 "}
 (16,1,1) = {"
 kd
@@ -2997,7 +2931,7 @@ uV
 dR
 xj
 xj
-xj
+qa
 "}
 (17,1,1) = {"
 kd
@@ -3029,7 +2963,7 @@ Vm
 es
 Vm
 Vm
-Vm
+uV
 DF
 WT
 WT
@@ -3084,8 +3018,8 @@ si
 KS
 fB
 qI
-KS
-fI
+oj
+VV
 uV
 Fo
 Fo
@@ -3101,11 +3035,11 @@ en
 rZ
 Hi
 WT
-WT
-WT
-WT
-WT
-WT
+fI
+qV
+qV
+qV
+Cw
 WT
 WT
 WT
@@ -3117,20 +3051,20 @@ oo
 WT
 WT
 WT
-WT
-WT
-WT
-WT
-WT
+fI
+qV
+qV
+qV
+Cw
 dY
 ym
 dY
-jt
-jt
+uV
 en
 en
 en
 en
+uV
 uV
 uV
 kd
@@ -3147,27 +3081,27 @@ en
 sc
 NH
 oo
+uV
+tm
 jt
-qE
-qE
-jt
-Cw
+tm
+uV
 ca
-jt
-jt
+LF
+uV
 en
 en
 en
 en
-jt
-jt
+uV
+gb
 Vi
 er
-LF
+uV
+tm
 jt
-qE
-qE
-jt
+tm
+uV
 Cr
 Zs
 Er
@@ -3189,19 +3123,18 @@ kd
 kd
 kd
 kd
-qV
+en
 en
 en
 jt
 jt
 mq
 mq
+mq
 jt
 jt
 jt
 jt
-kd
-kd
 kd
 kd
 kd
@@ -3211,6 +3144,7 @@ en
 en
 en
 jt
+mq
 mq
 mq
 jt
@@ -3241,6 +3175,7 @@ kd
 kd
 jt
 jp
+jt
 jp
 jt
 kd
@@ -3254,10 +3189,9 @@ kd
 kd
 kd
 kd
-kd
-kd
 jt
-jp
+iT
+jt
 jp
 jt
 kd

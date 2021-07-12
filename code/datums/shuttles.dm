@@ -428,14 +428,14 @@
 	name = "Omegastation Emergency Shuttle"
 	description = "On the smaller size with a modern design, this shuttle is for the crew who like the cosier things, while still being able to stretch their legs."
 	credit_cost = CARGO_CRATE_VALUE * 2
-
-/datum/map_template/shuttle/emergency/cruise
+/*
+/datum/map_template/shuttle/emergency/cruise // проебывает атмос, не ебу почему но мне pohyi
 	suffix = "cruise"
 	name = "The NTSS Independence"
 	description = "Ordinarily reserved for special functions and events, the Cruise Shuttle Independence can bring a summery cheer to your next station evacuation for a 'modest' fee!"
 	admin_notes = "This motherfucker is BIG. You might need to force dock it."
 	credit_cost = CARGO_CRATE_VALUE * 100
-
+*/
 /datum/map_template/shuttle/emergency/monkey
 	suffix = "nature"
 	name = "Dynamic Environmental Interaction Shuttle"

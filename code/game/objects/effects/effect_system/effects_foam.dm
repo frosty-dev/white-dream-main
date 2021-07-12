@@ -280,7 +280,7 @@
 	layer = EDGED_TURF_LAYER
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	name = "металопена"
+	name = "металлопена"
 	desc = "Лёгкая металлическая пенная стена."
 	gender = PLURAL
 	max_integrity = 20

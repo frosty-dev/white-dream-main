@@ -2,7 +2,7 @@
 	name = "Охота за головами"
 	var/generated = FALSE
 	var/objective_type
-	var/mob/mob_to_recover
+	var/mob/living/mob_to_recover
 	min_payout = 2000
 	max_payout = 5000
 
@@ -11,6 +11,42 @@
 			Живым или мертвым, его необходимо доставить на мостик и отправить к вашему нанимателю с помощью предоставленной системы доставки. \
 			Следует принять во внимание, что преступник может быть экипирован гораздо лучше обычного рейнджера. \
 			Возможно, может потребоваться помощь сотрудников службы безопасности."
+
+/datum/orbital_objective/headhunt/on_assign(obj/machinery/computer/objective/objective_computer)
+	new /obj/effect/pod_landingzone(empty_pod_turf, empty_pod)
+	var/area/A = GLOB.areas_by_type[/area/bridge]
+	var/turf/open/T = locate() in shuffle(A.contents)
+
+	var/obj/structure/closet/supplypod/centcompod/empty_pod = new()
+
+	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, .proc/enter_check)
+
+	empty_pod.stay_after_drop = TRUE
+	empty_pod.reversing = TRUE
+	empty_pod.explosionSize = list(0,0,0,1)
+	empty_pod.leavingSound = 'sound/effects/podwoosh.ogg'
+
+/datum/orbital_objective/headhunt/proc/enter_check(datum/source, entered_mob)
+	if(!istype(source, /obj/structure/closet/supplypod/extractionpod))
+		return
+	if(!isliving(sent_mob))
+		return
+	if(entered_mob != mob_to_recover)
+		return
+	var/mob/living/M = entered_mob
+	if (iscarbon(M))
+		for(var/obj/item/W in M)
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(W == H.w_uniform)
+					continue
+				if(W == H.shoes)
+					continue
+			M.dropItemToGround(W)
+
+	var/obj/structure/closet/supplypod/extractionpod/pod = source
+	pod.startExitSequence(pod)
+	complete_objective()
 
 /datum/orbital_objective/headhunt/generate_objective_stuff(turf/chosen_turf)
 	var/mob/living/carbon/human/created_human = new(chosen_turf)
@@ -53,72 +89,3 @@
 						if(S.completed)
 							return TRUE
 	return FALSE
-
-
-/*
-/datum/orbital_objective/nuclear_bomb/on_assign(obj/machinery/computer/objective/objective_computer)
-	var/area/A = GLOB.areas_by_type[/area/bridge]
-	var/turf/open/T = locate() in shuffle(A.contents)
-	nuclear_bomb = new /obj/machinery/nuclearbomb/decomission(T)
-
-//If nobody takes up the ghost role, then we dont care if they died.
-//I know, its a bit sad.
-/datum/orbital_objective/headhunt/check_failed()
-	if(generated)
-		if(QDELETED(mob_to_recover))
-			return TRUE
-		if(mob_to_recover.stat == DEAD)
-			if(mob_to_recover.key && death_caring)
-				return TRUE
-			if(!mob_to_recover.key)
-				if(death_caring)
-					//Spawn in a diary
-					var/obj/item/disk/record/diary = new(get_turf(mob_to_recover))
-					diary.setup_recover(src)
-					tracked_diary = diary
-					priority_announce("Сенсоры сообщают о том, что VIP, которого мы хотели достать, внезапно скончался, однако \
-						его дневник поможет нам восстановить произошедшие события. Найдите его.")
-				death_caring = FALSE
-		else if(is_station_level(mob_to_recover.z))
-			complete_objective()
-		if(death_caring)
-			return TRUE
-	return FALSE
-
-
-/obj/item/disk/record
-	name = "Диск-дневник"
-	desc = "Диск, который содержит интересную информацию."
-
-/obj/item/disk/record/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/gps, "LOG[rand(1000, 9999)]", TRUE)
-
-/obj/item/disk/record/proc/setup_recover(linked_mission)
-	AddComponent(/datum/component/recoverable, linked_mission)
-
-/obj/item/disk/record/examine(mob/user)
-	. = ..()
-	. += "<hr><span class='notice'>Активируй это в руке <b>на мостике</b> станции, чтобы отправить Нанотрейзен нужные данные и завершить контракт.</span>"
-
-
-//=====================
-// Centcom Official
-//=====================
-
-/datum/outfit/centcom_official_vip
-	name = "Centcom VIP"
-
-	uniform = /obj/item/clothing/under/rank/centcom/officer
-	shoes = /obj/item/clothing/shoes/sneakers/black
-	gloves = /obj/item/clothing/gloves/color/black
-	ears = /obj/item/radio/headset/headset_cent/empty
-	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/gun/energy/e_gun
-	l_pocket = /obj/item/pen
-	back = /obj/item/storage/backpack/satchel
-	r_pocket = /obj/item/pda/heads
-	l_hand = /obj/item/clipboard
-	r_hand = /obj/item/gps
-	id = /obj/item/card/id/away/old
-*/
