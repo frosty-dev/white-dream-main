@@ -312,7 +312,7 @@
 	..()
 
 /datum/reagent/medicine/salglu_solution
-	name = "Солевой Раствор Глюкозы"
+	name = "Физраствор"
 	enname = "Saline-Glucose Solution"
 	description = "Has a 33% chance per metabolism cycle to heal brute and burn damage. Can be used as a temporary blood substitute, as well as slowly speeding blood regeneration."
 	reagent_state = LIQUID

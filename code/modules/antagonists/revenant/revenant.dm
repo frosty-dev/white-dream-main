@@ -450,6 +450,7 @@
 //objectives
 /datum/objective/revenant
 	var/targetAmount = 100
+	reward = 20
 
 /datum/objective/revenant/New()
 	targetAmount = rand(350,600)

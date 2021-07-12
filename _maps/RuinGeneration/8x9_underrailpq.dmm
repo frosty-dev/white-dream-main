@@ -1,0 +1,190 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/ruin/unpowered)
+"d" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"e" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"h" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/armory_contraband,
+/obj/structure/sign/poster/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"k" = (
+/obj/structure/sign/poster/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"o" = (
+/obj/structure/closet,
+/obj/item/stack/sheet/mineral/plasma/thirty,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"t" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"w" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"A" = (
+/obj/structure/closet,
+/obj/item/reagent_containers/glass/bottle/morphine,
+/obj/item/clothing/suit/hooded/cloak/goliath,
+/obj/item/spear/bonespear,
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"E" = (
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"F" = (
+/obj/structure/bed,
+/obj/item/bedsheet/dorms,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"I" = (
+/obj/structure/table,
+/obj/item/modular_computer/laptop/preset/civilian,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"K" = (
+/obj/item/storage/backpack/duffelbag/syndie/x4{
+	pixel_x = 7
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"M" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"N" = (
+/obj/effect/abstract/doorway_marker{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"R" = (
+/obj/structure/table,
+/obj/item/storage/blister/twocap/stimulant,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"S" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"V" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/unpowered)
+"Y" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+R
+Y
+t
+Y
+M
+d
+S
+a
+"}
+(3,1,1) = {"
+a
+I
+Y
+Y
+Y
+Y
+d
+w
+a
+"}
+(4,1,1) = {"
+a
+Y
+k
+Y
+Y
+Y
+Y
+Y
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+E
+K
+Y
+Y
+Y
+a
+"}
+(6,1,1) = {"
+N
+E
+V
+E
+a
+Y
+Y
+e
+a
+"}
+(7,1,1) = {"
+a
+E
+o
+A
+a
+h
+F
+Y
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

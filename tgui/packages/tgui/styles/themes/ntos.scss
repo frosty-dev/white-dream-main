@@ -20,7 +20,7 @@ $nanotrasen: #191919;
   // Components
   @include meta.load-css('../components/Button.scss', $with: (
     'color-default': lighten($nanotrasen, 70%),
-    'color-transparent-text': rgba(227, 240, 255, 0.75),
+    'color-transparent-text': rgba(240, 240, 240, 0.75),
   ));
   @include meta.load-css('../components/ProgressBar.scss', $with: (
     'color-default-fill': $nanotrasen,

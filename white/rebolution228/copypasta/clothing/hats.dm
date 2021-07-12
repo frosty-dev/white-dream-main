@@ -1,13 +1,13 @@
 // маска 1щ
 
 /obj/item/clothing/head/helmet/maska
-	name = "Шлем 'Маска 1Щ'"
+	name = "Маска 1Щ"
 	desc = "Тяжелый штурмовой шлем, используемый специальными подразделениями Новой России, входящие в отдел NanoTrasen. Хорошо защищает от ударов и пуль, но имеет посредственную защиту от лазерных лучей. Напоминает вам о окончании рейда."
-	icon = 'white/rebolution228/clothing/hats.dmi'
-	worn_icon = 'white/rebolution228/clothing/hats_mob.dmi'
+	icon = 'white/rebolution228/icons/clothing/hats.dmi'
+	worn_icon = 'white/rebolution228/icons/clothing/mob/hats_mob.dmi'
 	icon_state = "maska1sch"
-	lefthand_file = 'white/rebolution228/clothing/inhand_clothing_left.dmi'
-	righthand_file = 'white/rebolution228/clothing/inhand_clothing_right.dmi'
+	lefthand_file = 'white/rebolution228/icons/clothing/inhand_clothing_left.dmi'
+	righthand_file = 'white/rebolution228/icons/clothing/inhand_clothing_right.dmi'
 	inhand_icon_state = "maska1sch"
 	toggle_message = "Опускаю забрало"
 	alt_toggle_message = "Поднимаю забрало"

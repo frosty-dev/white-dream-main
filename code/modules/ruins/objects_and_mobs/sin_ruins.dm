@@ -3,7 +3,7 @@
 /obj/structure/cursed_slot_machine //Greed's slot machine: Used in the Greed ruin. Deals clone damage on each use, with a successful use giving a d20 of fate.
 	name = "игровой автомат Жадности"
 	desc = "Большие ставки, большие выигрыши."
-	icon = 'icons/obj/economy.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "slots1"
 	anchored = TRUE
 	density = TRUE

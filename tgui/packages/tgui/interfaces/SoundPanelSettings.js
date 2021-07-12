@@ -38,7 +38,7 @@ export const SoundPanelSettings = (props, context) => {
           <Button
             icon={instruments ? 'volume-up' : 'volume-mute'}
             color={instruments ? 'green' : 'transparent'}
-            content="Музыкальные мнструменты"
+            content="Музыкальные инструменты"
             fluid
             onClick={() => act('instruments')} />
           <Button

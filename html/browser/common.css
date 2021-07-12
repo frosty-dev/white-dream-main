@@ -26,14 +26,15 @@ a, button, a:link, a:visited, a:active, .linkOn, .linkOff
 	color: #f4f4ff;
 	font-weight: 100;
 	text-decoration: none;
-	background: #090909;
-	border-top: 1px solid #444444;
-	border-left: 1px solid #333333;
-	border-right: 1px solid #222222;
-	border-bottom: 1px solid #111111;
-	border-radius: 1px;
+	background: #1a1a1a;
+	border-top: 1px solid rgba(44, 44, 44, 0.8);
+	border-left: 1px solid rgba(33, 33, 33, 0.8);
+	border-right: 1px solid rgba(33, 33, 33, 0.8);
+	border-bottom: 1px solid rgba(33, 33, 33, 0.8);
+	box-shadow: 0 -1px 0 rgba(66, 66, 66, 0.8), 0 1px 0 rgba(22, 22, 22, 0.8);
+	border-radius: 0.24em;
 	padding: 2px 6px 2px 6px;
-	line-height: 1.9;
+	line-height: 2;
 	margin: 0 2px 0 0;
 	cursor:default;
 }
@@ -49,10 +50,8 @@ a.white, a.white:link, a.white:visited, a.white:active
 	color: #000000;
 	text-decoration: none;
 	background: #f4f4ff;
-	border-top: 1px solid #444444;
-	border-left: 1px solid #333333;
-	border-right: 1px solid #222222;
-	border-bottom: 1px solid #111111;
+	border: 1px solid #000000 !important;
+	box-shadow: none;
 	padding: 1px 4px 1px 4px;
 	margin: 0 2px 0 0;
 	cursor:default;

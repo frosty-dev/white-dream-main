@@ -251,7 +251,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(living_victims <= 1 && !debug_mode)
 		to_chat(world, "<span class='ratvar'><font size=14>ПОБЕДА!!!</font></span>")
 		if(winner)
-			winner.client?.process_greentext()
+			winner.client?.process_greentext(30, 1)
 			to_chat(world, "<span class='ratvar'><font size=14>[key_name(winner)] победитель!</font></span>")
 			new /obj/item/melee/supermatter_sword(get_turf(winner))
 		else

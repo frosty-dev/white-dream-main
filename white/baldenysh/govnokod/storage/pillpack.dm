@@ -43,46 +43,46 @@
 	name = "Хохломицин"
 	desc = "Таблетки содержат правий сиктор."
 	illustration = "hohlomicin"
-	custom_price = 666
+	custom_price = 66
 	blister_list = list(
-						/obj/item/storage/blister/hohlomicin,
-						/obj/item/storage/blister/hohlomicin
+						/obj/item/storage/blister/threecap/hohlomicin,
+						/obj/item/storage/blister/threecap/hohlomicin
 						)
 
 /obj/item/storage/box/pillpack/haloperidol
 	name = "Галоперидол"
 	desc = "Шутки кончились."
 	illustration = "haloperidol"
-	custom_price = 20
+	custom_price = 2
 	blister_list = list(
-						/obj/item/storage/blister/haloperidol
+						/obj/item/storage/blister/fivecir/haloperidol
 						)
 
 
 /obj/item/storage/box/pillpack/antihol
 	name = "Антиголь"
 	illustration = "antihol"
-	custom_price = 10
+	custom_price = 2
 	blister_list = list(
-						/obj/item/storage/blister/antihol,
-						/obj/item/storage/blister/antihol
+						/obj/item/storage/blister/fivecir/antihol,
+						/obj/item/storage/blister/fivecir/antihol
 						)
 
 /obj/item/storage/box/pillpack/psicodine
 	name = "Псикодин"
 	illustration = "psicodine"
-	custom_price = 30
+	custom_price = 3
 	blister_list = list(
-						/obj/item/storage/blister/psicodine,
-						/obj/item/storage/blister/psicodine
+						/obj/item/storage/blister/threecap/psicodine,
+						/obj/item/storage/blister/threecap/psicodine
 						)
 
 /obj/item/storage/box/pillpack/potassiodide
 	name = "Йодид калия"
 	illustration = "potassiodide"
-	custom_price = 10
+	custom_price = 2
 	blister_list = list(
-						/obj/item/storage/blister/potassiodide
+						/obj/item/storage/blister/fivecir/potassiodide
 						)
 
 /obj/item/storage/box/pillpack/stimulant
@@ -90,15 +90,15 @@
 	illustration = "stimulant"
 	custom_price = 100
 	blister_list = list(
-						/obj/item/storage/blister/stimulant
+						/obj/item/storage/blister/twocap/stimulant
 						)
 
 /obj/item/storage/box/pillpack/aspirin
 	name = "Аспирин"
 	illustration = "aspirin"
-	custom_price = 40
+	custom_price = 4
 	blister_list = list(
-						/obj/item/storage/blister/aspirin,
-						/obj/item/storage/blister/aspirin
+						/obj/item/storage/blister/fivecir/aspirin,
+						/obj/item/storage/blister/fivecir/aspirin
 						)
 

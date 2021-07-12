@@ -579,7 +579,7 @@
 /turf/open/floor/plating,
 /area/construction/storage_wing)
 "iP" = (
-/obj/item/card/id/captains_spare,
+/obj/item/card/id/advanced/gold/captains_spare,
 /obj/item/areaeditor/blueprints,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,

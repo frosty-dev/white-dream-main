@@ -1,3 +1,4 @@
+/*
 /obj/machinery/vending/ancap
 	name = "AnCapVend Plus"
 	desc = "A funny vending machine. There is a note on the side: \"Pls kys if you are a commie\""
@@ -33,7 +34,7 @@
 	. = ..()
 	wires.wires -= WIRE_THROW
 	wires.wires += WIRE_ZAP
-
+*/
 /obj/item/reagent_containers/glass/bottle/nutrient/earthsblood
 	name = "bottle of earthsblood"
 	desc = "Contains a fertilizer that makes trays self-sustaining."

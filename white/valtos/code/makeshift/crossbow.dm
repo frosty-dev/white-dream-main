@@ -73,7 +73,7 @@
 			charging = TRUE
 			playsound(user, draw_sound, 50, 1)
 
-			if (do_after(user, charge_time, 0) && charging)
+			if (do_after(user, charge_time, 0, timed_action_flags = IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE) && charging)
 				charge = charge + 1
 				charging = FALSE
 				var/draw = "a little"
@@ -154,7 +154,7 @@
 	icon = 'white/valtos/icons/crossbow.dmi'
 	icon_state = "rod_proj"
 	suppressed = TRUE
-	damage = 10 // multiply by how drawn the bow string is
+	damage = 15 // multiply by how drawn the bow string is
 	range = 10 // also multiply by the bow string
 	damage_type = BRUTE
 	flag = "bullet"
@@ -165,14 +165,15 @@
 
 /obj/projectile/rod/on_range()
 	// we didn't hit anything, place a rod here
-	new /obj/item/stack/rods(get_turf(src))
+	new /obj/item/stack/rods/bent(get_turf(src))
 	..()
 
 /obj/projectile/rod/proc/Impale(mob/living/carbon/human/H)
 	if (H)
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
-		var/obj/item/stack/rods/R = new(H.loc, 1, FALSE) // Don't merge
+		//var/obj/item/stack/rods/R = new(H.loc, 1, FALSE) // Don't merge
+		var/obj/item/stack/rods/bent/R = new(H.loc, 1, FALSE)
 
 		if (istype(BP))
 			R.add_blood_DNA(H.return_blood_DNA())
@@ -193,11 +194,21 @@
 			var/mob/living/carbon/human/H = target
 			Impale(H)
 		else
-			new /obj/item/stack/rods(get_turf(src))
+			new /obj/item/stack/rods/bent(get_turf(src))
 	else
 		playsound(target, hitsound_override, volume, 1, -1)
-		new /obj/item/stack/rods(get_turf(src))
+		new /obj/item/stack/rods/bent(get_turf(src))
 	qdel(src)
 
 /obj/item/ammo_casing/rod
 	projectile_type = /obj/projectile/rod
+
+/obj/item/stack/rods/bent
+	name = "погнутый металлический стержень"
+	singular_name = "погнутый металлический стержень"
+	desc = "Надо-бы выгнуть."
+	merge_type = null
+
+/obj/item/stack/rods/bent/get_main_recipes()
+	. = ..()
+	return list(new/datum/stack_recipe("выгнуть стержень", /obj/item/stack/rods, 1, time = 1, one_per_turf = FALSE))

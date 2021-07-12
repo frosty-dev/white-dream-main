@@ -13,23 +13,20 @@
 
 	owner.current.playsound_local(get_turf(owner.current), 'white/rebolution228/sounds/spetsnaz_spawn.ogg',100,0, use_reverb = FALSE)
 	to_chat(owner, "<B><font size=3 color=red>Я РОССИЙСКИЙ СПЕЦНАЗ!</font></B>")
-
-	var/missiondesc = "Вы входите в состав спецподразделения <B>'Оборотень'</B>, отправленный на станцию <B>'[station_name()]'</B> с заданием от <B>Российского Отдела Службы Безопасности NanoTrasen.</B> Ваше тело имеет <B>иммунитет к вакууму и не требует кислорода.</B>"
+	to_chat(owner, "Вы входите в состав спецподразделения <B>'Оборотень'</B>, отправленный на станцию <B>'[station_name()]'</B> с заданием от <B>Российского Отдела Службы Безопасности NanoTrasen.</B> Ваше тело имеет <B>иммунитет к вакууму и не требует кислорода.</B>")
 	if(leader)
-		missiondesc += "Являясь главой отряда, вы должны руководить своим составом, чтобы обеспечить выполнение миссии. Отправьтесь на станцию при помощи шаттла, когда вы будете готовы. "
+		to_chat(owner, "Являясь главой отряда, вы должны руководить своим составом, чтобы обеспечить выполнение миссии. Отправьтесь на станцию при помощи шаттла, когда вы будете готовы.")
 	else
-		missiondesc += "Следуйте приказам вашего командира отряда. "
+		to_chat(owner, "Следуйте приказам вашего командира отряда.")
 	if(!rip_and_tear)
-		missiondesc += "По возможности <B>избегайте</B> жертв среди гражданского населения."
-
-	missiondesc += "<BR><B>МИССИЯ:</B> [ert_team.mission.explanation_text]"
-	to_chat(owner,missiondesc)
+		to_chat(owner, "По возможности <B>избегайте</B> жертв среди гражданского населения.")
+	to_chat(owner, "<BR><B>МИССИЯ:</B> [ert_team.mission.explanation_text]")
 
 /datum/antagonist/ert/spetsnaz/on_gain()
 	. = ..()
-	huivanus()
+	givespaceproof()
 
-/datum/antagonist/ert/spetsnaz/proc/huivanus()
+/datum/antagonist/ert/spetsnaz/proc/givespaceproof()
 	var/mob/living/carbon/C = owner.current
 	if(!istype(C))
 		return
@@ -80,6 +77,11 @@
 	r_pocket = /obj/item/kitchen/knife/combat
 	l_pocket = /obj/item/flashlight/seclite
 	head = null	
+	back = /obj/item/storage/backpack/security
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/storage/box/handcuffs=1,\
+		/obj/item/melee/classic_baton/wzzzz/german=1,\
+		/obj/item/crowbar/red=1)
 
 /datum/outfit/spetsnaz/pre_equip(mob/living/carbon/human/H)
 	suit_store = /obj/item/gun/ballistic/automatic/ak74m
@@ -157,6 +159,14 @@
 	id_trim = /datum/id_trim/centcom/spetsnaz/leader
 	r_pocket = /obj/item/kitchen/knife/combat
 	l_pocket = /obj/item/flashlight/seclite
+	back = /obj/item/storage/backpack/satchel/sec
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/storage/box/handcuffs=1,\
+		/obj/item/melee/classic_baton/wzzzz/german=1,\
+		/obj/item/crowbar/red=1,\
+		/obj/item/autosurgeon/organ=1,\
+		/obj/item/organ/eyes/robotic/thermals=1,\
+		/obj/item/organ/cyberimp/eyes/hud/security=1)
 
 /datum/outfit/spetsnaz/leader/pre_equip(mob/living/carbon/human/H)
 	suit_store = /obj/item/gun/ballistic/automatic/asval

@@ -13,5 +13,8 @@
 /datum/antagonist/morph/on_gain()
 	to_chat(owner.current, playstyle_string)
 	antag_memory += playstyle_string
+	var/datum/objective/survive/S = new
+	S.reward = 30
+	S.owner = owner
+	objectives+=S
 	..()
-

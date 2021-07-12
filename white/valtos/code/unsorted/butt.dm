@@ -1,3 +1,22 @@
+/atom/movable/butt_storage
+	name = "задницевый костыль"
+	desc = "при встрече сообщите кодерасту"
+/atom/movable/butt_storage/Initialize(mapload, source)
+	. = ..()
+	verbs.Cut()
+/atom/movable/butt_storage/ex_act(severity)
+	return FALSE
+/atom/movable/butt_storage/singularity_act()
+	return
+/atom/movable/butt_storage/singularity_pull()
+	return
+/atom/movable/butt_storage/blob_act()
+	return
+/atom/movable/butt_storage/onTransitZ()
+	return
+/atom/movable/butt_storage/movable/forceMove(atom/destination, no_tp=FALSE, harderforce = FALSE)
+	return
+
 /obj/item/organ/butt
 	name = "задница"
 	desc = "невероятно драгоценная часть тела"
@@ -16,12 +35,12 @@
 	slot_flags = ITEM_SLOT_HEAD
 	var/loose = 0
 	var/pocket_storage_component_path = /datum/component/storage/concrete/pockets/butt
-
+	var/atom/movable/butt_storage/storage_handler
+/*
 /obj/item/organ/butt/Initialize()
 	. = ..()
-	if(ispath(pocket_storage_component_path) && owner)
-		LoadComponent(pocket_storage_component_path)
 
+*/
 /obj/item/organ/butt/xeno //XENOMORPH BUTTS ARE BEST BUTTS yes i agree
 	name = "задница ксеноса"
 	desc = "лучший трофей"
@@ -43,12 +62,13 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/butt/bluebutt
 	. = ..()
 
-/obj/item/organ/butt/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/butt/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = TRUE)
 	. = ..()
-	if(ispath(pocket_storage_component_path) && owner)
-		LoadComponent(pocket_storage_component_path)
+	storage_handler = new(C)
+	storage_handler.AddComponent(pocket_storage_component_path)
 
 /obj/item/organ/butt/Remove(mob/living/carbon/M, special = 0)
+/*
 	var/turf/T = get_turf(M)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
@@ -56,14 +76,15 @@
 		for(var/i in STR_contents)
 			var/obj/item/I = i
 			STR.remove_from_storage(I, T)
-
-	QDEL_NULL(STR)
-
+*/
+	qdel(storage_handler)
+	//var/datum/component/storage/STR = storage_handler.GetComponent(pocket_storage_component_path)
+	//STR.Destroy()
 	. = ..()
 
 /obj/item/organ/butt/on_life()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	if(owner && STR)
+	var/datum/component/storage/STR = storage_handler.GetComponent(/datum/component/storage)
+	if(STR)
 		var/list/STR_contents = STR.contents()
 		for(var/obj/item/I in STR_contents)
 			if(I.get_sharpness())
@@ -91,6 +112,8 @@
 	..()
 	playsound(src, 'white/valtos/sounds/poo2.ogg', 50, 1, 5)
 
+///////////////////////////////////////////////////////////////mob stuff
+
 /mob/living/carbon/proc/regeneratebutt()
 	if(!getorganslot("butt"))
 		if(ishuman(src) || ismonkey(src))
@@ -104,7 +127,7 @@
 	if(user.zone_selected == "groin")
 		var/obj/item/organ/butt/B = getorgan(/obj/item/organ/butt)
 		if(!w_uniform)
-			var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
+			var/datum/component/storage/STR = B.storage_handler.GetComponent(B.pocket_storage_component_path)
 			if(B && STR)
 				user.visible_message("<span class='warning'>[user] начинает инспектировать [user == src ? "свою задницу" : "задницу [src]"]!</span>", "<span class='warning'>Начинаю инспектировать [user == src ? "свою задницу" : "задницу [src]"]!</span>")
 				if(do_mob(user, src, 40))
@@ -146,7 +169,7 @@
 				return FALSE
 			var/obj/item/organ/butt/B = buttowner.getorgan(/obj/item/organ/butt)
 			if(B)
-				var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
+				var/datum/component/storage/STR = B.storage_handler.GetComponent(B.pocket_storage_component_path)
 				if(!STR)
 					return FALSE
 				user.visible_message("<span class='warning'>[user] начинает прятать [I] в [user == src ? "свою задницу" : "задницу [src]"].</span>", "<span class='warning'>Начинаю прятать [I] в [user == src ? "свою задницу" : "задницу [src]"].</span>")
@@ -156,10 +179,12 @@
 				return TRUE
 	return FALSE
 
+///////////////////////////////////////////////////////////////////other
+
 /obj/item/clothing/proc/checkbuttuniform(mob/user)
 	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
 	if(B)
-		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
+		var/datum/component/storage/STR = B.storage_handler.GetComponent(B.pocket_storage_component_path)
 		if(STR)
 			STR.close_all()
 

@@ -37,3 +37,10 @@
 	..()
 	if(!mind.has_antag_datum(/datum/antagonist/xeno))
 		mind.add_antag_datum(/datum/antagonist/xeno)
+
+/datum/antagonist/xeno/on_gain()
+	var/datum/objective/survive/S = new
+	S.reward = 15
+	S.owner = owner
+	objectives+=S
+	. = ..()

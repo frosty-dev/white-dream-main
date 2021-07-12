@@ -342,6 +342,7 @@
 /datum/objective/sacrifice
 	var/sacced = FALSE
 	var/sac_image
+	reward = 15
 
 /datum/objective/sacrifice/check_completion()
 	return sacced || completed
@@ -356,6 +357,7 @@
 	var/summoned = FALSE
 	var/killed = FALSE
 	var/list/summon_spots = list()
+	reward = 25
 
 /datum/objective/eldergod/New()
 	..()

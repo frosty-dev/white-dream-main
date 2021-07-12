@@ -692,7 +692,7 @@
 /turf/open/floor/plating,
 /area/construction/storage_wing)
 "iP" = (
-/obj/item/card/id/captains_spare,
+/obj/item/card/id/advanced/gold/captains_spare,
 /obj/item/areaeditor/blueprints,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -1684,7 +1684,7 @@
 	name = "A Simpleton's Guide to Safe-cracking with Stethoscopes"
 	},
 /obj/item/stack/sheet/mineral/diamond,
-/obj/item/stack/spacecash/c5000,
+/obj/item/stack/spacecash/c500,
 /obj/machinery/light/small,
 /obj/item/gun/ballistic/automatic/pistol/deagle,
 /obj/effect/turf_decal/tile/neutral{

@@ -4,17 +4,17 @@
 	name = "Franchi SPAS-12"
 	desc = "Древний, но эффективный дробовик, разработанный в Италии. Предназначался для использования силовыми структурами."
 	icon_state = "spas12"
-	icon = 'white/rebolution228/weapons/spas12.dmi'
-	lefthand_file = 'white/rebolution228/weapons/guns_inhand_left.dmi'
-	righthand_file = 'white/rebolution228/weapons/guns_inhand_right.dmi'
+	icon = 'white/rebolution228/icons/weapons/spas12.dmi'
+	lefthand_file = 'white/rebolution228/icons/weapons/guns_inhand_left.dmi'
+	righthand_file = 'white/rebolution228/icons/weapons/guns_inhand_right.dmi'
 	inhand_icon_state = "spess12"
-	worn_icon = 'white/rebolution228/weapons/guns_back.dmi'
+	worn_icon = 'white/rebolution228/icons/weapons/guns_back.dmi'
 	worn_icon_state = "spas12_back"
-	fire_sound = 'white/rebolution228/weapons/sounds/spas_shoot.ogg'
-	rack_sound = 'white/rebolution228/weapons/sounds/spas_pump.ogg'
-	load_sound = 'white/rebolution228/weapons/sounds/spas_insert.ogg'
+	fire_sound = 'white/rebolution228/sounds/weapons/spas_shoot.ogg'
+	rack_sound = 'white/rebolution228/sounds/weapons/spas_pump.ogg'
+	load_sound = 'white/rebolution228/sounds/weapons/spas_insert.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/eight
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/eight
 	weapon_weight = WEAPON_HEAVY
 	pb_knockback = 1
 	fire_delay = 5
@@ -24,11 +24,13 @@
 /obj/item/gun/ballistic/shotgun/spas12/rubber
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot/eight
 
-/obj/item/ammo_box/magazine/internal/shot/com/eight // lethal rounds
+/obj/item/ammo_box/magazine/internal/shot/lethal/eight // lethal rounds
 	max_ammo = 8
+	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 
 /obj/item/ammo_box/magazine/internal/shot/riot/eight // rubber rounds
 	max_ammo = 8
+	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 
 
 // M41A MKII
@@ -37,14 +39,14 @@
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
 	name = "M41A Pulse Rifle MK.II"
 	desc = "Новая версия громоздкой импульсной винтовки, оснащенная подствольным гранатомётом. Использует безгильзовые 10х24мм патроны."
-	icon = 'white/rebolution228/weapons/rguns.dmi'
+	icon = 'white/rebolution228/icons/weapons/rguns.dmi'
 	icon_state = "m41a2"
 	inhand_icon_state = "m41a2"
 	selector_switch_icon = TRUE
-	lefthand_file = 'white/rebolution228/weapons/guns_inhand_left.dmi'
-	righthand_file = 'white/rebolution228/weapons/guns_inhand_right.dmi'
+	lefthand_file = 'white/rebolution228/icons/weapons/guns_inhand_left.dmi'
+	righthand_file = 'white/rebolution228/icons/weapons/guns_inhand_right.dmi'
 	mag_type = /obj/item/ammo_box/magazine/m41a/caseless
-	worn_icon = 'white/rebolution228/weapons/guns_back.dmi'
+	worn_icon = 'white/rebolution228/icons/weapons/guns_back.dmi'
 	worn_icon_state = "m41a2_back"
 	pin = /obj/item/firing_pin
 	fire_delay = 1.5
@@ -55,11 +57,11 @@
 	spread = 5
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'white/rebolution228/weapons/sounds/fire_m41a1.ogg'
-	var/list/fucking = list('white/rebolution228/weapons/sounds/fire_m41a1.ogg',
-						'white/rebolution228/weapons/sounds/fire_m41a2.ogg',
-						'white/rebolution228/weapons/sounds/fire_m41a3.ogg',
-						'white/rebolution228/weapons/sounds/fire_m41a4.ogg')
+	fire_sound = 'white/rebolution228/sounds/weapons/fire_m41a1.ogg'
+	var/list/fucking = list('white/rebolution228/sounds/weapons/fire_m41a1.ogg',
+						'white/rebolution228/sounds/weapons/fire_m41a2.ogg',
+						'white/rebolution228/sounds/weapons/fire_m41a3.ogg',
+						'white/rebolution228/sounds/weapons/fire_m41a4.ogg')
 
 /obj/item/gun/ballistic/automatic/m41a2/process_chamber()
 	. = ..()
@@ -92,7 +94,7 @@
 			burst_size = 1
 			fire_delay = 0
 			to_chat(user, "<span class='notice'>Выбираю полуавтоматический режим.</span>")
-	playsound(user, 'white/rebolution228/weapons/sounds/dryfire1.ogg', 100, TRUE)
+	playsound(user, 'white/rebolution228/sounds/weapons/dryfire1.ogg', 100, TRUE)
 	update_icon()
 	return
 
@@ -127,7 +129,7 @@
 
 /obj/item/ammo_box/magazine/m41a/caseless
 	name = "M41A2 Magazine"
-	icon = 'white/rebolution228/weapons/rammo.dmi'
+	icon = 'white/rebolution228/icons/weapons/rammo.dmi'
 	icon_state = "m41a2"
 	ammo_type = /obj/item/ammo_casing/caseless/m41acaseless
 	caliber = "10x24mm"
@@ -158,7 +160,7 @@
 	projectile_type = /obj/projectile/bullet/m41acaseless
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted/m41a
-	fire_sound = 'white/rebolution228/weapons/sounds/fire_m41agrenadelauncher.ogg'
+	fire_sound = 'white/rebolution228/sounds/weapons/fire_m41agrenadelauncher.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher/m41a
 
 /obj/item/ammo_box/magazine/internal/grenadelauncher/m41a
@@ -173,13 +175,13 @@
 /obj/item/gun/ballistic/automatic/asval
 	name = "АС 'Вал'"
 	desc = "Бесшумный автомат, используемый войсками осназа Новой России. Использует 9х39 калибр."
-	icon = 'white/rebolution228/weapons/rguns.dmi'
+	icon = 'white/rebolution228/icons/weapons/rguns.dmi'
 	icon_state = "asval"
 	inhand_icon_state = "asval"
 	selector_switch_icon = TRUE
-	lefthand_file = 'white/rebolution228/weapons/guns_inhand_left.dmi'
-	righthand_file = 'white/rebolution228/weapons/guns_inhand_right.dmi'
-	worn_icon = 'white/rebolution228/weapons/guns_back.dmi'
+	lefthand_file = 'white/rebolution228/icons/weapons/guns_inhand_left.dmi'
+	righthand_file = 'white/rebolution228/icons/weapons/guns_inhand_right.dmi'
+	worn_icon = 'white/rebolution228/icons/weapons/guns_back.dmi'
 	worn_icon_state = "asval_back"
 	mag_type = /obj/item/ammo_box/magazine/asval
 	pin = /obj/item/firing_pin
@@ -189,13 +191,13 @@
 	empty_indicator = FALSE
 	spread = 3
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'white/rebolution228/weapons/sounds/fire_asval.ogg'
-	rack_sound = 'white/rebolution228/weapons/sounds/asval_zatvor.ogg'
+	fire_sound = 'white/rebolution228/sounds/weapons/fire_asval.ogg'
+	rack_sound = 'white/rebolution228/sounds/weapons/asval_zatvor.ogg'
 	can_suppress = FALSE
 
 /obj/item/ammo_box/magazine/asval
 	name = "9х39 магазин"
-	icon = 'white/rebolution228/weapons/rammo.dmi'
+	icon = 'white/rebolution228/icons/weapons/rammo.dmi'
 	icon_state = "asval"
 	ammo_type = /obj/item/ammo_casing/c9x39
 	caliber = "9x39"
@@ -223,13 +225,13 @@
 /obj/item/gun/ballistic/automatic/ak74m
 	name = "AK-74M"
 	desc = "Младший брат автомата АК. Использует 5.45 калибр."
-	icon = 'white/rebolution228/weapons/rguns.dmi'
+	icon = 'white/rebolution228/icons/weapons/rguns.dmi'
 	icon_state = "ak74m"
 	inhand_icon_state = "ak74m"
 	selector_switch_icon = TRUE
-	lefthand_file = 'white/rebolution228/weapons/guns_inhand_left.dmi'
-	righthand_file = 'white/rebolution228/weapons/guns_inhand_right.dmi'
-	worn_icon = 'white/rebolution228/weapons/guns_back.dmi'
+	lefthand_file = 'white/rebolution228/icons/weapons/guns_inhand_left.dmi'
+	righthand_file = 'white/rebolution228/icons/weapons/guns_inhand_right.dmi'
+	worn_icon = 'white/rebolution228/icons/weapons/guns_back.dmi'
 	worn_icon_state = "ak74m_back"
 	mag_type = /obj/item/ammo_box/magazine/ak74m
 	pin = /obj/item/firing_pin
@@ -240,15 +242,15 @@
 	spread = 5
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	rack_sound = 'white/rebolution228/weapons/sounds/74_zatvor.ogg'
-	eject_sound = 'white/rebolution228/weapons/sounds/74_magout.ogg'
-	eject_empty_sound = 'white/rebolution228/weapons/sounds/74_magout.ogg'
-	load_sound = 'white/rebolution228/weapons/sounds/74_magout.ogg'
-	load_empty_sound = 'white/rebolution228/weapons/sounds/74_magin.ogg'
-	fire_sound = 'white/rebolution228/weapons/sounds/74_ebashit1.ogg'
-	var/list/huipizdaaa = list('white/rebolution228/weapons/sounds/74_ebashit1.ogg',
-							'white/rebolution228/weapons/sounds/74_ebashit2.ogg',
-							'white/rebolution228/weapons/sounds/74_ebashit3.ogg')
+	rack_sound = 'white/rebolution228/sounds/weapons/74_zatvor.ogg'
+	eject_sound = 'white/rebolution228/sounds/weapons/74_magout.ogg'
+	eject_empty_sound = 'white/rebolution228/sounds/weapons/74_magout.ogg'
+	load_sound = 'white/rebolution228/sounds/weapons/74_magout.ogg'
+	load_empty_sound = 'white/rebolution228/sounds/weapons/74_magin.ogg'
+	fire_sound = 'white/rebolution228/sounds/weapons/74_ebashit1.ogg'
+	var/list/huipizdaaa = list('white/rebolution228/sounds/weapons/74_ebashit1.ogg',
+							'white/rebolution228/sounds/weapons/74_ebashit2.ogg',
+							'white/rebolution228/sounds/weapons/74_ebashit3.ogg')
 	can_suppress = FALSE
 
 /obj/item/gun/ballistic/automatic/ak74m/process_chamber()
@@ -257,7 +259,7 @@
 
 /obj/item/ammo_box/magazine/ak74m
 	name = "AK-74 Magazine (5.45)"
-	icon = 'white/rebolution228/weapons/rammo.dmi'
+	icon = 'white/rebolution228/icons/weapons/rammo.dmi'
 	icon_state = "ak74m"
 	ammo_type = /obj/item/ammo_casing/a545
 	caliber = "a545"
@@ -291,7 +293,7 @@
 	worn_icon_state = "ak74mgl_back"
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted/gp25
-	fire_sound = 'white/rebolution228/weapons/sounds/fire_m41agrenadelauncher.ogg'
+	fire_sound = 'white/rebolution228/sounds/weapons/fire_m41agrenadelauncher.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher/gp25
 
 /obj/item/ammo_box/magazine/internal/grenadelauncher/gp25
@@ -312,13 +314,13 @@
 	name = "Выстрел ВОГ-25"
 	desc = "Бум."
 	caliber = "40mmvog"
-	icon = 'white/rebolution228/weapons/rammo.dmi'
+	icon = 'white/rebolution228/icons/weapons/rammo.dmi'
 	icon_state = "vog25"
 	projectile_type = /obj/projectile/bullet/vog25
 
 /obj/projectile/bullet/vog25
 	name = "40mm grenade"
-	icon = 'white/rebolution228/weapons/projectile.dmi'
+	icon = 'white/rebolution228/icons/weapons/projectile.dmi'
 	icon_state = "vog25"
 	damage = 150
 
@@ -358,6 +360,6 @@
 			burst_size = 1
 			fire_delay = 0
 			to_chat(user, "<span class='notice'>Выбираю полуавтоматический режим.</span>")
-	playsound(user, 'white/rebolution228/weapons/sounds/dryfire1.ogg', 100, TRUE)
+	playsound(user, 'white/rebolution228/sounds/weapons/dryfire1.ogg', 100, TRUE)
 	update_icon()
 	return

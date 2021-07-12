@@ -359,6 +359,7 @@
 			missionobj.team = ert_team
 			missionobj.explanation_text = ertemplate.mission
 			missionobj.completed = TRUE
+			missionobj.reward = 20
 			ert_team.objectives += missionobj
 			ert_team.mission = missionobj
 

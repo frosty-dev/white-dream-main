@@ -13,8 +13,16 @@
 		else
 			inc_metabalance(M, METACOIN_NOTSURVIVE_REWARD, reason="Я пытался...")
 
-/client/proc/process_greentext()
-	inc_metabalance(mob, METACOIN_GREENTEXT_REWARD, reason="Задача выполнена!")
+/client/proc/process_greentext(reward, o_completed)
+	if(!reward)
+		reward = 5
+	switch(o_completed)
+		if(0)
+			inc_metabalance(mob, reward, reason="Не удалось выполнить задачи...")
+		if(1)
+			inc_metabalance(mob, reward, reason="Задача выполнена!")
+		if(2 to INFINITY)
+			inc_metabalance(mob, reward, reason="Задачи выполнены!")
 
 /client/proc/process_ten_minute_living()
 	inc_metabalance(mob, METACOIN_TENMINUTELIVING_REWARD, FALSE)

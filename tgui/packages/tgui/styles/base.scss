@@ -16,7 +16,7 @@ $color-bg-end: color.adjust(
 
 $unit: 12px;
 $font-size: 1 * $unit !default;
-$border-radius: 0.16em !default;
+$border-radius: 0.24em !default;
 
 @function em($px) {
   @return 1em * ($px / $unit);

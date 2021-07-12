@@ -1,6 +1,4 @@
 /datum/component/soundplayer
-	var/atom/soundsource
-
 	var/sound/cursound
 	var/active = FALSE
 	var/playing_range = 32
@@ -14,9 +12,8 @@
 	var/playing_channel
 
 /datum/component/soundplayer/Initialize()
-	if(!isatom(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	soundsource = parent
 	playing_channel = SSsounds.random_available_channel()
 	START_PROCESSING(SSprocessing, src)
 	. = ..()
@@ -25,8 +22,6 @@
 /datum/component/soundplayer/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	stop_sounds()
-	for(var/datum/component/soundplayer_listener/SPL in listener_comps)
-		qdel(SPL)
 	. = ..()
 
 /datum/component/soundplayer/RegisterWithParent()
@@ -58,7 +53,7 @@
 	for(var/datum/component/soundplayer_listener/SPL in listener_comps)
 		qdel(SPL)
 
-/datum/component/soundplayer/proc/set_sound(var/newsound)
+/datum/component/soundplayer/proc/set_sound(newsound)
 	if(istext(newsound))
 		cursound = sound(newsound)
 	else
@@ -67,7 +62,7 @@
 	cursound.volume = 0
 	update_sounds()
 
-/datum/component/soundplayer/proc/set_channel(var/chan)
+/datum/component/soundplayer/proc/set_channel(chan)
 	playing_channel = chan
 	if(cursound)
 		cursound.channel = chan
@@ -78,18 +73,17 @@
 /datum/component/soundplayer_listener
 	dupe_mode = COMPONENT_DUPE_ALLOWED
 	var/datum/component/soundplayer/myplayer
-	var/mob/listener
 
-/datum/component/soundplayer_listener/Initialize(var/datum/component/soundplayer/player)
+/datum/component/soundplayer_listener/Initialize(datum/component/soundplayer/player)
 	if(!ismob(parent) || !istype(player))
 		return COMPONENT_INCOMPATIBLE
-	listener = parent
 	myplayer = player
 	. = ..()
 
 /datum/component/soundplayer_listener/Destroy()
 	myplayer.listener_comps -= src
-	SEND_SOUND(listener, sound(null, repeat = 0, wait = 0, channel = myplayer.playing_channel))
+	var/mob/M = parent
+	SEND_SOUND(M, sound(null, repeat = 0, wait = 0, channel = myplayer.playing_channel))
 	. = ..()
 
 /datum/component/soundplayer_listener/RegisterWithParent()
@@ -101,7 +95,8 @@
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 
 /datum/component/soundplayer_listener/proc/get_player_sound()
-	var/list/sounds = listener.client.SoundQuery()
+	var/mob/M = parent
+	var/list/sounds = M.client.SoundQuery()
 	for(var/sound/S in sounds)
 		if(S.file == myplayer.cursound.file)
 			return S
@@ -111,7 +106,8 @@
 	return FALSE
 
 /datum/component/soundplayer_listener/proc/qdel_check()
-	if(!listener || !listener.client || !myplayer || !myplayer.cursound)
+	var/mob/P = parent
+	if(!P || !P.client || !myplayer || !myplayer.cursound)
 		qdel(src)
 		return TRUE
 	return FALSE
@@ -119,7 +115,8 @@
 /datum/component/soundplayer_listener/proc/update_sound()
 	if(qdel_check())
 		return
-	if(!(listener?.client?.prefs?.w_toggles & SOUND_JUKEBOX))
+	var/mob/M = parent
+	if(!(M?.client?.prefs?.w_toggles & SOUND_JUKEBOX))
 		return
 	var/sound/S = get_player_sound()
 	if(!S)
@@ -131,16 +128,18 @@
 		S.channel = myplayer.playing_channel
 		S.environment = myplayer.env_id
 		S.y = 1
-		SEND_SOUND(listener, S)
+		SEND_SOUND(M, S)
 	S.status = SOUND_UPDATE
 	S.channel = myplayer.playing_channel
-	var/turf/TT = get_turf(listener)
-	var/turf/MT = get_turf(myplayer.soundsource)
-	if(!TT || !MT)
+
+	var/turf/listener_turf = get_turf(M)
+	var/atom/movable/A = myplayer.parent
+	var/turf/player_turf = get_turf(A)
+	if(!listener_turf || !player_turf)
 		return
-	var/dist = cheap_hypotenuse(TT.x, TT.y, MT.x, MT.y)
-	if(dist <= myplayer.playing_range && TT.z == MT.z)
-		if(myplayer.environmental && MT && TT)
+	var/dist = cheap_hypotenuse(listener_turf.x, listener_turf.y, player_turf.x, player_turf.y)
+	if(dist <= myplayer.playing_range && listener_turf.z == player_turf.z)
+		if(myplayer.environmental && player_turf && listener_turf)
 			S.volume = myplayer.playing_volume - max(dist * round(myplayer.playing_range/8), 0)
 		else
 			S.volume = myplayer.playing_volume
@@ -148,5 +147,5 @@
 		S.environment = myplayer.env_id
 	else
 		S.volume = 0
-	SEND_SOUND(listener, S)
+	SEND_SOUND(M, S)
 	S.volume = 0

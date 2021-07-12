@@ -2605,7 +2605,6 @@
 /area/centcom/outdoors)
 "hz" = (
 /obj/machinery/light/small,
-/obj/machinery/vending/ancap,
 /turf/open/floor/engine/cult,
 /area/library)
 "hA" = (

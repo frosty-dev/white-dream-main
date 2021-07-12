@@ -162,7 +162,6 @@
 /// Trim for generic ERT clowns. No universal ID card changing access.
 /datum/id_trim/centcom/ert/clown
 	assignment = "Entertainment Response Officer"
-	trim_icon = 'white/rebolution228/icons/card.dmi'
 	trim_state = "trim_ert_entertainment"
 
 /datum/id_trim/centcom/ert/clown/New()

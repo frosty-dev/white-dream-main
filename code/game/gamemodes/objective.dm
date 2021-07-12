@@ -10,6 +10,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 	var/martyr_compatible = FALSE		//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
+	var/reward = 5
 
 /datum/objective/New(text)
 	if(text)
@@ -127,6 +128,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			possible_targets = all_possible_targets
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
+	if(target.assigned_role in list("Russian Officer", "Trader", "Hacker","Veteran", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chief Engineer", "Research Director", "Chief Medical Officer", "Field Medic", "AI", "Cyborg"))
+		reward+=reward
 	update_explanation_text()
 	return target
 
@@ -190,6 +193,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "assasinate"
 	var/target_role_type=FALSE
 	martyr_compatible = TRUE
+	reward = 15
 
 /datum/objective/assassinate/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -221,6 +225,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "mutiny"
 	var/target_role_type=FALSE
 	martyr_compatible = 1
+	reward = 40
 
 /datum/objective/mutiny/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -244,6 +249,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "maroon"
 	var/target_role_type=FALSE
 	martyr_compatible = TRUE
+	reward = 15
 
 /datum/objective/maroon/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -265,6 +271,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/debrain
 	name = "debrain"
 	var/target_role_type=0
+	reward = 15
 
 /datum/objective/debrain/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -301,6 +308,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	martyr_compatible = TRUE
 	var/target_role_type = FALSE
 	var/human_check = TRUE
+	reward = 20
 
 /datum/objective/protect/find_target_by_role(role, role_type=FALSE,invert=FALSE)
 	if(!invert)
@@ -337,6 +345,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "jailbreak"
 	martyr_compatible = TRUE //why not?
 	var/target_role_type
+	reward = 20
 
 /datum/objective/jailbreak/find_target_by_role(role, role_type, invert=FALSE)
 	if(!invert)
@@ -358,6 +367,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/jailbreak/detain
 	name = "detain"
+	reward = 10
 
 /datum/objective/jailbreak/detain/check_completion()
 	return completed || (!considered_escaped(target) && (considered_alive(target) && target.current.onCentCom()))
@@ -376,6 +386,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	martyr_compatible = FALSE //Technically you won't get both anyway.
 	/// Overrides the hijack speed of any antagonist datum it is on ONLY, no other datums are impacted.
 	var/hijack_speed_override = 1
+	reward = 45
 
 /datum/objective/hijack/check_completion() // Requires all owners to escape.
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -391,6 +402,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle."
 	team_explanation_text = "Slaughter all loyalist crew aboard the shuttle. You, and any likeminded individuals, must be the only remaining people on the shuttle. Leave no team member behind."
 	martyr_compatible = FALSE
+	reward = 25
 
 /datum/objective/elimination/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -404,6 +416,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/elimination/highlander
 	name="highlander elimination"
 	explanation_text = "Escape on the shuttle alone. Ensure that nobody else makes it out."
+	reward = 40
 
 /datum/objective/elimination/highlander/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -418,6 +431,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "no organics on shuttle"
 	explanation_text = "Не позволить никаким органическим формам жизни выбраться на шаттле живыми."
 	martyr_compatible = 1
+	reward = 40
 
 /datum/objective/block/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -432,6 +446,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "no mutants on shuttle"
 	explanation_text = "Убедиться, что на борту эвакуационного шаттла нет мутантных гуманоидов."
 	martyr_compatible = TRUE
+	reward = 20
 
 /datum/objective/purge/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -447,6 +462,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "robot army"
 	explanation_text = "По крайней мере восемь активных киборгов синхронизировались со мной."
 	martyr_compatible = FALSE
+	reward = 25
 
 /datum/objective/robot_army/check_completion()
 	var/counter = 0
@@ -464,6 +480,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "escape"
 	explanation_text = "Сбежать на шаттле или спасательной капсуле живым и без содержания под стражей."
 	team_explanation_text = "Сбежать на шаттле или спасательной капсуле живым и без содержания под стражей."
+	reward = 10
 
 /datum/objective/escape/check_completion()
 	// Require all owners escape safely.
@@ -516,6 +533,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/survive
 	name = "survive"
 	explanation_text = "Выжить."
+	reward = 5
 
 /datum/objective/survive/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -529,6 +547,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	explanation_text = "Выполнить все задания за определённое время."
 	var/time_to_do = 36000 // 1 час на все дела вот эти
 	var/timerid
+	reward = 20
 
 /datum/objective/New(text)
 	..()
@@ -581,6 +600,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/survive/malf //Like survive, but for Malf AIs
 	name = "survive AI"
 	explanation_text = "Prevent your own deactivation."
+	reward = 10
 
 /datum/objective/survive/malf/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -592,6 +612,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 /datum/objective/martyr
 	name = "martyr"
 	explanation_text = "Погибнуть красиво."
+	reward = 15
 
 /datum/objective/martyr/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -606,6 +627,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "nuclear"
 	explanation_text = "Уничтожить станцию ядерным устройством."
 	martyr_compatible = TRUE
+	reward = 50
 
 /datum/objective/nuclear/check_completion()
 	if(SSticker && SSticker.mode && SSticker.mode.station_was_nuked)
@@ -618,6 +640,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	var/datum/objective_item/targetinfo = null //Save the chosen item datum so we can access it later.
 	var/obj/item/steal_target = null //Needed for custom objectives (they're just items, not datums).
 	martyr_compatible = FALSE
+	reward = 15
 
 /datum/objective/steal/get_target()
 	return steal_target
@@ -702,6 +725,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/steal/special //ninjas are so special they get their own subtype good for them
 	name = "steal special"
+	reward = 15
 
 /datum/objective/steal/special/New()
 	..()
@@ -714,6 +738,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/download
 	name = "download"
+	reward = 10
 
 /datum/objective/download/proc/gen_amount_goal()
 	target_amount = rand(20,40)
@@ -748,6 +773,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/capture
 	name = "capture"
+	reward = 20
 
 /datum/objective/capture/proc/gen_amount_goal()
 	target_amount = rand(5,10)
@@ -815,6 +841,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/absorb
 	name = "absorb"
+	reward = 10
 
 /datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound,highbound)
@@ -859,6 +886,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/absorb_most
 	name = "absorb most"
 	explanation_text = "Extract more compatible genomes than any other Changeling."
+	reward = 20
 
 /datum/objective/absorb_most/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -880,6 +908,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/absorb_changeling
 	name = "absorb changeling"
 	explanation_text = "Absorb another Changeling."
+	reward = 20
 
 /datum/objective/absorb_changeling/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -903,6 +932,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy
 	name = "destroy AI"
 	martyr_compatible = TRUE
+	reward = 25
 
 /datum/objective/destroy/find_target(dupe_search_range)
 	var/list/possible_targets = active_ais(1)
@@ -939,6 +969,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "steal five of"
 	explanation_text = "Steal at least five items!"
 	var/list/wanted_items = list()
+	reward = 10
 
 /datum/objective/steal_five_of_type/New()
 	..()
@@ -960,11 +991,13 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "steal guns"
 	explanation_text = "Steal at least five guns!"
 	wanted_items = list(/obj/item/gun)
+	reward = 10
 
 /datum/objective/steal_five_of_type/summon_magic
 	name = "steal magic"
 	explanation_text = "Steal at least five magical artefacts!"
 	wanted_items = list()
+	reward = 10
 
 /datum/objective/steal_five_of_type/summon_magic/New()
 	wanted_items = GLOB.summoned_magic_objectives
@@ -989,6 +1022,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 //Created by admin tools
 /datum/objective/custom
 	name = "custom"
+	reward = 5
 
 /datum/objective/custom/admin_edit(mob/admin)
 	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)

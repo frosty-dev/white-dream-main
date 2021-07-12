@@ -24,22 +24,28 @@ $bg-map: colors.$bg-map !default;
     rgba(0, 0, 0, 1),
     rgba(255, 255, 255, 1));
 
-  transition: color 50ms, background-color 50ms;
-  background-color: lighten(base.$color-bg, 15%);
-  border: 1px solid rgba(37, 37, 36, 0.5);
+  transition: color 50ms, background-color 50ms, border-color 50ms, box-shadow 50ms;
+  background-color: lighten(base.$color-bg, 25%);
+  border-top: 1px solid rgba(44, 44, 44, 0.8);
+  border-left: 1px solid rgba(33, 33, 33, 0.8);
+  border-right: 1px solid rgba(33, 33, 33, 0.8);
+  border-bottom: 1px solid rgba(33, 33, 33, 0.8);
+  box-shadow: 0 -1px 0 rgba(66, 66, 66, 0.8), 0 1px 0 rgba(22, 22, 22, 0.8);
   color: $color;
 
   &:hover {
-    transition: color 0ms, background-color 0ms;
+    transition: color 0ms, background-color 0ms, border-color 0ms, box-shadow 0ms;
   }
 
   &:focus {
-    transition: color 100ms, background-color 100ms;
+    transition: color 100ms, background-color 100ms, border-color 100ms, box-shadow 100ms;
   }
 
   &:hover,
   &:focus {
+    border-color: darken($color, 10%);
     background-color: darken($color, 5%);
+    box-shadow: 0 -1px 0 darken($color, 10%), 0 1px 0 darken($color, 15%);
     color: $text-color;
   }
 }
@@ -53,7 +59,7 @@ $bg-map: colors.$bg-map !default;
   white-space: nowrap;
   outline: 0;
   border-radius: $border-radius;
-  margin-bottom: base.em(2px);
+  margin-bottom: base.em(4px);
   // Disable selection in buttons
   user-select: none;
   -ms-user-select: none;
@@ -134,6 +140,11 @@ $bg-map: colors.$bg-map !default;
   background-color: $color-disabled-text !important;
   color: $color-disabled !important;
   border: 1px solid $color-disabled  !important;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 .Button--selected {

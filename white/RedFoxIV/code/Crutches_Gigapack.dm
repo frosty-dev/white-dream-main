@@ -45,6 +45,7 @@
 		missionobj.team = ert_team
 		missionobj.explanation_text = msg
 		missionobj.completed = TRUE
+		missionobj.reward = 15
 		ert_team.objectives += missionobj
 		ert_team.mission = missionobj
 

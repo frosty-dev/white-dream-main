@@ -98,9 +98,9 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 500)
 
-/obj/item/melee/classic_baton/wzzzz/german
-	name = "baton"
-	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
+/obj/item/melee/classic_baton/wzzzz/german // здесь был реба и я официально заявляю что я ебал зергиверги в очко
+	name = "резиновая дубинка"
+	desc = "Резиновая палка 'ПР-60' с поперечной рукояткой, классический инвентарь служб охраны и символ демократии, выполненная из резиновой смеси. Используется для обездвиживания различных криминальных элементов."
 	icon = 'white/Wzzzz/icons/Weea.dmi'
 	icon_state = "baton"
 	cooldown = 20
@@ -108,6 +108,7 @@
 	lefthand_file = 'white/Wzzzz/icons/Weeal.dmi'
 	righthand_file = 'white/Wzzzz/icons/Weear.dmi'
 	worn_icon = 'white/Wzzzz/clothing/mob/belt.dmi'
+	worn_icon_state = "baton"
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/melee/wzzzz/club

@@ -211,6 +211,7 @@ GLOBAL_LIST_INIT(possible_abductor_names, list("Alpha","Beta","Gamma","Delta","E
 // OBJECTIVES
 /datum/objective/experiment
 	target_amount = 6
+	reward = 20
 
 /datum/objective/experiment/New()
 	explanation_text = "Experiment on [target_amount] humans."

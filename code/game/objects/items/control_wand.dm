@@ -78,7 +78,6 @@
 	data.receiver_id = target_interface.hardware_id
 	data.passkey = access_list
 	data.user = user	// for responce message
-
 	ntnet_send(data)
 
 /obj/item/door_remote/omni

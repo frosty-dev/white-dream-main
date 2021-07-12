@@ -10,13 +10,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	appearance_flags = KEEP_TOGETHER
 
-	var/list/pill_list = list()
+	var/list/populate_pill_types = list()
+	var/list/pill_positions = list()
 
 /obj/item/storage/blister/ComponentInitialize()
 	. = ..()
 
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = pill_list.len
+	STR.max_items = pill_positions.len
 	STR.set_holdable(list(/obj/item/reagent_containers/pill))
 	STR.allow_quick_empty = FALSE
 	STR.quickdraw = TRUE
@@ -25,28 +26,33 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 
 	for(var/i = 1 to STR.max_items)
-		var/pill_type = pill_list[i]["pilltype"]
-		pill_list[i]["pillobj"] = new pill_type(src)
-		var/list/curitem = pill_list[i]
-		var/obj/curobj = curitem["pillobj"]
+		var/obj/item/reagent_containers/pill/new_pill
+		for(var/pill_type in populate_pill_types)
+			if(populate_pill_types[pill_type] > 0)
+				populate_pill_types[pill_type]--
+				new_pill = new pill_type(src)
+				break
+		if(!new_pill)
+			break
 
+		pill_positions[i]["pill_item"] = new_pill
+
+		var/list/curitem = pill_positions[i]
 		var/list/overlays = list()
-		overlays.Add(image(icon = curobj.icon, icon_state = curobj.icon_state, pixel_x = curitem["posx"], pixel_y = curitem["posy"]))
-		overlays.Add(image(icon = icon, icon_state = curitem["pillstate"], pixel_x = curitem["posx"], pixel_y = curitem["posy"]))
-
-		pill_list[i]["overlays"] = overlays
-
+		overlays.Add(image(icon = new_pill.icon, icon_state = new_pill.icon_state, pixel_x = curitem["x"], pixel_y = curitem["y"]))
+		overlays.Add(image(icon = icon, icon_state = new_pill.get_shape(), pixel_x = curitem["x"], pixel_y = curitem["y"]))
+		pill_positions[i]["overlays"] = overlays
 		add_overlay(overlays)
 
 	STR.max_items = 0
 	STR.set_holdable(list())
 
-/obj/item/storage/blister/Exited(atom/movable/thing, atom/newLoc)
+/obj/item/storage/blister/Exited(atom/movable/thing, atom/newLoc) //кудато сюда крутой звук ебнуть надо но ево у меня нет
 	..()
 
-	var/list/curitem = null
-	for(var/list/L in pill_list)
-		if(L["pillobj"] == thing)
+	var/list/curitem
+	for(var/list/L in pill_positions)
+		if(L["pill_item"] == thing)
 			curitem = L
 			break
 
@@ -56,85 +62,64 @@
 	cut_overlay(curitem["overlays"])
 
 	var/list/overlays_broken = list()
-	overlays_broken.Add(image(icon = initial(icon), icon_state = "foil_broken", pixel_x = curitem["posx"], pixel_y = curitem["posy"]))
-	overlays_broken.Add(image(icon = initial(icon), icon_state = curitem["pillstate"]+"_broken", pixel_x = curitem["posx"], pixel_y = curitem["posy"]))
-
+	var/obj/item/reagent_containers/pill/P = thing
+	overlays_broken.Add(image(icon = initial(icon), icon_state = "foil_broken", pixel_x = curitem["x"], pixel_y = curitem["y"]))
+	overlays_broken.Add(image(icon = initial(icon), icon_state = "[P.get_shape()]_broken", pixel_x = curitem["x"], pixel_y = curitem["y"]))
 	add_overlay(overlays_broken)
 
-	pill_list.Remove(curitem)
+	pill_positions.Remove(curitem)
+
+/obj/item/reagent_containers/pill/proc/get_shape()
+	var/postfix = replacetext(icon_state, "pill", "")
+	var/num = text2num(postfix)
+	if(postfix == "_happy" || (num >= 7 && num <= 17))
+		return "circle"
+	return "capsule"
+	/*
+	var/icon/I = icon(icon,icon_state)
+	if(I.GetPixel(20, 16, icon_state))
+		return "capsule"
+	return "circle"
+	*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/storage/blister/hohlomicin
-	name = "блистерная упаковка (Хохломицин)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/hohlomicin, pillstate = "long", posx = -5, posy = -5),
-					list(pilltype = /obj/item/reagent_containers/pill/hohlomicin, pillstate = "long", posx = 0, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/hohlomicin, pillstate = "long", posx = 5, posy = 7)
-					)
+/obj/item/storage/blister/fivecir
+	populate_pill_types = list(/obj/item/reagent_containers/pill/haloperidol = 5)
+	pill_positions = list(list(x = -4, y = -7), list(x = -5, y = 1), list(x = 3, y = 0), list(x = 2, y = 8), list(x = 10, y = 7))
 
-/obj/item/storage/blister/haloperidol
-	name = "блистерная упаковка (Галоперидол)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/haloperidol, pillstate = "round", posx = -4, posy = -7),
-					list(pilltype = /obj/item/reagent_containers/pill/haloperidol, pillstate = "round", posx = -5, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/haloperidol, pillstate = "round", posx = 3, posy = 0),
-					list(pilltype = /obj/item/reagent_containers/pill/haloperidol, pillstate = "round", posx = 2, posy = 8),
-					list(pilltype = /obj/item/reagent_containers/pill/haloperidol, pillstate = "round", posx = 10, posy = 7)
-					)
+/obj/item/storage/blister/threecap
+	populate_pill_types = list(/obj/item/reagent_containers/pill/hohlomicin = 3)
+	pill_positions = list(list(x = -5, y = -5), list(x = 0, y = 1), list(x = 5, y = 7))
 
-/obj/item/storage/blister/antihol
-	name = "блистерная упаковка (Антиголь)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/antihol, pillstate = "round", posx = -4, posy = -7),
-					list(pilltype = /obj/item/reagent_containers/pill/antihol, pillstate = "round", posx = -5, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/antihol, pillstate = "round", posx = 3, posy = 0),
-					list(pilltype = /obj/item/reagent_containers/pill/antihol, pillstate = "round", posx = 2, posy = 8),
-					list(pilltype = /obj/item/reagent_containers/pill/antihol, pillstate = "round", posx = 10, posy = 7)
-					)
+/obj/item/storage/blister/twocap
+	populate_pill_types = list(/obj/item/reagent_containers/pill/hohlomicin = 2)
+	pill_positions = list(list(x = -5, y = -5), list(x = 5, y = 7))
 
-/obj/item/storage/blister/stimulant
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/storage/blister/twocap/stimulant
 	name = "блистерная упаковка (Стимулянты)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/stimulant, pillstate = "long", posx = -5, posy = -5),
-					list(pilltype = /obj/item/reagent_containers/pill/stimulant, pillstate = "long", posx = 5, posy = 7)
-					)
+	populate_pill_types = list(/obj/item/reagent_containers/pill/stimulant = 2)
 
-/obj/item/storage/blister/psicodine
+/obj/item/storage/blister/threecap/hohlomicin
+	name = "блистерная упаковка (Хохломицин)"
+
+/obj/item/storage/blister/fivecir/haloperidol
+	name = "блистерная упаковка (Галоперидол)"
+
+/obj/item/storage/blister/fivecir/antihol
+	name = "блистерная упаковка (Антиголь)"
+	populate_pill_types = list(/obj/item/reagent_containers/pill/antihol = 5)
+
+/obj/item/storage/blister/threecap/psicodine
 	name = "блистерная упаковка (Псикодин)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/psicodine, pillstate = "long", posx = -5, posy = -5),
-					list(pilltype = /obj/item/reagent_containers/pill/psicodine, pillstate = "long", posx = 0, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/psicodine, pillstate = "long", posx = 5, posy = 7)
-					)
+	populate_pill_types = list(/obj/item/reagent_containers/pill/psicodine = 2)
 
-/obj/item/storage/blister/potassiodide
+/obj/item/storage/blister/fivecir/potassiodide
 	name = "блистерная упаковка (Йодид калия)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/potassiodide, pillstate = "round", posx = -4, posy = -7),
-					list(pilltype = /obj/item/reagent_containers/pill/potassiodide, pillstate = "round", posx = -5, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/potassiodide, pillstate = "round", posx = 3, posy = 0),
-					list(pilltype = /obj/item/reagent_containers/pill/potassiodide, pillstate = "round", posx = 2, posy = 8),
-					list(pilltype = /obj/item/reagent_containers/pill/potassiodide, pillstate = "round", posx = 10, posy = 7)
-					)
+	populate_pill_types = list(/obj/item/reagent_containers/pill/potassiodide = 5)
 
-/obj/item/storage/blister/aspirin
+/obj/item/storage/blister/fivecir/aspirin
 	name = "блистерная упаковка (Аспирин)"
-	pill_list = list(
-					list(pilltype = /obj/item/reagent_containers/pill/aspirin, pillstate = "round", posx = -4, posy = -7),
-					list(pilltype = /obj/item/reagent_containers/pill/aspirin, pillstate = "round", posx = -5, posy = 1),
-					list(pilltype = /obj/item/reagent_containers/pill/aspirin, pillstate = "round", posx = 3, posy = 0),
-					list(pilltype = /obj/item/reagent_containers/pill/aspirin, pillstate = "round", posx = 2, posy = 8),
-					list(pilltype = /obj/item/reagent_containers/pill/aspirin, pillstate = "round", posx = 10, posy = 7)
-					)
-
-/obj/item/storage/blister/crafted
-	name = "блистерная упаковка"
-
-/obj/item/storage/blister/crafted/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 5
-
-/obj/item/storage/blister/crafted/PopulateContents()
-	return
+	populate_pill_types = list(/obj/item/reagent_containers/pill/aspirin = 5)

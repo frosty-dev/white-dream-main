@@ -141,6 +141,7 @@
 	martyr_compatible = TRUE
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
+	reward = 30
 
 /datum/objective/monkey/check_completion()
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()

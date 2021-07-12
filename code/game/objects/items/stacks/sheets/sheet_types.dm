@@ -259,6 +259,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	sheettype = "wood"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
+	w_class = WEIGHT_CLASS_SMALL
+	full_w_class = WEIGHT_CLASS_NORMAL
 	merge_type = /obj/item/stack/sheet/mineral/wood
 	novariants = TRUE
 	material_type = /datum/material/wood
@@ -682,8 +684,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("пластиковый стакан", /obj/item/reagent_containers/food/drinks/colocup, 1), \
 	new /datum/stack_recipe("знак мокрый пол", /obj/item/clothing/suit/caution, 2), \
 	new /datum/stack_recipe("пустой настенный знак", /obj/item/sign, 1), \
-	new /datum/stack_recipe("конус", /obj/item/clothing/head/cone, 2), \
-	new /datum/stack_recipe("блистерная упаковка", /obj/item/storage/blister/crafted, 1)))
+	new /datum/stack_recipe("конус", /obj/item/clothing/head/cone, 2)))
 
 /obj/item/stack/sheet/plastic
 	name = "пластик"
