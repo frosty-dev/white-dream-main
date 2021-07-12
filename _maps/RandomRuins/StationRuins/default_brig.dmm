@@ -2,11 +2,11 @@
 "ae" = (
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "ag" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "aR" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
@@ -17,7 +17,7 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "ba" = (
 /turf/closed/wall/r_wall,
 /area/security/main)
@@ -167,7 +167,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "bU" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
