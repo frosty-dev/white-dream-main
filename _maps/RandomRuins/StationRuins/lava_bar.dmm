@@ -48,6 +48,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -31
 	},
+/obj/machinery/restaurant_portal/bar,
 /turf/open/floor/glass/reinforced,
 /area/crew_quarters/bar)
 "cg" = (
@@ -695,6 +696,14 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/crew_quarters/kitchen)
 "wS" = (
+/obj/structure/table/wood,
+/obj/item/instrument/guitar{
+	pixel_x = -7
+	},
+/obj/item/instrument/eguitar{
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -23
@@ -703,8 +712,6 @@
 	c_tag = "Bar West";
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/restaurant_portal/bar,
 /turf/open/floor/mineral/plastitanium,
 /area/crew_quarters/bar)
 "xo" = (
@@ -903,6 +910,11 @@
 "Gu" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/mineral/plastitanium,
+/area/crew_quarters/bar)
+"Hb" = (
+/obj/structure/table/wood,
+/obj/item/instrument/violin,
+/turf/open/floor/glass/reinforced,
 /area/crew_quarters/bar)
 "Hm" = (
 /obj/structure/table,
@@ -1471,7 +1483,7 @@ Jx
 nT
 nV
 wS
-BE
+Hb
 bz
 BE
 UZ
