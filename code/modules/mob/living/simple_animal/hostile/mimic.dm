@@ -35,6 +35,8 @@
 	///A cap for mobs. Mobs count towards the item cap. Same purpose as above.
 	var/mob_storage_capacity = 10
 
+	discovery_points = 4000
+
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
 /mob/living/simple_animal/hostile/mimic/crate
 	attack_verb_continuous = "кусает"

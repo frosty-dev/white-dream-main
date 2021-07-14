@@ -123,6 +123,8 @@
 /obj/machinery/griddle/process(delta_time)
 	..()
 	for(var/i in griddled_objects)
+		if(isnull(i)) //somehow a null is getting into this list and i have no idea why, but i also have to somehow stop the fucking runtimes AAAAAAAA
+			continue
 		var/obj/item/griddled_item = i
 		if(SEND_SIGNAL(griddled_item, COMSIG_ITEM_GRILLED, src, delta_time) & COMPONENT_HANDLED_GRILLING)
 			continue

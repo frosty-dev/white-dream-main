@@ -61,6 +61,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/tech_fluff_string = "<span class='holoparasite'>BOOT SEQUENCE COMPLETE. ERROR MODULE LOADED. THIS SHOULDN'T HAPPEN. Submit a bug report!</span>"
 	var/carp_fluff_string = "<span class='holoparasite'>CARP CARP CARP SOME SORT OF HORRIFIC BUG BLAME THE CODERS CARP CARP CARP</span>"
 	var/miner_fluff_string = "<span class='holoparasite'>You encounter... Mythril, it shouldn't exist... Submit a bug report!</span>"
+	discovery_points = 5000
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src

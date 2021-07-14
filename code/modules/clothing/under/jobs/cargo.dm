@@ -58,3 +58,4 @@
 	worn_icon = 'white/valtos/icons/clothing/mob/uniform.dmi'
 	icon_state = "ranger"
 	inhand_icon_state = "miner"
+	can_adjust = FALSE

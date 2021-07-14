@@ -44,6 +44,8 @@
 	/mob/living/simple_animal/hostile/morph,
 	/obj/effect))
 
+	discovery_points = 2000
+
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
 		. = form.examine(user)

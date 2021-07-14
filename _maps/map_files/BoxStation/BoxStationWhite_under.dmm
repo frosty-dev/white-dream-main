@@ -8130,10 +8130,11 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/green{
+/obj/item/radio/intercom/directional/north,
+/obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/item/radio/intercom/directional/north,
+/obj/machinery/vendor/exploration,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/exploration_prep)
 "Ev" = (

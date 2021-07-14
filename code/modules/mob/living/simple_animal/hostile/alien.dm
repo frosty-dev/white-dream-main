@@ -34,6 +34,7 @@
 	gold_core_spawnable = NO_SPAWN
 	deathsound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	discovery_points = 2000
 
 /mob/living/simple_animal/hostile/alien/Initialize()
 	. = ..()

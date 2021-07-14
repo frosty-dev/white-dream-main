@@ -1,0 +1,289 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"k" = (
+/obj/machinery/computer/bs_emitter/lavaportal,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"n" = (
+/obj/item/stack/cable_coil,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"p" = (
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"q" = (
+/obj/structure/window,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"w" = (
+/obj/structure/table,
+/obj/item/circuitboard/machine/smes{
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"D" = (
+/turf/closed/wall,
+/area/ruin/space/has_grav/lavaportal)
+"G" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"H" = (
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"O" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"Q" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"R" = (
+/obj/structure/table,
+/obj/item/stock_parts/cell/bluespace{
+	pixel_x = 5
+	},
+/obj/item/stock_parts/cell/bluespace{
+	pixel_x = -5;
+	pixel_y = -1
+	},
+/obj/item/stock_parts/cell/bluespace{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"T" = (
+/obj/machinery/power/bs_emitter/lavaportal{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/lavaportal)
+"U" = (
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/lavaportal)
+
+(1,1,1) = {"
+f
+D
+D
+D
+D
+D
+D
+D
+D
+D
+f
+"}
+(2,1,1) = {"
+D
+D
+H
+H
+H
+H
+H
+H
+H
+D
+D
+"}
+(3,1,1) = {"
+D
+H
+H
+H
+H
+H
+H
+H
+H
+H
+D
+"}
+(4,1,1) = {"
+D
+H
+H
+U
+U
+U
+U
+U
+H
+H
+D
+"}
+(5,1,1) = {"
+D
+H
+H
+U
+U
+U
+U
+U
+H
+H
+D
+"}
+(6,1,1) = {"
+D
+H
+H
+U
+U
+U
+U
+U
+H
+H
+D
+"}
+(7,1,1) = {"
+D
+H
+H
+U
+U
+U
+U
+U
+H
+H
+D
+"}
+(8,1,1) = {"
+D
+H
+H
+U
+U
+U
+U
+U
+H
+H
+D
+"}
+(9,1,1) = {"
+D
+H
+H
+j
+j
+T
+j
+j
+H
+H
+D
+"}
+(10,1,1) = {"
+D
+H
+q
+R
+H
+G
+H
+H
+H
+H
+D
+"}
+(11,1,1) = {"
+D
+H
+q
+k
+H
+G
+G
+H
+H
+H
+D
+"}
+(12,1,1) = {"
+D
+H
+q
+Q
+H
+H
+H
+H
+H
+H
+D
+"}
+(13,1,1) = {"
+D
+H
+q
+w
+H
+H
+H
+H
+G
+O
+D
+"}
+(14,1,1) = {"
+D
+H
+H
+H
+H
+H
+n
+n
+H
+H
+D
+"}
+(15,1,1) = {"
+D
+D
+H
+H
+H
+H
+H
+n
+H
+D
+D
+"}
+(16,1,1) = {"
+f
+D
+D
+D
+D
+p
+D
+D
+D
+D
+f
+"}

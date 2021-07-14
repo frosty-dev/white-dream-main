@@ -44,6 +44,7 @@
 	var/runetype
 	/// Theme controls color. THEME_CULT is red THEME_WIZARD is purple and THEME_HOLY is blue
 	var/theme = THEME_CULT
+	discovery_points = 1000
 
 /mob/living/simple_animal/hostile/construct/Initialize()
 	. = ..()

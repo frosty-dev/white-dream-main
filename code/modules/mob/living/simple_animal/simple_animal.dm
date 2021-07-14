@@ -170,6 +170,9 @@
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
 
+	//Discovery
+	var/discovery_points = 200
+
 
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()
@@ -184,6 +187,8 @@
 	if(dextrous)
 		AddComponent(/datum/component/personal_crafting)
 		ADD_TRAIT(src, TRAIT_ADVANCEDTOOLUSER, ROUNDSTART_TRAIT)
+	if(discovery_points)
+		AddComponent(/datum/component/discoverable, discovery_points)
 
 	if(speak)
 		speak = string_list(speak)

@@ -26,6 +26,8 @@
 	projectilesound = 'sound/weapons/pierce.ogg'
 	alpha = 50
 
+	discovery_points = 5000
+
 	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/jungle/mega_arachnid/Life(delta_time = SSMOBS_DT, times_fired)

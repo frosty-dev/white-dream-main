@@ -76,7 +76,7 @@
 		M.Paralyze(10)
 		M.adjustCloneLoss(20)
 		playsound(loc, 'sound/magic/clockwork/ratvar_attack.ogg', 40)
-		if(M.stat == DEAD)
+		if(M.stat == DEAD && length(GLOB.servant_spawns))
 			M.become_husk()
 			M.death()
 			playsound(loc, 'sound/magic/exit_blood.ogg', 60)

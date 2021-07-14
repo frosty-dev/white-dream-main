@@ -36,6 +36,7 @@
 				/obj/item/stack/ore/diamond{layer = ABOVE_MOB_LAYER})
 	var/lava_drinker = TRUE
 	var/warmed_up = FALSE
+	discovery_points = 2000
 
 /obj/projectile/temp/basilisk
 	name = "freezing blast"

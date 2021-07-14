@@ -20,6 +20,7 @@
 	mob_size = MOB_SIZE_LARGE
 	var/icon_aggro = null
 	var/crusher_drop_mod = 25
+	discovery_points = 1000
 
 /mob/living/simple_animal/hostile/asteroid/Aggro()
 	..()

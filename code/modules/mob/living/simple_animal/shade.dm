@@ -35,6 +35,8 @@
 	initial_language_holder = /datum/language_holder/construct
 	ventcrawler = VENTCRAWLER_ALWAYS
 
+	discovery_points = 1000
+
 /mob/living/simple_animal/shade/Initialize()
 	. = ..()
 	AddElement(/datum/element/simple_flying)

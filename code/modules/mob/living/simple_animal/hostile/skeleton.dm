@@ -35,6 +35,8 @@
 	del_on_death = 1
 	loot = list(/obj/effect/decal/remains/human)
 
+	discovery_points = 2000
+
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/skeleton/eskimo

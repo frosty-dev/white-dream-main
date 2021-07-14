@@ -554,7 +554,7 @@
 	var/list/msg = list("<span class='notice'><i>Осматриваю <b>[src]</b> ближе и вижу следующее...</i></span>")
 
 	if(registered_age)
-		msg += "\nВладелец карты возрастом <b>[registered_age]</b>. [(registered_age < AGE_MINOR) ? "Тут есть голографическая полоса, которая гласит <b><span class='danger'>'СТАЖИРОВКА: НЕ ПРОДАВАТЬ АЛКОГОЛЬ ИЛИ ТАБАК'</span></b> в самом низу карты." : ""]"
+		msg += "\nВладелец карты в возрасте <b>[registered_age]</b> лет. [(registered_age < AGE_MINOR) ? "Тут есть голографическая полоса, которая гласит <b><span class='danger'>'СТАЖИРОВКА: НЕ ПРОДАВАТЬ АЛКОГОЛЬ ИЛИ ТАБАК'</span></b> в самом низу карты." : ""]"
 	if(mining_points)
 		msg += "\nВау, здесь же есть [mining_points] шахтёрских очков на разные штуки из шахтёрского инвентаря."
 	if(registered_account)
@@ -599,7 +599,7 @@
 /// Updates the name based on the card's vars and state.
 /obj/item/card/id/proc/update_label()
 	var/blank = !registered_name
-	name = "[blank ? initial(name) : "[registered_name]'s ID Card"][(!assignment) ? "" : " ([ru_job_parse(assignment)])"]"
+	name = "[blank ? initial(name) : "ID-карта [registered_name]"][(!assignment) ? "" : " ([ru_job_parse(assignment)])"]"
 
 /obj/item/card/id/away
 	name = "ID-карта"

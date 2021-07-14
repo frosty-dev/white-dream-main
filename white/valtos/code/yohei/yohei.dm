@@ -264,11 +264,11 @@
 	name = "Йохей: Взломщик"
 
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses
-	belt = /obj/item/storage/belt/military/abductor
+	belt = /obj/item/storage/belt/military/abductor/full
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/fallout/yohei9mm
 	uniform = /obj/item/clothing/under/syndicate/yohei/yellow
 
-	backpack_contents = list(/obj/item/construction/rcd = 1)
+	backpack_contents = list(/obj/item/construction/rcd/combat = 1, /obj/item/rcd_ammo/large = 3)
 
 /datum/outfit/yohei/breaker/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -276,11 +276,13 @@
 	H.add_client_colour(/datum/client_colour/hacker)
 	H.hud_list[HACKER_HUD].icon = null
 
+	ADD_TRAIT(H, TRAIT_HACKER, JOB_TRAIT)
+
 	spawn(5 SECONDS)
-		ADD_TRAIT(H, TRAIT_HACKER, JOB_TRAIT)
 		var/datum/component/battletension/BT = H.GetComponent(/datum/component/battletension)
 		if(BT)
 			BT.pick_sound('white/valtos/sounds/snidleyWhiplash.ogg')
+			BT.tension = 80
 		to_chat(H, "<span class='revenbignotice'>Давно не виделись, а?</span>")
 		if(H?.hud_used)
 			H.hud_used.update_parallax_pref(H, TRUE)
@@ -292,7 +294,7 @@
 /datum/outfit/yohei/prospector
 	name = "Йохей: Разведчик"
 
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/meson/night
 	belt = /obj/item/shadowcloak/yohei
 	suit_store = /obj/item/gun/ballistic/automatic/pistol/fallout/yohei9mm
 	uniform = /obj/item/clothing/under/syndicate/yohei/green
@@ -388,12 +390,12 @@
 	prize = 10
 	var/mob/living/target
 
-/datum/yohei_task/kill/generate_task()
+/datum/yohei_task/capture/generate_task()
 	target = find_target()
 	desc = "Захватить [target.name] и доставить живьём в логово."
 	prize = max(rand(prize - 3, prize + 3), 1)
 
-/datum/yohei_task/kill/check_task()
+/datum/yohei_task/capture/check_task()
 	if(target && target.stat != DEAD)
 		var/area/A = get_area(target)
 		if(A.type != /area/ruin/powered/yohei_base)
@@ -435,9 +437,11 @@
 
 /obj/effect/mob_spawn/human/donate
 	name = "платно"
-	desc = "ПЛАТНО ОЗНАЧАЕТ, ЧТО НУЖНО ПЛАТИТЬ!"
+	desc = "ПЛАТНО - ЗНАЧИТ НУЖНО ПЛАТИТЬ!"
 	icon = 'white/valtos/icons/objects.dmi'
 	icon_state = "shiz"
+	roundstart = FALSE
+	death = FALSE
 	var/req_sum = 500
 
 /obj/effect/mob_spawn/human/donate/attack_ghost(mob/user)
@@ -457,10 +461,10 @@
 	flavour_text = "Наёмник посреди пустошей Лаваленда, до чего жизнь довела!"
 	outfit = /datum/outfit/yohei
 	assignedrole = "Yohei"
-	req_sum = 1000
-	uses = 4
+	req_sum = 1250
+	uses = 20
 
-/obj/effect/mob_spawn/human/donate/attack_ghost(mob/user)
+/obj/effect/mob_spawn/human/donate/yohei/attack_ghost(mob/user)
 	var/static/list/choices = list(
 		"Медик" 	= image(icon = 'white/valtos/icons/objects.dmi', icon_state = "ymedic"),
 		"Боевик" 	= image(icon = 'white/valtos/icons/objects.dmi', icon_state = "ycombatant"),
@@ -473,12 +477,16 @@
 	switch(choice)
 		if("Медик")
 			outfit = /datum/outfit/yohei/medic
+			assignedrole = "Yohei: Medic"
 		if("Боевик")
 			outfit = /datum/outfit/yohei/combatant
+			assignedrole = "Yohei: Combatant"
 		if("Взломщик")
 			outfit = /datum/outfit/yohei/breaker
+			assignedrole = "Yohei: Breaker"
 		if("Разведчик")
 			outfit = /datum/outfit/yohei/prospector
+			assignedrole = "Yohei: Prospector"
 	if(user.ckey)
 		var/client/C = GLOB.directory[user.ckey]
 		if(C?.prefs)
@@ -486,3 +494,9 @@
 			facial_hairstyle = C.prefs.facial_hairstyle
 			skin_tone = C.prefs.skin_tone
 	. = ..()
+
+/obj/effect/mob_spawn/human/donate/yohei/special(mob/living/carbon/human/H)
+	var/newname = sanitize_name(reject_bad_text(stripped_input(H, "Меня когда-то звали [H.name]. Пришло время снова сменить прозвище?", "Прозвище", H.name, MAX_NAME_LEN)))
+	if (!newname)
+		return
+	H.fully_replace_character_name(H.real_name, newname)

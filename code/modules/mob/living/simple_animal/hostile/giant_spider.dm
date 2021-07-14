@@ -80,6 +80,7 @@
 	var/datum/action/innate/spider/lay_web/lay_web
 	///The message that the mother spider left for this spider when the egg was layed.
 	var/directive = ""
+	discovery_points = 1000
 
 /mob/living/simple_animal/hostile/poison/giant_spider/Initialize()
 	. = ..()

@@ -75,6 +75,7 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound_wrapper, /client/proc/play_direct_mob_sound, /client/proc/play_sound_wrapper, /client/proc/set_round_end_sound_wrapper))
 GLOBAL_PROTECT(admin_verbs_sounds)
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
+	/client/proc/enforce_containment_procedures,
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
@@ -536,6 +537,24 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Bomb") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/enforce_containment_procedures()
+	set category = "Адм.Веселье"
+	set name = "Put SаnесMan in a jar"
+	set desc = "Won't work if he's disconnected or dead."
+
+	for(var/Ct in GLOB.clients)
+		var/client/C = Ct
+		if(C.ckey == "sanecman")
+			if(!isliving(C.mob))
+				to_chat(usr, "<span class='alert'>Санёк находится в мобе \[[C.mob.type]]. Необходимо, чтобы он находился в мобе \[/mob/living].</span>")
+				return
+			if(istype(C.mob.loc, /obj/item/cum_jar))
+				to_chat(usr, "<span class='alert'>Уже!</span>")
+				return
+			new /obj/item/cum_jar(C.mob)
+			to_chat(usr, "<span class='alert'>Помянем.</span>")
+			return
+	to_chat(usr, "<span class='alert'>Санёк не на сервере.</span>")
 /client/proc/drop_dynex_bomb()
 	set category = "Адм.Веселье"
 	set name = "Drop DynEx Bomb"

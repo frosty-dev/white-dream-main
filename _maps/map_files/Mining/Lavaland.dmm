@@ -982,7 +982,7 @@
 /turf/open/floor/plasteel,
 /area/mine/production)
 "cZ" = (
-/obj/machinery/mineral/equipment_vendor,
+/obj/machinery/vendor/mining,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -1141,7 +1141,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "ds" = (
-/obj/machinery/mineral/equipment_vendor,
+/obj/machinery/vendor/mining,
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -1710,7 +1710,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/machinery/mineral/equipment_vendor,
+/obj/machinery/vendor/mining,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "eT" = (

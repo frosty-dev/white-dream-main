@@ -1,8 +1,8 @@
 //masks
 
 /obj/item/clothing/mask/balaclava/wzzzz/swatclava
-	name = "SWAT balaclava"
-	desc = "Baba Clava"
+	name = "балаклава"
+	desc = "Легко скроет вашу улыбку на лице."
 	worn_icon = 'white/Wzzzz/pirha1.dmi'
 	icon = 'white/Wzzzz/pirha.dmi'
 	icon_state = "swatclava"

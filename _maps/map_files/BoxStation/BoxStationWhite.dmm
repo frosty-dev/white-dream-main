@@ -19898,7 +19898,7 @@
 /turf/open/floor/plasteel/monofloor/dark,
 /area/quartermaster/miningdock)
 "bKq" = (
-/obj/machinery/mineral/equipment_vendor,
+/obj/machinery/vendor/mining,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/miningdock)
 "bKt" = (

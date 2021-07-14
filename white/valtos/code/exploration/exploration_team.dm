@@ -28,14 +28,17 @@
 	exploration_job_id ++
 	switch(exploration_job_id)
 		if(1)
+			to_chat(H, "<span class='notice big'>Мне пришлось стать <span class'sciradio'>Учёным</span> в этой операции!</span>")
+			to_chat(H, "<span class='notice'>Сканируем неизвестные штуки и получаем очки! Чудеса!</span>")
+			outfit_override = /datum/outfit/job/exploration/scientist
+		if(2)
 			to_chat(H, "<span class='notice big'>Мне пришлось стать <span class'medradio'>Доктором</span> в этой операции!</span>")
 			to_chat(H, "<span class='notice'>Необходимо следить за здоровьем товарищей.</span>")
 			outfit_override = /datum/outfit/job/exploration/medic
-		if(2)
+		if(3)
 			to_chat(H, "<span class='notice big'>Мне пришлось стать <span class'engradio'>Инженером</span> в этой операции!</span>")
 			to_chat(H, "<span class='notice'>Установка взрывчатки и починка корпуса - моя обязанность.</span>")
 			outfit_override = /datum/outfit/job/exploration/engineer
-		else
 	. = ..(H, visualsOnly, announce, latejoin, outfit_override, preference_source)
 
 /datum/outfit/job/exploration
@@ -72,7 +75,8 @@
 		/obj/item/stack/marker_beacon/thirty=1,
 		/obj/item/gun/energy/e_gun/mini/exploration=1,
 		/obj/item/grenade/exploration=3,
-		/obj/item/exploration_detonator=1
+		/obj/item/exploration_detonator=1,
+		/obj/item/discovery_scanner=1
 	)
 
 	backpack = /obj/item/storage/backpack/industrial
@@ -88,12 +92,27 @@
 		/obj/item/storage/firstaid/medical=1,
 		/obj/item/pinpointer/crew=1,
 		/obj/item/sensor_device=1,
-		/obj/item/roller=1
+		/obj/item/roller=1,
+		/obj/item/discovery_scanner=1
 	)
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+
+/datum/outfit/job/exploration/scientist
+	name = "Exploration Crew (Scientist)"
+
+	glasses = /obj/item/clothing/glasses/science
+
+	backpack_contents = list(
+		/obj/item/kitchen/knife/combat/survival=1,
+		/obj/item/stack/marker_beacon/thirty=1,
+		/obj/item/discovery_scanner=1
+	)
+
+	backpack = /obj/item/storage/backpack/science
+	satchel = /obj/item/storage/backpack/satchel/tox
 
 /datum/outfit/job/exploration/hardsuit
 	name = "Exploration Crew (Hardsuit)"

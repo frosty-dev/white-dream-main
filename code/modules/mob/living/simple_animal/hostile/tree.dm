@@ -46,6 +46,8 @@
 
 	var/is_tree = TRUE
 
+	discovery_points = 1000
+
 /mob/living/simple_animal/hostile/tree/Initialize()
 	. = ..()
 	add_cell_sample()

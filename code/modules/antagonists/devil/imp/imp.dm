@@ -42,6 +42,7 @@
 	var/playstyle_string = "<span class='big bold'>You are an imp,</span><B> a mischievous creature from hell. You are the lowest rank on the hellish totem pole \
 							Though you are not obligated to help, perhaps by aiding a higher ranking devil, you might just get a promotion. However, you are incapable	\
 							of intentionally harming a fellow devil.</B>"
+	discovery_points = 10000
 
 /datum/antagonist/imp
 	name = "Imp"

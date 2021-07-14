@@ -1,7 +1,13 @@
+/datum/controller/subsystem/processing/orbits/proc/shitspawn_objective(objective_type)
+	var/datum/orbital_objective/objective = new objective_type()
+	objective.generate_payout()
+	possible_objectives += objective
+	update_objective_computers()
+
 /datum/orbital_objective/headhunt
 	name = "Охота за головами"
 	var/generated = FALSE
-	var/objective_type
+	var/target_type
 	var/mob/living/mob_to_recover
 	min_payout = 2000
 	max_payout = 5000
@@ -13,11 +19,17 @@
 			Возможно, может потребоваться помощь сотрудников службы безопасности."
 
 /datum/orbital_objective/headhunt/on_assign(obj/machinery/computer/objective/objective_computer)
-	new /obj/effect/pod_landingzone(empty_pod_turf, empty_pod)
 	var/area/A = GLOB.areas_by_type[/area/bridge]
-	var/turf/open/T = locate() in shuffle(A.contents)
+	var/obj/machinery/atmospherics/components/unary/infactiveseenhimvent = locate() in shuffle(A.contents)
+	var/turf/open/T = get_turf(infactiveseenhimvent)
+	if(!T)
+		T = locate() in shuffle(A.contents)
+	var/obj/structure/closet/supplypod/extractionpod/empty_pod = new()
+	empty_pod.name = "орбитальная система доставки"
+	empty_pod.desc = "а сюда сувать того самого преступника с [station_name]"
+	empty_pod.style = STYLE_CENTCOM
 
-	var/obj/structure/closet/supplypod/centcompod/empty_pod = new()
+	new /obj/effect/pod_landingzone(T, empty_pod)
 
 	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, .proc/enter_check)
 
@@ -29,7 +41,7 @@
 /datum/orbital_objective/headhunt/proc/enter_check(datum/source, entered_mob)
 	if(!istype(source, /obj/structure/closet/supplypod/extractionpod))
 		return
-	if(!isliving(sent_mob))
+	if(!isliving(entered_mob))
 		return
 	if(entered_mob != mob_to_recover)
 		return
@@ -55,6 +67,7 @@
 	notify_ghosts("Цель охоты за головами может быть занята.", source = created_human, action = NOTIFY_ORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_SPLITPERSONALITY, notify_suiciders = FALSE)
 	created_human.AddElement(/datum/element/point_of_interest)
 	created_human.mind_initialize()
+	mob_to_recover = created_human
 	for(var/mob/living/simple_animal/hostile/SA in range(10, created_human))
 		qdel(SA)
 	var/turf/open/T = locate() in shuffle(view(1, created_human))
@@ -63,29 +76,54 @@
 		new /obj/item/tank/internals/oxygen(T)
 		new /obj/item/clothing/mask/gas(T)
 		new /obj/item/storage/belt/utility/full(T)
-	objective_type = pick(list("dreamer"))
-	switch(objective_type)
+	target_type = pick(list("dreamer"))
+	switch(target_type)
 		if("dreamer")
-			created_human.flavor_text = "И вот, после долгих скитаний по заброшенным станциям, ты наконец прибываешь на подходящее для постройки портала место. \
-				Тебе удалось оторваться от прошлой группы охотников, но новая наверняка не заставит себя ждать. \
-				Нужно как можно быстрее построить портал на Лаваленд, убить тварь и покончить со всем этим."
 			created_human.equipOutfit(/datum/outfit/dreamer)
 			created_human.mind.add_antag_datum(/datum/antagonist/dreamer_orbital)
 			created_human.mind.set_level(/datum/skill/gaming, SKILL_LEVEL_LEGENDARY, TRUE)
 			ADD_TRAIT(created_human, TRAIT_NOSOFTCRIT, "gaming")
 			ADD_TRAIT(created_human, TRAIT_FREERUNNING, "gaming")
+			place_portal()
 
-	mob_to_recover = created_human
+
 	generated = TRUE
 
 /datum/orbital_objective/headhunt/check_failed()
 	if(generated)
 		if(QDELETED(mob_to_recover))
 			return TRUE
-		switch(objective_type)
+		switch(target_type)
 			if("dreamer")
-				for(var/datum/antagonist/dreamer_orbital/DO in mob_to_recover.mind.antag_datums)
-					for(var/datum/objective/slay/S  in DO.objectives)
-						if(S.completed)
-							return TRUE
+				var/datum/antagonist/dreamer_orbital/DO = locate() in mob_to_recover.mind.antag_datums
+				var/datum/objective/slay/S = locate() in DO.objectives
+				if(S.completed)
+					return TRUE
 	return FALSE
+
+/datum/orbital_objective/headhunt/proc/place_portal()
+	if(!mob_to_recover)
+		return
+	/*
+	var/turf/place_target = get_turf(mob_to_recover)
+	var/datum/map_template/lavaportal/LP = new()
+	LP.load(locate(place_target.x - LP.width + 3, place_target.y - LP.height/2, place_target.z))
+	*/
+	var/list/turf/possible_turfs = list()
+	for(var/obj/machinery/door/airlock/AL in world)
+		if(AL.z != mob_to_recover.z)
+			continue
+		var/turf/western_turf = locate(AL.x-1, AL.y, AL.z)
+		if(isopenturf(western_turf))
+			possible_turfs.Add(get_turf(AL))
+
+	var/turf/place_target
+	if(!possible_turfs.len)
+		place_target = get_turf(mob_to_recover)
+	else
+		place_target = pick(possible_turfs)
+
+	var/datum/map_template/lavaportal/LP = new()
+	LP.load(locate(place_target.x - LP.width + 1, place_target.y - LP.height/2 + 1, place_target.z))
+
+

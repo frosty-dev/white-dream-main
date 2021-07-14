@@ -44,6 +44,7 @@
 	var/allowed_projectile_types = list(/obj/projectile/magic/change, /obj/projectile/magic/animate, /obj/projectile/magic/resurrection,
 	/obj/projectile/magic/death, /obj/projectile/magic/teleport, /obj/projectile/magic/door, /obj/projectile/magic/aoe/fireball,
 	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage)
+	discovery_points = 3000
 
 /mob/living/simple_animal/hostile/carp/ranged/Initialize()
 	projectiletype = pick(allowed_projectile_types)
@@ -56,6 +57,7 @@
 	maxHealth = 75
 	health = 75
 	gold_core_spawnable = HOSTILE_SPAWN
+	discovery_points = 5000
 
 /mob/living/simple_animal/hostile/carp/ranged/chaos/Shoot()
 	projectiletype = pick(allowed_projectile_types)

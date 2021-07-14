@@ -745,6 +745,7 @@
 /area/centcom/control)
 "dK" = (
 /obj/structure/table/abductor,
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "dL" = (
@@ -1594,6 +1595,7 @@
 "hf" = (
 /obj/structure/table/abductor,
 /obj/item/pamk,
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "hg" = (
@@ -1619,6 +1621,7 @@
 "hq" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/glasses/sunglasses,
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "hw" = (
@@ -2011,6 +2014,7 @@
 /area/centcom/control)
 "jU" = (
 /obj/machinery/turntable,
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "jV" = (
@@ -2374,6 +2378,7 @@
 	dir = 8;
 	resistance_flags = 64
 	},
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "mw" = (
@@ -4007,7 +4012,7 @@
 /area/centcom/holding)
 "yr" = (
 /turf/closed/indestructible/black,
-/area/space)
+/area/ruin/powered/yohei_base)
 "yu" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
@@ -4323,12 +4328,10 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "AS" = (
-/obj/effect/turf_decal/dz031/grid{
-	dir = 1
-	},
 /obj/machinery/door/airlock/public/glass{
 	req_access_txt = "220"
 	},
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "AT" = (
@@ -4840,6 +4843,7 @@
 "DJ" = (
 /obj/structure/table/abductor,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "DN" = (
@@ -5041,6 +5045,7 @@
 	dir = 8;
 	resistance_flags = 64
 	},
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "Fc" = (
@@ -5129,6 +5134,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
+"Fz" = (
+/turf/closed/indestructible/riveted/boss/see_through,
+/area/ruin/powered/yohei_base)
 "FB" = (
 /obj/structure/sink{
 	dir = 4;
@@ -6960,6 +6968,7 @@
 /obj/machinery/vending/boozeomat/all_access{
 	resistance_flags = 64
 	},
+/obj/effect/turf_decal/dz031/grid_full,
 /turf/open/floor/dz/cyber,
 /area/ruin/powered/yohei_base)
 "TQ" = (
@@ -7386,7 +7395,7 @@
 /area/centcom/supplypod)
 "WA" = (
 /turf/open/chasm/lavaland,
-/area/space)
+/area/ruin/powered/yohei_base)
 "WC" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -9059,30 +9068,30 @@ Co
 Co
 Co
 Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
+yr
 Co
 Co
 Co
@@ -9316,30 +9325,30 @@ Co
 Co
 Co
 Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
+yr
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+yr
 Co
 Co
 Co
@@ -9573,30 +9582,30 @@ Co
 Co
 Co
 Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
-Co
+yr
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+yr
 Co
 Co
 Co
@@ -9831,28 +9840,28 @@ Co
 Co
 Co
 yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
-yr
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
+WA
 yr
 Co
 Co
@@ -11381,10 +11390,10 @@ WA
 WA
 Bt
 Bt
-Bt
-Bt
-Bt
-Bt
+Fz
+Fz
+Fz
+Fz
 Bt
 Bt
 WA

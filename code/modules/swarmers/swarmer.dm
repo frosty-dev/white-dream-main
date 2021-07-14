@@ -72,6 +72,7 @@
 	var/list/mob/living/simple_animal/hostile/swarmer/drone/dronelist
 	///Bitflags to store boolean conditions, such as whether the light is on or off.
 	var/swarmer_flags = NONE
+	discovery_points = 1000
 
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()

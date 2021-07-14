@@ -21,6 +21,7 @@
 	var/mob/camera/blob/overmind = null
 	var/obj/structure/blob/special/factory = null
 	var/independent = FALSE
+	discovery_points = 1000
 
 /mob/living/simple_animal/hostile/blob/update_icons()
 	if(overmind)

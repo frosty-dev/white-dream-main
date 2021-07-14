@@ -33,6 +33,7 @@
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	///Innate spells that are supposed to be added when a beast is created
 	var/list/spells_to_add
+	discovery_points = 2000
 
 /mob/living/simple_animal/hostile/eldritch/Initialize()
 	. = ..()

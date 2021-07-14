@@ -11,6 +11,8 @@
 	var/playing_falloff = 4
 	var/playing_channel
 
+	var/prefs_toggle_flag = SOUND_JUKEBOX
+
 /datum/component/soundplayer/Initialize()
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -20,8 +22,8 @@
 	set_sound(sound('white/baldenysh/sounds/hardbass_loop.ogg'))
 
 /datum/component/soundplayer/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
 	stop_sounds()
+	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
 /datum/component/soundplayer/RegisterWithParent()
@@ -34,6 +36,8 @@
 	if(!active || !cursound)
 		return
 	for(var/client/C)
+		if(prefs_toggle_flag && !(C.prefs?.w_toggles & prefs_toggle_flag))
+			continue
 		if(!C.mob)
 			continue
 		var/mob/M = C.mob
@@ -51,6 +55,7 @@
 /datum/component/soundplayer/proc/stop_sounds()
 	active = FALSE
 	for(var/datum/component/soundplayer_listener/SPL in listener_comps)
+		SPL.stop_sound()
 		qdel(SPL)
 
 /datum/component/soundplayer/proc/set_sound(newsound)
@@ -82,8 +87,6 @@
 
 /datum/component/soundplayer_listener/Destroy()
 	myplayer.listener_comps -= src
-	var/mob/M = parent
-	SEND_SOUND(M, sound(null, repeat = 0, wait = 0, channel = myplayer.playing_channel))
 	. = ..()
 
 /datum/component/soundplayer_listener/RegisterWithParent()
@@ -93,6 +96,10 @@
 /datum/component/soundplayer_listener/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
+
+/datum/component/soundplayer_listener/proc/stop_sound()
+	var/mob/M = parent
+	SEND_SOUND(M, sound(null, repeat = 0, wait = 0, channel = myplayer.playing_channel))
 
 /datum/component/soundplayer_listener/proc/get_player_sound()
 	var/mob/M = parent
@@ -116,7 +123,7 @@
 	if(qdel_check())
 		return
 	var/mob/M = parent
-	if(!(M?.client?.prefs?.w_toggles & SOUND_JUKEBOX))
+	if(myplayer.prefs_toggle_flag && !(M?.client?.prefs?.w_toggles & myplayer.prefs_toggle_flag))
 		return
 	var/sound/S = get_player_sound()
 	if(!S)

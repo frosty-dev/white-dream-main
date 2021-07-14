@@ -5,7 +5,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "b" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -14,18 +14,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)
 "c" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -33,70 +25,96 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "d" = (
-/obj/machinery/modular_computer/console/preset/civilian,
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/computer/shuttle_flight/exploration,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/exploration)
+"e" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "ex_cargo1";
+	name = "Cargo Shutters"
+	},
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "f" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/button/door{
+	id = "ex_pilot";
+	name = "Cabin Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = -32;
+	req_access_txt = "49";
+	specialfunctions = 4
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "g" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "h" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
-"i" = (
+"j" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/closet/crate,
-/obj/item/wrench,
-/obj/item/radio/headset/headset_exploration,
-/obj/item/radio/headset/headset_exploration,
+/obj/machinery/power/port_gen/pacman,
 /obj/effect/turf_decal/bot,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/exploration)
-"j" = (
-/obj/machinery/telecomms/broadcaster/preset_exploration,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/cable,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "k" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
+/obj/structure/window/reinforced,
+/obj/structure/table,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/obj/item/dice/d6{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/gps/mining{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/titanium/purple,
 /area/shuttle/exploration)
 "l" = (
 /turf/template_noop,
 /area/template_noop)
 "m" = (
-/obj/machinery/computer/objective,
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/modular_computer/console/preset/civilian,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/exploration)
 "n" = (
 /obj/structure/window/reinforced/survival_pod{
@@ -106,40 +124,80 @@
 /turf/open/floor/plating,
 /area/shuttle/exploration)
 "o" = (
-/obj/machinery/telecomms/bus/preset_exploration,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/circuitboard/computer/exploration_shuttle,
+/obj/structure/closet/crate,
+/obj/item/wrench,
+/obj/item/radio/headset/headset_exploration,
+/obj/item/radio/headset/headset_exploration,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "p" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/north{
-	cell_type = /obj/item/stock_parts/cell/high/plus
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/shuttle{
+	id_tag = "ex_cab";
+	req_access_txt = "49"
+	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/exploration)
+"q" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "ex_cargo2";
+	name = "Cargo Shutters"
+	},
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "r" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "ex_cargo1";
+	name = "Cargo Shutters"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "ex_cargo1";
+	name = "Cargo Shutters Control";
+	pixel_y = 32;
+	req_access_txt = "49"
+	},
 /turf/open/floor/plating,
 /area/shuttle/exploration)
-"s" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/telecomms/hub/preset/exploration,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/exploration)
 "t" = (
-/obj/machinery/door/airlock/external/glass,
 /obj/docking_port/mobile{
 	dir = 4;
 	dwidth = 5;
@@ -157,19 +215,51 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/exploration)
-"u" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
+/obj/machinery/door/airlock/shuttle{
+	req_access_txt = "49"
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
+"u" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 5
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/shuttle/exploration)
+"v" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "ex_cargo2";
+	name = "Cargo Shutters"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "ex_cargo2";
+	name = "Cargo Shutters Control";
+	pixel_y = 32;
+	req_access_txt = "49"
+	},
+/turf/open/floor/plating,
+/area/shuttle/exploration)
 "w" = (
-/obj/machinery/telecomms/receiver/preset_exploration,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/telecomms/allinone/exploration,
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "x" = (
 /obj/structure/cable,
@@ -182,60 +272,98 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "y" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/north{
+	cell_type = /obj/item/stock_parts/cell/high/plus
+	},
+/obj/machinery/button/door{
+	id = "ex_pilot";
+	name = "Cabin Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = -25;
+	req_access_txt = "49";
+	specialfunctions = 4
+	},
+/obj/machinery/light/small,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "z" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/exploration)
 "A" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/tier_1,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/exploration)
-"B" = (
+/obj/machinery/door/airlock/shuttle{
+	id_tag = "ex_cab";
+	req_access_txt = "49"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/mineral/plastitanium,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "D" = (
 /obj/structure/table,
-/obj/machinery/recharger,
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/exploration)
+"E" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/exploration)
 "F" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/multitool,
-/obj/item/gps/mining,
-/turf/open/floor/mineral/plastitanium,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/multitool{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "G" = (
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/open/floor/plating,
 /area/shuttle/exploration)
 "H" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
+/obj/effect/turf_decal/loading_area{
+	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/exploration)
 "I" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/exploration)
 "J" = (
-/obj/machinery/telecomms/server/presets/exploration,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1;
+	piping_layer = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "K" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -244,9 +372,32 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)
 "L" = (
-/obj/machinery/telecomms/processor/preset_exploration,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/plastitanium,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/closet/crate/science,
+/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/shuttle/exploration)
+"M" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/button/door{
+	id = "ex_pilot";
+	name = "Cabin Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 32;
+	req_access_txt = "49";
+	specialfunctions = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "N" = (
 /obj/effect/turf_decal/stripes/line{
@@ -271,10 +422,11 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "Q" = (
-/turf/closed/wall/mineral/titanium,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "R" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -287,11 +439,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "T" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
 "U" = (
 /turf/open/floor/mineral/plastitanium,
@@ -300,48 +452,41 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/cable,
-/obj/structure/closet/crate/science,
-/obj/item/circuitboard/computer/exploration_shuttle,
-/obj/item/stack/sheet/mineral/plasma/five,
-/obj/effect/turf_decal/bot,
-/obj/machinery/light/directional/north,
-/obj/item/tank/internals/oxygen,
-/obj/item/tank/internals/oxygen,
-/obj/item/tank/internals/oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)
 "W" = (
-/obj/machinery/computer/shuttle_flight/exploration,
-/turf/open/floor/mineral/plastitanium,
+/obj/machinery/computer/objective,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/exploration)
 "X" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 8;
-	piping_layer = 4
+/obj/machinery/light_switch/directional/south,
+/obj/machinery/sleeper{
+	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/exploration)
+"Z" = (
+/obj/machinery/light/directional/north,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 
 (1,1,1) = {"
 l
 R
 R
-Q
-Q
+z
+z
 t
-Q
+z
 z
 r
-r
-I
+e
+E
 I
 l
 "}
@@ -351,13 +496,13 @@ R
 D
 a
 z
-x
 y
 z
-B
+Q
+V
 U
 w
-I
+E
 I
 "}
 (3,1,1) = {"
@@ -367,8 +512,8 @@ P
 f
 z
 p
-k
 z
+Z
 V
 O
 o
@@ -382,7 +527,7 @@ P
 S
 g
 x
-x
+A
 c
 N
 b
@@ -395,11 +540,11 @@ R
 m
 P
 h
-z
+k
 H
-u
 z
-s
+M
+V
 K
 L
 n
@@ -410,28 +555,28 @@ R
 R
 F
 T
-z
+u
 X
-A
 z
-i
+Q
+V
 U
 j
-I
+E
 I
 "}
 (7,1,1) = {"
 l
 R
 R
-Q
-Q
-R
-R
 z
-R
-R
-I
+z
+z
+z
+z
+v
+q
+E
 I
 l
 "}

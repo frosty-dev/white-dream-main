@@ -42,6 +42,8 @@
 	var/list/available_experiments = list()
 	/// Completed experiments
 	var/list/completed_experiments = list()
+	//Discovery scanned thinsg
+	var/list/scanned_atoms = list()
 
 /datum/techweb/New()
 	SSresearch.techwebs += src

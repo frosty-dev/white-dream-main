@@ -8,6 +8,9 @@
 	///Used mainly for summoning ritual to prevent spamming the rune to create millions of monsters.
 	var/is_in_use = FALSE
 
+/obj/effect/broken_illusion/ComponentInitialize()
+	AddComponent(/datum/component/discoverable, 5000)
+
 /obj/effect/eldritch/Initialize()
 	. = ..()
 	var/image/I = image(icon = 'icons/effects/eldritch.dmi', icon_state = null, loc = src)

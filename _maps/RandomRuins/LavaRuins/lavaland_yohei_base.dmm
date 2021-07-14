@@ -147,6 +147,9 @@
 /obj/structure/reagent_dispensers/plumbed/fuel,
 /turf/open/indestructible/labfloor,
 /area/ruin/powered/yohei_base)
+"P" = (
+/turf/closed/mineral/random/high_chance/volcanic,
+/area/template_noop)
 "R" = (
 /obj/machinery/light/directional/north,
 /obj/effect/turf_decal/stripes/line{
@@ -159,8 +162,8 @@
 /turf/closed/indestructible/reinforced,
 /area/ruin/powered/yohei_base)
 "W" = (
-/turf/closed/mineral/random/high_chance/volcanic,
-/area/ruin/powered/yohei_base)
+/turf/template_noop,
+/area/template_noop)
 "Y" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/stripes/line{
@@ -230,7 +233,7 @@ M
 k
 q
 l
-W
+P
 "}
 (6,1,1) = {"
 W

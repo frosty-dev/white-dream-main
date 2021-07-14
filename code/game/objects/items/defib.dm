@@ -471,8 +471,8 @@
 	busy = TRUE
 	M.visible_message("<span class='danger'>[user] touches [M] with [src]!</span>", \
 			"<span class='userdanger'>[user] touches [M] with [src]!</span>")
-	M.adjustStaminaLoss(60)
-	M.Knockdown(75)
+	M.adjustStaminaLoss(30)
+	M.Knockdown(40)
 	M.Jitter(50)
 	M.apply_status_effect(STATUS_EFFECT_CONVULSING)
 	playsound(src,  'sound/machines/defib_zap.ogg', 50, TRUE, -1)
@@ -487,7 +487,7 @@
 	if(req_defib)
 		defib.cooldowncheck(user)
 	else
-		recharge(60)
+		recharge(100)
 
 /obj/item/shockpaddles/proc/do_harm(mob/living/carbon/H, mob/living/user)
 	if(req_defib && defib.safety)

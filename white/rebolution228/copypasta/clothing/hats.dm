@@ -23,6 +23,7 @@
 	visor_flags_cover = HEADCOVERSMOUTH | PEPPERPROOF
 	dog_fashion = null
 	flash_protect = FLASH_PROTECTION_FLASH
+	dynamic_hair_suffix = "+generic"
 
 /obj/item/clothing/head/helmet/maska/attack_self(mob/user)
 	if(can_toggle && !user.incapacitated())
@@ -46,7 +47,7 @@
 /obj/item/clothing/head/helmet/maska/adidas
 	desc = "Тяжелый штурмовой шлем, используемый специальными подразделениями Новой России, входящие в отдел NanoTrasen. Этот шлем был раскрашен в темный цвет с нанесенными тремя белыми полосками. Похоже, что он крепче обычных шлемов."
 	icon_state = "tpmaska1sch"
-	armor = list(MELEE = 90, BULLET = 100, LASER = 60, ENERGY = 60, BOMB = 80, BIO = 0, RAD = 0, FIRE = 70, WOUND = 20)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 70, ENERGY = 70, BOMB = 80, BIO = 0, RAD = 0, FIRE = 70, WOUND = 20)
 
 //алтын
 

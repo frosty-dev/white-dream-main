@@ -23,6 +23,7 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	chat_color = LIGHT_COLOR_CLOCKWORK
 	speech_span = "brassmobsay"
 	initial_language_holder = /datum/language_holder/clockmob
+	discovery_points = 2000
 
 //No you can't go weilding guns like that.
 /mob/living/simple_animal/drone/cogscarab/Initialize()

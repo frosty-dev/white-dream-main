@@ -38,6 +38,7 @@
 	var/wound_bonus_per_hit = 5
 	/// How much our wound_bonus hitstreak bonus caps at (peak demonry)
 	var/wound_bonus_hitstreak_max = 12
+	discovery_points = 3000
 
 /mob/living/simple_animal/hostile/imp/slaughter/Initialize(mapload, obj/effect/dummy/phased_mob/bloodpool)//Bloodpool is the blood pool we spawn in
 	..()

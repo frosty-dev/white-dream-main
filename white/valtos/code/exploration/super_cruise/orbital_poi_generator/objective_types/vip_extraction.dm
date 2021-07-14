@@ -1,9 +1,7 @@
 /datum/orbital_objective/vip_recovery
 	name = "VIP эвакуация"
 	var/generated = FALSE
-	var/death_caring = TRUE
 	var/mob/mob_to_recover
-	var/atom/tracked_diary
 	//Relatively easy mission.
 	min_payout = 1000
 	max_payout = 4000
@@ -18,24 +16,15 @@
 //I know, its a bit sad.
 /datum/orbital_objective/vip_recovery/check_failed()
 	if(generated)
+		//Deleted
 		if(QDELETED(mob_to_recover))
 			return TRUE
-		if(mob_to_recover.stat == DEAD)
-			if(mob_to_recover.key && death_caring)
-				return TRUE
-			if(!mob_to_recover.key)
-				if(death_caring)
-					//Spawn in a diary
-					var/obj/item/disk/record/diary = new(get_turf(mob_to_recover))
-					diary.setup_recover(src)
-					tracked_diary = diary
-					priority_announce("Сенсоры сообщают о том, что VIP, которого мы хотели достать, внезапно скончался, однако \
-						его дневник поможет нам восстановить произошедшие события. Найдите его.")
-				death_caring = FALSE
-		else if(is_station_level(mob_to_recover.z))
-			complete_objective()
-		if(death_caring)
+		//Left behind
+		if(mob_to_recover in SSzclear.nullspaced_mobs)
 			return TRUE
+		//Recovered and alive
+		if(is_station_level(mob_to_recover.z) && mob_to_recover.stat == CONSCIOUS)
+			complete_objective()
 	return FALSE
 
 /datum/orbital_objective/vip_recovery/generate_objective_stuff(turf/chosen_turf)
@@ -44,7 +33,6 @@
 	created_human.ice_cream_mob = TRUE
 	ADD_TRAIT(created_human, TRAIT_CLIENT_LEAVED, "ice_cream")
 	notify_ghosts("VIP-персона может быть занята.", source = created_human, action = NOTIFY_ORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_SPLITPERSONALITY, notify_suiciders = FALSE)
-	death_caring = FALSE
 	created_human.AddElement(/datum/element/point_of_interest)
 	created_human.mind_initialize()
 	//Remove nearby dangers
@@ -82,22 +70,6 @@
 			created_human.mind.make_Changeling()
 	mob_to_recover = created_human
 	generated = TRUE
-
-/obj/item/disk/record
-	name = "Диск-дневник"
-	desc = "Диск, который содержит интересную информацию."
-
-/obj/item/disk/record/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/gps, "LOG[rand(1000, 9999)]", TRUE)
-
-/obj/item/disk/record/proc/setup_recover(linked_mission)
-	AddComponent(/datum/component/recoverable, linked_mission)
-
-/obj/item/disk/record/examine(mob/user)
-	. = ..()
-	. += "<hr><span class='notice'>Активируй это в руке <b>на мостике</b> станции, чтобы отправить Нанотрейзен нужные данные и завершить контракт.</span>"
-
 
 //=====================
 // Centcom Official

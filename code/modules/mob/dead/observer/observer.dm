@@ -311,14 +311,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Relinquish your life and enter the land of the dead."
 
 	if(stat != DEAD)
-		succumb()
-		if(incapacitated())
-			var/response = alert(src, "Преждевременный выход из тела отбирает у меня право на донос.\nОно мне нужно?", "Ты УВЕРЕН?", "Да", "Нет")
-			if(response == "Да")
-				inc_metabalance(src, METACOIN_GHOSTIZE_REWARD, reason="Откуп за душу стоил много.")
-				ghostize(FALSE)
-				return
-		to_chat(src, "<span class='boldnotice'>Пока ещё живу.</span>")
+		if(incapacitated() && succumb())
+			inc_metabalance(src, METACOIN_GHOSTIZE_REWARD, reason="Откуп за душу стоил много.")
+			ghostize(FALSE)
+			return
+
 	if(stat == DEAD)
 		ghostize(TRUE)
 	return

@@ -29,3 +29,5 @@
 	minbodytemp = 150
 	maxbodytemp = 500
 	gold_core_spawnable = HOSTILE_SPAWN
+
+	discovery_points = 1000

@@ -33,6 +33,9 @@
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
+
+	r_pocket = /obj/item/discovery_scanner
+
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/cheap=1)
 
 	backpack = /obj/item/storage/backpack/science

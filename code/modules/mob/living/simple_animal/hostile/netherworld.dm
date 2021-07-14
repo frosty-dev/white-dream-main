@@ -22,6 +22,7 @@
 	var/phaser = TRUE
 	var/datum/action/innate/creature/teleport/teleport
 	var/is_phased = FALSE
+	discovery_points = 3000
 
 /mob/living/simple_animal/hostile/netherworld/Initialize()
 	. = ..()

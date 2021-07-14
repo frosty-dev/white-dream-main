@@ -37,8 +37,8 @@
 
 /obj/item/gun/ballistic/automatic/m41a2
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
-	name = "M41A Pulse Rifle MK.II"
-	desc = "Новая версия громоздкой импульсной винтовки, оснащенная подствольным гранатомётом. Использует безгильзовые 10х24мм патроны."
+	name = "Импульсная Винтовка M41A"
+	desc = "Основное оружие колониальных морпехов, оснащенная подствольным 40мм гранатомётом. Использует безгильзовые 10х24мм патроны. Неплохо работает против ксеноморфов."
 	icon = 'white/rebolution228/icons/weapons/rguns.dmi'
 	icon_state = "m41a2"
 	inhand_icon_state = "m41a2"
@@ -144,16 +144,14 @@
 
 /obj/projectile/bullet/m41acaseless
 	name = "10x24мм пуля"
-	damage = 35
+	damage = 25
 	armour_penetration = 25
 	wound_bonus = -40
 
 /obj/projectile/bullet/m41acaseless/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(isalien(target))
-		var/mob/living/carbon/alien/L = target
-		L.visible_message("<span class='danger'>[L] взрывается в клочья!</span>")
-		L.gib()
+		damage = 50
 
 /obj/item/ammo_casing/caseless/m41acaseless
 	name = "10x24мм патрон"

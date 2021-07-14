@@ -10,7 +10,9 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 
 	var/datum/orbital_map_tgui/orbital_map_tgui = new()
 
-	var/initial_objective_beacons = 4
+	var/initial_space_ruins = 2
+	var/initial_objective_beacons = 3
+	var/initial_asteroids = 6
 
 	var/orbits_setup = FALSE
 
@@ -54,8 +56,13 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 	orbital_map.post_setup()
 	orbits_setup = TRUE
 	//Create initial ruins
+	for(var/i in 1 to initial_space_ruins)
+		new /datum/orbital_object/z_linked/beacon/ruin/spaceruin()
 	for(var/i in 1 to initial_objective_beacons)
 		new /datum/orbital_object/z_linked/beacon/ruin()
+	//Create asteroid belt
+	for(var/i in 1 to initial_asteroids)
+		new /datum/orbital_object/z_linked/beacon/ruin/asteroid()
 	new /datum/orbital_object/z_linked/habitable()
 
 /datum/controller/subsystem/processing/orbits/fire(resumed)
@@ -85,7 +92,8 @@ PROCESSING_SUBSYSTEM_DEF(orbits)
 		/datum/orbital_objective/recover_blackbox = 3,
 		/datum/orbital_objective/nuclear_bomb = 1,
 		/datum/orbital_objective/artifact = 1,
-		/datum/orbital_objective/vip_recovery = 1
+		/datum/orbital_objective/vip_recovery = 1,
+		/datum/orbital_objective/headhunt = 1
 	)
 	if(!length(possible_objectives))
 		priority_announce("Основное задание для станции было выбрано - Детали были разосланы на все консоли заданий. \
