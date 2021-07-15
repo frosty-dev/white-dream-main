@@ -1,9 +1,9 @@
 {
 	"version": 1,
-    "map_name": "Box Station",
+	"map_name": "Box Station",
 	"map_path": "map_files/BoxStation",
 	"space_ruin_levels": 3,
-    "map_file": [
+	"map_file": [
 		"BoxStationWhite_under.dmm",
 		"BoxStationWhite.dmm"
 	],
@@ -19,10 +19,10 @@
 			"Linkage": "Cross"
 		}
 	],
-    "shuttles": {
-	    "cargo": "cargo_box",
-	    "ferry": "ferry_fancy",
-	    "whiteship": "whiteship_box",
-	    "emergency": "emergency_box"
-    }
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_box",
+		"emergency": "emergency_box"
+	}
 }
