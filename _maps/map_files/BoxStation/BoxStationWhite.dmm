@@ -18985,11 +18985,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
-"bGT" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/openspace/airless,
-/area/space/nearstation)
 "bGY" = (
 /obj/structure/table,
 /obj/item/cartridge/signal/toxins{
@@ -82468,7 +82463,7 @@ eRz
 eRz
 gXs
 nXv
-bGT
+nXv
 bgu
 hnW
 hnW

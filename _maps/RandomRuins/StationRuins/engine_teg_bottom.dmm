@@ -1060,14 +1060,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"wC" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/ladder,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/turf/template_noop,
-/area/space/nearstation)
 "AD" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -1414,7 +1406,7 @@ bt
 oi
 eD
 oi
-wC
+eD
 oi
 eD
 oi

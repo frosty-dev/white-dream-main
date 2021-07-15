@@ -96,7 +96,7 @@
 /datum/map_template/ruin/station/engine/teg
 	id = "engine_teg"
 	suffix = "engine_teg.dmm"
-	name = "Teg Bottom"
+	name = "Teg"
 	always_spawn_with = list(/datum/map_template/ruin/station/engine/bottom/teg = PLACE_BELOW)
 
 /datum/map_template/ruin/station/engine/bottom/teg
